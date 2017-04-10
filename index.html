@@ -17,19 +17,23 @@
             $('#MediumRss').FeedEk({
             	FeedUrl: 'https://medium.com/feed/frank-r-castillo',
             	MaxCount: 100,
-				ShowDesc: false });
+				ShowDesc: false
+			});
+            $('#TwitterRss').FeedEk({
+            	FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
+            	MaxCount: 100,
+				ShowDesc: false
+			});			
+
         });
         
 		function visibleSection(sectionToEnable) {
 			document.getElementById("viewBlog").style.display = "none";
 			document.getElementById("viewAcad").style.display = "none";
+			document.getElementById("viewTwtr").style.display = "none";
 			document.getElementById(sectionToEnable).style.display = "inline";
-			
 		}
     </script>
-    <style>
-
-    </style>
   </head>
   <body>
 	<table>
@@ -57,6 +61,7 @@
 			      	<ul id="content">
 						<li><a href="javascript:visibleSection('viewBlog')">Blog</a></li>
 						<li><a href="javascript:visibleSection('viewAcad')">Academics</a></li>
+						<li><a href="javascript:visibleSection('viewTwtr')">Twitter Feed</a></li>
 					</ul>
 			      </h2>
 			      <h2>About</h2>
@@ -84,6 +89,10 @@
 			        			</a>
 		        			</li>
 		        		</ul>
+		        </div>
+		        <div id="viewTwtr">
+			        <h3>Tweets</h3>
+			        	<div id="TwitterRss"></div>
 		        </div>
 			</td>
 		</tr>
