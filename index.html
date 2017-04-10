@@ -1,10 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html lang="en">
+  <!--FeedEk used for RSS Reader-->
   <head>
     <meta charset="utf-8"
           name="description"
           content="Website of Frank R Castillo"/>
     <title>Frank R Castillo</title>
+    <link href="feedek/FeedEk.css"
+          rel="stylesheet"
+          type="text/css"/>
+	<script type="text/javascript" src="feedek/FeedEk.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#divRss').FeedEk({
+                FeedUrl: 'https://medium.com/feed/frank-r-castillo',
+                MaxCount: 3
+            });
+    </script>
     <style>
       body {background-color: rgb(255, 255, 255);
             font-family: calibri;
@@ -22,53 +34,7 @@
     </style>
   </head>
   <body>
-  	<!--jFeed, by https://github.com/jfhovinne/jFeed-->
-  	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/jquery.jfeed.pack.js"></script>
-    <script
-    	medium_rss = "https://medium.com/feed/frank-r-castillo";
-    	youtbe_rss = "";
-    	twtter_rss = "";
-	  	jQuery(function() {
-	  		jQuery.getFeed({
-	  			url: 'https://medium.com/feed/frank-r-castillo',
-	  			success: function(feed) {
-		            jQuery('#result').append('<h2>'
-		            + '<a href="'
-		            + feed.link
-		            + '">'
-		            + feed.title
-		            + '</a>'
-		            + '</h2>');
-		            
-		            var html = '';
-		            
-		            for(var i = 0; i < feed.items.length && i < 5; i++) {
-		            
-		                var item = feed.items[i];
-		                
-		                html += '<h3>'
-		                + '<a href="'
-		                + item.link
-		                + '">'
-		                + item.title
-		                + '</a>'
-		                + '</h3>';
-		                
-		                html += '<div class="updated">'
-		                + item.updated
-		                + '</div>';
-		                
-		                html += '<div>'
-		                + item.description
-		                + '</div>';
-		            }
-		            jQuery('#result').append(html);
-	  			}
-	  		});
-	  	}
-  	</script>
-  	<!--jFeed, by https://github.com/jfhovinne/jFeed-->
+
     <h1>Frank R. Castillo
     	<a href="https://medium.com/frank-r-castillo"
     	   target="_blank">
@@ -95,7 +61,8 @@
         <p>This is the website of Franklin Castillo, which I host in GitHub</p>
       <h2>Content</h2>
         <h3>Blog</h3>
-        	<div id="result"></div>
+			<div id="divRss"></div>
+
         <h3>Academics</h3>
   </body>
 </html>
