@@ -23,15 +23,15 @@
   </head>
   <body>
   	<!--jFeed, by https://github.com/jfhovinne/jFeed-->
-  	<script type="text/javascript" src="support/jquery.js"></script>
-	<script type="text/javascript" src="support/jquery.jfeed.pack.js"></script>
+  	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.jfeed.pack.js"></script>
     <script
     	medium_rss = "https://medium.com/feed/frank-r-castillo";
     	youtbe_rss = "";
     	twtter_rss = "";
 	  	jQuery(function() {
 	  		jQuery.getFeed({
-	  			url: 'support/rss-20.xml',
+	  			url: 'https://medium.com/feed/frank-r-castillo',
 	  			success: function(feed) {
 		            jQuery('#result').append('<h2>'
 		            + '<a href="'
@@ -63,10 +63,9 @@
 		                + item.description
 		                + '</div>';
 		            }
-		            
 		            jQuery('#result').append(html);
 	  			}
-	  		})
+	  		});
 	  	}
   	</script>
   	<!--jFeed, by https://github.com/jfhovinne/jFeed-->
@@ -96,7 +95,7 @@
         <p>This is the website of Franklin Castillo, which I host in GitHub</p>
       <h2>Content</h2>
         <h3>Blog</h3>
-        	<div id="result"/>
+        	<div id="result"></div>
         <h3>Academics</h3>
   </body>
 </html>
