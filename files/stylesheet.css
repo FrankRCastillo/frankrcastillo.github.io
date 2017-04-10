@@ -68,18 +68,8 @@ img.icon {
 #viewTwtr,
 #viewYtbe {
 	display: none;}
-	
-#aboutPane {
-	position: fixed;
-	top: 100px;
-	left: 800px;
-	width: 350px;
-	vertical-align:top;}
-	
+		
 #selectorPane {
-	position: fixed;
-	top: 0px;
-	left: 800px;
 	width: 350px;
 	height: 100px;
 	vertical-align: top;}
