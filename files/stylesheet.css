@@ -1,7 +1,45 @@
+body {
+	font-family: calibri;
+	text-align: justify;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    vertical-align: top;
+}
+
+table {
+	border-collapse: collapsed;
+	background-color: rgb(250, 250, 250);
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	vertical-align: top;}
+	
+h1 {
+	color: rgb(100, 100, 100);
+	margin-left: 5px}
+	
+h2 {
+	color: rgb(120, 120, 120);
+	margin-left: 7px;}
+	
+h3 {
+	color: rgb(130, 130, 130);
+	margin-left: 9px;}
+	
+p {
+	margin-left: 11px;
+	font-size: 14px;
+	font-weight: normal;}
+	
+a {
+  	text-decoration: none;}
+
 .feedEkList{
-	width:500px;
 	list-style:none outside none;
 	background-color:#FFFFFF;
+	width: 750px;
 	padding:4px 6px;
 	margin-left: 11px;
 	color:#3E3E3E;}
@@ -10,7 +48,7 @@
 	padding:4px;}
 	
 .itemTitle a{
-	font-weight:bold;
+	font-weight: normal;
 	color:#505050 !important;
 	text-decoration:none;}
 	
@@ -20,31 +58,7 @@
 .itemDate{
 	font-size:11px;
 	color:#AAAAAA;}
-	
-body {
-	background-color: rgb(255, 255, 255);
-	font-family: calibri;
-	text-align: justify;
-	color: rgb(70, 70, 70);}
-	
-h1 {
-	color: rgb(90, 90, 90);
-	margin-left: 5px}
-	
-h2 {
-	color: rgb(110, 110, 110);
-	margin-left: 7px;}
-	
-h3 {
-	color: rgb(130, 130, 130);
-	margin-left: 9px;}
-	
-p {
-	margin-left: 11px;}
-	
-a {
-  	text-decoration: none;}
-  	
+
 img.icon {
 	height: 25px;
 	width: 25px;}
@@ -54,17 +68,27 @@ img.icon {
 #viewTwtr,
 #viewYtbe {
 	display: none;}
-
-#content {
-	font-size: 14px;
-	text-intent: 11px;
-	list-style-type: square;}
 	
-table, tr, td {
-	border: 1px;
-	padding: 0px;
-	height: 100%;
+#aboutPane {
+	position: fixed;
+	top: 100px;
+	left: 800px;
+	width: 350px;
+	vertical-align:top;}
+	
+#selectorPane {
+	position: fixed;
+	top: 0px;
+	left: 800px;
+	width: 350px;
+	height: 100px;
 	vertical-align: top;}
 
-#navPane {
-	width: 450px;}
+#contentPane {
+	vertical-align: top;}
+
+#contentList li {
+	font-size: 14px;
+	display: inline;
+	text-intent: 11px;
+	list-style-type: square;}

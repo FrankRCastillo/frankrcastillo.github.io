@@ -1,102 +1,96 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html lang="en">
-  <!--FeedEk used for RSS Reader-->
-  <head>
-    <meta charset="utf-8"
-          name="description"
-          content="Website of Frank R Castillo"/>
-    <title>Frank R Castillo</title>
-    <link href="files/stylesheet.css"
-          rel="stylesheet"
-          type="text/css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-langs.min.js"></script>
-    <script type="text/javascript" src="files/FeedEk.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#MediumRss').FeedEk({
-            	FeedUrl: 'https://medium.com/feed/frank-r-castillo',
-            	MaxCount: 100,
-				ShowDesc: false
-			});
-            $('#TwitterRss').FeedEk({
-            	FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
-            	MaxCount: 100,
-				ShowDesc: false
-			});			
-
-        });
-        
-		function visibleSection(sectionToEnable) {
-			document.getElementById("viewBlog").style.display = "none";
-			document.getElementById("viewAcad").style.display = "none";
-			document.getElementById("viewTwtr").style.display = "none";
-			document.getElementById(sectionToEnable).style.display = "inline";
-		}
-    </script>
-  </head>
-  <body>
-	<table>
-		<tr>
-			<td id="navPane">
-			    <h1>Frank R. Castillo
-			    	<a href="https://medium.com/frank-r-castillo"
-			    	   target="_blank">
-				    	<img src="Icons/medium.png"
-				    	     class="icon"/></a>
-			    	<a href="https://twitter.com/FrankRCastillo"
-			    	   target="_blank">
-				    	<img src="Icons/twitter.png"
-				    	     class="icon"/></a>
-			    	<a href="https://www.linkedin.com/in/franklinrcastillo/"
-			    	   target="_blank">
-				    	<img src="Icons/linkedin.png"
-				    	     class="icon"/></a>
-			    	<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g"
-			    	   target="_blank">
-				    	<img src="Icons/youtube.png"
-				    	     class="icon"/></a>        
-			    </h1>
-			      <h2>Content
-			      	<ul id="content">
-						<li><a href="javascript:visibleSection('viewBlog')">Blog</a></li>
-						<li><a href="javascript:visibleSection('viewAcad')">Academics</a></li>
-						<li><a href="javascript:visibleSection('viewTwtr')">Twitter Feed</a></li>
+	<!--FeedEk used for RSS Reader-->
+	<head>
+		<meta charset="utf-8"
+		      name="description"
+		      content="Website of Frank R Castillo"/>
+		<title>Frank R Castillo</title>
+		<link href="files/stylesheet.css"
+		      rel="stylesheet"
+		      type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-langs.min.js"></script>
+		<script type="text/javascript" src="files/FeedEk.js"></script>
+		<script type="text/javascript">
+		    $(document).ready(function () {
+		        $('#MediumRss').FeedEk({
+		        	FeedUrl: 'https://medium.com/feed/frank-r-castillo',
+		        	MaxCount: 100,
+					ShowDesc: false
+				});
+		        $('#TwitterRss').FeedEk({
+		        	FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
+		        	MaxCount: 100,
+					ShowDesc: false
+				});			
+		
+		    });
+		    
+			function visibleSection(sectionToEnable) {
+				document.getElementById("viewBlog").style.display = "none";
+				document.getElementById("viewAcad").style.display = "none";
+				document.getElementById("viewTwtr").style.display = "none";
+				document.getElementById(sectionToEnable).style.display = "inline";
+			}
+		</script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td id="contentPane"
+				    rowspan="2">
+			      	<div id="viewBlog">
+				        <h3>Blog</h3>
+				        	<div id="MediumRss"></div>
+			        </div>
+			        <div id="viewAcad">
+			        	<h3>Academics</h3>
+			        		<ul id="content">
+			        			<li>
+				        			<a href="https://www.youtube.com/playlist?list=PLE2R1NmwOzRkrWKHR8WKfXYBIhVv4OwTy">
+				        				Big Data Presentations
+				        			</a>
+			        			</li>
+			        		</ul>
+			        </div>
+			        <div id="viewTwtr">
+				        <h3>Tweets</h3>
+				        	<div id="TwitterRss"></div>
+			        </div>
+				</td>
+				<td id="selectorPane">
+					<h1>Frank R. Castillo</h1>
+					<ul>
+						<div id="contentList">
+							<li><a href="javascript:visibleSection('viewBlog')">Blog</a></li> | 
+							<li><a href="javascript:visibleSection('viewAcad')">Academics</a></li> | 
+							<li><a href="javascript:visibleSection('viewTwtr')">Twitter Feed</a></li>
+						</div>
 					</ul>
-			      </h2>
-			      <h2>About</h2>
-			        <p>
-			        	<i>I'm willing to have my ideas demolished.<br/>
-			        	Bring a proper wrecking ball.</i><br/><br/>
-			        	
-			        	I am a student, family man, US Marine, and programming enthusiast. I enjoy keeping up with politics, international relations, technology, economics, and finance. When I can, I write in my blog.<br/><br/>
-			        	I attend the University of South Florida; I hope to apply to their PhD in economics by 12/2017. In my research, I hope to find ways to mitigate the risk of money laundering for developing countries and financial institutions looking to do business with them. I also hold an MBA from University of South Florida Saint Petersburg. While in the Marines, I earned a BS in Political Science from University of Maryland University College.<br/><br/>
-			        	Prior to returning to school, I held several positions as a contractor in the areas of Anti-Money Laundering, financial compliance, and information technology.
-			        				        	
-			        </p>
-			</td>
-			<td id="contentPane">
-		      	<div id="viewBlog">
-			        <h3>Blog</h3>
-			        	<div id="MediumRss"></div>
-		        </div>
-		        <div id="viewAcad">
-		        	<h3>Academics</h3>
-		        		<ul id="content">
-		        			<li>
-			        			<a href="https://www.youtube.com/playlist?list=PLE2R1NmwOzRkrWKHR8WKfXYBIhVv4OwTy">
-			        				Big Data Presentations
-			        			</a>
-		        			</li>
-		        		</ul>
-		        </div>
-		        <div id="viewTwtr">
-			        <h3>Tweets</h3>
-			        	<div id="TwitterRss"></div>
-		        </div>
-			</td>
-		</tr>
-
-
-  </body>
+				</td>
+			</tr>
+			<tr>
+				<td id="aboutPane">
+					<h2>About</h2>
+						<p>
+				        	<i>I'm willing to have my ideas demolished. Bring a proper wrecking ball.</i><br/><br/>
+				        	
+				        	I am a student, family man, US Marine, and programming enthusiast. I enjoy keeping up with politics, international relations, technology, economics, and finance. When I can, I write in my blog. I attend the University of South Florida; I hope to apply to their PhD in economics by 12/2017. In my research, I hope to find ways to mitigate the risk of money laundering for developing countries and financial institutions looking to do business with them. I also hold an MBA from University of South Florida Saint Petersburg. While in the Marines, I earned a BS in Political Science from University of Maryland University College. Prior to returning to school, I held several positions as a contractor in the areas of Anti-Money Laundering, financial compliance, and information technology.
+			        	</p>
+			        <h2>Social Media</h2>
+			        	<h3>
+					    	<a href="https://medium.com/frank-r-castillo" target="_blank">
+						    	<img src="Icons/medium.png" class="icon"/></a>
+					    	<a href="https://twitter.com/FrankRCastillo" target="_blank">
+						    	<img src="Icons/twitter.png" class="icon"/></a>
+					    	<a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
+						    	<img src="Icons/linkedin.png" class="icon"/></a>
+					    	<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
+						    	<img src="Icons/youtube.png" class="icon"/></a>
+				    	</h3>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>
