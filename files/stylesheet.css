@@ -64,11 +64,7 @@ table, tr, td {
 	border: 1px;
 	padding: 0px;
 	height: 100%;
-	width: 100%;
 	vertical-align: top;}
 
 #navPane {
-	width: 300px;}
-
-#contentPane {
-	width: 550px;}
+	width: 450px;}
