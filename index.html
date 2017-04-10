@@ -22,6 +22,54 @@
     </style>
   </head>
   <body>
+  	<!--jFeed, by https://github.com/jfhovinne/jFeed-->
+  	<script type="text/javascript" src="support/jquery.js"></script>
+	<script type="text/javascript" src="support/jquery.jfeed.pack.js"></script>
+    <script
+    	medium_rss = "https://medium.com/feed/frank-r-castillo";
+    	youtbe_rss = "";
+    	twtter_rss = "";
+	  	jQuery(function() {
+	  		jQuery.getFeed({
+	  			url: 'support/rss-20.xml',
+	  			success: function(feed) {
+		            jQuery('#result').append('<h2>'
+		            + '<a href="'
+		            + feed.link
+		            + '">'
+		            + feed.title
+		            + '</a>'
+		            + '</h2>');
+		            
+		            var html = '';
+		            
+		            for(var i = 0; i < feed.items.length && i < 5; i++) {
+		            
+		                var item = feed.items[i];
+		                
+		                html += '<h3>'
+		                + '<a href="'
+		                + item.link
+		                + '">'
+		                + item.title
+		                + '</a>'
+		                + '</h3>';
+		                
+		                html += '<div class="updated">'
+		                + item.updated
+		                + '</div>';
+		                
+		                html += '<div>'
+		                + item.description
+		                + '</div>';
+		            }
+		            
+		            jQuery('#result').append(html);
+	  			}
+	  		})
+	  	}
+  	</script>
+  	<!--jFeed, by https://github.com/jfhovinne/jFeed-->
     <h1>Frank R. Castillo
     	<a href="https://medium.com/frank-r-castillo"
     	   target="_blank">
@@ -47,8 +95,8 @@
       <h2>About</h2>
         <p>This is the website of Franklin Castillo, which I host in GitHub</p>
       <h2>Content</h2>
-        <h3>Medium</h3>
-        <h3>YouTube</h3>
-        <h3>Twitter</h3>
+        <h3>Blog</h3>
+        	<div id="result"/>
+        <h3>Academics</h3>
   </body>
 </html>
