@@ -10,7 +10,6 @@ body {
 
 table {
 	border-collapse: collapsed;
-	background-color: rgb(255, 255, 255);
 	padding: 0px;
 	height: 100%;
 	width: 100%;
@@ -38,7 +37,6 @@ a {
 
 .feedEkList{
 	list-style:none outside none;
-	background-color:#FFFFFF;
 	width: 750px;
 	padding:4px 6px;
 	margin-left: 11px;
@@ -62,7 +60,13 @@ a {
 img.icon {
 	height: 25px;
 	width: 25px;}
-	
+
+#bgImg {
+	position: fixed;
+	width: 50%;
+	height: 50%;
+	opacity: 0.4;}
+
 #viewBlog,
 #viewAcad,
 #viewTwtr,
