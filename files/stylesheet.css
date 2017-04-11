@@ -70,11 +70,15 @@ img.icon {
 	display: none;}
 		
 #selectorPane {
+	position: fixed;
+	left: 0px;
 	width: 350px;
 	height: 100px;
 	vertical-align: top;}
 
 #contentPane {
+	position: relative;
+	left: 360px;
 	vertical-align: top;}
 
 #contentList li {
