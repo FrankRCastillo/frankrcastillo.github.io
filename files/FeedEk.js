@@ -21,7 +21,7 @@
         if (def.FeedUrl == undefined) return;       
         $("#" + id).append('<img src="files/loader.gif" />');
 
-        var YQLstr = 'SELECT channel.item FROM feednormalizer WHERE output="rss_2.0" AND url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
+        var YQLstr = 'SELECT channel.item FROM feednormalizer WHERE output ="rss_2.0" AND url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
 
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(YQLstr) + "&format=json&diagnostics=false&callback=?",

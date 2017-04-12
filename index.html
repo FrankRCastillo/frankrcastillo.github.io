@@ -2,95 +2,103 @@
 <html lang="en">
 	<!--FeedEk used for RSS Reader-->
 	<head>
-		<meta charset="utf-8"
-		      name="description"
-		      content="Website of Frank R Castillo"/>
-		<title>Frank R Castillo</title>
-		<link href="files/stylesheet.css"
-		      rel="stylesheet"
-		      type="text/css"/>
+		<meta	charset="utf-8"
+				name="description"
+				content="Website of Frank R Castillo"/>
+		<title>
+			Frank R Castillo
+		</title>
+		<link	href="files/stylesheet.css"
+				rel="stylesheet"
+	      		type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-langs.min.js"></script>
 		<script type="text/javascript" src="files/FeedEk.js"></script>
 		<script type="text/javascript">
 		    $(document).ready(function () {
-		        $('#MediumRss').FeedEk({
-		        	FeedUrl: 'https://medium.com/feed/frank-r-castillo',
-		        	MaxCount: 100,
+	    	    $('#MediumRss').FeedEk({
+	        		FeedUrl: 'https://medium.com/feed/frank-r-castillo',
+	        		MaxCount: 100,
 					ShowDesc: false
 				});
 		        $('#TwitterRss').FeedEk({
 		        	FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
 		        	MaxCount: 100,
 					ShowDesc: false
-				});			
-		
-		    });
-		    
+				});
+		        $('#YoutubeRss').FeedEk({
+		        	FeedUrl: 'https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g',
+		        	MaxCount: 100,
+					ShowDesc: false
+				});
+	    	});
 			function visibleSection(sectionToEnable) {
-				document.getElementById("viewBlog").style.display = "none";
-				document.getElementById("viewAcad").style.display = "none";
-				document.getElementById("viewTwtr").style.display = "none";
+				var viewSecs = ["viewBlog",
+								"viewAcad",
+								"viewTwtr"];
+				for ( i = 0; i < viewSecs.length; i++ ) {
+					document.getElementById(viewSecs[i]).style.display = "none";
+				}
 				document.getElementById(sectionToEnable).style.display = "inline";
 			}
 		</script>
 	</head>
 	<body>
 		<table>
-		<div id="bgImg">
-			<img src="files/background.jpg"
-			     style="width: 100%;
-					    height: 100%">
-		</div>
+			<div id="bgImg">
+				<img	src="files/background.jpg"
+						style="width: 100%;
+						height: 100%">
+			</div>
 			<tr>
 				<td id="selectorPane">
 					<h1>Frank R. Castillo</h1>
-					<ul>
-						<div id="contentList">
-							<li><a href="javascript:visibleSection('viewBlog')">Blog</a></li> | 
-							<li><a href="javascript:visibleSection('viewAcad')">Academics</a></li> | 
-							<li><a href="javascript:visibleSection('viewTwtr')">Twitter Feed</a></li>
-						</div>
-					</ul>
+						<ul>
+							<div id="contentList">
+								<li><a href="javascript:visibleSection('viewBlog')">Blog</a></li> | 
+								<li><a href="javascript:visibleSection('viewAcad')">Academics</a></li> | 
+								<li><a href="javascript:visibleSection('viewTwtr')">Tweets</a></li>
+							</div>
+						</ul>
 					<h2>About</h2>
 						<p style="text-align: justify;">
-				        	<i>I'm willing to have my ideas demolished. Bring a proper wrecking ball.</i>
-				        	
-				        	<br/><br/>
-				        	
-				        	I am a student, family man, US Marine, and programming enthusiast. I enjoy following and writing about topics of global relevance such as politics, international relations, technology, economics, finance, and culture. I currently attend University of South Florida where I'm currently completing math and programming pre-requisites, and hope to apply to the university's PhD in economics by the end of 2017. Through my research, I hope to find ways to mitigate the risk of money laundering and fraud in developing economies. I also hold and MBA from University of South Florida Saint Petersburg. While on active duty in the United States Marine Corps, I earned a BS in Political Science from University of Maryland University College. Professionally, I've held several positions as a contractor in the areas of Anti-Money Laundering, financial compliance, and information technology.
-			        	</p>
-					<h1>Social Media<br/>
-						<p>
-					    	<a href="https://medium.com/frank-r-castillo" target="_blank">
-						    	<img src="files/medium.png" class="icon"/></a>
-					    	<a href="https://twitter.com/FrankRCastillo" target="_blank">
-						    	<img src="files/twitter.png" class="icon"/></a>
-					    	<a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
-						    	<img src="files/linkedin.png" class="icon"/></a>
-					    	<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
-						    	<img src="files/youtube.png" class="icon"/></a>
+							<i>I'm willing to have my ideas demolished. Bring a proper wrecking ball.</i>
+							<br/><br/>        
+							I am a student, family man, US Marine, and programming enthusiast. I enjoy following and writing about topics of global relevance such as politics, international relations, technology, economics, finance, and culture. I currently attend University of South Florida where I'm currently completing math and programming pre-requisites, and hope to apply to the university's PhD in economics by the end of 2017. Through my research, I hope to find ways to mitigate the risk of money laundering and fraud in developing economies. I also hold and MBA from University of South Florida Saint Petersburg. While on active duty in the United States Marine Corps, I earned a BS in Political Science from University of Maryland University College. Professionally, I've held several positions as a contractor in the areas of Anti-Money Laundering, financial compliance, and information technology.
 						</p>
-			    	</h1>
+					<h2>Social Media</h2>
+						<p>
+							<a href="https://medium.com/frank-r-castillo" target="_blank">
+							<img src="files/medium.png" class="icon"/></a>
+							<a href="https://twitter.com/FrankRCastillo" target="_blank">
+							<img src="files/twitter.png" class="icon"/></a>
+							<a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
+							<img src="files/linkedin.png" class="icon"/></a>
+							<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
+							<img src="files/youtube.png" class="icon"/></a>
+						</p>
 				</td>
 				<td id="contentPane"
-				    rowspan="2">
-			      	<div id="viewBlog">
-				        <h3>Blog</h3>
-				        	<div id="MediumRss"></div>
-			        </div>
-			        <div id="viewAcad">
-			        	<h3>Academics</h3>
-				        	<p>
-			        			<a href="https://www.youtube.com/playlist?list=PLE2R1NmwOzRkrWKHR8WKfXYBIhVv4OwTy">
-			        				Big Data Presentations
-			        			</a>
-		        			</p>
-			        </div>
-			        <div id="viewTwtr">
-				        <h3>Tweets</h3>
-				        	<div id="TwitterRss"></div>
-			        </div>
+					rowspan="2">
+					<div id="viewBlog">
+						<h3>Blog</h3>
+							<div id="MediumRss"></div>
+    				</div>
+					<div id="viewAcad">
+						<h3>Academics</h3>
+							<h4>YouTube<br>
+									<iframe width="720"
+											height="480"
+											src="https://www.youtube.com/embed/videoseries?list=PLE2R1NmwOzRkrWKHR8WKfXYBIhVv4OwTy"
+											frameborder="0"
+											allowfullscreen>
+									</iframe>
+							</h4>
+    				</div>
+					<div id="viewTwtr">
+						<h3>Tweets</h3>
+							<div id="TwitterRss"></div>
+					</div>
 				</td>
 			</tr>
 		</table>
