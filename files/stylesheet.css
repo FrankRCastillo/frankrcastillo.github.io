@@ -17,15 +17,15 @@ table {
     width: 800px;
 }
 h1 {
-    color: rgb(100, 100, 100);
+    color: rgb(90, 90, 90);
     margin-left: 5px
 }
 h2 {
-    color: rgb(120, 120, 120);
+    color: rgb(110, 110, 110);
     margin-left: 10px;
 }
 h3 {
-    color: rgb(130, 130, 130);
+    color: rgb(120, 120, 120);
     margin-left: 15px;
 }
 
@@ -68,7 +68,7 @@ img.icon {
 }
 #bgImg {
     height: 2048px;
-    opacity: 0.20;
+    opacity: 0.15;
     position: fixed;
     width: 2580px;
 }
