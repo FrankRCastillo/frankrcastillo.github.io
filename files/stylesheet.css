@@ -1,11 +1,15 @@
-body {
+html {
 	font-family: calibri;
 	text-align: left;
+    vertical-align: top;
+	text-decoration:none;
+}
+
+body {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-right: 0px;
     margin-left: 0px;
-    vertical-align: top;
 }
 
 table {
@@ -13,11 +17,12 @@ table {
 	padding: 0px;
 	height: 100%;
 	width: 100%;
-	vertical-align: top;}
+}
 	
 h1 {
 	color: rgb(100, 100, 100);
-	margin-left: 5px}
+	margin-left: 5px
+}
 	
 h2 {
 	color: rgb(120, 120, 120);
@@ -37,25 +42,24 @@ a {
 
 .feedEkList{
 	list-style:none outside none;
-	width: 750px;
-	padding:4px 6px;
+	padding:5px 5px;
 	margin-left: 11px;
 	color: rgb(255, 255, 255);}
 
 .feedEkList li{
-	padding:4px;}
+	padding:5px;}
 	
 .itemTitle a{
 	font-weight: normal;
-	color:#505050 !important;
+	color: rgb(220, 220, 220) !important;
 	text-decoration:none;}
 	
 .itemTitle a:hover{
 	text-decoration:underline;}
 	
 .itemDate{
-	font-size:11px;
-	color:#AAAAAA;}
+	font-size: 11px;
+	color: rgb(180, 180, 180);}
 
 img.icon {
 	height: 25px;
@@ -63,9 +67,9 @@ img.icon {
 
 #bgImg {
 	position: fixed;
-	width: 50%;
-	height: 50%;
-	opacity: 0.3;}
+	width: 2580px;
+	height: 2048px;
+	opacity: 0.20;}
 
 #viewBlog,
 #viewAcad,
@@ -77,16 +81,17 @@ img.icon {
 	position: fixed;
 	left: 0px;
 	width: 350px;
-	height: 100px;
 	vertical-align: top;}
 
 #contentPane {
+	background-color: rgb(10, 10, 10);
+	opacity: .9;
 	position: relative;
-	left: 360px;
+	color: rgb(220, 220, 220);
+	width: 600px;
+	height: 100%;
 	vertical-align: top;}
 
 #contentList li {
 	font-size: 14px;
-	display: inline;
-	text-intent: 11px;
-	list-style-type: square;}
+	display: inline;}
