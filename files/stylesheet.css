@@ -67,10 +67,10 @@ img.icon {
     width: 25px;
 }
 #bgImg {
-    height: 2048px;
-    opacity: 0.15;
+    opacity: 0.40;
     position: fixed;
-    width: 2580px;
+    width: 600px;
+    height: 400px;
 }
 #selectorPane {
     left: 0px;
