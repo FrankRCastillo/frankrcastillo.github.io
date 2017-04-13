@@ -14,18 +14,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-langs.min.js"></script>
 		<script type="text/javascript" src="files/FeedEk.js"></script>
-		<script type="text/javascript">
-		
-			// Loading screen
-			Do {
-				for ( i = 0; i < 1; i = i + 0.00001 ) {
-					document.getElementById("loadTable").style.opacity = i;
-				}
-				for ( i = 1; i > 0; i = i - 0.00001 ) {
-					document.getElementById("loadTable").style.opacity = i;
-				}
-			} While ( document.readyState = "loading" )
-			document.getElementById("loadScreen").style.display = "none";		
+		<script type="text/javascript">		
 		
 			// RSS functions
 		    $(document).ready(function () {
@@ -59,11 +48,6 @@
 		</script>
 	</head>
 	<body>
-		<div id="loadScreen">
-			<table id="loadTable">
-				Loading...
-			</table>
-		</div>
 		<div id="bgImg">
 			<img	src="files/background.jpg"
 					style="width: 100%;

@@ -95,7 +95,7 @@ img.icon {
     display: none;
 }
 
-#loadTable {
+#loadTable, #loadScreen {
 	background-color: rgb(200, 200, 200);
 	font-color: rgb(200, 200, 200);
 	opacity: 1;
