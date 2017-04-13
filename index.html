@@ -15,6 +15,19 @@
 		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-langs.min.js"></script>
 		<script type="text/javascript" src="files/FeedEk.js"></script>
 		<script type="text/javascript">
+		
+			// Loading screen
+			Do {
+				for ( i = 0; i < 1; i = i + 0.00001 ) {
+					document.getElementById("loadTable").style.opacity = i;
+				}
+				for ( i = 1; i > 0; i = i - 0.00001 ) {
+					document.getElementById("loadTable").style.opacity = i;
+				}
+			} While ( document.readyState = "loading" )
+			document.getElementById("loadScreen").style.display = "none";		
+		
+			// RSS functions
 		    $(document).ready(function () {
 	    	    $('#MediumRss').FeedEk({
 	        		FeedUrl: 'https://medium.com/feed/frank-r-castillo',
@@ -32,6 +45,8 @@
 					ShowDesc: false
 				});
 	    	});
+	    	
+	    	// Hides and un-hides content
 			function visibleSection(sectionToEnable) {
 				var viewSecs = ["viewBlog",
 								"viewAcad",
@@ -44,12 +59,17 @@
 		</script>
 	</head>
 	<body>
+		<div id="loadScreen">
+			<table id="loadTable">
+				Loading...
+			</table>
+		</div>
+		<div id="bgImg">
+			<img	src="files/background.jpg"
+					style="width: 100%;
+					       height: 100%">
+		</div>
 		<table>
-			<div id="bgImg">
-				<img	src="files/background.jpg"
-						style="width: 100%;
-						height: 100%">
-			</div>
 			<tr>
 				<td id="selectorPane">
 					<h1>Frank R. Castillo</h1>
@@ -85,16 +105,15 @@
     				</div>
 					<div id="viewAcad">
 						<h3>Academics</h3>
-							<ul>Presentations: Big Data and E-Commerce, University of South Florida (02/2017 - 05/2017)<br/><br/>
-									<li>
-										<iframe width="720"
-												height="480"
-												src="https://www.youtube.com/embed/videoseries?list=PLE2R1NmwOzRkrWKHR8WKfXYBIhVv4OwTy"
-												frameborder="0"
-												allowfullscreen>
-										</iframe>
-									</li>
-							</ul>
+							<h4>Presentations: Big Data and E-Commerce, University of South Florida (02/2017 - 05/2017)</h4>
+								<p>
+									<iframe width="400"
+											height="300"
+											src="https://www.youtube.com/embed/videoseries?list=PLE2R1NmwOzRkrWKHR8WKfXYBIhVv4OwTy"
+											frameborder="0"
+											allowfullscreen>
+									</iframe>
+								</p>
     				</div>
 					<div id="viewTwtr">
 						<h3>Tweets</h3>
