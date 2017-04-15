@@ -32,11 +32,11 @@
                     data.query.results.rss = [data.query.results.rss];
                 }
                 $.each(data.query.results.rss, function (e, itm) {
-                    s += '<li><div class="itemTitle"><a href="' + itm.channel.item.link + '" target="' + def.TitleLinkTarget + '" >' + itm.channel.item.title + '</a></div>';
+                    s += '<li><div class="fTle"><a href="' + itm.channel.item.link + '" target="' + def.TitleLinkTarget + '" >' + itm.channel.item.title + '</a></div>';
                     
                     if (def.ShowPubDate){
                         dt = new Date(itm.channel.item.pubDate);
-                        s += '<div class="itemDate">';
+                        s += '<div class="fDte">';
                         if ($.trim(def.DateFormat).length > 0) {
                             try {
                                 moment.lang(def.DateFormatLang);
@@ -50,7 +50,7 @@
                         s += '</div>';
                     }
                     if (def.ShowDesc) {
-                        s += '<div class="itemContent">';
+                        s += '<div class="fkt">';
                          if (def.DescCharacterLimit > 0 && itm.channel.item.description.length > def.DescCharacterLimit) {
                             s += itm.channel.item.description.substring(0, def.DescCharacterLimit) + '...';
                         }
@@ -60,7 +60,7 @@
                          s += '</div>';
                     }
                 });
-                $("#" + id).append('<ul class="feedEkList">' + s + '</ul>');
+                $("#" + id).append('<ul class="fLst">' + s + '</ul>');
             }
         });
     };
