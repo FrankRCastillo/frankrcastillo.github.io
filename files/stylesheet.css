@@ -9,11 +9,11 @@ p{font-weight: normal; list-style: none outside none; margin-left: 15px; padding
 a{text-decoration: none;}
 .fLst{width:450px; list-style:none outside none; border:0px; padding:4px 6px;}
 .fLst li{border-bottom:1px solid rgb(80, 80, 80); padding:5px;}
-.fTle a{font-weight:normal; color: rgb(80, 80, 80) !important; text-decoration:none;}
+.fTle a{font-weight: bold; color: rgb(80, 80, 80) !important; text-decoration:none;}
 .fTle a:hover{ text-decoration:underline;}
 .fDte{font-size:11px;rgb(80, 80, 80)} 
 img.ic{height: 25px; width: 25px;}
-#bgImg{opacity: 0.40; position: fixed; width: 2000px; height: 1600px;}
+#bgImg{opacity: 0.35; position: fixed; width: 2000px; height: 1600px;}
 #slPne{vertical-align: top; width: 300px;}
 #ctPne{color: rgb(80, 80, 80); height: 100%; width: 500px; horizontal-align: left; vertical-align: top;}
 #ctLst li{display: inline;}
