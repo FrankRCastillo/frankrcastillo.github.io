@@ -29,9 +29,9 @@
 	    	});
 
 			function visibleSection(sectionToEnable) {
-				var viewSecs = ["vBlog",
-								"vAcad",
-								"vTwtr"];
+				var viewSecs = ["vAbout",
+				                "vBlog",
+								"vAcad"];
 				for ( i = 0; i < viewSecs.length; i++ ) {
 					document.getElementById(viewSecs[i]).style.display = "none";
 				}
@@ -40,44 +40,40 @@
 		</script>
 	</head>
 	<body>
-		<div id="bgImg">
-			<img src="files/background.jpg"
-				 style="width: 100%;
-					    height: 100%">
-		</div>
 		<table>
 			<tr>
-				<td id="slPne">
-					<h1>Frank R. Castillo</h1>
-					<ul>
-						<div id="ctLst">
-							<li><a href="javascript:visibleSection('vBlog')">Blog</a></li> | 
-							<li><a href="javascript:visibleSection('vAcad')">Academics</a></li> | 
-							<li><a href="javascript:visibleSection('vTwtr')">Tweets</a></li>
-						</div>
-					</ul>
-					<h2>About</h2>
-						<p style="text-align: justify;">
-							<i>I'm willing to have my ideas demolished. Bring a proper wrecking ball.</i><br/><br/>I am a student, family man, US Marine, and programming enthusiast who follows and, when time allows, writes about politics, international relations, technology, economics, finance, and other topics of global relevance. I currently attend the University of South Florida where I'm completing math and programming pre-requisites towards an application to the university's PhD program in economics; I hope to submit my application by the end of 2017. Through my research, I hope to find ways to mitigate the risk of money laundering and fraud in developing economies. I hold an MBA from University of South Florida Saint Petersburg, as well as a BS in Political Science from University of Maryland University College. Professionally, I've held several positions as a contractor in the areas of Anti-Money Laundering, financial compliance, and information technology. I also served in the United States Marine Corps for nine years, concluding my service in 2013.
-						</p>
-					<h2>Social Media</h2>
-						<p>
-							<a href="https://medium.com/frank-r-castillo" target="_blank">
-							<img src="files/medium.png" class="ic"/></a>
-							<a href="https://twitter.com/FrankRCastillo" target="_blank">
-							<img src="files/twitter.png" class="ic"/></a>
-							<a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
-							<img src="files/linkedin.png" class="ic"/></a>
-							<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
-							<img src="files/youtube.png" class="ic"/></a>
-						</p>
+				<td id="selPane">
+					<a href="javascript:visibleSection('vAbout')">		
+					<img id="profilePic" src="files/picture.jpg"/></a>
+					<a href="javascript:visibleSection('vBlog')">
+					<img src="files/blog.png" class="icon"/>
+					<a href="javascript:visibleSection('vAcad')">
+					<img src="files/academics.png" class="icon"/>				
+					<a href="https://medium.com/frank-r-castillo" target="_blank">
+					<img src="files/medium.png" class="icon"/></a>
+					<a href="https://twitter.com/FrankRCastillo" target="_blank">
+					<img src="files/twitter.png" class="icon"/></a>
+					<a href="https://twitter.com/FrankRCastillo" target="_blank">
+					<img src="files/github.png" class="icon"/></a>
+					<a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
+					<img src="files/linkedin.png" class="icon"/></a>
+					<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
+					<img src="files/youtube.png" class="icon"/></a>
 				</td>
-				<td id="ctPne"
-					rowspan="2">
+				<td id="cntPane">
+					<div id="vAbout">
+						<h2>Frank R. Castillo</h2>
+						<h3>About</h3>
+							<p style="text-align: justify;">
+								<i>I'm willing to have my ideas demolished. Bring a proper wrecking ball.</i><br/><br/>I am a student, family man, US Marine, and programming enthusiast who follows and, when time allows, writes about politics, international relations, technology, economics, finance, and other topics of global relevance. I currently attend the University of South Florida where I'm completing math and programming pre-requisites towards an application to the university's PhD program in economics; I hope to submit my application by the end of 2017. Through my research, I hope to find ways to mitigate the risk of money laundering and fraud in developing economies. I hold an MBA from University of South Florida Saint Petersburg, as well as a BS in Political Science from University of Maryland University College. Professionally, I've held several positions as a contractor in the areas of Anti-Money Laundering, financial compliance, and information technology. I also served in the United States Marine Corps for nine years, concluding my service in 2013.
+							</p>
+					</div>
 					<div id="vBlog">
 						<h3>Blog</h3>
-							<div id="MediumRss"></div>
-    				</div>
+						<div id="MediumRss"></div>
+						<h3>Tweets</h3>
+						<div id="TwitterRss"></div>
+					</div>
 					<div id="vAcad">
 						<h3>Academics</h3>
 							<h4>Presentations: Big Data and E-Commerce, University of South Florida (02/2017 - 05/2017)</h4>
@@ -90,10 +86,6 @@
 									</iframe>
 								</p>
     				</div>
-					<div id="vTwtr">
-						<h3>Tweets</h3>
-							<div id="TwitterRss"></div>
-					</div>
 				</td>
 			</tr>
 		</table>
