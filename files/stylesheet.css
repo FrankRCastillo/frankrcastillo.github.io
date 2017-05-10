@@ -116,5 +116,7 @@ img.icon{
 		height: 170px;
 		width: 260px;
 	}
-
+	#selPane{
+		width: 30px;
+		}
 }
