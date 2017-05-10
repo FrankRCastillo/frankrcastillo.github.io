@@ -1,23 +1,120 @@
-html{font-family: calibri; text-align: left; text-decoration: none; vertical-align: top; font-size: 14px;}
-body{margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;}
-table{border-spacing: 0px;}
-h1{color: rgb(50, 50, 50); margin-left: 5px;}
-h2{color: rgb(60, 60, 60); margin-left: 10px;}
-h3{color: rgb(70, 70, 70); margin-left: 15px;}
-h4{color: rgb(80, 80, 80); margin-left: 20px;}
-p{font-weight: normal; list-style: none outside none; margin-left: 15px; padding: 5px 5px;}
-a{text-decoration: none;}
-.fLst{width: 90%; list-style: none outside none; border: 0px; padding: 4px 6px;}
-.fLst li{border-bottom: 1px solid rgb(50, 50, 50); padding: 5px;}
-.fTle a{font-weight: bold; color: rgb(50, 50, 50) !important; text-decoration: none;}
-.fTle a: hover{ text-decoration: underline;}
-.fDte {font-size: 11px; color: rgb(50, 50, 50);} 
-img.icon{height: 50px; width: 50px;}
-#selPane{position: fixed; display: table; width: 100%; text-align: center; vertical-align: top; background-color: rgb(040, 040, 040); width: 72px;}
-#cntPane{position: relative; left: 80px; text-align: left; vertical-align: top;}
-#ctLst li{display: inline;}
-#profilePic{width: 72px; height: 72px;}
-#vAcad, #vBlog {display: none;}
-.tooltip {position: relative; display: inline-block;}
-.tooltip .tooltiptext {vertical-align: middle; visibility: hidden; height: 18px; width: 75px; background-color: rgb(50, 50, 50); color: rgb(255, 255, 255); text-align: center; border-radius: 0px; padding: 5px 0; position: absolute; z-index: 2;}
-.tooltip:hover .tooltiptext {visibility: visible;}
+html{
+	font-family: calibri;
+	text-align: left;
+	text-decoration: none;
+	vertical-align: top;
+	font-size: 14px;
+	}
+body {
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	}
+table{
+	border-spacing: 0px;
+	height: 100%;
+	max-width: 800px;
+	}
+h1{
+	margin-left: 5px;
+	}
+h2{
+	margin-left: 10px;
+	}
+h3{
+	margin-left: 15px;
+	}
+h4{
+	margin-left: 20px;
+	}
+p{
+	font-weight: normal;
+	list-style: none outside none;
+	margin-left: 15px;
+	padding: 5px 5px;
+	text-align: left;
+	}
+
+a{
+	text-decoration: none;
+	}
+.fLst{
+	width: 90%;
+	list-style: none outside none;
+	border: 0px;
+	padding: 4px 6px;
+	}
+.fLst li{
+	border-bottom: 1px solid rgb(50, 50, 50);
+	padding: 5px;
+	}
+.fTle a{
+	font-weight: bold;
+	color: rgb(50, 50, 50) !important;
+	text-decoration: none;
+	}
+.fTle a: hover{
+	text-decoration: underline;
+	}
+.fDte {
+	font-size: 11px;
+	color: rgb(50, 50, 50);
+	}
+img.icon{
+	height: 30px;
+	width: 30px;
+	color: white;
+	mix-blend-mode: screen;
+	}
+#profile{
+	height: 150px;
+	width: 150px;
+	float: left;
+	padding: 10px;
+}
+#selPane{
+	background-color: rgb(50, 50, 50);
+	text-align: justify;
+	position: fixed;
+	vertical-align: top;
+	width: 30px;
+	height: 100%;
+	z-index: 1110;
+	}
+#cntPane{
+	position: relative;
+	display: inline-block;
+	left: 40px;
+	text-align: left;
+	vertical-align: top;
+	z-index: 0;
+	}
+#aboutme, #academics, #blog{
+	display: none;
+}
+
+.vidframes{
+	height: 320px;
+	width: 420px;
+}
+
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: portrait) {
+	table{
+		border-spacing: 0px;
+		height: 100%;
+		max-width: 300px;
+	}
+	.fLst{
+		width: 300px;
+	}
+	.vidframes{
+		height: 170px;
+		width: 260px;
+	}
+
+}
