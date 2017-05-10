@@ -62,8 +62,8 @@ a{
 	color: rgb(50, 50, 50);
 	}
 img.icon{
-	height: 30px;
-	width: 30px;
+	height: 50px;
+	width: 50px;
 	color: white;
 	mix-blend-mode: screen;
 	}
@@ -78,14 +78,14 @@ img.icon{
 	text-align: justify;
 	position: fixed;
 	vertical-align: top;
-	width: 30px;
+	width: 50px;
 	height: 100%;
 	z-index: 1110;
 	}
 #cntPane{
 	position: relative;
 	display: inline-block;
-	left: 40px;
+	left: 55px;
 	text-align: left;
 	vertical-align: top;
 	z-index: 0;
@@ -117,6 +117,9 @@ img.icon{
 		width: 260px;
 	}
 	#selPane{
-		width: 30px;
-		}
+		width: 50px;
+	}
+	#cntPane{
+		width: 270px;
+	}
 }
