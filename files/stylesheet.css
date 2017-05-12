@@ -104,6 +104,7 @@ img.icon{
 	table{
 		border-spacing: 0px;
 		height: 100%;
+		width: 270px;
 		max-width: 270px;
 	}
 	.fLst{
