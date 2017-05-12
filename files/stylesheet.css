@@ -118,25 +118,19 @@ img.icon{
 	h4{
 		margin-left: 8px;
 		}
-	#profile{
-		height: 100px;
-		width: 100px;
-		float: left;
-		padding: 5px;
-	}
+
 	.fLst{
-		width: 250px;
+		width: 260px;
 		}
 	.vidframes{
 		height: 170px;
-		width: 250px;
+		width: 260px;
 		}
 	#selPane{
 		width: 50px;
 		}
 	#cntPane{
-		width: 250px;
-		left: 10px;
+		width: 260px;
 		}
 
 }
