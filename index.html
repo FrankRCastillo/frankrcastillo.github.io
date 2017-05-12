@@ -12,53 +12,32 @@
 		<link	href="files/stylesheet.css"
 				rel="stylesheet"
 	      		type="text/css"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
 		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-langs.min.js"></script>
 		<script type="text/javascript" src="files/FeedEk.js"></script>
-		<script type="text/javascript">		
-		    $(document).ready(function () {
-	    	    $('#MediumRss').FeedEk({
-	        		FeedUrl: 'https://medium.com/feed/frank-r-castillo',
-	        		MaxCount: 100,
-					ShowDesc: false
-				});
-		        $('#TwitterRss').FeedEk({
-		        	FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
-		        	MaxCount: 100,
-					ShowDesc: false
-				});
-	    	});
-			function makeVisible(enableCont) {
-				var content = ["aboutme",
-							   "blog",
-							   "academics"];
-				for ( i = 0; i < content.length; i++ ) {
-					document.getElementById(content[i]).style.display = "none";
-				}
-				document.getElementById(enableCont).style.display = "inline";
-			}
-		</script>
+		<script type="text/javascript" src="files/rssFeed.js"></script>
 	</head>
 	<body>
 		<table>
 			<tr>
 				<td id="selPane">
-						<a href="javascript:makeVisible('aboutme')">
-						<img src="files/home.png" class="icon"/>
-						<a href="javascript:makeVisible('blog')">
-						<img src="files/rss.png" class="icon"/>
-						<a href="javascript:makeVisible('academics')">
-						<img src="files/academics.png" class="icon"/>
-						<a href="https://medium.com/frank-r-castillo" target="_blank">
-						<img src="files/medium.png" class="icon"/></a>
-						<a href="https://twitter.com/FrankRCastillo" target="_blank">
-						<img src="files/twitter.png" class="icon"/></a>
-						<a href="https://twitter.com/FrankRCastillo" target="_blank">
-						<img src="files/github.png" class="icon"/></a>
-						<a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
-						<img src="files/linkedin.png" class="icon"/></a>
-						<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
-						<img src="files/youtube.png" class="icon"/></a>
+					<a href="#aboutme">
+					<img src="files/home.png" class="icon"/>
+					<a href="#blog">
+					<img src="files/rss.png" class="icon"/>
+					<a href="#academics">
+					<img src="files/academics.png" class="icon"/>
+					<a href="https://medium.com/frank-r-castillo" target="_blank">
+					<img src="files/medium.png" class="icon"/></a>
+					<a href="https://twitter.com/FrankRCastillo" target="_blank">
+					<img src="files/twitter.png" class="icon"/></a>
+					<a href="https://twitter.com/FrankRCastillo" target="_blank">
+					<img src="files/github.png" class="icon"/></a>
+					<a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
+					<img src="files/linkedin.png" class="icon"/></a>
+					<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
+					<img src="files/youtube.png" class="icon"/></a>
 				</td>
 				<td>
 					<div id="cntPane">

@@ -90,9 +90,6 @@ img.icon{
 	vertical-align: top;
 	z-index: 0;
 	}
-#aboutme, #academics, #blog{
-	display: none;
-}
 
 .vidframes{
 	height: 320px;
