@@ -98,26 +98,45 @@ img.icon{
 
 @media screen 
   and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) 
+  and (device-height: 640px)
   and (orientation: portrait) {
 	table{
 		border-spacing: 0px;
 		height: 100%;
-		width: 270px;
-		max-width: 270px;
+		width: 250px;
+		max-width: 250px;
+		}
+	h1{
+		margin-left: 2px;
+		}
+	h2{
+		margin-left: 4px;
+		}
+	h3{
+		margin-left: 6px;
+		}
+	h4{
+		margin-left: 8px;
+		}
+	#profile{
+		height: 100px;
+		width: 100px;
+		float: left;
+		padding: 5px;
 	}
 	.fLst{
-		width: 270px;
-	}
+		width: 250px;
+		}
 	.vidframes{
 		height: 170px;
-		width: 260px;
-	}
+		width: 250px;
+		}
 	#selPane{
 		width: 50px;
-	}
+		}
 	#cntPane{
-		width: 270px;
-	}
+		width: 250px;
+		left: 10px;
+		}
+
 }
