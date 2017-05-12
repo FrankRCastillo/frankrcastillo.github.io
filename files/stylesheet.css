@@ -14,7 +14,7 @@ body {
 table{
 	border-spacing: 0px;
 	height: 100%;
-	max-width: 800px;
+	max-width: 640px;
 	}
 h1{
 	margin-left: 5px;
@@ -45,7 +45,7 @@ a{
 	text-decoration: none;
 	}
 .fLst{
-	width: 90%;
+	width: 640px;
 	list-style: none outside none;
 	border: 0px;
 	padding: 4px 6px;
