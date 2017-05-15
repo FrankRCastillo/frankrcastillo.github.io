@@ -1,5 +1,4 @@
 html{
-	font-family: calibri;
 	text-align: left;
 	text-decoration: none;
 	vertical-align: top;
@@ -10,6 +9,7 @@ body {
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 0px;
+	font-family: 'Open Sans', sans-serif;
 	}
 table{
 	border-spacing: 0px;
