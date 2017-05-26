@@ -7,7 +7,7 @@ $(document).ready(function () {
 		FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
 		MaxCount: 10
 	});
-	$('#YouTubeRss').FeedYt({
+	$('#YouTubeRss').FeedEk({
 		FeedUrl: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g',
 		MaxCount: 500
 	});
