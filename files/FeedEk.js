@@ -16,12 +16,12 @@
             DateFormatLang:"en"
         }, opt);
         
-        var id = $(this).attr("id"), i, s = "", dt;
+        var id = $(this).attr("id"), i, s = "", dt, dateVal;
         $("#" + id).empty();
         if (def.FeedUrl == undefined) return;       
         $("#" + id).append('<img src="files/loader.gif" />');
 
-        var YQLstr = 'SELECT channel.item FROM feednormalizer WHERE output ="rss_2.0" AND url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
+        var YQLstr = 'SELECT channel.item FROM feednormalizer WHERE output="rss_2.0" AND url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
 
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(YQLstr) + "&format=json&diagnostics=false&callback=?",
@@ -32,33 +32,22 @@
                     data.query.results.rss = [data.query.results.rss];
                 }
                 $.each(data.query.results.rss, function (e, itm) {
-                    s += '<li><div class="fTle"><a href="' + itm.channel.item.link + '" target="' + def.TitleLinkTarget + '" >' + itm.channel.item.title + '</a></div>';
-                    
                     if (def.ShowPubDate){
                         dt = new Date(itm.channel.item.pubDate);
-                        s += '<div class="fDte">';
                         if ($.trim(def.DateFormat).length > 0) {
                             try {
                                 moment.lang(def.DateFormatLang);
-                                s += moment(dt).format(def.DateFormat);
+                                dateVal = moment(dt).format(def.DateFormat);
                             }
-                            catch (e){s += dt.toLocaleDateString();}                            
+                            catch (e){dateVal = dt.toLocaleDateString();}                            
                         }
                         else {
-                            s += dt.toLocaleDateString();
+                            dateVal = dt.toLocaleDateString();
                         }
-                        s += '</div>';
                     }
-                    if (def.ShowDesc) {
-                        s += '<div class="fkt">';
-                         if (def.DescCharacterLimit > 0 && itm.channel.item.description.length > def.DescCharacterLimit) {
-                            s += itm.channel.item.description.substring(0, def.DescCharacterLimit) + '...';
-                        }
-                        else {
-                            s += itm.channel.item.description;
-                         }
-                         s += '</div>';
-                    }
+					s += '<li><div class="fTle">' +
+					dateVal + ': ' +
+					'<a href="' + itm.channel.item.link + '" target="' + def.TitleLinkTarget + '" >' + itm.channel.item.title + '</a></div></li>';
                 });
                 $("#" + id).append('<ul class="fLst">' + s + '</ul>');
             }

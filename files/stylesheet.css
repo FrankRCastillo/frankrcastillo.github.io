@@ -35,7 +35,8 @@ a {
 	width: 720px;
 	list-style: none outside none;
 	border: 0px;
-	padding: 4px 6px;
+	padding: 5px 5px;
+	
 }
 .fLst li {
 	border-bottom: 1px solid rgb(50, 50, 50);
@@ -66,7 +67,6 @@ img.icon {
 }
 
 #pageBody {
-	text-align: justify;
 	width: 720px;
 }
 #selPane {
@@ -83,8 +83,6 @@ img.icon {
 	position: fixed;
 }
 
-
-
 @media screen 
   and (device-width: 360px) 
   and (device-height: 640px)
@@ -94,7 +92,6 @@ img.icon {
 		height: 100%;
 	}
 	#pageBody {
-		text-align: justify;
 		width: 320px;
 		max-width: 320px;
 	}
