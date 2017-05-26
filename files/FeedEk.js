@@ -1,9 +1,3 @@
-/*
-* FeedEk jQuery RSS/ATOM Feed Plugin v3.0 with YQL API
-* http://jquery-plugins.net/FeedEk/FeedEk.html  https://github.com/enginkizil/FeedEk
-* Author : Engin KIZIL http://www.enginkizil.com   
-*/
-
 (function ($) {
     $.fn.FeedEk = function (opt) {
         var def = $.extend({
@@ -18,7 +12,9 @@
         
         var id = $(this).attr("id"), i, s = "", dt, dateVal;
         $("#" + id).empty();
-        if (def.FeedUrl == undefined) return;       
+        if (def.FeedUrl == undefined) return;
+		
+		
         $("#" + id).append('<img src="files/loader.gif" />');
 
         var YQLstr = 'SELECT channel.item FROM feednormalizer WHERE output="rss_2.0" AND url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
