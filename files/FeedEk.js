@@ -50,24 +50,18 @@
 						var rssDate = itm.published;
 						var rssLink = 'https://www.youtube.com/watch?v=' + itm.videoId;
 						var rssTitle = itm.title;
-						dt = new Date(rssDate);
-						dateVal = dt.toLocaleDateString(def.DateFormatLang, def.DateFormat);
 					} else {
 						var rssDate = itm.channel.item.pubDate;
 						var rssLink = itm.channel.item.link;
 						var rssTitle = itm.channel.item.title;
-						dt = new Date(rssDate);
-						dateVal = dt.toLocaleDateString(def.DateFormatLang, def.DateFormat);
 					};
+					dt = new Date(rssDate);
+
 					s += '<li><div class="fTle">' +
-					dateVal + ': ' +
-					'<a href="' +
-						rssLink +
-						'" target="' +
-						def.TitleLinkTarget +
-						'" >' +
+					'<a href="' + rssLink + '" target="' + def.TitleLinkTarget + '" >' +
+						dt.toLocaleDateString(def.DateFormatLang, def.DateFormat) + ': ' +
 						truncString(rssTitle, def.CharLimit) +
-						'</a></div></li>';
+					'</a></div></li>';
                 });
                 $("#" + id).append('<ul class="fLst">' + s + '</ul>');
             }
