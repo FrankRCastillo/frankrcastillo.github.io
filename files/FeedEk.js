@@ -1,7 +1,8 @@
    /*
 	* FeedEk jQuery RSS/ATOM Feed Plugin v3.0 with YQL API
 	* http://jquery-plugins.net/FeedEk/FeedEk.html  https://github.com/enginkizil/FeedEk
-	* Author : Engin KIZIL http://www.enginkizil.com   
+	* Author : Engin KIZIL http://www.enginkizil.com 
+	* Forked to support YouTube RSS feeds
 	*/
 
 (function ($) {
@@ -45,7 +46,6 @@
 				};
 				
                 $.each(rssResults, function (e, itm) {
-					
 					if (isYouTube){
 						var rssDate = itm.published;
 						var rssLink = 'https://www.youtube.com/watch?v=' + itm.videoId;
