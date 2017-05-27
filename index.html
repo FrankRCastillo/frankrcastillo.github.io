@@ -15,18 +15,22 @@
 		<script type="text/javascript" src="files/FeedYt.js"></script>
 		<script>
 			$(document).ready(function () {
+				var dteOpt = { year: '2-digit', month: '2-digit', day: '2-digit'};
 				$('#MediumRss').FeedEk({
 					FeedUrl: 'https://medium.com/feed/frank-r-castillo',
-					MaxCount: 500
+					MaxCount: 500, 
+					DateFormat: dteOpt
 				});
 				$('#TwitterRss').FeedEk({
 					FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
 					MaxCount: 10,
-					CharLimit: 100
+					CharLimit: 100,
+					DateFormat: dteOpt
 				});
 				$('#YouTubeRss').FeedEk({
 					FeedUrl: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g',
-					MaxCount: 500
+					MaxCount: 500,
+					DateFormat: dteOpt					
 				});
 			});
 		</script>

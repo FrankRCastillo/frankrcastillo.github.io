@@ -8,11 +8,9 @@
     $.fn.FeedEk = function (opt) {
         var def = $.extend({
             MaxCount: 5,
-            ShowDesc: true,
-            ShowPubDate: true,
             CharLimit: 0,
             TitleLinkTarget: "_blank",
-            DateFormat: "",
+			DateFormat: "",
             DateFormatLang:"en"
         }, opt);
         
@@ -24,10 +22,12 @@
 		var isYouTube = urlDomain(def.FeedUrl).includes('youtube.com');
 		
 		if (isYouTube){
-			var YQLstr = 'SELECT * FROM feednormalizer WHERE url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
+			var YTLSearch = '*';
 		} else {
-			var YQLstr = 'SELECT channel.item FROM feednormalizer WHERE output="rss_2.0" AND url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
+			var YTLSearch = 'channel.item';
 		};
+		
+		var YQLstr = 'SELECT ' + YTLSearch + ' FROM feednormalizer WHERE url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
 		
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(YQLstr) + "&format=json&diagnostics=false&callback=?",
@@ -45,38 +45,20 @@
 				};
 				
                 $.each(rssResults, function (e, itm) {
-					var dteOpt = { year: '2-digit', month: '2-digit', day: '2-digit'};
+					
 					if (isYouTube){
 						var rssDate = itm.published;
 						var rssLink = 'https://www.youtube.com/watch?v=' + itm.videoId;
 						var rssTitle = itm.title;
-						if (def.ShowPubDate){
-							dt = new Date(rssDate);
-							dateVal = dt.toLocaleDateString(def.DateFormatLang, dteOpt);
-						}
+						dt = new Date(rssDate);
+						dateVal = dt.toLocaleDateString(def.DateFormatLang, def.DateFormat);
 					} else {
 						var rssDate = itm.channel.item.pubDate;
 						var rssLink = itm.channel.item.link;
 						var rssTitle = itm.channel.item.title;
-						if (def.ShowPubDate){
-							dt = new Date(rssDate);
-							if ($.trim(def.DateFormat).length > 0) {
-								try {
-									moment.lang(def.DateFormatLang);
-									dateVal = moment(dt).format(def.DateFormat);
-								}
-								catch (e){dateVal = dt.toLocaleDateString(def.DateFormatLang, dteOpt);}                            
-							}
-							else {
-								dateVal = dt.toLocaleDateString(def.DateFormatLang, dteOpt);
-							}
-						}
+						dt = new Date(rssDate);
+						dateVal = dt.toLocaleDateString(def.DateFormatLang, def.DateFormat);
 					};
-					if (def.CharLimit > 0 && rssTitle.length > def.CharLimit) {
-						var modRssTitle = rssTitle.substring(0, def.CharLimit) + '...';
-					} else {
-						var modRssTitle = rssTitle;
-					}
 					s += '<li><div class="fTle">' +
 					dateVal + ': ' +
 					'<a href="' +
@@ -84,7 +66,7 @@
 						'" target="' +
 						def.TitleLinkTarget +
 						'" >' +
-						modRssTitle +
+						truncString(rssTitle, def.CharLimit) +
 						'</a></div></li>';
                 });
                 $("#" + id).append('<ul class="fLst">' + s + '</ul>');
@@ -100,4 +82,13 @@ function urlDomain (url) {
 		var retUrl = url.split('/')[0];
 	};
 	return retUrl;
+};
+
+function truncString (text, length) {
+	if (length> 0 && text.length > length) {
+		var newText = text.substring(0, length) + '...';
+	} else {
+		var newText = text;
+	}
+	return newText;
 };
