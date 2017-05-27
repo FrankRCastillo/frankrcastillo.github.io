@@ -107,4 +107,10 @@ img.icon {
 	.fTle a {
 		width: 360px;
 	}
+	#iconTd {
+		text-align: center;
+	}
+	#textTd {
+		display: none;
+	}
 }
