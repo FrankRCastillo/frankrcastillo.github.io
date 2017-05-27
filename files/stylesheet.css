@@ -103,8 +103,8 @@ img.icon {
 		height: 100%;
 	}
 	#pageBody {
-		width: 320px;
-		max-width: 320px;
+		width: 355px;
+		max-width: 355px;
 	}
 	img.icon {
 		mix-blend-mode: multiply;
@@ -112,14 +112,14 @@ img.icon {
 		height: 25px;
 	}
 	.fLst {
-		width: 320px;
+		width: 355px;
 	}
 	.fTle a {
-		width: 320px;
+		width: 355px;
 	}
 	.vidframes {
 		height: 170px;
-		width: 320px;
+		width: 355px;
 	}
 	#header {
 		position: fixed;
