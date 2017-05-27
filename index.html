@@ -13,7 +13,22 @@
 		<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 		<script type="text/javascript" src="files/FeedEk.js"></script>
 		<script type="text/javascript" src="files/FeedYt.js"></script>
-		<script type="text/javascript" src="files/rssFeed.js"></script>
+		<script>
+			$(document).ready(function () {
+				$('#MediumRss').FeedEk({
+					FeedUrl: 'https://medium.com/feed/frank-r-castillo',
+					MaxCount: 500
+				});
+				$('#TwitterRss').FeedEk({
+					FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
+					MaxCount: 10
+				});
+				$('#YouTubeRss').FeedEk({
+					FeedUrl: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g',
+					MaxCount: 500
+				});
+			});
+		</script>
 	</head>
 	<body>
 		<div id="top"></div>
