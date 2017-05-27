@@ -84,16 +84,6 @@ img.icon {
 	color: rgb(50, 50, 50) !important;
 }
 
-
-.vidframes {
-	height: 320px;
-	width: 420px;
-}
-
-#header {
-	position: fixed;
-}
-
 @media screen 
   and (device-width: 360px) 
   and (device-height: 640px)
@@ -103,8 +93,8 @@ img.icon {
 		height: 100%;
 	}
 	#pageBody {
-		width: 355px;
-		max-width: 355px;
+		width: 360px;
+		max-width: 360px;
 	}
 	img.icon {
 		mix-blend-mode: multiply;
@@ -112,16 +102,9 @@ img.icon {
 		height: 25px;
 	}
 	.fLst {
-		width: 355px;
+		width: 360px;
 	}
 	.fTle a {
-		width: 355px;
-	}
-	.vidframes {
-		height: 170px;
-		width: 355px;
-	}
-	#header {
-		position: fixed;
+		width: 360px;
 	}
 }
