@@ -41,7 +41,6 @@ a {
 	border-bottom: 1px solid rgb(230, 230, 230);
 }
 .fTle a {
-	font-weight: bold;
 	color: rgb(50, 50, 50) !important;
 	text-decoration: none;
 	width: 720px;
@@ -70,7 +69,6 @@ img.icon {
 	width: 720px;
 }
 #selPane {
-	font-weight: bold;
 	text-align: center;
 	width: 144px;
 	font-size: 12px;
