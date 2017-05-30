@@ -24,7 +24,7 @@ p {
 	font-weight: normal;
 	list-style: none outside none;
 	margin-left: 15px;
-	margin-right: 15px;
+	margin-right: 5px;
 	padding: 5px 5px;
 	text-align: justify;
 }
@@ -38,13 +38,13 @@ a {
 	border: 0px;
 	padding: 5px 5px;
 	margin-left: 15px;
-	margin-right: 15px;
+	margin-right: 5px;
 }
 .fLst li {
 	border-bottom: 1px solid rgb(230, 230, 230);
 	padding: 5px 5px;
-	margin-left: 15px;
-	margin-right: 15px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 .fTle a {
 	color: rgb(50, 50, 50) !important;
