@@ -5,10 +5,11 @@ html {
 }
 body {
 	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 10px;
+	margin-right: 10px;
 	margin-top: 0px;
 	font-family: 'Open Sans', sans-serif;
+	text-align: justify;
 }
 table {
 	border-spacing: 0px;
@@ -23,10 +24,6 @@ h1, h2, h3, h4 {
 p {
 	font-weight: normal;
 	list-style: none outside none;
-	margin-left: 15px;
-	margin-right: 5px;
-	padding: 5px 5px;
-	text-align: justify;
 }
 
 a {
@@ -37,18 +34,15 @@ a {
 	list-style: none outside none;
 	border: 0px;
 	padding: 5px 5px;
-	margin-left: 15px;
-	margin-right: 5px;
+
 }
+
 .fLst li {
-	border-bottom: 1px solid rgb(230, 230, 230);
 	padding: 5px 5px;
-	margin-left: 10px;
-	margin-right: 10px;
 }
+
 .fTle a {
 	color: rgb(50, 50, 50) !important;
-	text-decoration: none;
 	width: 720px;
 	word-wrap: break-word;
 }
@@ -68,7 +62,8 @@ img.icon {
 	height: 150px;
 	width: 150px;
 	float: left;
-	padding: 10px;
+	padding: 5px;
+	margin-top: 15px;
 }
 
 #pageBody {
@@ -106,10 +101,10 @@ img.icon {
 		height: 25px;
 	}
 	.fLst {
-		width: 360px;
+		width: 300px;
 	}
 	.fTle a {
-		width: 360px;
+		width: 300px;
 	}
 	#iconTd {
 		text-align: center;
