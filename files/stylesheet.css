@@ -21,6 +21,9 @@ h1, h2, h3, h4 {
 	margin-bottom: 0px;
 	margin-right: 0px;
 }
+a {
+	color: rgb(150, 150, 150);
+}
 p {
 	font-weight: normal;
 	list-style: none outside none;
