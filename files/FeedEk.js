@@ -8,11 +8,11 @@
 (function ($) {
     $.fn.FeedEk = function (opt) {
         var def = $.extend({
-            MaxCount: 5,
             CharLimit: 0,
             TitleLinkTarget: "_blank",
 			DateFormat: "",
-            DateFormatLang:"en"
+            DateFormatLang:"en",
+			Sort: false
         }, opt);
         
         var id = $(this).attr("id"), i, s = "", dt, dateVal;
@@ -63,7 +63,9 @@
 						truncString(rssTitle, def.CharLimit) +
 					'</a></div></li>';
                 });
-                $("#" + id).append('<ul class="fLst">' + s + '</ul>');
+				var sc = '<ul class="fLst">' + s + '</ul>';
+				//var scSorted = sortList(def.Sort, $('ul')[0]);
+                $("#" + id).append(sc);
             }
         });
     };
