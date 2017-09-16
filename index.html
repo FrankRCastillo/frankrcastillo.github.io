@@ -1,139 +1,136 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html lang="en">
-	<!--FeedEk used for RSS Reader-->
-	<head>
-		<meta	charset="utf-8"
-				name="viewport"
-				content="width=device-width"/>
-		<title>
-			Frank R Castillo
-		</title>
-		<link href="files/stylesheet.css" rel="stylesheet" type="text/css"/>
-		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans"/>
-		<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-		<script type="text/javascript" src="files/FeedEk.js"></script>
-		<script type="text/javascript" src="files/FeedYt.js"></script>
-		<script>
-			$(document).ready(function () {
-				var dteOpt = { year: '2-digit', month: '2-digit', day: '2-digit'};
-				$('#MediumRss').FeedEk({
-					FeedUrl: 'https://medium.com/feed/frank-r-castillo',
-					MaxCount: 500, 
-					DateFormat: dteOpt,
-					Sort: true					
-				});
-				$('#TwitterRss').FeedEk({
-					FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
-					MaxCount: 10,
-					CharLimit: 100,
-					DateFormat: dteOpt
-				});
-				$('#YouTubeRss').FeedEk({
-					FeedUrl: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g',
-					MaxCount: 500,
-					DateFormat: dteOpt					
-				});
-			});
-		</script>
-	</head>
-	<body>
-		<div id="top"></div>
-		<table>
-			<td rowspan="3"></td>
-			<td id="pageBody" colspan="5">
-				<h1>Frank R. Castillo</h1>
-				<img src="files/picture.jpg" id="profile"/>
-				<p>
-					I am a family man, student, and former United States Marine. I currently attend the University of South Florida and hope to apply to the university’s PhD in economics by the end of 2017. When time allows, I also write about politics, economics, international relations, and technology. I seek constant intellectual challenge and growth, and I live my life by the mantra that <i>I am willing to have my ideas and preconceptions demolished so long as you bring a proper wrecking ball.</i><br/><br/>Professionally, I’ve had the opportunity to work in fascinating areas, including Anti-Money Laundering (AML), financial compliance, and information technology. During a stint as an AML analyst for a major financial institution, I saw the need for technology to help mitigate the risks financial crime, which inspired my current academic interests. My hope is to someday bring together the use of big data and economics disciplines to develop systems that help prevent fraud and money laundering.<br/><br/>My adult life can be said to have begun on June 28th, 2004, when I stepped on the yellow footprints of Marine Corps Recruit Depot Parris Island, South Carolina. A year before, I got a phone call. In the most intense, charismatic, and enthusiastic tone imaginable, Sergeant Davis demanded to know if I was interested in discussing my future. Being 17 and not knowing much of anything, I said, “Sure, why not?” Nine years later, I went to Iraq, floated around the Pacific and Indian oceans aboard a Marine Expeditionary Unit, and earned the rank of Staff Sergeant. Most importantly, I saw enough of the world to convince me that I had to become its eternal student.
-
-				</p>
-			</td>
-			<td rowspan="3"></td>
-			</tr>
-			<tr id="pageBody">
-				<td id="selPane">
-					<a href="https://medium.com/frank-r-castillo" target="_blank">
-						<table>
-							<tr>
-								<td id="iconTd">
-									<img src="files/medium.png" class="icon"/>
-								</td>
-								<td id="textTd">
-									Medium
-								</td>
-							</tr>
-						</table>
-					</a>
-				</td>
-				<td id="selPane">
-					<a href="https://twitter.com/FrankRCastillo" target="_blank">
-						<table>
-							<tr>
-								<td id="iconTd">
-									<img src="files/twitter.png" class="icon"/>
-								</td>
-								<td id="textTd">
-									Twitter
-								</td>
-							</tr>
-						</table>
-					</a>
-				</td>
-				<td id="selPane">
-					<a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
-						<table>
-							<tr>
-								<td id="iconTd">
-									<img src="files/youtube.png" class="icon"/>
-								</td>
-								<td id="textTd">
-									YouTube
-								</td>
-							</tr>
-						</table>
-					</a>
-				</td>
-				<td id="selPane">
-					<a href="https://github.com/FrankRCastillo" target="_blank">
-						<table>
-							<tr>
-								<td id="iconTd">
-									<img src="files/github.png" class="icon"/>
-								</td>
-								<td id="textTd">
-									GitHub
-								</td>
-							</tr>
-						</table>
-					</a>
-				</td>
-				<td id="selPane">
-					<a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
-						<table>
-							<tr>
-								<td id="iconTd">
-									<img src="files/linkedin.png" class="icon"/>
-								</td>
-								<td id="textTd">
-									LinkedIn
-								</td>
-							</tr>
-						</table>
-					</a>
-				</td>
-			</tr>
-			<tr>
-				<td id="pageBody" colspan="7">
-					<div id="feed">
-						<h3>Medium [<a href="#top">top</a>]</h3>
-						<div id="MediumRss"></div>
-						<h3>Tweets [<a href="#top">top</a>]</h3>
-						<div id="TwitterRss"></div>
-						<h3>YouTube [<a href="#top">top</a>]</h3>
-						<div id="YouTubeRss"></div>
-					</div>
-				</td>
-			</tr>
-		</table>
-	</body>
+    <!--FeedEk used for RSS Reader-->
+    <head>
+        <meta    charset="utf-8"
+                name="viewport"
+                content="width=device-width"/>
+        <title>
+            Frank R Castillo
+        </title>
+        <link href="files/stylesheet.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans"/>
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <script type="text/javascript" src="files/FeedEk.js"></script>
+        <script type="text/javascript" src="files/FeedYt.js"></script>
+        <script>
+            $(document).ready(function () {
+                var dteOpt = { year: '2-digit', month: '2-digit', day: '2-digit'};
+                $('#MediumRss').FeedEk({
+                    FeedUrl: 'https://medium.com/feed/frank-r-castillo',
+                    MaxCount: 500, 
+                    DateFormat: dteOpt,
+                    Sort: true                    
+                });
+                $('#TwitterRss').FeedEk({
+                    FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=FrankRCastillo',
+                    MaxCount: 10,
+                    CharLimit: 100,
+                    DateFormat: dteOpt
+                });
+                $('#YouTubeRss').FeedEk({
+                    FeedUrl: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g',
+                    MaxCount: 500,
+                    DateFormat: dteOpt                    
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="top"></div>
+        <table>
+            <td rowspan="3"></td>
+            <td id="pageBody" colspan="5">
+                <h1>Frank R. Castillo</h1>
+                <img src="files/picture.jpg" id="profile"/>
+                <p>I am a family man, student, and former United States Marine. I currently attend the University of South Florida and hope to apply to the university’s PhD in economics by the end of 2017. When time allows, I also write about politics, economics, international relations, and technology. I seek constant intellectual challenge and growth, and I live my life by the mantra that <i>I am willing to have my ideas and preconceptions demolished so long as you bring a proper wrecking ball.</i><br/><br/>Professionally, I’ve had the opportunity to work in fascinating areas, including Anti-Money Laundering (AML), financial compliance, and information technology. During a stint as an AML analyst for a major financial institution, I saw the need for technology to help mitigate the risks financial crime, which inspired my current academic interests. My hope is to someday bring together the use of big data and economics disciplines to develop systems that help prevent fraud and money laundering.<br/><br/>My adult life can be said to have begun on June 28th, 2004, when I stepped on the yellow footprints of Marine Corps Recruit Depot Parris Island, South Carolina. A year before, I got a phone call. In the most intense, charismatic, and enthusiastic tone imaginable, Sergeant Davis demanded to know if I was interested in discussing my future. Being 17 and not knowing much of anything, I said, “Sure, why not?” Nine years later, I went to Iraq, floated around the Pacific and Indian oceans aboard a Marine Expeditionary Unit, and earned the rank of Staff Sergeant. Most importantly, I saw enough of the world to convince me that I had to become its eternal student.</p>
+            </td>
+            <td rowspan="3"></td>
+            </tr>
+            <tr id="pageBody">
+                <td id="selPane">
+                    <a href="https://medium.com/frank-r-castillo" target="_blank">
+                        <table>
+                            <tr>
+                                <td id="iconTd">
+                                    <img src="files/medium.png" class="icon"/>
+                                </td>
+                                <td id="textTd">
+                                    Medium
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </td>
+                <td id="selPane">
+                    <a href="https://twitter.com/FrankRCastillo" target="_blank">
+                        <table>
+                            <tr>
+                                <td id="iconTd">
+                                    <img src="files/twitter.png" class="icon"/>
+                                </td>
+                                <td id="textTd">
+                                    Twitter
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </td>
+                <td id="selPane">
+                    <a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
+                        <table>
+                            <tr>
+                                <td id="iconTd">
+                                    <img src="files/youtube.png" class="icon"/>
+                                </td>
+                                <td id="textTd">
+                                    YouTube
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </td>
+                <td id="selPane">
+                    <a href="https://github.com/FrankRCastillo" target="_blank">
+                        <table>
+                            <tr>
+                                <td id="iconTd">
+                                    <img src="files/github.png" class="icon"/>
+                                </td>
+                                <td id="textTd">
+                                    GitHub
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </td>
+                <td id="selPane">
+                    <a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
+                        <table>
+                            <tr>
+                                <td id="iconTd">
+                                    <img src="files/linkedin.png" class="icon"/>
+                                </td>
+                                <td id="textTd">
+                                    LinkedIn
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td id="pageBody" colspan="7">
+                    <div id="feed">
+                        <h3>Medium [<a href="#top">top</a>]</h3>
+                        <div id="MediumRss"></div>
+                        <h3>Tweets [<a href="#top">top</a>]</h3>
+                        <div id="TwitterRss"></div>
+                        <h3>YouTube [<a href="#top">top</a>]</h3>
+                        <div id="YouTubeRss"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>
