@@ -86,17 +86,17 @@ img.icon {
     color: rgb(50, 50, 50) !important;
 }
 
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px)
+@media only screen 
+  and (max-width: 480px) 
+  and (max-device-width: 480px)
   and (orientation: portrait) {
     table {
         border-spacing: 0px;
         height: 100%;
     }
     #pageBody {
-        width: 360px;
-        max-width: 360px;
+        width: 420px;
+        max-width: 420px;
     }
     img.icon {
         mix-blend-mode: multiply;
@@ -104,10 +104,10 @@ img.icon {
         height: 25px;
     }
     .fLst {
-        width: 300px;
+        width: 420px;
     }
     .fTle a {
-        width: 300px;
+        width: 420px;
     }
     #iconTd {
         text-align: center;
