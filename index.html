@@ -169,9 +169,7 @@
             windowCreate("tweetwin", "Twitter", twitterbody, hgtElement("mediumwin"), "35px");
 
             function windowCreate(divName, windowTitle, windowBody, topVal, leftVal) {
-                var zIndex = 100;
-
-                template  = "<div id='" + divName + "' class='wdiv' onclick='frontElement(\"" + divName + "\")'>\n";
+                template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>\n";
                 template += "<div id='" + divName + "header' class='wdivheader'>\n";
                 template += "<b>" + windowTitle + "<a href'#' class='closeBtn' onclick='closeElement(\"" + divName + "\")'>X&nbsp</a></b>\n";
                 template += "</div>\n";
@@ -232,9 +230,9 @@
                 document.getElementById(divName).remove();
             }
 
+            var zIndex = 100;
             function frontElement(divName) {
                 document.getElementById(divName).style.zIndex = ++zIndex;
-                zIndex = 100;
             }
 
             function hgtElement(divName) {
