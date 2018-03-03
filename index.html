@@ -166,14 +166,14 @@
             youtubebody = "<div id='YouTubeRss'></div>";
             picturebody = "<img id='profile' src='picture.jpeg'>";
 
-            windowCreate("sysmesg", "System Message", "<p id='systempanel'>Under Construction</p>", "10px", "15px", "760px");
-            windowCreate("mainwin", "Frank R. Castillo", mainbody, hgtElem("sysmesg"), "124px", "651px");
-            windowCreate("youtubewin", "YouTube", youtubebody, hgtElem("mainwin"), "15px", "");
-            windowCreate("mediumwin", "Medium", mediumbody, hgtElem("youtubewin"), "25px", "");
-            windowCreate("tweetwin", "Twitter", twitterbody, hgtElem("mediumwin"), "35px", "");
-            windowCreate("picwin", "Picture", picturebody, hgtElem("sysmesg"), "15px", "101px");
+            windowCreate("sysmesg", "System Message", "<p id='systempanel'>Under Construction</p>", "10px", "15px", "760px", false);
+            windowCreate("mainwin", "Frank R. Castillo", mainbody, hgtElem("sysmesg"), "124px", "651px", false);
+            windowCreate("youtubewin", "YouTube", youtubebody, hgtElem("mainwin"), "15px", "", false);
+            windowCreate("mediumwin", "Medium", mediumbody, hgtElem("youtubewin"), "25px", "", false);
+            windowCreate("tweetwin", "Twitter", twitterbody, hgtElem("mediumwin"), "35px", "", false);
+            windowCreate("picwin", "Picture", picturebody, hgtElem("sysmesg"), "15px", "101px", true);
 
-            function windowCreate(divName, windowTitle, windowBody, topVal, leftVal, width) {
+            function windowCreate(divName, windowTitle, windowBody, topVal, leftVal, width, resizeable) {
                 template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>\n";
                 template += "<div id='" + divName + "header' class='wdivheader'>\n";
                 template += "<b>" + windowTitle;
@@ -191,6 +191,12 @@
                 divElem.style.top = topVal;
                 divElem.style.left = leftVal;
                 if (width !== "") { divElem.style.width = width; }
+
+                if (resizeable === true) {
+                    divElem.style.resize = "none";
+                    divElem.style.overflow = "visible"
+                }
+
                 dragElement(divElem);
 
                 function dragElement(elmnt) {
