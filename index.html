@@ -8,127 +8,241 @@
         <title>
             Frank R Castillo
         </title>
-        <link href="files/stylesheet.css" rel="stylesheet" type="text/css"/>
+        <style>
+            html { -khtml-user-select: none; -o-user-select: none; -moz-user-select: none; -webkit-user-select: none; user-select: none; } 
+            body { margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;
+                   font-family: "Lucida Console", Monaco, monospace; font-size: 11px;
+                   text-align: left; color: #eeeeee; background-color: #000000 }
+            table { border-spacing: 0px; }
+            a { color: #fefefe; text-decoration: none; }
+            p { font-weight: normal; list-style: none outside none; padding: 5px 5px; }
+            ul { margin-top: 0; margin-bottom: 0; }
+            #profile { font-size: 3.5px; }
+            .fTle a { color: #fefefe !important; word-wrap: break-word; }
+            .fLst { list-style: none outside none; border: 0px; padding: 5px 5px; text-align: left; }
+            .wdiv { width: 765px; position: absolute; z-index: 9; background-color: #131313; border: 2px solid #fefefe; } 
+            .wdivheader { cursor: move; z-index: 10; background-color: #fefefe; color: #111111; }
+            .closeBtn { float: right; color: #111111; z-index: 11; text-decoration: none; }
+            @media only screen and (max-width: 480px) and (max-device-width: 480px)and (orientation: portrait) {
+                table { border-spacing: 0px; height: 100%; }
+                #pageBody { width: 420px; max-width: 420px; }
+                img.icon { mix-blend-mode: multiply; width: 25px; height: 25px; }
+                .fLst { width: 420px; }
+                .fTle a { width: 420px; }
+            }
+        </style>
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-        <script type="text/javascript" src="files/FeedEk.js"></script>
+        <script>
+           /*
+            * FeedEk jQuery RSS/ATOM Feed Plugin v3.0 with YQL API
+            * http://jquery-plugins.net/FeedEk/FeedEk.html  https://github.com/enginkizil/FeedEk
+            * Author : Engin KIZIL http://www.enginkizil.com 
+            * Forked to support YouTube RSS feeds
+            */
+
+            (function ($) {
+                $.fn.FeedEk = function (opt) {
+                    var def = $.extend({
+                        CharLimit: 0,
+                        TitleLinkTarget: "_blank",
+                        DateFormat: "",
+                        DateFormatLang:"en",
+                        Sort: false
+                    }, opt);
+                    
+                    var id = $(this).attr("id"), i, s = "", dt, dateVal;
+                    $("#" + id).empty();
+                    if (def.FeedUrl == undefined) return;
+                    $("#" + id).append('Loading...');
+                    
+                    var isYouTube = urlDomain(def.FeedUrl).includes('youtube.com');
+                    
+                    if (isYouTube){
+                        var YTLSearch = '*';
+                    } else {
+                        var YTLSearch = 'channel.item';
+                    };
+                    
+                    var YQLstr = 'SELECT ' + YTLSearch + ' FROM feednormalizer WHERE url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
+                    
+                    $.ajax({
+                        url: "https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(YQLstr) + "&format=json&diagnostics=false&callback=?",
+                        dataType: "json",
+                        success: function (data) {
+                            $("#" + id).empty();
+                            
+                            if (isYouTube){
+                                var rssResults = data.query.results.feed.entry;
+                            } else {
+                                var rssResults = data.query.results.rss;
+                                if (!(rssResults instanceof Array)) {
+                                    var rssResults = [rssResults];
+                                };
+                            };
+                            
+                            $.each(rssResults, function (e, itm) {
+                                if (isYouTube){
+                                    var rssDate = itm.published;
+                                    var rssLink = 'https://www.youtube.com/watch?v=' + itm.videoId;
+                                    var rssTitle = itm.title;
+                                } else {
+                                    var rssDate = itm.channel.item.pubDate;
+                                    var rssLink = itm.channel.item.link;
+                                    var rssTitle = itm.channel.item.title;
+                                };
+                                dt = new Date(rssDate);
+
+                                s += '<li><div class="fTle">' +
+                                '<a href="' + rssLink + '" target="' + def.TitleLinkTarget + '" >' +
+                                    dt.toLocaleDateString(def.DateFormatLang, def.DateFormat) + ': ' +
+                                    truncString(rssTitle, def.CharLimit) +
+                                '</a></div></li>';
+                            });
+                            var sc = '<ul class="fLst">' + s + '</ul>';
+                            //var scSorted = sortList(def.Sort, $('ul')[0]);
+                            $("#" + id).append(sc);
+                        }
+                    });
+                };
+            })(jQuery);
+
+            function urlDomain (url) {
+                if (url.includes('://')) {
+                    var retUrl = url.split('/')[2];
+                } else {
+                    var retUrl = url.split('/')[0];
+                };
+                return retUrl;
+            };
+
+            function truncString (text, length) {
+                if (length> 0 && text.length > length) {
+                    var newText = text.substring(0, length) + '...';
+                } else {
+                    var newText = text;
+                }
+                return newText;
+            };
+        </script>
         <script>
             $(document).ready(function () {
                 var dteOpt = { year: '2-digit', month: '2-digit', day: '2-digit'};
                 $('#MediumRss').FeedEk({
+                    FeedName: 'Medium',
                     FeedUrl: 'https://medium.com/feed/frank-r-castillo',
-                    MaxCount: 500, 
+                    MaxCount: 50, 
                     DateFormat: dteOpt,
                     Sort: true                    
                 });
                 $('#TwitterRss').FeedEk({
+                    FeedName: 'Twitter',
                     FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo',
-                    MaxCount: 10,
+                    MaxCount: 20,
                     CharLimit: 100,
                     DateFormat: dteOpt
                 });
                 $('#YouTubeRss').FeedEk({
+                    FeedName: 'YouTube',
                     FeedUrl: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g',
-                    MaxCount: 500,
-                    DateFormat: dteOpt                    
+                    MaxCount: 50,
+                    DateFormat: dteOpt
                 });
             });
         </script>
     </head>
     <body>
-        <div id="top"></div>
-        <table>
-            <td rowspan="3"></td>
-            <td id="pageBody" colspan="5">
-                <h1>Frank R. Castillo</h1>
-		<img src="files/picture.jpg" id="profile"/>
-		<p>I am a family man, former United States Marine, and masters student of economics at the University of South Florida. When time allows, I also write about politics, economics, international relations, and technology.<br/><br/>Professionally, I’ve had the opportunity to work in fascinating fields, including Anti-Money Laundering (AML), financial compliance, and information technology. During a stint as an AML analyst for a major financial institution, I saw the need for technology to help mitigate the risks of financial crime, which inspired my current academic interests. My hope is to someday bring together the use of big data and economics disciplines to develop systems that help prevent fraud and money laundering.		</p>
-            </td>
-            <td rowspan="3"></td>
-            </tr>
-            <tr id="pageBody">
-                <td id="selPane">
-                    <a href="https://medium.com/frank-r-castillo" target="_blank">
-                        <table>
-                            <tr>
-                                <td id="iconTd">
-                                    <img src="files/medium.png" class="icon"/>
-                                </td>
-                                <td id="textTd">
-                                    Medium
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
-                </td>
-                <td id="selPane">
-                    <a href="https://twitter.com/FrankRCastillo" target="_blank">
-                        <table>
-                            <tr>
-                                <td id="iconTd">
-                                    <img src="files/twitter.png" class="icon"/>
-                                </td>
-                                <td id="textTd">
-                                    Twitter
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
-                </td>
-                <td id="selPane">
-                    <a href="https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g" target="_blank">
-                        <table>
-                            <tr>
-                                <td id="iconTd">
-                                    <img src="files/youtube.png" class="icon"/>
-                                </td>
-                                <td id="textTd">
-                                    YouTube
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
-                </td>
-                <td id="selPane">
-                    <a href="https://github.com/FrankRCastillo" target="_blank">
-                        <table>
-                            <tr>
-                                <td id="iconTd">
-                                    <img src="files/github.png" class="icon"/>
-                                </td>
-                                <td id="textTd">
-                                    GitHub
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
-                </td>
-                <td id="selPane">
-                    <a href="https://www.linkedin.com/in/franklinrcastillo/" target="_blank">
-                        <table>
-                            <tr>
-                                <td id="iconTd">
-                                    <img src="files/linkedin.png" class="icon"/>
-                                </td>
-                                <td id="textTd">
-                                    LinkedIn
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
-                </td>
-	    </tr><br/>
-            <tr>
-                <td id="pageBody" colspan="7">
-                    <div id="feed">
-                        <h3>Tweets [<a href="#top">top</a>]</h3>
-                        <div id="TwitterRss"></div>
-                        <h3>Medium [<a href="#top">top</a>]</h3>
-                        <div id="MediumRss"></div>
-                        <h3>YouTube [<a href="#top">top</a>]</h3>
-                        <div id="YouTubeRss"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <script>
+            /*
+             * Floating window code forked from https://www.w3schools.com/howto/howto_js_draggable.asp
+             */
+
+        mainbody = "<table><tr><td id='profile'>OOOOOOOkkkkkkkkkkkkkkkkOOOOOOOOOOOOOO0000000000OOO<br/>OOOOOOOkkkkkkkkkkkkkkkkOOOOOOOOOOOOOO0K00000000OOO<br/>OOOOOOOkkkkkkkkkkkkkOOOOOOOOOOOOkOOO0KK00000000OOO<br/>OOOOOOOOkkkkkkkkkkkOOOOOOOkdollccclodxO00000000OOO<br/>00OOOOOOkkkkkkkkkkOOOOOOkl:;::::ccclllooxO00000OOO<br/>000000OOkkOkOOOkkOOOOOOd;,;;;;::cccllooooox00000OO<br/>0000000OOOkOOOOOOOOOOOk;,,;;;;;::cloxkkdooox0000OO<br/>0000000OOOOOOOOOOOOOOOd,,,,;;;;;::coxkkkdollO00OOO<br/>0000000OOOOOOOOOOOOOOOl'''',;;;::cldkkkxxolcd00OOO<br/>0000000OOOOOOOOOOOOOoc;.'',,,'...';coxxxdolcl000OO<br/>0000000OOOOOOOOOOOOk,.'.'',,...',....cc,....:00OOO<br/>0000000OOOOOOOOOOOOx:'.'',,:c;..';;,;ol'.'''o000OO<br/>0000000OOOOOOOOOOOOkl;.'',,;coxxdolcldxocclok00OOO<br/>0000000OOOOOOOOOOOOOkl.'',,,:ldxoc:loxOdoxxok00OOO<br/>0000000OOOOOOOOOOOOOOk',,','';;,;....,;;:,cl0000OO<br/>0000000OOOOOOOOOOOOOOd',,'''':;'',,;:::::;,d000OOO<br/>0000000OOOOOOOOOOOOOkc'','...;:;;;cldollc:o0000OOO<br/>00000000OOOOOOOOOOOo.'........,;:;;:cclc:x00000OOO<br/>00000000OOOOOOOOOk;......&nbsp&nbsp....',:ccll:lO000000OOO<br/>0000000OOOOOOOOxl,...&nbsp....&nbsp&nbsp&nbsp&nbsp......';o00000000OOO<br/>0000000OOOOOOx:..........'..&nbsp&nbsp&nbsp&nbsp&nbsp....looc;;:coOOOO<br/>0000000OOOxl;'...........',,'...&nbsp...,lool'..&nbsp&nbsp.lOO<br/>000000Ooc;'........'''...',clloo',;,,dd:...&nbsp&nbsp&nbsp&nbsp&nbsp;k<br/>000kd:'.........'....'''..''cddc',:;,odl,...&nbsp&nbsp&nbsp&nbsp&nbsp,<br/>0k:'...........''...&nbsp.'.'.'''cddxxxx,oxdl,.&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/>></td><td>I am masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a></td></tr></table>"
+
+            twitterbody = "<table style='height: 100px'><tr><td><div id='TwitterRss'></div></td></tr></table>";
+            mediumbody  = "<div id='MediumRss'></div>";
+            youtubebody = "<div id='YouTubeRss'></div>";
+
+            windowCreate("sysmesg", "System Message", "<p>Under Construction</p>", "10px", "15px");
+            windowCreate("mainwin", "Frank R. Castillo", mainbody, hgtElement("sysmesg"), "15px");
+            windowCreate("youtubewin", "YouTube", youtubebody, hgtElement("mainwin"), "15px");
+            windowCreate("mediumwin", "Medium", mediumbody, hgtElement("youtubewin"), "25px");
+            windowCreate("tweetwin", "Twitter", twitterbody, hgtElement("mediumwin"), "35px");
+
+            function windowCreate(divName, windowTitle, windowBody, topVal, leftVal) {
+                var zIndex = 100;
+
+                template  = "<div id='" + divName + "' class='wdiv' onclick='frontElement(\"" + divName + "\")'>\n";
+                template += "<div id='" + divName + "header' class='wdivheader'>\n";
+                template += "<b>" + windowTitle + "<a href'#' class='closeBtn' onclick='closeElement(\"" + divName + "\")'>X&nbsp</a></b>\n";
+                template += "</div>\n";
+                template += windowBody;
+                template += "</div>";
+
+                blankPage = window.self.document;
+                blankPage.open();
+                blankPage.write(template);
+                blankPage.close();
+
+                divElem = document.getElementById((divName));
+                divElem.style.top = topVal;
+                divElem.style.left = leftVal;
+                dragElement(divElem);
+
+                function dragElement(elmnt) {
+                    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                    if (document.getElementById(elmnt.id + "header")) {
+                        // if present, the header is where you move the DIV from:
+                        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+                    } else {
+                        // otherwise, move the DIV from anywhere inside the DIV:
+                        elmnt.onmousedown = dragMouseDown;
+                    }
+
+                    function dragMouseDown(e) {
+                        e = e || window.event;
+                        // get the mouse cursor position at startup:
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        document.onmouseup = closeDragElement;
+                        // call a function whenever the cursor moves:
+                        document.onmousemove = elementDrag;
+                    }
+
+                    function elementDrag(e) {
+                        e = e || window.event;
+                        // calculate the new cursor position:
+                        pos1 = pos3 - e.clientX;
+                        pos2 = pos4 - e.clientY;
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        // set the element's new position:
+                        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                    }
+
+                    function closeDragElement() {
+                        // stop moving when mouse button is released:
+                        document.onmouseup = null;
+                        document.onmousemove = null;
+                    }
+                }
+            }
+
+            function closeElement(divName) {
+                document.getElementById(divName).remove();
+            }
+
+            function frontElement(divName) {
+                document.getElementById(divName).style.zIndex = ++zIndex;
+                zIndex = 100;
+            }
+
+            function hgtElement(divName) {
+                elmnt = document.getElementById(divName);
+                elmntHgt = (elmnt.offsetTop + elmnt.offsetHeight + 5) + "px";
+                return elmntHgt;
+            }
+
+        </script>
     </body>
 </html>
