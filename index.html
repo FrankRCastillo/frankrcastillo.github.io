@@ -18,7 +18,7 @@
             a { color: #fefefe; text-decoration: none; }
             p { font-weight: normal; list-style: none outside none; padding: 5px 5px; }
             ul { margin-top: 0; margin-bottom: 0; }
-            #profile { font-size: 3.5px; }
+            #profile { height: 101px; width: 101px; font-size: 3.5px; }
             .fTle a { color: #fefefe !important; word-wrap: break-word; }
             .fLst { list-style: none outside none; border: 0px; padding: 5px 5px; text-align: left; }
             .wdiv { position: absolute; z-index: 9; background-color: #202020;
@@ -159,26 +159,19 @@
              * Floating window code forked from https://www.w3schools.com/howto/howto_js_draggable.asp
              */
 
-            defaultWdt = "760px";
-            mainbody = "<table><tr><td id='profile'><a href='#' onclick='javascript:pictureShow()'>OOOOOOOkkkkkkkkkkkkkkkkOOOOOOOOOOOOOO0000000000OOO<br/>OOOOOOOkkkkkkkkkkkkkkkkOOOOOOOOOOOOOO0K00000000OOO<br/>OOOOOOOkkkkkkkkkkkkkOOOOOOOOOOOOkOOO0KK00000000OOO<br/>OOOOOOOOkkkkkkkkkkkOOOOOOOkdollccclodxO00000000OOO<br/>00OOOOOOkkkkkkkkkkOOOOOOkl:;::::ccclllooxO00000OOO<br/>000000OOkkOkOOOkkOOOOOOd;,;;;;::cccllooooox00000OO<br/>0000000OOOkOOOOOOOOOOOk;,,;;;;;::cloxkkdooox0000OO<br/>0000000OOOOOOOOOOOOOOOd,,,,;;;;;::coxkkkdollO00OOO<br/>0000000OOOOOOOOOOOOOOOl'''',;;;::cldkkkxxolcd00OOO<br/>0000000OOOOOOOOOOOOOoc;.'',,,'...';coxxxdolcl000OO<br/>0000000OOOOOOOOOOOOk,.'.'',,...',....cc,....:00OOO<br/>0000000OOOOOOOOOOOOx:'.'',,:c;..';;,;ol'.'''o000OO<br/>0000000OOOOOOOOOOOOkl;.'',,;coxxdolcldxocclok00OOO<br/>0000000OOOOOOOOOOOOOkl.'',,,:ldxoc:loxOdoxxok00OOO<br/>0000000OOOOOOOOOOOOOOk',,','';;,;....,;;:,cl0000OO<br/>0000000OOOOOOOOOOOOOOd',,'''':;'',,;:::::;,d000OOO<br/>0000000OOOOOOOOOOOOOkc'','...;:;;;cldollc:o0000OOO<br/>00000000OOOOOOOOOOOo.'........,;:;;:cclc:x00000OOO<br/>00000000OOOOOOOOOk;......&nbsp&nbsp....',:ccll:lO000000OOO<br/>0000000OOOOOOOOxl,...&nbsp....&nbsp&nbsp&nbsp&nbsp......';o00000000OOO<br/>0000000OOOOOOx:..........'..&nbsp&nbsp&nbsp&nbsp&nbsp....looc;;:coOOOO<br/>0000000OOOxl;'...........',,'...&nbsp...,lool'..&nbsp&nbsp.lOO<br/>000000Ooc;'........'''...',clloo',;,,dd:...&nbsp&nbsp&nbsp&nbsp&nbsp;k<br/>000kd:'.........'....'''..''cddc',:;,odl,...&nbsp&nbsp&nbsp&nbsp&nbsp,<br/>0k:'...........''...&nbsp.'.'.'''cddxxxx,oxdl,.&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/></a></td><td>I am masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a></td></tr></table>"
+            mainbody = "I am masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a>"
 
             twitterbody = "<div id='TwitterRss'></div>";
             mediumbody  = "<div id='MediumRss'></div>";
             youtubebody = "<div id='YouTubeRss'></div>";
+            picturebody = "<img id='profile' src='picture.jpeg'>";
 
-            windowCreate("sysmesg", "System Message", "<p id='systempanel'>Under Construction</p>", "10px", "15px", defaultWdt);
-            windowCreate("mainwin", "Frank R. Castillo", mainbody, hgtElement("sysmesg"), "15px", defaultWdt);
-            windowCreate("youtubewin", "YouTube", youtubebody, hgtElement("mainwin"), "15px", defaultWdt);
-            windowCreate("mediumwin", "Medium", mediumbody, hgtElement("youtubewin"), "25px", defaultWdt);
-            windowCreate("tweetwin", "Twitter", twitterbody, hgtElement("mediumwin"), "35px", defaultWdt);
-            windowCreate("picwin", "Picture", "<img src='picture.jpeg'>", "100px", "200px", "400px");
-
-            document.getElementById("picwin").style.visibility = 'hidden';
-            
-            function pictureShow() {
-                frontElement("picwin");
-                document.getElementById("picwin").style.visibility = 'visible';
-            }
+            windowCreate("sysmesg", "System Message", "<p id='systempanel'>Under Construction</p>", "10px", "15px", "760px");
+            windowCreate("mainwin", "Frank R. Castillo", mainbody, hgtElem("sysmesg"), "124px", "651px");
+            windowCreate("youtubewin", "YouTube", youtubebody, hgtElem("mainwin"), "15px", "");
+            windowCreate("mediumwin", "Medium", mediumbody, hgtElem("youtubewin"), "25px", "");
+            windowCreate("tweetwin", "Twitter", twitterbody, hgtElem("mediumwin"), "35px", "");
+            windowCreate("picwin", "Picture", picturebody, hgtElem("sysmesg"), "15px", "");
 
             function windowCreate(divName, windowTitle, windowBody, topVal, leftVal, width) {
                 template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>\n";
@@ -197,9 +190,8 @@
                 divElem = document.getElementById(divName);
                 divElem.style.top = topVal;
                 divElem.style.left = leftVal;
-                divElem.style.width = width;
+                if (width !== "") { divElem.style.width = width; }
                 dragElement(divElem);
-//                resizeElement(divElem);
 
                 function dragElement(elmnt) {
                     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -251,7 +243,7 @@
                 document.getElementById(divName).style.zIndex = ++zIndex;
             }
 
-            function hgtElement(divName) {
+            function hgtElem(divName) {
                 elmnt = document.getElementById(divName);
                 elmntHgt = (elmnt.offsetTop + elmnt.offsetHeight + 4) + "px";
                 return elmntHgt;
