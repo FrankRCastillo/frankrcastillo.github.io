@@ -20,13 +20,11 @@
             #profile { font-size: 3.5px; }
             .fTle a { color: #fefefe !important; word-wrap: break-word; }
             .fLst { list-style: none outside none; border: 0px; padding: 5px 5px; text-align: left; }
-            .wdiv { width: 765px; position: absolute; z-index: 9; background-color: #131313; border: 2px solid #fefefe; } 
+            .wdiv { position: absolute; z-index: 9; background-color: #131313; border: 2px solid #fefefe; } 
             .wdivheader { cursor: move; z-index: 10; background-color: #fefefe; color: #111111; }
             .closeBtn { float: right; color: #111111; z-index: 11; text-decoration: none; }
             @media only screen and (max-width: 480px) and (max-device-width: 480px)and (orientation: portrait) {
                 table { border-spacing: 0px; height: 100%; }
-                #pageBody { width: 420px; max-width: 420px; }
-                img.icon { mix-blend-mode: multiply; width: 25px; height: 25px; }
                 .fLst { width: 420px; }
                 .fTle a { width: 420px; }
             }
@@ -156,19 +154,27 @@
              * Floating window code forked from https://www.w3schools.com/howto/howto_js_draggable.asp
              */
 
-        mainbody = "<table><tr><td id='profile'>OOOOOOOkkkkkkkkkkkkkkkkOOOOOOOOOOOOOO0000000000OOO<br/>OOOOOOOkkkkkkkkkkkkkkkkOOOOOOOOOOOOOO0K00000000OOO<br/>OOOOOOOkkkkkkkkkkkkkOOOOOOOOOOOOkOOO0KK00000000OOO<br/>OOOOOOOOkkkkkkkkkkkOOOOOOOkdollccclodxO00000000OOO<br/>00OOOOOOkkkkkkkkkkOOOOOOkl:;::::ccclllooxO00000OOO<br/>000000OOkkOkOOOkkOOOOOOd;,;;;;::cccllooooox00000OO<br/>0000000OOOkOOOOOOOOOOOk;,,;;;;;::cloxkkdooox0000OO<br/>0000000OOOOOOOOOOOOOOOd,,,,;;;;;::coxkkkdollO00OOO<br/>0000000OOOOOOOOOOOOOOOl'''',;;;::cldkkkxxolcd00OOO<br/>0000000OOOOOOOOOOOOOoc;.'',,,'...';coxxxdolcl000OO<br/>0000000OOOOOOOOOOOOk,.'.'',,...',....cc,....:00OOO<br/>0000000OOOOOOOOOOOOx:'.'',,:c;..';;,;ol'.'''o000OO<br/>0000000OOOOOOOOOOOOkl;.'',,;coxxdolcldxocclok00OOO<br/>0000000OOOOOOOOOOOOOkl.'',,,:ldxoc:loxOdoxxok00OOO<br/>0000000OOOOOOOOOOOOOOk',,','';;,;....,;;:,cl0000OO<br/>0000000OOOOOOOOOOOOOOd',,'''':;'',,;:::::;,d000OOO<br/>0000000OOOOOOOOOOOOOkc'','...;:;;;cldollc:o0000OOO<br/>00000000OOOOOOOOOOOo.'........,;:;;:cclc:x00000OOO<br/>00000000OOOOOOOOOk;......&nbsp&nbsp....',:ccll:lO000000OOO<br/>0000000OOOOOOOOxl,...&nbsp....&nbsp&nbsp&nbsp&nbsp......';o00000000OOO<br/>0000000OOOOOOx:..........'..&nbsp&nbsp&nbsp&nbsp&nbsp....looc;;:coOOOO<br/>0000000OOOxl;'...........',,'...&nbsp...,lool'..&nbsp&nbsp.lOO<br/>000000Ooc;'........'''...',clloo',;,,dd:...&nbsp&nbsp&nbsp&nbsp&nbsp;k<br/>000kd:'.........'....'''..''cddc',:;,odl,...&nbsp&nbsp&nbsp&nbsp&nbsp,<br/>0k:'...........''...&nbsp.'.'.'''cddxxxx,oxdl,.&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/>></td><td>I am masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a></td></tr></table>"
+        mainbody = "<table><tr><td id='profile'><a href='#' onclick='javascript:pictureShow()'>OOOOOOOkkkkkkkkkkkkkkkkOOOOOOOOOOOOOO0000000000OOO<br/>OOOOOOOkkkkkkkkkkkkkkkkOOOOOOOOOOOOOO0K00000000OOO<br/>OOOOOOOkkkkkkkkkkkkkOOOOOOOOOOOOkOOO0KK00000000OOO<br/>OOOOOOOOkkkkkkkkkkkOOOOOOOkdollccclodxO00000000OOO<br/>00OOOOOOkkkkkkkkkkOOOOOOkl:;::::ccclllooxO00000OOO<br/>000000OOkkOkOOOkkOOOOOOd;,;;;;::cccllooooox00000OO<br/>0000000OOOkOOOOOOOOOOOk;,,;;;;;::cloxkkdooox0000OO<br/>0000000OOOOOOOOOOOOOOOd,,,,;;;;;::coxkkkdollO00OOO<br/>0000000OOOOOOOOOOOOOOOl'''',;;;::cldkkkxxolcd00OOO<br/>0000000OOOOOOOOOOOOOoc;.'',,,'...';coxxxdolcl000OO<br/>0000000OOOOOOOOOOOOk,.'.'',,...',....cc,....:00OOO<br/>0000000OOOOOOOOOOOOx:'.'',,:c;..';;,;ol'.'''o000OO<br/>0000000OOOOOOOOOOOOkl;.'',,;coxxdolcldxocclok00OOO<br/>0000000OOOOOOOOOOOOOkl.'',,,:ldxoc:loxOdoxxok00OOO<br/>0000000OOOOOOOOOOOOOOk',,','';;,;....,;;:,cl0000OO<br/>0000000OOOOOOOOOOOOOOd',,'''':;'',,;:::::;,d000OOO<br/>0000000OOOOOOOOOOOOOkc'','...;:;;;cldollc:o0000OOO<br/>00000000OOOOOOOOOOOo.'........,;:;;:cclc:x00000OOO<br/>00000000OOOOOOOOOk;......&nbsp&nbsp....',:ccll:lO000000OOO<br/>0000000OOOOOOOOxl,...&nbsp....&nbsp&nbsp&nbsp&nbsp......';o00000000OOO<br/>0000000OOOOOOx:..........'..&nbsp&nbsp&nbsp&nbsp&nbsp....looc;;:coOOOO<br/>0000000OOOxl;'...........',,'...&nbsp...,lool'..&nbsp&nbsp.lOO<br/>000000Ooc;'........'''...',clloo',;,,dd:...&nbsp&nbsp&nbsp&nbsp&nbsp;k<br/>000kd:'.........'....'''..''cddc',:;,odl,...&nbsp&nbsp&nbsp&nbsp&nbsp,<br/>0k:'...........''...&nbsp.'.'.'''cddxxxx,oxdl,.&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/></a></td><td>I am masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a></td></tr></table>"
 
             twitterbody = "<table style='height: 100px'><tr><td><div id='TwitterRss'></div></td></tr></table>";
             mediumbody  = "<div id='MediumRss'></div>";
             youtubebody = "<div id='YouTubeRss'></div>";
 
-            windowCreate("sysmesg", "System Message", "<p>Under Construction</p>", "10px", "15px");
-            windowCreate("mainwin", "Frank R. Castillo", mainbody, hgtElement("sysmesg"), "15px");
-            windowCreate("youtubewin", "YouTube", youtubebody, hgtElement("mainwin"), "15px");
-            windowCreate("mediumwin", "Medium", mediumbody, hgtElement("youtubewin"), "25px");
-            windowCreate("tweetwin", "Twitter", twitterbody, hgtElement("mediumwin"), "35px");
+            windowCreate("sysmesg", "System Message", "<p>Under Construction</p>", "10px", "15px", "765px");
+            windowCreate("mainwin", "Frank R. Castillo", mainbody, hgtElement("sysmesg"), "15px", "765px");
+            windowCreate("youtubewin", "YouTube", youtubebody, hgtElement("mainwin"), "15px", "765px");
+            windowCreate("mediumwin", "Medium", mediumbody, hgtElement("youtubewin"), "25px", "765px");
+            windowCreate("tweetwin", "Twitter", twitterbody, hgtElement("mediumwin"), "35px", "765px");
+            windowCreate("picwin", "Picture", "<img src='picture.jpeg'>", "100px", "200px", "400px");
 
-            function windowCreate(divName, windowTitle, windowBody, topVal, leftVal) {
+            document.getElementById("picwin").style.visibility = 'hidden';
+            
+            function pictureShow() {
+                frontElement("picwin");
+                document.getElementById("picwin").style.visibility = 'visible';
+            }
+
+            function windowCreate(divName, windowTitle, windowBody, topVal, leftVal, width) {
                 template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>\n";
                 template += "<div id='" + divName + "header' class='wdivheader'>\n";
                 template += "<b>" + windowTitle + "<a href'#' class='closeBtn' onclick='closeElement(\"" + divName + "\")'>X&nbsp</a></b>\n";
@@ -181,9 +187,10 @@
                 blankPage.write(template);
                 blankPage.close();
 
-                divElem = document.getElementById((divName));
+                divElem = document.getElementById(divName);
                 divElem.style.top = topVal;
                 divElem.style.left = leftVal;
+                divElem.style.width = width;
                 dragElement(divElem);
 
                 function dragElement(elmnt) {
@@ -227,7 +234,7 @@
             }
 
             function closeElement(divName) {
-                document.getElementById(divName).remove();
+                document.getElementById(divName).style.visibility = 'hidden';
             }
 
             var zIndex = 100;
