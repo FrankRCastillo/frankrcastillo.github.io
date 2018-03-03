@@ -18,7 +18,7 @@
             a { color: #fefefe; text-decoration: none; }
             p { font-weight: normal; list-style: none outside none; padding: 5px 5px; }
             ul { margin-top: 0; margin-bottom: 0; }
-            #profile { height: 101px; width: 101px; font-size: 3.5px; }
+            #profile { height: 100%; width: 100%; font-size: 3.5px; }
             .fTle a { color: #fefefe !important; word-wrap: break-word; }
             .fLst { list-style: none outside none; border: 0px; padding: 5px 5px; text-align: left; }
             .wdiv { position: absolute; z-index: 9; background-color: #202020;
@@ -171,7 +171,7 @@
             windowCreate("youtubewin", "YouTube", youtubebody, hgtElem("mainwin"), "15px", "");
             windowCreate("mediumwin", "Medium", mediumbody, hgtElem("youtubewin"), "25px", "");
             windowCreate("tweetwin", "Twitter", twitterbody, hgtElem("mediumwin"), "35px", "");
-            windowCreate("picwin", "Picture", picturebody, hgtElem("sysmesg"), "15px", "");
+            windowCreate("picwin", "Picture", picturebody, hgtElem("sysmesg"), "15px", "101px");
 
             function windowCreate(divName, windowTitle, windowBody, topVal, leftVal, width) {
                 template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>\n";
