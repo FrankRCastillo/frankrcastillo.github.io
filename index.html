@@ -28,13 +28,8 @@
             .mainCell { width: 100%; vertical-align: top; }
             #resizeBtn { text-align: right; vertical-align: bottom; }
             #winTable { height: 100%; vertical-align: top; }
-            @media only screen and (max-width: 480px) and (max-device-width: 480px)and (orientation: portrait) {
-                table { border-spacing: 0px; height: 100%; }
-                .fLst { width: 420px; }
-                .fTle a { width: 420px; }
-            }
         </style>
-        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script>
            /*
             * FeedEk jQuery RSS/ATOM Feed Plugin v3.0 with YQL API
@@ -158,7 +153,6 @@
     </head>
     <body>
         <script>
-
             mainbody = "I am masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a>"
 
             sysmesgbody = "<p id='systempanel'>Under Construction</p>"
@@ -166,15 +160,26 @@
             mediumbody  = "<div id='MediumRss'></div>";
             youtubebody = "<div id='YouTubeRss'></div>";
             picturebody = "<img id='profile' src='picture.jpeg'>";
-                       //element id  , element title      , elem body  , top                  , left   , width  , height , resizeable?
-            windowCreate("systemmesg", "System Message"   , sysmesgbody, "10px"               , "15px" , "760px", ""     , false );
-            windowCreate("mainwindow", "Frank R. Castillo", mainbody   , "55px"               , "139px", "651px", "117px", false );
-            windowCreate("picturewin", "Picture"          , picturebody, "55px"               , "30px" , "101px", ""     , true  );
-            windowCreate("twitterwin", "Twitter"          , twitterbody, hgtElem("mainwindow"), "30px" , "760px", "166px", false );
-            windowCreate("mediumwin" , "Medium"           , mediumbody , hgtElem("twitterwin"), "30px" , "760px", "166px", false );
-            windowCreate("youtubewin", "YouTube"          , youtubebody, hgtElem("mediumwin") , "30px" , "760px", ""     , false );
-            
 
+  
+            var isMobile = window.matchMedia("only screen and (max-width: 480px) and (max-device-width: 480px) and (orientation: portrait)");
+            if (!isMobile.matches) {        
+                            //element id , element title      , elem body  , top                  , left   , width  , height , no resize
+                windowCreate("systemmesg", "System Message"   , sysmesgbody, "10px"               , "15px" , "760px", ""     , false );
+                windowCreate("mainwindow", "Frank R. Castillo", mainbody   , "55px"               , "139px", "651px", "117px", false );
+                windowCreate("picturewin", "Picture"          , picturebody, "55px"               , "30px" , "101px", ""     , true  );
+                windowCreate("twitterwin", "Twitter"          , twitterbody, hgtElem("mainwindow"), "30px" , "760px", "166px", false );
+                windowCreate("mediumwin" , "Medium"           , mediumbody , hgtElem("twitterwin"), "30px" , "760px", "166px", false );
+                windowCreate("youtubewin", "YouTube"          , youtubebody, hgtElem("mediumwin") , "30px" , "760px", ""     , false );
+            } else {
+                windowCreate("systemmesg", "System Message"   , sysmesgbody, "10px"               , "5px"  , "480px", ""     , true );
+                windowCreate("mainwindow", "Frank R. Castillo", mainbody   , "55px"               , "119px", "371px", "182px", true );
+                windowCreate("picturewin", "Picture"          , picturebody, "55px"               , "10px" , "101px", ""     , true );
+                windowCreate("twitterwin", "Twitter"          , twitterbody, hgtElem("mainwindow"), "10px" , "480px", "294px", true );
+                windowCreate("mediumwin" , "Medium"           , mediumbody , hgtElem("twitterwin"), "10px" , "480px", "190px", true );
+                windowCreate("youtubewin", "YouTube"          , youtubebody, hgtElem("mediumwin") , "10px" , "480px", ""     , true );
+            }
+ 
             function windowCreate(divName, windowTitle, windowBody, top, left, width, height, resizeable) {
                 template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>\n";
                 template += "<div id='" + divName + "header' class='wdivheader'>\n";
