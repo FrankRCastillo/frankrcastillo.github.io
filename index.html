@@ -96,7 +96,7 @@
                                     truncString(rssTitle, def.CharLimit) +
                                 '</a></div></li>';
                             });
-                            var sc = '<ul class="fLst">' + s + '<a href="' + def.PageUrl + '" target="_blank">More...</a></ul>';
+                            var sc = '<ul class="fLst">' + def.FeedName + ":" + s + '<a href="' + def.PageUrl + '" target="_blank">More...</a></ul>';
                             //var scSorted = sortList(def.Sort, $('ul')[0]);
                             $("#" + id).append(sc);
                         }
@@ -129,7 +129,7 @@
                     FeedName: 'Medium',
                     FeedUrl: 'https://medium.com/feed/frank-r-castillo',
                     PageUrl: 'https://medium.com/frank-r-castillo',
-                    MaxCount: 10, 
+                    MaxCount: 20, 
                     DateFormat: dteOpt,
                     Sort: true                    
                 });
@@ -137,7 +137,7 @@
                     FeedName: 'Twitter',
                     FeedUrl: 'https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo',
                     PageUrl: 'https://twitter.com/frankrcastillo',
-                    MaxCount: 10,
+                    MaxCount: 20,
                     CharLimit: 100,
                     DateFormat: dteOpt
                 });
@@ -145,7 +145,7 @@
                     FeedName: 'YouTube',
                     FeedUrl: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g',
                     PageUrl: 'https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g?view_as=subscriber',
-                    MaxCount: 10,
+                    MaxCount: 20,
                     DateFormat: dteOpt
                 });
             });
@@ -153,34 +153,28 @@
     </head>
     <body>
         <script>
-            mainbody = "I am masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to work in Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a>"
+            mainwinbody = "I am a graduate student at the University of South Florida where I'm working on a Master of Arts in economics. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to work in Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a>"
 
             sysmesgbody = "<p id='systempanel'>Under Construction</p>"
-            twitterbody = "<div id='TwitterRss'></div>";
-            mediumbody  = "<div id='MediumRss'></div>";
-            youtubebody = "<div id='YouTubeRss'></div>";
+            feedwinbody   = "<div id='TwitterRss'></div><div id='MediumRss'></div><div id='YouTubeRss'></div>";
             picturebody = "<img id='profile' src='picture.jpeg'>";
 
   
             var isMobile = window.matchMedia("only screen and (max-width: 480px) and (max-device-width: 480px) and (orientation: portrait)");
             if (!isMobile.matches) {        
-                            //element id , element title      , elem body  , top                  , left   , width  , height , no resize
-                windowCreate("systemmesg", "System Message"   , sysmesgbody, "10px"               , "15px" , "760px", ""     , false );
-                windowCreate("mainwindow", "Frank R. Castillo", mainbody   , "55px"               , "139px", "651px", "117px", false );
-                windowCreate("picturewin", "Picture"          , picturebody, "55px"               , "30px" , "101px", ""     , true  );
-                windowCreate("twitterwin", "Twitter"          , twitterbody, hgtElem("mainwindow"), "30px" , "760px", "166px", false );
-                windowCreate("mediumwin" , "Medium"           , mediumbody , hgtElem("twitterwin"), "30px" , "760px", "166px", false );
-                windowCreate("youtubewin", "YouTube"          , youtubebody, hgtElem("mediumwin") , "30px" , "760px", ""     , false );
+                            //element id , element title      , elem body  , top            , left   , width  , no resize
+                windowCreate("sysmesg", "System Message"   , sysmesgbody, "10px"            , "15px" , "760px", false );
+                windowCreate("mainwin", "Frank R. Castillo", mainwinbody, "55px"            , "139px", "651px", false );
+                windowCreate("pictwin", "Picture"          , picturebody, "55px"            , "30px" , "101px", true  );
+                windowCreate("feedwin", "Feeds"            , feedwinbody, hgtElem("mainwin"), "30px" , "760px", false );
             } else {
-                windowCreate("systemmesg", "System Message"   , sysmesgbody, "10px"               , "5px"  , "480px", ""     , true );
-                windowCreate("mainwindow", "Frank R. Castillo", mainbody   , "55px"               , "119px", "371px", "182px", true );
-                windowCreate("picturewin", "Picture"          , picturebody, "55px"               , "10px" , "101px", ""     , true );
-                windowCreate("twitterwin", "Twitter"          , twitterbody, hgtElem("mainwindow"), "10px" , "480px", "294px", true );
-                windowCreate("mediumwin" , "Medium"           , mediumbody , hgtElem("twitterwin"), "10px" , "480px", "190px", true );
-                windowCreate("youtubewin", "YouTube"          , youtubebody, hgtElem("mediumwin") , "10px" , "480px", ""     , true );
+                windowCreate("sysmesg", "System Message"   , sysmesgbody, "10px"            , "5px"  , "465px", true );
+                windowCreate("mainwin", "Frank R. Castillo", mainwinbody, "55px"            , "119px", "356px", true );
+                windowCreate("pictwin", "Picture"          , picturebody, "55px"            , "10px" , "101px", true );
+                windowCreate("feedwin", "Twitter"          , feedwinbody, hgtElem("mainwin"), "10px" , "465px", true );
             }
  
-            function windowCreate(divName, windowTitle, windowBody, top, left, width, height, resizeable) {
+            function windowCreate(divName, windowTitle, windowBody, top, left, width, resizeable) {
                 template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>\n";
                 template += "<div id='" + divName + "header' class='wdivheader'>\n";
                 template += "<b>" + windowTitle;
@@ -198,7 +192,6 @@
                 divElem.style.top = top;
                 divElem.style.left = left;
                 if (width !== "") { divElem.style.width = width; }
-                if (height !== "") { divElem.style.height = height; }
 
                 if (resizeable === true) {
                     divElem.style.resize = "none";
