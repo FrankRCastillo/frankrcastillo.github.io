@@ -158,9 +158,6 @@
     </head>
     <body>
         <script>
-            /*
-             * Floating window code forked from https://www.w3schools.com/howto/howto_js_draggable.asp
-             */
 
             mainbody = "I am masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a>"
 
@@ -171,11 +168,11 @@
             picturebody = "<img id='profile' src='picture.jpeg'>";
                        //element id  , element title      , elem body  , top                  , left   , width  , height , resizeable?
             windowCreate("systemmesg", "System Message"   , sysmesgbody, "10px"               , "15px" , "760px", ""     , false );
-            windowCreate("mainwindow", "Frank R. Castillo", mainbody   , hgtElem("systemmesg"), "124px", "651px", "117px", false );
-            windowCreate("picturewin", "Picture"          , picturebody, hgtElem("systemmesg"), "15px" , "101px", ""     , true  );
-            windowCreate("twitterwin", "Twitter"          , twitterbody, hgtElem("mainwindow"), "15px" , "760px", "170px", false );
-            windowCreate("mediumwin" , "Medium"           , mediumbody , hgtElem("twitterwin"), "15px" , "760px", "170px", false );
-            windowCreate("youtubewin", "YouTube"          , youtubebody, hgtElem("mediumwin") , "15px" , "760px", ""     , false );
+            windowCreate("mainwindow", "Frank R. Castillo", mainbody   , "55px"               , "139px", "651px", "117px", false );
+            windowCreate("picturewin", "Picture"          , picturebody, "55px"               , "30px" , "101px", ""     , true  );
+            windowCreate("twitterwin", "Twitter"          , twitterbody, hgtElem("mainwindow"), "30px" , "760px", "170px", false );
+            windowCreate("mediumwin" , "Medium"           , mediumbody , hgtElem("twitterwin"), "30px" , "760px", "170px", false );
+            windowCreate("youtubewin", "YouTube"          , youtubebody, hgtElem("mediumwin") , "30px" , "760px", ""     , false );
             
 
             function windowCreate(divName, windowTitle, windowBody, top, left, width, height, resizeable) {
@@ -202,6 +199,10 @@
                     divElem.style.resize = "none";
                     divElem.style.overflow = "visible"
                 }
+
+                /*
+                 * Floating window code forked from https://www.w3schools.com/howto/howto_js_draggable.asp
+                 */
 
                 dragElement(divElem);
 
@@ -244,6 +245,8 @@
                     document.onmouseup = null;
                     document.onmousemove = null;
                 }
+
+                // fork ends here
             }
 
             function closeWindow(divName) {
