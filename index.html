@@ -22,8 +22,8 @@
             .fLst { list-style: none outside none; border:0px; padding:5px 5px; text-align: left; }
             .wdiv { position: absolute; z-index: 9; background-color: #202020;
                     border: 2px solid #fefefe; resize: both; overflow:auto; }
-            .wdivheader { cursor: move; z-index:10; background-color: #fefefe; color: #111111; }
-            .closeBtn { float:right; color: #111111;z-index: 11; }
+            .wdivheader { cursor: move; z-index:10; background-color: #fefefe; color: #111111; height: 17px; }
+            .closeBtn { float:right; color: #111111;z-index: 11; vertical-align: middle; }
             .mainCell { width: 100%; vertical-align:top; }
             #profile {  height:100%; width: 100%; }
             #resizeBtn {  text-align: right; vertical-align: bottom; }
@@ -162,7 +162,7 @@
   
             var isMobile = window.matchMedia("only screen and (max-width: 480px) and (max-device-width: 480px) and (orientation: portrait)");
             if (!isMobile.matches) {        
-                            //element id , element title      , elem body  , top            , left   , width  , no resize
+                         //element id , element title      , elem body  , top               , left   , width  , no resize
                 windowCreate("sysmesg", "System Message"   , sysmesgbody, "10px"            , "15px" , "760px", false );
                 windowCreate("mainwin", "Frank R. Castillo", mainwinbody, "55px"            , "139px", "651px", false );
                 windowCreate("pictwin", "Picture"          , picturebody, "55px"            , "30px" , "101px", true  );
@@ -178,7 +178,7 @@
                 template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>\n";
                 template += "<div id='" + divName + "header' class='wdivheader'>\n";
                 template += "<b>" + windowTitle;
-                template += "<b class='closeBtn' onclick='closeWindow(\"" + divName + "\")'>⛝</b></b>\n";
+                template += "<b class='closeBtn' onclick='closeWindow(\"" + divName + "\")'>🅇</b></b>\n";
                 template += "</div>\n";
                 template += windowBody;
                 template += "</div>";
