@@ -171,19 +171,24 @@
 
             // detects whether if device is mobile or desktop, then resizes windows accordingly
             var isMobile = window.matchMedia("only screen and (max-width: 480px) and (max-device-width: 480px) and (orientation: portrait)");
-            if (!isMobile.matches) {        
-                         //element id , element title      , elem body  , top               , left   ,  height, width  , no resize
-                windowCreate("syscons", "System Console"   , sysmesgbody, "10px"            , "15px" , "480px", "640px", false );
-                windowCreate("mainwin", "Frank R. Castillo", mainwinbody, "40px"            , "141px",      "", "649px", false );
-                windowCreate("pictwin", "Picture"          , picturebody, "40px"            , "30px" , "117px", "104px", true  );
-                windowCreate("feedwin", "Feeds"            , feedwinbody, hgtElem("mainwin"), "30px" ,      "", "760px", false );
+
+            if (!isMobile.matches) {
+                sysconsLeft = "15px" ; sysconsHgt = "480px"; sysconsWdt = "640px"; sysconsResize = false;
+                mainwinLeft = "141px"; mainwinHgt = ""     ; mainwinWdt = "649px"; mainwinResize = false;
+                pictwinLeft = "30px" ; pictwinHgt = "117px"; pictwinWdt = "104px"; pictwinResize = true;
+                feedwinLeft = "30px" ; feedwinHgt = ""     ; feedwinWdt = "760px"; feedwinResize = false;
             } else {
-                windowCreate("syscons", "System Console"   , sysmesgbody, "10px"            , "5px"  ,      "", "465px", true );
-                windowCreate("mainwin", "Frank R. Castillo", mainwinbody, "40px"            , "119px",      "", "356px", true );
-                windowCreate("pictwin", "Picture"          , picturebody, "40px"            , "10px" ,      "", "101px", true );
-                windowCreate("feedwin", "Twitter"          , feedwinbody, hgtElem("mainwin"), "10px" ,      "", "465px", true );
+                sysconsLeft = "5px " ; sysconsHgt = ""     ; sysconsWdt = "465px"; sysconsResize = true;
+                mainwinLeft = "119px"; mainwinHgt = ""     ; mainwinWdt = "356px"; mainwinResize = true;
+                pictwinLeft = "10px" ; pictwinHgt = ""     ; pictwinWdt = "101px"; pictwinResize = true;
+                feedwinLeft = "10px" ; feedwinHgt = ""     ; feedwinWdt = "465px"; feedwinResize = true;
             }
- 
+
+                     //element id , element title      , elem body  , top               , left       , height    , width     , no resize
+            windowCreate("syscons", "System Console"   , sysmesgbody, "10px"            , sysconsLeft, sysconsHgt, sysconsWdt, sysconsResize );
+            windowCreate("mainwin", "Frank R. Castillo", mainwinbody, "40px"            , mainwinLeft, mainwinHgt, mainwinWdt, mainwinResize );
+            windowCreate("pictwin", "Picture"          , picturebody, "40px"            , pictwinLeft, pictwinHgt, pictwinWdt, pictwinResize );
+            windowCreate("feedwin", "Feeds"            , feedwinbody, hgtElem("mainwin"), feedwinLeft, feedwinHgt, feedwinWdt, feedwinResize );
 
             function windowCreate(divName, windowTitle, windowBody, top, left, height, width, resizeable) {
                 template  = "<div id='" + divName + "' class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>";
@@ -292,6 +297,8 @@
             function commandProc(cmdInput) {
                 return cmdInput + ": command not found<br/>";
             }
+
+// handles console history
 
             cnsAppndElm = document.getElementById("consappend");
             inputbxElem = document.getElementById("inputbox");
