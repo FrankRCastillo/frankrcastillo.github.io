@@ -28,6 +28,7 @@
             #profile {  height:104px; width: 104px; }
             #resizeBtn { text-align: right; vertical-align: bottom; }
             #winTable { height:100%; vertical-align:top; }
+            #helpln { display: inline-block; width: 50px; }
             #inputbox { width: 95%; border: 0px; background-color: #202020; color: #fefefe;
                         font-family: "Lucida Console", Monaco, monospace; font-size: 11px; 
                         outline: none; }
@@ -172,19 +173,19 @@
             var isMobile = window.matchMedia("only screen and (max-width: 480px) and (max-device-width: 480px) and (orientation: portrait)");
 
             if (!isMobile.matches) {
-                sysconsLeft = "15px" ; sysconsHgt = "480px"; sysconsWdt = "640px"; sysconsResize = false;
+                consoleLeft = "15px" ; consoleHgt = "480px"; consoleWdt = "640px"; consoleResize = false;
                 mainwinLeft = "141px"; mainwinHgt = ""     ; mainwinWdt = "649px"; mainwinResize = false;
                 pictwinLeft = "30px" ; pictwinHgt = "117px"; pictwinWdt = "104px"; pictwinResize = true;
                 feedwinLeft = "30px" ; feedwinHgt = ""     ; feedwinWdt = "760px"; feedwinResize = false;
             } else {
-                sysconsLeft = "5px " ; sysconsHgt = ""     ; sysconsWdt = "465px"; sysconsResize = true;
+                consoleLeft = "5px " ; consoleHgt = ""     ; consoleWdt = "465px"; consoleResize = true;
                 mainwinLeft = "119px"; mainwinHgt = ""     ; mainwinWdt = "356px"; mainwinResize = true;
                 pictwinLeft = "10px" ; pictwinHgt = ""     ; pictwinWdt = "101px"; pictwinResize = true;
                 feedwinLeft = "10px" ; feedwinHgt = ""     ; feedwinWdt = "465px"; feedwinResize = true;
             }
 
                      //element id , element title      , elem body  , top               , left       , height    , width     , no resize
-            windowCreate("syscons", "System Console"   , sysmesgbody, "10px"            , sysconsLeft, sysconsHgt, sysconsWdt, sysconsResize );
+            windowCreate("console", "System Console"   , sysmesgbody, "10px"            , consoleLeft, consoleHgt, consoleWdt, consoleResize );
             windowCreate("mainwin", "Frank R. Castillo", mainwinbody, "40px"            , mainwinLeft, mainwinHgt, mainwinWdt, mainwinResize );
             windowCreate("pictwin", "Picture"          , picturebody, "40px"            , pictwinLeft, pictwinHgt, pictwinWdt, pictwinResize );
             windowCreate("feedwin", "Feeds"            , feedwinbody, hgtElem("mainwin"), feedwinLeft, feedwinHgt, feedwinWdt, feedwinResize );
@@ -282,37 +283,101 @@
         </script>
 
         <script>
-            consoleIO("", "consbody");
-            function consoleIO(cmdInput, mainElem) {
+            var startMsg = "System console, written in JavaScript by Frank Castillo<br/>Still under construction.<br/><br/>";
+            var inputTag = "<div id='scrollback'><div id='consappend'></div> # <input type='text' id='inputbox'></div>";
+            var procarray = document.body.getElementsByClassName("wdiv");
+
+            consoleIO("consbody", true);
+
+            function consoleIO(mainElem, startSess) {
+
                 // initial system text. will not show later after the clear command has been given
                 consElem = document.getElementById(mainElem);
-                startMsg = "System console, written in JavaScript by Frank Castillo<br/>Still under construction.<br/><br/>";
-                inputTag = "<div id='scrollback'><div id='consappend'></div> # <input type='text' id='inputbox'></div>";
                 msgShown = true;
-                consoleOut = startMsg + inputTag;
+                if (startSess == true) {
+                    consoleOut = startMsg + inputTag;
+                } else {
+                    consoleOut = inputTag;
+                }
                 consElem.innerHTML = consoleOut;
-            }
 
-            function commandProc(cmdInput) {
-                return cmdInput + ": command not found<br/>";
-            }
+                // handles console history, as well as send inputs to the command processor
 
-            // handles console history, as well as send inputs to the command processor
+                inputbxElem = document.getElementById("inputbox");
+                document.getElementById("console").addEventListener('click', function (e) {
+                    inputbxElem.focus();
+                });
 
-            cnsAppndElm = document.getElementById("consappend");
-            inputbxElem = document.getElementById("inputbox");
-            var consoleHist = cnsAppndElm.innerHTML;
-            inputbxElem.addEventListener('keypress', function (e) {
-                var key = e.which || e.keyCode;
-                if (key===13) {
-                    cnsAppndElm.innerHTML += "# " + inputbxElem.value + "<br/>" + commandProc(inputbxElem.value);
+                cnsAppndElm = document.getElementById("consappend");
+                var consoleHist = cnsAppndElm.innerHTML;
+                inputbxElem.addEventListener('keypress', function (e) {
+                    var key = e.which || e.keyCode;
+                    if (key===13) {
+                        commandProc(inputbxElem.value);
+                        inputbxElem.value = "";
+                    }
+                });
+
+
+                // command processor
+                function commandProc(cmdInput) {
+                    cnsAppndElm.innerHTML += "# " + inputbxElem.value + "<br/>";
+                    cmdArgs = cmdInput.split(" ");
+
+                    // shows help information
+                    function help() {
+                        helpMsg  = "System console help:<br/>";
+                        helpMsg += "version 1.0, written in JavaScript by Frank Castillo<br/><br/>";
+                        helpMsg += "<span id='helpln'>clear</span>Clears screen<br/>";
+                        helpMsg += "<span id='helpln'>help</span>Shows this help screen<br/>";
+                        helpMsg += "<span id='helpln'>kill</span>Kill running processes<br/>";
+                        helpMsg += "<span id='helpln'>ps</span>Show running processes, which you can also run<br/>";
+                        printline(helpMsg);
+                    }
+
+                    // the kill command disables element visibility
+                    function hideproc(killElem) {
+                        if (procarray[killElem]) {
+                            procarray[killElem].style.visibility = "hidden";
+                        } else {
+                            printline(killElem + ": cannot kill process");
+                        }
+                    }
+
+                    // function to print to console
+                    function printline(printInput) {
+                        cnsAppndElm.innerHTML += printInput + "<br/>";
+                        inputbxElem.value = "";
+                    }
+                    
+                    // running processes
+                    function ps() {
+                        for (i = 0; i < procarray.length; i++) {
+                            printline(procarray[i].id);
+                        }
+                    }
+
+                    // calls commands and, when they are not found, prompts the user
+                    function cmdcnf(cmdInput){
+                        if (procarray[cmdArgs[0]]) {
+                            procarray[cmdArgs[0]].style.visibility = "visible";
+                            procarray[cmdArgs[0]].style.zIndex = ++zIndex;
+                        } else {
+                            printline(cmdArgs[0] + ": command not found");
+                        }
+                    }
+
+                    switch(true) {
+                        case cmdArgs[0] == "clear": consoleIO("consbody", false); break;
+                        case cmdArgs[0] == "ps": ps(); break;
+                        case cmdArgs[0] == "help": help(); break;
+                        case cmdArgs[0] == "kill": hideproc(cmdArgs[1]); break;
+                        default: cmdcnf(cmdArgs[0]);
+                    }
                     inputbxElem.value = "";
                 }
-            });
-
-            document.getElementById("syscons").addEventListener('click', function (e) {
                 inputbxElem.focus();
-            });
+            }
         </script>
     </head>
 </html>
