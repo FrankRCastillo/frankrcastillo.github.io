@@ -20,8 +20,8 @@
             ul { margin-top: 0; margin-bottom:0; }
             .fTle a { color: #fefefe !important; word-wrap:break-word; }
             .fLst { list-style: none outside none; border:0px; padding:5px 5px; text-align: left; }
-            .wdiv { position: absolute; z-index: 9; background-color: #202020;
-                    border: 2px solid #fefefe; resize: both; overflow:auto; }
+            .wdiv { position: absolute; z-index: 9; background-color: #202020; border: 2px solid #fefefe;
+                    resize: both; overflow: auto; visibility: visible; }
             .wdivheader { cursor: move; z-index:10; background-color: #fefefe; color: #111111; }
             .closeBtn { float:right; color: #111111; z-index: 11; vertical-align: top; font-size: 9px; }
             .mainCell { width: 100%; vertical-align:top; }
@@ -286,6 +286,8 @@
             var startMsg = "System console, written in JavaScript by Frank Castillo<br/>Still under construction.<br/><br/>";
             var inputTag = "<div id='scrollback'><div id='consappend'></div> # <input type='text' id='inputbox'></div>";
             var procarray = document.body.getElementsByClassName("wdiv");
+            var proclgt = procarray.length;
+            while (proclgt--) procarray[proclgt].style.visibility = "visible";
 
             consoleIO("consbody", true);
 
@@ -352,8 +354,16 @@
                     
                     // running processes
                     function ps() {
+                        printline("S Process Name");
+                        printline("- ------------");
                         for (i = 0; i < procarray.length; i++) {
-                            printline(procarray[i].id);
+                            var procStat = ""
+                            if (procarray[i].style.visibility == "hidden") {
+                                procStat = "D";
+                            } else if (procarray[i].style.visibility == "visible") {
+                                procStat = "A";
+                            }
+                            printline(procStat + "&nbsp" + procarray[i].id);
                         }
                     }
 
