@@ -173,26 +173,31 @@
             var isMobile = window.matchMedia("only screen and (max-width: 480px) and (max-device-width: 480px) and (orientation: portrait)");
 
             if (!isMobile.matches) {
-                var csLft = "15px" ; var csHgt = "480px"; var csWdt = "640px"; var csRsz = false;
-                var mwLft = "141px"; var mwHgt = ""     ; var mwWdt = "649px"; var mwRsz = false;
-                var pwLft = "30px" ; var pwHgt = "117px"; var pwWdt = "104px"; var pwRsz = true;
-                var fwLft = "30px" ; var fwHgt = ""     ; var fwWdt = "760px"; var fwRsz = false;
+                var csLft = "15px" ; var csHgt = "480px"; var csWdt = "640px"; var csRsz = true;
+                var mwLft = "141px"; var mwHgt = ""     ; var mwWdt = "649px"; var mwRsz = true;
+                var pwLft = "30px" ; var pwHgt = "117px"; var pwWdt = "104px"; var pwRsz = false;
+                var fwLft = "30px" ; var fwHgt = ""     ; var fwWdt = "760px"; var fwRsz = true;
             } else {
-                var csLft = "5px " ; var csHgt = ""     ; var csWdt = "465px"; var csRsz = true;
-                var mwLft = "119px"; var mwHgt = ""     ; var mwWdt = "356px"; var mwRsz = true;
-                var pwLft = "10px" ; var pwHgt = ""     ; var pwWdt = "101px"; var pwRsz = true;
-                var fwLft = "10px" ; var fwHgt = ""     ; var fwWdt = "465px"; var fwRsz = true;
+                var csLft = "5px " ; var csHgt = ""     ; var csWdt = "465px"; var csRsz = false;
+                var mwLft = "119px"; var mwHgt = ""     ; var mwWdt = "356px"; var mwRsz = false;
+                var pwLft = "10px" ; var pwHgt = ""     ; var pwWdt = "101px"; var pwRsz = false;
+                var fwLft = "10px" ; var fwHgt = ""     ; var fwWdt = "465px"; var fwRsz = false;
             }
 
-            newWindow("cs", "System Console"   , smbody,  "10px", csLft, csHgt, csWdt, csRsz );
-            newWindow("mw", "Frank R. Castillo", mwbody,  "40px", mwLft, mwHgt, mwWdt, mwRsz );
-            newWindow("pw", "Picture"          , pcbody,  "40px", pwLft, pwHgt, pwWdt, pwRsz );
-            newWindow("fw", "Feeds"            , fwbody, "165px", fwLft, fwHgt, fwWdt, fwRsz );
+            newWindow("cs", "System Console"   , smbody,  "10px", csLft, csHgt, csWdt, csRsz, false);
+            newWindow("mw", "Frank R. Castillo", mwbody,  "40px", mwLft, mwHgt, mwWdt, mwRsz, true );
+            newWindow("pw", "Picture"          , pcbody,  "40px", pwLft, pwHgt, pwWdt, pwRsz, true );
+            newWindow("fw", "Feeds"            , fwbody, "165px", fwLft, fwHgt, fwWdt, fwRsz, true );
 
-            function newWindow(divName, windowTitle, windowBody, top, left, hgt, wdt, resizeable) {
+            function newWindow(divName, windowTitle, windowBody, top, left, hgt, wdt, rsz, cls) {
+                if (cls === true) {
+                    var closeStr = "<b class='closeBtn' onclick='closeWindow(\"" + divName + "\")'>🅇</b>";
+                } else {
+                    var closeStr = "";
+                }
                 template  = "<div id='" + divName + "' title=\"" + windowTitle + "\" class='wdiv' onmousedown='frontElement(\"" + divName + "\")'>";
                 template += "<div id='" + divName + "header' class='wdivheader'>";
-                template += "<b>" + windowTitle + "<b class='closeBtn' onclick='closeWindow(\"" + divName + "\")'>🅇</b></b>";
+                template += "<b>" + windowTitle + closeStr + "</b>";
                 template += "</div>";
                 template += windowBody;
                 template += "</div>";
@@ -205,7 +210,7 @@
                 if (wdt !== "") { divElem.style.width = wdt; }
                 if (hgt !== "") { divElem.style.height = hgt; }
 
-                if (resizeable === true) {
+                if (rsz !== true) {
                     divElem.style.resize = "none";
                     divElem.style.overflow = "visible"
                 }
