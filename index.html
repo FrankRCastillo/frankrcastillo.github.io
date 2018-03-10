@@ -28,10 +28,11 @@
             #profile {  height:104px; width: 104px; }
             #resizeBtn { text-align: right; vertical-align: bottom; }
             #winTable { height:100%; vertical-align: top; }
-            #helpln { display: inline-block; width: 50px; }
+            #helpln { display: inline-block; width: 100px; }
             #inputbox { width: 95%; border: 0px; background-color: #202020; color: #fefefe;
                         font-family: "Lucida Console", Monaco, monospace; font-size: 11px; 
                         outline: none; }
+            #xmark { color: #ff0000; }
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script>
@@ -164,6 +165,8 @@
              * This manages the window frame creation, as well as the population of their content
              */
             document.body = document.createElement("body");
+
+            var zIndex = 100;
             var mwbody = "I am a graduate student at the University of South Florida where I'm working on a Master of Arts in economics. When time allows, I write about politics, economics, international relations, and technology. Professionally, I’ve had the opportunity to work in Anti-Money Laundering (AML), financial compliance, and information technology. These experiences have inspired my current academic interests, and I hope to someday bring together economics, mathematics, and big data to develop systems and methods that help mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service. Follow me on social media: <a href='https://medium.com/frank-r-castillo' target='_blank'>Medium</a>, <a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, <a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, <a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, <a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a>"
             var smbody = "<div id='consbody'></div>";
             var fwbody = "<div id='TwitterRss'></div><div id='MediumRss'></div><div id='YouTubeRss'></div>";
@@ -190,6 +193,7 @@
             newWindow("fw", "Feeds"            , fwbody, "165px", fwLft, fwHgt, fwWdt, fwRsz, true );
 
             function newWindow(divName, windowTitle, windowBody, top, left, hgt, wdt, rsz, cls) {
+
                 if (cls === true) {
                     var closeStr = "<b class='closeBtn' onclick='closeWindow(\"" + divName + "\")'>🅇</b>";
                 } else {
@@ -262,13 +266,15 @@
                 }
 
                 // fork ends here
+
+                frontElement(divName);
             }
 
             function closeWindow(divName) {
-                document.getElementById(divName).style.visibility = 'hidden';
+                var divRem = document.getElementById(divName);
+                divRem.parentNode.removeChild(divRem);
             }
 
-            var zIndex = 100;
             function frontElement(divName) {
                 document.getElementById(divName).style.zIndex = ++zIndex;
             }
@@ -276,110 +282,243 @@
 
         <script>
             // System console
-            var startMsg = "System console, written in JavaScript by Frank Castillo<br/>Still under construction. Enter 'help' for a list of available commands.<br/><br/>";
-            var inputTag = "<div id='scrollback'><div id='consappend'></div> # <input type='text' id='inputbox'></div>";
-            var procarray = document.body.getElementsByClassName("wdiv");
-            var proclgt = procarray.length;
+            consElem = document.getElementById("consbody");
+            inputTag = "<div id='scrollback'><div id='consappend'></div> # <input type='text' id='inputbox'></div>";
+            consElem.innerHTML = inputTag;
+            consHist = document.getElementById("consappend");
+            procarray = document.body.getElementsByClassName("wdiv");
+            inputbxElem = document.getElementById("inputbox");
+            proclgt = procarray.length;
             while (proclgt--) procarray[proclgt].style.visibility = "visible";
+            welcome();
 
-            consoleIO("consbody", true);
-
-            function consoleIO(mainElem, startSess) {
-
-                // initial system text. will not show later after the clear command has been given
-                consElem = document.getElementById(mainElem);
-                msgShown = true;
-                if (startSess == true) {
-                    consoleOut = startMsg + inputTag;
-                } else {
-                    consoleOut = inputTag;
-                }
-                consElem.innerHTML = consoleOut;
-
-                // handles console history, as well as send inputs to the command processor
-
-                inputbxElem = document.getElementById("inputbox");
-                document.getElementById("cs").addEventListener('click', function (e) {
-                    inputbxElem.focus();
-                });
-
-                cnsAppndElm = document.getElementById("consappend");
-                var consoleHist = cnsAppndElm.innerHTML;
-                inputbxElem.addEventListener('keypress', function (e) {
-                    var key = e.which || e.keyCode;
-                    if (key===13) {
-                        commandProc(inputbxElem.value);
-                        inputbxElem.value = "";
-                    }
-                });
-
-
-                // command processor
-                function commandProc(cmdInput) {
-                    cnsAppndElm.innerHTML += "# " + inputbxElem.value + "<br/>";
-                    cmdArgs = cmdInput.split(" ");
-
-                    // shows help information
-                    function help() {
-                        helpMsg  = "System console help:<br/>";
-                        helpMsg += "version 1.0, written in JavaScript by Frank Castillo<br/><br/>";
-                        helpMsg += "<span id='helpln'>clear</span>Clears screen<br/>";
-                        helpMsg += "<span id='helpln'>help</span>Shows this help screen<br/>";
-                        helpMsg += "<span id='helpln'>kill</span>Kill running processes<br/>";
-                        helpMsg += "<span id='helpln'>ps</span>Show running processes, which you can also run<br/>";
-                        printline(helpMsg);
-                    }
-
-                    // the kill command disables element visibility
-                    function hideproc(killElem) {
-                        if (procarray[killElem]) {
-                            procarray[killElem].style.visibility = "hidden";
-                        } else {
-                            printline(killElem + ": cannot kill process");
-                        }
-                    }
-
-                    // function to print to console
-                    function printline(printInput) {
-                        cnsAppndElm.innerHTML += printInput + "<br/>";
-                        inputbxElem.value = "";
-                    }
-                    
-                    // running processes
-                    function ps() {
-                        printline("S CD Process Name");
-                        printline("- -- ------------");
-                        for (i = 0; i < procarray.length; i++) {
-                            var procStat = ""
-                            if (procarray[i].style.visibility == "hidden") {
-                                procStat = "D";
-                            } else if (procarray[i].style.visibility == "visible") {
-                                procStat = "A";
-                            }
-                            printline(procStat + "&nbsp" + procarray[i].id + "&nbsp" + procarray[i].title);
-                        }
-                    }
-
-                    // calls commands and, when they are not found, prompts the user
-                    function cmdcnf(cmdInput){
-                        if (procarray[cmdArgs[0]]) {
-                            procarray[cmdArgs[0]].style.visibility = "visible";
-                            procarray[cmdArgs[0]].style.zIndex = ++zIndex;
-                        } else {
-                            printline(cmdArgs[0] + ": command not found");
-                        }
-                    }
-
-                    switch(true) {
-                        case cmdArgs[0] == "clear": consoleIO("consbody", false); break;
-                        case cmdArgs[0] == "ps": ps(); break;
-                        case cmdArgs[0] == "help": help(); break;
-                        case cmdArgs[0] == "kill": hideproc(cmdArgs[1]); break;
-                        default: cmdcnf(cmdArgs[0]);
-                    }
-                    inputbxElem.value = "";
-                }
+            // handles console history, as well as send inputs to the command processor
+            document.getElementById("cs").addEventListener('click', function (e) {
                 inputbxElem.focus();
+            });
+
+            inputbxElem.addEventListener('keypress', function (e) {
+                var key = e.which || e.keyCode;
+                if (key===13) { commandProc(inputbxElem.value); }
+            });
+
+            function commandProc(cmdInput) {
+                consHist.innerHTML += "# " + cmdInput + "<br/>";
+                cmdArgs = cmdInput.split(" ");
+
+                switch(true) {
+                    case cmdArgs[0] == "cat": cat(cmdArgs[1]); break; //TBD
+                    case cmdArgs[0] == "cd": cd(cmdArgs[1]); break; //TBD
+                    case cmdArgs[0] == "clear": clear(); break;
+                    case cmdArgs[0] == "echo": echo(cmdArgs[1], cmdArgs[2], cmdArgs[3]); break; //TBD
+                    case cmdArgs[0] == "help": help(); break;
+                    case cmdArgs[0] == "kill": hideproc(cmdArgs[1]); break;
+                    case cmdArgs[0] == "mkdir": mkdir(cmdArgs[1]); break; //TBD
+                    case cmdArgs[0] == "mv": mv(cmdArgs[1], cmdArgs[2]); break; //TBD
+                    case cmdArgs[0] == "ps": ps(); break;
+                    case cmdArgs[0] == "sudoku-solver": sudoku(); break; //TBD
+                    case cmdArgs[0] == "welcome": welcome(); break; //TBD
+                    default: cmdcnf(cmdArgs[0]);
+                }
+                inputbxElem.value = "";
+                inputbxElem.focus()
+            }
+
+            // calls commands and, when they are not found, prompts the user
+            function cmdcnf(cmdInput){
+                if (procarray[cmdArgs[0]]) {
+                    procarray[cmdArgs[0]].style.visibility = "visible";
+                    procarray[cmdArgs[0]].style.zIndex = ++zIndex;
+                } else {
+                    prln(cmdArgs[0] + ": command not found");
+                }
+            }
+            function cat(fileInput) {
+                prln(fileInput + ": feature not yet available");
+            }
+
+            function cd(dirInput) {
+                prln(dirInput + ": feature not yet available");
+            }
+
+            function clear() {
+                consHist.innerHTML = "";
+            }
+
+            function echo(stringInput, pipe, dest) {
+                prln("feature not yet available");
+            }
+
+            function help() {
+                helpMsg  = "System console help:<br/>";
+                helpMsg += "version 1.0, written in JavaScript by Frank Castillo<br/><br/>";
+                helpMsg += "Console commands:<br/>";
+                helpMsg += "<span id='helpln'>clear</span>Clears screen<br/>";
+                helpMsg += "<span id='helpln'>echo</span>Print line<br/>";
+                helpMsg += "<span id='helpln'>help</span>Shows this help screen<br/>";
+                helpMsg += "<span id='helpln'>kill</span>Close open windows<br/>";
+                helpMsg += "<span id='helpln'>ps</span>Show open windows<br/><br/>";
+                helpMsg += "File commands:<br/>";
+                helpMsg += "<span id='helpln'>cat</span>Print file content<br/>";
+                helpMsg += "<span id='helpln'>cd</span>Change directory<br/>";
+                helpMsg += "<span id='helpln'>mkdir</span>Create directory</br/>";
+                helpMsg += "<span id='helpln'>mv</span>Move file or directory<br/><br/>";
+                helpMsg += "Network commands:<br/>";
+                helpMsg += "<span id='helpln'>welcome</span>Show visitor information<br/><br/>";
+                helpMsg += "Fun and games:<br/>";
+                helpMsg += "<span id='helpln'>sudoku-solver</span>Solve Sudokus!<br/>";
+                prln(helpMsg);
+            }
+
+            // the kill command disables element visibility
+            function hideproc(killElem) {
+                if (procarray[killElem]) {
+                    procarray[killElem].style.visibility = "hidden";
+                } else {
+                    prln(killElem + ": cannot kill process");
+                }
+            }
+
+            function mkdir(dirCreate) {
+                prln(dirCreate + ": feature not yet available");
+            }
+
+            function mv(orig, dest) {
+                prln("feature not yet available");
+            }
+
+            // function to print to console
+            function prln(printInput) {
+                consHist.innerHTML += printInput + "<br/>";
+                inputbxElem.focus();
+                inputbxElem.value = "";
+            }
+            
+            // running processes
+            function ps() {
+                prln("S CD Process Name");
+                prln("- -- ------------");
+                for (i = 0; i < procarray.length; i++) {
+                    var procStat = ""
+                    if (procarray[i].style.visibility == "hidden") {
+                        procStat = "D";
+                    } else if (procarray[i].style.visibility == "visible") {
+                        procStat = "A";
+                    }
+                    prln(procStat + "&nbsp" + procarray[i].id + "&nbsp" + procarray[i].title);
+                }
+            }
+
+            function sudoku() {
+                prln("feature not yet available");
+            }
+
+            function welcome() {
+                var welcomeMsg  = "System console, written in JavaScript by Franklin Castillo<br/>";
+                welcomeMsg += "Still under construction. Enter 'help' for a list of available commands.<br/>";
+
+                var worldmap = new Array(3);
+                for (i = 0; i <= 14; i++) {
+                    worldmap[i] = new Array(3);
+                    for (j = 0; j <= 53; j++) {
+                        worldmap[i][j] = "&nbsp";
+                    }
+                }
+
+                var maparea = [ [ 1,14], [ 0,15], [ 0,16], [ 0,17], [ 0,18], [ 0,19], [ 0,20], [ 0,21], [ 0,22], [ 0,23],
+                                [ 1, 3], [ 1, 8], [ 1, 9], [ 1,10], [ 1,11], [ 1,12], [ 1,13], [ 1,14], [ 1,15], [ 1,18],
+                                [ 1,19], [ 1,20], [ 1,21], [ 1,22], [ 1,29], [ 1,35], [ 1,36], [ 1,37], [ 1,38], [ 1,39],
+                                [ 1,40], [ 1,41], [ 1,42], [ 1,43], [ 1,44], [ 1,45], [ 1,46], [ 1,47], [ 2, 0], [ 2, 1],
+                                [ 2, 3], [ 2, 4], [ 2, 5], [ 2, 6], [ 2, 7], [ 2, 8], [ 2, 9], [ 2,10], [ 2,13], [ 2,14],
+                                [ 2,15], [ 2,27], [ 2,28], [ 2,29], [ 2,30], [ 2,31], [ 2,32], [ 2,33], [ 2,34], [ 2,35],
+                                [ 2,36], [ 2,37], [ 2,38], [ 2,39], [ 2,40], [ 2,41], [ 2,42], [ 2,43], [ 2,44], [ 2,45],
+                                [ 2,46], [ 2,47], [ 2,48], [ 2,49], [ 2,50], [ 2,51], [ 3, 4], [ 3, 5], [ 3, 6], [ 3, 7],
+                                [ 3, 8], [ 3, 9], [ 3,10], [ 3,11], [ 3,12], [ 3,13], [ 3,14], [ 3,15], [ 3,24], [ 3,25],
+                                [ 3,26], [ 3,27], [ 3,28], [ 3,29], [ 3,30], [ 3,31], [ 3,32], [ 3,33], [ 3,34], [ 3,35],
+                                [ 3,36], [ 3,37], [ 3,38], [ 3,39], [ 3,40], [ 3,41], [ 3,42], [ 3,43], [ 3,44], [ 3,45],
+                                [ 3,46], [ 3,47], [ 3,48], [ 4, 3], [ 4, 4], [ 4, 5], [ 4, 6], [ 4, 7], [ 4, 8], [ 4, 9],
+                                [ 4,10], [ 4,11], [ 4,24], [ 4,25], [ 4,27], [ 4,28], [ 4,29], [ 4,30], [ 4,31], [ 4,32],
+                                [ 4,33], [ 4,34], [ 4,35], [ 4,36], [ 4,37], [ 4,38], [ 4,39], [ 4,40], [ 4,41], [ 4,42],
+                                [ 4,43], [ 4,44], [ 4,45], [ 4,46], [ 4,47], [ 4,48], [ 5, 3], [ 5, 4], [ 5, 5], [ 5, 6],
+                                [ 5, 7], [ 5, 8], [ 5, 9], [ 5,23], [ 5,24], [ 5,25], [ 5,26], [ 5,27], [ 5,28], [ 5,29],
+                                [ 5,30], [ 5,31], [ 5,32], [ 5,33], [ 5,34], [ 5,35], [ 5,36], [ 5,37], [ 5,38], [ 5,39],
+                                [ 5,40], [ 5,41], [ 5,42], [ 5,43], [ 5,44], [ 5,45], [ 5,46], [ 5,47], [ 6, 5], [ 6, 6],
+                                [ 6,22], [ 6,23], [ 6,24], [ 6,25], [ 6,26], [ 6,27], [ 6,28], [ 6,29], [ 6,30], [ 6,31],
+                                [ 6,32], [ 6,33], [ 6,34], [ 6,35], [ 6,39], [ 6,40], [ 6,41], [ 6,43], [ 6,44], [ 6,45],
+                                [ 6,46], [ 7, 8], [ 7,11], [ 7,22], [ 7,23], [ 7,24], [ 7,25], [ 7,26], [ 7,27], [ 7,28],
+                                [ 7,29], [ 7,30], [ 7,31], [ 7,32], [ 7,33], [ 7,34], [ 7,40], [ 7,44], [ 7,45], [ 7,49],
+                                [ 8, 9], [ 8,10], [ 8,11], [ 8,12], [ 8,13], [ 8,14], [ 8,27], [ 8,28], [ 8,29], [ 8,30],
+                                [ 8,31], [ 8,32], [ 8,33], [ 8,45], [ 8,47], [ 8,48], [ 9, 9], [ 9,10], [ 9,11], [ 9,12],
+                                [ 9,13], [ 9,14], [ 9,15], [ 9,16], [ 9,17], [ 9,28], [ 9,29], [ 9,30], [ 9,31], [ 9,32],
+                                [ 9,52], [ 9,53], [10,11], [10,12], [10,13], [10,14], [10,15], [10,16], [10,17], [10,28],
+                                [10,29], [10,30], [10,31], [10,32], [10,34], [10,49], [10,50], [10,51], [10,52], [10,53],
+                                [11,12], [11,13], [11,14], [11,15], [11,28], [11,29], [11,30], [11,31], [11,47], [11,48],
+                                [11,49], [11,50], [11,51], [11,52], [11,53], [12,12], [12,13], [12,14], [12,51], [12,52],
+                                [13,12], [13,13], [14,13] ];
+
+                for (i = 0; i <= 292; i++) {
+                    worldmap[maparea[i][0]][maparea[i][1]] = ".";
+                }
+
+                var getip, getcc, getcn, getrc, getrn, getct, getzc, gettz, getlt, getlg, getmc, coordx, coordy;
+
+                $.ajax({
+                    url: "http://freegeoip.net/json/",
+                    dataType: "json",
+                    success: function(data) {
+                        getip = " IP: " + data.ip;
+                        getcc = " CC: " + data.country_code;
+                        getcn = " CN: " + data.country_name;
+                        getrc = " RC: " + data.region_code;
+                        getrn = " RN: " + data.region_name;
+                        getct = " CT: " + data.city;
+                        getzc = " ZC: " + data.zip_code;
+                        gettz = " TZ: " + data.time_zone;
+                        getlt = " LT: " + data.latitude;
+                        getlg = " LG: " + data.longitude;
+                        getmc = " MC: " + data.metro_code;
+
+                        coordx = parseInt(((-1/10) * data.latitude) + 9.5);
+                        coordy = parseInt(((-1/6.3) * data.longitude) - 4);
+
+                        worldmap[coordx][coordy] = "<b id='xmark'>🞜</b>";
+
+                        for (i = 0; i <= 14; i++) {
+                            for (j = 0; j <= 53; j++) {
+                                welcomeMsg += worldmap[i][j];
+                            }
+                     
+                            var ipInfo;
+                            switch (true) {
+                                case i == 1:  ipInfo = "<b id='xmluip'></b>"; break;
+                                case i == 2:  ipInfo = "<b id='xmlctc'></b>"; break;
+                                case i == 3:  ipInfo = "<b id='xmlctn'></b>"; break;
+                                case i == 4:  ipInfo = "<b id='xmlrgc'></b>"; break;
+                                case i == 5:  ipInfo = "<b id='xmlrgn'></b>"; break;
+                                case i == 6:  ipInfo = "<b id='xmlcty'></b>"; break;
+                                case i == 7:  ipInfo = "<b id='xmlzip'></b>"; break;
+                                case i == 8:  ipInfo = "<b id='xmltzn'></b>"; break;
+                                case i == 9:  ipInfo = "<b id='xmllat'></b>"; break;
+                                case i == 10: ipInfo = "<b id='xmllog'></b>"; break;
+                                case i == 11: ipInfo = "<b id='xmlmet'></b>"; break;
+                            }
+                            welcomeMsg += ipInfo + "<br/>";
+                        }
+                        prln(welcomeMsg);
+
+                        document.getElementById("xmluip").innerHTML = getip; 
+                        document.getElementById("xmlctc").innerHTML = getcc;
+                        document.getElementById("xmlctn").innerHTML = getcn;
+                        document.getElementById("xmlrgc").innerHTML = getrc;
+                        document.getElementById("xmlrgn").innerHTML = getrn;
+                        document.getElementById("xmlcty").innerHTML = getct;
+                        document.getElementById("xmlzip").innerHTML = getzc;
+                        document.getElementById("xmltzn").innerHTML = gettz;
+                        document.getElementById("xmllat").innerHTML = getlt;
+                        document.getElementById("xmllog").innerHTML = getlg;
+                        document.getElementById("xmlmet").innerHTML = getmc;
+                    }
+                });
             }
         </script>
     </head>
