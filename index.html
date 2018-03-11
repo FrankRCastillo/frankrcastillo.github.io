@@ -32,7 +32,8 @@
             #inputbox { width: 95%; border: 0px; background-color: #202020; color: #fefefe;
                         font-family: "Lucida Console", Monaco, monospace; font-size: 11px; 
                         outline: none; }
-            #xmark { color: #ff0000; }
+            #xmark { color: #ff0000; animation: blink 1s infinite; }
+            @keyframes blink { 0% { opacity: 0.0 } 100% { opacity: 1.0 } }
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script>
@@ -176,7 +177,7 @@
             var isMobile = window.matchMedia("only screen and (max-width: 480px) and (max-device-width: 480px) and (orientation: portrait)");
 
             if (!isMobile.matches) {
-                var csLft = "15px" ; var csHgt = "480px"; var csWdt = "750px"; var csRsz = true;
+                var csLft = "15px" ; var csHgt = "480px"; var csWdt = "790px"; var csRsz = true;
                 var mwLft = "141px"; var mwHgt = ""     ; var mwWdt = "649px"; var mwRsz = true;
                 var pwLft = "30px" ; var pwHgt = "117px"; var pwWdt = "104px"; var pwRsz = false;
                 var fwLft = "30px" ; var fwHgt = ""     ; var fwWdt = "760px"; var fwRsz = true;
