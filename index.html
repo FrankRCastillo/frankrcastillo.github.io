@@ -21,8 +21,9 @@
             .fTle a { color: #fefefe !important; word-wrap:break-word; }
             .fLst { list-style: none outside none; border:0px; padding:5px 5px; text-align: left; }
             .wdiv { position: absolute; z-index: 9; background-color: #202020; border: 1px solid #fefefe;
-                    resize: both; overflow: auto; visibility: visible; }
-            .wdivheader { cursor: move; z-index:10; background-color: #fefefe; color: #111111; }
+                    resize: both; overflow: auto; visibility: visible; padding-top: 12px; }
+            .wdivheader { cursor: default; z-index:10; background-color: #fefefe; color: #111111;
+                          position: fixed; top: inherit; width: inherit; }
             .closeBtn { float:right; color: #111111; z-index: 11; vertical-align: top; font-size: 9px; }
             .mainCell { width: 100%; vertical-align: top; }
             #profile {  height:105px; width: 105px; }
@@ -34,16 +35,16 @@
                         outline: none; }
             #xmark { color: #ff0000; animation: blink 1s infinite; }
             @keyframes blink { 0% { opacity: 0.0 } 100% { opacity: 1.0 } }
-            #cs { left:  15px; top: 734px; width: 760px; height: 360px; }
-            #pw { left:  15px; top:  15px; width: 105px; height: 118px; }
-            #mw { left: 125px; top:  15px; width: 650px; height: 118px; }
-            #fw { left:  15px; top: 139px; width: 760px; }
+            #cs { left:  10px; top:  10px; width: 760px; height: 360px; }
+            #pw { left:  25px; top:  30px; width: 105px; height: 106px; }
+            #mw { left: 135px; top:  30px; width: 650px; height: 106px; }
+            #fw { left:  25px; top: 154px; width: 760px; }
             @media only screen and (max-width: 480px) and (max-device-width: 480px) and (orientation: portrait) {
                 #profile { height: 150px; width: 150px; }
-                #cs { left:   5px; top: 405px; width: 363px; height: 227px; }
-                #pw { left:   5px; top:   5px; width: 150px; height: 163px; }
-                #mw { left: 160px; top:   5px; width: 208px; height: 163px; }
-                #fw { left:   5px; top: 173px; width: 363px; height: 227px; }
+                #cs { left:   5px; top: 491px; width: 363px; height: 300px; }
+                #pw { left:   5px; top:   5px; width: 150px; height: 150px; }
+                #mw { left: 161px; top:   5px; width: 207px; height: 150px; }
+                #fw { left:   5px; top: 173px; width: 363px; height: 300px; }
             }
 
         </style>
