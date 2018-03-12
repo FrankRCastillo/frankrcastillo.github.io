@@ -35,7 +35,7 @@
                         outline: none; }
             #xmark { color: #ff0000; animation: blink 1s infinite; }
             @keyframes blink { 0% { opacity: 0.0 } 100% { opacity: 1.0 } }
-            #cs { left:  10px; top:  10px; width: 540px; height: 360px; }
+            #cs { left:  10px; top:  10px; width: 560px; height: 360px; }
             #pw { left:  25px; top:  30px; width: 105px; height: 118px; }
             #mw { left: 135px; top:  30px; width: 650px; height: 118px; }
             #fw { left:  25px; top: 154px; width: 760px; }
@@ -382,7 +382,7 @@
             function prln(printInput) {
                 consHist.innerHTML += printInput + "<br/>";
                 inputbxElem.value = "";
-                inputbxElem.focus();
+                $("#cs").scrollTop( function() { return this.scrollHeight; });
             }
             
             // running processes
