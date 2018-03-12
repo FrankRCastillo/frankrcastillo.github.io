@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8"
               name="viewport"
-              content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes, width=349"/>
+              content="initial-scale=1, maximum-scale=1, user-scalable=no, width=349"/>
         <title>
             Frank R Castillo
         </title>
@@ -304,11 +304,12 @@
                     case cmdArgs[0] == "echo": echo(cmdArgs[1], cmdArgs[2], cmdArgs[3]); break; //TBD
                     case cmdArgs[0] == "help": help(); break;
                     case cmdArgs[0] == "kill": hideproc(cmdArgs[1]); break;
+                    case cmdArgs[0] == "ls" : ls(cmdArgs[1]); break; //TBD
                     case cmdArgs[0] == "mkdir": mkdir(cmdArgs[1]); break; //TBD
                     case cmdArgs[0] == "mv": mv(cmdArgs[1], cmdArgs[2]); break; //TBD
                     case cmdArgs[0] == "ps": ps(); break;
                     case cmdArgs[0] == "sudoku-solver": sudoku(); break; //TBD
-                    case cmdArgs[0] == "welcome": welcome(); break; //TBD
+                    case cmdArgs[0] == "welcome": welcome(); break;
                     default: cmdcnf(cmdArgs[0]);
                 }
                 inputbxElem.value = "";
@@ -352,6 +353,7 @@
                 helpMsg += "File commands:<br/>";
                 helpMsg += "<span id='helpln'>cat</span>Print file content<br/>";
                 helpMsg += "<span id='helpln'>cd</span>Change directory<br/>";
+                helpMsg += "<span id='helpln'>ls</span>List files and directories<br/>";
                 helpMsg += "<span id='helpln'>mkdir</span>Create directory</br/>";
                 helpMsg += "<span id='helpln'>mv</span>Move file or directory<br/><br/>";
                 helpMsg += "Network commands:<br/>";
