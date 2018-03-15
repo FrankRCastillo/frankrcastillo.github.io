@@ -26,13 +26,14 @@
             @keyframes blink { 0% { opacity: 0.0 } 100% { opacity: 1.0 } }
             #para { width: 760px; text-align: justify; border: 2px solid #fefefe; padding: 5px 5px 5px 5px; 
                     margin: 5px 5px 5px 5px; }
-            #profile   { height: 105px; width: 105px; position: relative; float: left; padding: 0px 5px 0px 0px; }
-
+            #profile { height: 105px; width: 105px; position: relative; float: left; padding: 0px 5px 0px 0px; }
+            #ipinfo  { width: 480px; word-wrap: break-word; }
             @media only screen 
                    and (max-width: 480px)
                    and (max-device-width: 480px)
                    and (orientation: portrait) {
                        #para { width: auto; }
+                       #ipinfo { width: auto; }
             }
 
         </style>
@@ -338,7 +339,7 @@
                     url: "https://freegeoip.net/json/",
                     dataType: "json",
                     success: function(data) {
-                        getip = "IP: " + data.ip;
+                        getip = data.ip;
                         getcc = data.country_code;
                         getcn = data.country_name;
                         getrc = data.region_code;
@@ -353,9 +354,15 @@
                         coordx = parseInt((-0.1 * data.latitude) + 11);
                         coordy = parseInt((0.222 * data.longitude) + 39);
                         worldmap[coordx][coordy] = "<b id='xmark'>X</b>";
-                        ipInfo  = getip + "; " + getct + ", " + getrn + " (" + getrc + "), ";
-                        ipInfo += getzc + ", " + getcn + " (" + getcc + ")<br/>" + getlt + ", " + getlg;
-                        ipInfo += "; Time Zone: " + gettz + ", Metro Code: " + getmc;
+                        ipInfo  = "<p id='ipinfo'>" +
+                                  "IP Address: " + getip + "<br/>" + 
+                                  "Geography1: " + getct + ", " + getrn + " (" + getrc + "), " + getzc + "<br/>" + 
+                                  "Geography2: " + getcn + " (" + getcc + ") " + getlt + ", " + getlg + "<br/>" +
+                                  "Time Zone: " + gettz + ", Metro Code: " + getmc + "<br/>" + 
+                                  "Display: " + screen.width + "x" + screen.height + "<br/>" +
+                                  "User Agent: " + navigator.userAgent + "<br/>" +
+                                  "Platform: " + navigator.platform + "<br/>" +
+                                  "</p>";
 
                         for (i = 0; i <= 18; i++) {
                             for (j = 0; j <= 80; j++) {
