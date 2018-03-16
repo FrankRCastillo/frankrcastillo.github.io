@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<!-- All code written by Frank Castill unless otherwise stated. -->
 <html lang="en">
     <!--FeedEk used for RSS Reader-->
     <head>
@@ -28,6 +29,8 @@
                     margin: 5px 5px 5px 5px; }
             #profile { height: 105px; width: 105px; position: relative; float: left; padding: 0px 5px 0px 0px; }
             #ipinfo  { width: 480px; word-wrap: break-word; }
+            .sudoku  { width: 15px; background-color: #202020; color: #fefefe; border: 1px solid #fefefe;
+                       font-family: "Lucida Console", Monaco, monospace; font-size: 11px; text-align: center;}
             @media only screen 
                    and (max-width: 480px)
                    and (max-device-width: 480px)
@@ -38,6 +41,7 @@
 
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://unpkg.com/mathjs@4.0.0/dist/math.min.js"></script>
         <script>
 
             /*
@@ -137,10 +141,6 @@
 
             inputbxElem.focus();
 
-            $(document).click(function(e) {
-                inputbxElem.focus();
-            });
-
             inputbxElem.addEventListener('keypress', function (e) {
                 var key = e.which || e.keyCode;
                 if (key===13) { commandProc(inputbxElem.value); }
@@ -226,32 +226,35 @@
                 prln(mnbody);
 
                 var dteOpt = { year: '2-digit', month: '2-digit', day: '2-digit'};
-                var mediumparam = { feedName:   "Medium",
-                                    divName:    "MediumRss",
-                                    feedUrl:    "https://medium.com/feed/frank-r-castillo", 
-                                    pageUrl:    "https://medium.com/frank-r-castillo",
-                                    maxCount:   20,
-                                    charLimit:  100,
-                                    dateFormat: dteOpt } 
-                rssfeeds(mediumparam);
-            
-                var tweetsparam = { feedName:   "Twitter",
-                                    divName:    "TwitterRss",
-                                    feedUrl:    "https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo",
-                                    pageUrl:    "https://twitter.com/frankrcastillo",
-                                    maxCount:   20,
-                                    charLimit:  100,
-                                    dateFormat: dteOpt } 
-                rssfeeds(tweetsparam);
 
-                var youtbeparam = { feedName:  "YouTube",
-                                    divName:   "YouTubeRss",
-                                    feedUrl:   "https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g",
-                                    pageUrl:   "https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g?view_as=subscriber",
-                                    maxCount:  20,
-                                    charLimit: 100,
-                                    dateFormat: dteOpt } 
-                rssfeeds(youtbeparam);
+                rssfeeds({ feedName:   "Medium",
+                           divName:    "MediumRss",
+                           feedUrl:    "https://medium.com/feed/frank-r-castillo", 
+                           pageUrl:    "https://medium.com/frank-r-castillo",
+                           maxCount:   20,
+                           charLimit:  100,
+                           dateFormat: dteOpt });
+            
+                rssfeeds({ feedName:   "Twitter",
+                           divName:    "TwitterRss",
+                           feedUrl:    "https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo",
+                           pageUrl:    "https://twitter.com/frankrcastillo",
+                           maxCount:   20,
+                           charLimit:  100,
+                           dateFormat: dteOpt });
+
+                rssfeeds({ feedName:  "YouTube",
+                           divName:   "YouTubeRss",
+                           feedUrl:   "https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g",
+                           pageUrl:   "https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g?view_as=subscriber",
+                           maxCount:  20,
+                           charLimit: 100,
+                           dateFormat: dteOpt });
+
+                var welcomeMsg  = "System console, written in JavaScript by Franklin Castillo.<br/>" +
+                                  "There's a lot still under construction; enter 'help' for a list of commands.<br/>";
+
+                prln(welcomeMsg);
             }
 
             function ls(fileInput) {
@@ -269,19 +272,38 @@
             // function to print to console
             function prln(printInput) {
                 consHist.innerHTML += printInput + "<br/>";
-                inputbxElem.focus();
                 inputbxElem.value = "";
             }
             
             // running processes
 
             function sudoku() {
-                prln("feature not yet available");
+                var sudokuMsg  = "Tab through each box and enter a value.<br/>Press Enter to continue...<br/>";
+                sudokuMsg += "<table>";
+                for (i = 0; i <= 8; i++) {
+                    sudokuMsg += "<tr>";
+                    for (j = 0; j <= 8; j++) {
+                        sudokuMsg += "<td><input class='sudoku' type='text' id='sdk" + i + j + "'></td>";
+                    }
+                    sudokuMsg += "</tr>";
+                }
+                sudokuMsg += "</table><br/><a href='#' onclick='sudokuOutput()'>Solve</a>";
+                prln(sudokuMsg);
+
+            }
+
+            function sudokuOutput() {
+                var T = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                var A = new Array(3);
+                for (i = 0; i <= 8; i++) {
+                    A[i] = new Array(3);
+                    for (j = 0; j <= 8; j++) {
+                        A[i][j] = $("#sdk" + i + j).val();
+                    }
+                }
             }
 
             function visitor() {
-                var welcomeMsg  = "System console, written in JavaScript by Franklin Castillo.<br/>" +
-                                  "Still under construction. Enter 'help' for a list of available commands.<br/>";
 
                 var worldmap = new Array(3);
                 for (i = 0; i <= 18; i++) {
@@ -339,6 +361,7 @@
                     url: "https://freegeoip.net/json/",
                     dataType: "json",
                     success: function(data) {
+                        var welcomeMsg = "";
                         getip = data.ip;
                         getcc = data.country_code;
                         getcn = data.country_name;
@@ -350,27 +373,34 @@
                         getlt = data.latitude;
                         getlg = data.longitude;
                         getmc = data.metro_code;
+                        getsc = screen.width + "x" + screen.height;
+                        getpl = navigator.platform;
 
                         coordx = parseInt((-0.1 * data.latitude) + 11);
                         coordy = parseInt((0.222 * data.longitude) + 39);
                         worldmap[coordx][coordy] = "<b id='xmark'>X</b>";
-                        ipInfo  = "<p id='ipinfo'>" +
-                                  "IP Address: " + getip + "<br/>" + 
-                                  "Geography1: " + getct + ", " + getrn + " (" + getrc + "), " + getzc + "<br/>" + 
-                                  "Geography2: " + getcn + " (" + getcc + ") " + getlt + ", " + getlg + "<br/>" +
-                                  "Time Zone: " + gettz + ", Metro Code: " + getmc + "<br/>" + 
-                                  "Display: " + screen.width + "x" + screen.height + "<br/>" +
-                                  "User Agent: " + navigator.userAgent + "<br/>" +
-                                  "Platform: " + navigator.platform + "<br/>" +
-                                  "</p>";
+
+
 
                         for (i = 0; i <= 18; i++) {
+                            var ipInfo = "";
                             for (j = 0; j <= 80; j++) {
                                 welcomeMsg += worldmap[i][j];
                             } 
-                            welcomeMsg += "<br/>";
+                            switch (true) {
+                                case i == 3: ipInfo = "IP Address: " + getip; break;
+                                case i == 4: ipInfo = "City: " + getct; break;
+                                case i == 5: ipInfo = "State/Region: " + getrn + " (" + getrc + ")"; break;
+                                case i == 6: ipInfo = "Zip Code: " + getzc; break;
+                                case i == 7: ipInfo = "Country: " + getcn + " (" + getcc + ")"; break;
+                                case i == 8: ipInfo = "Lat/Long: " + getlt + ", " + getlg; break;
+                                case i == 9: ipInfo = "Time Zone: " + gettz; break;
+                                case i == 10: ipInfo = "Metro Code: " + getmc; break;
+                                case i == 11: ipInfo = "Display: " + getsc;break;
+                                case i == 12: ipInfo = "Platform: " + getpl; break;
+                            }
+                            welcomeMsg += ipInfo + "<br/>";
                         }
-                        welcomeMsg += ipInfo;
                         prln(welcomeMsg);
                     }
                 });
