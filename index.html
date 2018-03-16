@@ -35,6 +35,7 @@
                    and (max-device-width: 480px)
                    and (orientation: portrait) {
                        #para { width: auto; }
+                       #vstr { width: 740px; }
             }
 
         </style>
@@ -359,7 +360,7 @@
                     url: "https://freegeoip.net/json/",
                     dataType: "json",
                     success: function(data) {
-                        var welcomeMsg = "";
+                        var welcomeMsg = "<div id='vstr'>";
                         getip = data.ip;
                         getcc = data.country_code;
                         getcn = data.country_name;
@@ -399,6 +400,7 @@
                             }
                             welcomeMsg += ipInfo + "<br/>";
                         }
+                        welcomeMsg += "</div>";
                         prln(welcomeMsg);
                     }
                 });
