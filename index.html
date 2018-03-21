@@ -54,7 +54,7 @@
                             DateFormatLang: "en" }
                 var isYouTube = urlDomain(param.feedUrl).includes('youtube.com');
 
-                if (isYouTube){
+                if (isYouTube) {
                     var YTLSearch = '*';
                 } else {
                     var YTLSearch = 'channel.item';
@@ -68,7 +68,7 @@
                     url: YQLurl,
                     dataType: 'json',
                     success: function(data) {
-                        if (isYouTube){
+                        if (isYouTube) {
                                 var rssResults = data.query.results.feed.entry;
                         } else {
                             var rssResults = data.query.results.rss;
@@ -80,7 +80,7 @@
                         var s = "";
 
                         $.each(rssResults, function (e, itm) {
-                        if (isYouTube){
+                        if (isYouTube) {
                             var rssDate = itm.published;
                             var rssLink = 'https://www.youtube.com/watch?v=' + itm.videoId;
                             var rssTitle = itm.title;
@@ -217,7 +217,7 @@
                            divName:    "MediumRss",
                            feedUrl:    "https://medium.com/feed/frank-r-castillo", 
                            pageUrl:    "https://medium.com/frank-r-castillo",
-                           maxCount:   20,
+                           maxCount:   10,
                            charLimit:  100,
                            dateFormat: dteOpt });
             
@@ -225,7 +225,7 @@
                            divName:    "TwitterRss",
                            feedUrl:    "https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo",
                            pageUrl:    "https://twitter.com/frankrcastillo",
-                           maxCount:   20,
+                           maxCount:   10,
                            charLimit:  100,
                            dateFormat: dteOpt });
 
@@ -233,7 +233,7 @@
                            divName:   "YouTubeRss",
                            feedUrl:   "https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g",
                            pageUrl:   "https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g?view_as=subscriber",
-                           maxCount:  20,
+                           maxCount:  10,
                            charLimit: 100,
                            dateFormat: dteOpt });
 
