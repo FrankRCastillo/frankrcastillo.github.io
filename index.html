@@ -44,9 +44,9 @@
         <script>
 
             /*
-             * Forked from FeedEk jQuery RSS/ATTOM Feed Plugin v3.0
-             * http://jquery-plugins.net/FeedEk/FeedEk.html  https://github.com/enginkizil/FeedEk
+             * Forked from FeedEk to support YouTube feeds
              * FeedEk authored by Englin KIZIL at http://www.enginkizil.com
+             * http://jquery-plugins.net/FeedEk/FeedEk.html  https://github.com/enginkizil/FeedEk
              */
 
             function rssfeeds(param) {
@@ -125,27 +125,21 @@
 
         <script>
             // System console
-            var zIndex = 100;
             var inputbody = "<div id='scrollback'><div id='consappend'></div> # <input type='text' id='inputbox'></div>";
             document.body = document.createElement("body");
             $("body").append("<div id='consbody'></div>");
             consElem = document.getElementById("consbody");
             consElem.innerHTML = inputbody;
             consHist = document.getElementById("consappend");
-            procarray = document.body.getElementsByClassName("wdiv");
             inputbxElem = document.getElementById("inputbox");
-            proclgt = procarray.length;
-            while (proclgt--) procarray[proclgt].style.visibility = "visible";
             home();
-
-            inputbxElem.focus();
 
             inputbxElem.addEventListener('keypress', function (e) {
                 var key = e.which || e.keyCode;
-                if (key===13) { commandProc(inputbxElem.value); }
+                if (key===13) { cmdProc(inputbxElem.value); }
             });
 
-            function commandProc(cmdInput) {
+            function cmdProc(cmdInput) {
                 consHist.innerHTML += "# " + cmdInput + "<br/>";
                 cmdArgs = cmdInput.split(" ");
 
@@ -162,21 +156,13 @@
                     case cmdArgs[0] == "profile": profile(); break;
                     case cmdArgs[0] == "sudoku-solver": sudoku(); break; //TBD
                     case cmdArgs[0] == "visitor": visitor(); break;
-                    default: cmdcnf(cmdArgs[0]);
+                    default: prln(cmdArgs[0] + ": command not found");
                 }
                 inputbxElem.value = "";
                 inputbxElem.focus()
             }
 
             // calls commands and, when they are not found, prompts the user
-            function cmdcnf(cmdInput){
-                if (procarray[cmdArgs[0]]) {
-                    procarray[cmdArgs[0]].style.visibility = "visible";
-                    procarray[cmdArgs[0]].style.zIndex = ++zIndex;
-                } else {
-                    prln(cmdArgs[0] + ": command not found");
-                }
-            }
             function cat(fileInput) {
                 prln(fileInput + ": feature not yet available");
             }
@@ -273,10 +259,9 @@
             function prln(printInput) {
                 consHist.innerHTML += printInput + "<br/>";
                 inputbxElem.value = "";
+                inputbxElem.focus();
                 inputbxElem.scrollIntoView();
             }
-            
-            // running processes
 
             function sudoku() {
                 var sudokuMsg  = "Tab through each box and enter a value.<br/>Press Enter to continue...<br/>";
@@ -305,7 +290,6 @@
             }
 
             function visitor() {
-
                 var worldmap = new Array(3);
                 for (i = 0; i <= 18; i++) {
                     worldmap[i] = new Array(3);
@@ -406,6 +390,11 @@
                         prln(welcomeMsg);
                     }
                 });
+            }
+
+            function wfbgraph() {
+                url = "https://www.cia.gov/library/publications/the-world-factbook/fields/2028.html";
+
             }
         </script>
     </head>
