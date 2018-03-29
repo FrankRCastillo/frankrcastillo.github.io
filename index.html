@@ -11,24 +11,26 @@
         </title>
         <style>
             body  { margin-bottom: 0px; margin-left:0px;  margin-right: 0px; margin-top: 0px;
-                    font-size: 11px;    text-align: left; color: #fefefe; background-color: #202020;
-                    font-family: "Lucida Console", Monaco, monospace; }
+                    font-size: 11px;    text-align: left; color: #f69f00; background-color: #000000;
+                    font-family: "Lucida Console", Monaco, monospace; text-shadow: 2px 2px 5px #ffa500}
             table { border-spacing: 0px; }
-            a  { color: #fefefe; text-decoration: none; }
+            a  { color: #f69f00; text-decoration: none; }
             p  { font-weight: normal; list-style: none outside none; padding: 5px 5px; }
             ul { margin-top: 0; margin-bottom: 0; }
-            .fTle a { color: #fefefe !important; word-wrap: break-word; }
+            .fTle a { color: #f69f00 !important; word-wrap: break-word; }
             .fLst { list-style: none outside none; border: 0px; padding: 5px 5px; text-align: left; }
             #helpln { display: inline-block; width: 90px; }
-            #inputbox { width: 95%; border: 0px; background-color: #202020; color: #fefefe;
+            #inputbox { width: 95%; border: 0px; background-color: #000000; color: #f69f00;
                         font-family: "Lucida Console", Monaco, monospace; font-size: 11px; 
-                        outline: none; }
-            #xmark { color: #ff0000; animation: blink 1s infinite; }
+                        outline: none; text-shadow: 2px 2px 5px #ffa500; }
+            #xmark { color: #f69f00; animation: blink 1s infinite; }
             @keyframes blink { 0% { opacity: 0.0 } 100% { opacity: 1.0 } }
-            #para { width: 740px; text-align: justify; border: 2px solid #fefefe; padding: 5px 5px 5px 5px; 
+            #para { width: 740px; text-align: justify; border: 2px solid #f69f00; padding: 5px 5px 5px 5px; 
                     margin: 5px 5px 5px 5px; }
-            #profile { height: 105px; width: 105px; position: relative; float: left; padding: 0px 5px 0px 0px; }
-            .sudoku  { width: 15px; background-color: #202020; color: #fefefe; border: 1px solid #fefefe;
+            #profile { height: 105px; width: 105px; position: relative; float: left; padding: 0px 5px 0px 0px; 
+                       filter: grayscale(1) sepia(1) saturate(5) contrast(2) brightness(1.5)
+                               drop-shadow(0px 0px 3px #ffa500); }
+            .sudoku  { width: 15px; background-color: #000000; color: #f69f00; border: 1px solid #f69f00;
                        font-family: "Lucida Console", Monaco, monospace; font-size: 11px; text-align: center;}
             @media only screen 
                    and (max-width: 480px)
@@ -40,7 +42,6 @@
 
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://unpkg.com/mathjs@4.0.0/dist/math.min.js"></script>
         <script>
 
             /*
