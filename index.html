@@ -83,7 +83,7 @@
 
                 $.ajax({
                     url: YQLurl,
-                    dataType: 'json',
+                    dataType: 'jsonp',
                     success: function(data) {
                         if (isYouTube) {
                                 var rssResults = data.query.results.feed.entry;
@@ -362,7 +362,7 @@
 
                 $.ajax({
                     url: "https://freegeoip.net/json/",
-                    dataType: "json",
+                    dataType: "jsonp",
                     success: function(data) {
                         var welcomeMsg = "<div id='vstr'>";
                         getip = data.ip;
