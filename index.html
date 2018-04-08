@@ -50,6 +50,7 @@
                 var def = { TitleLinkTarget: "_blank",
                             DateFormatLang: "en" }
                 var isYouTube = urlDomain(param.feedUrl).includes('youtube.com');
+                var isTwitter = urlDomain(param.feedUrl).includes('twitrss.me');
 
                 if (isYouTube) {
                     var YTLSearch = '*';
@@ -86,11 +87,18 @@
                             var rssLink = itm.channel.item.link;
                             var rssTitle = itm.channel.item.title;
                         };
+
+                        if (isTwitter) {
+                            var rssCreator = itm.channel.item.creator + ": ";
+                        } else {
+                            var rssCreator = "";
+                        }
+
                         dt = new Date(rssDate);
 
                         s += '<li><div class="fTle"><a href="' + rssLink + '" target="' + def.TitleLinkTarget +
                              '" >' + dt.toLocaleDateString(def.DateFormatLang, param.dateFormat) + 
-                             ': ' + truncString(rssTitle, param.charLimit) + '</a></div></li>';
+                             ': ' + truncString(rssCreator + rssTitle, param.charLimit) + '</a></div></li>';
 
                         });
 
