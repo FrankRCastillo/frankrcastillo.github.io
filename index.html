@@ -15,7 +15,7 @@
             p  { font-weight: normal; list-style: none outside none; padding: 5px 5px; }
             ul { margin-top: 0; margin-bottom: 0; }
             .fTle a { color: #ffa500 !important; word-wrap: break-word; }
-            .fLst   { list-style: none outside none; border: 0px; text-align: left; }
+            .fLst   { list-style: none outside none; border: 0px; text-align: left; padding: 0px; }
             #helpln { display: inline-block; width: 90px; }
             #inputbox { width: 95%; border: 0px; background-color: #000000; color: #ffa500;
                         font-family: "Lucida Console", Monaco, monospace; font-size: 11px; outline: none;
@@ -101,7 +101,7 @@
 
                         });
 
-                        var sc = '<ul class="fLst"><b>' + param.feedName + ":</b>" + s + '<a href="' +
+                        var sc = '<br/><ul class="fLst"><b>' + param.feedName + ":</b>" + s + '<a href="' +
                                  param.pageUrl + '" target="_blank">More...</a></ul>';
                         $("#" + param.divName).append(sc);;
                     }
