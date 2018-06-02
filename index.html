@@ -56,10 +56,16 @@
                 } else {
                     var YTLSearch = 'channel.item';
                 };
-                var YQLstr = 'SELECT ' + YTLSearch + ' FROM feednormalizer WHERE url ="' + param.feedUrl + 
-                             '" LIMIT ' + param.maxCount;
-                var YQLurl = "https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(YQLstr) + 
-                             "&format=json&diagnostics=false&callback=?";
+                var YQLstr = 'SELECT '
+                           + YTLSearch
+                           + ' FROM feednormalizer WHERE url ="'
+                           + param.feedUrl
+                           + '" LIMIT '
+                           + param.maxCount;
+                
+                var YQLurl = "https://query.yahooapis.com/v1/public/yql?q="
+                           + encodeURIComponent(YQLstr)
+                           + "&format=json&diagnostics=false&callback=?";
 
                 $.ajax({
                     url: YQLurl,
@@ -78,12 +84,12 @@
 
                         $.each(rssResults, function (e, itm) {
                         if (isYouTube) {
-                            var rssDate = itm.published;
-                            var rssLink = 'https://www.youtube.com/watch?v=' + itm.videoId;
+                            var rssDate  = itm.published;
+                            var rssLink  = 'https://www.youtube.com/watch?v=' + itm.videoId;
                             var rssTitle = itm.title;
                         } else {
-                            var rssDate = itm.channel.item.pubDate;
-                            var rssLink = itm.channel.item.link;
+                            var rssDate  = itm.channel.item.pubDate;
+                            var rssLink  = itm.channel.item.link;
                             var rssTitle = itm.channel.item.title;
                         };
 
@@ -95,14 +101,25 @@
 
                         dt = new Date(rssDate);
 
-                        s += '<li><div class="fTle"><a href="' + rssLink + '" target="' + def.TitleLinkTarget +
-                             '" >' + dt.toLocaleDateString(def.DateFormatLang, param.dateFormat) + 
-                             ': ' + truncString(rssCreator + rssTitle, param.charLimit) + '</a></div></li>';
+                        s += '<li><div class="fTle"><a href="'
+                           + rssLink
+                           + '" target="'
+                           + def.TitleLinkTarget
+                           + '" >'
+                           + dt.toLocaleDateString(def.DateFormatLang, param.dateFormat)
+                           + ': '
+                           + truncString(rssCreator + rssTitle, param.charLimit)
+                           + '</a></div></li>';
 
                         });
 
-                        var sc = '<br/><ul class="fLst"><b>' + param.feedName + ":</b>" + s + '<a href="' +
-                                 param.pageUrl + '" target="_blank">More...</a></ul>';
+                        var sc = '<br/><ul class="fLst"><b>'
+                               + param.feedName
+                               + ":</b>"
+                               + s
+                               + '<a href="'
+                               + param.pageUrl
+                               + '" target="_blank">More...</a></ul>';
                         $("#" + param.divName).append(sc);;
                     }
                 })
@@ -148,17 +165,17 @@
                 cmdArgs = cmdInput.split(" ");
 
                 switch(true) {
-                    case cmdArgs[0] == "cat": cat(cmdArgs[1]); break; //TBD
-                    case cmdArgs[0] == "cd": cd(cmdArgs[1]); break; //TBD
-                    case cmdArgs[0] == "clear": clear(); break;
-                    case cmdArgs[0] == "echo": echo(cmdArgs[1], cmdArgs[2], cmdArgs[3]); break; //TBD
-                    case cmdArgs[0] == "home": home(); break;
-                    case cmdArgs[0] == "help": help(); break;
-                    case cmdArgs[0] == "ls" : ls(cmdArgs[1]); break; //TBD
-                    case cmdArgs[0] == "mkdir": mkdir(cmdArgs[1]); break; //TBD
-                    case cmdArgs[0] == "mv": mv(cmdArgs[1], cmdArgs[2]); break; //TBD
-                    case cmdArgs[0] == "sudoku-solver": sudoku(); break; //TBD
-                    case cmdArgs[0] == "visitor": visitor(); break;
+                    case cmdArgs[0] == "cat"            : cat(cmdArgs[1])           ; break; //TBD
+                    case cmdArgs[0] == "cd"             : cd(cmdArgs[1])            ; break; //TBD
+                    case cmdArgs[0] == "clear"          : clear()                   ; break;
+                    case cmdArgs[0] == "echo"           : echo(cmdArgs[1], cmdArgs[2], cmdArgs[3]); break; //TBD
+                    case cmdArgs[0] == "home"           : home()                    ; break;
+                    case cmdArgs[0] == "help"           : help()                    ; break;
+                    case cmdArgs[0] == "ls"             : ls(cmdArgs[1])            ; break; //TBD
+                    case cmdArgs[0] == "mkdir"          : mkdir(cmdArgs[1])         ; break; //TBD
+                    case cmdArgs[0] == "mv"             : mv(cmdArgs[1], cmdArgs[2]); break; //TBD
+                    case cmdArgs[0] == "sudoku-solver"  : sudoku()                  ; break; //TBD
+                    case cmdArgs[0] == "visitor"        : visitor()                 ; break;
                     default: prln(cmdArgs[0] + ": command not found");
                 }
                 inputbxElem.value = "";
@@ -183,24 +200,24 @@
             }
 
             function help() {
-                helpMsg = "System console help:<br/>" + 
-                          "version 1.0, written in JavaScript by Frank Castillo<br/>" +
-                          "<br/>About me/content:<br/>" +
-                          "<span id='helpln'>home</span>Show homepage<br/>" +
-                          "<br/>Console commands:<br/>" +
-                          "<span id='helpln'>clear</span>Clears screen<br/>" +
-                          "<span id='helpln'>echo</span>Print line<br/>" +
-                          "<span id='helpln'>help</span>Shows this help screen<br/>" +
-                          "<br/>File commands:<br/>" +
-                          "<span id='helpln'>cat</span>Print file content<br/>" +
-                          "<span id='helpln'>cd</span>Change directory<br/>" +
-                          "<span id='helpln'>ls</span>List files and directories<br/>" +
-                          "<span id='helpln'>mkdir</span>Create directory</br/>" +
-                          "<span id='helpln'>mv</span>Move file or directory<br/>" +
-                          "<br/>Network commands:<br/>" +
-                          "<span id='helpln'>visitor</span>Show visitor information<br/>" +
-                          "<br/>Fun and games:<br/>" +
-                          "<span id='helpln'>sudoku-solver</span>Solve Sudokus!<br/>";
+                helpMsg = "System console help:<br/>"
+                        + "version 1.0, written in JavaScript by Frank Castillo<br/>"
+                        + "<br/>About me/content:<br/>"
+                        + "<span id='helpln'>home</span>Show homepage<br/>"
+                        + "<br/>Console commands:<br/>"
+                        + "<span id='helpln'>clear</span>Clears screen<br/>"
+                        + "<span id='helpln'>echo</span>Print line<br/>"
+                        + "<span id='helpln'>help</span>Shows this help screen<br/>"
+                        + "<br/>File commands:<br/>"
+                        + "<span id='helpln'>cat</span>Print file content<br/>"
+                        + "<span id='helpln'>cd</span>Change directory<br/>"
+                        + "<span id='helpln'>ls</span>List files and directories<br/>"
+                        + "<span id='helpln'>mkdir</span>Create directory</br/>"
+                        + "<span id='helpln'>mv</span>Move file or directory<br/>"
+                        + "<br/>Network commands:<br/>"
+                        + "<span id='helpln'>visitor</span>Show visitor information<br/>"
+                        + "<br/>Fun and games:<br/>"
+                        + "<span id='helpln'>sudoku-solver</span>Solve Sudokus!<br/>";
                 prln(helpMsg);
             }
 
@@ -227,34 +244,40 @@
 
                 prln(mnbody);
 
-                var dteOpt = { year: '2-digit', month: '2-digit', day: '2-digit'};
+                var dteOpt = { year:    '2-digit',
+                               month:   '2-digit',
+                               day:     '2-digit'
+                             };
 
-                rssfeeds({ feedName:   "Medium",
-                           divName:    "MediumRss",
-                           feedUrl:    "https://medium.com/feed/thoughts-on-political-progress", 
-                           pageUrl:    "https://medium.com/thoughts-on-political-progress",
-                           maxCount:   10,
-                           charLimit:  100,
-                           dateFormat: dteOpt });
+                rssfeeds({ feedName:    "Medium",
+                           divName:     "MediumRss",
+                           feedUrl:     "https://medium.com/feed/thoughts-on-political-progress", 
+                           pageUrl:     "https://medium.com/thoughts-on-political-progress",
+                           maxCount:    10,
+                           charLimit:   100,
+                           dateFormat:  dteOpt
+                         });
             
-                rssfeeds({ feedName:   "Twitter",
-                           divName:    "TwitterRss",
-                           feedUrl:    "https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo",
-                           pageUrl:    "https://twitter.com/frankrcastillo",
-                           maxCount:   10,
-                           charLimit:  100,
-                           dateFormat: dteOpt });
+                rssfeeds({ feedName:    "Twitter",
+                           divName:     "TwitterRss",
+                           feedUrl:     "https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo",
+                           pageUrl:     "https://twitter.com/frankrcastillo",
+                           maxCount:    10,
+                           charLimit:   100,
+                           dateFormat:  dteOpt
+                         });
 
-                rssfeeds({ feedName:  "YouTube",
-                           divName:   "YouTubeRss",
-                           feedUrl:   "https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g",
-                           pageUrl:   "https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g?view_as=subscriber",
-                           maxCount:  10,
-                           charLimit: 100,
-                           dateFormat: dteOpt });
+                rssfeeds({ feedName:    "YouTube",
+                           divName:     "YouTubeRss",
+                           feedUrl:     "https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g",
+                           pageUrl:     "https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g?view_as=subscriber",
+                           maxCount:    10,
+                           charLimit:   100,
+                           dateFormat:  dteOpt
+                         });
 
-                var welcomeMsg  = "System console, written in JavaScript by Franklin Castillo.<br/>" +
-                                  "There's a lot still under construction; enter 'help' for a list of commands.<br/>";
+                var welcomeMsg  = "System console, written in JavaScript by Franklin Castillo.<br/>"
+                                + "There's a lot still under construction; enter 'help' for a list of commands.<br/>";
 
                 prln(welcomeMsg);
             }
@@ -280,8 +303,7 @@
             }
 
             function sudoku() {
-                var sudokuMsg  = "Tab through each box and enter a value.<br/>Press Enter to continue...<br/>";
-                sudokuMsg += "<table>";
+                var sudokuMsg  = "Tab through each box and enter a value.<br/>Press Enter to continue...<br/><table>";
                 for (i = 0; i <= 8; i++) {
                     sudokuMsg += "<tr>";
                     for (j = 0; j <= 8; j++) {
@@ -389,16 +411,16 @@
                                 welcomeMsg += worldmap[i][j];
                             } 
                             switch (true) {
-                                case i == 3: ipInfo = "IP Address: " + getip; break;
-                                case i == 4: ipInfo = "City: " + getct; break;
-                                case i == 5: ipInfo = "State/Region: " + getrn + " (" + getrc + ")"; break;
-                                case i == 6: ipInfo = "Zip Code: " + getzc; break;
-                                case i == 7: ipInfo = "Country: " + getcn + " (" + getcc + ")"; break;
-                                case i == 8: ipInfo = "Lat/Long: " + getlt + ", " + getlg; break;
-                                case i == 9: ipInfo = "Time Zone: " + gettz; break;
-                                case i == 10: ipInfo = "Metro Code: " + getmc; break;
-                                case i == 11: ipInfo = "Display: " + getsc;break;
-                                case i == 12: ipInfo = "Platform: " + getpl; break;
+                                case i == 3 : ipInfo = "IP Address: "   + getip; break;
+                                case i == 4 : ipInfo = "City: "         + getct; break;
+                                case i == 5 : ipInfo = "State/Region: " + getrn + " (" + getrc + ")"; break;
+                                case i == 6 : ipInfo = "Zip Code: "     + getzc; break;
+                                case i == 7 : ipInfo = "Country: "      + getcn + " (" + getcc + ")"; break;
+                                case i == 8 : ipInfo = "Lat/Long: "     + getlt + ", " + getlg; break;
+                                case i == 9 : ipInfo = "Time Zone: "    + gettz; break;
+                                case i == 10: ipInfo = "Metro Code: "   + getmc; break;
+                                case i == 11: ipInfo = "Display: "      + getsc; break;
+                                case i == 12: ipInfo = "Platform: "     + getpl; break;
                             }
                             welcomeMsg += ipInfo + "<br/>";
                         }
