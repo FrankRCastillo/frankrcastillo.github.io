@@ -26,8 +26,8 @@
             #scrollback { padding: 5px; }
             #profile { height: 105px; width: 105px; position: relative; float: left; padding: 0px 5px 0px 0px; 
                        filter: grayscale(1) sepia(1) contrast(2) saturate(5) drop-shadow(0px 0px 10px #ffa500); }
-            .sudoku  { width: 15px; background-color: #000000; color: #ffa500; border: 1px solid #ffa500;
-                       font-family: "Lucida Console", Monaco, monospace; font-size: 11px; text-align: center; }
+            .sudoku  { width: 12px; background-color: #000000; border: 0px; font-family: "Lucida Console", Monaco, monospace;
+					   font-size: 11px; color: #ffa500; text-align: center; }
             #vstr { white-space: nowrap; }
             @media only screen 
                    and (max-width: 480px)
@@ -38,7 +38,6 @@
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script>
-
             /*
              * Forked from FeedEk to support YouTube feeds
              * FeedEk authored by Englin KIZIL at http://www.enginkizil.com
@@ -121,7 +120,12 @@
                                + param.pageUrl
                                + '" target="_blank">More...</a></ul>';
                         $("#" + param.divName).append(sc);;
-                    }
+                    },
+
+					error : function(xhr, textStatus, errorThrown ) {
+						$.ajax(this);
+						return;
+					}
                 })
             }
 
@@ -142,11 +146,14 @@
                 }
                 return newText;
             };
+			// FeedEk fork ends here
         </script>
 
         <script>
-            // System console
-            var inputbody = "<div id='scrollback'><div id='consappend'></div> # <input type='text' id='inputbox'></div>";
+            // Biuilding the elements of the system console
+			var pwd = "~";
+            var inputbody = "<div id='scrollback'><div id='consappend'></div> "
+						  + pwd + " # <input type='text' id='inputbox'></div>";
             document.body = document.createElement("body");
             $("body").append("<div id='consbody'></div>");
             consElem = document.getElementById("consbody");
@@ -154,41 +161,40 @@
             consHist = document.getElementById("consappend");
             inputbxElem = document.getElementById("inputbox");
             home();
-
+			
+			/* Passes the command to the command processor and focuses
+			   the cursor on the input box whenever enter is pressed */
             inputbxElem.addEventListener('keypress', function (e) {
                 var key = e.which || e.keyCode;
                 if (key===13) { cmdProc(inputbxElem.value); }
             });
 
+			/* Function receives values passed onto it by the input box,
+			   parsing them and performing the adequate action based on
+			   a switch.*/
             function cmdProc(cmdInput) {
-                consHist.innerHTML += "# " + cmdInput + "<br/>";
+                consHist.innerHTML += pwd + " # " + cmdInput + "<br/>";
                 cmdArgs = cmdInput.split(" ");
 
                 switch(true) {
-                    case cmdArgs[0] == "cat"            : cat(cmdArgs[1])           ; break; //TBD
-                    case cmdArgs[0] == "cd"             : cd(cmdArgs[1])            ; break; //TBD
-                    case cmdArgs[0] == "clear"          : clear()                   ; break;
-                    case cmdArgs[0] == "echo"           : echo(cmdArgs[1], cmdArgs[2], cmdArgs[3]); break; //TBD
-                    case cmdArgs[0] == "home"           : home()                    ; break;
-                    case cmdArgs[0] == "help"           : help()                    ; break;
-                    case cmdArgs[0] == "ls"             : ls(cmdArgs[1])            ; break; //TBD
-                    case cmdArgs[0] == "mkdir"          : mkdir(cmdArgs[1])         ; break; //TBD
-                    case cmdArgs[0] == "mv"             : mv(cmdArgs[1], cmdArgs[2]); break; //TBD
-                    case cmdArgs[0] == "sudoku-solver"  : sudoku()                  ; break; //TBD
-                    case cmdArgs[0] == "visitor"        : visitor()                 ; break;
-                    default: prln(cmdArgs[0] + ": command not found");
+                    case cmdArgs[0] == "clear"   : clear()          ; break;
+                    case cmdArgs[0] == "home"    : home()           ; break;
+                    case cmdArgs[0] == "help"    : help()           ; break;
+					case cmdArgs[0] == "visitor" : visitor()        ; break;
+                    case cmdArgs[0] == "sudoku"  : sudoku()         ; break; //TBD
+                    case cmdArgs[0] == "ls"      : ls(cmdArgs[1])   ; break; //TBD
+                    case cmdArgs[0] == "mkdir"   : mkdir(cmdArgs[1]); break; //TBD
+                    case cmdArgs[0] == "cat"     : cat(cmdArgs[1])  ; break; //TBD
+                    case cmdArgs[0] == "cd"      : cd(cmdArgs[1])   ; break; //TBD
+					case cmdArgs[0] == "mv"      : mv(cmdArgs[1],
+                                                      cmdArgs[2])   ; break; //TBD
+                    case cmdArgs[0] == "echo"    : echo(cmdArgs[1],
+                                                        cmdArgs[2],
+                                                        cmdArgs[3]) ; break; //TBD
+                    default: prln(cmdArgs[0] + ": command not found");		 //Notifies that a command wasn't found
                 }
                 inputbxElem.value = "";
                 inputbxElem.focus()
-            }
-
-            // calls commands and, when they are not found, prompts the user
-            function cat(fileInput) {
-                prln(fileInput + ": feature not yet available");
-            }
-
-            function cd(dirInput) {
-                prln(dirInput + ": feature not yet available");
             }
 
             function clear() {
@@ -217,21 +223,19 @@
                         + "<br/>Network commands:<br/>"
                         + "<span id='helpln'>visitor</span>Show visitor information<br/>"
                         + "<br/>Fun and games:<br/>"
-                        + "<span id='helpln'>sudoku-solver</span>Solve Sudokus!<br/>";
+                        + "<span id='helpln'>sudoku</span>Solve Sudokus!<br/>";
                 prln(helpMsg);
             }
 
             function home() {
                 clear();
 
-                var mwbody = "<span>I am a graduate student at the University of South Florida where I'm working on a "
-                           + "Master of Arts in economics. When time allows, I write about politics, economics, "
-                           + "international relations, and technology. Professionally, I’ve had the opportunity to work "
-                           + "in Anti-Money Laundering (AML), financial compliance, and information technology. These "
-                           + "experiences have inspired my current academic interests, and I hope to someday bring "
-                           + "together economics, mathematics, and big data to develop systems and methods that help "
-                           + "mitigate financial crime risk. In 2013, I received an Honorable Discharge from the United "
-                           + "States Marine Corps after nine years of service.</span>";
+                var mwbody = "<span>I am a masters student of economics at the University of South Florida. When "
+						   + "time allows, I write about politics, economics, international relations, and technology "
+						   + "for my blog on Medium. As I move ahead with my academic and professional endeavors, I hope "
+						   + "to apply my knowledge of economics and technology to further our understanding of money "
+						   + "laundering, sanctions, bribery, and corruption. In 2013, I received an Honorable Discharge "
+						   + "from the United States Marine Corps after nine years of service.</span>";
                 var smbody = "<b>Social Media:</b><br/>"
                            + "<a href='https://medium.com/thoughts-on-political-progress' target='_blank'>Medium</a>, "
                            + "<a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, "
@@ -278,20 +282,7 @@
 
                 var welcomeMsg  = "System console, written in JavaScript by Franklin Castillo.<br/>"
                                 + "There's a lot still under construction; enter 'help' for a list of commands.<br/>";
-
                 prln(welcomeMsg);
-            }
-
-            function ls(fileInput) {
-                prln("feature not yet available");
-            }
-
-            function mkdir(dirCreate) {
-                prln(dirCreate + ": feature not yet available");
-            }
-
-            function mv(orig, dest) {
-                prln("feature not yet available");
             }
 
             // function to print to console
@@ -304,29 +295,23 @@
 
             function sudoku() {
                 var sudokuMsg  = "Tab through each box and enter a value.<br/>Press Enter to continue...<br/><table>";
-                for (i = 0; i <= 8; i++) {
-                    sudokuMsg += "<tr>";
-                    for (j = 0; j <= 8; j++) {
-                        sudokuMsg += "<td><input class='sudoku' type='text' id='sdk" + i + j + "'></td>";
+				var breakBar = " --------------------------<br/>"
+                for (i = 0; i < 9; i++) {
+					sudokuMsg += breakBar;
+                    for (j = 0; j < 9; j++) {
+                        sudokuMsg += "|<input class='sudoku' type='text' id='sdk" + i + j + "'>";
                     }
-                    sudokuMsg += "</tr>";
+                    sudokuMsg += "|<br/>";
                 }
-                sudokuMsg += "</table><br/><a href='#' onclick='sudokuOutput()'>Solve</a>";
+				sudokuMsg += breakBar;
+				sudokuMsg += "<a href='#' onclick='sudokuSolve()'>Click here to solve...</a>";
                 prln(sudokuMsg);
-
             }
-
-            function sudokuOutput() {
-                var T = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-                var A = new Array(3);
-                for (i = 0; i <= 8; i++) {
-                    A[i] = new Array(3);
-                    for (j = 0; j <= 8; j++) {
-                        A[i][j] = $("#sdk" + i + j).val();
-                    }
-                }
+			
+            function sudokuSolve() {
+                prln("feature not yet available");
             }
-
+			
             function visitor() {
                 var worldmap = new Array(3);
                 for (i = 0; i <= 18; i++) {
@@ -429,10 +414,50 @@
                     }
                 });
             }
+			
+			// File Management
+			function fsbuild(){
+				var filetyp
+				return fsarray;
+			}
+			
+			function cd		(input)	{ prln(input + ": feature not yet available"); }
+			function find	(input)	{ prln(input + ": feature not yet available"); }
+			function ls		(input) { prln(input + ": feature not yet available"); }
+			function mkdir	(input) { prln(input + ": feature not yet available"); }
+			function mv		(input) { prln(input + ": feature not yet available"); }
+			function rm		(input) { prln(input + ": feature not yet available"); }
 
+
+			function bc		(input)	{ prln(input + ": feature not yet available"); }
+			function cal	(input)	{ prln(input + ": feature not yet available"); }
+			function date	(input)	{ prln(input + ": feature not yet available"); }
+			function history(input)	{ prln(input + ": feature not yet available"); }			
+			function awk	(input)	{ prln(input + ": feature not yet available"); }
+			function cat	(input)	{ prln(input + ": feature not yet available"); }
+			function df		(input)	{ prln(input + ": feature not yet available"); }
+			function diff	(input)	{ prln(input + ": feature not yet available"); }
+			function du		(input)	{ prln(input + ": feature not yet available"); }
+			function grep	(input)	{ prln(input + ": feature not yet available"); }
+			function head	(input)	{ prln(input + ": feature not yet available"); }
+			function kill	(input) { prln(input + ": feature not yet available"); }
+			function more	(input) { prln(input + ": feature not yet available"); }
+			function ps		(input)	{ prln(input + ": feature not yet available"); }
+			function pwd	(input) { prln(input + ": feature not yet available"); }
+			function sed	(input)	{ prln(input + ": feature not yet available"); }
+			function sort	(input)	{ prln(input + ": feature not yet available"); }
+			function split	(input)	{ prln(input + ": feature not yet available"); }
+			function ssh	(input)	{ prln(input + ": feature not yet available"); }
+			function telnet	(input)	{ prln(input + ": feature not yet available"); }
+			function uname	(input)	{ prln(input + ": feature not yet available"); }
+			function vi		(input)	{ prln(input + ": feature not yet available"); }
+			function wc		(input)	{ prln(input + ": feature not yet available"); }
+			function zip	(input)	{ prln(input + ": feature not yet available"); }
+			function unzip	(input)	{ prln(input + ": feature not yet available"); }
+			function whoami	(input)	{ prln(input + ": feature not yet available"); }
+			
             function wfbgraph() {
                 url = "https://www.cia.gov/library/publications/the-world-factbook/fields/2028.html";
-
             }
         </script>
     </head>
