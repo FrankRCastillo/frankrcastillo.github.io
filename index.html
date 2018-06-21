@@ -296,7 +296,6 @@
             function sudoku() {
                 var sudokuMsg  = "Tab through each box and enter a value.<br/>Press Enter to continue...<br/><table>";
                 for (i = 0; i < 9; i++) {
-					sudokuMsg += breakBar;
                     for (j = 0; j < 9; j++) {
                         sudokuMsg += "<input class='sudoku' type='text' placeholder='_' id='sdk" + i + j + "'>";
                     }
