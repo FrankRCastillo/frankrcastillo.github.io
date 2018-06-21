@@ -306,7 +306,92 @@
 				}
 
 				function sudokuSolve() {
-					prln("feature not yet available");
+					document.body = document.createElement("body");
+					var sudokuOut = "";
+					var x = [[4, 0, 0, 8, 3, 5, 0, 1, 0]
+							,[7, 3, 0, 0, 0, 2, 0, 0, 0]
+							,[6, 0, 5, 0, 0, 1, 0, 0, 3]
+							,[3, 0, 0, 2, 0, 0, 0, 5, 0]
+							,[9, 0, 7, 0, 0, 0, 6, 0, 2]
+							,[0, 2, 0, 0, 0, 9, 0, 0, 1]
+							,[5, 0, 0, 3, 0, 0, 1, 0, 4]
+							,[0, 0, 0, 5, 0, 0, 0, 6, 9]
+							,[0, 4, 0, 6, 1, 8, 0, 0, 7]];
+
+					var c = new Array(9);
+					for (i = 0; i < 9; i++) {
+						c[i] = new Array(9);
+						for (j = 0; j < 9; j++) {
+							c[i][j] = new Array(9);
+							for (k = 0; k < 9; k++) {
+								c[i][j][k] = k + 1;
+							}
+						}
+					}
+
+					sudokuOut += printArr(x) + printArr(c);
+
+					var xChg = 10;
+					while (xChg--) {
+						var xStr = x.toString();
+						for (i = 0; i < 9; i++) {
+							for (j = 0; j < 9; j++) {
+								if (x[i][j] != 0) c[i][j].length = 0;
+								for (k = 0; k < 9; k++) {
+									if (c[i][j].length == 1) x[i][j] = c[i][j][k];
+									for (z = 0; z < 9; z++) {
+										if (x[i][j] == c[z][j][k]) c[z][j].splice(k,1);
+										if (x[i][j] == c[i][z][k]) c[i][z].splice(k,1);
+									}
+								}
+							}
+						}
+
+						sudokuOut += printArr(x) + printArr(c);
+
+						var r = 0;
+						var s = 0;
+						for (p = 0; p < 9; p++) {
+							for (q = 0; q < 9; q++) {
+								switch (true) {
+									case p >= 0 && p <= 2: r = 0; break;
+									case p >= 3 && p <= 5: r = 3; break;
+									case p >= 6 && p <= 8: r = 6; break;
+								}
+
+								switch (true) {
+									case q >= 0 && q <= 2: s = 0; break;
+									case q >= 3 && q <= 5: s = 3; break;
+									case q >= 6 && q <= 8: s = s; break;
+								}
+
+								for (i = r; i < (3 + r); i++) {
+									for (j = s; j < (3 + s); j++) {
+										for (k = 0; k < c[p][q].length; k++) {
+											if (x[i][j] == c[p][q][k]) c[p][q].splice(k,1);
+										}
+									}
+								}
+							}
+						}
+						sudokuOut += printArr(x) + printArr(c);
+					}
+
+					$("body").append(sudokuOut);
+
+					function printArr(arr) {
+						var output = "<table>"
+						for (i = 0; i < arr.length; i++) {
+							output += "<tr>";
+							for (j = 0; j < arr[i].length; j++) {
+								output += "<td>[" + arr[i][j] + "]</td>";
+							}
+							output += "</tr>";
+						}
+						output += "</table><br/>";
+						return output;
+					}
+
 				}
 
 				function visitor() {
