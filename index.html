@@ -20,14 +20,15 @@
 				#inputbox { width: 95%; border: 0px; background-color: #000000; color: #ffa500;
 					font-family: "Lucida Console", Monaco, monospace; font-size: 11px; outline: none;
 					text-shadow: 0px 0px 5px #ffa500; }
+				.sudoku { width: 16px; border: 0px; background-color: #000000; color: #ffa500;
+					font-family: "Lucida Console", Monaco, monospace; font-size: 11px; outline: none;
+					text-shadow: 0px 0px 5px #ffa500; }
 				#xmark { color: #ffa500; animation: blink 1s infinite; }
 				@keyframes blink{ 0% { opacity: 0.0 } 100% { opacity: 1.0 } }
 				#para { width: 740px; text-align: justify; }
 				#scrollback { padding: 5px; }
 				#profile { height: 105px; width: 105px; position: relative; float: left; padding: 0px 5px 0px 0px; 
 					filter: grayscale(1) sepia(1) contrast(2) saturate(5) drop-shadow(0px 0px 10px #ffa500); }
-				.sudoku  { width: 16px; background-color: #000000; border: 0px; font-family: "Lucida Console", Monaco, monospace;
-					font-size: 11px; color: #ffa500; text-align: center; }
 				#vstr { white-space: nowrap; }
 				::placeholder { color: #ffa500; }
 				@media only screen 
@@ -177,6 +178,7 @@
 					cmdArgs = cmdInput.split(" ");
 
 					switch(true) {
+						case cmdArgs[0] == ""	     : prln(false, "");	; break;
 						case cmdArgs[0] == "clear"   : clear()          ; break;
 						case cmdArgs[0] == "home"    : home()           ; break;
 						case cmdArgs[0] == "help"    : help()           ; break;
@@ -191,7 +193,7 @@
 						case cmdArgs[0] == "echo"    : echo(cmdArgs[1],
 															cmdArgs[2],
 															cmdArgs[3]) ; break; //TBD
-						default: prln(cmdArgs[0] + ": command not found");		 //Notifies that a command wasn't found
+						default: prln(true, cmdArgs[0] + ": command not found");		 //Notifies that a command wasn't found
 					}
 					inputbxElem.value = "";
 					inputbxElem.focus()
@@ -202,7 +204,7 @@
 				}
 
 				function echo(stringInput, pipe, dest) {
-					prln("feature not yet available");
+					prln(true, "feature not yet available");
 				}
 
 				function help() {
@@ -224,7 +226,7 @@
 							+ "<span id='helpln'>visitor</span>Show visitor information<br/>"
 							+ "<br/>Fun and games:<br/>"
 							+ "<span id='helpln'>sudoku</span>Solve Sudokus!<br/>";
-					prln(helpMsg);
+					prln(true, helpMsg);
 				}
 
 				function home() {
@@ -246,7 +248,7 @@
 					var fwbody = "<div id='TwitterRss'></div><div id='MediumRss'></div><div id='YouTubeRss'></div>";
 					var mnbody = prbody + fwbody;
 
-					prln(mnbody);
+					prln(true, mnbody);
 
 					var dteOpt = { year:    '2-digit',
 								   month:   '2-digit',
@@ -282,42 +284,44 @@
 
 					var welcomeMsg  = "System console, written in JavaScript by Franklin Castillo.<br/>"
 									+ "There's a lot still under construction; enter 'help' for a list of commands.<br/>";
-					prln(welcomeMsg);
+					prln(true, welcomeMsg);
 				}
 
 				// function to print to console
-				function prln(printInput) {
-					consHist.innerHTML += printInput + "<br/>";
+				function prln(nl, printInput) {
+					if (nl == true) {
+						var br = "<br/>";
+					} else {
+						var br = "";
+					}
+					consHist.innerHTML += printInput + br;
 					inputbxElem.value = "";
 					inputbxElem.focus();
 					inputbxElem.scrollIntoView();
 				}
 
 				function sudoku() {
-					var sudokuMsg  = "Tab through each box and enter a value.<br/>Press Enter to continue...<br/><table>";
+					var sudokuMsg = "<br/>Enter values, using 0 for blanks<br/>Press Enter to continue...<br/><br/>";
 					for (i = 0; i < 9; i++) {
 						for (j = 0; j < 9; j++) {
-							sudokuMsg += "<input class='sudoku' type='text' placeholder='_' id='sdk" + i + j + "'>";
+							sudokuMsg += "<input class='sudoku' type='text' maxlength='1' placeholder='_'  id='sdk" + i + j + "'>";
 						}
 						sudokuMsg += "<br/>";
 					}
-					sudokuMsg += "<a href='#' onclick='sudokuSolve()'>Click here to solve...</a>";
-					prln(sudokuMsg);
+					sudokuMsg += "<br/><a href='#' onclick='sudokuSolve()'>Click here to solve...</a><br/>";
+					prln(true, sudokuMsg);
 				}
-
+	
+				
 				function sudokuSolve() {
-					document.body = document.createElement("body");
-					var sudokuOut = "";
-					var x = [[4, 0, 0, 8, 3, 5, 0, 1, 0]
-							,[7, 3, 0, 0, 0, 2, 0, 0, 0]
-							,[6, 0, 5, 0, 0, 1, 0, 0, 3]
-							,[3, 0, 0, 2, 0, 0, 0, 5, 0]
-							,[9, 0, 7, 0, 0, 0, 6, 0, 2]
-							,[0, 2, 0, 0, 0, 9, 0, 0, 1]
-							,[5, 0, 0, 3, 0, 0, 1, 0, 4]
-							,[0, 0, 0, 5, 0, 0, 0, 6, 9]
-							,[0, 4, 0, 6, 1, 8, 0, 0, 7]];
-
+					var x = new Array(9);
+					for (i = 0; i < 9; i++) {
+						x[i] = new Array(9);
+						for (j = 0; j < 9; j++) {
+							x[i][j] = document.getElementById("sdk" + i + j).value;
+						}
+					}
+						
 					var c = new Array(9);
 					for (i = 0; i < 9; i++) {
 						c[i] = new Array(9);
@@ -328,9 +332,6 @@
 							}
 						}
 					}
-
-					sudokuOut += printArr(x) + printArr(c);
-
 					var xChg = 10;
 					while (xChg--) {
 						var xStr = x.toString();
@@ -347,8 +348,6 @@
 							}
 						}
 
-						sudokuOut += printArr(x) + printArr(c);
-
 						var r = 0;
 						var s = 0;
 						for (p = 0; p < 9; p++) {
@@ -362,7 +361,7 @@
 								switch (true) {
 									case q >= 0 && q <= 2: s = 0; break;
 									case q >= 3 && q <= 5: s = 3; break;
-									case q >= 6 && q <= 8: s = s; break;
+									case q >= 6 && q <= 8: s = 6; break;
 								}
 
 								for (i = r; i < (3 + r); i++) {
@@ -374,24 +373,13 @@
 								}
 							}
 						}
-						sudokuOut += printArr(x) + printArr(c);
 					}
-
-					$("body").append(sudokuOut);
-
-					function printArr(arr) {
-						var output = "<table>"
-						for (i = 0; i < arr.length; i++) {
-							output += "<tr>";
-							for (j = 0; j < arr[i].length; j++) {
-								output += "<td>[" + arr[i][j] + "]</td>";
-							}
-							output += "</tr>";
+					
+					for (i = 0; i < 9; i++) {
+						for (j = 0; j < 9; j++) {
+							document.getElementById("sdk" + i + j).value = x[i][j];
 						}
-						output += "</table><br/>";
-						return output;
 					}
-
 				}
 
 				function visitor() {
@@ -489,7 +477,7 @@
 								welcomeMsg += ipInfo + "<br/>";
 							}
 							welcomeMsg += "</div>";
-							prln(welcomeMsg);
+							prln(true, welcomeMsg);
 						}
 					});
 				}
@@ -497,42 +485,42 @@
 				// File Management
 				function fsbuild(){}
 
-				function cd		(input)	{ prln(input + ": feature not yet available"); }
-				function find	(input)	{ prln(input + ": feature not yet available"); }
-				function ls		(input) { prln(input + ": feature not yet available"); }
-				function mkdir	(input) { prln(input + ": feature not yet available"); }
-				function mv		(input) { prln(input + ": feature not yet available"); }
-				function rm		(input) { prln(input + ": feature not yet available"); }
-				function bc		(input)	{ prln(input + ": feature not yet available"); }
-				function cal	(input)	{ prln(input + ": feature not yet available"); }
-				function date	(input)	{ prln(input + ": feature not yet available"); }
-				function history(input)	{ prln(input + ": feature not yet available"); }			
-				function awk	(input)	{ prln(input + ": feature not yet available"); }
-				function cat	(input)	{ prln(input + ": feature not yet available"); }
-				function df		(input)	{ prln(input + ": feature not yet available"); }
-				function diff	(input)	{ prln(input + ": feature not yet available"); }
-				function du		(input)	{ prln(input + ": feature not yet available"); }
-				function grep	(input)	{ prln(input + ": feature not yet available"); }
-				function head	(input)	{ prln(input + ": feature not yet available"); }
-				function kill	(input) { prln(input + ": feature not yet available"); }
-				function more	(input) { prln(input + ": feature not yet available"); }
-				function ps		(input)	{ prln(input + ": feature not yet available"); }
-				function pwd	(input) { prln(input + ": feature not yet available"); }
-				function sed	(input)	{ prln(input + ": feature not yet available"); }
-				function sort	(input)	{ prln(input + ": feature not yet available"); }
-				function split	(input)	{ prln(input + ": feature not yet available"); }
-				function ssh	(input)	{ prln(input + ": feature not yet available"); }
-				function telnet	(input)	{ prln(input + ": feature not yet available"); }
-				function uname	(input)	{ prln(input + ": feature not yet available"); }
-				function vi		(input)	{ prln(input + ": feature not yet available"); }
-				function wc		(input)	{ prln(input + ": feature not yet available"); }
-				function zip	(input)	{ prln(input + ": feature not yet available"); }
-				function unzip	(input)	{ prln(input + ": feature not yet available"); }
-				function whoami	(input)	{ prln(input + ": feature not yet available"); }
+				function cd	(input)	{ prln(true, input + ": feature not yet available"); }
+				function find	(input)	{ prln(true, input + ": feature not yet available"); }
+				function ls	(input) { prln(true, input + ": feature not yet available"); }
+				function mkdir	(input) { prln(true, input + ": feature not yet available"); }
+				function mv	(input) { prln(true, input + ": feature not yet available"); }
+				function rm	(input) { prln(true, input + ": feature not yet available"); }
+				function bc	(input)	{ prln(true, input + ": feature not yet available"); }
+				function cal	(input)	{ prln(true, input + ": feature not yet available"); }
+				function date	(input)	{ prln(true, input + ": feature not yet available"); }
+				function history(input)	{ prln(true, input + ": feature not yet available"); }			
+				function awk	(input)	{ prln(true, input + ": feature not yet available"); }
+				function cat	(input)	{ prln(true, input + ": feature not yet available"); }
+				function df	(input)	{ prln(true, input + ": feature not yet available"); }
+				function diff	(input)	{ prln(true, input + ": feature not yet available"); }
+				function du	(input)	{ prln(true, input + ": feature not yet available"); }
+				function grep	(input)	{ prln(true, input + ": feature not yet available"); }
+				function head	(input)	{ prln(true, input + ": feature not yet available"); }
+				function kill	(input) { prln(true, input + ": feature not yet available"); }
+				function more	(input) { prln(true, input + ": feature not yet available"); }
+				function ps	(input)	{ prln(true, input + ": feature not yet available"); }
+				function pwd	(input) { prln(true, input + ": feature not yet available"); }
+				function sed	(input)	{ prln(true, input + ": feature not yet available"); }
+				function sort	(input)	{ prln(true, input + ": feature not yet available"); }
+				function split	(input)	{ prln(true, input + ": feature not yet available"); }
+				function ssh	(input)	{ prln(true, input + ": feature not yet available"); }
+				function telnet	(input)	{ prln(true, input + ": feature not yet available"); }
+				function uname	(input)	{ prln(true, input + ": feature not yet available"); }
+				function vi	(input)	{ prln(true, input + ": feature not yet available"); }
+				function wc	(input)	{ prln(true, input + ": feature not yet available"); }
+				function zip	(input)	{ prln(true, input + ": feature not yet available"); }
+				function unzip	(input)	{ prln(true, input + ": feature not yet available"); }
+				function whoami	(input)	{ prln(true, input + ": feature not yet available"); }
 
 				function wfbgraph() {
-				url = "https://www.cia.gov/library/publications/the-world-factbook/fields/2028.html";
+					url = "https://www.cia.gov/library/publications/the-world-factbook/fields/2028.html";
 				}
-				</script>
+			</script>
 		</head>
 </html>
