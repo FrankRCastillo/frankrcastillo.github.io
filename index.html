@@ -57,15 +57,18 @@
 					} else {
 						var YTLSearch = 'channel.item';
 					};
+                                        
 					var YQLstr = 'SELECT '
 						   + YTLSearch
 						   + ' FROM feednormalizer WHERE url ="'
 						   + param.feedUrl
 						   + '" LIMIT '
 						   + param.maxCount;
-
+						   
+					var YQLenc = encodeURIComponent(YQLstr);
+                                        
 					var YQLurl = "https://query.yahooapis.com/v1/public/yql?q="
-						   + encodeURIComponent(YQLstr)
+						   + YQLenc
 						   + "&format=json&diagnostics=false&callback=?";
 
 					$.ajax({
@@ -123,9 +126,9 @@
 							$("#" + param.divName).append(sc);;
 						},
 
-						error : function(xhr, textStatus, errorThrown ) {
+						error : function() {
+                                                        console.log("RSS failed. Repeating...");
 							$.ajax(this);
-							return;
 						}
 					})
 				}
