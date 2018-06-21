@@ -106,23 +106,24 @@
 								dt = new Date(rssDate);
 
 								s += '<li><div class="fTle"><a href="'
-								  + rssLink
-								  + '" target="'
-								  + def.TitleLinkTarget
-								  + '" >'
-								  + dt.toLocaleDateString(def.DateFormatLang, param.dateFormat)
-								  + ': '
-								  + truncString(rssCreator + rssTitle, param.charLimit)
-								  + '</a></div></li>';
+                                                                   + rssLink
+                                                                   + '" target="'
+                                                                   + def.TitleLinkTarget
+                                                                   + '" >'
+                                                                   + dt.toLocaleDateString(def.DateFormatLang, param.dateFormat)
+                                                                   + ': '
+                                                                   + truncString(rssCreator + rssTitle, param.charLimit)
+                                                                   + '</a></div></li>';
 							});
 
 							var sc = '<br/><ul class="fLst"><b>'
-								   + param.feedName
-								   + ":</b>"
-								   + s
-								   + '<a href="'
-								   + param.pageUrl
-								   + '" target="_blank">More...</a></ul>';
+                                                               + param.feedName
+                                                               + ":</b>"
+                                                               + s
+                                                               + '<a href="'
+                                                               + param.pageUrl
+                                                               + '" target="_blank">More...</a></ul>';
+                                                               
 							$("#" + param.divName).append(sc);;
 						},
 
@@ -186,16 +187,16 @@
 						case cmdArgs[0] == "home"    : home()           ; break;
 						case cmdArgs[0] == "help"    : help()           ; break;
 						case cmdArgs[0] == "visitor" : visitor()        ; break;
-						case cmdArgs[0] == "sudoku"  : sudoku()         ; break; //TBD
+						case cmdArgs[0] == "sudoku"  : sudoku()         ; break;
 						case cmdArgs[0] == "ls"      : ls(cmdArgs[1])   ; break; //TBD
 						case cmdArgs[0] == "mkdir"   : mkdir(cmdArgs[1]); break; //TBD
 						case cmdArgs[0] == "cat"     : cat(cmdArgs[1])  ; break; //TBD
 						case cmdArgs[0] == "cd"      : cd(cmdArgs[1])   ; break; //TBD
 						case cmdArgs[0] == "mv"      : mv(cmdArgs[1],
-														  cmdArgs[2])   ; break; //TBD
+                                                                                  cmdArgs[2])   ; break; //TBD
 						case cmdArgs[0] == "echo"    : echo(cmdArgs[1],
-															cmdArgs[2],
-															cmdArgs[3]) ; break; //TBD
+                                                                                    cmdArgs[2],
+                                                                                    cmdArgs[3]) ; break; //TBD
 						default: prln(true, cmdArgs[0] + ": command not found");		 //Notifies that a command wasn't found
 					}
 					inputbxElem.value = "";
