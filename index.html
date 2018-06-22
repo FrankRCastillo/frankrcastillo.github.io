@@ -7,41 +7,102 @@
 			<meta charset="utf-8" name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=349"/>
 			<title>Frank R. Castillo</title>
 			<style>
-				body  { margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;
-					font-size: 11px; text-align: left; color: #ffa500; background-color: #000000;
-					font-family: "Lucida Console", Monaco, monospace; text-shadow: 0px 0px 5px #ffa500; }
-				table { border-spacing: 0px; }
-				a  { color: #ffa500; text-decoration: none; }
-				p  { font-weight: normal; list-style: none outside none; padding: 5px 5px; }
-				ul { margin-top: 0; margin-bottom: 0; }
-				.fTle a { color: #ffa500 !important; word-wrap: break-word; }
-				.fLst   { list-style: none outside none; border: 0px; text-align: left; padding: 0px; }
-				#helpln { display: inline-block; width: 90px; }
-				#inputbox { width: 95%; border: 0px; background-color: #000000; color: #ffa500;
-					font-family: "Lucida Console", Monaco, monospace; font-size: 11px; outline: none;
-					text-shadow: 0px 0px 5px #ffa500; }
-				.sudoku { width: 16px; border: 0px; background-color: #000000; color: #ffa500;
-					font-family: "Lucida Console", Monaco, monospace; font-size: 11px; outline: none;
-					text-shadow: 0px 0px 5px #ffa500; }
-				#xmark { color: #ffa500; animation: blink 1s infinite; }
-				@keyframes blink{ 0% { opacity: 0.0 } 100% { opacity: 1.0 } }
-				#para { width: 740px; text-align: justify; }
-				#scrollback { padding: 5px; }
-				#profile { height: 105px; width: 105px; position: relative; float: left; padding: 0px 5px 0px 0px; 
-					filter: grayscale(1) sepia(1) contrast(2) saturate(5) drop-shadow(0px 0px 10px #ffa500); }
-				#vstr { white-space: nowrap; }
-				::placeholder { color: #ffa500; }
-				@media only screen 
-					and (max-width: 480px)
-					and (max-device-width: 480px)
-					and (orientation: portrait) {
-					#para { width: auto; }
-				}
+                                body { font-family      : "Lucida Console", Monaco, monospace ;
+                                       text-shadow      : 0px 0px 5px #ffa500 ;
+                                       background-color : #000000 ;
+                                       color            : #ffa500 ;
+                                       margin-bottom    : 0px     ;
+                                       margin-right     : 0px     ;
+                                       margin-left      : 0px     ;
+                                       margin-top       : 0px     ;
+                                     }
+
+                                table { border-spacing : 0px; }
+
+                                a { text-decoration : none    ;
+                                    color           : #ffa500 ;
+                                  }
+
+                                p { font-weight : normal            ;
+                                    list-style  : none outside none ;
+                                    padding     : 5px 5px           ;
+                                  }
+
+                                ul { margin-top     : 0 ;
+                                     margin-bottom  : 0 ;
+                                   }
+
+                                .fTle a { color     : #ffa500 !important ;
+                                          word-wrap : break-word         ;
+                                        }
+
+                                .fLst { list-style  : none outside none ;
+                                        border      : 0px               ;
+                                        text-align  : left              ;
+                                        padding     : 0px               ;
+                                      }
+
+                                #helpln { display : inline-block ;
+                                          width   : 90px         ;
+                                        }
+
+                                #inputbox { font-family      : "Lucida Console", Monaco, monospace ;
+                                            text-shadow      : 0px 0px 5px #ffa500 ;
+                                            background-color : #000000  ;
+                                            color            : #ffa500  ;
+                                            outline          : none     ;
+                                            font-size        : 11px     ;
+                                            border           : 0px      ;
+                                            width            : 95%      ;
+                                }
+
+                                .sudoku { font-family      : "Lucida Console", Monaco, monospace ;
+                                          background-color : #000000    ;
+                                          color            : #ffa500    ;
+                                          outline          : none       ;
+                                          font-size        : 11px       ;
+                                          width            : 16px       ;
+                                          border           : 0px        ;
+                                        }
+
+                                #xmark  { animation  : blink 1s infinite ;
+                                          color      : #ffa500           ;
+                                        }
+
+                                @keyframes blink {
+                                              0% { opacity: 0.0 }
+                                            100% { opacity: 1.0 }
+                                                 }
+
+                                #para { text-align : justify;
+                                        width      : 740px  ;
+                                      }
+
+                                #scrollback { padding: 5px; }
+
+                                #profile { filter: grayscale(1) sepia(1) contrast(2) saturate(5) drop-shadow(0px 0px 10px #ffa500);
+                                           padding  : 0px 5px 0px 0px   ;
+                                           position : relative          ;
+                                           height   : 105px             ;
+                                           width    : 105px             ;
+                                           float    : left              ;
+                                         }
+
+                                #vstr { white-space: nowrap; }
+
+                                ::placeholder { color: #ffa500; }
+
+                                @media only screen 
+                                        and (max-width: 480px)
+                                        and (max-device-width: 480px)
+                                        and (orientation: portrait) {
+                                        #para { width: auto; }
 			</style>
 			<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 			<script>
 				/*
-				* Forked from FeedEk to support YouTube feeds
+				* Code for rssfeeds function forked from FeedEk.
+                                * Modified to support YouTube feeds and other features.
 				* FeedEk authored by Englin KIZIL at http://www.enginkizil.com
 				* http://jquery-plugins.net/FeedEk/FeedEk.html  https://github.com/enginkizil/FeedEk
 				*/
@@ -158,7 +219,7 @@
 				// Biuilding the elements of the system console
 				var pwd = "~";
 				var inputbody = "<div id='scrollback'><div id='consappend'></div> "
-							  + pwd + " # <input type='text' id='inputbox'></div>";
+                                              + pwd + " # <input type='text' id='inputbox'></div>";
 				document.body = document.createElement("body");
 				$("body").append("<div id='consbody'></div>");
 				consElem = document.getElementById("consbody");
@@ -182,22 +243,19 @@
 					cmdArgs = cmdInput.split(" ");
 
 					switch(true) {
-						case cmdArgs[0] == ""	     : prln(false, "");	; break;
-						case cmdArgs[0] == "clear"   : clear()          ; break;
-						case cmdArgs[0] == "home"    : home()           ; break;
-						case cmdArgs[0] == "help"    : help()           ; break;
-						case cmdArgs[0] == "visitor" : visitor()        ; break;
-						case cmdArgs[0] == "sudoku"  : sudoku()         ; break;
-						case cmdArgs[0] == "ls"      : ls(cmdArgs[1])   ; break; //TBD
-						case cmdArgs[0] == "mkdir"   : mkdir(cmdArgs[1]); break; //TBD
-						case cmdArgs[0] == "cat"     : cat(cmdArgs[1])  ; break; //TBD
-						case cmdArgs[0] == "cd"      : cd(cmdArgs[1])   ; break; //TBD
-						case cmdArgs[0] == "mv"      : mv(cmdArgs[1],
-                                                                                  cmdArgs[2])   ; break; //TBD
-						case cmdArgs[0] == "echo"    : echo(cmdArgs[1],
-                                                                                    cmdArgs[2],
-                                                                                    cmdArgs[3]) ; break; //TBD
-						default: prln(true, cmdArgs[0] + ": command not found");		 //Notifies that a command wasn't found
+						case cmdArgs[0] == ""	     : prln     (false, "") ; break;
+						case cmdArgs[0] == "clear"   : clear    ()          ; break;
+						case cmdArgs[0] == "home"    : home     ()          ; break;
+						case cmdArgs[0] == "help"    : help     ()          ; break;
+						case cmdArgs[0] == "visitor" : visitor  ()          ; break;
+						case cmdArgs[0] == "sudoku"  : sudoku   ()          ; break;
+						case cmdArgs[0] == "ls"      : ls       (cmdArgs[1]); break; //TBD
+						case cmdArgs[0] == "mkdir"   : mkdir    (cmdArgs[1]); break; //TBD
+						case cmdArgs[0] == "cat"     : cat      (cmdArgs[1]); break; //TBD
+						case cmdArgs[0] == "cd"      : cd       (cmdArgs[1]); break; //TBD
+						case cmdArgs[0] == "mv"      : mv       (cmdArgs[1], cmdArgs[2]); break; //TBD
+						case cmdArgs[0] == "echo"    : echo     (cmdArgs[1], cmdArgs[2], cmdArgs[3]); break; //TBD
+						default: prln(true, cmdArgs[0] + ": command not found");
 					}
 					inputbxElem.value = "";
 					inputbxElem.focus()
@@ -207,29 +265,25 @@
 					consHist.innerHTML = "";
 				}
 
-				function echo(stringInput, pipe, dest) {
-					prln(true, "feature not yet available");
-				}
-
 				function help() {
 					helpMsg = "System console help:<br/>"
-							+ "version 1.0, written in JavaScript by Frank Castillo<br/>"
-							+ "<br/>About me/content:<br/>"
-							+ "<span id='helpln'>home</span>Show homepage<br/>"
-							+ "<br/>Console commands:<br/>"
-							+ "<span id='helpln'>clear</span>Clears screen<br/>"
-							+ "<span id='helpln'>echo</span>Print line<br/>"
-							+ "<span id='helpln'>help</span>Shows this help screen<br/>"
-							+ "<br/>File commands:<br/>"
-							+ "<span id='helpln'>cat</span>Print file content<br/>"
-							+ "<span id='helpln'>cd</span>Change directory<br/>"
-							+ "<span id='helpln'>ls</span>List files and directories<br/>"
-							+ "<span id='helpln'>mkdir</span>Create directory</br/>"
-							+ "<span id='helpln'>mv</span>Move file or directory<br/>"
-							+ "<br/>Network commands:<br/>"
-							+ "<span id='helpln'>visitor</span>Show visitor information<br/>"
-							+ "<br/>Fun and games:<br/>"
-							+ "<span id='helpln'>sudoku</span>Solve Sudokus!<br/>";
+                                                + "version 1.0, written in JavaScript by Frank Castillo<br/>"
+                                                + "<br/>About me/content:<br/>"
+                                                + "<span id='helpln'>home</span>Show homepage<br/>"
+                                                + "<br/>Console commands:<br/>"
+                                                + "<span id='helpln'>clear</span>Clears screen<br/>"
+                                                + "<span id='helpln'>echo</span>Print line<br/>"
+                                                + "<span id='helpln'>help</span>Shows this help screen<br/>"
+                                                + "<br/>File commands:<br/>"
+                                                + "<span id='helpln'>cat</span>Print file content<br/>"
+                                                + "<span id='helpln'>cd</span>Change directory<br/>"
+                                                + "<span id='helpln'>ls</span>List files and directories<br/>"
+                                                + "<span id='helpln'>mkdir</span>Create directory</br/>"
+                                                + "<span id='helpln'>mv</span>Move file or directory<br/>"
+                                                + "<br/>Network commands:<br/>"
+                                                + "<span id='helpln'>visitor</span>Show visitor information<br/>"
+                                                + "<br/>Fun and games:<br/>"
+                                                + "<span id='helpln'>sudoku</span>Solve Sudokus!<br/>";
 					prln(true, helpMsg);
 				}
 
@@ -237,64 +291,64 @@
 					clear();
 
 					var mwbody = "<span>I am a masters student of economics at the University of South Florida. When "
-							   + "time allows, I write about politics, economics, international relations, and technology "
-							   + "for my blog on Medium. As I move ahead with my academic and professional endeavors, I hope "
-							   + "to apply my knowledge of economics and technology to further our understanding of money "
-							   + "laundering, sanctions, bribery, and corruption. In 2013, I received an Honorable Discharge "
-							   + "from the United States Marine Corps after nine years of service.</span>";
+                                                   + "time allows, I write about politics, economics, international relations, and technology "
+                                                   + "for my blog on Medium. As I move ahead with my academic and professional endeavors, I hope "
+                                                   + "to apply my knowledge of economics and technology to further our understanding of money "
+                                                   + "laundering, sanctions, bribery, and corruption. In 2013, I received an Honorable Discharge "
+                                                   + "from the United States Marine Corps after nine years of service.</span>";
 					var smbody = "<b>Social Media:</b><br/>"
-							   + "<a href='https://medium.com/thoughts-on-political-progress' target='_blank'>Medium</a>, "
-							   + "<a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, "
-							   + "<a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, "
-							   + "<a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, "
-							   + "<a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a>"
+                                                   + "<a href='https://medium.com/thoughts-on-political-progress' target='_blank'>Medium</a>, "
+                                                   + "<a href='https://twitter.com/FrankRCastillo' target='_blank'>Twitter</a>, "
+                                                   + "<a href='https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g' target='_blank'>YouTube</a>, "
+                                                   + "<a href='https://github.com/FrankRCastillo' target='_blank'>GitHub</a>, "
+                                                   + "<a href='https://www.linkedin.com/in/franklinrcastillo/' target='_blank'>LinkedIn</a>"
 					var prbody = "<b id='nametitle'>Frank R. Castillo:</b><div id='para'>" + mwbody + "<br/><br/>" + smbody + "</div>";
 					var fwbody = "<div id='TwitterRss'></div><div id='MediumRss'></div><div id='YouTubeRss'></div>";
 					var mnbody = prbody + fwbody;
 
 					prln(true, mnbody);
 
-					var dteOpt = { year:    '2-digit',
-								   month:   '2-digit',
-								   day:		'2-digit'
-								 };
+					var dteOpt = { year  : '2-digit'
+                                                     , month : '2-digit'
+                                                     , day   : '2-digit'
+                                                     };
 
-					rssfeeds({  feedName:    "Medium",
-								divName:     "MediumRss",
-								feedUrl:     "https://medium.com/feed/thoughts-on-political-progress", 
-								pageUrl:     "https://medium.com/thoughts-on-political-progress",
-								maxCount:    10,
-								charLimit:   100,
-								dateFormat:  dteOpt
+					rssfeeds({ feedName   : "Medium"
+                                                 , divName    : "MediumRss"
+                                                 , feedUrl    : "https://medium.com/feed/thoughts-on-political-progress"
+                                                 , pageUrl    : "https://medium.com/thoughts-on-political-progress"
+                                                 , maxCount   : 10
+                                                 , charLimit  : 100
+                                                 , dateFormat : dteOpt
 					});
 
-					rssfeeds({ 	feedName:    "Twitter",
-								divName:     "TwitterRss",
-								feedUrl:     "https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo",
-								pageUrl:     "https://twitter.com/frankrcastillo",
-								maxCount:    10,
-								charLimit:   100,
-								dateFormat:  dteOpt
+					rssfeeds({ feedName   : "Twitter"
+                                                 , divName    : "TwitterRss"
+                                                 , feedUrl    : "https://twitrss.me/twitter_user_to_rss/?user=frankrcastillo"
+                                                 , pageUrl    : "https://twitter.com/frankrcastillo"
+                                                 , maxCount   : 10
+                                                 , charLimit  : 100
+                                                 , dateFormat : dteOpt
 					});
 
-					rssfeeds({	feedName:    "YouTube",
-								divName:     "YouTubeRss",
-								feedUrl:     "https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g",
-								pageUrl:     "https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g?view_as=subscriber",
-								maxCount:    10,
-								charLimit:   100,
-								dateFormat:  dteOpt
+					rssfeeds({ feedName   : "YouTube"
+                                                 , divName    : "YouTubeRss"
+                                                 , feedUrl    : "https://www.youtube.com/feeds/videos.xml?channel_id=UC2h-iPOAKbCe1eo8aA-Zf4g"
+                                                 , pageUrl    : "https://www.youtube.com/channel/UC2h-iPOAKbCe1eo8aA-Zf4g?view_as=subscriber"
+                                                 , maxCount   : 10
+                                                 , charLimit  : 100
+                                                 , dateFormat : dteOpt
 					});
 
 					var welcomeMsg  = "System console, written in JavaScript by Franklin Castillo.<br/>"
-									+ "There's a lot still under construction; enter 'help' for a list of commands.<br/>";
+                                                        + "There's a lot still under construction; enter 'help' for a list of commands.<br/>";
 					prln(true, welcomeMsg);
 				}
 
 				// function to print to console
 				function prln(nl, printInput) {
 					if (nl == true) {
-						var br = "<br/>";
+                                                var br = "<br/>";
 					} else {
 						var br = "";
 					}
@@ -336,49 +390,52 @@
 							}
 						}
 					}
-					var xChg = 10;
-					while (xChg--) {
-						var xStr = x.toString();
-						for (i = 0; i < 9; i++) {
-							for (j = 0; j < 9; j++) {
-								if (x[i][j] != 0) c[i][j].length = 0;
-								for (k = 0; k < 9; k++) {
-									if (c[i][j].length == 1) x[i][j] = c[i][j][k];
-									for (z = 0; z < 9; z++) {
-										if (x[i][j] == c[z][j][k]) c[z][j].splice(k,1);
-										if (x[i][j] == c[i][z][k]) c[i][z].splice(k,1);
-									}
-								}
-							}
-						}
+                                        
+                                        var change = true;
+                                        var oldX;
+                                        var newX;
+                                        while (change == true) {
+                                                for (i = 0; i < 9; i++) {
+                                                        for (j = 0; j < 9; j++) {
+                                                                if (x[i][j] != 0) c[i][j].length = 0;
+                                                                for (k = 0; k < 9; k++) {
+                                                                        if (c[i][j].length == 1) x[i][j] = c[i][j][k];
+                                                                        for (z = 0; z < 9; z++) {
+                                                                                if (x[i][j] == c[z][j][k]) c[z][j].splice(k,1);
+                                                                                if (x[i][j] == c[i][z][k]) c[i][z].splice(k,1);
+                                                                        }
+                                                                }
+                                                        }
+                                                }
 
-						var r = 0;
-						var s = 0;
-						for (p = 0; p < 9; p++) {
-							for (q = 0; q < 9; q++) {
-								switch (true) {
-									case p >= 0 && p <= 2: r = 0; break;
-									case p >= 3 && p <= 5: r = 3; break;
-									case p >= 6 && p <= 8: r = 6; break;
-								}
+                                                for (p = 0; p < 9; p++) {
+                                                        for (q = 0; q < 9; q++) {
+                                                                switch (true) {
+                                                                        case p >= 0 && p <= 2: var r = 0; break;
+                                                                        case p >= 3 && p <= 5: var r = 3; break;
+                                                                        case p >= 6 && p <= 8: var r = 6; break;
+                                                                }
 
-								switch (true) {
-									case q >= 0 && q <= 2: s = 0; break;
-									case q >= 3 && q <= 5: s = 3; break;
-									case q >= 6 && q <= 8: s = 6; break;
-								}
+                                                                switch (true) {
+                                                                        case q >= 0 && q <= 2: var s = 0; break;
+                                                                        case q >= 3 && q <= 5: var s = 3; break;
+                                                                        case q >= 6 && q <= 8: var s = 6; break;
+                                                                }
 
-								for (i = r; i < (3 + r); i++) {
-									for (j = s; j < (3 + s); j++) {
-										for (k = 0; k < c[p][q].length; k++) {
-											if (x[i][j] == c[p][q][k]) c[p][q].splice(k,1);
-										}
-									}
-								}
-							}
-						}
-					}
-					
+                                                                for (i = r; i < (3 + r); i++) {
+                                                                        for (j = s; j < (3 + s); j++) {
+                                                                                for (k = 0; k < c[p][q].length; k++) {
+                                                                                        if (x[i][j] == c[p][q][k]) c[p][q].splice(k,1);
+                                                                                }
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+                                                newX = x.toString();
+                                                if(oldX == newX) change = false;
+                                                oldX = newX;
+                                        }
+        					
 					for (i = 0; i < 9; i++) {
 						for (j = 0; j < 9; j++) {
 							document.getElementById("sdk" + i + j).value = x[i][j];
@@ -396,42 +453,42 @@
 					}
 
 					var maparea = [[ 2,18],[ 2,19],[ 2,20],[ 2,21],[ 2,22],[ 2,23],[ 2,24],[ 2,25],[ 2,28],[ 3,29]
-								  ,[ 2,30],[ 2,31],[ 2,32],[ 2,33],[ 2,34],[ 3,12],[ 3,13],[ 3,14],[ 3,15],[ 3,16]
-								  ,[ 3,17],[ 3,18],[ 3,19],[ 3,20],[ 3,21],[ 3,22],[ 3,23],[ 3,27],[ 3,28],[ 3,29]
-								  ,[ 3,30],[ 3,31],[ 3,32],[ 3,33],[ 3,41],[ 3,42],[ 3,43],[ 3,44],[ 3,49],[ 3,50]
-								  ,[ 3,53],[ 3,54],[ 3,55],[ 3,56],[ 3,57],[ 3,58],[ 3,59],[ 3,60],[ 3,61],[ 3,62]
-								  ,[ 3,65],[ 3,68],[ 3,69],[ 3,70],[ 4, 3],[ 4, 4],[ 4, 5],[ 4, 6],[ 4, 8],[ 4, 9]
-								  ,[ 4,10],[ 4,11],[ 4,12],[ 4,13],[ 4,14],[ 4,15],[ 4,16],[ 4,17],[ 4,18],[ 4,22]
-								  ,[ 4,23],[ 4,24],[ 4,28],[ 4,29],[ 4,40],[ 4,41],[ 4,42],[ 4,43],[ 4,44],[ 4,45]
-								  ,[ 4,46],[ 4,47],[ 4,48],[ 4,49],[ 4,50],[ 4,51],[ 4,52],[ 4,53],[ 4,54],[ 4,55]
-								  ,[ 4,56],[ 4,57],[ 4,58],[ 4,59],[ 4,60],[ 4,61],[ 4,62],[ 4,63],[ 4,64],[ 4,65]
-								  ,[ 4,66],[ 4,67],[ 4,68],[ 4,69],[ 4,71],[ 4,72],[ 4,73],[ 4,74],[ 5,10],[ 5,11]
-								  ,[ 5,12],[ 5,13],[ 5,14],[ 5,15],[ 5,16],[ 5,17],[ 5,18],[ 5,19],[ 5,21],[ 5,22]
-								  ,[ 5,23],[ 5,24],[ 5,25],[ 5,26],[ 5,37],[ 5,38],[ 5,40],[ 5,41],[ 5,42],[ 5,43]
-								  ,[ 5,44],[ 5,45],[ 5,46],[ 5,47],[ 5,48],[ 5,49],[ 5,50],[ 5,51],[ 5,52],[ 5,53]
-								  ,[ 5,54],[ 5,55],[ 5,56],[ 5,57],[ 5,58],[ 5,59],[ 5,60],[ 5,61],[ 5,62],[ 5,63]
-								  ,[ 5,64],[ 5,65],[ 5,66],[ 5,67],[ 5,68],[ 5,69],[ 6,12],[ 6,13],[ 6,14],[ 6,15]
-								  ,[ 6,16],[ 6,17],[ 6,18],[ 6,19],[ 6,20],[ 6,21],[ 6,22],[ 6,23],[ 6,24],[ 6,38]
-								  ,[ 6,39],[ 6,40],[ 6,41],[ 6,42],[ 6,43],[ 6,44],[ 6,45],[ 6,46],[ 6,47],[ 6,48]
-								  ,[ 6,49],[ 6,50],[ 6,51],[ 6,52],[ 6,53],[ 6,54],[ 6,55],[ 6,56],[ 6,57],[ 6,58]
-								  ,[ 6,59],[ 6,60],[ 6,61],[ 6,62],[ 6,63],[ 6,64],[ 6,65],[ 6,66],[ 7,13],[ 7,14]
-								  ,[ 7,15],[ 7,16],[ 7,17],[ 7,18],[ 7,19],[ 7,20],[ 7,21],[ 7,37],[ 7,38],[ 7,40]
-								  ,[ 7,41],[ 7,44],[ 7,46],[ 7,47],[ 7,48],[ 7,49],[ 7,50],[ 7,51],[ 7,52],[ 7,53]
-								  ,[ 7,54],[ 7,55],[ 7,56],[ 7,57],[ 7,58],[ 7,59],[ 7,60],[ 7,61],[ 7,62],[ 7,63]
-								  ,[ 7,64],[ 8,16],[ 8,17],[ 8,36],[ 8,37],[ 8,38],[ 8,39],[ 8,40],[ 8,41],[ 8,42]
-								  ,[ 8,43],[ 8,44],[ 8,45],[ 8,46],[ 8,47],[ 8,48],[ 8,49],[ 8,50],[ 8,51],[ 8,52]
-								  ,[ 8,54],[ 8,55],[ 8,56],[ 8,57],[ 8,58],[ 8,59],[ 8,60],[ 8,61],[ 8,62],[ 8,63]
-								  ,[ 8,64],[ 9,19],[ 9,35],[ 9,36],[ 9,37],[ 9,38],[ 9,39],[ 9,40],[ 9,41],[ 9,42]
-								  ,[ 9,43],[ 9,44],[ 9,45],[ 9,46],[ 9,47],[ 9,48],[ 9,49],[ 9,55],[ 9,60],[ 9,61]
-								  ,[ 9,62],[ 9,65],[10,22],[10,23],[10,24],[10,25],[10,36],[10,37],[10,38],[10,39]
-								  ,[10,40],[10,41],[10,42],[10,43],[10,44],[10,45],[10,46],[10,47],[10,48],[10,49]
-								  ,[10,60],[11,21],[11,22],[11,23],[11,24],[11,25],[11,26],[11,27],[11,28],[11,41]
-								  ,[11,42],[11,43],[11,44],[11,45],[11,46],[11,47],[11,61],[11,63],[11,65],[12,22]
-								  ,[12,23],[12,24],[12,25],[12,26],[12,27],[12,28],[12,29],[12,30],[12,42],[12,43]
-								  ,[12,44],[12,45],[12,46],[12,47],[13,24],[13,25],[13,26],[13,27],[13,28],[13,29]
-								  ,[13,42],[13,43],[13,44],[13,45],[13,46],[13,65],[13,66],[13,67],[13,68],[13,69]
-								  ,[13,70],[14,23],[14,24],[14,25],[14,26],[14,27],[14,43],[14,44],[14,45],[14,64]
-								  ,[14,65],[14,68],[14,69],[14,70],[14,71],[15,23],[15,24],[16,22],[16,23],[17,23]];
+                                                      ,[ 2,30],[ 2,31],[ 2,32],[ 2,33],[ 2,34],[ 3,12],[ 3,13],[ 3,14],[ 3,15],[ 3,16]
+                                                      ,[ 3,17],[ 3,18],[ 3,19],[ 3,20],[ 3,21],[ 3,22],[ 3,23],[ 3,27],[ 3,28],[ 3,29]
+                                                      ,[ 3,30],[ 3,31],[ 3,32],[ 3,33],[ 3,41],[ 3,42],[ 3,43],[ 3,44],[ 3,49],[ 3,50]
+                                                      ,[ 3,53],[ 3,54],[ 3,55],[ 3,56],[ 3,57],[ 3,58],[ 3,59],[ 3,60],[ 3,61],[ 3,62]
+                                                      ,[ 3,65],[ 3,68],[ 3,69],[ 3,70],[ 4, 3],[ 4, 4],[ 4, 5],[ 4, 6],[ 4, 8],[ 4, 9]
+                                                      ,[ 4,10],[ 4,11],[ 4,12],[ 4,13],[ 4,14],[ 4,15],[ 4,16],[ 4,17],[ 4,18],[ 4,22]
+                                                      ,[ 4,23],[ 4,24],[ 4,28],[ 4,29],[ 4,40],[ 4,41],[ 4,42],[ 4,43],[ 4,44],[ 4,45]
+                                                      ,[ 4,46],[ 4,47],[ 4,48],[ 4,49],[ 4,50],[ 4,51],[ 4,52],[ 4,53],[ 4,54],[ 4,55]
+                                                      ,[ 4,56],[ 4,57],[ 4,58],[ 4,59],[ 4,60],[ 4,61],[ 4,62],[ 4,63],[ 4,64],[ 4,65]
+                                                      ,[ 4,66],[ 4,67],[ 4,68],[ 4,69],[ 4,71],[ 4,72],[ 4,73],[ 4,74],[ 5,10],[ 5,11]
+                                                      ,[ 5,12],[ 5,13],[ 5,14],[ 5,15],[ 5,16],[ 5,17],[ 5,18],[ 5,19],[ 5,21],[ 5,22]
+                                                      ,[ 5,23],[ 5,24],[ 5,25],[ 5,26],[ 5,37],[ 5,38],[ 5,40],[ 5,41],[ 5,42],[ 5,43]
+                                                      ,[ 5,44],[ 5,45],[ 5,46],[ 5,47],[ 5,48],[ 5,49],[ 5,50],[ 5,51],[ 5,52],[ 5,53]
+                                                      ,[ 5,54],[ 5,55],[ 5,56],[ 5,57],[ 5,58],[ 5,59],[ 5,60],[ 5,61],[ 5,62],[ 5,63]
+                                                      ,[ 5,64],[ 5,65],[ 5,66],[ 5,67],[ 5,68],[ 5,69],[ 6,12],[ 6,13],[ 6,14],[ 6,15]
+                                                      ,[ 6,16],[ 6,17],[ 6,18],[ 6,19],[ 6,20],[ 6,21],[ 6,22],[ 6,23],[ 6,24],[ 6,38]
+                                                      ,[ 6,39],[ 6,40],[ 6,41],[ 6,42],[ 6,43],[ 6,44],[ 6,45],[ 6,46],[ 6,47],[ 6,48]
+                                                      ,[ 6,49],[ 6,50],[ 6,51],[ 6,52],[ 6,53],[ 6,54],[ 6,55],[ 6,56],[ 6,57],[ 6,58]
+                                                      ,[ 6,59],[ 6,60],[ 6,61],[ 6,62],[ 6,63],[ 6,64],[ 6,65],[ 6,66],[ 7,13],[ 7,14]
+                                                      ,[ 7,15],[ 7,16],[ 7,17],[ 7,18],[ 7,19],[ 7,20],[ 7,21],[ 7,37],[ 7,38],[ 7,40]
+                                                      ,[ 7,41],[ 7,44],[ 7,46],[ 7,47],[ 7,48],[ 7,49],[ 7,50],[ 7,51],[ 7,52],[ 7,53]
+                                                      ,[ 7,54],[ 7,55],[ 7,56],[ 7,57],[ 7,58],[ 7,59],[ 7,60],[ 7,61],[ 7,62],[ 7,63]
+                                                      ,[ 7,64],[ 8,16],[ 8,17],[ 8,36],[ 8,37],[ 8,38],[ 8,39],[ 8,40],[ 8,41],[ 8,42]
+                                                      ,[ 8,43],[ 8,44],[ 8,45],[ 8,46],[ 8,47],[ 8,48],[ 8,49],[ 8,50],[ 8,51],[ 8,52]
+                                                      ,[ 8,54],[ 8,55],[ 8,56],[ 8,57],[ 8,58],[ 8,59],[ 8,60],[ 8,61],[ 8,62],[ 8,63]
+                                                      ,[ 8,64],[ 9,19],[ 9,35],[ 9,36],[ 9,37],[ 9,38],[ 9,39],[ 9,40],[ 9,41],[ 9,42]
+                                                      ,[ 9,43],[ 9,44],[ 9,45],[ 9,46],[ 9,47],[ 9,48],[ 9,49],[ 9,55],[ 9,60],[ 9,61]
+                                                      ,[ 9,62],[ 9,65],[10,22],[10,23],[10,24],[10,25],[10,36],[10,37],[10,38],[10,39]
+                                                      ,[10,40],[10,41],[10,42],[10,43],[10,44],[10,45],[10,46],[10,47],[10,48],[10,49]
+                                                      ,[10,60],[11,21],[11,22],[11,23],[11,24],[11,25],[11,26],[11,27],[11,28],[11,41]
+                                                      ,[11,42],[11,43],[11,44],[11,45],[11,46],[11,47],[11,61],[11,63],[11,65],[12,22]
+                                                      ,[12,23],[12,24],[12,25],[12,26],[12,27],[12,28],[12,29],[12,30],[12,42],[12,43]
+                                                      ,[12,44],[12,45],[12,46],[12,47],[13,24],[13,25],[13,26],[13,27],[13,28],[13,29]
+                                                      ,[13,42],[13,43],[13,44],[13,45],[13,46],[13,65],[13,66],[13,67],[13,68],[13,69]
+                                                      ,[13,70],[14,23],[14,24],[14,25],[14,26],[14,27],[14,43],[14,44],[14,45],[14,64]
+                                                      ,[14,65],[14,68],[14,69],[14,70],[14,71],[15,23],[15,24],[16,22],[16,23],[17,23]];
 
 					for (i = 0; i <= 369; i++) {
 						worldmap[maparea[i][0]][maparea[i][1]] = ".";
@@ -444,19 +501,8 @@
 						dataType: "json",
 						success: function(data) {
 							var welcomeMsg = "<div id='vstr'>";
-							getip = data.ip;
-							getcc = data.country_code;
-							getcn = data.country_name;
-							getrc = data.region_code;
-							getrn = data.region_name;
-							getct = data.city;
-							getzc = data.zip_code;
-							gettz = data.time_zone;
-							getlt = data.latitude;
-							getlg = data.longitude;
-							getmc = data.metro_code;
-							getsc = screen.width + "x" + screen.height;
-							getpl = navigator.platform;
+                                                        var d = data;
+                                                        var s = screen;
 							coordx = parseInt((-0.1 * data.latitude) + 11);
 							coordy = parseInt((0.222 * data.longitude) + 39);
 							worldmap[coordx][coordy] = "<b id='xmark'>X</b>";
@@ -467,16 +513,16 @@
 										welcomeMsg += worldmap[i][j];
 									} 
 								switch (true) {
-									case i == 3 : ipInfo = "IP Address: "   + getip; break;
-									case i == 4 : ipInfo = "City: "         + getct; break;
-									case i == 5 : ipInfo = "State/Region: " + getrn + " (" + getrc + ")"; break;
-									case i == 6 : ipInfo = "Zip Code: "     + getzc; break;
-									case i == 7 : ipInfo = "Country: "      + getcn + " (" + getcc + ")"; break;
-									case i == 8 : ipInfo = "Lat/Long: "     + getlt + ", " + getlg; break;
-									case i == 9 : ipInfo = "Time Zone: "    + gettz; break;
-									case i == 10: ipInfo = "Metro Code: "   + getmc; break;
-									case i == 11: ipInfo = "Display: "      + getsc; break;
-									case i == 12: ipInfo = "Platform: "     + getpl; break;
+									case i == 3 : ipInfo = "IP Address: "   + d.ip                                        ; break;
+									case i == 4 : ipInfo = "City: "         + d.city                                      ; break;
+									case i == 5 : ipInfo = "State/Region: " + d.country_name + " (" + d.region_code + ")" ; break;
+									case i == 6 : ipInfo = "Zip Code: "     + d.zip_code                                  ; break;
+									case i == 7 : ipInfo = "Country: "      + d.country_code                              ; break;
+									case i == 8 : ipInfo = "Lat/Long: "     + d.latitude + ", " + d.longitude             ; break;
+									case i == 9 : ipInfo = "Time Zone: "    + d.time_zone                                 ; break;
+									case i == 10: ipInfo = "Metro Code: "   + d.metro_code                                ; break;
+									case i == 11: ipInfo = "Display: "      + s.width + "x" + s.height                    ; break;
+									case i == 12: ipInfo = "Platform: "     + navigator.platform                          ; break;
 								}
 								welcomeMsg += ipInfo + "<br/>";
 							}
@@ -486,10 +532,10 @@
 					});
 				}
 
-				// File Management
+				// File Management (under construction)
 				function fsbuild(){}
-
 				function cd	(input)	{ prln(true, input + ": feature not yet available"); }
+                                function echo(stringInput, pipe, dest) { prln(true, "feature not yet available"); }
 				function find	(input)	{ prln(true, input + ": feature not yet available"); }
 				function ls	(input) { prln(true, input + ": feature not yet available"); }
 				function mkdir	(input) { prln(true, input + ": feature not yet available"); }
@@ -521,7 +567,6 @@
 				function zip	(input)	{ prln(true, input + ": feature not yet available"); }
 				function unzip	(input)	{ prln(true, input + ": feature not yet available"); }
 				function whoami	(input)	{ prln(true, input + ": feature not yet available"); }
-
 				function wfbgraph() {
 					url = "https://www.cia.gov/library/publications/the-world-factbook/fields/2028.html";
 				}
