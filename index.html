@@ -62,17 +62,15 @@
 
                                 .sudoku { font-family      : "Lucida Console", Monaco, monospace;
 				          text-shadow      : 0px 0px 5px #ffa500 ;
+					  border-bottom	   : 1px solid #ffa500
                                           background-color : #000000 ;
 					  font-size        : 12px    ;
                                           color            : #ffa500 ;
                                           outline          : none    ;
-                                          width            : 30px    ;
+                                          width            : 12px    ;
                                           border           : 0px     ;
                                         }
 				
-				.sudoku::placeholder { color: #ffa500; }
-
-
                                 #xmark  { animation  : blink 1s infinite ;
                                           color      : #ffa500           ;
                                         }
@@ -367,7 +365,7 @@
 					var sudokuMsg = "<br/>Enter values, using 0 for blanks<br/>Press Enter to continue...<br/><br/>";
 					for (i = 0; i < 9; i++) {
 						for (j = 0; j < 9; j++) {
-							sudokuMsg += "<input class='sudoku' type='text' maxlength='1' placeholder='_'  id='sdk" + i + j + "'>";
+							sudokuMsg += "<input class='sudoku' type='text' maxlength='1' id='sdk" + i + j + "'>";
 						}
 						sudokuMsg += "<br/>";
 					}
