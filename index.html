@@ -382,67 +382,123 @@
 							x[i][j] = document.getElementById("sdk" + i + j).value;
 						}
 					}
-						
-					var c = new Array(9);
+					
+					var sx = solveGame(x);
+					
 					for (i = 0; i < 9; i++) {
-						c[i] = new Array(9);
 						for (j = 0; j < 9; j++) {
-							c[i][j] = new Array(9);
-							for (k = 0; k < 9; k++) {
-								c[i][j][k] = k + 1;
-							}
+							document.getElementById("sdk" + i + j).value = sx[i][j];
 						}
 					}
-                                        
-                                        var change = true;
-                                        var oldX;
-                                        var newX;
-                                        while (change == true) {
-                                                for (i = 0; i < 9; i++) {
-                                                        for (j = 0; j < 9; j++) {
-                                                                if (x[i][j] != 0) c[i][j].length = 0;
-                                                                for (k = 0; k < 9; k++) {
-                                                                        if (c[i][j].length == 1) x[i][j] = c[i][j][k];
-                                                                        for (z = 0; z < 9; z++) {
-                                                                                if (x[i][j] == c[z][j][k]) c[z][j].splice(k,1);
-                                                                                if (x[i][j] == c[i][z][k]) c[i][z].splice(k,1);
-                                                                        }
-                                                                }
-                                                        }
-                                                }
 
-                                                for (p = 0; p < 9; p++) {
-                                                        for (q = 0; q < 9; q++) {
-                                                                switch (true) {
-                                                                        case p >= 0 && p <= 2: var r = 0; break;
-                                                                        case p >= 3 && p <= 5: var r = 3; break;
-                                                                        case p >= 6 && p <= 8: var r = 6; break;
-                                                                }
-
-                                                                switch (true) {
-                                                                        case q >= 0 && q <= 2: var s = 0; break;
-                                                                        case q >= 3 && q <= 5: var s = 3; break;
-                                                                        case q >= 6 && q <= 8: var s = 6; break;
-                                                                }
-
-                                                                for (i = r; i < (3 + r); i++) {
-                                                                        for (j = s; j < (3 + s); j++) {
-                                                                                for (k = 0; k < c[p][q].length; k++) {
-                                                                                        if (x[i][j] == c[p][q][k]) c[p][q].splice(k,1);
-                                                                                }
-                                                                        }
-                                                                }
-                                                        }
-                                                }
-                                                newX = x.toString();
-                                                if(oldX == newX) change = false;
-                                                oldX = newX;
-                                        }
-        					
-					for (i = 0; i < 9; i++) {
-						for (j = 0; j < 9; j++) {
-							document.getElementById("sdk" + i + j).value = x[i][j];
+					function solveGame(game) {
+						/*
+						Create a cube array containing values of 1 to 9, which will be compared against
+						the game array in order to filter out candidate elements.
+						*/
+						var cube = new Array(9);
+						for (i = 0; i < 9; i++) {
+							cube[i] = new Array(9);
+							for (j = 0; j < 9; j++) {
+								cube[i][j] = new Array(9);
+								for (k = 0; k < 9; k++) {
+									cube[i][j][k] = k + 1;
+								}
+							}
 						}
+
+						/*
+						While loop performs game checks until the starting game array and the ending game
+						are the same, that is, no more changes are made. This may mean that there is a total
+						solution, while in others, a partial solution was found. Total and partial solutions
+						will have different follow-on actions occur.
+						*/
+
+						var gameChg = true;
+						var oldGame;
+						var newGame;
+						while (gameChg == true) {
+							for (i = 0; i < 9; i++) {
+								for (j = 0; j < 9; j++) {
+									if (game[i][j] != 0) cube[i][j].length = 0;
+									for (k = 0; k < 9; k++) {
+										/* 
+										Spot checks the game cell and the layers of the cube that corresponds
+										to that i,j coordinate.
+										*/
+										if (cube[i][j].length == 1) game[i][j] = cube[i][j][k];
+										for (z = 0; z < 9; z++) {
+											/*
+											Vertical array check between game cell, checking the game
+											and cube columns
+											*/
+											if (game[i][j] == cube[z][j][k]) cube[z][j].splice(k,1);
+
+											/*
+											Horizontal array check between game cell, checking the game
+											and cube rows
+											*/
+											if (game[i][j] == cube[i][z][k]) cube[i][z].splice(k,1);
+										}
+									}
+								}
+							}
+
+							/*
+							Square check iterates through the active game cell and each submatrix and across
+							the entire cube.
+							*/
+							for (p = 0; p < 9; p++) {
+								for (q = 0; q < 9; q++) {
+									switch (true) {
+										case p >= 0 && p <= 2: var r = 0; break;
+										case p >= 3 && p <= 5: var r = 3; break;
+										case p >= 6 && p <= 8: var r = 6; break;
+									}
+
+									switch (true) {
+										case q >= 0 && q <= 2: var s = 0; break;
+										case q >= 3 && q <= 5: var s = 3; break;
+										case q >= 6 && q <= 8: var s = 6; break;
+									}
+
+									for (i = r; i < (3 + r); i++) {
+										for (j = s; j < (3 + s); j++) {
+											for (k = 0; k < cube[p][q].length; k++) {
+												if (game[i][j] == cube[p][q][k]) cube[p][q].splice(k,1);
+											}
+										}
+									}
+								}
+							}
+
+							//If no changes from the beginning of the loop and the end of the loop occur, it stops
+							newGame = game.toString();
+							if(oldGame == newGame) gameChg = false;
+							oldGame = newGame;
+						}
+
+						//if the game isn't solved then find the first element then find the first element with more than one candidate answer.
+						for (i = 0; i < 9; i++) {
+							for (j = 0; j < 9; j++) {                                
+								if (cube[i][j].length > 1) {
+									for (k = 0; k < cube[i][j].length; k++) {
+										var subGame = game;
+										subGame[i][j] = cube[i][j][k];
+										subGame = solveGame(subGame);
+										for (i = 0; i < 9; i++) {
+											for (j = 0; j < 9; j++) {
+												if (cube[i][j].length <= 1) {
+													return subGame;
+												}
+											}
+										}
+									}
+								}
+							}
+						}                
+
+						return game;
 					}
 				}
 
