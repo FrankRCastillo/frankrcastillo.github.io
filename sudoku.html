@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html lang="en">
+        <style>
+        body  {font-size: 11px; font-family: "Lucida Console", Monaco, monospace; }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script>
+        document.body = document.createElement("body");
+
+        var x = [[9,0,0,0,0,0,0,4,0]
+                ,[0,7,5,1,0,0,0,0,0]
+                ,[0,3,2,0,0,4,5,8,0]
+                ,[2,0,0,0,0,9,0,0,0]
+                ,[5,0,3,2,8,7,9,0,4]
+                ,[0,0,0,6,0,0,0,0,2]
+                ,[0,4,9,7,0,0,2,3,0]
+                ,[0,0,0,0,0,6,4,9,0]
+                ,[0,2,0,0,0,0,0,0,8]];
+
+        $("body").append(printArr(x));
+        
+        var sx = solveGame(x);
+        
+        $("body").append(printArr(sx));
+        
+        function solveGame(game) {
+                /* Create a cube array containing values of 1 to 9, which will be compared against
+                the game array in order to filter out candidate elements. */
+                var cube = new Array(9);
+                for (i = 0; i < 9; i++) {
+                        cube[i] = new Array(9);
+                        for (j = 0; j < 9; j++) {
+                                cube[i][j] = new Array(9);
+                                for (k = 0; k < 9; k++) {
+                                        cube[i][j][k] = k + 1;
+                                }
+                        }
+                }
+
+                /* While loop performs game checks until the starting game array and the ending game
+                are the same, that is, no more changes are made. This may mean that there is a total
+                solution, while in others, a partial solution was found. Total and partial solutions
+                will have different follow-on actions occur. */
+                var gameChg = true;
+                var oldGame;
+                var newGame;
+                while (gameChg == true) {
+                        for (i = 0; i < 9; i++) {
+                                for (j = 0; j < 9; j++) {
+                                        if (game[i][j] != 0) cube[i][j].length = 0;
+                                        for (k = 0; k < 9; k++) {
+                                                /* Spot checks the game cell and the layers of the cube that corresponds
+                                                to that i,j coordinate. */
+                                                if (cube[i][j].length == 1) game[i][j] = cube[i][j][k];
+                                                for (z = 0; z < 9; z++) {
+                                                        /* Vertical array check between game cell, checking the game
+                                                        and cube columns */
+                                                        if (game[i][j] == cube[z][j][k]) cube[z][j].splice(k,1);
+
+                                                        /* Horizontal array check between game cell, checking the game
+                                                        and cube rows */
+                                                        if (game[i][j] == cube[i][z][k]) cube[i][z].splice(k,1);
+                                                }
+                                        }
+                                }
+                        }
+
+                        /* Square check iterates through the active game cell and each submatrix and across
+                        the entire cube. */
+                        for (p = 0; p < 9; p++) {
+                                for (q = 0; q < 9; q++) {
+                                        switch (true) {
+                                                case p >= 0 && p <= 2: var r = 0; break;
+                                                case p >= 3 && p <= 5: var r = 3; break;
+                                                case p >= 6 && p <= 8: var r = 6; break;
+                                        }
+
+                                        switch (true) {
+                                                case q >= 0 && q <= 2: var s = 0; break;
+                                                case q >= 3 && q <= 5: var s = 3; break;
+                                                case q >= 6 && q <= 8: var s = 6; break;
+                                        }
+
+                                        for (i = r; i < (3 + r); i++) {
+                                                for (j = s; j < (3 + s); j++) {
+                                                        for (k = 0; k < cube[p][q].length; k++) {
+                                                                if (game[i][j] == cube[p][q][k]) cube[p][q].splice(k,1);
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+
+                        //If no changes from the beginning of the loop and the end of the loop occur, it stops
+                        newGame = game.toString();
+                        if(oldGame == newGame) gameChg = false;
+                        oldGame = newGame;
+                }
+
+                /* if the game isn't solved then find the first element then
+                find the first element with more than one candidate answer. */
+                        var pGame = copyArr(isSolved(game)[0]);
+                        for (i = 0; i < 9; i++) {
+                                for (j = 0; j < 9; j++) {
+                                        if (cube[i][j].length > 0) {
+                                                for (k = 0; k < cube[i][j].length; k++) {
+                                                        pGame[i][j] = cube[i][j][k];
+                                                        var pGame = solveGame(pGame);
+                                                        for (i = 0; i < 9; i++) {
+                                                                for (j = 0; j < 9; j++) {
+                                                                        if (cube[i][j].length <= 1) {
+                                                                                return pGame;
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                if (isSolved(game)[1] == true) {
+                        return isSolved(game)[0];
+                } else 
+                if (isSolved(game)[1] == false) {
+                        console.log("partial solution");
+                        return isSolved(game)[0];
+                }
+        }
+        
+        /*Returns Sudoku games in HTML. If there is a
+        zero/blank space, it'll be highlighted in red. */
+        function printArr(arr) {
+                var output = "<table>";
+                for (i = 0; i < 9; i++) {
+                        output += "<tr>";
+                        for (j = 0; j < 9; j++) {
+                                var front = "";
+                                var end = "";
+                                if (arr[i][j] == 0) {
+                                        var front = "<font color='red'><b>";
+                                        var end = "</font></b>";
+                                }
+                                output += "<td>[" + front + arr[i][j] + end + "]</td>";
+                        }
+                        output += "</tr>";
+                }
+                output += "</table><br/>";
+                return output;
+        }
+        
+        /*Returns an array with the game and an second element:
+        0 if the game is solved, 1 if not*/
+        function isSolved(arr) {
+                var solvedGame = 0;
+                for (i = 0; i < 9; i++) {
+                        for (j = 0; j < 9; j++) {
+                                solvedGame += arr[i][j];
+                        }
+                }
+                if (solvedGame == 405) {
+                        return [arr, true];
+                } else {
+                        return [arr, false];
+                }
+        }
+        
+        /*Returns a copy of a two-dimensional array*/
+        function copyArr(arr) {
+                var rtnArr = new Array(arr.length);
+                for (i = 0; i < arr.length; i++) {
+                        rtnArr[i] = new Array(arr[i].length);
+                        for (j = 0; j < arr[i].length; j++) {
+                                rtnArr[i][j] = arr[i][j];
+                        }
+                }
+                return rtnArr;
+        }
+        </script>
+</html>
