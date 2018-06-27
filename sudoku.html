@@ -7,43 +7,38 @@
         <script>
         document.body = document.createElement("body");
 
-        var x = [[9,0,0,0,0,0,0,4,0]
-                ,[0,7,5,1,0,0,0,0,0]
-                ,[0,3,2,0,0,4,5,8,0]
-                ,[2,0,0,0,0,9,0,0,0]
-                ,[5,0,3,2,8,7,9,0,4]
-                ,[0,0,0,6,0,0,0,0,2]
-                ,[0,4,9,7,0,0,2,3,0]
-                ,[0,0,0,0,0,6,4,9,0]
-                ,[0,2,0,0,0,0,0,0,8]];
-
-        $("body").append(printArr(x));
-        
-        var sx = solveGame(x);
-        
-        $("body").append(printArr(sx));
-        
-        function solveGame(game) {
-                /* Create a cube array containing values of 1 to 9, which will be compared against
-                the game array in order to filter out candidate elements. */
-                var cube = new Array(9);
-                for (i = 0; i < 9; i++) {
-                        cube[i] = new Array(9);
-                        for (j = 0; j < 9; j++) {
-                                cube[i][j] = new Array(9);
-                                for (k = 0; k < 9; k++) {
-                                        cube[i][j][k] = k + 1;
-                                }
+        var c = new Array(9);
+        for (i = 0; i < 9; i++) {
+                c[i] = new Array(9);
+                for (j = 0; j < 9; j++) {
+                        c[i][j] = new Array(9);
+                        for (k = 0; k < 9; k++) {
+                                c[i][j][k] = k + 1;
                         }
                 }
+        }
+        var x = [[8,0,0,0,0,0,0,0,0]
+                ,[0,0,3,6,0,0,0,0,0]
+                ,[0,7,0,0,9,0,2,0,0]
+                ,[0,5,0,0,0,7,0,0,0]
+                ,[0,0,0,0,4,5,7,0,0]
+                ,[0,0,0,1,0,0,0,3,0]
+                ,[0,0,1,0,0,0,0,6,8]
+                ,[0,0,8,5,0,0,0,1,0]
+                ,[0,9,0,0,0,0,4,0,0]];
 
+        $("body").append(printArr(x));   
+        var sx = solveGame(x, c, true)
+        $("body").append(printArr(sx));
+  
+        function solveGame(game, cube, cS) {
                 /* While loop performs game checks until the starting game array and the ending game
                 are the same, that is, no more changes are made. This may mean that there is a total
                 solution, while in others, a partial solution was found. Total and partial solutions
                 will have different follow-on actions occur. */
-                var gameChg = true;
                 var oldGame;
                 var newGame;
+                var gameChg = true;
                 while (gameChg == true) {
                         for (i = 0; i < 9; i++) {
                                 for (j = 0; j < 9; j++) {
@@ -53,12 +48,8 @@
                                                 to that i,j coordinate. */
                                                 if (cube[i][j].length == 1) game[i][j] = cube[i][j][k];
                                                 for (z = 0; z < 9; z++) {
-                                                        /* Vertical array check between game cell, checking the game
-                                                        and cube columns */
+                                                        /* Vertical & horizontal array check between game cell, checking */
                                                         if (game[i][j] == cube[z][j][k]) cube[z][j].splice(k,1);
-
-                                                        /* Horizontal array check between game cell, checking the game
-                                                        and cube rows */
                                                         if (game[i][j] == cube[i][z][k]) cube[i][z].splice(k,1);
                                                 }
                                         }
@@ -99,40 +90,53 @@
 
                 /* if the game isn't solved then find the first element then
                 find the first element with more than one candidate answer. */
-                        var pGame = copyArr(isSolved(game)[0]);
-                        for (i = 0; i < 9; i++) {
-                                for (j = 0; j < 9; j++) {
-                                        if (cube[i][j].length > 0) {
-                                                for (k = 0; k < cube[i][j].length; k++) {
+
+                if (cS == true && isSolved(game)[1] == false) {
+                        var i = cube.length
+                        while (i--) {
+                                var j = cube[i].length
+                                while (j--) {
+                                        if (game[i][j] == 0) {
+                                                var k = cube[i][j].length;
+                                                while (k--) {
+                                                        var pGame = copySqr(game);
+                                                        var pCube = copyCbe(cube);
                                                         pGame[i][j] = cube[i][j][k];
-                                                        var pGame = solveGame(pGame);
-                                                        for (i = 0; i < 9; i++) {
-                                                                for (j = 0; j < 9; j++) {
-                                                                        if (cube[i][j].length <= 1) {
-                                                                                return pGame;
-                                                                        }
-                                                                }
+                                                        pGame = solveGame(pGame, pCube, false)
+                                                        if (isSolved(pGame)[1] == true) {
+                                                                console.log(pGame);
+                                                                return pGame
+                                                        } else {
+                                                                console.log(pGame);
+                                                                game = pGame;
                                                         }
                                                 }
                                         }
                                 }
                         }
-                if (isSolved(game)[1] == true) {
-                        return isSolved(game)[0];
-                } else 
-                if (isSolved(game)[1] == false) {
-                        console.log("partial solution");
-                        return isSolved(game)[0];
+                } else {
+                        console.log(game);
+                        return game;
+                        
                 }
+
         }
         
         /*Returns Sudoku games in HTML. If there is a
         zero/blank space, it'll be highlighted in red. */
-        function printArr(arr) {
+        function printArr(inArr) {
                 var output = "<table>";
-                for (i = 0; i < 9; i++) {
+                var arr;
+                if (inArr && inArr.length) {
+                        arr = inArr;
+                } else {
+                        return "output error";
+                };
+                var i = arr.length;
+                while (i--) {
                         output += "<tr>";
-                        for (j = 0; j < 9; j++) {
+                        var j = arr[i].length;
+                        while (j--) {
                                 var front = "";
                                 var end = "";
                                 if (arr[i][j] == 0) {
@@ -151,8 +155,10 @@
         0 if the game is solved, 1 if not*/
         function isSolved(arr) {
                 var solvedGame = 0;
-                for (i = 0; i < 9; i++) {
-                        for (j = 0; j < 9; j++) {
+                var i = arr.length;
+                while (i--) {
+                        var j = arr[i].length;
+                        while (j--) {
                                 solvedGame += arr[i][j];
                         }
                 }
@@ -164,12 +170,26 @@
         }
         
         /*Returns a copy of a two-dimensional array*/
-        function copyArr(arr) {
-                var rtnArr = new Array(arr.length);
+        function copySqr(arr) {
+                var rtnArr = new Array(9);
                 for (i = 0; i < arr.length; i++) {
                         rtnArr[i] = new Array(arr[i].length);
                         for (j = 0; j < arr[i].length; j++) {
                                 rtnArr[i][j] = arr[i][j];
+                        }               
+                }
+                return rtnArr;
+        }
+        
+        function copyCbe(arr) {
+                var rtnArr = new Array(9);
+                for (i = 0; i < arr.length; i++) {
+                        rtnArr[i] = new Array(arr[i].length);
+                        for (j = 0; j < arr[i].length; j++) {
+                                rtnArr[i][j] = new Array(arr[i][j].length);
+                                for (j = 0; j < arr[i][j].length; j++) {
+                                        rtnArr[i][j][k] = arr[i][j][k];
+                                }
                         }
                 }
                 return rtnArr;
