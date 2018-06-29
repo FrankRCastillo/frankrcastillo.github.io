@@ -2,6 +2,7 @@
         <html lang="en">
         <style>
         body  {font-size: 11px; font-family: "Lucida Console", Monaco, monospace; }
+        td { vertical-align: top; }
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script>
@@ -14,7 +15,16 @@
                     g[i][j] = j + 1;
                 }
         }
-
+        var x = [2,0,9,0,0,0,0,0,0
+                ,0,0,0,2,0,5,8,4,0
+                ,0,6,0,0,0,0,7,0,3
+                ,3,0,0,0,5,0,9,1,0
+                ,0,8,0,3,7,1,0,5,0
+                ,0,1,4,0,2,0,0,0,6
+                ,7,0,8,0,0,0,0,3,0
+                ,0,9,2,1,0,7,0,0,0
+                ,0,0,0,0,0,0,2,0,7];
+/*
         var x = [8,0,0,0,0,0,0,0,0
                 ,0,0,3,6,0,0,0,0,0
                 ,0,7,0,0,9,0,2,0,0
@@ -24,29 +34,48 @@
                 ,0,0,1,0,0,0,0,6,8
                 ,0,0,8,5,0,0,0,1,0
                 ,0,9,0,0,0,0,4,0,0];
+*/
         var sx = solveGame(x, g);
         var pg = printGrid(sx);
-        $("body").append(pg);
+        $("body").append(printGrid(sx));
   
         function solveGame(game, grid) {
-//            var oldGame;
-//            var newGame;
-//            var gameChg = true;
-//            while (gameChg == true) {
-            var r = [game, grid];
-            for (i = 0; i < r[0].length; i++) {
-                if (r[0][i] != 0) {
-                    r[1][i].length = 0;
-                    for (j = 0; j < 9; j++) {
+            var oldGame;
+            var newGame;
+            var gameChg = true;
+            while (gameChg == true) {
+                var r = [game, grid];
+                for (i = 0; i < r[0].length; i++) {
+                        //Occupied cell elimination
+                        if (r[0][i] != 0) r[1][i].length = 0;
 
-                    }
+                        //Horizontal elimination
+                        for (j = 0; j < 9; j++) {
+                                for (n = 0; n <= 72; n += 9) {
+                                        if (i >= n && i <= (n + 8)) var p = n;
+                                        for (k = 0; k < 9; k++) {
+                                                if (r[0][i] == r[1][j + p][k]) r[1][j + p].splice(k, 1);
+                                        }
+                                }
+                        }
+                        
+                        //Vertical elimination
+                        var m = i % 9;
+                        for (n = m; n <= m + 72; n += 9) {
+                                for (k = 0; k < 9; k++) {
+                                        if(r[0][i] == r[1][n][k]) r[1][n].splice(k, 1);
+                                }
+                        }
+                        
+                        //Insert candidate solutions with one candidate into game
+                        for (k = 0; k < 9; k++) {
+                                if(r[1][i].length == 1) r[0][i] = r[1][i][0];
+                        }
                 }
+                newGame = r[0].toString();
+                if(oldGame == newGame) gameChg = false;
+                oldGame = newGame;
             }
-
-//            newGame = game.toString();
-//            if(oldGame == newGame) gameChg = false;
-//            oldGame = newGame;
-//            }
             return r;
         }
         
@@ -70,12 +99,23 @@
                 }
                 output += "</tr>";
             }
-            output += "</table>---------------<br/>"
+            output += "</table>--------------<br/>"
             output += "<table><tr>";
+            
+            //Generates row for elements in game
+            var p = 1;
             for (i = 0; i < x.length; i++) {
-                output += "<td>" + x[i] + "<br/>-</td>";
+                if (x[i] == 0) {
+                        var digit = "<font color='red'>" + x[i] + "</font>";
+                } else {
+                        var digit = x[i];
+                }
+                output += "<td>" + digit + "<br/>" + p + "<br>-</td>";
+                if (p == 9) { p = 1; } else { p++; }
             }
             output += "</tr><tr>";
+            
+            //Generates row for possible candidates
             for (i = 0; i < g.length; i++) {
                 output += "<td>";
                 for (j = 0; j < g[i].length; j++) {
@@ -83,7 +123,7 @@
                 }
                 output += "</td>"
             }
-            output += "</tr></table><br/>";
+            output += "</tr></table>";
             return output;
         }
         
