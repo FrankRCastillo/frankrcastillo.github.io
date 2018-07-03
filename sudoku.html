@@ -1,145 +1,192 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-        <html lang="en">
+    <html lang="en">
         <style>
-        body  {font-size: 11px; font-family: "Lucida Console", Monaco, monospace; }
-        td { vertical-align: top; }
+            body  {font-size: 11px; font-family: "Lucida Console", Monaco, monospace; }
+            td { vertical-align: top; }
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script>
-        document.body = document.createElement("body");
+            document.body = document.createElement("body");
 
-        var g = new Array(81);
-        for (i = 0; i < g.length; i++) {
-                g[i] = new Array(9);
-                for (j = 0; j < g[i].length; j++) {
-                    g[i][j] = j + 1;
+            var grid = new Array(81);
+            for (i = 0; i < grid.length; i++) {
+                    grid[i] = new Array(9);
+                    for (j = 0; j < grid[i].length; j++) {
+                        grid[i][j] = j + 1;
+                    }
+            }
+
+            var game = [8,0,0,0,0,0,0,0,0
+                       ,0,0,3,6,0,0,0,0,0
+                       ,0,7,0,0,9,0,2,0,0
+                       ,0,5,0,0,0,7,0,0,0
+                       ,0,0,0,0,4,5,7,0,0
+                       ,0,0,0,1,0,0,0,3,0
+                       ,0,0,1,0,0,0,0,6,8
+                       ,0,0,8,5,0,0,0,1,0
+                       ,0,9,0,0,0,0,4,0,0];
+
+            var gArr = [game, grid];
+
+            $("body").append(printGrid(gArr));
+            $("body").append(printGrid(eliminator(gArr)));
+            $("body").append(printGrid(treeSolve(gArr)));
+
+            function treeSolve(r) {
+                var x = r[0];
+                var g = r[1];
+                var solve = true;
+                while (solve) {
+                    var cx = JSON.parse(JSON.stringify(x));
+                    var cg = copyGrid(grid);
+                    var ca = [cx, cg];
+                    for (i = 0; i < cg.length; i++) {
+                        if (cg[i].length == 0) cg[i][0] = cx[i];
+                    }
+                    for (var k = 0, len = cg[k].length; k < len; k++) {
+                        for (j = 0; j < cg.length; j++) {
+                            cx[j] = cg[j][k];
+                            console.log(cx);
+                            if (isSolved(cx)) solve = false; //return ca
+                        }
+                    }
                 }
-        }
-        var x = [2,0,9,0,0,0,0,0,0
-                ,0,0,0,2,0,5,8,4,0
-                ,0,6,0,0,0,0,7,0,3
-                ,3,0,0,0,5,0,9,1,0
-                ,0,8,0,3,7,1,0,5,0
-                ,0,1,4,0,2,0,0,0,6
-                ,7,0,8,0,0,0,0,3,0
-                ,0,9,2,1,0,7,0,0,0
-                ,0,0,0,0,0,0,2,0,7];
-/*
-        var x = [8,0,0,0,0,0,0,0,0
-                ,0,0,3,6,0,0,0,0,0
-                ,0,7,0,0,9,0,2,0,0
-                ,0,5,0,0,0,7,0,0,0
-                ,0,0,0,0,4,5,7,0,0
-                ,0,0,0,1,0,0,0,3,0
-                ,0,0,1,0,0,0,0,6,8
-                ,0,0,8,5,0,0,0,1,0
-                ,0,9,0,0,0,0,4,0,0];
-*/
-        var sx = solveGame(x, g);
-        var pg = printGrid(sx);
-        $("body").append(printGrid(sx));
-  
-        function solveGame(game, grid) {
-            var oldGame;
-            var newGame;
-            var gameChg = true;
-            while (gameChg == true) {
-                var r = [game, grid];
-                for (i = 0; i < r[0].length; i++) {
+            }
+
+            function copyGrid(r) {
+                var nr = new Array(r.length);
+                for (i in r) {
+                    nr[i] = JSON.parse(JSON.stringify(r[i]));
+                }
+                return nr;
+            }
+                  
+            function eliminator(r) {
+                var x = r[0];
+                var g = r[1];
+                var oG;
+                var nG = x.toString();
+                var change = true;
+                while (change == true) {
+                    for (i = 0; i < x.length; i++) {
                         //Occupied cell elimination
-                        if (r[0][i] != 0) r[1][i].length = 0;
+                        if (x[i] != 0) g[i].length = 0;
 
                         //Horizontal elimination
                         for (j = 0; j < 9; j++) {
-                                for (n = 0; n <= 72; n += 9) {
-                                        if (i >= n && i <= (n + 8)) var p = n;
-                                        for (k = 0; k < 9; k++) {
-                                                if (r[0][i] == r[1][j + p][k]) r[1][j + p].splice(k, 1);
-                                        }
+                            for (n = 0; n <= 72; n += 9) {
+                                if (i >= n && i <= (n + 8)) {
+                                    for (k = 0; k < 9; k++) {
+                                        if (x[i] == g[j + n][k]) g[j + n].splice(k, 1);
+                                    }
                                 }
+                            }
                         }
                         
                         //Vertical elimination
-                        var m = i % 9;
-                        for (n = m; n <= m + 72; n += 9) {
-                                for (k = 0; k < 9; k++) {
-                                        if(r[0][i] == r[1][n][k]) r[1][n].splice(k, 1);
+                        for (n = i % 9; n <= (i % 9) + 72; n += 9) {
+                            for (k = 0; k < 9; k++) {
+                                if(x[i] == g[n][k]) g[n].splice(k, 1);
+                            }
+                        }
+
+                        //Square elimination
+                        for (j = 0; j <= 80; j += 27) {
+                            if (i >= j && i <= (j + 26)) {
+                                for (k = 0; k <= 9; k += 3) {
+                                    if (i % 9 >= k && i % 9 <= (k + 2)) {
+                                        for (s = 0; s <= 2; s++) {
+                                            for (t = 0; t <= 18; t += 9) {
+                                                var sqr = j + k + s + t;
+                                                for (u = 0; u < 9; u++) {
+                                                    if (x[i] == g[sqr][u]) g[sqr].splice(u, 1);
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
+                            }
                         }
-                        
-                        //Insert candidate solutions with one candidate into game
-                        for (k = 0; k < 9; k++) {
-                                if(r[1][i].length == 1) r[0][i] = r[1][i][0];
+                       
+                        /* If a candidate array containing only one candidate solution
+                           exists, that is the only possible entry that can be in the game
+                           and, therefore, is entered in the game */
+                        var j = g.length;
+                        for (k = 0; k < j; k++) {
+                            if(g[k].length == 1) x[k] = g[k][0];
                         }
-                }
-                newGame = r[0].toString();
-                if(oldGame == newGame) gameChg = false;
-                oldGame = newGame;
-            }
-            return r;
-        }
-        
-        /*Returns Sudoku games in HTML. If there is a
-        zero/blank space, it'll be highlighted in red. */
-        function printGrid(sg) {
-            var x = sg[0];
-            var g = sg[1];
-            var output = "<table>";
-            var q = 0;
-            for (i = 0; i < 9; i++) {
-                output += "<tr>";
-                for (j = 0; j < 9; j++) {
-                    if (x[q] == 0) {
-                        var digit = "<font color='red'>" + x[q] + "</font>";
-                    } else {
-                        var digit = x[q];
                     }
-                    output += "<td>" + digit + "</td>";
-                    q++;
+                    /* If, after elimination, the loop completes without changing
+                       the game, then the while loop ends, returning the object. */
+                    oG = x.toString();
+                    if(oG == nG) change = false;
+                    oG = nG.toString();
                 }
-                output += "</tr>";
+                return r;
             }
-            output += "</table>--------------<br/>"
-            output += "<table><tr>";
             
-            //Generates row for elements in game
-            var p = 1;
-            for (i = 0; i < x.length; i++) {
-                if (x[i] == 0) {
-                        var digit = "<font color='red'>" + x[i] + "</font>";
-                } else {
-                        var digit = x[i];
+            /* Returns Sudoku games and corresponding grid of candidates as an HTML
+               table. If there is a zero/blank space, it'll be highlighted in red. */
+
+            function printGrid(sg) {
+                var x = sg[0];
+                var g = sg[1];
+
+                //Generates 9x9 HTML table of game
+                var output = "<table><tr><td><table>";
+                var q = 0;
+                for (i = 0; i < 9; i++) {
+                    output += "<tr>";
+                    for (j = 0; j < 9; j++) {
+                        if (x[q] == 0) {
+                            var digit = "<font color='red'>" + x[q] + "</font>";
+                        } else {
+                            var digit = x[q];
+                        }
+                        output += "<td>" + digit + "</td>";
+                        q++;
+                    }
+                    output += "</tr>";
                 }
-                output += "<td>" + digit + "<br/>" + p + "<br>-</td>";
-                if (p == 9) { p = 1; } else { p++; }
+                output += "</table><br/></td><td><table><tr>";
+                
+                //Generates row for elements in game
+                var p = 1;
+                for (i = 0; i < x.length; i++) {
+                    if (x[i] == 0) {
+                            var digit = "<font color='red'>" + x[i] + "</font>";
+                    } else {
+                            var digit = x[i];
+                    }
+                    output += "<td>" + digit + "<br/>-<br/>" + p + "<br/>-<br/>" + g[i].length + "<br/>-<br/></td>";
+                    if (p == 9) { p = 1; } else { p++; }
+                }
+                output += "</tr><tr>";
+                
+                //Generates row for possible candidates
+                for (i = 0; i < g.length; i++) {
+                    output += "<td>";
+                    for (j = 0; j < g[i].length; j++) {
+                        output += g[i][j] + "<br/>";
+                    }
+                    output += "</td>"
+                }
+                output += "</tr></table></td></tr></table>";
+                return output;
             }
-            output += "</tr><tr>";
             
-            //Generates row for possible candidates
-            for (i = 0; i < g.length; i++) {
-                output += "<td>";
-                for (j = 0; j < g[i].length; j++) {
-                    output += g[i][j] + "<br/>";
-                }
-                output += "</td>"
-            }
-            output += "</tr></table>";
-            return output;
-        }
-        
-        /*Returns an array with the game and an second element:
-        0 if the game is solved, 1 if not*/
-        function isSolved(arr) {
+            /*Returns an array with the game and an second element:
+            0 if the game is solved, 1 if not*/
+            function isSolved(arr) {
                 var solvedGame = 0;
-                var i = arr.length;
-                while (i--) {
+                for (i = 0; i < arr.length; i++) {
                     solvedGame += arr[i];
                 }
                 if (solvedGame == 405) {
-                        return [arr, true];
+                        return true;
                 } else {
-                        return [arr, false];
+                        return false;
                 }
-        }
+            }
         </script>
 </html>
