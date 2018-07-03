@@ -30,35 +30,20 @@
 
             $("body").append(printGrid(gArr));
             $("body").append(printGrid(eliminator(gArr)));
-            $("body").append(printGrid(treeSolve(gArr)));
+            $("body").append(printGrid(bruteSolve(gArr)));
 
-            function treeSolve(r) {
+            function bruteSolve(r) {
                 var x = r[0];
                 var g = r[1];
-                var solve = true;
-                while (solve) {
-                    var cx = JSON.parse(JSON.stringify(x));
-                    var cg = copyGrid(grid);
-                    var ca = [cx, cg];
-                    for (i = 0; i < cg.length; i++) {
-                        if (cg[i].length == 0) cg[i][0] = cx[i];
-                    }
-                    for (var k = 0, len = cg[k].length; k < len; k++) {
-                        for (j = 0; j < cg.length; j++) {
-                            cx[j] = cg[j][k];
-                            console.log(cx);
-                            if (isSolved(cx)) solve = false; //return ca
-                        }
+                var cx = JSON.parse(JSON.stringify(x));
+                var cg = copyGrid(grid);
+                var ca = [cx, cg];
+                for (i = 0; i < cg.length; i++) {
+                    if (cg[i].length == 0) {
+                        cg[i][0] = cx[i];
                     }
                 }
-            }
 
-            function copyGrid(r) {
-                var nr = new Array(r.length);
-                for (i in r) {
-                    nr[i] = JSON.parse(JSON.stringify(r[i]));
-                }
-                return nr;
             }
                   
             function eliminator(r) {
@@ -154,9 +139,9 @@
                 var p = 1;
                 for (i = 0; i < x.length; i++) {
                     if (x[i] == 0) {
-                            var digit = "<font color='red'>" + x[i] + "</font>";
+                        var digit = "<font color='red'>" + x[i] + "</font>";
                     } else {
-                            var digit = x[i];
+                        var digit = x[i];
                     }
                     output += "<td>" + digit + "<br/>-<br/>" + p + "<br/>-<br/>" + g[i].length + "<br/>-<br/></td>";
                     if (p == 9) { p = 1; } else { p++; }
@@ -173,6 +158,15 @@
                 }
                 output += "</tr></table></td></tr></table>";
                 return output;
+            }
+
+            //Copies 2D array. Iterative implementation of JSON parse solution
+            function copyGrid(r) {
+                var nr = new Array(r.length);
+                for (i in r) {
+                    nr[i] = JSON.parse(JSON.stringify(r[i]));
+                }
+                return nr;
             }
             
             /*Returns an array with the game and an second element:
