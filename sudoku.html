@@ -8,7 +8,7 @@
         <script>
             document.body = document.createElement("body");
 
-            var grid = new Array(81);
+            let grid = new Array(81);
             for (i = 0; i < grid.length; i++) {
                     grid[i] = new Array(9);
                     for (j = 0; j < grid[i].length; j++) {
@@ -16,7 +16,7 @@
                     }
             }
 
-            var game = [8,0,0,0,0,0,0,0,0
+            let game = [8,0,0,0,0,0,0,0,0
                        ,0,0,3,6,0,0,0,0,0
                        ,0,7,0,0,9,0,2,0,0
                        ,0,5,0,0,0,7,0,0,0
@@ -26,42 +26,74 @@
                        ,0,0,8,5,0,0,0,1,0
                        ,0,9,0,0,0,0,4,0,0];
 
-            var gArr = [game, grid];
+            let gArr = [game, grid];
 
             $("body").append(printGrid(gArr));
             $("body").append(printGrid(eliminator(gArr)));
             $("body").append(printGrid(bruteSolve(gArr)));
 
             function bruteSolve(r) {
-                var x = r[0];
-                var g = r[1];
-                var cx = JSON.parse(JSON.stringify(x));
-                var cg = copyGrid(grid);
-                var ca = [cx, cg];
-                for (i = 0; i < cg.length; i++) {
+                let x = r[0];
+                let g = r[1];
+                let cx = JSON.parse(JSON.stringify(x));
+                let cg = copyGrid(grid);
+                let ca = [cx, cg];
+                for (let i = 0; i < cg.length; i++) {
                     if (cg[i].length == 0) {
                         cg[i][0] = cx[i];
                     }
                 }
 
+                let i = 0;
+                while (true) {
+                    s = getPermutation(i, cg);
+                    let gSum = s.reduce((a, b) => a + b, 0);
+                    let goal = 405;
+                    let rs = [s, cg];
+                    switch (true) {
+                        case gSum  > goal : i--       ; break;
+                        case gSum  < goal : i++       ; break;
+                        case gSum == goal : return rs ; break;
+                    }
+                    console.log(s);
+                }
+
+                function getPermutation(n, arr) {
+                    let divisors = [];
+                    let result = [];
+                    let curArray;
+
+                    for (let i = arr.length - 1; i >= 0; i--) {
+                        divisors[i] = divisors[i + 1] ? divisors[i + 1] * arr[i + 1].length : 1;
+                    }
+
+                    for (let i = 0; i < arr.length; i++) {
+                        curArray = arr[i];
+                        result.push(curArray[Math.floor(n / divisors[i]) % curArray.length]);
+                    }
+
+                    return result;
+                }
             }
+
+            function validator(r) {}
                   
             function eliminator(r) {
-                var x = r[0];
-                var g = r[1];
-                var oG;
-                var nG = x.toString();
-                var change = true;
+                let x = r[0];
+                let g = r[1];
+                let oG;
+                let nG = x.toString();
+                let change = true;
                 while (change == true) {
                     for (i = 0; i < x.length; i++) {
                         //Occupied cell elimination
                         if (x[i] != 0) g[i].length = 0;
 
                         //Horizontal elimination
-                        for (j = 0; j < 9; j++) {
-                            for (n = 0; n <= 72; n += 9) {
+                        for (let j = 0; j < 9; j++) {
+                            for (let n = 0; n <= 72; n += 9) {
                                 if (i >= n && i <= (n + 8)) {
-                                    for (k = 0; k < 9; k++) {
+                                    for (let k = 0; k < 9; k++) {
                                         if (x[i] == g[j + n][k]) g[j + n].splice(k, 1);
                                     }
                                 }
@@ -69,21 +101,21 @@
                         }
                         
                         //Vertical elimination
-                        for (n = i % 9; n <= (i % 9) + 72; n += 9) {
-                            for (k = 0; k < 9; k++) {
+                        for (let n = i % 9; n <= (i % 9) + 72; n += 9) {
+                            for (let k = 0; k < 9; k++) {
                                 if(x[i] == g[n][k]) g[n].splice(k, 1);
                             }
                         }
 
                         //Square elimination
-                        for (j = 0; j <= 80; j += 27) {
+                        for (let j = 0; j <= 80; j += 27) {
                             if (i >= j && i <= (j + 26)) {
-                                for (k = 0; k <= 9; k += 3) {
+                                for (let k = 0; k <= 9; k += 3) {
                                     if (i % 9 >= k && i % 9 <= (k + 2)) {
-                                        for (s = 0; s <= 2; s++) {
-                                            for (t = 0; t <= 18; t += 9) {
-                                                var sqr = j + k + s + t;
-                                                for (u = 0; u < 9; u++) {
+                                        for (let s = 0; s <= 2; s++) {
+                                            for (let t = 0; t <= 18; t += 9) {
+                                                let sqr = j + k + s + t;
+                                                for (let u = 0; u < 9; u++) {
                                                     if (x[i] == g[sqr][u]) g[sqr].splice(u, 1);
                                                 }
                                             }
@@ -96,7 +128,7 @@
                         /* If a candidate array containing only one candidate solution
                            exists, that is the only possible entry that can be in the game
                            and, therefore, is entered in the game */
-                        var j = g.length;
+                        let j = g.length;
                         for (k = 0; k < j; k++) {
                             if(g[k].length == 1) x[k] = g[k][0];
                         }
@@ -114,19 +146,20 @@
                table. If there is a zero/blank space, it'll be highlighted in red. */
 
             function printGrid(sg) {
-                var x = sg[0];
-                var g = sg[1];
+                let x = sg[0];
+                let g = sg[1];
 
                 //Generates 9x9 HTML table of game
-                var output = "<table><tr><td><table>";
-                var q = 0;
+                let output = "<table><tr><td><table>";
+                let q = 0;
+                let digit = "";
                 for (i = 0; i < 9; i++) {
                     output += "<tr>";
                     for (j = 0; j < 9; j++) {
                         if (x[q] == 0) {
-                            var digit = "<font color='red'>" + x[q] + "</font>";
+                            digit = "<font color='red'>" + x[q] + "</font>";
                         } else {
-                            var digit = x[q];
+                            digit = x[q];
                         }
                         output += "<td>" + digit + "</td>";
                         q++;
@@ -136,12 +169,12 @@
                 output += "</table><br/></td><td><table><tr>";
                 
                 //Generates row for elements in game
-                var p = 1;
+                let p = 1;
                 for (i = 0; i < x.length; i++) {
                     if (x[i] == 0) {
-                        var digit = "<font color='red'>" + x[i] + "</font>";
+                        digit = "<font color='red'>" + x[i] + "</font>";
                     } else {
-                        var digit = x[i];
+                        digit = x[i];
                     }
                     output += "<td>" + digit + "<br/>-<br/>" + p + "<br/>-<br/>" + g[i].length + "<br/>-<br/></td>";
                     if (p == 9) { p = 1; } else { p++; }
@@ -162,25 +195,11 @@
 
             //Copies 2D array. Iterative implementation of JSON parse solution
             function copyGrid(r) {
-                var nr = new Array(r.length);
+                let nr = new Array(r.length);
                 for (i in r) {
                     nr[i] = JSON.parse(JSON.stringify(r[i]));
                 }
                 return nr;
-            }
-            
-            /*Returns an array with the game and an second element:
-            0 if the game is solved, 1 if not*/
-            function isSolved(arr) {
-                var solvedGame = 0;
-                for (i = 0; i < arr.length; i++) {
-                    solvedGame += arr[i];
-                }
-                if (solvedGame == 405) {
-                        return true;
-                } else {
-                        return false;
-                }
             }
         </script>
 </html>
