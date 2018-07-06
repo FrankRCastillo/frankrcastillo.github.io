@@ -15,7 +15,7 @@
                         grid[i][j] = j + 1;
                     }
             }
-
+            
             let game = [8,0,0,0,0,0,0,0,0
                        ,0,0,3,6,0,0,0,0,0
                        ,0,7,0,0,9,0,2,0,0
@@ -26,65 +26,21 @@
                        ,0,0,8,5,0,0,0,1,0
                        ,0,9,0,0,0,0,4,0,0];
 
-            let gArr = [game, grid];
+            let gArr = [game, grid, false];
 
             $("body").append(printGrid(gArr));
-            $("body").append(printGrid(eliminator(gArr)));
-            $("body").append(printGrid(bruteSolve(gArr)));
-
-            function bruteSolve(r) {
+            $("body").append(printGrid(elimSolve(gArr)));
+            
+            let test = fuzzySolve(gArr);
+            
+            function elimSolve(r) {
                 let x = r[0];
                 let g = r[1];
-                let cx = JSON.parse(JSON.stringify(x));
-                let cg = copyGrid(grid);
-                let ca = [cx, cg];
-                for (let i = 0; i < cg.length; i++) {
-                    if (cg[i].length == 0) {
-                        cg[i][0] = cx[i];
-                    }
-                }
-
-                let i = 0;
-                while (true) {
-                    s = getPermutation(i, cg);
-                    let gSum = s.reduce((a, b) => a + b, 0);
-                    let goal = 405;
-                    let rs = [s, cg];
-                    switch (true) {
-                        case gSum  > goal : i--       ; break;
-                        case gSum  < goal : i++       ; break;
-                        case gSum == goal : return rs ; break;
-                    }
-                    console.log(s);
-                }
-
-                function getPermutation(n, arr) {
-                    let divisors = [];
-                    let result = [];
-                    let curArray;
-
-                    for (let i = arr.length - 1; i >= 0; i--) {
-                        divisors[i] = divisors[i + 1] ? divisors[i + 1] * arr[i + 1].length : 1;
-                    }
-
-                    for (let i = 0; i < arr.length; i++) {
-                        curArray = arr[i];
-                        result.push(curArray[Math.floor(n / divisors[i]) % curArray.length]);
-                    }
-
-                    return result;
-                }
-            }
-
-            function validator(r) {}
-                  
-            function eliminator(r) {
-                let x = r[0];
-                let g = r[1];
+                let sol = r[2];
                 let oG;
                 let nG = x.toString();
                 let change = true;
-                while (change == true) {
+                while (change) {
                     for (i = 0; i < x.length; i++) {
                         //Occupied cell elimination
                         if (x[i] != 0) g[i].length = 0;
@@ -136,15 +92,67 @@
                     /* If, after elimination, the loop completes without changing
                        the game, then the while loop ends, returning the object. */
                     oG = x.toString();
-                    if(oG == nG) change = false;
+                    if (oG == nG) change = false;
                     oG = nG.toString();
                 }
+                if (x.reduce((a, b) => a + b) == 405) sol = true;
                 return r;
             }
             
+            function fuzzySolve(r) {
+                let x   = r[0];
+                let g   = r[1];
+                let sl  = r[2];
+                let cx  = JSON.parse(JSON.stringify(x));
+                let cg  = copyGrid(g);
+                let lgt = [];
+                                
+                //Saves the length and position of each candidate array onto the lgt array
+                for (let i = 0; i < cg.length; i++) {
+                    cx[i] = [cx[i]];
+                    if (cg[i].length > 1) lgt.push([cg[i].length, i]);
+                }
+                
+                //Sorts lgt by the length and position of the candidate array 
+                lgt.sort((a, b) => a[0] - b[0], 0);
+                
+                /* Iteratively places shortest array of candidate arrays into 
+                   game and attempts to solve. */
+                for (let i = 0; i < lgt.length; i++) {
+                    let candC = JSON.parse(JSON.stringify(cg[lgt[i][1]]));
+                    cx[lgt[i][1]] = candC;
+                    let gPrd = 1;
+                    for (let j = 0; j < cx.length; j++) {
+                        if (cx[j].length > 1) gPrd = gPrd * cx[j].length;
+                    }
+                    for (let n = 0; n < gPrd; n++) {
+                        let xp = getPermutation(n, cx);
+                        let cas = [xp, cg, sl];
+                        let fx = elimSolve(cas);
+                        console.log(xp);
+                        if (fx[2] == true) return fx;
+                    }
+                }
+                
+                //Retuns nth permutation of candidate array elements
+                function getPermutation(n, r) {
+                    let pr = [], div = [], cr;
+                    for (let i = r.length - 1; i >= 0; i--) {
+                        div[i] = div[i + 1] ? div[i + 1] * r[i + 1].length : 1;
+                    }
+
+                   for (var i = 0; i < r.length; i++) {
+                      cr = r[i];
+                      pr.push(cr[Math.floor(n / div[i]) % cr.length]);
+                   }
+
+                   return pr;
+                }
+            }
+
+            
             /* Returns Sudoku games and corresponding grid of candidates as an HTML
                table. If there is a zero/blank space, it'll be highlighted in red. */
-
             function printGrid(sg) {
                 let x = sg[0];
                 let g = sg[1];
