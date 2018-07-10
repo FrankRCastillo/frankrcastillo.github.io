@@ -15,7 +15,16 @@
                         grid[i][j] = j + 1;
                     }
             }
-            
+            let game = [6,0,0,0,9,0,0,0,2
+                       ,0,8,0,6,1,0,0,9,0
+                       ,0,0,7,8,0,0,5,0,0
+                       ,0,0,0,0,0,0,6,7,0
+                       ,8,2,0,0,0,0,0,3,9
+                       ,0,7,6,0,0,0,0,0,0
+                       ,0,0,2,0,0,1,4,0,0
+                       ,0,3,0,0,2,6,0,5,0
+                       ,9,0,0,0,7,0,0,0,1];
+/*            
             let game = [8,0,0,0,0,0,0,0,0
                        ,0,0,3,6,0,0,0,0,0
                        ,0,7,0,0,9,0,2,0,0
@@ -25,18 +34,53 @@
                        ,0,0,1,0,0,0,0,6,8
                        ,0,0,8,5,0,0,0,1,0
                        ,0,9,0,0,0,0,4,0,0];
-
-            let gArr = [game, grid, false];
+*/
+            let gArr = [game, grid];
 
             $("body").append(printGrid(gArr));
-            $("body").append(printGrid(elimSolve(gArr)));
-            
-            let test = fuzzySolve(gArr);
+            $("body").append(printGrid(fuzzySolve(gArr)));
+
+            function fuzzySolve(r) {
+                let x  = r[0];
+                let g  = r[1];
+                
+                r = elimSolve(r);
+                
+                let cx = JSON.parse(JSON.stringify(x));
+                let cg = copyGrid(g);
+                let lgth = [];
+                for (let i = 0; i < x.length; i++) {
+                    if (g[i].length == 0) g[i] = [x[i]];
+                    x[i] = [x[i]];
+                    lgth.push([x[i].length, i]);                    
+                }
+                
+                lgth.sort((a, b) => a[0] - b[0]);
+                
+                let prod = lgth.reduce((a, b) => a * b);
+                let div = [];
+                for (let i = cg.length -1; i >= 0; i--) {
+                    div[i] = div[i + 1] ? div[i + 1] * cg[i + 1].length : 1;
+                }
+                
+                for (let i = 0; i < prod; i++) {
+                    let nx = permut(i, cg);
+                    console.log(nx.toString());
+                }
+                
+                function permut(n, arr) {
+                    var result = [];
+                    for (var i = 0; i < arr.length; i++) {
+                        result.push(arr[i][Math.floor(n/div[i]) % arr[i].length]);
+                    }
+                    return result;
+                }
+            }
             
             function elimSolve(r) {
-                let x = r[0];
-                let g = r[1];
-                let sol = r[2];
+                let x  = r[0];
+                let g  = r[1];
+                let sl = false;
                 let oG;
                 let nG = x.toString();
                 let change = true;
@@ -91,76 +135,22 @@
                     }
                     /* If, after elimination, the loop completes without changing
                        the game, then the while loop ends, returning the object. */
-                    oG = x.toString();
                     if (oG == nG) change = false;
                     oG = nG.toString();
                 }
-                if (x.reduce((a, b) => a + b) == 405) sol = true;
-                return r;
-            }
-            
-            function fuzzySolve(r) {
-                let x   = r[0];
-                let g   = r[1];
-                let sl  = r[2];
-                let cx  = JSON.parse(JSON.stringify(x));
-                let cg  = copyGrid(g);
-                let lgt = [];
-                                
-                //Saves the length and position of each candidate array onto the lgt array
-                for (let i = 0; i < cg.length; i++) {
-                    cx[i] = [cx[i]];
-                    if (cg[i].length > 1) lgt.push([cg[i].length, i]);
-                }
-                
-                //Sorts lgt by the length and position of the candidate array 
-                lgt.sort((a, b) => a[0] - b[0], 0);
-                
-                /* Iteratively places shortest array of candidate arrays into 
-                   game and attempts to solve. */
-                for (let i = 0; i < lgt.length; i++) {
-                    let candC = JSON.parse(JSON.stringify(cg[lgt[i][1]]));
-                    cx[lgt[i][1]] = candC;
-                    let gPrd = 1;
-                    for (let j = 0; j < cx.length; j++) {
-                        if (cx[j].length > 1) gPrd = gPrd * cx[j].length;
-                    }
-                    for (let n = 0; n < gPrd; n++) {
-                        let xp = getPermutation(n, cx);
-                        let cas = [xp, cg, sl];
-                        let fx = elimSolve(cas);
-                        console.log(xp);
-                        if (fx[2] == true) return fx;
-                    }
-                }
-                
-                //Retuns nth permutation of candidate array elements
-                function getPermutation(n, r) {
-                    let pr = [], div = [], cr;
-                    for (let i = r.length - 1; i >= 0; i--) {
-                        div[i] = div[i + 1] ? div[i + 1] * r[i + 1].length : 1;
-                    }
-
-                   for (var i = 0; i < r.length; i++) {
-                      cr = r[i];
-                      pr.push(cr[Math.floor(n / div[i]) % cr.length]);
-                   }
-
-                   return pr;
-                }
+                return [x, g];
             }
 
-            
             /* Returns Sudoku games and corresponding grid of candidates as an HTML
                table. If there is a zero/blank space, it'll be highlighted in red. */
-            function printGrid(sg) {
-                let x = sg[0];
-                let g = sg[1];
-
-                //Generates 9x9 HTML table of game
+            function printGrid(r) {
+                let x = r[0];
+                let g = r[1];
                 let output = "<table><tr><td><table>";
                 let q = 0;
                 let digit = "";
+                
+                //Creates HTML code for 9x9 HTML table of game
                 for (i = 0; i < 9; i++) {
                     output += "<tr>";
                     for (j = 0; j < 9; j++) {
@@ -176,7 +166,7 @@
                 }
                 output += "</table><br/></td><td><table><tr>";
                 
-                //Generates row for elements in game
+                //Creates HTML code for row for elements in game
                 let p = 1;
                 for (i = 0; i < x.length; i++) {
                     if (x[i] == 0) {
@@ -189,7 +179,7 @@
                 }
                 output += "</tr><tr>";
                 
-                //Generates row for possible candidates
+                //Creates HTML code for row for possible candidates
                 for (i = 0; i < g.length; i++) {
                     output += "<td>";
                     for (j = 0; j < g[i].length; j++) {
@@ -208,6 +198,44 @@
                     nr[i] = JSON.parse(JSON.stringify(r[i]));
                 }
                 return nr;
+            }
+            
+            function verify(r) {
+                let pass = true;
+                for (m = 0; m < r.length; m++) {
+                    //Row verification
+                    for (let i = 0; i < r[0].length; i += 9) {
+                        for (j = 0; j < 9; j++) {
+                            let e = r[i + j];
+                            if (v == e && e != 0) return false;
+                        }
+                    }
+                    
+                    //Column verification
+                    for (let i = 0; i < 9; i++) {
+                        for (let j = 0; j < r[0].length; j += 9) {
+                            let e = r[i + j];
+                            if (v == e && e != 0) return false;
+                        }
+                    }
+                    
+                    //Square verification
+                    for (let j = 0; j <= 80; j += 27) {
+                        if (i >= j && i <= (j + 26)) {
+                            for (let k = 0; k <= 9; k += 3) {
+                                if (i % 9 >= k && i % 9 <= (k + 2)) {
+                                    for (let s = 0; s <= 2; s++) {
+                                        for (let t = 0; t <= 18; t += 9) {
+                                            let e = r[0][j + k + s + t];
+                                            if(v == e && e != 0) return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (pass) return true;
             }
         </script>
 </html>
