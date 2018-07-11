@@ -37,41 +37,59 @@
 */
             let gArr = [game, grid];
 
-            $("body").append(printGrid(gArr));
-            $("body").append(printGrid(fuzzySolve(gArr)));
+            printGrid(gArr);
+            printGrid(fuzzySolve(gArr));
 
             function fuzzySolve(r) {
-                let x  = r[0];
-                let g  = r[1];
+                let x = r[0];
+                let g = r[1];
                 
                 r = elimSolve(r);
                 
                 let cx = JSON.parse(JSON.stringify(x));
                 let cg = copyGrid(g);
-                let lgth = [];
+                let lg = [];
                 for (let i = 0; i < x.length; i++) {
-                    if (g[i].length == 0) g[i] = [x[i]];
-                    x[i] = [x[i]];
-                    lgth.push([x[i].length, i]);                    
+                    if (cg[i].length == 0) cg[i] = [cx[i]];
+                    if (cg[i].length > 1) lg.push([cg[i].length, i]);
+                    cx[i] = [cx[i]];
                 }
                 
-                lgth.sort((a, b) => a[0] - b[0]);
+                lg.sort((a, b) => a[0] - b[0]);
                 
-                let prod = lgth.reduce((a, b) => a * b);
                 let div = [];
-                for (let i = cg.length -1; i >= 0; i--) {
+                for (let i = cg.length - 1; i >= 0; i--) {
                     div[i] = div[i + 1] ? div[i + 1] * cg[i + 1].length : 1;
                 }
                 
-                for (let i = 0; i < prod; i++) {
-                    let nx = permut(i, cg);
-                    console.log(nx.toString());
+                for (let i = 0; i < lg.length; i++) {
+                    let prod = 1;
+                    cx[lg[i][1]] = cg[lg[i][1]];
+                    printGrid([x, cx]);
+                    for (let j = 0; j < lg.length; j++) {
+                        if (cx[j].length > 1) prod = prod * cx[j].length;
+                    }
+                    
+                    
+                    for (let j = 0; j < prod; j++) {
+                        let px = permut(j, cx);
+                        console.log(px.reduce((a, b) => a + b) + "\n" + x.toString() + "\n" + px.toString());
+                        let dg = copyGrid(g);
+                        let ex = elimSolve([px, dg]);
+                        if (verify(ex[0])) return ex;
+                    }
                 }
                 
                 function permut(n, arr) {
-                    var result = [];
-                    for (var i = 0; i < arr.length; i++) {
-                        result.push(arr[i][Math.floor(n/div[i]) % arr[i].length]);
+                    for (let i = arr.length - 1; i >= 0; i--) {
+                        div[i] = div[i + 1] ? div[i + 1] * arr[i + 1].length : 1;
+                    }
+                
+                    let result = [];
+                    for (let i = 0; i < arr.length; i++) {
+                        let num = Math.floor(n / div[i]);
+                        let mod = arr[i].length;
+                        result.push(arr[i][num % mod]);
                     }
                     return result;
                 }
@@ -188,7 +206,7 @@
                     output += "</td>"
                 }
                 output += "</tr></table></td></tr></table>";
-                return output;
+                $("body").append(output);
             }
 
             //Copies 2D array. Iterative implementation of JSON parse solution
@@ -199,23 +217,60 @@
                 }
                 return nr;
             }
+
+            function verify(r) {
+                    //Row verification
+                    let rowSum = 0;
+                    for (let i = 0; i < r.length; i += 9) {
+                        for (j = 0; j < 9; j++) {
+                            rowSum += r[i + j];
+                        }
+                        if (rowSum != 45) return false;
+                    }
+                    
+                    //Column verification
+                    let colSum = 0;
+                    for (let i = 0; i < 9; i++) {
+                        for (let j = 0; j < r.length; j += 9) {
+                            colSum += r[i + j];
+                        }
+                        if (colSum != 45) return false;
+                    }
+                    //Square verification
+                    let sqrSum = 0;
+                    for (let j = 0; j <= 80; j += 27) {
+                        if (i >= j && i <= (j + 26)) {
+                            for (let k = 0; k <= 9; k += 3) {
+                                if (i % 9 >= k && i % 9 <= (k + 2)) {
+                                    for (let s = 0; s <= 2; s++) {
+                                        for (let t = 0; t <= 18; t += 9) {
+                                            sqrSum += r[j + k + s + t];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return true;
+            }
             
+            /*
             function verify(r) {
                 let pass = true;
                 for (m = 0; m < r.length; m++) {
                     //Row verification
-                    for (let i = 0; i < r[0].length; i += 9) {
+                    for (let i = 0; i < r.length; i += 9) {
                         for (j = 0; j < 9; j++) {
                             let e = r[i + j];
-                            if (v == e && e != 0) return false;
+                            if (r[m] != e && e != 0) return false;
                         }
                     }
                     
                     //Column verification
                     for (let i = 0; i < 9; i++) {
-                        for (let j = 0; j < r[0].length; j += 9) {
+                        for (let j = 0; j < r.length; j += 9) {
                             let e = r[i + j];
-                            if (v == e && e != 0) return false;
+                            if (r[m] != e && e != 0) return false;
                         }
                     }
                     
@@ -226,8 +281,8 @@
                                 if (i % 9 >= k && i % 9 <= (k + 2)) {
                                     for (let s = 0; s <= 2; s++) {
                                         for (let t = 0; t <= 18; t += 9) {
-                                            let e = r[0][j + k + s + t];
-                                            if(v == e && e != 0) return false;
+                                            let e = r[j + k + s + t];
+                                            if(r[m] != e && e != 0) return false;
                                         }
                                     }
                                 }
@@ -237,5 +292,20 @@
                 }
                 if (pass) return true;
             }
+            */
+        </script>
+</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html lang="en">
+        <style>
+            body  {font-size: 11px; font-family: "Lucida Console", Monaco, monospace; }
+            td { vertical-align: top; }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script>
+            document.body = document.createElement("body");
+            let test = [1,[1,2],[1,2,3],[1, 2, 3, 4],[1,2,3,4,5],[1,2,3,4,5,6]];
+            
+            
         </script>
 </html>
