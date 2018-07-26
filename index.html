@@ -543,14 +543,14 @@
 					var getip, getcc, getcn, getrc, getrn, getct, getzc, gettz, getlt, getlg, getmc, coordx, coordy;
 
 					$.ajax({
-						url: "ip-api.com/json",
+						url: "https://ipapi.co/json/",
 						dataType: "json",
 						success: function(data) {
 							var welcomeMsg = "<div id='vstr'>";
                                                         var d = data;
                                                         var s = screen;
-							coordx = parseInt((-0.1 * d.lat) + 11);
-							coordy = parseInt((0.222 * d.lon) + 39);
+							coordx = parseInt((-0.1 * d.latitude) + 11);
+							coordy = parseInt((0.222 * d.longitude) + 39);
 							worldmap[coordx][coordy] = "<b id='xmark'>X</b>";
 
 							for (i = 0; i <= 18; i++) {
@@ -559,17 +559,17 @@
 										welcomeMsg += worldmap[i][j];
 									} 
 								switch (true) {
-									case i == 3 : ipInfo = "IP Address: "   + d.query                           ; break;
-									case i == 4 : ipInfo = "Organization: " + d.org				    ; break;
-									case i == 5 : ipInfo = "ISP: "		+ d.isp				    ; break;
-									case i == 6 : ipInfo = "City: "         + d.city                            ; break;
-									case i == 7 : ipInfo = "State/Region: " + d.country + " (" + d.region + ")" ; break;
-									case i == 8 : ipInfo = "Zip Code: "     + d.zip                             ; break;
-									case i == 9 : ipInfo = "Country: "      + d.countryCode                     ; break;
-									case i == 10: ipInfo = "Lat/Long: "     + d.lat + ", " + d.lon              ; break;
-									case i == 11: ipInfo = "Time Zone: "    + d.timezone                        ; break;
-									case i == 12: ipInfo = "Display: "      + s.width + "x" + s.height          ; break;
-									case i == 13: ipInfo = "Platform: "     + navigator.platform                ; break;
+									case i == 3 : ipInfo = "IP Address: "   + d.ip                                  ; break;
+									case i == 4 : ipInfo = "Organization: " + d.org				        ; break;
+									case i == 5 : ipInfo = "ASN: "		+ d.asn				        ; break;
+									case i == 6 : ipInfo = "City: "         + d.city                                ; break;
+									case i == 7 : ipInfo = "State/Region: " + d.region + " (" + d.region_code + ")" ; break;
+									case i == 8 : ipInfo = "Zip Code: "     + d.postal                              ; break;
+									case i == 9 : ipInfo = "Country: "      + d.country                             ; break;
+									case i == 10: ipInfo = "Lat/Long: "     + d.latitude + ", " + d.longitude       ; break;
+									case i == 11: ipInfo = "Time Zone: "    + d.timezone                            ; break;
+									case i == 12: ipInfo = "Display: "      + s.width + "x" + s.height              ; break;
+									case i == 13: ipInfo = "Platform: "     + navigator.platform                    ; break;
 								}
 								welcomeMsg += ipInfo + "<br/>";
 							}
