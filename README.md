@@ -1,7 +1,12 @@
 # frankrcastillo.github.io
 ```
 Frank R. Castillo:
-I am a masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology for my blog on Medium. As I move ahead with my academic and professional endeavors, I hope to apply my knowledge of economics and technology to further our understanding of money laundering, sanctions, bribery, and corruption. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service.
+I am a masters student of economics at the University of South Florida. When time allows, I write
+about politics, economics, international relations, and technology for my blog on Medium. As I move
+ahead with my academic and professional endeavors, I hope to apply my knowledge of economics and
+technology to further our understanding of money laundering, sanctions, bribery, and corruption.
+In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of
+service.
 
 Social Media:
 Medium, Twitter, YouTube, GitHub, LinkedIn
@@ -49,25 +54,25 @@ System console help:
 version 1.0, written in JavaScript by Frank Castillo
 
 About me/content:
-homeShow homepage
+homeShow      homepage
 
 Console commands:
-clearClears screen
-echoPrint line
-helpShows this help screen
+clear         Clears screen
+echo          Print line
+help          Shows this help screen
 
 File commands:
-catPrint file content
-cdChange directory
-lsList files and directories
-mkdirCreate directory
-mvMove file or directory
+cat           Print file content
+cd            Change directory
+ls            List files and directories
+mkdir         Create directory
+mv            Move file or directory
 
 Network commands:
-visitorShow visitor information
+visitor       Show visitor information
 
 Fun and games:
-sudokuSolve Sudokus!
+sudoku        Solve Sudokus!
 
 ~ # 
 ```
