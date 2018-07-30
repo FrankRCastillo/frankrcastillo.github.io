@@ -1,5 +1,5 @@
 # frankrcastillo.github.io
-
+```
 Frank R. Castillo:
 I am a masters student of economics at the University of South Florida. When time allows, I write about politics, economics, international relations, and technology for my blog on Medium. As I move ahead with my academic and professional endeavors, I hope to apply my knowledge of economics and technology to further our understanding of money laundering, sanctions, bribery, and corruption. In 2013, I received an Honorable Discharge from the United States Marine Corps after nine years of service.
 
@@ -70,3 +70,4 @@ Fun and games:
 sudokuSolve Sudokus!
 
 ~ # 
+```
