@@ -54,7 +54,7 @@ System console help:
 version 1.0, written in JavaScript by Frank Castillo
 
 About me/content:
-homeShow      homepage
+home          Show homepage
 
 Console commands:
 clear         Clears screen
