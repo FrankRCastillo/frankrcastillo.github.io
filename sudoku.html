@@ -44,14 +44,9 @@
             let gameAns = fuzzySolve(gArr);
             
             function fuzzySolve(r) {
-                r = elimSolve(r);
-                let x = r[0];
-                let g = r[1];                
-                let cx = JSON.parse(JSON.stringify(x));
-                let cg = copyGrid(g);
-                let px = [];
-                let sum = 0;
-                let prod = math.bignumber(1);
+                r = elimSolve(r);             
+                let cx = JSON.parse(JSON.stringify(r[0]));
+                let cg = copyGrid(r[1]);
                 
                 //REWORK!!!
                 
