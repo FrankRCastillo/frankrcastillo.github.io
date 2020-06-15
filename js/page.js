@@ -70,6 +70,12 @@ function WriteConsole(arr, h, w) {
     return rtn;
 }
 
+async function ReadFile(path) {
+    const response = await fetch(path);
+    const text = await response.text();
+    return text;
+}
+
 function main() {
     window.addEventListener('resize', main);
     var h    = ((window.innerHeight - 10) / 20);
@@ -86,6 +92,8 @@ function main() {
     var screen     = SetScreen(r, c);
     screen         = SetLayout(screen, sel);
     body.innerHTML = WriteConsole(screen, h, w);
+
+    window.alert(ReadFile('main/1_Frank_Castillo/main.txt'));
 }
 
 main()
