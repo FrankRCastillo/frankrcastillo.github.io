@@ -71,9 +71,7 @@ function WriteConsole(arr, h, w) {
 }
 
 async function ReadFile(path) {
-    const response = await fetch(path);
-    const text = await response.text();
-    return text;
+    return await fetch(path).text();
 }
 
 function main() {
