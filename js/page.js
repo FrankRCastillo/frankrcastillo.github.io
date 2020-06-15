@@ -75,8 +75,8 @@ async function ReadFile(path) {
 }
 
 function SetMain(screen) {
-    var txt = ReadFile('main/1_Frank_Castillo/main.txt');
-    var arr = txt.Split('\n');
+    var txt = ReadFile('./main/1_Frank_Castillo/main.txt');
+    var arr = txt.split('\n');
     var bgn = 18;
 
     for (var i = 0; i < screen.Length; i++) {
