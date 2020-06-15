@@ -24,7 +24,7 @@ function SetScreen(r, c) {
     return arr;
 }
 
-function SetLayout(arr, sel) {
+function SetMenu(arr, sel) {
     var cell = '';
     var type = '';
 
@@ -71,7 +71,31 @@ function WriteConsole(arr, h, w) {
 }
 
 async function ReadFile(path) {
-    return await fetch(path).text();
+    return (await fetch(path)).text();
+}
+
+function SetMain(screen) {
+    var txt = ReadFile('main/1_Frank_Castillo/main.txt');
+    var arr = txt.Split('\n');
+    var bgn = 18;
+
+    for (var i = 0; i < screen.Length; i++) {
+        for (var j = bgn; j < screen[i].Length; j++) {
+            for (var k = 0; k < arr.Length; k++) {
+                for (var m = 0; m < arr[k].Length; m++) {
+                    val = arr[k][m];
+
+                    if (val == '\n') {
+                        j++;
+                    } else {
+                        screen[i][j] = val;
+                    }
+                }
+            }
+        }
+    }
+
+    return screen; 
 }
 
 function main() {
@@ -88,10 +112,9 @@ function main() {
                ]
 
     var screen     = SetScreen(r, c);
-    screen         = SetLayout(screen, sel);
+    screen         = SetMenu(screen, sel);
+    screen         = SetMain(screen);
     body.innerHTML = WriteConsole(screen, h, w);
-
-    window.alert(ReadFile('main/1_Frank_Castillo/main.txt'));
 }
 
 main()
