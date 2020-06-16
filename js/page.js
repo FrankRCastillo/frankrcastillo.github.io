@@ -71,11 +71,11 @@ function WriteConsole(arr, h, w) {
 }
 
 function ReadFile(path) {
-    fetch(path)
-        .then(response => response.text())
-        .then((data) => {
-            return data;
-        });
+    Promise.all([
+        fetch(path).then(x => x.text())
+    ]).then((response) => {
+        return response;
+    });
 }
 
 function SetMain(screen) {
