@@ -70,12 +70,14 @@ function WriteConsole(arr, h, w) {
     return rtn;
 }
 
-function ReadFile(path) {
-    Promise.all([
-        fetch(path).then(x => x.text())
-    ]).then((response) => {
-        return response;
-    });
+async function ReadFile(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.text();
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function SetMain(screen) {
