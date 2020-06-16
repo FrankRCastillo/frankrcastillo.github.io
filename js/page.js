@@ -20,9 +20,6 @@ function SetScreen(arr) {
 }
 
 function SetMenu(arr, sel) {
-    var cell = '';
-    var type = '';
-
     for (var i = 0; i < sel.length; i++) {
         arr[i][0] = i + 1;
         arr[i][1] = ')';
@@ -63,27 +60,28 @@ async function ReadFile(url) {
 
 async function SetMain(screen) {
     var txt = await ReadFile('https://frankrcastillo.github.io/main/1_Frank_Castillo/main.txt');
-    var bgn = 20;
-    var k   = 0;
-
-    txt.replace('\r', '\n');
+    var bgn = 20; // starting column
+    var k   = 0;  // text string letter count
 
     for (var i = 1; i < screen.length; i++) {
         for (var j = bgn; j < screen[i].length; j++) {
+            console.log(i + ' of ' + screen.length);
             if (k < txt.length) {
-                if (txt[k] == '\n') {
+                if (txt[k] == '\x0a') {
                     i++;
-                    j = bgn;
+                    j = bgn - 1;
+                    w = 0;
                 } else 
-                if (txt[k] == ' ') {
+                if (txt[k] == ' '){
                     // do nothing
-                } else {
+                } else { 
                     screen[i][j] = txt[k];
                 }
                 k++;
             }
         }
     }
+
     return screen; 
 }
 
