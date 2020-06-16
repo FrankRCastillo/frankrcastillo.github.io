@@ -70,12 +70,19 @@ function WriteConsole(arr, h, w) {
     return rtn;
 }
 
-async function ReadFile(path) {
-    return (await fetch(path)).text();
+function ReadFile(path) {
+    var txt = '';
+    fetch(path)
+        .then(response => response.text())
+        .then((data) => {
+            txt = data;
+        });
+    return txt;
 }
 
 function SetMain(screen) {
-    var txt = ReadFile('./main/1_Frank_Castillo/main.txt');
+    var txt = ReadFile('main/1_Frank_Castillo/main.txt');
+    window.alert(txt);
     var arr = txt.split('\n');
     var bgn = 18;
 
