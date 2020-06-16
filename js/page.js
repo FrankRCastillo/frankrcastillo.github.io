@@ -66,7 +66,7 @@ async function SetMain(screen) {
     var bgn = 20;
     var k   = 0;
 
-    txt.replace('\r', '');
+    txt.replace('\r', '\n');
 
     for (var i = 1; i < screen.length; i++) {
         for (var j = bgn; j < screen[i].length; j++) {
