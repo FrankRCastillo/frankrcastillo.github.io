@@ -71,19 +71,19 @@ function WriteConsole(arr, h, w) {
 }
 
 async function ReadFile(url) {
-  try {
-    const response = await fetch(url);
-    const data = await response.text();
-    console.log(data);
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
+    var rtn = '';    
+    try {
+        const response = await fetch(url);
+        const data = await response.text();
+        rtn = data;
+    } catch (err) {
+        console.error(err);
+    }
+    return rtn;
 }
 
 function SetMain(screen) {
     var txt = ReadFile('main/1_Frank_Castillo/main.txt');
-    window.alert(txt);
     var arr = txt.split('\n');
     var bgn = 18;
 
