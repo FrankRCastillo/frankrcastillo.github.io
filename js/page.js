@@ -71,12 +71,15 @@ function WriteConsole(arr, h, w) {
 }
 
 async function ReadFile(url) {
+    var resptext;
     try {
         const response = await fetch(url);
-        return await response.text();
+        resptext = await response.text();
     } catch (err) {
         console.error(err);
     }
+
+    return resptext;
 }
 
 function SetMain(screen) {
