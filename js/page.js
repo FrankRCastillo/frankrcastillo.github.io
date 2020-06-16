@@ -1,21 +1,16 @@
-function SetScreen(r, c) {
-    var arr = [];
+function SetScreen(arr) {
 
-    for (var i = 0; i <= r; i++) {
-        arr[i] = new Array(c);
-    }
-
-    for (var i = 0; i <= r; i++) {
-        for (var j = 0; j <= c; j++) {
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < arr[i].length; j++) {
             switch(i) {
                 // Spaces
                 case 0:
-                case r:
-                    arr[i][j] = '<div class="invert">\xa0</div>';
+                case arr.length - 1:
+                    arr[i][j] = '<div class="invert">' + arr[i][j] + '</div>';
                     break;
 
                 default:
-                    arr[i][j] = '<div class="normal">\xa0</div>';
+                    arr[i][j] = '<div class="normal">' + arr[i][j] + '</div>';
                     break;
             }
         }
@@ -29,27 +24,19 @@ function SetMenu(arr, sel) {
     var type = '';
 
     for (var i = 0; i < sel.length; i++) {
-        if ( i == 0 ) {
-            type = 'invert';
-        } else {
-            type = 'normal';
-        }
-
-        arr[i][0] = '<div class="' + type + '">' + (i + 1) + '</div>';
-        arr[i][1] = '<div class="' + type + '">)</div>';
+        arr[i][0] = i + 1;
+        arr[i][1] = ')';
 
         for (var j = 0; j < sel[i].length; j++) {
             switch(sel[i][j]) {
                 case ' ':
-                    cell = '\xa0';
+                    arr[i][j + 3] = '\xa0';
                     break;
 
                 default:
-                    cell = sel[i][j];
+                    arr[i][j + 3] = sel[i][j];
                     break;
             }
-
-            arr[i][j + 3] = '<div class="' + type + '">' + cell + '</div>';
         }
     }
 
@@ -71,43 +58,36 @@ function WriteConsole(arr, h, w) {
 }
 
 async function ReadFile(url) {
-    var rtn;
-    try {
-        const resp = await fetch(url);
-        const data = await resp.text();
-        rtn = await data;
-    } catch (err) {
-        console.error(err);
-    }
-
-    return rtn;
+    return (await fetch(url)).text();
 }
 
-function SetMain(screen) {
-    var txt = ReadFile('main/1_Frank_Castillo/main.txt');
-    var arr = txt.split('\n');
-    var bgn = 18;
+async function SetMain(screen) {
+    var txt = await ReadFile('https://frankrcastillo.github.io/main/1_Frank_Castillo/main.txt');
+    var bgn = 20;
+    var k   = 0;
 
-    for (var i = 0; i < screen.Length; i++) {
-        for (var j = bgn; j < screen[i].Length; j++) {
-            for (var k = 0; k < arr.Length; k++) {
-                for (var m = 0; m < arr[k].Length; m++) {
-                    val = arr[k][m];
+    txt.replace('\r', '');
 
-                    if (val == '\n') {
-                        j++;
-                    } else {
-                        screen[i][j] = val;
-                    }
+    for (var i = 1; i < screen.length; i++) {
+        for (var j = bgn; j < screen[i].length; j++) {
+            if (k < txt.length) {
+                if (txt[k] == '\n') {
+                    i++;
+                    j = bgn;
+                } else 
+                if (txt[k] == ' ') {
+                    // do nothing
+                } else {
+                    screen[i][j] = txt[k];
                 }
+                k++;
             }
         }
     }
-
     return screen; 
 }
 
-function main() {
+async function main() {
     window.addEventListener('resize', main);
     var h    = ((window.innerHeight - 10) / 20);
     var w    = ((window.innerWidth  - 10) /  8);
@@ -120,9 +100,15 @@ function main() {
                ,'Social Media'
                ]
 
-    var screen     = SetScreen(r, c);
+    var screen = [];
+
+    for (var i = 0; i <= r; i++) {
+        screen[i] = new Array(c).fill('\xa0');
+    }
+
     screen         = SetMenu(screen, sel);
-    screen         = SetMain(screen);
+    screen         = await SetMain(screen);
+    screen         = SetScreen(screen);
     body.innerHTML = WriteConsole(screen, h, w);
 }
 
