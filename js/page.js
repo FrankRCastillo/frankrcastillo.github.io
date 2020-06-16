@@ -71,13 +71,11 @@ function WriteConsole(arr, h, w) {
 }
 
 function ReadFile(path) {
-    var txt = '';
     fetch(path)
         .then(response => response.text())
         .then((data) => {
-            txt = data;
+            return data;
         });
-    return txt;
 }
 
 function SetMain(screen) {
