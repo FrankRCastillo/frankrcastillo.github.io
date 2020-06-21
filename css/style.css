@@ -11,8 +11,7 @@ body
 ; color            : #ffa500
 ; vertical-align   : middle
 ; align-content    : center
-; margin           : 0px 0px 0px 0px
-; overflow         : hidden
+; margin           : 20px 20px 20px 20px
 }
 
 table
@@ -41,13 +40,39 @@ ul
 ; float            : left
 ; color            : #000000
 ; background-color : #ffa500
-; box-shadow      : 0px 0px 5px #ffa500
+; box-shadow       : 0px 0px 5px #ffa500
 }
 
 .normal
 { margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
 ; float   : left
+}
+
+#inputbox
+{ border-top-style    : hidden
+; border-right-style  : hidden
+; border-left-style   : hidden
+; border-bottom-style : hidden
+; margin              : 0px 0px 0px 0px
+; padding             : 0px 0px 0px 0px
+; outline             : none
+; font-family         : 'VT323'
+; font-size           : 20px
+; width               : 95%
+; height              : 20px
+; color               : #000000
+; background          : transparent
+}
+
+#textdiv
+{ margin           : 0px 0px 0px 0px
+; padding          : 0px 0px 0px 0px
+; outline          : none
+; height           : 20px
+; color            : #000000
+; background-color : #ffa500
+; box-shadow       : 0px 0px 5px #ffa500
 }
 
 #xmark
