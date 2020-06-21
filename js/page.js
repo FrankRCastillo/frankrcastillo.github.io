@@ -6,13 +6,13 @@ async function SetConsole() {
     console.setAttribute("id", "console");
     outtext.setAttribute("id", "outtext");
 
-    console.appendChild(outtext);
     console.appendChild(inptext);
+    console.appendChild(outtext);
 
     return console;
 }
 
-async function WelcomeMsg() {
+async function home() {
     var txt = await ReadFile('https://frankrcastillo.github.io/main/1_Frank_Castillo/main.txt');
     print('\n');
     print(txt);
@@ -23,10 +23,12 @@ async function ReadFile(url) {
 }
 
 function CommandManager(cmd) {
+    clear();
+
     switch (cmd) {
-        case 'welcome' : WelcomeMsg()   ; break;
-        case 'clear'   : clear()        ; break;
-        case 'visitor' : visitorPrint() ; break;
+        case 'welcome' : home()    ; break;
+        case 'clear'   : clear()   ; break;
+        case 'visitor' : visitor() ; break;
         default        : print(cmd + ': command not found');
     }
 }
@@ -48,12 +50,20 @@ function clear() {
     outtext.innerHTML = '';
 }
 
-async function visitorPrint() {
-    var outtext = document.getElementById("outtext");
-    outtext.appendChild(await visitor());
-}
+function AddCommandLine() {
+    homelink = document.createElement("div");
+    homelink.innerText = "Home";
+    homelink.onclick = home();
 
-function AddCommandLine() { 
+    appslink = document.createElement("div");
+    appslink.innerText = "Apps";
+
+    newslink = document.createElement("div");
+    newslink.innerText = "News";
+
+    talklink = document.createElement("div");
+    talklink.innerText = "Talk";
+
     txtlabel = document.createElement("label");
     txtlabel.setAttribute("name", "inputbox");
     txtlabel.innerText = "\xa0\$\xa0";
@@ -70,7 +80,7 @@ function AddCommandLine() {
 
     window.addEventListener('keydown', function(e) {
         var inputbox = document.getElementById("inputbox");
-
+        
         if (e.keyCode == 13) {
             CommandManager(inputbox.value);
             inputbox.value = '';
@@ -85,6 +95,7 @@ function AddCommandLine() {
 }
 
 async function visitor() {
+    var outtext = document.getElementById("outtext");
     var worldmap = new Array(3);
 
     for (i = 0; i <= 18; i++) {
@@ -173,7 +184,7 @@ async function visitor() {
     var visitDiv = document.createElement("div");
     visitDiv.innerHTML = visitMsg;
 
-    return visitDiv;
+    outtext.appendChild(await visitDiv);
 }
 
 async function main() {
