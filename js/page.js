@@ -1,3 +1,4 @@
+
 async function SetConsole() {
     var console = document.createElement("div");
     var outtext = document.createElement("div");
@@ -12,8 +13,13 @@ async function SetConsole() {
     return console;
 }
 
+function clear() {
+    var outtext = document.getElementById("outtext");
+    outtext.innerHTML = '';
+}
+
 async function home() {
-    var txt = await ReadFile('https://frankrcastillo.github.io/main/1_Frank_Castillo/main.txt');
+    var txt = await ReadFile('https://frankrcastillo.github.io/main/home/main.txt');
     print('\n');
     print(txt);
 }
@@ -26,7 +32,7 @@ function CommandManager(cmd) {
     clear();
 
     switch (cmd) {
-        case 'welcome' : home()    ; break;
+        case 'home'    : home()    ; break;
         case 'clear'   : clear()   ; break;
         case 'visitor' : visitor() ; break;
         default        : print(cmd + ': command not found');
@@ -45,28 +51,28 @@ function print(text) {
     inputbox.focus();
 }
 
-function clear() {
-    var outtext = document.getElementById("outtext");
-    outtext.innerHTML = '';
+function AddCommandIcons() {
+    var linkdiv = document.createElement("div");
+    var textdiv = document.getElementById("textdiv");
+    var textlbl = document.getElementById("inputlabel");
+    var linkcat = [ 'home', 'apps', 'news', 'talk' ];
+
+    for (var i = 0; i < linkcat.length; i++) {
+        var child = document.createElement('div');
+        child.innerText = linkcat[i];
+        child.setAttribute('class', 'barbutton');
+        child.setAttribute('onclick', 'CommandManager("' + linkcat[i] + '")');
+        linkdiv.appendChild(child);
+    }
+
+    return linkdiv;
 }
 
 function AddCommandLine() {
-    homelink = document.createElement("div");
-    homelink.innerText = "Home";
-    homelink.onclick = home();
-
-    appslink = document.createElement("div");
-    appslink.innerText = "Apps";
-
-    newslink = document.createElement("div");
-    newslink.innerText = "News";
-
-    talklink = document.createElement("div");
-    talklink.innerText = "Talk";
-
     txtlabel = document.createElement("label");
     txtlabel.setAttribute("name", "inputbox");
-    txtlabel.innerText = "\xa0\$\xa0";
+    txtlabel.setAttribute("id", "inputlabel");
+    txtlabel.innerText = "\$\xa0";
 
     txtinput = document.createElement("input");
     txtinput.setAttribute("id", "inputbox");
@@ -191,6 +197,11 @@ async function main() {
     var body = document.body;
 
     body.appendChild(await SetConsole());
+    home();
+    
+    var textbox = document.getElementById("textdiv");
+    var inlabel = document.getElementById('inputlabel');
+    textbox.insertBefore(AddCommandIcons(), inlabel);
 }
 
 main()

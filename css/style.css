@@ -49,6 +49,12 @@ ul
 ; float   : left
 }
 
+.barbutton
+{ margin  : 0px 0px 0px 0px
+; padding : 0px 10px 0px 0px
+; float   : left
+}
+
 #inputbox
 { border-top-style    : hidden
 ; border-right-style  : hidden
