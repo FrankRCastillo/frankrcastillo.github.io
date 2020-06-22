@@ -19,7 +19,7 @@ function clear() {
 }
 
 async function home() {
-    var txt = await ReadFile('./main/home/main.txt');
+    var txt = await ReadFile('https://frankrcastillo.github.io/main/home/main.txt');
     print('\n');
     print(txt);
 }
@@ -34,7 +34,7 @@ async function CommandManager(cmd) {
     switch (cmd) {
         case 'home'    : home()    ; break;
         case 'clear'   : clear()   ; break;
-        case 'visitor' : let visitor = await import('./main/apps/visitor.js'); visitor(); break;
+        case 'visitor' : let visitor = await import('https://frankrcastillo.github.io/main/apps/visitor.js'); visitor(); break;
         default        : print(cmd + ': command not found');
     }
 }
