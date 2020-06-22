@@ -35,16 +35,16 @@ ul
 }
 
 .invert
-{ margin           : 0px 10px 0px 0px
-; padding          : 0px 0px 0px 0px
+{ margin           : 2px 10px 0px 0px
+; padding          : 0px  0px 0px 0px
 ; float            : left
 ; color            : #000000
 ; background-color : #ffa500
 }
 
 .normal
-{ margin           : 0px 10px 0px 0px
-; padding          : 0px 0px 0px 0px
+{ margin           : 2px 10px 0px 0px
+; padding          : 0px  0px 0px 0px
 ; float            : left
 ; color            : #ffa500
 ; background-color : #000000
