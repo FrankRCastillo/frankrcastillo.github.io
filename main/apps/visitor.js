@@ -52,8 +52,7 @@ export async function visitor() {
         worldmap[maparea[i][0]][maparea[i][1]] = ".";
     }
     var ipdata   = await ReadFile("http://ip-api.com/json");
-    var jsonstr  = JSON.stringify(ipdata);
-    var data     = JSON.parse(jsonstr);
+    var data     = JSON.parse(ipdata);
     var visitMsg = "<div id='vstr'>";
     var coordx   = parseInt((-0.1 * data.lat) + 11);
     var coordy   = parseInt((0.222 * data.lon) + 39);
