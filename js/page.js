@@ -32,10 +32,14 @@ async function CommandManager(cmd) {
     clear();
 
     switch (cmd) {
-        case 'home'    : home()    ; break;
-        case 'clear'   : clear()   ; break;
-        case 'visitor' : let visitor = await import('https://frankrcastillo.github.io/main/apps/visitor.js'); visitor(); break;
-        default        : print(cmd + ': command not found');
+        case 'home'  : home()  ; break;
+        case 'clear' : clear() ; break;
+        case 'visitor':
+            let visitor = await import('https://frankrcastillo.github.io/main/apps/visitor.js');
+            visitor.visitor();
+            break;
+
+        default: print(cmd + ': command not found');
     }
 }
 

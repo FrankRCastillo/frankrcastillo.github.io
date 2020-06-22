@@ -2,9 +2,9 @@ export function visitor() {
     var outtext = document.getElementById("outtext");
     var worldmap = new Array(3);
 
-    for (i = 0; i <= 18; i++) {
+    for (var i = 0; i <= 18; i++) {
         worldmap[i] = new Array(3);
-        for (j = 0; j <= 80; j++) {
+        for (var j = 0; j <= 80; j++) {
             worldmap[i][j] = "&nbsp";
         }
     }
@@ -48,7 +48,7 @@ export function visitor() {
                   ,[14,65],[14,68],[14,69],[14,70],[14,71],[15,23],[15,24],[16,22],[16,23],[17,23]
                   ];
 
-    for (i = 0; i <= 369; i++) {
+    for (var i = 0; i <= 369; i++) {
         worldmap[maparea[i][0]][maparea[i][1]] = ".";
     }
 
@@ -59,10 +59,10 @@ export function visitor() {
 
     worldmap[coordx][coordy] = "<b id='xmark'>X</b>";
 
-    for (i = 0; i <= 18; i++) {
+    for (var i = 0; i <= 18; i++) {
         var ipInfo = "";
 
-        for (j = 0; j <= 80; j++) {
+        for (var j = 0; j <= 80; j++) {
             visitMsg += worldmap[i][j];
         } 
 
