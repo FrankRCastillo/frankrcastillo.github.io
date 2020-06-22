@@ -68,8 +68,8 @@ async export function visitor() {
 
         switch (true) {
             case i == 3 : ipInfo = "IP Address: "   + data.query                              ; break;
-            case i == 4 : ipInfo = "Organization: " + data.org				                  ; break;
-            case i == 5 : ipInfo = "ISP: "		    + data.isp	            			      ; break;
+            case i == 4 : ipInfo = "Organization: " + data.org                                ; break;
+            case i == 5 : ipInfo = "ISP: "          + data.isp                                ; break;
             case i == 6 : ipInfo = "City: "         + data.city                               ; break;
             case i == 7 : ipInfo = "State/Region: " + data.country + " (" + data.region + ")" ; break;
             case i == 8 : ipInfo = "Zip Code: "     + data.zip                                ; break;
