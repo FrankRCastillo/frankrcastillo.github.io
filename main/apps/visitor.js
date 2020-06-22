@@ -88,6 +88,6 @@ export function visitor() {
     var visitDiv = document.createElement("div");
     visitDiv.innerHTML = visitMsg;
 
-    outtext.appendChild(await visitDiv);
+    outtext.appendChild(visitDiv);
 }
 
