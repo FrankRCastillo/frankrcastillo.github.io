@@ -36,7 +36,7 @@ async function CommandManager(cmd) {
         case 'clear' : clear() ; break;
         case 'visitor':
             let visitor = await import('https://frankrcastillo.github.io/main/apps/visitor.js');
-            visitor.visitor();
+            visitor();
             break;
 
         default: print(cmd + ': command not found');
