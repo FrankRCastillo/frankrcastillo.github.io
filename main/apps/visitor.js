@@ -53,7 +53,7 @@ export function visitor() {
     }
 
     var jsonstr  = JSON.stringify(ReadFile("http://ip-api.com/json"));
-    var data     = JSON.parse(jsonstr;
+    var data     = JSON.parse(jsonstr);
     var visitMsg = "<div id='vstr'>";
     var coordx   = parseInt((-0.1 * data.lat) + 11);
     var coordy   = parseInt((0.222 * data.lon) + 39);
