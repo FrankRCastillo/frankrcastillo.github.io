@@ -57,15 +57,25 @@ function AddCommandIcons() {
     var textlbl = document.getElementById("inputlabel");
     var linkcat = [ 'home', 'apps', 'news', 'talk' ];
 
+    linkdiv.setAttribute('id', 'linkdiv');
+
     for (var i = 0; i < linkcat.length; i++) {
         var child = document.createElement('div');
+        var id    = linkcat[i] + 'btn'
         child.innerText = linkcat[i];
-        child.setAttribute('class', 'barbutton');
+        child.setAttribute('id', id);
+        child.setAttribute('class', 'invert');
         child.setAttribute('onclick', 'CommandManager("' + linkcat[i] + '")');
+        child.setAttribute('onmouseover', 'ChangeClass("' + id + '", "normal")');
+        child.setAttribute('onmouseout' , 'ChangeClass("' + id + '", "invert")');
         linkdiv.appendChild(child);
     }
 
     return linkdiv;
+}
+
+function ChangeClass(id, classname) {
+    document.getElementById(id).className = classname;
 }
 
 function AddCommandLine() {
@@ -199,9 +209,9 @@ async function main() {
     body.appendChild(await SetConsole());
     home();
     
-    var textbox = document.getElementById("textdiv");
+    var textdiv = document.getElementById("textdiv");
     var inlabel = document.getElementById('inputlabel');
-    textbox.insertBefore(AddCommandIcons(), inlabel);
+    textdiv.insertBefore(AddCommandIcons(), inlabel);
 }
 
 main()
