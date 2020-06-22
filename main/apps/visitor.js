@@ -52,7 +52,8 @@ export function visitor() {
         worldmap[maparea[i][0]][maparea[i][1]] = ".";
     }
 
-    var data     = JSON.parse(ReadFile("http://ip-api.com/json"));
+    var jsonstr  = JSON.stringify(ReadFile("http://ip-api.com/json"));
+    var data     = JSON.parse(jsonstr;
     var visitMsg = "<div id='vstr'>";
     var coordx   = parseInt((-0.1 * data.lat) + 11);
     var coordy   = parseInt((0.222 * data.lon) + 39);
