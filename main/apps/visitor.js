@@ -1,4 +1,4 @@
-async function visitor() {
+export function visitor() {
     var outtext = document.getElementById("outtext");
     var worldmap = new Array(3);
 
