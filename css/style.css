@@ -55,21 +55,23 @@ ul
 ; border-right-style  : hidden
 ; border-left-style   : hidden
 ; border-bottom-style : hidden
-; margin              : 0px 0px 0px 0px
+; margin              : 2px 2px 2px 0px
 ; padding             : 0px 0px 0px 0px
 ; outline             : none
 ; font-family         : 'VT323'
 ; font-size           : 20px
 ; height              : 20px
-; color               : #000000
-; background          : transparent
+; color               : #ffa500
+; background          : #000000
+; text-shadow         : 0px 0px 5px #ffa500
+; width               : calc(100% - 187px);
 }
 
 #textdiv
 { margin           : 0px 0px 0px 0px
 ; padding          : 0px 0px 0px 0px
 ; outline          : none
-; height           : 20px
+; height           : 24px
 ; color            : #000000
 ; background-color : #ffa500
 ; box-shadow       : 0px 0px 5px #ffa500
