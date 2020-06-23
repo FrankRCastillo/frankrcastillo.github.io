@@ -32,8 +32,9 @@ async function CommandManager(cmd) {
     clear();
 
     switch (cmd) {
-        case 'home'  : home()  ; break;
         case 'clear' : clear() ; break;
+        case 'help'  : help()  ; break;
+        case 'home'  : home()  ; break;
         case 'visitor':
             let visitor = await import('https://frankrcastillo.github.io/main/apps/visitor.js');
             visitor.visitor();
@@ -86,7 +87,7 @@ function AddCommandLine() {
     txtlabel = document.createElement("label");
     txtlabel.setAttribute("name", "inputbox");
     txtlabel.setAttribute("id", "inputlabel");
-    txtlabel.innerText = "\$\xa0";
+    txtlabel.innerText = "\$";
 
     txtinput = document.createElement("input");
     txtinput.setAttribute("id", "inputbox");

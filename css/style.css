@@ -35,16 +35,16 @@ ul
 }
 
 .invert
-{ margin           : 2px 10px 0px 0px
-; padding          : 0px  0px 0px 0px
+{ margin           : 2px 5px 0px 5px
+; padding          : 0px 0px 0px 0px
 ; float            : left
 ; color            : #000000
 ; background-color : #ffa500
 }
 
 .normal
-{ margin           : 2px 10px 0px 0px
-; padding          : 0px  0px 0px 0px
+{ margin           : 2px 5px 0px 5px
+; padding          : 0px 0px 0px 0px
 ; float            : left
 ; color            : #ffa500
 ; background-color : #000000
@@ -75,6 +75,10 @@ ul
 ; color            : #000000
 ; background-color : #ffa500
 ; box-shadow       : 0px 0px 1px #ffa500
+}
+
+#vstr
+{ white-space : nowrap
 }
 
 #xmark
