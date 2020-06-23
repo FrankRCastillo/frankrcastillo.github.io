@@ -51,7 +51,7 @@ export async function visitor() {
     for (var i = 0; i < 370; i++) {
         worldmap[maparea[i][0]][maparea[i][1]] = ".";
     }
-    var ipdata   = await ReadFile("http://ip-api.com/json");
+    var ipdata   = await ReadFile("https://freegeoip.app/json/");
     var data     = JSON.parse(ipdata);
     var visitMsg = "<div id='vstr'>";
     var coordx   = parseInt((-0.1 * data.lat) + 11);
@@ -67,17 +67,15 @@ export async function visitor() {
         } 
 
         switch (true) {
-            case i == 3 : ipInfo = "IP Address: "   + data.query                              ; break;
-            case i == 4 : ipInfo = "Organization: " + data.org                                ; break;
-            case i == 5 : ipInfo = "ISP: "          + data.isp                                ; break;
-            case i == 6 : ipInfo = "City: "         + data.city                               ; break;
-            case i == 7 : ipInfo = "State/Region: " + data.country + " (" + data.region + ")" ; break;
-            case i == 8 : ipInfo = "Zip Code: "     + data.zip                                ; break;
-            case i == 9 : ipInfo = "Country: "      + data.countryCode                        ; break;
-            case i == 10: ipInfo = "Lat/Long: "     + data.lat + ", " + data.lon              ; break;
-            case i == 11: ipInfo = "Time Zone: "    + data.timezone                           ; break;
-            case i == 12: ipInfo = "Display: "      + screen.width + "x" + screen.height      ; break;
-            case i == 13: ipInfo = "Platform: "     + navigator.platform                      ; break;
+            case i == 3 : ipInfo = "IP Address: "   + data.id                                           ; break;
+            case i == 6 : ipInfo = "City: "         + data.city                                         ; break;
+            case i == 7 : ipInfo = "State/Region: " + data.region_name  + " (" + data.region_code + ")" ; break;
+            case i == 8 : ipInfo = "Zip Code: "     + data.zip                                          ; break;
+            case i == 9 : ipInfo = "Country: "      + data.country_name + " (" + data.country_code + ")"; break;
+            case i == 10: ipInfo = "Lat/Long: "     + data.latitude + ", " + data.longitude             ; break;
+            case i == 11: ipInfo = "Time Zone: "    + data.time_zone                                    ; break;
+            case i == 12: ipInfo = "Display: "      + screen.width + "x" + screen.height                ; break;
+            case i == 13: ipInfo = "Platform: "     + navigator.platform                                ; break;
         }
 
         visitMsg += ipInfo + "<br/>";
