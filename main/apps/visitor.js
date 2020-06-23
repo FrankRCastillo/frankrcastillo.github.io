@@ -70,7 +70,7 @@ export async function visitor() {
             case i == 1: ipInfo = "IP Address: "   + data.id                                           ; break;
             case i == 2: ipInfo = "City: "         + data.city                                         ; break;
             case i == 3: ipInfo = "State/Region: " + data.region_name  + " (" + data.region_code  + ")"; break;
-            case i == 4: ipInfo = "Zip Code: "     + data.zip                                          ; break;
+            case i == 4: ipInfo = "Zip Code: "     + data.zip_code                                     ; break;
             case i == 5: ipInfo = "Country: "      + data.country_name + " (" + data.country_code + ")"; break;
             case i == 6: ipInfo = "Lat/Long: "     + data.latitude + ", " + data.longitude             ; break;
             case i == 7: ipInfo = "Time Zone: "    + data.time_zone                                    ; break;
