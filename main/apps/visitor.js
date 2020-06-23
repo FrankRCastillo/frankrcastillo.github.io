@@ -54,8 +54,8 @@ export async function visitor() {
     var ipdata   = await ReadFile("https://freegeoip.app/json/");
     var data     = JSON.parse(ipdata);
     var visitMsg = "<div id='vstr'>";
-    var coordx   = parseInt((-0.1 * data.lat) + 11);
-    var coordy   = parseInt((0.222 * data.lon) + 39);
+    var coordx   = parseInt((-0.1 * data.latitude) + 11);
+    var coordy   = parseInt((0.222 * data.longitude) + 39);
 
     worldmap[coordx][coordy] = "<b id='xmark'>X</b>";
 
