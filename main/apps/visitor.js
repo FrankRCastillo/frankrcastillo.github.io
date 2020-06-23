@@ -67,15 +67,15 @@ export async function visitor() {
         } 
 
         switch (true) {
-            case i == 3 : ipInfo = "IP Address: "   + data.id                                           ; break;
-            case i == 6 : ipInfo = "City: "         + data.city                                         ; break;
-            case i == 7 : ipInfo = "State/Region: " + data.region_name  + " (" + data.region_code + ")" ; break;
-            case i == 8 : ipInfo = "Zip Code: "     + data.zip                                          ; break;
-            case i == 9 : ipInfo = "Country: "      + data.country_name + " (" + data.country_code + ")"; break;
-            case i == 10: ipInfo = "Lat/Long: "     + data.latitude + ", " + data.longitude             ; break;
-            case i == 11: ipInfo = "Time Zone: "    + data.time_zone                                    ; break;
-            case i == 12: ipInfo = "Display: "      + screen.width + "x" + screen.height                ; break;
-            case i == 13: ipInfo = "Platform: "     + navigator.platform                                ; break;
+            case i == 1: ipInfo = "IP Address: "   + data.id                                           ; break;
+            case i == 2: ipInfo = "City: "         + data.city                                         ; break;
+            case i == 3: ipInfo = "State/Region: " + data.region_name  + " (" + data.region_code  + ")"; break;
+            case i == 4: ipInfo = "Zip Code: "     + data.zip                                          ; break;
+            case i == 5: ipInfo = "Country: "      + data.country_name + " (" + data.country_code + ")"; break;
+            case i == 6: ipInfo = "Lat/Long: "     + data.latitude + ", " + data.longitude             ; break;
+            case i == 7: ipInfo = "Time Zone: "    + data.time_zone                                    ; break;
+            case i == 8: ipInfo = "Display: "      + screen.width + "x" + screen.height                ; break;
+            case i == 9: ipInfo = "Platform: "     + navigator.platform                                ; break;
         }
 
         visitMsg += ipInfo + "<br/>";
