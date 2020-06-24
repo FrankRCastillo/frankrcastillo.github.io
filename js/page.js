@@ -34,8 +34,14 @@ async function CommandManager(cmd) {
         case 'clear'   : clear()        ; break;
         case 'help'    : help()         ; break;
         case 'home'    : home()         ; break;
-        case 'visitor' : apps.visitor() ; break;
-        default: print(cmd + ': command not found');
+        default:
+            try {
+                let app = await import('../main/apps/' + cmd + '.js');
+
+                console.log("pause");
+            } catch {
+                print(cmd + ': command not found');
+            }
     }
 }
 
@@ -111,7 +117,6 @@ function AddCommandLine() {
 }
 
 async function main() {
-    var apps = await import("../main/apps");
     var body = document.body;
 
     body.appendChild(await SetConsole());
