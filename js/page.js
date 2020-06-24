@@ -37,7 +37,7 @@ async function CommandManager(cmd) {
         default:
             try {
                 let app = await import('../main/apps/' + cmd + '.js');
-                eval("app." + cmd);
+                eval('app.' + cmd + '()');
 
                 console.log("pause");
             } catch {
