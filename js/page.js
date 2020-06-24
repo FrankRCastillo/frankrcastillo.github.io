@@ -111,8 +111,7 @@ function AddCommandLine() {
 }
 
 async function main() {
-    import * as apps from "../main/apps"
-
+    var apps = await import("../main/apps");
     var body = document.body;
 
     body.appendChild(await SetConsole());
