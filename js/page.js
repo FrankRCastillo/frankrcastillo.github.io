@@ -1,4 +1,4 @@
-import * from "../main/apps"
+import * as apps from "../main/apps"
 
 async function SetConsole() {
     var console = document.createElement("div");
