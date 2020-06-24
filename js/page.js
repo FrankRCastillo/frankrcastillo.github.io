@@ -28,7 +28,7 @@ function RSSParser(xml) {
 
         publ.innerText = xmldoc.getElementsByTagName('title')[0].textContent;
 
-        trow.appendChild(trow);
+        trow.appendChild(publ);
 
         for (var field in fields) {
             var tfield = document.createElement('td');
