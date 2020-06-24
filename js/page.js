@@ -36,7 +36,7 @@ async function CommandManager(cmd) {
         case 'help'  : help()  ; break;
         case 'home'  : home()  ; break;
         case 'visitor':
-            let visitor = await import('https://frankrcastillo.github.io/main/apps/visitor.js');
+            let visitor = await import('./main/apps/visitor.js');
             visitor.visitor();
             break;
 
