@@ -1,9 +1,5 @@
 export async function news() {
-    var url = 'https://news.google.com/rss/search'
-            + '?q=when:24h+allinurl:reuters.com'
-            + '&ceid=US:en'
-            + '&hl=en-US'
-            + '&gl=US';
+    var url = 'https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml'
 
     var rss = await ReadFile(url);
 
