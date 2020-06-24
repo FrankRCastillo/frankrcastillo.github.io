@@ -12,6 +12,14 @@ async function SetConsole() {
     return console;
 }
 
+function RSSParser(xml) {
+    parser = new DOMParser();
+    xmldoc = parser.parseFromString(xml, 'text/xml');
+
+
+    return 
+}
+
 function clear() {
     var outtext = document.getElementById("outtext");
     outtext.innerHTML = '';
