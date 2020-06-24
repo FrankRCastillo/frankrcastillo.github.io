@@ -22,7 +22,7 @@ function RSSParser(xml) {
     //for (var item in items) {
     //    #    var trow = 
     //}
-    table.innerText = 'test
+    table.innerText = 'test';
     
     return table;
 }
