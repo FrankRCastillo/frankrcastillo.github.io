@@ -32,7 +32,7 @@ function RSSParser(xml) {
 
         for (var j = 0; j < fields.length; j++) {
             var tfield = document.createElement('td');
-            tfield.innerText = items[i].getElementsByTagName(fields[j])[0].textContent;
+            tfield.innerText = items[i].children.item(fields[j]).textContent;
             trow.appendChild(tfield);
         }
 
