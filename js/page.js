@@ -19,7 +19,7 @@ function clear() {
 }
 
 async function home() {
-    var txt = await ReadFile('https://frankrcastillo.github.io/main/home/main.txt');
+    var txt = await ReadFile('../main/home/main.txt');
     print('\n');
     print(txt);
 }
@@ -36,7 +36,7 @@ async function CommandManager(cmd) {
         case 'help'  : help()  ; break;
         case 'home'  : home()  ; break;
         case 'visitor':
-            let visitor = await import('./main/apps/visitor.js');
+            let visitor = await import('../main/apps/visitor.js');
             visitor.visitor();
             break;
 
