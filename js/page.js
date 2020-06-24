@@ -18,24 +18,25 @@ function RSSParser(xml) {
     var items  = xmldoc.getElementsByTagName('item');
     var table  = document.createElement('table');
     var fields = [ 'description'
-                 , 'pubdate'
+                 , 'pubDate'
                  , 'link'
                  ];
 
     for (var i = 0; i < items.length; i++) {
         var trow = document.createElement('tr');
         var publ = document.createElement('td');
+        var desc = document.createElement('td');
+        var date = document.createElement('td');
+        var link = document.createElement('a');
 
         publ.innerText = xmldoc.getElementsByTagName('title')[0].textContent;
+        date.innerText = items[i].children.item('pubDate').textContent;
 
+        link.appendChild(items[i].children.item('description').textContent);
+        desc.appendChild(link);
         trow.appendChild(publ);
-
-        for (var j = 0; j < fields.length; j++) {
-            var tfield = document.createElement('td');
-            tfield.innerText = items[i].children.item(fields[j]).textContent;
-            trow.appendChild(tfield);
-        }
-
+        trow.appendChild(desc);
+        trow.appendChild(date);
         table.appendChild(trow);        
     }
     
