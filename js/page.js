@@ -1,5 +1,3 @@
-import * as apps from "../main/apps"
-
 async function SetConsole() {
     var console = document.createElement("div");
     var outtext = document.createElement("div");
@@ -113,6 +111,8 @@ function AddCommandLine() {
 }
 
 async function main() {
+    import * as apps from "../main/apps"
+
     var body = document.body;
 
     body.appendChild(await SetConsole());
