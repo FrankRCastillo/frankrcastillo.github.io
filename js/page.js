@@ -15,14 +15,30 @@ async function SetConsole() {
 function RSSParser(xml) {
     parser = new DOMParser();
     xmldoc = parser.parseFromString(xml, 'text/xml');
-    var title  = xmldoc.getElementsByTagName("title")[0].textContent;
-    var items  = xmldoc.getElementsByTagName("item");
-    var table  = document.createElement("table");
+    var title  = xmldoc.getElementsByTagName('title')[0].textContent;
+    var items  = xmldoc.getElementsByTagName('item');
+    var table  = document.createElement('table');
+    var fields = [ 'description'
+                 , 'pubdate'
+                 , 'link'
+                 ];
 
-    //for (var item in items) {
-    //    #    var trow = 
-    //}
-    table.innerText = 'test';
+    for (var item in items) {
+        var trow = document.createElement('tr');
+        var publ = document.createElement('td');
+
+        publ.innerText = xmldoc.getElementsByTagName('title')[0].textContent;
+
+        trow.appendChild(trow);
+
+        for (var field in fields) {
+            var tfield = document.createElement('td');
+            tfield.innerText = item.getElementsByTagName(field)[0].textContent;
+            trow.appendChild(tfield);
+        }
+
+        table.appendChild(trow);        
+    }
     
     return table;
 }
