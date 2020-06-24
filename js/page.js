@@ -15,7 +15,6 @@ async function SetConsole() {
 function RSSParser(xml) {
     parser = new DOMParser();
     xmldoc = parser.parseFromString(xml, 'text/xml');
-    var title  = xmldoc.getElementsByTagName('title')[0].textContent;
     var items  = xmldoc.getElementsByTagName('item');
     var table  = document.createElement('table');
     var fields = [ 'description'
