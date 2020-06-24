@@ -22,7 +22,7 @@ function RSSParser(xml) {
                  , 'link'
                  ];
 
-    for (var item in items) {
+    for (var i = 0; i < items.length; i++) {
         var trow = document.createElement('tr');
         var publ = document.createElement('td');
 
@@ -30,9 +30,9 @@ function RSSParser(xml) {
 
         trow.appendChild(publ);
 
-        for (var field in fields) {
+        for (var j = 0; j < fields.length; j++) {
             var tfield = document.createElement('td');
-            tfield.innerText = item.getElementsByTagName(field)[0].textContent;
+            tfield.innerText = items[i].getElementsByTagName(fields[j])[0].textContent;
             trow.appendChild(tfield);
         }
 
