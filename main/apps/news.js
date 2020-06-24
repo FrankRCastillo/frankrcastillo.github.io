@@ -3,9 +3,9 @@ export async function news() {
             + '?q=when:24h+allinurl:reuters.com'
             + '&ceid=US:en'
             + '&hl=en-US'
-            + '&gl=US'
+            + '&gl=US';
 
     var rss = await ReadFile(url);
-    console.log("rss");
-    
+
+    console.log("news");
 }
