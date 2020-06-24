@@ -1,3 +1,4 @@
+import * from "../main/apps"
 
 async function SetConsole() {
     var console = document.createElement("div");
@@ -32,14 +33,10 @@ async function CommandManager(cmd) {
     clear();
 
     switch (cmd) {
-        case 'clear' : clear() ; break;
-        case 'help'  : help()  ; break;
-        case 'home'  : home()  ; break;
-        case 'visitor':
-            let visitor = await import('../main/apps/visitor.js');
-            visitor.visitor();
-            break;
-
+        case 'clear'   : clear()        ; break;
+        case 'help'    : help()         ; break;
+        case 'home'    : home()         ; break;
+        case 'visitor' : apps.visitor() ; break;
         default: print(cmd + ': command not found');
     }
 }
