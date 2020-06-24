@@ -31,15 +31,13 @@ async function CommandManager(cmd) {
     clear();
 
     switch (cmd) {
-        case 'clear'   : clear()        ; break;
-        case 'help'    : help()         ; break;
-        case 'home'    : home()         ; break;
+        case 'clear': clear()        ; break;
+        case 'help' : help()         ; break;
+        case 'home' : home()         ; break;
         default:
             try {
                 let app = await import('../main/apps/' + cmd + '.js');
                 eval('app.' + cmd + '()');
-
-                console.log("pause");
             } catch {
                 print(cmd + ': command not found');
             }
