@@ -13,51 +13,62 @@ async function SetConsole() {
 }
 
 function RSSParser(xml) {
-    parser    = new DOMParser();
-    xmldoc    = parser.parseFromString(xml, 'text/xml');
-    var items = xmldoc.getElementsByTagName('item');
-    var table = document.createElement('table');
-    var hdrow = document.createElement('tr');
-    var hdarr = [ 'Title'
-                , 'Author'
-                , 'Date'
-                ];
-    var hdidx = [ 0     // Title
-                , 1     // Link
-                , 3     // Author
-                , 4     // Publication date
-                ];
+    parser  = new DOMParser();
+    xmldoc  = parser.parseFromString(xml, 'text/xml');
+    var arr = [];
+    var src = xmldoc.getElementsByTagName('title')[0].innerText;
+    var itm = xmldoc.getElementsByTagName('item');
+    
+    for (var i = 0; i < itm.length; i++) {
+        var child = itm[i].chilren;
 
-    table.setAttribute('id', 'newstable');
-
-    for (var i = 0; i < hdarr.length; i++) {
-        var th = document.createElement('th');
-        th.innerText = hdarr[i];
-        hdrow.appendChild(th);
-    }
-
-    table.appendChild(hdrow);
-
-    for (var i = 0; i < items.length; i++) {
-        var tr  = document.createElement('tr');
-        for (var j = 0; j < hdidx.length; j++) {
-            var td = document.createElement('td');
-            var txtCnt = items[i].children[hdidx[j]].textContent;
-            if (hdidx[j] == 1) {
-                var link  = document.createElement('a');
-                var desc  = document.createTextNode(tr.children[0].innerText);
-                link.appendChild(desc);
-                link.href = txtCnt;
-                tr.children[0].innerHTML = link.outerHTML;
-            } else {
-                td.innerText = txtCnt;
-                tr.appendChild(td);
-            }
-        }
-        table.appendChild(tr);
+        arr.push([ src
+                 , child.item('title').textContent
+                 , child.item('pubDate').textContent
+                 , child.item('link').textContent
+                 ]);
     }
     
-    return table;
+    return arr;
+}
+
+// if hdrrow is true, function will treat first row in array as table header
+// if haslink is true, will treat last element in row as link
+function ArrayToTable(arr, hdrrow, haslink) {
+    var table = document.createElement('table');
+    var golnk = 0;
+
+    if (haslink) { golnk = 1; }
+
+    for (var i = 0; i < arr.length; i++) {
+        var tr = document.createElement('tr');
+
+        for (var j = 0; j < arr[i].length - golnk; j++) {
+            var elem = '';
+            if (i == 0 && hdrrow) {
+                elem = 'th';
+            } else {
+                elem = 'td';
+            }
+
+            var cell = document.createElement(elem);
+
+            if (haslink) {
+                var link = document.createElement('a');
+                var node = document.createTextNode(arr[i][j]);
+                link.href = arr[i][arr[i].length - 1];
+                link.appendChild(node);
+                cell.appendChild(link);
+            } else {
+                cell.innerText = arr[i][j]
+            }
+
+            tr.appendChild(cell);
+        }
+
+        table.appendChild(tr);
+    }
+
 }
 
 function clear() {

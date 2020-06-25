@@ -1,7 +1,18 @@
 export async function news() {
-    var url = 'https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml'
-    var rss = await ReadFile(url);
-    var tbl = RSSParser(rss);
+    var src = await ReadFile('../main/news/news.txt');
+    var url = src.split('\n');
+    var arr = [];
+
+    for (var i = 0; i < url.length; i++) {
+        var xml = await ReadFile(arr[i]);
+        var tmp = RSSParser(xml);
+
+        for (var j = 0; j < tmp.length; j ++) {
+            arr.push(tmp[j]);
+        }
+    }
+
+    var tbl = ArrayToTable(arr, false, true);
     var out = document.getElementById('outtext');
     out.innerText = '';
     out.appendChild(tbl);    
