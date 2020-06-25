@@ -30,14 +30,6 @@ function RSSParser(xml) {
     return arr;
 }
 
-function Sort2DArray(arr, idx) {
-    arr.sort(function(a,b) {
-        return a[idx]-b[idx]
-    });
-    
-    return arr;
-}
-
 // if hdrrow is true, function will treat first row in array as table header
 // if haslink is true, will treat last element in row as link
 function ArrayToTable(arr, hdrrow, haslink) {

@@ -19,7 +19,8 @@ export async function news() {
     arr.sort(function(a, b) {
         return a[2] - b[2]
     });
-    var tbl = ArrayToTable(nws, false, true);
+
+    var tbl = ArrayToTable(arr, false, true);
     var out = document.getElementById('outtext');
     out.innerText = '';
     out.appendChild(tbl);    
