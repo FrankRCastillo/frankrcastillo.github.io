@@ -24,7 +24,7 @@ function RSSParser(xml) {
 
     for (var i = 0; i < items.length; i++) {
         var trow = document.createElement('tr');
-        var publ = document.createElement('td');
+        var auth = document.createElement('td');
         var desc = document.createElement('td');
         var date = document.createElement('td');
         var link = document.createElement('a');
@@ -32,7 +32,7 @@ function RSSParser(xml) {
         var ltxt = document.createTextNode(lurl);
 
         link.href = lurl;
-        publ.innerText = xmldoc.getElementsByTagName('title')[0].textContent;
+        auth.innerText = items[i].children.item('author').textContent;
         date.innerText = items[i].children.item('pubDate').textContent;
         link.appendChild(ltxt);
         desc.appendChild(link);
