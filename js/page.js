@@ -96,8 +96,9 @@ async function CommandManager(cmd) {
             try {
                 let app = await import('../main/apps/' + cmd + '.js');
                 eval('app.' + cmd + '()');
-            } catch {
+            } catch(err) {
                 print(cmd + ': command not found');
+                console.log(err.message);
             }
     }
 }
