@@ -36,7 +36,7 @@ function RSSParser(xml) {
         date.innerText = items[i].children.item('pubDate').textContent;
         link.appendChild(ltxt);
         desc.appendChild(link);
-        trow.appendChild(publ);
+        trow.appendChild(auth);
         trow.appendChild(desc);
         trow.appendChild(date);
         table.appendChild(trow);        
