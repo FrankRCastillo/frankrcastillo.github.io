@@ -5,6 +5,5 @@ https://www.cnbc.com/id/100727362/device/rss/rss.html
 https://feeds.npr.org/1004/rss.xml
 https://www.spiegel.de/international/index.rss
 https://abcnews.go.com/abcnews/internationalheadlines
-http://www.independent.co.uk/news/world/rss
 https://www.cbsnews.com/latest/rss/world
-https://www.france24.com/en
+https://www.france24.com/en/rss
