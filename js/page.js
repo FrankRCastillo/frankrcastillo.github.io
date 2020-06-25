@@ -83,14 +83,7 @@ async function home() {
 }
 
 async function ReadFile(url) {
-    return (await fetch(url, { method         : 'GET'
-                             , mode           : 'no-cors'
-                             , cache          : 'no-cache'
-                             , credentials    : 'same-origin'
-                             , referrerPolicy : 'no-referrer'
-                             }
-                       )
-           ).text();
+    return (await fetch(url, { mode: 'no-cors' })).text();
 }
 
 async function CommandManager(cmd) {
