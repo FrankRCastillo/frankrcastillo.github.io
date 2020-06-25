@@ -1,5 +1,5 @@
 export async function news() {
-    var src = await ReadFile('../main/apps/news/news.txt');
+    var src = await ReadFile('../main/apps/news.txt');
     var url = src.split('\n');
     var arr = [];
 
