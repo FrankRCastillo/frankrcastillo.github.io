@@ -83,7 +83,12 @@ async function home() {
 }
 
 async function ReadFile(url) {
-    return (await fetch(url)).text();
+    return (await fetch(url, { mode    : 'no-cors'
+                             , method  : 'GET'
+                             , headers : { 'Accept' : 'application/rss+xml' }
+                             }
+                       )
+           ).text();
 }
 
 async function CommandManager(cmd) {
