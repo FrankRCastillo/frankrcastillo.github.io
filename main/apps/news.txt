@@ -1,4 +1,3 @@
-https://www.nytimes.com/section/world/rss.xml
 https://www.aljazeera.com/xml/rss/all.xml
 https://www.yahoo.com/news/rss/world
 https://www.theguardian.com/world/rss
