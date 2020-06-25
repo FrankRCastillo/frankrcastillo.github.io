@@ -28,11 +28,13 @@ function RSSParser(xml) {
         var desc = document.createElement('td');
         var date = document.createElement('td');
         var link = document.createElement('a');
+        var lurl = items[i].children.item('description').textContent;
+        var ltxt = document.createTextNode(lurl);
 
+        link.href = lurl;
         publ.innerText = xmldoc.getElementsByTagName('title')[0].textContent;
         date.innerText = items[i].children.item('pubDate').textContent;
-
-        link.appendChild(items[i].children.item('description').textContent);
+        link.appendChild(ltxt);
         desc.appendChild(link);
         trow.appendChild(publ);
         trow.appendChild(desc);
