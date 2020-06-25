@@ -20,7 +20,7 @@ function RSSParser(xml) {
     var itm = xmldoc.getElementsByTagName('item');
     
     for (var i = 0; i < itm.length; i++) {
-        var child = itm[i].chilren;
+        var child = itm[i].children;
 
         arr.push([ src
                  , child.item('title').textContent
