@@ -7,17 +7,17 @@ export async function news() {
         try {
             var xml = await ReadFile('https://cors-anywhere.herokuapp.com/' + url[i]);
             var tmp = RSSParser(xml);
-            var nws = Sort2DArray(tmp, 2);
 
-            for (var j = 0; j < nws.length; j ++) {
-                arr.push(nws[j]);
+            for (var j = 0; j < tmp.length; j ++) {
+                arr.push(tmp[j]);
             }
         } catch {
             console.log(url[i] + ' not available');
         }
     }
 
-    var tbl = ArrayToTable(arr, false, true);
+    var nws = Sort2DArray(arr, 2);
+    var tbl = ArrayToTable(nws, false, true);
     var out = document.getElementById('outtext');
     out.innerText = '';
     out.appendChild(tbl);    
