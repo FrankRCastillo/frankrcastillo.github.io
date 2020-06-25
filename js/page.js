@@ -46,8 +46,9 @@ function RSSParser(xml) {
             if (j == 1) {
                 var link  = document.createElement('a');
                 var desc  = document.createTextNode(tr.children[0].innerText);
+                link.appendChild(desc);
                 link.href = txtCnt;
-                tr.children[0].innerHTML = link.innerHTML;
+                tr.children[0].innerHTML = link.outerHTML;
             } else {
                 td.innerText = txtCnt;
             }
