@@ -4,7 +4,7 @@ export async function news() {
     var arr = [];
 
     for (var i = 0; i < url.length; i++) {
-        var xml = await ReadFile(arr[i]);
+        var xml = await ReadFile(url[i]);
         var tmp = RSSParser(xml);
 
         for (var j = 0; j < tmp.length; j ++) {
