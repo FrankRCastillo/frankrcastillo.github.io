@@ -83,9 +83,7 @@ async function home() {
 }
 
 async function ReadFile(url) {
-    return (await fetch(url, { mode    : 'no-cors'
-                             , headers : { 'Content-Type' : 'text/plain' } 
-                             })).text();
+    return (await fetch(url)).text();
 }
 
 async function CommandManager(cmd) {
