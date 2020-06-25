@@ -5,7 +5,7 @@ export async function news() {
 
     for (var i = 0; i < url.length; i++) {
         try {
-            var xml = await ReadFile(url[i]);
+            var xml = await ReadFile('http://crossorigin.me/' + url[i]);
             var tmp = RSSParser(xml);
 
             for (var j = 0; j < tmp.length; j ++) {
