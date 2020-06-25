@@ -31,7 +31,7 @@ function RSSParser(xml) {
         var lurl = items[i].children.item('description').textContent;
         var ltxt = document.createTextNode(lurl);
 
-        link.href = lurl;
+        link.href = items[i].children.items('link').textContent;
         auth.innerText = items[i].children.item('author').textContent;
         date.innerText = items[i].children.item('pubDate').textContent;
         link.appendChild(ltxt);
