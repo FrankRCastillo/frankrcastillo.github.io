@@ -51,8 +51,8 @@ function RSSParser(xml) {
                 tr.children[0].innerHTML = link.outerHTML;
             } else {
                 td.innerText = txtCnt;
+                tr.appendChild(td);
             }
-            tr.appendChild(td);
         }
         table.appendChild(tr);
     }
