@@ -7,9 +7,10 @@ export async function news() {
         try {
             var xml = await ReadFile('https://cors-anywhere.herokuapp.com/' + url[i]);
             var tmp = RSSParser(xml);
+            var nws = Sort2DArray(tmp, 2);
 
-            for (var j = 0; j < tmp.length; j ++) {
-                arr.push(tmp[j]);
+            for (var j = 0; j < nws.length; j ++) {
+                arr.push(nws[j]);
             }
         } catch {
             console.log(url[i] + ' not available');
