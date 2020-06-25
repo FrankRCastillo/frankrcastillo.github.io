@@ -85,7 +85,12 @@ async function home() {
 async function ReadFile(url) {
     return (await fetch(url, { mode    : 'no-cors'
                              , method  : 'GET'
-                             , headers : { 'Accept' : 'application/rss+xml' }
+                             , headers : { 'Accept' : 'application/rss+xml, ' +
+                                                    + 'application/rdf+xml;q=0.8, '
+                                                    + 'application/atom+xml;q=0.6, '
+                                                    + 'application/xml;q=0.4, '
+                                                    + 'text/xml;q=0.4'
+                                         }
                              }
                        )
            ).text();
