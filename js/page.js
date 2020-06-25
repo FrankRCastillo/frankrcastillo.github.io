@@ -42,8 +42,8 @@ function RSSParser(xml) {
         var tr  = document.createElement('tr');
         for (var j = 0; j < hdidx.length; j++) {
             var td = document.createElement('td');
-            var txtCnt = items[i].children[j].textContent;
-            if (j == 1) {
+            var txtCnt = items[i].children[hdidx[j]].textContent;
+            if (hdidx[j] == 1) {
                 var link  = document.createElement('a');
                 var desc  = document.createTextNode(tr.children[0].innerText);
                 link.appendChild(desc);
