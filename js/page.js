@@ -20,12 +20,10 @@ function RSSParser(xml) {
     var itm = xmldoc.getElementsByTagName('item');
     
     for (var i = 0; i < itm.length; i++) {
-        var child = itm[i].children;
-
         arr.push([ src
-                 , child.item('title').textContent
-                 , child.item('pubDate').textContent
-                 , child.item('link').textContent
+                 , itm[i].getElementsByTagName('title'  )[0].textContent
+                 , itm[i].getElementsByTagName('pubDate')[0].textContent
+                 , itm[i].getElementsByTagName('link'   )[0].textContent
                  ]);
     }
     
