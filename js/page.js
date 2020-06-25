@@ -16,7 +16,7 @@ function RSSParser(xml) {
     parser  = new DOMParser();
     xmldoc  = parser.parseFromString(xml, 'text/xml');
     var arr = [];
-    var src = xmldoc.getElementsByTagName('title')[0].innerText;
+    var src = xmldoc.getElementsByTagName('title')[0].textContent;
     var itm = xmldoc.getElementsByTagName('item');
     
     for (var i = 0; i < itm.length; i++) {
