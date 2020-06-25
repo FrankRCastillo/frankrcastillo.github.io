@@ -16,7 +16,9 @@ export async function news() {
         }
     }
 
-    var nws = Sort2DArray(arr, 2);
+    arr.sort(function(a, b) {
+        return a[2] - b[2]
+    });
     var tbl = ArrayToTable(nws, false, true);
     var out = document.getElementById('outtext');
     out.innerText = '';
