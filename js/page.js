@@ -17,30 +17,42 @@ function RSSParser(xml) {
     xmldoc    = parser.parseFromString(xml, 'text/xml');
     var items = xmldoc.getElementsByTagName('item');
     var table = document.createElement('table');
-    var hdrs  = document.createElement('tr');
-    table.setAttribute('id', 'newstable');
-    hdrs.appendChild(createTextNode('Title'));
-    hdrs.appendChild(createTextNode('Author'));
-    hdrs.appendChild(createTextNode('Date'));
-    
-    for (var i = 0; i < items.length; i++) {
-        var trow = document.createElement('tr');
-        var auth = document.createElement('td');
-        var desc = document.createElement('td');
-        var date = document.createElement('td');
-        var link = document.createElement('a');
-        var lurl = items[i].children[0].textContent;        // title
-        var ltxt = document.createTextNode(lurl);
+    var hdrow = document.createElement('tr');
+    var hdarr = [ 'Title'
+                , 'Author'
+                , 'Date'
+                ];
+    var hdidx = [ 0     // Title
+                , 1     // Link
+                , 3     // Author
+                , 4     // Publication date
+                ];
 
-        link.href      = items[i].children[1].textContent;  // link
-        auth.innerText = items[i].children[3].textContent;  // author
-        date.innerText = items[i].children[4].textContent;  // publication date
-        link.appendChild(ltxt);
-        desc.appendChild(link);
-        trow.appendChild(desc);
-        trow.appendChild(auth);
-        trow.appendChild(date);
-        table.appendChild(trow);        
+    table.setAttribute('id', 'newstable');
+
+    for (var i = 0; i < hdarr.length; i++) {
+        var th = document.createElement('th');
+        th.innerText = hdarr[i];
+        hdrow.appendChild(th);
+    }
+
+    table.appendChild(hdrow);
+
+    for (var i = 0; i < items.length; i++) {
+        var tr  = document.createElement('tr');
+        for (var j = 0; j < hdidx.length; j++) {
+            var td = document.createElement('td');
+            var txtCnt = items[i].children[j].textContent;
+            if (j == 1) {
+                var link  = document.createElement('a');
+                var desc  = document.createTextNode(tr[0].innerText);
+                link.href = txtCnt;
+            } else {
+                td.innerText = txtCnt;
+            }
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
     }
     
     return table;
