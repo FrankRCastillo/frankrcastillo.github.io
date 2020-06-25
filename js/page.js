@@ -69,6 +69,7 @@ function ArrayToTable(arr, hdrrow, haslink) {
         table.appendChild(tr);
     }
 
+    return table;
 }
 
 function clear() {
