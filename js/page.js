@@ -13,15 +13,16 @@ async function SetConsole() {
 }
 
 function RSSParser(xml) {
-    parser = new DOMParser();
-    xmldoc = parser.parseFromString(xml, 'text/xml');
-    var items  = xmldoc.getElementsByTagName('item');
-    var table  = document.createElement('table');
-    var fields = [ 'description'
-                 , 'pubDate'
-                 , 'link'
-                 ];
-
+    parser    = new DOMParser();
+    xmldoc    = parser.parseFromString(xml, 'text/xml');
+    var items = xmldoc.getElementsByTagName('item');
+    var table = document.createElement('table');
+    var hdrs  = document.createElement('tr');
+    table.setAttribute('id', 'newstable');
+    hdrs.appendChild(createTextNode('Title'));
+    hdrs.appendChild(createTextNode('Author'));
+    hdrs.appendChild(createTextNode('Date'));
+    
     for (var i = 0; i < items.length; i++) {
         var trow = document.createElement('tr');
         var auth = document.createElement('td');
@@ -36,8 +37,8 @@ function RSSParser(xml) {
         date.innerText = items[i].children[4].textContent;  // publication date
         link.appendChild(ltxt);
         desc.appendChild(link);
-        trow.appendChild(auth);
         trow.appendChild(desc);
+        trow.appendChild(auth);
         trow.appendChild(date);
         table.appendChild(trow);        
     }
