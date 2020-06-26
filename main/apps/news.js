@@ -1,4 +1,4 @@
-async function news() {
+export async function news() {
     var src = await ReadFile('../main/apps/news.txt');
     var url = src.split('\n');
     var arr = [];
@@ -16,7 +16,7 @@ async function news() {
         }
     }
 
-    arr.sort((a, b) => return b[2] - a[2]);
+    arr.sort((a, b) => b[2] - a[2]);
 
     var tbl = ArrayToTable(arr, false, true);
     var out = document.getElementById('outtext');
@@ -25,5 +25,3 @@ async function news() {
 
     console.log("news");
 }
-
-export { news };
