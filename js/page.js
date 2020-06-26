@@ -119,7 +119,7 @@ async function CommandManager(cmd) {
         case 'help' : help()  ; break;
         case 'home' : home()  ; break;
         default:
-            cmdStatus('\u23F8');
+            cmdStatus('\u25A0');
 
             try {
                 let app = await import('../main/apps/' + cmd + '.js');
