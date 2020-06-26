@@ -18,7 +18,7 @@ export async function news() {
         }
     }
 
-    arr.sort((a, b) => Date.parse(Date(b[2]).toUTCString()) - Date.parse(Date(a[2]).toUTCString());
+    arr.sort((a, b) => dateUtc(b[2]) - dateUtc(a[2]));
 
     var tbl = ArrayToTable(arr, false, true);
     var out = document.getElementById('outtext');
@@ -26,4 +26,11 @@ export async function news() {
     out.appendChild(tbl);    
 
     console.log("news");
+}
+
+function dateUtc(str) {
+    var reldtg = Date.parse(str);
+    var utcdtg = new Date(reldtg);
+
+    return utcdtg.toUTCString();
 }
