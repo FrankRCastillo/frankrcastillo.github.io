@@ -7,6 +7,6 @@ export async function apps() {
         print(ele.path);
     }
 
-    clear();
+    //clear();
     cmdReady();
 }
