@@ -87,4 +87,5 @@ export async function visitor() {
     visitDiv.innerHTML = visitMsg;
 
     outtext.appendChild(visitDiv);
+    cmdStatus('\u25B8');
 }
