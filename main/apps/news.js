@@ -3,6 +3,8 @@ export async function news() {
     var url = src.split('\n');
     var arr = [];
 
+
+
     for (var i = 0; i < url.length; i++) {
         try {
             var xml = await ReadFile('https://cors-anywhere.herokuapp.com/' + url[i]);
