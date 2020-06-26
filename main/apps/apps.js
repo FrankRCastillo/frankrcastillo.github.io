@@ -4,8 +4,8 @@ export async function apps() {
     var json = JSON.parse(text);
     var tree = json.tree;
 
-    for (var elem in tree) {
-        print(elem.path);
+    for (var i = 0; i < tree.length; i++) {
+        print(tree[i].path);
     }
 
     //clear();
