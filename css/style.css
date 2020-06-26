@@ -59,7 +59,7 @@ ul
 ; border-right-style  : hidden
 ; border-left-style   : hidden
 ; border-bottom-style : hidden
-; margin              : 2px 2px 2px 4px
+; margin              : 0px 0px 0px 0px
 ; padding             : 0px 0px 0px 0px
 ; outline             : none
 ; font-family         : 'VT323'
@@ -68,7 +68,7 @@ ul
 ; color               : #ffa500
 ; background          : #000000
 ; text-shadow         : 0px 0px 5px #ffa500
-; width               : calc(100% - 187px);
+; width               : calc(100% - 199px);
 }
 
 #newstable
@@ -79,7 +79,7 @@ ul
 { margin           : 0px 0px 0px 0px
 ; padding          : 0px 0px 0px 0px
 ; outline          : none
-; height           : 24px
+; height           : 26px
 ; color            : #000000
 ; background-color : #ffa500
 ; box-shadow       : 0px 0px 1px #ffa500

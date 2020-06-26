@@ -121,11 +121,10 @@ async function CommandManager(cmd) {
         case 'home' : home()  ; break;
         default:
             try {
-                print('Loading...');
                 let app = await import('../main/apps/' + cmd + '.js');
                 eval('app.' + cmd + '()');
             } catch(err) {
-                print(cmd + ': command not found');
+                print(cmd + ': command not available');
                 console.log(err.message);
             }
     }
