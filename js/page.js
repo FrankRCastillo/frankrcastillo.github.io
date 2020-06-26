@@ -110,8 +110,8 @@ async function CommandManager(cmd) {
 
     switch (cmd) {
         case 'clear': clear()        ; break;
-        case 'help' : help()         ; break;
-        case 'home' : home()         ; break;
+        case 'help' : clear(); help(); break;
+        case 'home' : clear(); home(); break;
         default:
             try {
                 let app = await import('../main/apps/' + cmd + '.js');
