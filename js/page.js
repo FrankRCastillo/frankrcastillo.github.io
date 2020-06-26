@@ -130,11 +130,11 @@ async function CommandManager(cmd) {
             }
     }
 
-    cmdStatus('\u25B6')
+    cmdStatus('\u25B8')
 }
 
 function cmdStatus(str) {
-    var inputlabel = document.getElementById('inputlable');
+    var inputlabel = document.getElementById('inputlabel');
 
     inputlabel.innerText = str;
 }
@@ -182,7 +182,7 @@ function AddCommandLine() {
     txtlabel = document.createElement("label");
     txtlabel.setAttribute("name", "inputbox");
     txtlabel.setAttribute("id", "inputlabel");
-    txtlabel.innerText = "\u25B6";
+    txtlabel.innerText = "\u25B8";
 
     txtinput = document.createElement("input");
     txtinput.setAttribute("id", "inputbox");
