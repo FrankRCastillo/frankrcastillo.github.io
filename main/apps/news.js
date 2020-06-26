@@ -18,7 +18,7 @@ export async function news() {
         }
     }
 
-    arr.sort((a, b) => b[2] - a[2]);
+    arr.sort((a, b) => Date.parse(new Date(b[2]).toUTCString()) - Date.parse(new Date(a[2]).toUTCString());
 
     var tbl = ArrayToTable(arr, false, true);
     var out = document.getElementById('outtext');
