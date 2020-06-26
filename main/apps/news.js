@@ -1,9 +1,9 @@
 export async function news() {
+    print('Loading...');
+
     var src = await ReadFile('../main/apps/news.txt');
     var url = src.split('\n');
     var arr = [];
-
-
 
     for (var i = 0; i < url.length; i++) {
         try {
