@@ -119,11 +119,13 @@ async function CommandManager(cmd) {
         case 'help' : help()  ; break;
         case 'home' : home()  ; break;
         default:
+            cmdStatus('\u23F8');
+
             try {
-                cmdStatus('\u23F8');
                 let app = await import('../main/apps/' + cmd + '.js');
                 eval('app.' + cmd + '()');
             } catch(err) {
+                cmdStatus('\u25B8');
                 print(cmd + ': command not available');
                 console.log(err.message);
             }
