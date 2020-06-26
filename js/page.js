@@ -1,13 +1,15 @@
 async function SetConsole() {
     var console = document.createElement("div");
-    var outtext = document.createElement("div");
-    var inptext = AddCommandLine();
+    var inpelem = document.createElement("div");
+    var outelem = document.createElement("div");
 
     console.setAttribute("id", "console");
-    outtext.setAttribute("id", "outtext");
-
-    console.appendChild(inptext);
-    console.appendChild(outtext);
+    outelem.setAttribute("id", "outtext");
+    
+    inpelem.appendChild(AddCommandIcons());
+    inpelem.appendChild(AddCommandLine())
+    console.appendChild(inpelem);
+    console.appendChild(outelem);
 
     return console;
 }
@@ -119,23 +121,29 @@ async function CommandManager(cmd) {
         case 'help' : help()  ; break;
         case 'home' : home()  ; break;
         default:
-            cmdStatus('\u25FE');
+            cmdWait();
 
             try {
                 let app = await import('../main/apps/' + cmd + '.js');
                 eval('app.' + cmd + '()');
             } catch(err) {
-                cmdStatus('\u25B8');
+                cmdReady();
                 print(cmd + ': command not available');
                 console.log(err.message);
             }
     }
 }
 
-function cmdStatus(str) {
-    var inputlabel = document.getElementById('inputlabel');
+function cmdReady() {
+    var inputbox = document.getElementById('inputbox');
 
-    inputlabel.innerText = str;
+    inputbox.placeholder = '\xa0\u25B8';
+}
+
+function cmdWait() {
+    var inputbox = document.getElementById('inputbox');
+
+    inputbox.placeholder = '\xa0\u25FE';
 }
 
 function print(text) {
@@ -153,7 +161,6 @@ function print(text) {
 function AddCommandIcons() {
     var linkdiv = document.createElement("div");
     var textdiv = document.getElementById("textdiv");
-    var textlbl = document.getElementById("inputlabel");
     var linkcat = [ 'home', 'apps', 'news', 'social' ];
 
     linkdiv.setAttribute('id', 'linkdiv');
@@ -178,19 +185,13 @@ function ChangeClass(id, classname) {
 }
 
 function AddCommandLine() {
-    txtlabel = document.createElement("label");
-    txtlabel.setAttribute("name", "inputbox");
-    txtlabel.setAttribute("id", "inputlabel");
-    txtlabel.innerText = "\u25B8";
+    txtinput = document.createElement('input');
+    txtinput.setAttribute('id', 'inputbox');
+    txtinput.setAttribute('type', 'text');
+    txtinput.setAttribute('placeholder', '\xa0\u25B8')
 
-    txtinput = document.createElement("input");
-    txtinput.setAttribute("id", "inputbox");
-    txtinput.setAttribute("name", "inputbox");
-    txtinput.setAttribute("type", "text");
-
-    txtdiv   = document.createElement("div");
+    txtdiv = document.createElement("div");
     txtdiv.setAttribute("id", "textdiv");
-    txtdiv.appendChild(txtlabel);
     txtdiv.appendChild(txtinput);
 
     window.addEventListener('keydown', function(e) {
@@ -214,10 +215,6 @@ async function main() {
 
     body.appendChild(await SetConsole());
     home();
-    
-    var textdiv = document.getElementById("textdiv");
-    var inlabel = document.getElementById('inputlabel');
-    textdiv.insertBefore(AddCommandIcons(), inlabel);
 }
 
 main()

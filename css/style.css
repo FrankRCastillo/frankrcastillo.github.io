@@ -18,6 +18,11 @@ table
 { border-spacing : 0px
 }
 
+::placeholder
+{ color       : #ffa500
+; text-shadow : 0px 0px 5px #ffa500
+}
+
 tr:hover a
 { text-decoration: underline
 }
@@ -59,7 +64,7 @@ ul
 ; border-right-style  : hidden
 ; border-left-style   : hidden
 ; border-bottom-style : hidden
-; margin              : 0px 0px 0px 0px
+; margin              : 3px 0px 3px 0px
 ; padding             : 0px 0px 0px 0px
 ; outline             : none
 ; font-family         : 'VT323'
@@ -68,13 +73,14 @@ ul
 ; color               : #ffa500
 ; background          : #000000
 ; text-shadow         : 0px 0px 5px #ffa500
-; width               : calc(100% - 198px);
+; width               : calc(100% - 188px);
 }
 
 #newstable
 { padding : 0px 10px 0px 0px
 ; width   : 100%
 }
+
 #textdiv
 { margin           : 0px 0px 0px 0px
 ; padding          : 0px 0px 0px 0px
@@ -92,11 +98,6 @@ ul
 #xmark
 { animation  : blink 1s infinite
 ; color      : #ffa500
-}
-
-#inputlabel
-{ width  : 250px
-; height : 20px
 }
 
 @keyframes blink
