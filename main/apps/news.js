@@ -1,4 +1,5 @@
 export async function news() {
+    print('Loading...');
     var src = await ReadFile('../main/apps/news.txt');
     var url = src.split('\n');
     var arr = [];
@@ -19,5 +20,6 @@ export async function news() {
     arr.sort((a, b) => Date.parse(b[2]) - Date.parse(a[2]));
 
     var tbl = ArrayToTable(arr, false, true);
+    clear();
     document.getElementById('outtext').appendChild(tbl);    
 }
