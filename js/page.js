@@ -25,7 +25,7 @@ function RSSParser(xml) {
     for (var i = 0; i < itm.length; i++) {
         arr.push([ src
                  , trunc(itm[i].getElementsByTagName('title'  )[0].textContent, awdt)
-                 , itm[i].getElementsByTagName('pubDate')[0].textContent
+                 , dateUtc(itm[i].getElementsByTagName('pubDate')[0].textContent)
                  , itm[i].getElementsByTagName('link'   )[0].textContent
                  ]);
     }
@@ -41,6 +41,12 @@ function trunc(str, len) {
     }
 }
 
+function dateUtc(str) {
+    var reldtg = Date.parse(str);
+    var utcdtg = new Date(reldtg);
+
+    return utcdtg.toUTCString();
+}
 
 // if hdrrow is true, function will treat first row in array as table header
 // if haslink is true, will treat last element in row as link
