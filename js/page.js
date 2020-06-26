@@ -87,12 +87,6 @@ function ArrayToTable(arr, hdrrow, haslink) {
                 cell.innerText = arr[i][j]
             }
 
-            tr.addEventListener('mouseover', function(event) {
-                event.style.textDecoration = 'underline';
-            });
-            tr.addEventListener('mouseout', function(event) {
-                event.style.textDecoration = 'none';
-            });
             tr.appendChild(cell);
         }
 
