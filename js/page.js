@@ -73,6 +73,7 @@ function ArrayToTable(arr, hdrrow, haslink) {
                 var link = document.createElement('a');
                 var node = document.createTextNode(arr[i][j]);
                 link.href = arr[i][arr[i].length - 1];
+                link.target = '_blank';
                 link.appendChild(node);
                 cell.appendChild(link);
             } else {
