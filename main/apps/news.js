@@ -21,5 +21,5 @@ export async function news() {
     var tbl = ArrayToTable(arr, false, true);
     clear();
     document.getElementById('outtext').appendChild(tbl);    
-    cmdStatus('\u25B8');
+    cmdReady();
 }
