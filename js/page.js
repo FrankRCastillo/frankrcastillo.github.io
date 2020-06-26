@@ -105,8 +105,6 @@ async function ReadFile(url) {
 }
 
 async function CommandManager(cmd) {
-    clear();
-
     switch (cmd) {
         case 'clear': clear()        ; break;
         case 'help' : help()         ; break;
