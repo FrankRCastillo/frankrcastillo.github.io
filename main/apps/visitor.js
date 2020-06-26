@@ -1,4 +1,4 @@
-export async function visitor() {
+async function visitor() {
     var outtext = document.getElementById("outtext");
     var worldmap = new Array(3);
 
@@ -88,4 +88,6 @@ export async function visitor() {
 
     outtext.appendChild(visitDiv);
 }
+
+export { visitor };
 

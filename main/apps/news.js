@@ -1,4 +1,4 @@
-export async function news() {
+async function news() {
     var src = await ReadFile('../main/apps/news.txt');
     var url = src.split('\n');
     var arr = [];
@@ -25,3 +25,5 @@ export async function news() {
 
     console.log("news");
 }
+
+export { news };
