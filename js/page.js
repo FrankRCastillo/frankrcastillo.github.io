@@ -113,6 +113,7 @@ async function ReadFile(url) {
 
 async function CommandManager(cmd) {
     clear();
+    cmdStatus('\u23F8');
 
     switch (cmd) {
         case 'clear': clear() ; break;
@@ -120,6 +121,7 @@ async function CommandManager(cmd) {
         case 'home' : home()  ; break;
         default:
             try {
+                print('Loading...');
                 let app = await import('../main/apps/' + cmd + '.js');
                 eval('app.' + cmd + '()');
             } catch(err) {
@@ -127,6 +129,14 @@ async function CommandManager(cmd) {
                 console.log(err.message);
             }
     }
+
+    cmdStatus('\u25B6')
+}
+
+function cmdStatus(str) {
+    var inputlabel = document.getElementById('inputlable');
+
+    inputlabel.innerText = str;
 }
 
 function print(text) {
@@ -145,7 +155,7 @@ function AddCommandIcons() {
     var linkdiv = document.createElement("div");
     var textdiv = document.getElementById("textdiv");
     var textlbl = document.getElementById("inputlabel");
-    var linkcat = [ 'home', 'apps', 'news', 'talk' ];
+    var linkcat = [ 'home', 'apps', 'news', 'social' ];
 
     linkdiv.setAttribute('id', 'linkdiv');
 
@@ -172,7 +182,7 @@ function AddCommandLine() {
     txtlabel = document.createElement("label");
     txtlabel.setAttribute("name", "inputbox");
     txtlabel.setAttribute("id", "inputlabel");
-    txtlabel.innerText = "\$";
+    txtlabel.innerText = "\u25B6";
 
     txtinput = document.createElement("input");
     txtinput.setAttribute("id", "inputbox");
