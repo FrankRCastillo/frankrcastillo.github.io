@@ -43,9 +43,9 @@ function trunc(str, len) {
 
 function DateISO(str) {
     var reldtg = Date.parse(str);
-    var isodtg = new Date(reldtg);
+    var isodtg = new Date(reldtg).toISOString();
 
-    return isodtg.toISOString();
+    return isodtg.split('.')[0] + 'Z';
 }
 
 function DateUTC(str) {
