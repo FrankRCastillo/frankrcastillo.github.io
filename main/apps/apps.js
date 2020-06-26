@@ -1,8 +1,12 @@
 export async function apps() {
-    var gitapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
-    var gitjsn = await ReadFile(gitapi);
-    
+    var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
+    var text = await ReadFile(gitapi);
+    var json = JSON.parse(gittxt);
+
+    for (var ele in json) {
+        print(ele.path);
+    }
+
     clear();
-    print(gitjsn);
     cmdReady();
 }
