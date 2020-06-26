@@ -105,6 +105,7 @@ async function ReadFile(url) {
 }
 
 async function CommandManager(cmd) {
+    clear();
     print('Loading...');
 
     switch (cmd) {
