@@ -16,18 +16,17 @@ function RSSParser(xml) {
     parser   = new DOMParser();
     xmldoc   = parser.parseFromString(xml, 'text/xml');
     var arr  = [];
-    var src  = xmldoc.getElementsByTagName('title')[0].textContent;
-    var itm  = xmldoc.getElementsByTagName('item');
     var fwdt = Math.floor(screen.width / 20)   // screen width / font width = character width
     var pwdt = Math.floor((fwdt * 0.25) - 30); // quarter of screen goes to publication
     var awdt = Math.floor((fwdt * 0.50) - 30); // half of screen goes to article title
-
+    var src  = trunc(xmldoc.getElementsByTagName('title')[0].textContent, pwdt);
+    var itm  = xmldoc.getElementsByTagName('item');
 
     for (var i = 0; i < itm.length; i++) {
         arr.push([ src
-                 , trunc(itm[i].getElementsByTagName('title'  )[0].textContent, pwdt)
+                 , trunc(itm[i].getElementsByTagName('title'  )[0].textContent, awdt)
                  , itm[i].getElementsByTagName('pubDate')[0].textContent
-                 , trunc(itm[i].getElementsByTagName('link'   )[0].textContent, awdt)
+                 , itm[i].getElementsByTagName('link'   )[0].textContent
                  ]);
     }
     
