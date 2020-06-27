@@ -1,6 +1,6 @@
 // | vstr : Show visitor demographics and other information
 
-export async function visitor() {
+export async function vstr() {
     var outtext = document.getElementById("outtext");
     var worldmap = new Array(3);
 
