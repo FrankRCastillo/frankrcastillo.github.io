@@ -126,7 +126,6 @@ async function CommandManager(cmd) {
 
     switch (cmd) {
         case 'clear': clear() ; break;
-        case 'help' : help()  ; break;
         case 'home' : home()  ; break;
         case 'soci' : soci()  ; break;
         default:
