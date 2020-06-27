@@ -153,17 +153,14 @@ function print(text) {
 
     if (Array.isArray(text)) {
         for (var i = 0; i < text.length; i++) {
-            var nl = '\n';
-            if (i == text.length - 1) {
-                nl = '';
-            }
-            newtext.innerText += text[i] + nl
+            newtext.innerText = text[i]
+            outtext.appendChild(newtext);
         }
     } else {
         newtext.innerText = text;
+        outtext.appendChild(newtext);
     }
 
-    outtext.appendChild(newtext);
     inputbox.focus();
 }
 
