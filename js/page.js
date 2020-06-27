@@ -200,7 +200,6 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-    txtinput.setAttribute('placeholder', '\xa0\u25B8')
 
     txtdiv = document.createElement("div");
     txtdiv.setAttribute("id", "textdiv");
@@ -227,6 +226,7 @@ async function main() {
 
     body.appendChild(await SetConsole());
     home();
+    cmdReady();
 }
 
 main()

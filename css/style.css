@@ -44,7 +44,7 @@ ul
 }
 
 .invert
-{ margin           : 2px 5px 0px 5px
+{ margin           : 3px 5px 3px 5px
 ; padding          : 0px 0px 0px 0px
 ; float            : left
 ; color            : #000000
@@ -52,7 +52,7 @@ ul
 }
 
 .normal
-{ margin           : 2px 5px 0px 5px
+{ margin           : 3px 5px 3px 5px
 ; padding          : 0px 0px 0px 0px
 ; float            : left
 ; color            : #ffa500
