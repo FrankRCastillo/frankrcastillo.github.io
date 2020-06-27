@@ -107,7 +107,7 @@ function home() {
     read('../main/main.txt');
 }
 
-function social() {
+function soci() {
     read('../main/social.txt')
 }
 
@@ -128,6 +128,7 @@ async function CommandManager(cmd) {
         case 'clear': clear() ; break;
         case 'help' : help()  ; break;
         case 'home' : home()  ; break;
+        case 'soci' : soci()  ; break;
         default:
             cmdWait();
 
