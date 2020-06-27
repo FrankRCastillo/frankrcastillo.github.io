@@ -1,3 +1,5 @@
+// | apps   Show list of available commands
+
 export async function apps() {
     var url  = 'https://frankr.castillo.github.io/';
     var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
@@ -25,7 +27,7 @@ function getjsdesc(str) {
 
     for (var i = 0; i < lines.length; i++) {
         if (lines[i].match(regex)) {
-            return lines[i];
+            return lines[i].split('|')[1];
         }
     }
 }
