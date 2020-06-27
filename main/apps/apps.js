@@ -10,9 +10,10 @@ export async function apps() {
 
     for (var i = 0; i < tree.length; i++) {
         var path = tree[i].path;
-        if (path.search(/main\/apps\/.*\.js/) > -1) {
+        if (path.search(/main\/.*\.js/) > -1) {
+            var base = path.split('\/')[1];
             var file = await ReadFile(url + path);
-            list.push(getjsdesc(file));
+            list.push(base + ' | ' + getjsdesc(file));
         }
     }
 
