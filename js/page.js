@@ -103,8 +103,16 @@ function clear() {
     outtext.innerHTML = '';
 }
 
-async function home() {
-    var txt = await ReadFile('../main/home/main.txt');
+function home() {
+    read('../main/main.txt');
+}
+
+function social() {
+    read('../main/social.txt')
+}
+
+async function read(path) {
+    var txt = await ReadFile(path)
     print('\n');
     print(txt);
 }
@@ -148,19 +156,16 @@ function cmdWait() {
 
 function print(text) {
     var outtext  = document.getElementById("outtext");
+    var newtext  = document.createElement("div");
 
     if (Array.isArray(text)) {
         for (var i = 0; i < text.length; i++) {
-            var newtext  = document.createElement("div");
-            newtext.innerText = text[i]
-            outtext.appendChild(newtext);
+            print(text[i]);
         }
-    } else {
-        var newtext  = document.createElement("div");
-        newtext.innerText = text;
-        outtext.appendChild(newtext);
     }
 
+    newtext.innerText = text;
+    outtext.appendChild(newtext);
     inputbox.focus();
 }
 
