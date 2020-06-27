@@ -1,4 +1,4 @@
-// | visitor    Show visitor demographics and other information
+// | vstr    Show visitor demographics and other information
 
 export async function visitor() {
     var outtext = document.getElementById("outtext");
