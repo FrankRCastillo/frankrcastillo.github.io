@@ -1,4 +1,4 @@
-// | apps   Show list of available commands
+// | apps\tShow list of available commands
 
 export async function apps() {
     var url  = 'https://frankrcastillo.github.io/';
