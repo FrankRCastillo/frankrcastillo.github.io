@@ -148,15 +148,15 @@ function cmdWait() {
 
 function print(text) {
     var outtext  = document.getElementById("outtext");
-    var newtext  = document.createElement("div");
-    var inputbox = document.getElementById("inputbox");
 
     if (Array.isArray(text)) {
         for (var i = 0; i < text.length; i++) {
+            var newtext  = document.createElement("div");
             newtext.innerText = text[i]
             outtext.appendChild(newtext);
         }
     } else {
+        var newtext  = document.createElement("div");
         newtext.innerText = text;
         outtext.appendChild(newtext);
     }
