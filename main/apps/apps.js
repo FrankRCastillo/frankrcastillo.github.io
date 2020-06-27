@@ -17,6 +17,7 @@ export async function apps() {
     }
 
     clear();
+    print('\n');
     print(list);
     cmdReady();
 }
