@@ -152,7 +152,7 @@ function cmdReady() {
 function cmdWait() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\xa0x';
+    inputbox.placeholder = '\xa0X';
 }
 
 function print(text) {
