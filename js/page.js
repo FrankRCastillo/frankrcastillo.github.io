@@ -163,10 +163,11 @@ function print(text) {
         for (var i = 0; i < text.length; i++) {
             print(text[i]);
         }
+    } else {
+        newtext.innerText = text;
+        outtext.appendChild(newtext);
     }
 
-    newtext.innerText = text;
-    outtext.appendChild(newtext);
     inputbox.focus();
 }
 
