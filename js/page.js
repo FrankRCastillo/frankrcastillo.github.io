@@ -146,13 +146,13 @@ async function CommandManager(cmd) {
 function cmdReady() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\xa0\u25B8';
+    inputbox.placeholder = '\xa0\>';
 }
 
 function cmdWait() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\xa0\u25FE';
+    inputbox.placeholder = '\xa0x';
 }
 
 function print(text) {
