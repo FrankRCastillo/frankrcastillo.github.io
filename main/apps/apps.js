@@ -6,7 +6,7 @@ export async function apps() {
     var lout = [];
 
     for (var i = 0; i < list.length; i++) {
-        var base = list.split('\/')[1];
+        var base = list[i].split('\/')[1];
         var file = await ReadFile(url + list[i]);
         lout.push(base + '|' + getjsdesc(file));
     }
