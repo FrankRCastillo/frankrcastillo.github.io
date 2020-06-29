@@ -2,24 +2,18 @@
 
 export async function apps() {
     var url  = 'https://frankrcastillo.github.io/';
-    var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
-    var text = await ReadFile(gapi);
-    var json = JSON.parse(text);
-    var tree = json.tree;
-    var list = [];
+    var list = FileList(/main\/.*\.js/);
+    var lout = [];
 
-    for (var i = 0; i < tree.length; i++) {
-        var path = tree[i].path;
-        if (path.search(/main\/.*\.js/) > -1) {
-            var base = path.split('\/')[1];
-            var file = await ReadFile(url + path);
-            list.push(base + ' | ' + getjsdesc(file));
-        }
+    for (var i = 0; i < list.length; i++) {
+        var base = list.split('\/')[1];
+        var file = await ReadFile(url + list[i]);
+        lout.push(base + '|' + getjsdesc(file));
     }
 
     clear();
     print('\n');
-    print(list);
+    print(lout);
     cmdReady();
 }
 

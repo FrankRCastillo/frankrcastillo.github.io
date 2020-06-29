@@ -14,6 +14,22 @@ async function SetConsole() {
     return console;
 }
 
+function FileList(filter) {
+    var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
+    var text = await ReadFile(gapi);
+    var json = JSON.parse(text);
+    var tree = json.tree;
+    var list = [];
+
+    for (var i = 0; i < tree.length; i++) {
+        if (path.search(filter) > -1) {
+            list.push(tree[i].path);
+        }
+    }
+
+    return list;
+}
+
 function RSSParser(xml) {
     parser   = new DOMParser();
     xmldoc   = parser.parseFromString(xml, 'text/xml');
@@ -173,7 +189,7 @@ function print(text) {
 function AddCommandIcons() {
     var linkdiv = document.createElement("div");
     var textdiv = document.getElementById("textdiv");
-    var linkcat = [ 'home', 'apps', 'news', 'soci' ];
+    var linkcat = [ 'home', 'apps', 'blog', 'soci' ];
 
     linkdiv.setAttribute('id', 'linkdiv');
 
