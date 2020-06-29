@@ -22,7 +22,7 @@ async function FileList(filter) {
     var list = [];
 
     for (var i = 0; i < tree.length; i++) {
-        if (tree[i].search(filter) > -1) {
+        if (tree[i].path.search(filter) > -1) {
             list.push(tree[i].path);
         }
     }
