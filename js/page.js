@@ -14,7 +14,7 @@ async function SetConsole() {
     return console;
 }
 
-function FileList(filter) {
+async function FileList(filter) {
     var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
     var text = await ReadFile(gapi);
     var json = JSON.parse(text);
