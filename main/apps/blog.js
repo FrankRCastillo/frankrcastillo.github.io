@@ -1,6 +1,6 @@
 export async function blog() {
     var url  = 'https://frankrcastillo.github.io/';
-    var list = FileList(/main\/blog\/.*/);
+    var list = await FileList(/main\/blog\/.*/);
 
     clear();
     print('blog in progres...');

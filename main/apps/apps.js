@@ -2,7 +2,7 @@
 
 export async function apps() {
     var url  = 'https://frankrcastillo.github.io/';
-    var list = FileList(/main\/.*\.js/);
+    var list = await FileList(/main\/.*\.js/);
     var lout = [];
 
     for (var i = 0; i < list.length; i++) {
