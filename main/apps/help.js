@@ -1,6 +1,6 @@
-// | apps : Show list of available commands
+// | help : Show list of available commands
 
-export async function apps() {
+export async function help() {
     var url  = 'https://frankrcastillo.github.io/';
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
