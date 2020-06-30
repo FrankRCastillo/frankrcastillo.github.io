@@ -137,8 +137,10 @@ async function ReadFile(url) {
     return (await fetch(url)).text();
 }
 
-async function CommandManager(cmd) {
+async function CommandManager(input) {
     clear();
+    
+    var cmd = input.toLowerCase();
 
     switch (cmd) {
         case 'clear': clear() ; break;
