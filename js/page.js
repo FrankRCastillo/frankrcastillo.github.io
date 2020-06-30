@@ -189,7 +189,7 @@ function print(text) {
 function AddCommandIcons() {
     var linkdiv = document.createElement("div");
     var textdiv = document.getElementById("textdiv");
-    var linkcat = [ 'home', 'apps', 'blog', 'soci' ];
+    var linkcat = [ 'home', 'blog', 'soci' ];
 
     linkdiv.setAttribute('id', 'linkdiv');
 
