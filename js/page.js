@@ -161,13 +161,13 @@ async function CommandManager(cmd) {
 function cmdReady() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\xa0\>';
+    inputbox.placeholder = ' > type "help" for available commands...';
 }
 
 function cmdWait() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\xa0X';
+    inputbox.placeholder = ' Loading...';
 }
 
 function print(text) {
