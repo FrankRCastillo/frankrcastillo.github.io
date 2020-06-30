@@ -25,3 +25,5 @@ export async function news() {
     document.getElementById('outtext').appendChild(tbl);    
     cmdReady();
 }
+
+var interval = setInterval(function() { news() }, 60000);
