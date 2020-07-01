@@ -44,13 +44,19 @@ function RSSParser(xml) {
         title = itm[i].getElementsByTagName('title'  )[0].textContent;
         pubdt = itm[i].getElementsByTagName('pubDate')[0].textContent;
         lnkst = itm[i].getElementsByTagName('link'   )[0].textContent;
-        deurl = decodeURIComponent(title);
+        deurl = decodeHtml(title);
         isodt = DateISO(pubdt);
 
         arr.push([ src, trunc(deurl, awdt), isodt, lnkst ]);
     }
     
     return arr;
+}
+
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
 }
 
 function trunc(str, len) {
