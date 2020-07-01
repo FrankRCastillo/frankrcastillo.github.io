@@ -120,11 +120,11 @@ function clear() {
 }
 
 function home() {
-    read('../main/main.txt');
+    read('/main/main.txt');
 }
 
 function soci() {
-    read('../main/social.txt')
+    read('/main/social.txt')
 }
 
 async function read(path) {
@@ -152,7 +152,7 @@ async function CommandManager(input) {
             cmdWait();
 
             try {
-                let app = await import('../main/apps/' + cmd + '.js');
+                let app = await import('/main/apps/' + cmd + '.js');
                 eval('app.' + cmd + '()');
             } catch(err) {
                 cmdReady();
