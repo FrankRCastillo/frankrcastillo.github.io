@@ -41,11 +41,13 @@ function RSSParser(xml) {
     var itm  = xmldoc.getElementsByTagName('item');
 
     for (var i = 0; i < itm.length; i++) {
-        arr.push([ src
-                 , trunc(itm[i].getElementsByTagName('title'  )[0].textContent, awdt)
-                 , DateISO(itm[i].getElementsByTagName('pubDate')[0].textContent)
-                 , itm[i].getElementsByTagName('link'   )[0].textContent
-                 ]);
+        title = itm[i].getElementsByTagName('title'  )[0].textContent;
+        pubdt = itm[i].getElementsByTagName('pubDate')[0].textContent;
+        lnkst = itm[i].getElementsByTagName('link'   )[0].textContent;
+        deurl = decodeURIComponent(title);
+        isodt = DateISO(pubdt);
+
+        arr.push([ src, trunc(deurl, awdt), isodt, lnkst ]);
     }
     
     return arr;
@@ -140,7 +142,11 @@ async function ReadFile(url) {
 async function CommandManager(input) {
     clear();
 
-    //window.clearInterval(window.interval); // clears the news 60 sec interval
+    try {
+        clearInterval(interval);
+    } catch(err) {
+        console.log(err.message);
+    }
     
     var cmd = input.toLowerCase();
 
