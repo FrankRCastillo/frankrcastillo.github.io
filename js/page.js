@@ -147,12 +147,6 @@ async function ReadFile(url) {
 
 async function CommandManager(input) {
     clear();
-
-    try {
-        clearInterval(window.interval);
-    } catch(err) {
-        console.log(err.message);
-    }
     
     var cmd = input.toLowerCase();
 
