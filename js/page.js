@@ -6,7 +6,6 @@ async function SetConsole() {
     console.setAttribute("id", "console");
     outelem.setAttribute("id", "outtext");
     
-    inpelem.appendChild(AddCommandIcons());
     inpelem.appendChild(AddCommandLine())
     console.appendChild(inpelem);
     console.appendChild(outelem);
@@ -174,13 +173,13 @@ async function CommandManager(input) {
 function cmdReady() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = ' > type "help" for available commands...';
+    inputbox.placeholder = '> "help", or click here, for available commands...';
 }
 
 function cmdWait() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = ' Loading...';
+    inputbox.placeholder = 'Loading...';
 }
 
 function print(text) {
@@ -199,28 +198,6 @@ function print(text) {
     inputbox.focus();
 }
 
-function AddCommandIcons() {
-    var linkdiv = document.createElement("div");
-    var textdiv = document.getElementById("textdiv");
-    var linkcat = [ 'home', 'blog', 'soci' ];
-
-    linkdiv.setAttribute('id', 'linkdiv');
-
-    for (var i = 0; i < linkcat.length; i++) {
-        var child = document.createElement('div');
-        var id    = linkcat[i] + 'btn'
-        child.innerText = linkcat[i];
-        child.setAttribute('id', id);
-        child.setAttribute('class', 'invert');
-        child.setAttribute('onclick', 'CommandManager("' + linkcat[i] + '")');
-        child.setAttribute('onmouseover', 'ChangeClass("' + id + '", "normal")');
-        child.setAttribute('onmouseout' , 'ChangeClass("' + id + '", "invert")');
-        linkdiv.appendChild(child);
-    }
-
-    return linkdiv;
-}
-
 function ChangeClass(id, classname) {
     document.getElementById(id).className = classname;
 }
@@ -229,10 +206,6 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-
-    txtdiv = document.createElement("div");
-    txtdiv.setAttribute("id", "textdiv");
-    txtdiv.appendChild(txtinput);
 
     window.addEventListener('keydown', function(e) {
         var inputbox = document.getElementById("inputbox");
@@ -247,7 +220,7 @@ function AddCommandLine() {
         }
     });
 
-    return txtdiv;
+    return txtinput;
 }
 
 async function main() {
