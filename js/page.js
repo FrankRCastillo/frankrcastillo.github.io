@@ -140,7 +140,7 @@ async function ReadFile(url) {
 async function CommandManager(input) {
     clear();
 
-    window.clearInterval(window.interval); // clears the news 60 sec interval
+    //window.clearInterval(window.interval); // clears the news 60 sec interval
     
     var cmd = input.toLowerCase();
 
