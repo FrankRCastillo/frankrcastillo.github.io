@@ -153,9 +153,7 @@ async function CommandManager(input) {
     var cmd = input.toLowerCase();
 
     switch (cmd) {
-        case 'clear': clear() ; break;
         case 'home' : home()  ; break;
-        case 'soci' : soci()  ; break;
         default:
             cmdWait();
 

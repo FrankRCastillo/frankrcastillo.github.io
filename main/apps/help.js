@@ -5,6 +5,8 @@ export async function help() {
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
 
+    lout.push('core | home : Show the home screen');
+
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[1];
         var file = await ReadFile(url + list[i]);
