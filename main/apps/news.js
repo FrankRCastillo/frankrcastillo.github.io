@@ -26,4 +26,4 @@ export async function news() {
     cmdReady();
 }
 
-var window.interval = setInterval(function() { news(); }, 60000);
+//var window.interval = setInterval(function() { news(); }, 60000);
