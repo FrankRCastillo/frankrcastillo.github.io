@@ -149,7 +149,7 @@ async function CommandManager(input) {
     clear();
 
     try {
-        clearInterval(interval);
+        clearInterval(window.interval);
     } catch(err) {
         console.log(err.message);
     }
