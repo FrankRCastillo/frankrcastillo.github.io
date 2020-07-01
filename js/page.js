@@ -142,7 +142,10 @@ async function read(path) {
 }
 
 async function ReadFile(url) {
-    return (await fetch(url)).text();
+    return (await fetch( url
+                       , { headers : { 'Access-Control-Request-Headers' : 'origin, x-requested-with' }
+                       )
+           ).text();
 }
 
 async function CommandManager(input) {
