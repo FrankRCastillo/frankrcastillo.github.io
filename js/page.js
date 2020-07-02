@@ -153,7 +153,8 @@ async function CommandManager(input) {
     var cmd = input.toLowerCase();
 
     switch (cmd) {
-        case 'home' : home()  ; break;
+        case 'home' : home()     ; break;
+        case 'help' : help(false); break;
         default:
             cmdWait();
 
@@ -204,6 +205,7 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
+    txtinput.setAttribute('list', 'helplist');
 
     window.addEventListener('keydown', function(e) {
         var inputbox = document.getElementById("inputbox");
@@ -221,11 +223,66 @@ function AddCommandLine() {
     return txtinput;
 }
 
+function help(inlist) {
+    var lout = getcmdinfo();
+
+    if (inlist) {
+        var body = document.body;
+        var list = document.createElemement('datalist');
+        list.setAttribute('id', 'helplist');
+
+        for (var i = 0; i < lout.length; i++) {
+            var cmd = lout[i].split(' ')[2];
+            var opt = document.createElement('option');
+            opt.setAttribute('value', cmd);
+            opt.textContent = lout[i];
+            list.appendChild(opt);
+        }
+
+        body.appendChild(list);
+
+    } else {
+        clear();
+        print('\n');
+        print(lout);
+    }
+
+    cmdReady();
+}
+
+async function getcmdinfo() {
+    var url  = 'https://frankrcastillo.github.io/';
+    var list = await FileList(/main\/.*\.js/);
+    var lout = [];
+
+    lout.push('core | home : Show the home screen');
+    lout.push('core | help : Show list of available commands');
+
+    for (var i = 0; i < list.length; i++) {
+        var base = list[i].split('\/')[1];
+        var file = await ReadFile(url + list[i]);
+        lout.push(base + ' | ' + getjsdesc(file));
+    }
+
+    return lout;    
+}
+
+function getjsdesc(str) {
+    var lines = str.split('\n');
+    var regex = '^// |.*'
+
+    for (var i = 0; i < lines.length; i++) {
+        if (lines[i].match(regex)) {
+            return lines[i].split('|')[1];
+        }
+    }
+}
 async function main() {
     var body = document.body;
 
     body.appendChild(await SetConsole());
     home();
+    help(true);
     cmdReady();
 }
 
