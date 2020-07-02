@@ -223,8 +223,8 @@ function AddCommandLine() {
     return txtinput;
 }
 
-function help(inlist) {
-    var lout = getcmdinfo();
+async function help(inlist) {
+    var lout = await getcmdinfo();
 
     if (inlist) {
         var body = document.body;
