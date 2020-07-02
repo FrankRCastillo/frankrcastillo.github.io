@@ -261,7 +261,7 @@ async function getcmdinfo() {
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[1];
         var file = await ReadFile(url + list[i]);
-        lout.push(base + ' | ' + getjsdesc(file));
+        lout.push(base + ' |' + getjsdesc(file));
     }
 
     return lout;    
