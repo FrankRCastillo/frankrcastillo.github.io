@@ -278,7 +278,7 @@ function getjsdesc(str) {
 
     for (var i = 0; i < lines.length; i++) {
         if (lines[i].match(regex)) {
-            return lines[i].split('|')[1];
+            return lines[i].replace('// ','');
         }
     }
 }
