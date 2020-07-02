@@ -228,7 +228,7 @@ async function help(inlist) {
 
     if (inlist) {
         var body = document.body;
-        var list = document.createElemement('datalist');
+        var list = document.createElement('datalist');
         list.setAttribute('id', 'helplist');
 
         for (var i = 0; i < lout.length; i++) {
