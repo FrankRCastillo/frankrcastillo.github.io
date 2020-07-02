@@ -205,16 +205,16 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-    txtinput.addEventListener('keydown', function(e) {
+    txtinput.addEventListener('keyup', function(e) {
         var inputbox = document.getElementById('inputbox');
-        var cmdlist = document.getElementById('cmdlist');
+        var cmdlist  = document.getElementById('cmdlist');
 
-        if (cmdlist) {
+        if (cmdlist || inputbox.value == '') {
             cmdlist.parentNode.removeChild(cmdlist);
-        } else {
-            if (inputbox.value != '') {
-                help(inputbox.value);
-            }
+        }
+        
+        if(inputbox.value != '') {
+            help(inputbox.value);
         }
     });
 
@@ -236,37 +236,28 @@ function AddCommandLine() {
 
 async function help(value) {
     var lout = await getcmdinfo();
+    var tdiv = document.getElementById('textdiv');
+    var list = document.createElement('div');
 
-    if (value != '') {
-        var tdiv = document.getElementById('textdiv');
-        var list = document.createElement('div');
-        list.setAttribute('id', 'cmdlist');
+    list.setAttribute('id', 'cmdlist');
 
-        for (var i = 0; i < lout.length; i++) {
-            var itm = document.createElement('div');
-            var inf = lout[i].split('|');
-            console.log(lout[i].toLowerCase().indexOf(value));    
-            if (lout[i].toLowerCase().indexOf(value) > -1) {
-                itm.setAttribute('class', 'cmdlistitm');
-                itm.textContent = inf[0] + '|' 
-                                + inf[1] + ' : '
-                                + inf[2];   // command [tab] description
+    for (var i = 0; i < lout.length; i++) {
+        var itm = document.createElement('div');
+        var inf = lout[i].split('|');
 
-                list.appendChild(itm);
-            }
+        if (lout[i].toLowerCase().indexOf(value) > -1) {
+            itm.setAttribute('class', 'cmdlistitm');
+            itm.textContent = inf[0] + '|' 
+                            + inf[1] + ' : '
+                            + inf[2];   // command [tab] description
+
+            list.appendChild(itm);
         }
-
-        if (list) {
-            tdiv.appendChild(list);
-        }
-
-    } else {
-        clear();
-        print('\n');
-        print(lout);
     }
 
-    cmdReady();
+    if (list.childElementCount > 0) {
+        tdiv.appendChild(list);
+    }
 }
 
 async function getcmdinfo() {
