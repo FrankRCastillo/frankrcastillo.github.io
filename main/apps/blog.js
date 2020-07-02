@@ -1,4 +1,4 @@
-// | blog : Show the personal blog of Frank R. Castillo
+// |blog|Show the personal blog of Frank R. Castillo
 
 export async function blog() {
     var url  = 'https://frankrcastillo.github.io/';

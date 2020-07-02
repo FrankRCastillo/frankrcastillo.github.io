@@ -206,6 +206,7 @@ function AddCommandLine() {
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
     txtinput.setAttribute('list', 'helplist');
+    txtinput.addEventListener('onclick', help(true))
 
     window.addEventListener('keydown', function(e) {
         var inputbox = document.getElementById("inputbox");
@@ -228,15 +229,19 @@ async function help(inlist) {
 
     if (inlist) {
         var body = document.body;
-        var list = document.createElement('select');
-        list.setAttribute('id', 'helplist');
+        var list = document.createElement('div');
+        list.setAttribute('id', 'cmdlist');
 
         for (var i = 0; i < lout.length; i++) {
-            var cmd = lout[i].split(' ')[2];
-            var opt = document.createElement('option');
-            opt.setAttribute('value', cmd);
-            opt.textContent = lout[i];
-            list.appendChild(opt);
+            var itm = document.createElement('div');
+            var inf = lout[i].split('|');
+
+            itm.setAttribute('class', 'cmdlistitm');
+            itm.textContent = inf[0] + ' | ' 
+                            + inf[1] + ' : '
+                            + inf[2];   // command [tab] description
+
+            list.appendChild(itm);
         }
 
         body.appendChild(list);
@@ -255,13 +260,13 @@ async function getcmdinfo() {
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
 
-    lout.push('core | home : Show the home screen');
-    lout.push('core | help : Show list of available commands');
+    lout.push('core| home : Show the home screen');
+    lout.push('core| help : Show list of available commands');
 
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[1];
         var file = await ReadFile(url + list[i]);
-        lout.push(base + ' |' + getjsdesc(file));
+        lout.push(base + '|' + getjsdesc(file));
     }
 
     return lout;    
@@ -279,10 +284,9 @@ function getjsdesc(str) {
 }
 async function main() {
     var body = document.body;
-
     body.appendChild(await SetConsole());
     home();
-//    help(true);
+    
     cmdReady();
 }
 

@@ -1,4 +1,4 @@
-// | news : Show RSS feed from various news sources
+// |news|Show RSS feed from various news sources
 
 export async function news() {
     var src = await ReadFile('../main/apps/news.txt');

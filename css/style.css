@@ -66,9 +66,38 @@ ul
 ; font-family : 'VT323'
 ; font-size   : 20px
 ; height      : 25px
+; width       : 100%
 ; color       : #ffa500
 ; background  : #000000
+}
+
+#cmdlist
+{ border      : 3px solid #ffa500
+; margin      : 3px 3px 3px 3px
+; padding     : 0px 0px 0px 0px
+; font-family : 'VT323'
+; font-size   : 20px
+; height      : 50%
 ; width       : 100%
+; color       : #ffa500
+; background  : #000000
+; position    : relative
+}
+
+.cmdlistitm
+{ border      : 0px 0px 0px 0px
+; margin      : 0px 0px 0px 0px
+; padding     : 0px 0px 0px 0px
+; font-family : 'VT323'
+; font-size   : 20px
+; height      : 22px
+; width       : 100%
+; color       : #ffa500
+; background  : #000000
+}
+
+.cmdlistitm
+{
 }
 
 #newstable
