@@ -205,7 +205,7 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-    txtinput.addEventListener('keypress', function(e) {
+    txtinput.addEventListener('keydown', function(e) {
         var inputbox = document.getElementById('inputbox');
         var cmdlist = document.getElementById('cmdlist');
 
@@ -256,7 +256,9 @@ async function help(value) {
             }
         }
 
-        tdiv.appendChild(list);
+        if (list) {
+            tdiv.appendChild(list);
+        }
 
     } else {
         clear();
