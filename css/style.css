@@ -42,26 +42,10 @@ ul
 ; margin-bottom : 0
 }
 
-.invert
-{ margin           : 3px 5px 3px 5px
-; padding          : 0px 0px 0px 0px
-; float            : left
-; color            : #000000
-; background-color : #ffa500
-}
-
-.norma
-{ margin           : 3px 5px 3px 5px
-; padding          : 0px 0px 0px 0px
-; float            : left
-; color            : #ffa500
-; background-color : #000000
-}
-
 #inputbox
-{ border      : 3px solid #ffa500
+{ border      : 2px solid #ffa500
 ; margin      : 0px 0px 0px 0px
-; padding     : 3px 3px 3px 3px
+; padding     : 2px 2px 2px 2px
 ; outline     : none
 ; font-family : 'VT323'
 ; font-size   : 20px
@@ -76,7 +60,7 @@ ul
 }
 
 #cmdlist
-{ border      : 3px solid #ffa500
+{ border      : 2px solid #ffa500
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 3px 3px 3px
 ; font-family : 'VT323'
