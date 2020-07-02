@@ -237,7 +237,7 @@ async function help(inlist) {
             var inf = lout[i].split('|');
 
             itm.setAttribute('class', 'cmdlistitm');
-            itm.textContent = inf[0] + ' | ' 
+            itm.textContent = inf[0] + '|' 
                             + inf[1] + ' : '
                             + inf[2];   // command [tab] description
 
@@ -278,7 +278,7 @@ function getjsdesc(str) {
 
     for (var i = 0; i < lines.length; i++) {
         if (lines[i].match(regex)) {
-            return lines[i].replace('// ','');
+            return lines[i].replace('// |','');
         }
     }
 }
