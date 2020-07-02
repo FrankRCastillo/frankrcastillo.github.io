@@ -205,7 +205,7 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-    txtinput.addEventListener('keyup', function(e) {
+    txtinput.addEventListener('keypress', function(e) {
         var inputbox = document.getElementById('inputbox');
         var cmdlist = document.getElementById('cmdlist');
 
