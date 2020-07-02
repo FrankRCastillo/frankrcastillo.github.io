@@ -77,8 +77,6 @@ ul
 ; padding     : 0px 0px 0px 0px
 ; font-family : 'VT323'
 ; font-size   : 20px
-; height      : 50%
-; width       : 100%
 ; color       : #ffa500
 ; background  : #000000
 ; position    : absolute
@@ -91,7 +89,6 @@ ul
 ; font-family : 'VT323'
 ; font-size   : 20px
 ; height      : 22px
-; width       : 100%
 ; color       : #ffa500
 ; background  : #000000
 }
