@@ -71,6 +71,10 @@ ul
 ; background  : #000000
 }
 
+#textdiv
+{ position : relative
+}
+
 #cmdlist
 { border      : 3px solid #ffa500
 ; margin      : 3px 3px 3px 3px
@@ -91,10 +95,6 @@ ul
 ; height      : 22px
 ; color       : #ffa500
 ; background  : #000000
-}
-
-.cmdlistitm
-{
 }
 
 #newstable

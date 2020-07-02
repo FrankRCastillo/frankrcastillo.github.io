@@ -1,11 +1,11 @@
 async function SetConsole() {
-    var console = document.createElement("div");
-    var inpelem = document.createElement("div");
-    var outelem = document.createElement("div");
+    var console = document.createElement('div');
+    var inpelem = document.createElement('div');
+    var outelem = document.createElement('div');
 
-    console.setAttribute("id", "console");
-    outelem.setAttribute("id", "outtext");
-    
+    console.setAttribute('id', 'console');
+    outelem.setAttribute('id', 'outtext');
+    inpelem.setAttribute('id', 'textdiv') 
     inpelem.appendChild(AddCommandLine())
     console.appendChild(inpelem);
     console.appendChild(outelem);
@@ -153,8 +153,8 @@ async function CommandManager(input) {
     var cmd = input.toLowerCase();
 
     switch (cmd) {
-        case 'home' : home()     ; break;
-        case 'help' : help(false); break;
+        case 'home' : home(); break;
+        case 'help' : help(); break;
         default:
             cmdWait();
 
@@ -205,11 +205,21 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-    txtinput.setAttribute('list', 'helplist');
-    txtinput.addEventListener('onclick', help(true))
+    txtinput.addEventListener('keyup', function(e) {
+        var inputbox = document.getElementById('inputbox');
+        var cmdlist = document.getElementById('cmdlist');
+
+        if (cmdlist) {
+            cmdlist.parentNode.removeChild(cmdlist);
+        } else {
+            if (inputbox.value != '') {
+                help(inputbox.value);
+            }
+        }
+    });
 
     window.addEventListener('keydown', function(e) {
-        var inputbox = document.getElementById("inputbox");
+        var inputbox = document.getElementById('inputbox');
         
         if (e.keyCode == 13) {
             CommandManager(inputbox.value);
@@ -224,27 +234,29 @@ function AddCommandLine() {
     return txtinput;
 }
 
-async function help(inlist) {
+async function help(value) {
     var lout = await getcmdinfo();
 
-    if (inlist) {
-        var body = document.body;
+    if (value != '') {
+        var tdiv = document.getElementById('textdiv');
         var list = document.createElement('div');
         list.setAttribute('id', 'cmdlist');
 
         for (var i = 0; i < lout.length; i++) {
             var itm = document.createElement('div');
             var inf = lout[i].split('|');
+            console.log(lout[i].toLowerCase().indexOf(value));    
+            if (lout[i].toLowerCase().indexOf(value) > -1) {
+                itm.setAttribute('class', 'cmdlistitm');
+                itm.textContent = inf[0] + '|' 
+                                + inf[1] + ' : '
+                                + inf[2];   // command [tab] description
 
-            itm.setAttribute('class', 'cmdlistitm');
-            itm.textContent = inf[0] + '|' 
-                            + inf[1] + ' : '
-                            + inf[2];   // command [tab] description
-
-            list.appendChild(itm);
+                list.appendChild(itm);
+            }
         }
 
-        body.appendChild(list);
+        tdiv.appendChild(list);
 
     } else {
         clear();
