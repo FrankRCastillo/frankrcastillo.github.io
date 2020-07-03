@@ -141,10 +141,7 @@ async function read(path) {
 }
 
 async function ReadFile(url) {
-    return (await fetch( url
-                       , { headers : { 'Access-Control-Request-Headers' : 'origin' } } 
-                       )
-           ).text();
+    return (await fetch(url, {headers: {'Access-Control-Request-Headers':'origin'}})).text();
 }
 
 async function CommandManager(input) {
@@ -177,7 +174,7 @@ async function CommandManager(input) {
 function cmdReady() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '> "help", or click here, for available commands...';
+    inputbox.placeholder = '> "help" for commands...';
 }
 
 function cmdWait() {
@@ -288,7 +285,7 @@ async function getcmdinfo() {
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[1];
         var file = await ReadFile(url + list[i]);
-        lout.push(base + '|' + getjsdesc(file));
+        lout.push(base + ' help|' + getjsdesc(file));
     }
 
     return lout;    
