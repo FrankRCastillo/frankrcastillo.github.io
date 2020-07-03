@@ -155,7 +155,6 @@ async function CommandManager(input) {
 
     switch (cmd) {
         case 'home' : home(); break;
-        case 'help' : help(); break;
         default:
             cmdWait();
 
