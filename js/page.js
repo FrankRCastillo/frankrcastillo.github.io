@@ -227,6 +227,7 @@ async function help(value) {
     var tdiv = document.getElementById('textdiv');
     var list = document.createElement('div');
     var exst = document.getElementsByClassName('cmdlist');
+    var hxst  = '';
 
     for (var i = exst.length - 1; i >= 0; i--) {
         exst[i].remove();
@@ -234,25 +235,32 @@ async function help(value) {
 
     if (value != '') {
         list.setAttribute('class', 'cmdlist');
-        
+                
         for (var i = 0; i < lout.length; i++) {
-            var itm = document.createElement('div');
-            var inf = lout[i].split('|');
+            var citm  = document.createElement('div');
+            var cinf  = lout[i].split('|');
 
             if (lout[i].toLowerCase().indexOf(value) > -1) {
-                itm.setAttribute('class', 'cmdlistitm');
-                itm.textContent = inf[0] + '|' 
-                                + inf[1] + ' : '
-                                + inf[2];   // command [tab] description
-                list.appendChild(itm);
+                if (hxst != cinf[0]) {
+                    hxst = cinf[0];
+                    var chdr = document.createElement('div');
+                    chdr.setAttribute('class', 'cmdlisthdr');
+                    chdr.textContent = cinf[0];
+                    list.appendChild(chdr);
+                }
+
+                citm.setAttribute('class', 'cmdlistitm');
+                citm.textContent = cinf[1] + ' : ' + cinf[2];   // command [tab] description
+
+                list.appendChild(citm);
             }
         }
 
         if (list.childElementCount == 0) {
-            var itm = document.createElement('div');
-            itm.textContent = 'match not found...';
-            itm.setAttribute('class', 'cmdlistitm');
-            list.appendChild(itm);
+            var citm = document.createElement('div');
+            citm.textContent = 'match not found...';
+            citm.setAttribute('class', 'cmdlistitm');
+            list.appendChild(citm);
         }
 
         tdiv.appendChild(list);
