@@ -19,7 +19,7 @@ table
 }
 
 ::placeholder
-{ color       : #803a00
+{ color : #803a00
 }
 
 tr:hover a
@@ -68,6 +68,7 @@ ul
 ; color       : #ffa500
 ; background  : #000000
 ; position    : absolute
+; white-space : nowrap
 }
 
 .cmdlistitm
@@ -79,6 +80,7 @@ ul
 ; height      : 22px
 ; color       : #ffa500
 ; background  : #000000
+; white-space : nowrap
 }
 
 .cmdlisthdr
@@ -90,6 +92,7 @@ ul
 ; height      : 22px
 ; color       : #000000
 ; background  : #ffa500
+; white-space : nowrap
 }
 #newstable
 { padding : 0px 10px 0px 0px
