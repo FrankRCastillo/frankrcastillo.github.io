@@ -250,6 +250,7 @@ async function help(value) {
                 }
 
                 citm.setAttribute('class', 'cmdlistitm');
+                citm.setAttribute('onclick', 'CommandManager("' + cinf[1] + '")');
                 citm.textContent = cinf[1] + ' : ' + cinf[2];   // command [tab] description
 
                 list.appendChild(citm);
