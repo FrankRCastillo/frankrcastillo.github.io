@@ -142,11 +142,10 @@ async function ReadFile(url) {
 
 async function CommandManager(input) {
     clear();
+    setinputval('');
 
     var cmd = input.toLowerCase();
-    var inp = document.getElementById('inputbox');
 
-    inp.value = '';
 
     switch (cmd) {
         case 'home' : home(); break;
@@ -206,18 +205,10 @@ function AddCommandLine() {
     txtinput.setAttribute('type', 'text');
 
     window.addEventListener('keyup', function(e) {
-        var inputbox = document.getElementById('inputbox');
-
-        inputbox.focus();
-        
-        if (inputbox.value == '') {
-            clearHelp();
-        } else {
-            help(inputbox.value);
-        }
+        help();
 
         if (e.keyCode == 13) {
-            CommandManager(inputbox.value);
+            CommandManager(getinputval());
             clearHelp();
         }
     });
@@ -232,11 +223,21 @@ function clearHelp() {
     }
 }
 
-async function help(input) {
+function getinputval() {
+    var inputbox = document.getElementById('inputbox');
+    return inputbox.value.toLowerCase();
+}
+
+function setinputval(val) {
+    var inputbox = document.getElementById('inputbox');
+    inputbox.value = val;
+}
+
+async function help() {
     var lout  = await getcmdinfo();
     var tdiv  = document.getElementById('textdiv');
     var list  = document.createElement('div');
-    var value = input.toLowerCase();
+    var value = getinputval();
     var hxst  = '';
 
     clearHelp();
