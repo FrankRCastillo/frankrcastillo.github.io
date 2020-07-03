@@ -220,7 +220,7 @@ function AddCommandLine() {
 }
 
 function clearHelp() {
-    while (document.getElementsByClassName('cmdlist')) {
+    while (document.getElementsByClassName('cmdlist').length > 0) {
         var elem = document.getElementsByClassName('cmdlist');
         elem[elem.length - 1].remove();
     }
