@@ -142,7 +142,6 @@ async function ReadFile(url) {
 
 async function CommandManager(input) {
     clear();
-    clearHelp();
 
     var cmd = input.toLowerCase();
     var inp = document.getElementById('inputbox');
@@ -164,6 +163,7 @@ async function CommandManager(input) {
             }
     }
 
+    clearHelp();
 }
 
 function cmdReady() {
