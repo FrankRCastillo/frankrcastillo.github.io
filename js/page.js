@@ -167,7 +167,7 @@ async function CommandManager(input) {
 function cmdReady() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '> "help" for commands...';
+    inputbox.placeholder = '> "help", or click here, for commands...';
 
     clearHelp();
     setinputval('');
@@ -176,7 +176,7 @@ function cmdReady() {
 function cmdWait() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = 'Loading...';
+    inputbox.placeholder = 'X Loading...';
 
     clearHelp();
     setinputval('');
