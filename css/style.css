@@ -59,26 +59,27 @@ ul
 { position : relative
 }
 
-#cmdlist
+.cmdlist
 { border      : 2px solid #ffa500
 ; margin      : 0px 0px 0px 0px
-; padding     : 0px 3px 3px 3px
+; padding     : 0px 0px 0px 0px
 ; font-family : 'VT323'
 ; font-size   : 20px
 ; color       : #ffa500
 ; background  : #000000
 ; position    : absolute
+; width       : 100%
 }
 
 .cmdlistitm
 { border      : 0px 0px 0px 0px
 ; margin      : 0px 0px 0px 0px
-; padding     : 0px 3px 0px 3px
+; padding     : 0px 2px 0px 2px
 ; font-family : 'VT323'
 ; font-size   : 20px
 ; height      : 22px
-; color       : #ffa500
-; background  : #000000
+; color       : #000000
+; background  : #ffa500
 }
 
 #newstable

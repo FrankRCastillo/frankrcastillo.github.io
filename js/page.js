@@ -205,29 +205,17 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-    txtinput.addEventListener('keyup', function(e) {
-        var inputbox = document.getElementById('inputbox');
-        var cmdlist  = document.getElementById('cmdlist');
-
-        if (cmdlist || inputbox.value == '') {
-            cmdlist.parentNode.removeChild(cmdlist);
-        }
-        
-        if(inputbox.value != '') {
-            help(inputbox.value);
-        }
-    });
 
     window.addEventListener('keydown', function(e) {
         var inputbox = document.getElementById('inputbox');
-        
+
+        inputbox.focus();
+
+        help(inputbox.value);
+
         if (e.keyCode == 13) {
             CommandManager(inputbox.value);
             inputbox.value = '';
-
-        } else {
-            inputbox.focus();
-
         }
     });
 
@@ -238,24 +226,35 @@ async function help(value) {
     var lout = await getcmdinfo();
     var tdiv = document.getElementById('textdiv');
     var list = document.createElement('div');
+    var exst = document.getElementsByClassName('cmdlist');
 
-    list.setAttribute('id', 'cmdlist');
-
-    for (var i = 0; i < lout.length; i++) {
-        var itm = document.createElement('div');
-        var inf = lout[i].split('|');
-
-        if (lout[i].toLowerCase().indexOf(value) > -1) {
-            itm.setAttribute('class', 'cmdlistitm');
-            itm.textContent = inf[0] + '|' 
-                            + inf[1] + ' : '
-                            + inf[2];   // command [tab] description
-
-            list.appendChild(itm);
-        }
+    for (var i = exst.length - 1; i >= 0; i--) {
+        exst[i].remove();
     }
 
-    if (list.childElementCount > 0) {
+    if (value != '') {
+        list.setAttribute('class', 'cmdlist');
+        
+        for (var i = 0; i < lout.length; i++) {
+            var itm = document.createElement('div');
+            var inf = lout[i].split('|');
+
+            if (lout[i].toLowerCase().indexOf(value) > -1) {
+                itm.setAttribute('class', 'cmdlistitm');
+                itm.textContent = inf[0] + '|' 
+                                + inf[1] + ' : '
+                                + inf[2];   // command [tab] description
+                list.appendChild(itm);
+            }
+        }
+
+        if (list.childElementCount == 0) {
+            var itm = document.createElement('div');
+            itm.textContent = 'match not found...';
+            itm.setAttribute('class', 'cmdlistitm');
+            list.appendChild(itm);
+        }
+
         tdiv.appendChild(list);
     }
 }
