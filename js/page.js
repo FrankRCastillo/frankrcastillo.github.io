@@ -305,9 +305,9 @@ function getjsdesc(str) {
 }
 async function main() {
     var body = document.body;
+
     body.appendChild(await SetConsole());
     home();
-    
     cmdReady();
 }
 
