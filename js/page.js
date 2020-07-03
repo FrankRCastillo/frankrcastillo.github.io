@@ -141,7 +141,6 @@ async function ReadFile(url) {
 }
 
 async function CommandManager(input) {
-    clearHelp();
     clear();
 
     var cmd = input.toLowerCase();
@@ -211,7 +210,7 @@ function AddCommandLine() {
 
         if (e.keyCode == 13) {
             CommandManager(inputbox.value);
-            inputbox.value = '';
+            clearHelp();
         }
     });
 
