@@ -209,8 +209,12 @@ function AddCommandLine() {
         var inputbox = document.getElementById('inputbox');
 
         inputbox.focus();
-
-        help(inputbox.value);
+        
+        if (inputbov.value == '') {
+            clearHelp();
+        } else {
+            help(inputbox.value);
+        }
 
         if (e.keyCode == 13) {
             CommandManager(inputbox.value);
