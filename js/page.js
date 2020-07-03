@@ -142,6 +142,7 @@ async function ReadFile(url) {
 
 async function CommandManager(input) {
     clear();
+    clearHelp();
 
     var cmd = input.toLowerCase();
     var inp = document.getElementById('inputbox');
@@ -168,6 +169,8 @@ function cmdReady() {
     var inputbox = document.getElementById('inputbox');
 
     inputbox.placeholder = '> "help" for commands...';
+
+    clearHelp();
 }
 
 function cmdWait() {
@@ -201,7 +204,7 @@ function AddCommandLine() {
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
 
-    window.addEventListener('keydown', function(e) {
+    window.addEventListener('keyup', function(e) {
         var inputbox = document.getElementById('inputbox');
 
         inputbox.focus();
@@ -210,7 +213,6 @@ function AddCommandLine() {
 
         if (e.keyCode == 13) {
             CommandManager(inputbox.value);
-            clearHelp();
         }
     });
 
@@ -265,6 +267,8 @@ async function help(input) {
         }
 
         tdiv.appendChild(list);
+    } else {
+        clearHelp();
     }
 }
 
