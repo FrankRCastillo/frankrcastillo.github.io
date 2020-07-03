@@ -204,7 +204,7 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-    txtinput.setAttribute('click', 'javascript:help()');
+    txtinput.setAttribute('onclick', 'javascript:{setinputval("help"); help()}');
 
     window.addEventListener('keyup', function(e) {
         help();
