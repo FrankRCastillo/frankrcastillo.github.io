@@ -210,7 +210,7 @@ function AddCommandLine() {
 
         inputbox.focus();
         
-        if (inputbov.value == '') {
+        if (inputbox.value == '') {
             clearHelp();
         } else {
             help(inputbox.value);
