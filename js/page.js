@@ -222,16 +222,21 @@ function AddCommandLine() {
     return txtinput;
 }
 
-async function help(value) {
-    var lout = await getcmdinfo();
-    var tdiv = document.getElementById('textdiv');
-    var list = document.createElement('div');
+function clearHelp() {
     var exst = document.getElementsByClassName('cmdlist');
-    var hxst  = '';
 
     for (var i = exst.length - 1; i >= 0; i--) {
         exst[i].remove();
     }
+}
+
+async function help(value) {
+    var lout = await getcmdinfo();
+    var tdiv = document.getElementById('textdiv');
+    var list = document.createElement('div');
+    var hxst  = '';
+
+    clearHelp();
 
     if (value != '') {
         list.setAttribute('class', 'cmdlist');
