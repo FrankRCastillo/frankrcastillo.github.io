@@ -220,10 +220,9 @@ function AddCommandLine() {
 }
 
 function clearHelp() {
-    var exst = document.getElementsByClassName('cmdlist');
-    var i = exst.length;
-    while (i--) {
-        exst[i].remove();
+    while (document.getElementsByClassName('cmdlist')) {
+        var elem = document.getElementsByClassName('cmdlist');
+        elem[elem.length - 1].remove();
     }
 }
 
@@ -235,7 +234,6 @@ async function help(input) {
     var hxst  = '';
 
     clearHelp();
-
 
     if (value != '') {
         list.setAttribute('class', 'cmdlist');
