@@ -268,8 +268,6 @@ async function help(input) {
         }
 
         tdiv.appendChild(list);
-    } else {
-        clearHelp();
     }
 }
 
