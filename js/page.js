@@ -218,6 +218,7 @@ function AddCommandLine() {
 
         if (e.keyCode == 13) {
             CommandManager(inputbox.value);
+            clearHelp();
         }
     });
 
