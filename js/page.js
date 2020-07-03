@@ -130,10 +130,6 @@ function home() {
     read('/main/main.txt');
 }
 
-function soci() {
-    read('/main/social.txt')
-}
-
 async function read(path) {
     var txt = await ReadFile(path)
     print('\n');
@@ -225,8 +221,8 @@ function AddCommandLine() {
 
 function clearHelp() {
     var exst = document.getElementsByClassName('cmdlist');
-
-    for (var i = exst.length - 1; i >= 0; i--) {
+    var i = exst.length;
+    while (i--) {
         exst[i].remove();
     }
 }
