@@ -170,6 +170,7 @@ function cmdReady() {
     inputbox.placeholder = '> "help" for commands...';
 
     clearHelp();
+    setinputval('');
 }
 
 function cmdWait() {
@@ -178,6 +179,7 @@ function cmdWait() {
     inputbox.placeholder = 'Loading...';
 
     clearHelp();
+    setinputval('');
 }
 
 function print(text) {
