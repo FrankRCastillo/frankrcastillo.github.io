@@ -231,13 +231,15 @@ function clearHelp() {
     }
 }
 
-async function help(value) {
-    var lout = await getcmdinfo();
-    var tdiv = document.getElementById('textdiv');
-    var list = document.createElement('div');
+async function help(input) {
+    var lout  = await getcmdinfo();
+    var tdiv  = document.getElementById('textdiv');
+    var list  = document.createElement('div');
+    var value = input.toLowerCase();
     var hxst  = '';
 
     clearHelp();
+
 
     if (value != '') {
         list.setAttribute('class', 'cmdlist');
