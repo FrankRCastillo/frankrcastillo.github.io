@@ -192,8 +192,6 @@ function print(text) {
         newtext.innerText = text;
         outtext.appendChild(newtext);
     }
-
-    inputbox.focus();
 }
 
 function ChangeClass(id, classname) {
@@ -232,6 +230,7 @@ function getinputval() {
 function setinputval(val) {
     var inputbox = document.getElementById('inputbox');
     inputbox.value = val;
+    inputbox.focus();
 }
 
 async function help() {
