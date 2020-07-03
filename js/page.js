@@ -146,7 +146,6 @@ async function CommandManager(input) {
 
     var cmd = input.toLowerCase();
 
-
     switch (cmd) {
         case 'home' : home(); break;
         default:
@@ -161,6 +160,8 @@ async function CommandManager(input) {
                 console.log(err.message);
             }
     }
+
+    clearHelp();
 }
 
 function cmdReady() {
