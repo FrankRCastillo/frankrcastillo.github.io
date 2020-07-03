@@ -152,6 +152,9 @@ async function CommandManager(input) {
     clearHelp();
 
     var cmd = input.toLowerCase();
+    var inp = document.getElementById('inputbox');
+
+    inp.value = '';
 
     switch (cmd) {
         case 'home' : home(); break;
@@ -168,6 +171,7 @@ async function CommandManager(input) {
                 console.log(err.message);
             }
     }
+
 }
 
 function cmdReady() {
