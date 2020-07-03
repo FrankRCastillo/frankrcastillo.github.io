@@ -149,7 +149,8 @@ async function ReadFile(url) {
 
 async function CommandManager(input) {
     clear();
-    
+    clearHelp();
+
     var cmd = input.toLowerCase();
 
     switch (cmd) {
