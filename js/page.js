@@ -183,15 +183,26 @@ function cmdWait() {
 }
 
 function print(text) {
-    var outtext  = document.getElementById("outtext");
-    var newtext  = document.createElement("div");
-
     if (Array.isArray(text)) {
         for (var i = 0; i < text.length; i++) {
             print(text[i]);
         }
     } else {
-        newtext.innerText = text;
+        var outtext = document.getElementById("outtext");
+        var newtext = document.createElement("div");
+        var parser  = new DOMParser();
+        var domtxt  = parser.parseFromString(text, 'text/html');
+        var rgxexp  = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi
+        var rgxdom  = new RegExp(rgxexp)
+        var rgxget  = domtxt.match(rgxdom)
+
+        for (var i = 0; i < rgxget; i++) {
+            var oldurl = rgxget[i];
+            var newurl = '<a href="' + rgxget[i] + '">' + rgxget[i] + '</a>';
+            domtxt = domtxt.replace(oldurl, newurl);
+        }
+        
+        newtext.innerText = domtxt;
         outtext.appendChild(newtext);
     }
 }
