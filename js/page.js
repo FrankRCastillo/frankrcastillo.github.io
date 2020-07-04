@@ -188,22 +188,23 @@ function print(text) {
             print(text[i]);
         }
     } else {
-        var outtext = document.getElementById("outtext");
-        var newtext = document.createElement("div");
-        var parser  = new DOMParser();
+        var outtxt = document.getElementById("outtext");
+        var newtxt = document.createElement("div");
         var rgxexp  = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
         var rgxdom  = new RegExp(rgxexp);
         var rgxget  = text.match(rgxdom);
-
-        for (var i = 0; i < rgxget.length; i++) {
-            var oldurl = rgxget[i];
-            var newurl = '<a href="' + rgxget[i] + '">' + rgxget[i] + '</a>';
-            text = text.replace(new RegExp(oldurl, 'gi'), newurl);
+        
+        if (rgxget != null) {
+            for (var i = 0; i < rgxget.length; i++) {
+                var oldurl = rgxget[i];
+                var newurl = '<a href="' + rgxget[i] + '">' + rgxget[i] + '</a>';
+                text = text.replace(new RegExp(oldurl, 'gi'), newurl);
+            }
         }
         
         text = text.replace(/\n/g, '<br/>');
-        newtext.innerHTML = text;
-        outtext.appendChild(newtext);
+        newtxt.innerHTML = text;
+        outtxt.appendChild(newtxt);
     }
 }
 
