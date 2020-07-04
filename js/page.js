@@ -191,18 +191,18 @@ function print(text) {
         var outtext = document.getElementById("outtext");
         var newtext = document.createElement("div");
         var parser  = new DOMParser();
-        var domtxt  = parser.parseFromString(text, 'text/html');
         var rgxexp  = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
         var rgxdom  = new RegExp(rgxexp);
-        var rgxget  = domtxt.match(rgxdom);
+        var rgxget  = text.match(rgxdom);
 
         for (var i = 0; i < rgxget; i++) {
             var oldurl = rgxget[i];
             var newurl = '<a href="' + rgxget[i] + '">' + rgxget[i] + '</a>';
-            domtxt = domtxt.replace(oldurl, newurl);
+            text = text.replace(oldurl, newurl);
         }
         
-        newtext.innerText = domtxt;
+        text = text.replace('\n', '<br/>');
+        newtext.innerHTML = text;
         outtext.appendChild(newtext);
     }
 }
