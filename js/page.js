@@ -1,7 +1,7 @@
 async function SetConsole() {
     var console = document.createElement('div');
     var inpelem = document.createElement('div');
-    var outelem = document.createElement('div');
+    var outelem = document.createElement('iframe');
 
     console.setAttribute('id', 'console');
     outelem.setAttribute('id', 'outtext');
