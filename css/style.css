@@ -31,6 +31,10 @@ a
 ; color           : #ffa500
 }
 
+a:hover
+{ text-decoration : underline
+}
+
 p
 { font-weight : normal
 ; list-style  : none outside none
