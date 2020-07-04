@@ -195,7 +195,7 @@ function print(text) {
         var rgxdom  = new RegExp(rgxexp);
         var rgxget  = text.match(rgxdom);
 
-        for (var i = 0; i < rgxget.count; i++) {
+        for (var i = 0; i < rgxget.length; i++) {
             var oldurl = rgxget[i];
             var newurl = '<a href="' + rgxget[i] + '">' + rgxget[i] + '</a>';
             text = text.replace(new RegExp(oldurl, 'gi'), newurl);
