@@ -20,11 +20,10 @@ export async function news() {
 
     arr.sort((a, b) => Date.parse(b[2]) - Date.parse(a[2]));
 
-    var frm = document.createElement('iframe');
+    var otx = document.getElementById('outtext');
     var tbl = ArrayToTable(arr, false, true);
-    frm.appendChild(tbl);
     clear();
-    document.getElementById('outtext').appendChild(frm);
+    otx.appendChild(tbl);
     cmdReady();
 }
 
