@@ -201,7 +201,7 @@ function print(text) {
             text = text.replace(oldurl, newurl);
         }
         
-        text = text.replace('\n', '<br/>');
+        text = text.replace(/\n/g, '<br/>');
         newtext.innerHTML = text;
         outtext.appendChild(newtext);
     }
