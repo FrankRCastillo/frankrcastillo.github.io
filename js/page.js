@@ -198,7 +198,7 @@ function print(text) {
         for (var i = 0; i < rgxget; i++) {
             var oldurl = rgxget[i];
             var newurl = '<a href="' + rgxget[i] + '">' + rgxget[i] + '</a>';
-            text = text.replace(oldurl, newurl);
+            text = text.replace(new RegExp(oldurl, 'gi'), newurl);
         }
         
         text = text.replace(/\n/g, '<br/>');
