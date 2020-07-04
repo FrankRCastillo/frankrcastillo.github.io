@@ -2,13 +2,12 @@ async function SetConsole() {
     var console = document.createElement('div');
     var inpelem = document.createElement('div');
     var outelem = document.createElement('div');
-    var rowscnt = Math.floor((window.innerHeight - 80)/ 20);
+    var outhgt = Math.floor(window.innerHeight - 70);
 
     console.setAttribute('id', 'console');
     outelem.setAttribute('id', 'outtext');
-    outelem.setAttribute('height', rowscnt);
-
-    inpelem.setAttribute('id', 'textdiv') 
+    inpelem.setAttribute('id', 'textdiv');
+    outelem.style.height = outhgt;
     inpelem.appendChild(AddCommandLine())
     console.appendChild(inpelem);
     console.appendChild(outelem);
