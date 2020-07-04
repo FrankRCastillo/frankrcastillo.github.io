@@ -192,9 +192,9 @@ function print(text) {
         var newtext = document.createElement("div");
         var parser  = new DOMParser();
         var domtxt  = parser.parseFromString(text, 'text/html');
-        var rgxexp  = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi
-        var rgxdom  = new RegExp(rgxexp)
-        var rgxget  = domtxt.match(rgxdom)
+        var rgxexp  = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+        var rgxdom  = new RegExp(rgxexp);
+        var rgxget  = domtxt.match(rgxdom);
 
         for (var i = 0; i < rgxget; i++) {
             var oldurl = rgxget[i];
