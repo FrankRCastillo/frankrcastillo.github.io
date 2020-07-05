@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=VT323&display=swap');
 
+::-webkit-scrollbar
+{ width : 15px
+}
+
+::-webkit-scrollbar-track
+{ background : #000000
+}
+
+::-webkit-scrollbar-thumb
+{ background : #ffa500
+}
+
 html
 { font-family : 'VT323'
 ; font-size   : 20px
