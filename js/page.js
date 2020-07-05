@@ -1,13 +1,21 @@
 async function SetConsole() {
     var console = document.createElement('div');
+    var contain = document.createElement('div');
     var inpelem = document.createElement('div');
     var outelem = document.createElement('div');
-
+    var menudiv = document.createElement('div');
+    var menuico = document.createTextNode('\u2630');
     console.setAttribute('id', 'console');
+    contain.setAttribute('id', 'contain');
+    menudiv.setAttribute('id', 'menudiv');
     outelem.setAttribute('id', 'outtext');
-    inpelem.setAttribute('id', 'textdiv');
-    inpelem.appendChild(AddCommandLine())
-    console.appendChild(inpelem);
+    inpelem.setAttribute('id', 'textdiv'); 
+    menudiv.setAttribute('onclick', 'javascript:{setinputval("help"); help()}');
+    menudiv.appendChild(menuico);
+    inpelem.appendChild(AddCommandLine());
+    contain.appendChild(menudiv);
+    contain.appendChild(inpelem);
+    console.appendChild(contain);
     console.appendChild(outelem);
 
     return console;
@@ -34,8 +42,8 @@ function RSSParser(xml) {
     xmldoc   = parser.parseFromString(xml, 'text/xml');
     var arr  = [];
     var fwdt = Math.floor(screen.width / 10) - 35;  // (screen width / font width) - dtg = pub and title width
-    var pwdt = Math.floor(fwdt * 0.20);            // quarter of screen goes to publication
-    var awdt = Math.floor(fwdt * 0.80);            // half of screen goes to article title
+    var pwdt = Math.floor(fwdt * 0.20);             // quarter of screen goes to publication
+    var awdt = Math.floor(fwdt * 0.80);             // half of screen goes to article title
     var src  = trunc(xmldoc.getElementsByTagName('title')[0].textContent, pwdt);
     var itm  = xmldoc.getElementsByTagName('item');
 
@@ -216,7 +224,6 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-    txtinput.setAttribute('onclick', 'javascript:{setinputval("help"); help()}');
 
     window.addEventListener('keyup', function(e) {
         help();
