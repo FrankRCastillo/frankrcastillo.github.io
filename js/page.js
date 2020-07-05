@@ -276,6 +276,8 @@ async function help() {
                 var trow = document.createElement('tr');
                 var tcmd = document.createElement('td');
                 var tdsc = document.createElement('td');
+                
+                tcmd.setAttribute('class', 'helpcmd');
 
                 if (hxst != cinf[0]) {
                     hxst = cinf[0];

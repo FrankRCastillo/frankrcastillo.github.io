@@ -99,6 +99,10 @@ ul
 ; width : calc(100% - 25px)
 }
 
+.helpcmd
+{ width : 75px
+}
+
 .cmdlist
 { border      : 2px solid #ffa500
 ; margin      : 0px 0px 0px 0px
