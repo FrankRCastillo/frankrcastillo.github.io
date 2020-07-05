@@ -84,7 +84,7 @@ ul
 .cmdlist
 { border      : 2px solid #ffa500
 ; margin      : 0px 0px 0px 0px
-; padding     : 0px 3px 0px 3px
+; padding     : 3px 3px 0px 3px
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; color       : #ffa500
@@ -96,10 +96,10 @@ ul
 .cmdlistitm
 { border      : 0px 0px 0px 0px
 ; margin      : 0px 0px 0px 0px
-; padding     : 0px 3px 0px 3px
+; padding     : 3px 3px 0px 3px
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
-; height      : 25px
+; height      : 24px
 ; color       : #ffa500
 ; background  : #000000
 ; white-space : nowrap
@@ -108,10 +108,10 @@ ul
 .cmdlisthdr
 { border      : 0px 0px 0px 0px
 ; margin      : 0px 0px 0px 0px
-; padding     : 0px 3px 0px 3px
+; padding     : 3px 3px 0px 3px
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
-; height      : 25px
+; height      : 24px
 ; color       : #000000
 ; background  : #ffa500
 ; white-space : nowrap
