@@ -26,5 +26,3 @@ export async function news() {
     otx.appendChild(tbl);
     cmdReady();
 }
-
-//window.interval = setInterval(function() { news() }, 60000);
