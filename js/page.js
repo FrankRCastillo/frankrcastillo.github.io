@@ -286,7 +286,7 @@ async function help() {
                 }
 
                 tcmd.innerText = cinf[1];
-                tdsc.innerTExt = cinf[2];
+                tdsc.innerText = cinf[2];
                 trow.appendChild(tcmd);
                 trow.appendChild(tdsc);
                 tble.appendChild(trow);
