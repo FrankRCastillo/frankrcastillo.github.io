@@ -272,6 +272,11 @@ async function help() {
             var cinf  = lout[i].split('|');
 
             if (lout[i].toLowerCase().indexOf(value) > -1) {
+                var tble = document.createElement('table');
+                var trow = document.createElement('tr');
+                var tcmd = document.createElement('td');
+                var tdsc = document.createElement('td');
+
                 if (hxst != cinf[0]) {
                     hxst = cinf[0];
                     var chdr = document.createElement('div');
@@ -280,10 +285,14 @@ async function help() {
                     list.appendChild(chdr);
                 }
 
+                tcmd.innerText = cinf[1];
+                tdsc.innerTExt = cinf[2];
+                trow.appendChild(tcmd);
+                trow.appendChild(tdsc);
+                tble.appendChild(trow);
                 citm.setAttribute('class', 'cmdlistitm');
                 citm.setAttribute('onclick', 'javascript:CommandManager("' + cinf[1] + '")');
-                citm.innerHTML = cinf[1] + '&emsp;' + cinf[2];   // command [tab] description
-
+                citm.appendChild(trow);
                 list.appendChild(citm);
             }
         }
