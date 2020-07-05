@@ -175,7 +175,7 @@ async function CommandManager(input) {
 function cmdReady() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\u25B6 "help", or click here, for commands...';
+    inputbox.placeholder = '\u25B6 "help", or click menu button, for commands...';
 
     clearHelp();
     setinputval('');
