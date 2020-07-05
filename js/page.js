@@ -282,7 +282,7 @@ async function help() {
 
                 citm.setAttribute('class', 'cmdlistitm');
                 citm.setAttribute('onclick', 'javascript:CommandManager("' + cinf[1] + '")');
-                citm.textContent = cinf[1] + ' : ' + cinf[2];   // command [tab] description
+                citm.innerHTML = cinf[1] + '&emsp;' + cinf[2];   // command [tab] description
 
                 list.appendChild(citm);
             }
