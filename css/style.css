@@ -96,7 +96,7 @@ ul
 .cmdlistitm
 { border      : 0px 0px 0px 0px
 ; margin      : 0px 0px 0px 0px
-; padding     : 3px 3px 3px 3px
+; padding     : 0px 3px 3px 3px
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; height      : 24px
@@ -108,7 +108,7 @@ ul
 .cmdlisthdr
 { border      : 0px 0px 0px 0px
 ; margin      : 0px 0px 0px 0px
-; padding     : 3px 3px 3px 3px
+; padding     : 0px 3px 3px 3px
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; height      : 24px
