@@ -176,7 +176,7 @@ function cmdReady() {
 function cmdWait() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\u25FC Loading...';
+    inputbox.placeholder = '\u25A0 Loading...';
 
     clearHelp();
     setinputval('');
