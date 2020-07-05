@@ -225,6 +225,10 @@ function AddCommandLine() {
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
 
+    window.addEventListener('keydown', function() {
+        txtinput.focus();
+    });
+
     window.addEventListener('keyup', function(e) {
         help();
 
