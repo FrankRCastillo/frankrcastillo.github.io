@@ -55,7 +55,7 @@ ul
 #outtext
 { overflow : auto
 ; width    : 100%
-; height   : calc(100vh - 75px)
+; height   : calc(100vh - 72px)
 }
 
 #inputbox
