@@ -13,7 +13,7 @@
 }
 
 html
-{ font-family : 'MS PGothic'
+{ font-family : 'GT Pressura Mono Regular'
 ; font-size   : 20px
 }
 
@@ -69,7 +69,7 @@ ul
 ; margin      : 0px 0px 0px 0px
 ; padding     : 2px 2px 2px 2px
 ; outline     : none
-; font-family : 'MS PGothic'
+; font-family : 'GT Pressura Mono Regular'
 ; font-size   : 20px
 ; height      : 25px
 ; width       : 100%
@@ -85,7 +85,7 @@ ul
 { border      : 2px solid #ffa500
 ; margin      : 0px 0px 0px 0px
 ; padding     : 2px 2px 2px 2px
-; font-family : 'MS PGothic'
+; font-family : 'GT Pressura Mono Regular'
 ; font-size   : 20px
 ; color       : #ffa500
 ; background  : #000000
@@ -97,7 +97,7 @@ ul
 { border      : 0px 0px 0px 0px
 ; margin      : 0px 0px 0px 0px
 ; padding     : 2px 2px 2px 2px
-; font-family : 'MS PGothic'
+; font-family : 'GT Pressura Mono Regular'
 ; font-size   : 20px
 ; height      : 22px
 ; color       : #ffa500
@@ -109,13 +109,14 @@ ul
 { border      : 0px 0px 0px 0px
 ; margin      : 0px 0px 0px 0px
 ; padding     : 2px 2px 2px 2px
-; font-family : 'MS PGothic'
+; font-family : 'GT Pressura Mono Regular'
 ; font-size   : 20px
 ; height      : 22px
 ; color       : #000000
 ; background  : #ffa500
 ; white-space : nowrap
 }
+
 #newstable
 { padding : 0px 10px 0px 0px
 ; width   : 100%
