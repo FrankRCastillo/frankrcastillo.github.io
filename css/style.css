@@ -61,17 +61,17 @@ ul
 #outtext
 { overflow : auto
 ; width    : 100%
-; height   : calc(100vh - 85px)
+; height   : calc(100vh - 84px)
 }
 
 #inputbox
 { border      : 2px solid #ffa500
 ; margin      : 0px 0px 0px 0px
-; padding     : 2px 2px 2px 2px
+; padding     : 0px 0px 0px 0px
 ; outline     : none
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
-; height      : 25px
+; height      : 24px
 ; width       : 100%
 ; color       : #ffa500
 ; background  : #000000
