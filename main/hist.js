@@ -15,4 +15,6 @@ export async function hist() {
 
         arr.push([id, name, hist]);
     }
+
+    console.log('pause');
 }
