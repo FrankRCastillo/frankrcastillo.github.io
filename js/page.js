@@ -1,7 +1,7 @@
 function NewObject(parentObj, attribs) {
     for (var i = 0; i < attribs.length; i++) {
         var child = document.createElement(attribs[i][0]);
-        var prent = parentObj.getElementById(attribs[i][1]);
+        var prent = parentObj.childNodes.item(attribs[i][1]);
 
         for (var j = 0; j < attribs[i][2]; i++) {
             if (attribs[i][2][0] == 'text') {
