@@ -177,7 +177,7 @@ async function read(path) {
 async function ReadFile(url) {
     try{
         return (await fetch(url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
-    catch(err) {
+    } catch(err) {
         console.log(err.message);
     }
 }
