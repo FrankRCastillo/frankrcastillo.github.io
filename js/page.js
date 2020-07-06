@@ -3,7 +3,7 @@ function NewObject(parentObj, attribs) {
         var child = parentObj.createElement(attrib[i][0]);
         var prent = parentObj.getElementById(attrib[i][1]);
 
-        for (var j = 0; j < attribs[i][2]) {
+        for (var j = 0; j < attribs[i][2]; i++) {
             if (attribs[i][2][0] == 'text') {
                 var text = document.createTextNode(attribs[i][2][1]);
                 child.appendChild(text);
