@@ -175,9 +175,7 @@ async function read(path) {
 }
 
 async function ReadFile(url) {
-    return (await fetch(url, { headers: { 'Access-Control-Request-Headers' : 'origin'
-                                        , 'Access-Control-Allow-Origin'    : '*'
-                                        }
+    return (await fetch(url, { headers: { 'Access-Control-Request-Headers' : 'origin' }
                              })).text();
 }
 
