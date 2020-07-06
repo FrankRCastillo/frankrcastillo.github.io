@@ -174,6 +174,19 @@ async function read(path) {
     print(txt);
 }
 
+function isURL(url) {
+    var results = false;
+
+    try {
+        var urlchk = new URL(url);
+        results = urlchk.protocol === 'http:' || urlchk.protocol === 'https:';
+    } catch (err) {
+        console.log(err.message + '. Returning false.')
+    }
+
+    return results;
+}
+
 async function ReadFile(url) {
     try{
         var currhost = new URL(window.location.href);
@@ -181,7 +194,8 @@ async function ReadFile(url) {
         var corsprxy = '';
 
         if ( readhost.hostname != currhost.hostname
-          && readhost.hostname != 'api.github.com') {
+          && readhost.hostname != 'api.github.com'
+          && isURL(url)) {
             corsprxy = 'https://cors-anywhere.herokuapp.com/';
         }
 
