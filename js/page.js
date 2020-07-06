@@ -317,11 +317,11 @@ async function help() {
                 
                 tcmd.setAttribute('class', 'helpcmd');
 
-                if (hxst != cinf[0]) {
-                    hxst = cinf[0];
+                if (hxst != cinf[1]) {
+                    hxst = cinf[1];
                     var chdr = document.createElement('div');
                     chdr.setAttribute('class', 'cmdlisthdr');
-                    chdr.textContent = cinf[0];
+                    chdr.textContent = cinf[1];
                     list.appendChild(chdr);
                 }
                 tcmd.innerText = cinf[2];
