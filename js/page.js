@@ -194,7 +194,7 @@ async function CommandManager(input) {
             cmdWait();
 
             try {
-                let app = await import('/main/apps/' + cmd + '.js');
+                let app = await import('/main/' + cmd + '.js');
                 eval('app.' + cmd + '()');
             } catch(err) {
                 cmdReady();
@@ -324,14 +324,14 @@ async function help() {
                     chdr.textContent = cinf[0];
                     list.appendChild(chdr);
                 }
-
+                var path = cinf[0] + '/' + cinf[1];
                 tcmd.innerText = cinf[1];
                 tdsc.innerText = cinf[2];
                 trow.appendChild(tcmd);
                 trow.appendChild(tdsc);
                 tble.appendChild(trow);
                 citm.setAttribute('class', 'cmdlistitm');
-                citm.setAttribute('onclick', 'javascript:CommandManager("' + cinf[1] + '")');
+                citm.setAttribute('onclick', 'javascript:CommandManager("' + path + '")');
                 citm.appendChild(trow);
                 list.appendChild(citm);
             }
