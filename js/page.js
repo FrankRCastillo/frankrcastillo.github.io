@@ -3,7 +3,7 @@ function NewObject(parentObj, attribs) {
         var child = document.createElement(attribs[i][0]);
         var prent = null;
 
-        if (prent.id == attribs[i][1]) {
+        if (parentObj.id == attribs[i][1]) {
             prent = parentObj
         } else {
             parentObj.querySelector('#' + attribs[i][1]);
