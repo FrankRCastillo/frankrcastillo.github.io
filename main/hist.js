@@ -5,7 +5,8 @@ export async function hist() {
     var txt = await ReadFile(url);
     var doc = new DOMParser().parseFromString(txt, 'text/html');
     var lst = doc.getElementById('fieldListing');
-    var tag = lst.getElementsByTagName('tr');
+    var bdy = lst.getElementsByTagName('tbody');
+    var tag = bdy.getElementsByTagName('tr');
     var arr = [];
 
     for (var i = 0; i < tag.length; i++) {
