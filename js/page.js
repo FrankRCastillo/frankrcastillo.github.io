@@ -324,7 +324,7 @@ async function help() {
                     chdr.textContent = cinf[0];
                     list.appendChild(chdr);
                 }
-                var path = cinf[0] + '/' + cinf[1];
+                var path = cinf[0].split(' ')[0] + '/' + cinf[1];
                 tcmd.innerText = cinf[1];
                 tdsc.innerText = cinf[2];
                 trow.appendChild(tcmd);
