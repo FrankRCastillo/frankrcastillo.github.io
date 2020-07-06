@@ -1,6 +1,6 @@
 function NewObject(parentObj, attribs) {
     for (var i = 0; i < attribs.length; i++) {
-        var child = parentObj.createElement(attribs[i][0]);
+        var child = document.createElement(attribs[i][0]);
         var prent = parentObj.getElementById(attribs[i][1]);
 
         for (var j = 0; j < attribs[i][2]; i++) {
@@ -18,16 +18,18 @@ function NewObject(parentObj, attribs) {
 }
 
 function SetConsole() {
+    var tock = 'javascript:{setinputval("help"); help()}';
     var main = document.createElement('div');
     main.setAttribute('id', 'console');
 
-    var objs = [ [ 'div', 'console', [ [     'id', 'contain'] ] ]
-               , [ 'div', 'console', [ [     'id', 'outelem'] ] ]
-               , [ 'div', 'contain', [ [     'id', 'menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [     'id', 'menuico']
-                                     , [   'text',  '\u2630'] ] ]
-               , [ 'div', 'contain', [ [     'id', 'textdiv']
-                                     , ['onclick', 'javascript:{setinputval("help"); help()}']
+    var objs = [ [ 'div', 'console', [ [     'id',        'contain'] ] ]
+               , [ 'div', 'console', [ [     'id',        'outelem'] ] ]
+               , [ 'div', 'contain', [ [     'id',        'menudiv'] ] ]
+               , [ 'div', 'menudiv', [ [     'id',        'menuico']
+                                     , [   'text',         '\u2630'] ] ]
+               , [ 'div', 'contain', [ [     'id',        'textdiv']
+                                     , ['onclick',           tock  ]
+                                     , [ 'object', AddCommandLine()]
                                      ]
                  ]
                ]
