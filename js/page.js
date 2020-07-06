@@ -352,7 +352,7 @@ async function getcmdinfo() {
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
 
-    lout.push('core help|home|Show the home screen');
+    lout.push('core help|core|home|Show the home screen');
 
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[0];
