@@ -1,28 +1,32 @@
-function NewObject(parentObj, attribs) {
-    for (var i = 0; i < attribs.length; i++) {
-        var child = document.createElement(attribs[i][0]);
+function NewObject(prnt, attr) {
+    for (var i = 0; i < attr.length; i++) {
+        var child = document.createElement(attr[i][0]);
 
-        for (var j = 0; j < attribs[i][2]; i++) {
-            switch (attribs[i][2][0]) {
+        for (var j = 0; j < attr[i][2]; i++) {
+            switch (attr[i][2][0]) {
                 case 'text':
-                    var text = document.createTextNode(attribs[i][2][1]);
+                    var text = document.createTextNode(attr[i][2][1]);
                     child.appendChild(text);
                     break;
 
                 case 'object':
-                    child.appendChild(attribs[i][2][1]);
+                    child.appendChild(attr[i][2][1]);
                     break;
 
                 default:
-                    child.setAttribute(attribs[i][2][0], attribs[i][2][1]);
+                    child.setAttribute(attr[i][2][0], attr[i][2][1]);
                     break;
             }
         }
         
-        parentObj.appendChild(child);
+        if (prnt.id == attr[i][1]) {
+            prnt.appendChild(child);
+        } else {
+            prnt.querySelector('#' + attr[i][1]).appendChild(child);
+        }
     }
 
-    return parentObj;
+    return prnt;
 }
 
 function SetConsole() {
