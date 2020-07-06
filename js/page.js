@@ -4,17 +4,19 @@ function NewObject(parentObj, attribs) {
         var prent = parentObj.childNodes.item(attribs[i][1]);
 
         for (var j = 0; j < attribs[i][2]; i++) {
-            if (attribs[i][2][0] == 'text') {
-                var text = document.createTextNode(attribs[i][2][1]);
-                child.appendChild(text);
+            switch (attribs[i][2][0]) {
+                case 'text':
+                    var text = document.createTextNode(attribs[i][2][1]);
+                    child.appendChild(text);
+                    break;
 
-            } else
-            if (attribs[i][2][0] == 'object') {
-                child.appendChild(attribs[i][2][1]);
+                case 'object':
+                    child.appendChild(attribs[i][2][1]);
+                    break;
 
-            } else {
-                child.setAttribute(attribs[i][2][0], attribs[i][2][1]);
-
+                default:
+                    child.setAttribute(attribs[i][2][0], attribs[i][2][1]);
+                    break;
             }
         }
         prent.appendChild(child);
