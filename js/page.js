@@ -360,6 +360,8 @@ async function getcmdinfo() {
         lout.push(base + ' help|' + getjsdesc(file));
     }
 
+    lout.sort();
+
     return lout;    
 }
 
