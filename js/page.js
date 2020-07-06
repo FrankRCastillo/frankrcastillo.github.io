@@ -240,9 +240,9 @@ function print(text) {
     } else {
         var outtxt = document.getElementById("outtext");
         var newtxt = document.createElement("div");
-        var rgxexp  = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-        var rgxdom  = new RegExp(rgxexp);
-        var rgxget  = text.match(rgxdom);
+        var rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+        var rgxdom = new RegExp(rgxexp);
+        var rgxget = text.match(rgxdom);
         
         if (rgxget != null) {
             for (var i = 0; i < rgxget.length; i++) {
