@@ -18,10 +18,12 @@ function NewObject(parentObj, attribs) {
                     break;
             }
         }
+
         if (parentObj.id == attribs[i][1]) {
             parentObj.appendChild(child);
         } else {
-            parentObj.querySelector('#' + attribs[i][1]).appendChild(child);
+            var elem = parentObj.querySelector('#' + attribs[i][1])
+            elem.appendChild(child);
         }
     }
 
