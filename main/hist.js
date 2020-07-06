@@ -3,11 +3,12 @@
 export async function hist() {
     var url = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html'
     var txt = await ReadFile(url);
-    var doc = document.implementation.createHTMLDocument('New Document');
+    var doc = document.implementation.createDocumentType( 'html', '', '');
+    var dom = document.implementation.createDocument('', 'html', doc);
 
-    doc.all.outerHTML = txt;
+    dom.documentElement.outerHTML = txt;
 
-    var lst = doc.getElementById('fieldListing');
+    var lst = dom.getElementById('fieldListing');
     var tag = lst.getElementsByTagName('tr');
     var arr = [];
 
