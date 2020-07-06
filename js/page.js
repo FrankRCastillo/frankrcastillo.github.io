@@ -1,26 +1,61 @@
-function SetConsole() {
-    var console = document.createElement('div');
-    var contain = document.createElement('div');
-    var inpelem = document.createElement('div');
-    var outelem = document.createElement('div');
-    var menudiv = document.createElement('div');
-    var menuico = document.createTextNode('\u2630');
-    console.setAttribute('id', 'console');
-    contain.setAttribute('id', 'contain');
-    menudiv.setAttribute('id', 'menudiv');
-    outelem.setAttribute('id', 'outtext');
-    inpelem.setAttribute('id', 'textdiv'); 
-    menudiv.setAttribute('onclick', 'javascript:{setinputval("help"); help()}');
-    menudiv.appendChild(menuico);
-    inpelem.appendChild(AddCommandLine());
-    contain.appendChild(menudiv);
-    contain.appendChild(inpelem);
-    console.appendChild(contain);
-    console.appendChild(outelem);
+function NewObject(parentObj, attribs) {
+    for (var i = 0; i < attribs.length; i++) {
+        var child = parentObj.createElement(attrib[i][0]);
+        var prent = parentObj.getElementById(attrib[i][1]);
 
-    return console;
+        for (var j = 0; j < attribs[i][2]) {
+            if (attribs[i][2][0] == 'text') {
+                var text = document.createTextNode(attribs[i][2][1]);
+                child.appendChild(text);
+            } else {
+                child.setAttribute(attribs[i][2][0], attribs[i][2][1]);
+            }
+        }
+        prent.appendChild(child);
+    }
+
+    return parentObj;
 }
 
+function SetConsole() {
+    var main = document.createElement('div');
+    main.setAttribute('id', 'console');
+
+    var objs = [ [ 'div', 'console', [ [     'id', 'contain'] ] ]
+               , [ 'div', 'console', [ [     'id', 'outelem'] ] ]
+               , [ 'div', 'contain', [ [     'id', 'menudiv'] ] ]
+               , [ 'div', 'menudiv', [ [     'id', 'menuico']
+                                     , [   'text',  '\u2630'] ] ]
+               , [ 'div', 'contain', [ [     'id', 'textdiv'] ] ]
+                                     , ['onclick', 'javascript:{setinputval("help"); help()}']] ]        
+               ]
+
+    return NewObject(main, objs);
+}
+
+//function SetConsole() {
+//    var console = document.createElement('div');
+//    var contain = document.createElement('div');
+//    var inpelem = document.createElement('div');
+//    var outelem = document.createElement('div');
+//    var menudiv = document.createElement('div');
+//    var menuico = document.createTextNode('\u2630');
+//    console.setAttribute('id', 'console');
+//    contain.setAttribute('id', 'contain');
+//    menudiv.setAttribute('id', 'menudiv');
+//    outelem.setAttribute('id', 'outtext');
+//    inpelem.setAttribute('id', 'textdiv'); 
+//    menudiv.setAttribute('onclick', 'javascript:{setinputval("help"); help()}');
+//    menudiv.appendChild(menuico);
+//    inpelem.appendChild(AddCommandLine());
+//    contain.appendChild(menudiv);
+//    contain.appendChild(inpelem);
+//    console.appendChild(contain);
+//    console.appendChild(outelem);
+//
+//    return console;
+//}
+//
 async function FileList(filter) {
     var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
     var text = await ReadFile(gapi);
