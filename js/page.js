@@ -176,7 +176,15 @@ async function read(path) {
 
 async function ReadFile(url) {
     try{
-        return (await fetch(url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
+        var currhost = new URL(window.location.href);
+        var readhost = new URL(url);
+        var corsprxy = '';
+
+        if (currhost.hostname != readhost.hostname) {
+            corsprxy = 'https://cors-anywhere.herokuapp.com/';
+        }
+
+        return (await fetch(corsprxy + url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
     } catch(err) {
         console.log(err.message);
     }
@@ -348,7 +356,7 @@ async function help() {
 }
 
 async function getcmdinfo() {
-    var url  = 'https://frankrcastillo.github.io/';
+    var host = window.location.href;
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
 
@@ -356,7 +364,7 @@ async function getcmdinfo() {
 
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[0];
-        var file = await ReadFile(url + list[i]);
+        var file = await ReadFile(host + list[i]);
         lout.push(base + ' help|' + getjsdesc(file));
     }
 
