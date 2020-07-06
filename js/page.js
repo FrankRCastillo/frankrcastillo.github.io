@@ -1,13 +1,6 @@
 function NewObject(parentObj, attribs) {
     for (var i = 0; i < attribs.length; i++) {
         var child = document.createElement(attribs[i][0]);
-        var prent = null;
-
-        if (parentObj.id == attribs[i][1]) {
-            prent = parentObj
-        } else {
-            parentObj.querySelector('#' + attribs[i][1]);
-        }
 
         for (var j = 0; j < attribs[i][2]; i++) {
             switch (attribs[i][2][0]) {
@@ -25,7 +18,11 @@ function NewObject(parentObj, attribs) {
                     break;
             }
         }
-        prent.appendChild(child);
+        if (parentObj.id == attribs[i][1]) {
+            parentObj.appendChild(child);
+        } else {
+            parentObj.querySelector('#' + attribs[i][1]).appendChild(child);
+        }
     }
 
     return parentObj;
