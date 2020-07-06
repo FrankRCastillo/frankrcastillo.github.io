@@ -39,7 +39,7 @@ function SetConsole() {
     main.setAttribute('id', 'console');
 
     var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
-               , [ 'div', 'console', [ [     'id','outelem'] ] ]
+               , [ 'div', 'console', [ [     'id','outtext'] ] ]
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
                , [ 'div', 'menudiv', [ [     'id','menuico']
                                      , [   'text', '\u2630'] ] ]
