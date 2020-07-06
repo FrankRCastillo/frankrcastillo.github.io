@@ -195,7 +195,7 @@ async function CommandManager(input) {
 
             try {
                 let app = await import('/main/' + cmd + '.js');
-                eval('app.' + cmd + '()');
+                eval('app.' + cmd.split('/')[1] + '()');
             } catch(err) {
                 cmdReady();
                 print(cmd + ': command not available');
