@@ -1,4 +1,4 @@
-async function SetConsole() {
+function SetConsole() {
     var console = document.createElement('div');
     var contain = document.createElement('div');
     var inpelem = document.createElement('div');
