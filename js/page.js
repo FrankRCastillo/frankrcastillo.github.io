@@ -43,8 +43,8 @@ function SetConsole() {
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
                , [ 'div', 'menudiv', [ [     'id','menuico']
                                      , [   'text', '\u2630'] ] ]
-               , [ 'div', 'contain', [ [     'id','textdiv']
                                      , ['onclick',    tock ]
+               , [ 'div', 'contain', [ [     'id','textdiv']
                                      , [ 'object',    clne ] ] ]
                ]
 
