@@ -7,13 +7,13 @@ export async function hist() {
 
     doc.outerHTML = txt;
 
-    var lst = doc.querySelector('#fieldListing');
+    var lst = doc.getElementById('fieldListing');
     var tag = lst.getElementsByTagName('tr');
     var arr = [];
 
     for (var cty in tag) {
-        var name = cty.querySelector('.country').innerText;
-        var hist = cty.querySelector('#field-background').innerText;
+        var name = cty.getElementsByClassName('country')[0].innerText;
+        var hist = cty.getElementById('field-background').innerText;
 
         arr.push([cty.id, name, hist]);
     }
