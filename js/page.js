@@ -3,10 +3,10 @@ function NewObject(prnt, attr) {
         var child = document.createElement(attr[i][0]);
 
         for (var j = 0; j < attr[i][2].length; j++) {
-            var atttype = attr[i][2][j][0];
+            var atrtype = attr[i][2][j][0];
             var attrval = attr[i][2][j][1];
 
-            switch (attrval) {
+            switch (atrtype) {
                 case 'text':
                     var text = document.createTextNode(attrval);
                     child.appendChild(text);
@@ -17,7 +17,7 @@ function NewObject(prnt, attr) {
                     break;
 
                 default:
-                    child.setAttribute(atttype, attrval);
+                    child.setAttribute(atrtype, attrval);
                     break;
             }
         }
