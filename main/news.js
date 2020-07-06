@@ -1,7 +1,7 @@
 // |apps|news|RSS feed from various news sources
 
 export async function news() {
-    var src = await ReadFile('/main/news.txt');
+    var src = await ReadFile('/main/news/news.txt');
     var url = src.split('\n');
     var arr = [];
 
