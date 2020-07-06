@@ -11,8 +11,8 @@ export async function hist() {
 
     for (var i = 0; i < tag.length; i++) {
         var id   = tag[i].id;
-        var name = tag[i].getElementsByClassName('country')[0].innerText;
-        var hist = tag[i].querySelector('#field-background').innerText;
+        var name = tag[i].getElementsByClassName('country')[0].innerText.trim();
+        var hist = tag[i].querySelector('#field-background').innerText.trim();
 
         arr.push([id, name, hist]);
     }
