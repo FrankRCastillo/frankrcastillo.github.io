@@ -2,7 +2,7 @@ function NewObject(prnt, attr) {
     for (var i = 0; i < attr.length; i++) {
         var child = document.createElement(attr[i][0]);
 
-        for (var j = 0; j < attr[i][2]; j++) {
+        for (var j = 0; j < attr[i][2].length; j++) {
             var atttype = attr[i][2][j][0];
             var attrval = attr[i][2][j][1];
 
