@@ -175,8 +175,11 @@ async function read(path) {
 }
 
 async function ReadFile(url) {
-    return (await fetch(url, { headers: { 'Access-Control-Request-Headers' : 'origin' }
-                             })).text();
+    try{
+        return (await fetch(url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
+    catch(err) {
+        console.log(err.message);
+    }
 }
 
 async function CommandManager(input) {
