@@ -51,29 +51,6 @@ function SetConsole() {
     return NewObject(main, objs);
 }
 
-//function SetConsole() {
-//    var console = document.createElement('div');
-//    var contain = document.createElement('div');
-//    var inpelem = document.createElement('div');
-//    var outelem = document.createElement('div');
-//    var menudiv = document.createElement('div');
-//    var menuico = document.createTextNode('\u2630');
-//    console.setAttribute('id', 'console');
-//    contain.setAttribute('id', 'contain');
-//    menudiv.setAttribute('id', 'menudiv');
-//    outelem.setAttribute('id', 'outtext');
-//    inpelem.setAttribute('id', 'textdiv'); 
-//    menudiv.setAttribute('onclick', 'javascript:{setinputval("help"); help()}');
-//    menudiv.appendChild(menuico);
-//    inpelem.appendChild(AddCommandLine());
-//    contain.appendChild(menudiv);
-//    contain.appendChild(inpelem);
-//    console.appendChild(contain);
-//    console.appendChild(outelem);
-//
-//    return console;
-//}
-//
 async function FileList(filter) {
     var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
     var text = await ReadFile(gapi);
@@ -198,7 +175,10 @@ async function read(path) {
 }
 
 async function ReadFile(url) {
-    return (await fetch(url, {headers: {'Access-Control-Request-Headers':'origin'}})).text();
+    return (await fetch(url, { headers: { 'Access-Control-Request-Headers' : 'origin'
+                                        , 'Access-Control-Allow-Origin'    : '*'
+                                        }
+                             })).text();
 }
 
 async function CommandManager(input) {
