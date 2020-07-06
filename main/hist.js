@@ -5,7 +5,7 @@ export async function hist() {
     var txt = await ReadFile(url);
     var doc = document.implementation.createHTMLDocument('New Document');
 
-    doc.outerHTML = txt;
+    doc.all.outerHTML = txt;
 
     var lst = doc.getElementById('fieldListing');
     var tag = lst.getElementsByTagName('tr');
