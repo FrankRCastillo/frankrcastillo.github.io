@@ -7,8 +7,14 @@ function NewObject(parentObj, attribs) {
             if (attribs[i][2][0] == 'text') {
                 var text = document.createTextNode(attribs[i][2][1]);
                 child.appendChild(text);
+
+            } else
+            if (attribs[i][2][0] == 'object') {
+                child.appendChild(attribs[i][2][1]);
+
             } else {
                 child.setAttribute(attribs[i][2][0], attribs[i][2][1]);
+
             }
         }
         prent.appendChild(child);
