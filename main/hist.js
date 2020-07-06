@@ -8,10 +8,11 @@ export async function hist() {
     var tag = lst.getElementsByTagName('tr');
     var arr = [];
 
-    for (var cty in tag) {
-        var name = cty.getElementsByClassName('country')[0].innerText;
-        var hist = cty.getElementById('field-background').innerText;
+    for (var i = 0; i < tag.length; i++) {
+        var id   = tag[i].id;
+        var name = tag[i].getElementsByClassName('country')[0].innerText;
+        var hist = tag[i].getElementById('field-background').innerText;
 
-        arr.push([cty.id, name, hist]);
+        arr.push([id, name, hist]);
     }
 }
