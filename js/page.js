@@ -25,37 +25,18 @@ function NewObject(parentObj, attribs) {
 
 function SetConsole() {
     var tock = 'javascript:{setinputval("help"); help()}';
+    var clne = AddCommandLine();
     var main = document.createElement('div');
     main.setAttribute('id', 'console');
 
-    var objs = [ [ 'div'
-                 , 'console'
-                 , [ ['id','contain']
-                   ]
-                 ]
-               , [ 'div'
-                 , 'console'
-                 , [ ['id','outelem']
-                   ]
-                 ]
-               , [ 'div'
-                 , 'contain'
-                 , [ ['id','menudiv']
-                   ]
-                 ]
-               , [ 'div'
-                 , 'menudiv'
-                 , [ [  'id','menuico']
-                     ['text', '\u2630'] 
-                   ]
-                 ]
-               , [ 'div'
-                 , 'contain'
-                 , [ [     'id',        'textdiv']
-                   , ['onclick',           tock  ]
-                   , [ 'object', AddCommandLine()]
-                   ]
-                 ]
+    var objs = [ [ 'div', 'console', [ [  'id','contain'] ] ]
+               , [ 'div', 'console', [ [  'id','outelem'] ] ]
+               , [ 'div', 'contain', [ [  'id','menudiv'] ] ]
+               , [ 'div', 'menudiv', [ [  'id','menuico']
+                                     , ['text', '\u2630'] ] ]
+               , [ 'div', 'contain', [ [  'id','textdiv']
+                                     , ['onclick', tock ]
+                                     , [ 'object', clne ] ] ]
                ]
 
     return NewObject(main, objs);
