@@ -355,7 +355,7 @@ async function getcmdinfo() {
     lout.push('core help|home|Show the home screen');
 
     for (var i = 0; i < list.length; i++) {
-        var base = list[i].split('\/')[1];
+        var base = list[i].split('\/')[0];
         var file = await ReadFile(url + list[i]);
         lout.push(base + ' help|' + getjsdesc(file));
     }
