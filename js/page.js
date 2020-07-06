@@ -195,7 +195,7 @@ async function CommandManager(input) {
 
             try {
                 let app = await import('/main/' + cmd + '.js');
-                eval('app.' + cmd.split('/')[1] + '()');
+                eval('app.' + cmd + '()');
             } catch(err) {
                 cmdReady();
                 print(cmd + ': command not available');
@@ -324,14 +324,13 @@ async function help() {
                     chdr.textContent = cinf[0];
                     list.appendChild(chdr);
                 }
-                var path = cinf[0].split(' ')[0] + '/' + cinf[1];
-                tcmd.innerText = cinf[1];
-                tdsc.innerText = cinf[2];
+                tcmd.innerText = cinf[2];
+                tdsc.innerText = cinf[3];
                 trow.appendChild(tcmd);
                 trow.appendChild(tdsc);
                 tble.appendChild(trow);
                 citm.setAttribute('class', 'cmdlistitm');
-                citm.setAttribute('onclick', 'javascript:CommandManager("' + path + '")');
+                citm.setAttribute('onclick', 'javascript:CommandManager("' + cinf[2] + '")');
                 citm.appendChild(trow);
                 list.appendChild(citm);
             }
