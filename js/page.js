@@ -36,14 +36,14 @@ function SetConsole() {
     var main = document.createElement('div');
     main.setAttribute('id', 'console');
 
-    var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
-               , [ 'div', 'console', [ [     'id','outelem'] ] ]
-               , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [     'id','menuico']
-                                     , [   'text', '\u2630'] ] ]
-               , [ 'div', 'contain', [ [     'id','textdiv']
+    var objs = [ [ 'div', 'contain', [ [     'id','textdiv']
                                      , ['onclick',    tock ]
                                      , [ 'object',    clne ] ] ]
+               , [ 'div', 'menudiv', [ [     'id','menuico']
+                                     , [   'text', '\u2630'] ] ]
+               , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
+               , [ 'div', 'console', [ [     'id','outelem'] ] ]
+               , [ 'div', 'console', [ [     'id','contain'] ] ]
                ]
 
     return NewObject(main, objs);
