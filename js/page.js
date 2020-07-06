@@ -180,8 +180,8 @@ async function ReadFile(url) {
         var readhost = new URL(url);
         var corsprxy = '';
 
-        if ( currhost.hostname != readhost.hostname
-          || currhost.hostname != 'api.github.com') {
+        if ( readhost.hostname != currhost.hostname
+          || readhost.hostname != 'api.github.com') {
             corsprxy = 'https://cors-anywhere.herokuapp.com/';
         }
 
