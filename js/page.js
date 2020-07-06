@@ -189,19 +189,24 @@ function isURL(url) {
 
 async function ReadFile(url) {
     try{
-        var currhost = new URL(window.location.href);
-        var readhost = new URL(url);
         var corsprxy = '';
 
-        if ( readhost.hostname != currhost.hostname
-          && readhost.hostname != 'api.github.com'
-          && isURL(url)) {
-            corsprxy = 'https://cors-anywhere.herokuapp.com/';
+        try {
+            var currhost = new URL(window.location.href);
+            var readhost = new URL(url);
+
+            if ( readhost.hostname != currhost.hostname
+              && readhost.hostname != 'api.github.com'
+              && isURL(url)) {
+                corsprxy = 'https://cors-anywhere.herokuapp.com/';
+            }
+        } catch(err1) {
+            console.log(err1.message);
         }
 
         return (await fetch(corsprxy + url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
-    } catch(err) {
-        console.log(err.message);
+    } catch(err2) {
+        console.log(err2.message);
     }
 }
 
