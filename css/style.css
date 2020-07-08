@@ -64,7 +64,7 @@ ul
 }
 
 #contain
-{ border      : 1px solid #444480
+{ border      : 2px solid #444480
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; width       : 100%
@@ -75,8 +75,8 @@ ul
 { float      : left
 ; padding    : 0px 0px 0px 0px
 ; margin     : 0px 0px 0px 0px
-; color      : #13131c
-; background : #ffffff
+; color      : #ffffff
+; background : #13131c
 ; height     : 28px
 }
 
