@@ -32,17 +32,19 @@ function parseHistory(str) {
         var rgxdom = new RegExp(rgxexp[i]);
         var rgxget = tmp.match(rgxdom);
         
-        for (var j = 0; j < rgxget.length; j++) {
-            var rgxmod = '';
+        if (rgxget != null) {
+            for (var j = 0; j < rgxget.length; j++) {
+                var rgxmod = '';
 
-            if (i == 0) {
-                rgxmod = rgxget[j].replace(/[.](?=.*[.])/g, '');
+                if (i == 0) {
+                    rgxmod = rgxget[j].replace(/[.](?=.*[.])/g, '');
 
-            } else {
-                rgxmod = rgxget[j].replace('.', '');
+                } else {
+                    rgxmod = rgxget[j].replace('.', '');
+                }
+
+                tmp = tmp.replace(rgxget[j], rgxmod);
             }
-
-            tmp = tmp.replace(rgxget[j], rgxmod);
         }
     }
 
