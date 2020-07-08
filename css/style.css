@@ -76,12 +76,12 @@ ul
 ; padding    : 0px 0px 0px 0px
 ; margin     : 0px 0px 0px 0px
 ; color      : #ffffff
-; background : #13131c
+; background : #000000
 ; height     : 28px
 }
 
 #inputbox
-{ border      : 1px solid #13131c
+{ border      : 1px solid #000000
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; outline     : none
