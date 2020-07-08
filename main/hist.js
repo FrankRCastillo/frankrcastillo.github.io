@@ -48,5 +48,11 @@ function parseHistory(str) {
         }
     }
 
-    return tmp.split('. ');
+    var arr = tmp.split('. ');
+    var rtn = arr.map(function(elem, i) {
+        var info = 'info';
+        return [info, elem];
+    });
+
+    return rtn;
 }
