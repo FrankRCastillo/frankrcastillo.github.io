@@ -30,7 +30,7 @@ table
 }
 
 ::placeholder
-{ color : #505050
+{ color : #a0a0a0
 }
 
 tr:hover a
@@ -64,12 +64,13 @@ ul
 }
 
 #contain
-{ border      : 1px solid #444480
+{ border      : 1px solid #898989
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; width       : 100%
 ; height      : 28px
-; background  : #000000
+; background  : #696969
+; box-shadow  : 0px 0px 10px 2px #000000
 }
 
 #menudiv
@@ -77,12 +78,12 @@ ul
 ; padding    : 0px 0px 0px 0px
 ; margin     : 0px 0px 0px 0px
 ; color      : #ffffff
-; background : #000000
+; background : #696969
 ; height     : 28px
 }
 
 #inputbox
-{ border      : 1px solid #000000
+{ border      : 1px solid #696969
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; outline     : none
@@ -91,7 +92,7 @@ ul
 ; height      : 20px
 ; width       : 100%
 ; color       : #ffffff
-; background  : #000000
+; background  : #696969
 }
 
 #textdiv
@@ -110,7 +111,7 @@ ul
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; color       : #ffffff
-; background  : #13131c
+; background  : #696969
 ; position    : absolute
 ; white-space : nowrap
 }
@@ -123,7 +124,7 @@ ul
 ; font-size   : 20px
 ; height      : 24px
 ; color       : #ffa500
-; background  : #13131c
+; background  : #696969
 ; white-space : nowrap
 }
 
@@ -135,7 +136,7 @@ ul
 ; font-size   : 20px
 ; height      : 24px
 ; color       : #ffffff
-; background  : #13131c
+; background  : #696969
 ; white-space : nowrap
 }
 
