@@ -39,7 +39,7 @@ function parseHistory(str) {
                 rgxmod = rgxget[j].replace(/[.](?=.*[.])/g, '');
 
             } else {
-                rgxmod = rgxget[k].replace('.', '');
+                rgxmod = rgxget[j].replace('.', '');
             }
 
             tmp = tmp.replace(rgxget[j], rgxmod);
