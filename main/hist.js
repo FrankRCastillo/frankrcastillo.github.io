@@ -45,7 +45,7 @@ function parseHistory(str) {
 
                 tmp = tmp.replace(rgxget[j], rgxmod);
             }
-        } get(err) {
+        } catch(err) {
             console.log(err.message);
         }
     }
