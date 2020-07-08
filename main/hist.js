@@ -55,7 +55,7 @@ function parseHistory(str) {
     }
 
     var arr = tmp.split('. ');
-    var rtn = arr.map(function(elem, i) {
+    var rtn = arr.map(function(elem, i, orig) {
         var yrgx = elem.match(/([1](?<=1)[5-9]|20)[0-9]{2}/)
         var info = Math.max.apply(null, yrgx);
 
