@@ -5,11 +5,11 @@
 }
 
 ::-webkit-scrollbar-track
-{ background : #000000
+{ background : #13131c
 }
 
 ::-webkit-scrollbar-thumb
-{ background : #ffa500
+{ background : #ffffff
 }
 
 html
@@ -18,9 +18,9 @@ html
 }
 
 body
-{ text-shadow      : 0px 0px 5px #ffa500
-; background-color : #000000
-; color            : #ffa500
+{ text-shadow      : 0px 0px 5px #ffffff
+; background-color : #13131c
+; color            : #ffffff
 ; vertical-align   : middle
 ; align-content    : center
 ; margin           : 20px 20px 20px 20px
@@ -31,7 +31,7 @@ table
 }
 
 ::placeholder
-{ color : #803a00
+{ color : #404040
 }
 
 tr:hover a
@@ -65,7 +65,7 @@ ul
 }
 
 #contain
-{ border      : 1px solid #ffa500
+{ border      : 1px solid #ffffff
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; width       : 100%
@@ -76,13 +76,13 @@ ul
 { float      : left
 ; padding    : 0px 0px 0px 0px
 ; margin     : 0px 0px 0px 0px
-; color      : #000000
-; background : #ffa500
+; color      : #13131c
+; background : #ffffff
 ; height     : 28px
 }
 
 #inputbox
-{ border      : 1px solid #000000
+{ border      : 1px solid #13131c
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; outline     : none
@@ -90,8 +90,8 @@ ul
 ; font-size   : 20px
 ; height      : 20px
 ; width       : 100%
-; color       : #ffa500
-; background  : #000000
+; color       : #ffffff
+; background  : #13131c
 }
 
 #textdiv
@@ -104,13 +104,13 @@ ul
 }
 
 .cmdlist
-{ border      : 2px solid #ffa500
+{ border      : 2px solid #ffffff
 ; margin      : 0px 0px 0px 0px
 ; padding     : 3px 3px 3px 3px
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
-; color       : #ffa500
-; background  : #000000
+; color       : #ffffff
+; background  : #13131c
 ; position    : absolute
 ; white-space : nowrap
 }
@@ -122,8 +122,8 @@ ul
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; height      : 24px
-; color       : #ffa500
-; background  : #000000
+; color       : #ffffff
+; background  : #13131c
 ; white-space : nowrap
 }
 
@@ -134,8 +134,8 @@ ul
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; height      : 24px
-; color       : #000000
-; background  : #ffa500
+; color       : #13131c
+; background  : #ffffff
 ; white-space : nowrap
 }
 
@@ -151,7 +151,7 @@ ul
 
 #xmark
 { animation  : blink 1s infinite
-; color      : #ffa500
+; color      : #ffffff
 }
 
 @keyframes blink
