@@ -64,7 +64,7 @@ ul
 }
 
 #contain
-{ border      : 1px solid #ffffff
+{ border      : 1px solid #444480
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; width       : 100%
@@ -103,7 +103,7 @@ ul
 }
 
 .cmdlist
-{ border      : 2px solid #323245
+{ border      : 2px solid #444480
 ; margin      : 0px 0px 0px 0px
 ; padding     : 3px 3px 3px 3px
 ; font-family : 'MS PGothic'
