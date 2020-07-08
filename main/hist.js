@@ -13,8 +13,8 @@ export async function hist() {
         var id   = tag[i].id;
         var name = tag[i].getElementsByClassName('country')[0].innerText.trim();
         var hist = tag[i].querySelector('#field-background').innerText.trim();
-
-        arr.push([id, name, hist]);
+        var harr = parseHistory(hist);
+        arr.push([id, name, harr]);
     }
 
     console.log('pause');
