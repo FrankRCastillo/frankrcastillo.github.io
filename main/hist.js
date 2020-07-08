@@ -58,7 +58,12 @@ function parseHistory(str) {
     var rtn = arr.map(function(elem, i) {
         var yrgx = elem.match(/([1](?<=1)[5-9]|20)[0-9]{2}/)
         var info = Math.max.apply(null, yrgx);
-        return [info, elem + '.'];
+
+        if (Number.isFinit(info) == false) {
+            console.log('pause');
+        } else {
+            return [info, elem + '.'];
+        }
     });
 
     return rtn;
