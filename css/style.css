@@ -30,7 +30,7 @@ table
 }
 
 ::placeholder
-{ color : #404040
+{ color : #505050
 }
 
 tr:hover a
@@ -103,7 +103,7 @@ ul
 }
 
 .cmdlist
-{ border      : 2px solid #ffffff
+{ border      : 2px solid #323245
 ; margin      : 0px 0px 0px 0px
 ; padding     : 3px 3px 3px 3px
 ; font-family : 'MS PGothic'
@@ -150,7 +150,7 @@ ul
 
 #xmark
 { animation  : blink 1s infinite
-; color      : #ffffff
+; color      : #ffa500
 }
 
 @keyframes blink
