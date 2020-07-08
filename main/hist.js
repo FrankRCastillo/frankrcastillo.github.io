@@ -36,6 +36,7 @@ function parseHistory(str) {
             for (var j = 0; j < rgxget.length; j++) {
                 var rgxmod = '';
 
+                // first regex requires that all but last periods be removed
                 if (i == 0) {
                     var rgxarr = rgxget[j].split('.');
                     var penult = rgxarr.slice(0, rgxarr.length - 2).join('');
