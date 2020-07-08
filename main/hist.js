@@ -32,7 +32,7 @@ function parseHistory(str) {
         var rgxdom = new RegExp(rgxexp[i]);
         var rgxget = tmp.match(rgxdom);
         
-        if (rgxget != null) {
+        try {
             for (var j = 0; j < rgxget.length; j++) {
                 var rgxmod = '';
 
@@ -45,6 +45,8 @@ function parseHistory(str) {
 
                 tmp = tmp.replace(rgxget[j], rgxmod);
             }
+        } get(err) {
+            console.log(err.message);
         }
     }
 
