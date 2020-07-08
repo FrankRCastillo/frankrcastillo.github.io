@@ -64,12 +64,12 @@ ul
 }
 
 #contain
-{ border      : 1px solid #898989
+{ border      : 1px solid #ffa500
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; width       : 100%
 ; height      : 28px
-; background  : #696969
+; background  : #000000
 ; box-shadow  : 0px 0px 10px 2px #000000
 }
 
@@ -78,12 +78,12 @@ ul
 ; padding    : 0px 0px 0px 0px
 ; margin     : 0px 0px 0px 0px
 ; color      : #ffffff
-; background : #696969
+; background : #000000
 ; height     : 28px
 }
 
 #inputbox
-{ border      : 1px solid #696969
+{ border      : 1px solid #000000
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; outline     : none
@@ -92,7 +92,7 @@ ul
 ; height      : 20px
 ; width       : 100%
 ; color       : #ffffff
-; background  : #696969
+; background  : #000000
 }
 
 #textdiv
@@ -105,13 +105,13 @@ ul
 }
 
 .cmdlist
-{ border      : 1px solid #444480
+{ border      : 1px solid #ffa500
 ; margin      : 0px 0px 0px 0px
 ; padding     : 3px 3px 3px 3px
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; color       : #ffffff
-; background  : #696969
+; background  : #000000
 ; position    : absolute
 ; white-space : nowrap
 }
@@ -124,7 +124,7 @@ ul
 ; font-size   : 20px
 ; height      : 24px
 ; color       : #ffa500
-; background  : #696969
+; background  : #000000
 ; white-space : nowrap
 }
 
@@ -136,7 +136,7 @@ ul
 ; font-size   : 20px
 ; height      : 24px
 ; color       : #ffffff
-; background  : #696969
+; background  : #000000
 ; white-space : nowrap
 }
 
