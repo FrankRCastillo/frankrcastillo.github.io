@@ -59,11 +59,12 @@ function parseHistory(str) {
         var yrgx = elem.match(/([1](?<=1)[5-9]|20)[0-9]{2}/)
         var info = Math.max.apply(null, yrgx);
 
-        if (Number.isFinite(info) == false) {
-            console.log('pause');
-        } else {
-            return [info, elem + '.'];
+        if (Number.isFinite(info) == false && i > 0) {
+            yrgx = orig[i - 1].match(/([1](?<=1)[5-9]|20)[0-9]{2}/)
+            info = Math.max.apply(null, yrgx);
         }
+        
+        return [info, elem + '.'];
     });
 
     return rtn;
