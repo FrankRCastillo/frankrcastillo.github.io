@@ -26,12 +26,12 @@ function parseHistory(str) {
                  , "[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}" // ranks and titles; excludes the title of King
                  ]
     
-    var tmp = rgxexp.map(function(exp) {
+    var tmp = rgxexp.map(function(exp, i) {
         var rgxdom = new RegExp(exp);
         var rgxget = str.match(rgxdom);
 
         try {
-            var rgxmod = rgxget.map(function(rgxitm, i) {
+            var rgxmod = rgxget.map(function(rgxitm)) {
                 if (i == 0) {
                     var rgxarr = rgxitm.split('.');
                     var penult = rgxarr.slice(0, rgxarr.length - 2).join('');
