@@ -37,7 +37,10 @@ function parseHistory(str) {
                 var rgxmod = '';
 
                 if (i == 0) {
-                    rgxmod = rgxget[j].replace(/[.](?=.*[.])/g, '');
+                    var rgxarr = rgxget[j].split('.');
+                    var penult = rgxarr.slice(0, rgxarr.length - 2).join('');
+                    var ultima = rgxarr[rgxarr.length - 1];
+                    rgxmod = penult + '.' + ultima;
 
                 } else {
                     rgxmod = rgxget[j].replace('.', '');
