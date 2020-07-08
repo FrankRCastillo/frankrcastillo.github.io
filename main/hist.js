@@ -56,11 +56,11 @@ function parseHistory(str) {
 
     var arr = tmp.split('. ');
     var rtn = arr.map(function(elem, i, orig) {
-        var yrgx = elem.match(/([1](?<=1)[5-9]|20)[0-9]{2}/)
+        var yrgx = elem.match(/([1](?<=1)[0-9]|20)[0-9]{2}/)
         var info = Math.max.apply(null, yrgx);
 
         if (Number.isFinite(info) == false && i > 0) {
-            yrgx = orig[i - 1].match(/([1](?<=1)[5-9]|20)[0-9]{2}/)
+            yrgx = orig[i - 1].match(/([1](?<=1)[0-9]|20)[0-9]{2}/)
             info = Math.max.apply(null, yrgx);
         }
         
