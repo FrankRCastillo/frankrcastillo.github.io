@@ -36,10 +36,10 @@ function parseHistory(str) {
             var rgxmod = '';
 
             if (i == 0) {
-                rgxmod = rgxget[i].replace(/[.](?=.*[.])/g, '');
+                rgxmod = rgxget[j].replace(/[.](?=.*[.])/g, '');
 
             } else {
-                rgxmod = rgxget[i].replace('.', '');
+                rgxmod = rgxget[k].replace('.', '');
             }
 
             tmp = tmp.replace(rgxget[j], rgxmod);
