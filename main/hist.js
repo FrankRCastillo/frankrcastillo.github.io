@@ -75,10 +75,19 @@ function parseHistory(str) {
 function historychart(arr) {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
+    var tlb = document.createElement('div');
+
     frm.setAttribute('id', 'mapframe');
     frm.style.overflow = 'hidden';
     frm.style.height   = '100%';
     frm.style.width    = 'calc(100% - 25px)';
+    frm.style.border   = '1px solid #ffffff';
+
+    tlb.setAttribute('id', 'maptoolbar');
+    frm.style.height = '25px';
+    frm.style.width  = '100%';
+    frm.style.border = '1px solid #ffffff';
+    
     out.appendChild(frm);
 
     var map = new Datamap({ element         : document.getElementById('mapframe')
