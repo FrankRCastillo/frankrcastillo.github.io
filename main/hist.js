@@ -75,8 +75,8 @@ function historychart(arr) {
     var jsn = 'https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json';
     var map = new Datamap({ element         : document.getElementById('outtext')
                           , scope           : 'world'
-                          , height          : 90pct
-                          , width           : 90pct
+                          , height          : 90%
+                          , width           : 90%
                           , fills           : { defaultFill      : '#13131c' }
                           , geographyConfig : { highlightOnHover : false
                                               , popupOnHover     : false
