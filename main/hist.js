@@ -76,6 +76,8 @@ function historychart(arr) {
     var frm = document.createElement('div');
     frm.setAttribute('id', 'mapframe');
     frm.style.overflow = 'hidden';
+    frm.style.height   = '95%';
+    frm.style.width    = '95%';
     out.appendChild(frm);
 
     var map = new Datamap({ element         : document.getElementById('mapframe')
