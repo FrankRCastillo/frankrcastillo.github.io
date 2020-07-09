@@ -17,8 +17,7 @@ export async function hist() {
         arr.push([id, name, harr]);
     }
 
-    historychart();
-    historytoolbar();
+    historychart(arr);
     cmdReady();
 }
 
@@ -110,8 +109,4 @@ function historychart(arr) {
                                               , borderWidth      : 1
                                               }
     });
-}
-
-function historytoolbar() {
-
 }
