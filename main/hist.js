@@ -72,18 +72,20 @@ function parseHistory(str) {
 }
 
 function historychart(arr) {
-    var jsn = 'https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json';
-    var map = new Datamap({ element         : document.getElementById('outtext')
+    var out = document.getElementById('outtext');
+    var frm = document.createElement('div');
+    frm.setAttribute('id', 'mapframe');
+    frm.style.overflow = 'hidden';
+    out.appendChild(frm);
+
+    var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
-                          , height          : 90%
-                          , width           : 90%
                           , fills           : { defaultFill      : '#13131c' }
                           , geographyConfig : { highlightOnHover : false
                                               , popupOnHover     : false
                                               , borderColor      : '#ffffff'
                                               , borderWidth      : 1
                                               }
-                          , dataUrl         : jsn
     });
 
     console.log('pause');
