@@ -26,60 +26,34 @@ function parseHistory(str) {
                  , "[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}" // ranks and titles; excludes the title of King
                  ]
     
-    var tmp = rgxexp.map(function(exp, i) {
-        var txt = str;
-        var rgxdom = new RegExp(exp);
-        var rgxget = txt.match(rgxdom);
+    var tmp = str;
 
+    for (var i = 0; i < rgxexp.length; i++) {
+        var rgxdom = new RegExp(rgxexp[i]);
+        var rgxget = tmp.match(rgxdom);
+        
         try {
-            var rgxmod = rgxget.map(function(rgxitm) {
+            for (var j = 0; j < rgxget.length; j++) {
+                var rgxmod = '';
+
+                // first regex requires that all but last periods be removed
                 if (i == 0) {
-                    var rgxarr = rgxitm.split('.');
+                    var rgxarr = rgxget[j].split('.');
                     var penult = rgxarr.slice(0, rgxarr.length - 2).join('');
                     var ultima = rgxarr[rgxarr.length - 1];
-
-                    return penult + '.' + ultima;
+                    rgxmod = penult + '.' + ultima;
 
                 } else {
-                    return rgxitm.replace('.', '');
+                    rgxmod = rgxget[j].replace('.', '');
                 }
-            });
 
-            return str.replace(exp, rgxmod);
-
+                tmp = tmp.replace(rgxget[j], rgxmod);
+            }
         } catch(err) {
             console.log(err.message);
         }
-    });
+    }
 
-//    var tmp = str;
-//
-//    for (var i = 0; i < rgxexp.length; i++) {
-//        var rgxdom = new RegExp(rgxexp[i]);
-//        var rgxget = tmp.match(rgxdom);
-//        
-//        try {
-//            for (var j = 0; j < rgxget.length; j++) {
-//                var rgxmod = '';
-//
-//                // first regex requires that all but last periods be removed
-//                if (i == 0) {
-//                    var rgxarr = rgxget[j].split('.');
-//                    var penult = rgxarr.slice(0, rgxarr.length - 2).join('');
-//                    var ultima = rgxarr[rgxarr.length - 1];
-//                    rgxmod = penult + '.' + ultima;
-//
-//                } else {
-//                    rgxmod = rgxget[j].replace('.', '');
-//                }
-//
-//                tmp = tmp.replace(rgxget[j], rgxmod);
-//            }
-//        } catch(err) {
-//            console.log(err.message);
-//        }
-//    }
-//
     var arr = tmp.split('. ');
 
     var rtn = arr.map(function(elem, i, orig) {
