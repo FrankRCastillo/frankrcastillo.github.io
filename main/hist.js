@@ -18,6 +18,7 @@ export async function hist() {
     }
 
     historychart(arr);
+    cmdReady();
 }
 
 function parseHistory(str) {
@@ -89,6 +90,4 @@ function historychart(arr) {
                                               , borderWidth      : 1
                                               }
     });
-
-    console.log('pause');
 }
