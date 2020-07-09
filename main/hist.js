@@ -86,10 +86,10 @@ function historychart() {
 
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
-                          , fills           : { defaultFill      : '#13131c' }
+                          , fills           : { defaultFill      : '#ffa500' }
                           , geographyConfig : { highlightOnHover : false
                                               , popupOnHover     : false
-                                              , borderColor      : '#ffffff'
+                                              , borderColor      : '#000000'
                                               , borderWidth      : 1
                                               }
     });
