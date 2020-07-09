@@ -17,7 +17,7 @@ export async function hist() {
         arr.push([id, name, harr]);
     }
 
-    console.log('pause');
+    historychart(arr);
 }
 
 function parseHistory(str) {
@@ -72,8 +72,13 @@ function parseHistory(str) {
 }
 
 function historychart(arr) {
-    var datamapsurl = 'https://raw.githubusercontent.com/markmarkoh/datamaps/master/dist/datamaps.world.min.js';
-    var datamapsapp = await import(url);
-    
-    
+    var jsn = 'https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json';
+    var map = new Datamap({ element         : document.getElementById('outtext')
+                          , fills           : { defaultFill      : '#13131c' }
+                          , geographyConfig : { highlightOnHover : true
+                                              , popupOnHover     : true      }
+                          , dataUrl         : jsn
+    });
+
+    console.log('pause');
 }
