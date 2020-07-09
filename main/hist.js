@@ -96,7 +96,7 @@ function historychart(arr) {
         opt.textContent = arr[i][1];
         sch.appendChild(opt);
     }
-    
+    tlb.appendChild(sch); 
     out.appendChild(tlb);
     out.appendChild(frm);
 
