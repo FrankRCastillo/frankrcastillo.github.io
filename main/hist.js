@@ -84,10 +84,11 @@ function historychart(arr) {
     frm.style.border   = '1px solid #ffffff';
 
     tlb.setAttribute('id', 'maptoolbar');
-    frm.style.height = '25px';
-    frm.style.width  = '100%';
-    frm.style.border = '1px solid #ffffff';
+    tlb.style.height = '25px';
+    tlb.style.width  = '100%';
+    tlb.style.border = '1px solid #ffffff';
     
+    out.appendChild(tlb);
     out.appendChild(frm);
 
     var map = new Datamap({ element         : document.getElementById('mapframe')
