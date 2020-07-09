@@ -73,13 +73,30 @@ function parseHistory(str) {
     return rtn;
 }
 
-function historychart() {
+function historychart(arr) {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
     var tlb = document.createElement('div');
+    var sch = document.createElement('select');
+    var dop = document.createElement('option');
 
     frm.setAttribute('id', 'mapframe');
     tlb.setAttribute('id', 'maptoolbar');
+    sch.setAttribute('class', 'mapdropdown');
+    sch.setAttribute('multiple');
+    sch.setAttribute('searchable', 'Country name');
+    dop.setAttribute('value', '');
+    dop.setAttribute('disabled');
+    dop.setAttribute('selected');
+    dop.textContent = 'Choose country';
+    sch.appendChild(dop);
+
+    for (var i = 0; i < arr.length; i++) {
+        var opt = document.createElemement('option');
+        opt.setAttribute('value', arr[i][0]);
+        opt.textContent = arr[i][1];
+        sch.appendChild(opt);
+    }
     
     out.appendChild(tlb);
     out.appendChild(frm);
