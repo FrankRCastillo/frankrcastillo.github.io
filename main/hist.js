@@ -84,6 +84,7 @@ function historychart(arr) {
     sch.setAttribute('class', 'mapdropdown');
     sch.setAttribute('multiple', true);
     sch.setAttribute('searchable', 'Country name');
+    sch.setAttribute('class', 'mdb-select colorful-select dropdown-primary md-form');
     dop.setAttribute('value', '');
     dop.setAttribute('disabled', true);
     dop.setAttribute('selected', true);
