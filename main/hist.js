@@ -72,5 +72,8 @@ function parseHistory(str) {
 }
 
 function historychart(arr) {
-
+    var datamapsurl = 'https://raw.githubusercontent.com/markmarkoh/datamaps/master/dist/datamaps.world.min.js';
+    var datamapsapp = await import(url);
+    
+    
 }
