@@ -83,11 +83,11 @@ function historychart(arr) {
     frm.setAttribute('id', 'mapframe');
     tlb.setAttribute('id', 'maptoolbar');
     sch.setAttribute('class', 'mapdropdown');
-    sch.setAttribute('multiple');
+    sch.setAttribute('multiple', true);
     sch.setAttribute('searchable', 'Country name');
     dop.setAttribute('value', '');
-    dop.setAttribute('disabled');
-    dop.setAttribute('selected');
+    dop.setAttribute('disabled', true);
+    dop.setAttribute('selected', true);
     dop.textContent = 'Choose country';
     sch.appendChild(dop);
 
