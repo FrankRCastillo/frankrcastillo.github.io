@@ -86,7 +86,7 @@ function historychart() {
 
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
-                          , fills           : { defaultFill      : '#ffa500' }
+                          , fills           : { defaultFill      : '#ffffff' }
                           , geographyConfig : { highlightOnHover : false
                                               , popupOnHover     : false
                                               , borderColor      : '#000000'
