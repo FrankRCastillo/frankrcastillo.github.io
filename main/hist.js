@@ -74,9 +74,13 @@ function parseHistory(str) {
 function historychart(arr) {
     var jsn = 'https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json';
     var map = new Datamap({ element         : document.getElementById('outtext')
+                          , scope           : 'world'
                           , fills           : { defaultFill      : '#13131c' }
-                          , geographyConfig : { highlightOnHover : true
-                                              , popupOnHover     : true      }
+                          , geographyConfig : { highlightOnHover : false
+                                              , popupOnHover     : false
+                                              , borderColor      : '#ffffff'
+                                              , borderWidth      : 1
+                                              }
                           , dataUrl         : jsn
     });
 
