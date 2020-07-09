@@ -27,8 +27,9 @@ function parseHistory(str) {
                  ]
     
     var tmp = rgxexp.map(function(exp, i) {
+        var txt = str;
         var rgxdom = new RegExp(exp);
-        var rgxget = str.match(rgxdom);
+        var rgxget = txt.match(rgxdom);
 
         try {
             var rgxmod = rgxget.map(function(rgxitm) {
