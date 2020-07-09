@@ -99,6 +99,20 @@ ul
 ; width : calc(100% - 25px)
 }
 
+#mapframe
+{ overflow : hidden
+; height   : calc(100% - 30px)
+; width    : calc(100% - 2px)
+; border   : 1px solid #ffffff
+}
+
+#maptoolbar
+{ height     : 25px
+; width      : calc(100% -2px)
+; border     : 1px solid #ffa500
+; background : #000000
+}
+
 .helpcmd
 { width : 75px
 }

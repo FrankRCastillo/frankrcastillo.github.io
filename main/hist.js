@@ -17,7 +17,8 @@ export async function hist() {
         arr.push([id, name, harr]);
     }
 
-    historychart(arr);
+    historychart();
+    historytoolbar();
     cmdReady();
 }
 
@@ -72,21 +73,13 @@ function parseHistory(str) {
     return rtn;
 }
 
-function historychart(arr) {
+function historychart() {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
     var tlb = document.createElement('div');
 
     frm.setAttribute('id', 'mapframe');
-    frm.style.overflow = 'hidden';
-    frm.style.height   = 'calc(100% - 30px)';
-    frm.style.width    = 'calc(100% - 2px)';
-    frm.style.border   = '1px solid #ffffff';
-
     tlb.setAttribute('id', 'maptoolbar');
-    tlb.style.height = '25px';
-    tlb.style.width  = 'calc(100% - 2px)';
-    tlb.style.border = '1px solid #ffffff';
     
     out.appendChild(tlb);
     out.appendChild(frm);
@@ -100,4 +93,8 @@ function historychart(arr) {
                                               , borderWidth      : 1
                                               }
     });
+}
+
+function historytoolbar() {
+
 }
