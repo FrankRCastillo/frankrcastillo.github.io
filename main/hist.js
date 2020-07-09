@@ -79,8 +79,8 @@ function historychart(arr) {
 
     frm.setAttribute('id', 'mapframe');
     frm.style.overflow = 'hidden';
-    frm.style.height   = '100%';
-    frm.style.width    = 'calc(100% - 25px)';
+    frm.style.height   = 'calc(100% - 30px)';
+    frm.style.width    = '100%';
     frm.style.border   = '1px solid #ffffff';
 
     tlb.setAttribute('id', 'maptoolbar');
