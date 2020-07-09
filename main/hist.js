@@ -31,7 +31,7 @@ function parseHistory(str) {
         var rgxget = str.match(rgxdom);
 
         try {
-            var rgxmod = rgxget.map(function(rgxitm)) {
+            var rgxmod = rgxget.map(function(rgxitm) {
                 if (i == 0) {
                     var rgxarr = rgxitm.split('.');
                     var penult = rgxarr.slice(0, rgxarr.length - 2).join('');
