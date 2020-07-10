@@ -102,6 +102,7 @@ select
 ; height       : 25px
 ; top          : 10px
 ; left         : 32px
+; position     : absolute
 }
 
 .menubtn-show
@@ -114,6 +115,7 @@ select
 ; height       : 200px
 ; top          : 45px
 ; left         : 15px
+; position     : absolute
 }
 
 #inputbox
