@@ -79,7 +79,6 @@ function historychart(arr) {
 
     frm.setAttribute('id'      , 'mapframe');
     lst.setAttribute('id'      , 'maplist' );
-    lst.setAttribute('name'    , 'maplist' );
     lst.setAttribute('multiple', true      );
 
     for (var i = 0; i < arr.length; i++) {
