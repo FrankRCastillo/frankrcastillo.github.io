@@ -309,7 +309,7 @@ function setinputval(val) {
 function ShowMenuDropDown(showmenu) {
     var btn = document.getElementById('menusel');
 
-    if (toggle) {
+    if (showmenu) {
         btn.setAttribute('class', 'menubtn-show');
         btn.setAttribute('multiple', true);
     } else {
