@@ -98,9 +98,9 @@ select
 ; background : #000000
 ; color      : #ffa500
 ; width      : 850px
-; height     : 200px
-; top        : 45px
-; left       : 15px
+; height     : 215px
+; top        : 0px
+; left       : 0px
 ; position   : absolute
 }
 
@@ -112,8 +112,8 @@ select
 ; color        : #ffa500
 ; width        : 20px
 ; height       : 25px
-; top          : 15px
-; left         : 12px
+; top          : 0px
+; left         : 0px
 ; position     : absolute
 }
 
@@ -124,7 +124,7 @@ select
 ; background   : #000000
 ; color        : #ffa500
 ; width        : 850px
-; height       : 200px
+; height       : 215px
 ; top          : 45px
 ; left         : 15px
 ; position     : absolute
