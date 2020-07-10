@@ -41,8 +41,7 @@ async function SetConsole() {
     var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
                , [ 'div', 'console', [ [     'id','outtext'] ] ]
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [     'id','menusel']
-                                     , [ 'object',     menu] ] ]
+               , [ 'div', 'menudiv', [ [ 'object',     menu] ] ]
                , [ 'div', 'contain', [ [     'id','textdiv']
                                      , [ 'object',    clne ] ] ]
                ]
@@ -199,8 +198,8 @@ async function ReadFile(url) {
               && isURL(url)) {
                 corsprxy = 'https://cors-anywhere.herokuapp.com/';
             }
-        } catch(err1) {
-            console.log(err1.message);
+        } catch(err) {
+            console.log(err.message);
         }
 
         return (await fetch(corsprxy + url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
@@ -308,11 +307,14 @@ function setinputval(val) {
 
 function ShowMenuDropDown(showmenu) {
     var btn = document.getElementById('menusel');
+    var div = document.getElementById('menudiv');
 
     if (showmenu) {
+        div.setAttribute('class', 'menubtn-show');
         btn.setAttribute('class', 'menubtn-show');
         btn.setAttribute('multiple', true);
     } else {
+        div.setAttribute('class', 'menubtn-hide');
         btn.setAttribute('class', 'menubtn-hide');
         btn.setAttribute('multiple', false);
     }
@@ -322,7 +324,7 @@ async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
     
-    menu.setAttribute(   'id',      'menubtn');
+    menu.setAttribute(   'id',      'menusel');
     menu.setAttribute('class', 'menubtn-hide');
 
     for (var i = -1; i < lout.length; i++) {
