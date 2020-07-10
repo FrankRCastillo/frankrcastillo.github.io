@@ -322,10 +322,22 @@ async function NewMenuDropDown() {
         } else {
             opt.setAttribute('value', lout[i][1]);
             opt.textContent = lout[i][1] + '     ' + lout[i][2];
-            var grps = menu.getElementsByTagName('optgroup')
-            var grp  = grps.find(x => x.label = lbout[i][0]);
 
-            if (tgt == null) {
+            var grps = menu.getElementsByTagName('optgroup')
+            var grp  = null;
+
+            for (var j = 0; j < grps.length; j++) {
+                try {
+                    if (grps[0].label == lout[i][0]) {
+                        grp = grps[0];
+                        break;
+                    }
+                } catch(err) {
+                    console.log(err.message);
+                }
+            }
+
+            if (grp == null) {
                 grp = document.createElement('optgroup');
                 grp.setAttribute('label', lout[i][0] + 'grp');
                 menu.appendChild(grp);
