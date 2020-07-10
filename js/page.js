@@ -1,54 +1,16 @@
-function NewObject(prnt, attr) {
-    for (var i = 0; i < attr.length; i++) {
-        var child = document.createElement(attr[i][0]);
+async function SetConsole() {
+    var console = document.createElement('div');
+    var inpelem = document.createElement('div');
+    var outelem = document.createElement('div');
 
-        for (var j = 0; j < attr[i][2].length; j++) {
-            var atrtype = attr[i][2][j][0];
-            var attrval = attr[i][2][j][1];
+    console.setAttribute('id', 'console');
+    outelem.setAttribute('id', 'outtext');
+    inpelem.setAttribute('id', 'textdiv') 
+    inpelem.appendChild(AddCommandLine())
+    console.appendChild(inpelem);
+    console.appendChild(outelem);
 
-            switch (atrtype) {
-                case 'text':
-                    var text = document.createTextNode(attrval);
-                    child.appendChild(text);
-                    break;
-
-                case 'object':
-                    child.appendChild(attrval);
-                    break;
-
-                default:
-                    child.setAttribute(atrtype, attrval);
-                    break;
-            }
-        }
-        
-        if (prnt.id == attr[i][1]) {
-            prnt.appendChild(child);
-        } else {
-            prnt.querySelector('#' + attr[i][1]).appendChild(child);
-        }
-    }
-
-    return prnt;
-}
-
-function SetConsole() {
-    var tock = 'javascript:{setinputval("help"); help()}';
-    var clne = AddCommandLine();
-    var main = document.createElement('div');
-    main.setAttribute('id', 'console');
-
-    var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
-               , [ 'div', 'console', [ [     'id','outtext'] ] ]
-               , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [     'id','menuico']
-                                     , [   'text', '\u2630']
-                                     , ['onclick',    tock ] ] ]
-               , [ 'div', 'contain', [ [     'id','textdiv']
-                                     , [ 'object',    clne ] ] ]
-               ]
-
-    return NewObject(main, objs);
+    return console;
 }
 
 async function FileList(filter) {
@@ -71,9 +33,9 @@ function RSSParser(xml) {
     parser   = new DOMParser();
     xmldoc   = parser.parseFromString(xml, 'text/xml');
     var arr  = [];
-    var fwdt = Math.floor(screen.width / 10) - 35;  // (screen width / font width) - dtg = pub and title width
-    var pwdt = Math.floor(fwdt * 0.20);             // quarter of screen goes to publication
-    var awdt = Math.floor(fwdt * 0.80);             // half of screen goes to article title
+    var fwdt = Math.floor(screen.width / 8) - 35;  // (screen width / font width) - dtg = pub and title width
+    var pwdt = Math.floor(fwdt * 0.15);            // quarter of screen goes to publication
+    var awdt = Math.floor(fwdt * 0.85);            // half of screen goes to article title
     var src  = trunc(xmldoc.getElementsByTagName('title')[0].textContent, pwdt);
     var itm  = xmldoc.getElementsByTagName('item');
 
@@ -165,7 +127,7 @@ function clear() {
 }
 
 function home() {
-    read('/main/home/home.txt');
+    read('/main/main.txt');
 }
 
 async function read(path) {
@@ -174,41 +136,8 @@ async function read(path) {
     print(txt);
 }
 
-function isURL(url) {
-    var results = false;
-
-    try {
-        var urlchk = new URL(url);
-        results = urlchk.protocol === 'http:' || urlchk.protocol === 'https:';
-    } catch (err) {
-        console.log(err.message + '. Returning false.')
-    }
-
-    return results;
-}
-
 async function ReadFile(url) {
-    try{
-        var corsprxy = '';
-
-        try {
-            var currhost = new URL(window.location.href);
-            var readhost = new URL(url);
-
-            if ( readhost.hostname != currhost.hostname
-              && readhost.hostname != 'api.github.com'
-              && readhost.hostname != 'freegeoip.app'
-              && isURL(url)) {
-                corsprxy = 'https://cors-anywhere.herokuapp.com/';
-            }
-        } catch(err1) {
-            console.log(err1.message);
-        }
-
-        return (await fetch(corsprxy + url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
-    } catch(err2) {
-        console.log(err2.message);
-    }
+    return (await fetch(url, {headers: {'Access-Control-Request-Headers':'origin'}})).text();
 }
 
 async function CommandManager(input) {
@@ -223,7 +152,7 @@ async function CommandManager(input) {
             cmdWait();
 
             try {
-                let app = await import('/main/' + cmd + '.js');
+                let app = await import('/main/apps/' + cmd + '.js');
                 eval('app.' + cmd + '()');
             } catch(err) {
                 cmdReady();
@@ -238,7 +167,7 @@ async function CommandManager(input) {
 function cmdReady() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\u25B6 "help", or click menu button, for commands...';
+    inputbox.placeholder = '> "help", or click here, for commands...';
 
     clearHelp();
     setinputval('');
@@ -247,35 +176,23 @@ function cmdReady() {
 function cmdWait() {
     var inputbox = document.getElementById('inputbox');
 
-    inputbox.placeholder = '\u25A0 Loading...';
+    inputbox.placeholder = 'X Loading...';
 
     clearHelp();
     setinputval('');
 }
 
 function print(text) {
+    var outtext  = document.getElementById("outtext");
+    var newtext  = document.createElement("div");
+
     if (Array.isArray(text)) {
         for (var i = 0; i < text.length; i++) {
             print(text[i]);
         }
     } else {
-        var outtxt = document.getElementById("outtext");
-        var newtxt = document.createElement("div");
-        var rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-        var rgxdom = new RegExp(rgxexp);
-        var rgxget = text.match(rgxdom);
-        
-        if (rgxget != null) {
-            for (var i = 0; i < rgxget.length; i++) {
-                var oldurl = rgxget[i];
-                var newurl = '<a href="' + rgxget[i] + '" target="_blank">' + rgxget[i] + '</a>';
-                text = text.replace(new RegExp(oldurl, 'gi'), newurl);
-            }
-        }
-        
-        text = text.replace(/\n/g, '<br/>');
-        newtxt.innerHTML = text;
-        outtxt.appendChild(newtxt);
+        newtext.innerText = text;
+        outtext.appendChild(newtext);
     }
 }
 
@@ -287,10 +204,7 @@ function AddCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
-
-    window.addEventListener('keydown', function() {
-        txtinput.focus();
-    });
+    txtinput.setAttribute('onclick', 'javascript:{setinputval("help"); help()}');
 
     window.addEventListener('keyup', function(e) {
         help();
@@ -339,28 +253,18 @@ async function help() {
             var cinf  = lout[i].split('|');
 
             if (lout[i].toLowerCase().indexOf(value) > -1) {
-                var tble = document.createElement('table');
-                var trow = document.createElement('tr');
-                var tcmd = document.createElement('td');
-                var tdsc = document.createElement('td');
-                
-                tcmd.setAttribute('class', 'helpcmd');
-
-                if (hxst != cinf[1]) {
-                    hxst = cinf[1];
+                if (hxst != cinf[0]) {
+                    hxst = cinf[0];
                     var chdr = document.createElement('div');
                     chdr.setAttribute('class', 'cmdlisthdr');
-                    chdr.textContent = cinf[1];
+                    chdr.textContent = cinf[0];
                     list.appendChild(chdr);
                 }
-                tcmd.innerText = cinf[2];
-                tdsc.innerText = cinf[3];
-                trow.appendChild(tcmd);
-                trow.appendChild(tdsc);
-                tble.appendChild(trow);
+
                 citm.setAttribute('class', 'cmdlistitm');
-                citm.setAttribute('onclick', 'javascript:CommandManager("' + cinf[2] + '")');
-                citm.appendChild(trow);
+                citm.setAttribute('onclick', 'javascript:CommandManager("' + cinf[1] + '")');
+                citm.textContent = cinf[1] + ' : ' + cinf[2];   // command [tab] description
+
                 list.appendChild(citm);
             }
         }
@@ -377,19 +281,17 @@ async function help() {
 }
 
 async function getcmdinfo() {
-    var host = window.location.href;
+    var url  = 'https://frankrcastillo.github.io/';
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
 
-    lout.push('core help|core|home|Show the home screen');
+    lout.push('core help|home|Show the home screen');
 
     for (var i = 0; i < list.length; i++) {
-        var base = list[i].split('\/')[0];
-        var file = await ReadFile(host + list[i]);
+        var base = list[i].split('\/')[1];
+        var file = await ReadFile(url + list[i]);
         lout.push(base + ' help|' + getjsdesc(file));
     }
-
-    lout.sort();
 
     return lout;    
 }

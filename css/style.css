@@ -101,16 +101,17 @@ ul
 
 #mapframe
 { overflow : hidden
-; height   : calc(100% - 30px)
-; width    : calc(100% - 2px)
+; height   : calc(100% - 5px)
+; width    : calc(100% - 50px)
 ; border   : 1px solid #ffffff
 }
 
-#maptoolbar
-{ height     : 25px
-; width      : calc(100% -2px)
+#maplist
+{ height     : calc(100% - 5px)
+; width      : calc(45px)
 ; border     : 1px solid #ffa500
 ; background : #000000
+; float      : left
 }
 
 .helpcmd

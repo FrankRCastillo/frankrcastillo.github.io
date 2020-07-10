@@ -75,30 +75,21 @@ function parseHistory(str) {
 function historychart(arr) {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
-    var tlb = document.createElement('div');
-    var sch = document.createElement('select');
-    var dop = document.createElement('option');
+    var lst = document.createElement('select');
 
-    frm.setAttribute('id', 'mapframe');
-    tlb.setAttribute('id', 'maptoolbar');
-    sch.setAttribute('class', 'mapdropdown');
-    sch.setAttribute('multiple', true);
-    sch.setAttribute('searchable', 'Country name');
-    sch.setAttribute('class', 'mdb-select colorful-select dropdown-primary md-form');
-    dop.setAttribute('value', '');
-    dop.setAttribute('disabled', true);
-    dop.setAttribute('selected', true);
-    dop.textContent = 'Choose country';
-    sch.appendChild(dop);
+    frm.setAttribute('id'      , 'mapframe');
+    lst.setAttribute('id'      , 'maplist' );
+    lst.setAttribute('name'    , 'maplist' );
+    lst.setAttribute('multiple', true      );
 
     for (var i = 0; i < arr.length; i++) {
         var opt = document.createElement('option');
         opt.setAttribute('value', arr[i][0]);
         opt.textContent = arr[i][1];
-        sch.appendChild(opt);
+        lst.appendChild(opt);
     }
-    tlb.appendChild(sch); 
-    out.appendChild(tlb);
+    
+    out.appendChild(lst);
     out.appendChild(frm);
 
     var map = new Datamap({ element         : document.getElementById('mapframe')
