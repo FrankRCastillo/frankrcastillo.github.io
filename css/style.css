@@ -67,6 +67,11 @@ option
 ; font-size   : 20px
 }
 
+option:checked
+{ color      : #ffa500
+; background : #000000
+}
+
 #outtext
 { overflow : auto
 ; width    : 100%
