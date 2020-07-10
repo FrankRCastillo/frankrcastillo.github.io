@@ -137,7 +137,30 @@ async function read(path) {
 }
 
 async function ReadFile(url) {
+<<<<<<< HEAD
     return (await fetch(url, {headers: {'Access-Control-Request-Headers':'origin'}})).text();
+=======
+    try{
+        var corsprxy = '';
+
+        try {
+            var currhost = new URL(window.location.href);
+            var readhost = new URL(url);
+
+            if ( readhost.hostname != currhost.hostname
+              && readhost.hostname != 'api.github.com'
+              && isURL(url)) {
+                corsprxy = 'https://cors-anywhere.herokuapp.com/';
+            }
+        } catch(err1) {
+            console.log(err1.message);
+        }
+
+        return (await fetch(corsprxy + url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
+    } catch(err2) {
+        console.log(err2.message);
+    }
+>>>>>>> parent of bccd16c... update
 }
 
 async function CommandManager(input) {
