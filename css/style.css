@@ -93,19 +93,20 @@ select
 }
 
 .menubtn-show
-{ border       : 1px solid #ffa500
-; padding      : 0px 0px 0px 0px
-; margin       : 0px 0px 0px 0px
-; background   : #000000
-; color        : #ffa500
-; width        : 850px
-; height       : 200px
-; top          : 45px
-; left         : 15px
-; position     : absolute
+{ border     : 1px solid #ffa500
+; padding    : 0px 0px 0px 0px
+; margin     : 0px 0px 0px 0px
+; background : #000000
+; color      : #ffa500
+; width      : 850px
+; height     : 200px
+; top        : 45px
+; left       : 15px
+; position   : absolute
 }
+
 .menubtn-hide
-{ border       : 1px solid #ffa500
+{ border-style : none
 ; padding      : 0px 0px 0px 0px
 ; margin       : 0px 0px 0px 0px
 ; background   : #000000
