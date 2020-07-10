@@ -312,7 +312,7 @@ async function NewMenuDropDown() {
     
     menu.setAttribute('id', 'menusel');
 
-    for (var i = -1; i < lout; i++) {
+    for (var i = -1; i < lout.length; i++) {
         var opt = document.createElement('option');
 
         if (i == -1) {
