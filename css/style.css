@@ -100,7 +100,7 @@ select
 .menubtn-hide
 { border-style : none
 ; width        : 20px
-; height       : 20px
+; height       : 25px
 ; top          : 10px
 ; left         : 32px
 }
