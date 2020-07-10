@@ -350,12 +350,6 @@ async function NewMenuDropDown() {
     return menu;
 }
 
-function toggleMenu() {
-    var btn = document.getElementById('menusel');
-    var sel = btn[0].getElementsByTagName('select')[0];
-
-}
-
 async function getcmdinfo() {
     var host = window.location.href;
     var list = await FileList(/main\/.*\.js/);

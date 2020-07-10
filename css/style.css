@@ -97,6 +97,11 @@ select
 ; width        : 20px
 }
 
+#menubtn
+{ border-style : none
+; width        : 20px
+}
+
 #menudiv
 { float      : left
 ; padding    : 0px 0px 0px 0px
