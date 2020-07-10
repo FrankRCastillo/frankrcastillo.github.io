@@ -312,7 +312,6 @@ function setinputval(val) {
 async function menu() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
-    var inpt = getinputval();
 
     for (var i = -1; i < lout; i++) {
         var opt = document.createElement('option');
