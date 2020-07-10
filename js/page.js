@@ -322,7 +322,7 @@ async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
     
-    menu.setAttribute(   'id',      'menusel');
+    menu.setAttribute(   'id',      'menubtn');
     menu.setAttribute('class', 'menubtn-hide');
 
     for (var i = -1; i < lout.length; i++) {
