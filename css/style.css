@@ -99,6 +99,10 @@ select
 
 .menubtn-hide
 { border-style : none
+; padding      : 0px 0px 0px 0px
+; margin       : 0px 0px 0px 0px
+; background   : #000000
+; color        : #ffa500
 ; width        : 20px
 ; height       : 25px
 ; top          : 10px
@@ -107,19 +111,14 @@ select
 
 .menubtn-show
 { border-style : none
+; padding      : 0px 0px 0px 0px
+; margin       : 0px 0px 0px 0px
+; background   : #000000
+; color        : #ffa500
 ; width        : 850px
 ; height       : 200px
 ; top          : 45px
 ; left         : 15px
-}
-
-#menudiv
-{ float      : left
-; padding    : 0px 0px 0px 0px
-; margin     : 0px 0px 0px 0px
-; color      : #ffa500
-; background : #000000
-; height     : 28px
 }
 
 #inputbox
