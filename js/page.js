@@ -229,8 +229,6 @@ async function CommandManager(input) {
                 console.log(err.message);
             }
     }
-
-    clearHelp();
 }
 
 function cmdReady() {
@@ -238,7 +236,6 @@ function cmdReady() {
 
     inputbox.placeholder = '\u25B6 "help", or click menu button, for commands...';
 
-    clearHelp();
     setinputval('');
 }
 
