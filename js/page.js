@@ -33,7 +33,8 @@ function NewObject(prnt, attr) {
 }
 
 function SetConsole() {
-    var clne = AddCommandLine();
+    var clne = NewCommandLine();
+    var menu = NewMenuDropDown();
     var main = document.createElement('div');
     main.setAttribute('id', 'console');
 
@@ -41,7 +42,7 @@ function SetConsole() {
                , [ 'div', 'console', [ [     'id','outtext'] ] ]
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
                , [ 'div', 'menudiv', [ [     'id','menuico']
-                                     , [ 'object',   menu()] ] ]
+                                     , [ 'object',     menu] ] ]
                , [ 'div', 'contain', [ [     'id','textdiv']
                                      , [ 'object',    clne ] ] ]
                ]
@@ -280,7 +281,7 @@ function ChangeClass(id, classname) {
     document.getElementById(id).className = classname;
 }
 
-function AddCommandLine() {
+function NewCommandLine() {
     txtinput = document.createElement('input');
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
@@ -309,7 +310,7 @@ function setinputval(val) {
     inputbox.focus();
 }
 
-async function menu() {
+async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
 
