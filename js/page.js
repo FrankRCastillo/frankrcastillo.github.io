@@ -306,11 +306,24 @@ function setinputval(val) {
     inputbox.focus();
 }
 
+function ShowMenuDropDown(showmenu) {
+    var btn = document.getElementById('menusel');
+
+    if (toggle) {
+        btn.setAttribute('class', 'menubtn-show');
+        btn.setAttribute('multiple', true);
+    } else {
+        btn.setAttribute('class', 'menubtn-hide');
+        btn.setAttribute('multiple', false);
+    }
+}
+
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
-
-    menu.setAttribute('id', 'menubtn');
+    
+    menu.setAttribute(   'id',      'menusel');
+    menu.setAttribute('class', 'menubtn-hide');
 
     for (var i = -1; i < lout.length; i++) {
         var opt = document.createElement('option');

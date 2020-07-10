@@ -97,9 +97,20 @@ select
 ; width        : 20px
 }
 
-#menubtn
+.menubtn-show
 { border-style : none
 ; width        : 20px
+; height       : 26px
+; top          : 11px
+; left         : 32px
+}
+
+.menubtn-hide
+{ border-style : none
+; width        : 850px
+; height       : 200px
+; top          : 45px
+; left         : 15px
 }
 
 #menudiv
@@ -119,54 +130,17 @@ select
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; height      : 26px
-; width       : 100%
+; width       : calc(100% - 45px)
 ; color       : #ffa500
 ; background  : #000000
+; position    : absolute
+; top         : 11px
+; left        : 32px
 }
 
 #textdiv
 { float : left
 ; width : calc(100% - 25px)
-}
-
-.helpcmd
-{ width : 75px
-}
-
-.cmdlist
-{ border      : 1px solid #ffa500
-; margin      : 0px 0px 0px 0px
-; padding     : 2px 2px 2px 2px
-; font-family : 'MS PGothic'
-; font-size   : 20px
-; color       : #ffffff
-; background  : #404040
-; position    : absolute
-; white-space : nowrap
-}
-
-.cmdlistitm
-{ border      : 0px 0px 0px 0px
-; margin      : 0px 0px 0px 0px
-; padding     : 0px 3px 3px 3px
-; font-family : 'MS PGothic'
-; font-size   : 20px
-; height      : 24px
-; color       : #ffa500
-; background  : #404040
-; white-space : nowrap
-}
-
-.cmdlisthdr
-{ border      : 0px 0px 0px 0px
-; margin      : 0px 0px 0px 0px
-; padding     : 0px 3px 3px 3px
-; font-family : 'MS PGothic'
-; font-size   : 20px
-; height      : 24px
-; color       : #ffffff
-; background  : #404040
-; white-space : nowrap
 }
 
 #newstable
