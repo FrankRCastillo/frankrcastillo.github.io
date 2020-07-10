@@ -79,7 +79,7 @@ function historychart(arr) {
     var sel = document.createElement('select');
 
     frm.setAttribute('id'      , 'mapframe');
-    sel.setAttribute('id'      , 'maplist' );
+    lst.setAttribute('id'      , 'maplist' );
     sel.setAttribute('multiple', true      );
 
     for (var i = 0; i < arr.length; i++) {
