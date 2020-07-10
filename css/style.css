@@ -97,7 +97,7 @@ select
 ; width        : 20px
 }
 
-.menubtn-show
+.menubtn-hide
 { border-style : none
 ; width        : 20px
 ; height       : 26px
@@ -105,7 +105,7 @@ select
 ; left         : 32px
 }
 
-.menubtn-hide
+.menubtn-show
 { border-style : none
 ; width        : 850px
 ; height       : 200px
