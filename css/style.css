@@ -91,7 +91,7 @@ option:active
 #maplist
 { height : calc(100% - 2px)
 ; width  : 300px
-; float  : left 
+; float  : left
 }
 
 #mapframe
@@ -100,6 +100,7 @@ option:active
 ; padding : 0px 0px 0px 0px
 ; height  : calc(100% - 2px)
 ; width   : calc(100% - 400px)
+; float   : left
 }
 
 #menudiv

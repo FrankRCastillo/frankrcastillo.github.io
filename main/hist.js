@@ -90,8 +90,8 @@ function historychart(arr) {
     }
     
     lst.appendChild(sel);
-    out.appendChild(lst);
     out.appendChild(frm);
+    out.appendChild(lst);
 
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
