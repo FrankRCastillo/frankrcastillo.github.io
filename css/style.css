@@ -91,17 +91,15 @@ option:active
 
 #maplist
 { height : 100%
-; width  : 245px
-; float  : left
+; width  : 300px
 }
 
 #mapframe
 { border  : 1px solid #ffa500
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
-; height  : calc(100% - 4px)
-; width   : calc(100% - 400px)
-; float   : left
+; height  : calc(100% - 2px)
+; width   : calc(100% - 2px)
 }
 
 #menudiv
