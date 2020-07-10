@@ -244,7 +244,6 @@ function cmdWait() {
 
     inputbox.placeholder = '\u25A0 Loading...';
 
-    clearHelp();
     setinputval('');
 }
 
@@ -310,6 +309,8 @@ function setinputval(val) {
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
+
+    menu.setAttribute('menusel');
 
     for (var i = -1; i < lout; i++) {
         var opt = document.createElement('option');
