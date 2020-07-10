@@ -89,8 +89,8 @@ option:active
 }
 
 #maplist
-{ height : calc(100% - 2px)
-; width  : 300px
+{ height : calc(100% - 4px)
+; width  : 250px
 ; float  : left
 }
 
@@ -98,7 +98,7 @@ option:active
 { border  : 1px solid #ffa500
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
-; height  : calc(100% - 2px)
+; height  : calc(100% - 4px)
 ; width   : calc(100% - 400px)
 ; float   : left
 }
