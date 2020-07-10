@@ -310,7 +310,7 @@ async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
 
-    menu.setAttribute('id', 'menusel');
+    menu.setAttribute('id', 'menubtn');
 
     for (var i = -1; i < lout.length; i++) {
         var opt = document.createElement('option');
@@ -348,6 +348,12 @@ async function NewMenuDropDown() {
         }
     }
     return menu;
+}
+
+function toggleMenu() {
+    var btn = document.getElementById('menusel');
+    var sel = btn[0].getElementsByTagName('select')[0];
+
 }
 
 async function getcmdinfo() {
