@@ -321,7 +321,7 @@ async function NewMenuDropDown() {
             opt.setAttribute('hidden'  , true);
         } else {
             opt.setAttribute('value', lout[i][1]);
-            opt.textContent = lout[i][1] + '     ' + lout[i][2];
+            opt.textContent = lout[i][1] + '&nbsp;&nbsp;' + lout[i][2];
 
             var grps = menu.getElementsByTagName('optgroup')
             var grp  = null;
