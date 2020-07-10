@@ -310,13 +310,13 @@ function ShowMenuDropDown(showmenu) {
     var div = document.getElementById('menudiv');
 
     if (showmenu) {
+        btn.setAttribute('multiple', true);
         div.setAttribute('class', 'menubtn-show');
         btn.setAttribute('class', 'menubtn-show');
-        btn.setAttribute('multiple', true);
     } else {
+        btn.setAttribute('multiple', false);
         div.setAttribute('class', 'menubtn-hide');
         btn.setAttribute('class', 'menubtn-hide');
-        btn.setAttribute('multiple', false);
     }
 }
 
