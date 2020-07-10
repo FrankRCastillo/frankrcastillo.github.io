@@ -93,8 +93,9 @@ select
 }
 
 #menusel
-{ width  : 20px
-; height : 25px
+{ border-style : none
+; width        : 20px
+; height       : 28px
 }
 
 #menudiv
