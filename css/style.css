@@ -76,7 +76,7 @@ ul
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
 ; height  : calc(100% - 2px)
-; width   : calc(100% - 30px)
+; width   : 300px
 }
 
 #mapframe
@@ -84,7 +84,7 @@ ul
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
 ; height  : calc(100% - 2px)
-; width   : 25px
+; width   : calc(100% - 300px)
 }
 
 #menudiv
