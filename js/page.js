@@ -323,11 +323,11 @@ async function NewMenuDropDown() {
         } else {
             opt.setAttribute('value', lout[i][1]);
             opt.textContent = lout[i][1] + '     ' + lout[i][2];
-            grp = menu.querySelector('#' + lout[0] + 'grp');
+            grp = menu.querySelector('#' + lout[i][0] + 'grp');
 
             if (grp == null) {
                 grp = document.createElement('optgroup');
-                grp.setAttribute('label', lout[0]);
+                grp.setAttribute('label', lout[i][0]);
                 menu.appendChild(grp);
             }
 
