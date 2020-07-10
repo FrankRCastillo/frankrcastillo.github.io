@@ -92,11 +92,6 @@ select
 ; width   : calc(100% - 4px)
 }
 
-#menusel
-{ border-style : none
-; width        : 20px
-}
-
 .menubtn-hide
 { border-style : none
 ; padding      : 0px 0px 0px 0px
