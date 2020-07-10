@@ -90,6 +90,7 @@ option:active
 #maplist
 { height : calc(100% - 2px)
 ; width  : 300px
+; float  : left 
 }
 
 #mapframe
