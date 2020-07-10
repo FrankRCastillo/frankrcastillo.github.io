@@ -127,7 +127,7 @@ function clear() {
 }
 
 function home() {
-    read('/main/main.txt');
+    read('/main/home/home.txt');
 }
 
 async function read(path) {
