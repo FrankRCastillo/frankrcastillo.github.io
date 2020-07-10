@@ -75,12 +75,29 @@ function parseHistory(str) {
 function historychart(arr) {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
+<<<<<<< HEAD
     var lst = document.createElement('select');
 
     frm.setAttribute('id'      , 'mapframe');
     lst.setAttribute('id'      , 'maplist' );
     lst.setAttribute('name'    , 'maplist' );
     lst.setAttribute('multiple', true      );
+=======
+    var tlb = document.createElement('div');
+    var sch = document.createElement('select');
+    var dop = document.createElement('option');
+
+    frm.setAttribute('id', 'mapframe');
+    tlb.setAttribute('id', 'maptoolbar');
+    sch.setAttribute('class', 'mapdropdown');
+    sch.setAttribute('multiple', true);
+    sch.setAttribute('searchable', 'Country name');
+    dop.setAttribute('value', '');
+    dop.setAttribute('disabled', true);
+    dop.setAttribute('selected', true);
+    dop.textContent = 'Choose country';
+    sch.appendChild(dop);
+>>>>>>> parent of db0f7b7... update
 
     for (var i = 0; i < arr.length; i++) {
         var opt = document.createElement('option');
