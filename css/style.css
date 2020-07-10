@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar-track
-{ background : #13131c
+{ background : #09090f
 }
 
 ::-webkit-scrollbar-thumb
@@ -18,7 +18,7 @@ html
 }
 
 body
-{ background-color : #13131c
+{ background-color : #07070d
 ; color            : #ffffff
 ; vertical-align   : middle
 ; align-content    : center
@@ -80,11 +80,13 @@ option:active
 }
 
 #contain
-{ border  : 1px solid #ffa500
-; margin  : 0px 0px 0px 0px
-; padding : 0px 0px 0px 0px
-; width   : 100%
-; height  : 28px
+{ border     : 1px solid #ffa500
+; margin     : 0px 0px 0px 0px
+; padding    : 0px 0px 0px 0px
+; width      : 100%
+; height     : 28px
+; background : #000000
+; box-shadow : 2px 2px 5px 0px #ffa500
 }
 
 #maplist
