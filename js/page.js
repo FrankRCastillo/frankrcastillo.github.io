@@ -309,7 +309,7 @@ function setinputval(val) {
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
-    var 
+    
     menu.setAttribute('id', 'menusel');
 
     for (var i = -1; i < lout; i++) {
