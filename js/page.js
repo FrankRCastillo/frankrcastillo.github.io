@@ -339,7 +339,8 @@ async function NewMenuDropDown() {
 
             if (grp == null) {
                 grp = document.createElement('optgroup');
-                grp.setAttribute('label', lout[i][0] + 'grp');
+                grp.setAttribute('label', lout[i][0]);
+                grp.setAttribute('id'   , lout[i][0]);
                 menu.appendChild(grp);
             }
 
