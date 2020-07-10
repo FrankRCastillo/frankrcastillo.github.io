@@ -33,7 +33,6 @@ function NewObject(prnt, attr) {
 }
 
 function SetConsole() {
-    var tock = 'javascript:{setinputval("help"); help()}';
     var clne = AddCommandLine();
     var main = document.createElement('div');
     main.setAttribute('id', 'console');
@@ -42,8 +41,7 @@ function SetConsole() {
                , [ 'div', 'console', [ [     'id','outtext'] ] ]
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
                , [ 'div', 'menudiv', [ [     'id','menuico']
-                                     , [   'text', '\u2630']
-                                     , ['onclick',    tock ] ] ]
+                                     , [ 'object',   menu()] ] ]
                , [ 'div', 'contain', [ [     'id','textdiv']
                                      , [ 'object',    clne ] ] ]
                ]
@@ -292,22 +290,12 @@ function AddCommandLine() {
     });
 
     window.addEventListener('keyup', function(e) {
-        help();
-
         if (e.keyCode == 13) {
             CommandManager(getinputval());
-            clearHelp();
         }
     });
 
     return txtinput;
-}
-
-function clearHelp() {
-    while (document.getElementsByClassName('cmdlist').length > 0) {
-        var elem = document.getElementsByClassName('cmdlist');
-        elem[elem.length - 1].remove();
-    }
 }
 
 function getinputval() {
@@ -321,58 +309,24 @@ function setinputval(val) {
     inputbox.focus();
 }
 
-async function help() {
-    var lout  = await getcmdinfo();
-    var tdiv  = document.getElementById('textdiv');
-    var list  = document.createElement('div');
-    var value = getinputval();
-    var hxst  = '';
+async function menu() {
+    var menu = document.createElement('select');
+    var lout = await getcmdinfo();
+    var inpt = getinputval();
 
-    clearHelp();
+    for (var i = -1; i < lout; i++) {
+        var opt = document.createElement('option');
 
-    if (value != '') {
-        list.setAttribute('class', 'cmdlist');
-                
-        for (var i = 0; i < lout.length; i++) {
-            var citm  = document.createElement('div');
-            var cinf  = lout[i].split('|');
-
-            if (lout[i].toLowerCase().indexOf(value) > -1) {
-                var tble = document.createElement('table');
-                var trow = document.createElement('tr');
-                var tcmd = document.createElement('td');
-                var tdsc = document.createElement('td');
-                
-                tcmd.setAttribute('class', 'helpcmd');
-
-                if (hxst != cinf[1]) {
-                    hxst = cinf[1];
-                    var chdr = document.createElement('div');
-                    chdr.setAttribute('class', 'cmdlisthdr');
-                    chdr.textContent = cinf[1];
-                    list.appendChild(chdr);
-                }
-                tcmd.innerText = cinf[2];
-                tdsc.innerText = cinf[3];
-                trow.appendChild(tcmd);
-                trow.appendChild(tdsc);
-                tble.appendChild(trow);
-                citm.setAttribute('class', 'cmdlistitm');
-                citm.setAttribute('onclick', 'javascript:CommandManager("' + cinf[2] + '")');
-                citm.appendChild(trow);
-                list.appendChild(citm);
-            }
+        if (i == -1) {
+            opt.setAttribute('disabled', true);
+            opt.setAttribute('selected', true);
+            opt.setAttribute('hidden'  , true);
+        } else {
+            opt.setAttribute('value', lout[i]);
         }
-
-        if (list.childElementCount == 0) {
-            var citm = document.createElement('div');
-            citm.textContent = 'match not found...';
-            citm.setAttribute('class', 'cmdlistitm');
-            list.appendChild(citm);
-        }
-
-        tdiv.appendChild(list);
+        menu.appendChild(opt);
     }
+    return menu;
 }
 
 async function getcmdinfo() {
@@ -380,12 +334,13 @@ async function getcmdinfo() {
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
 
-    lout.push('core help|core|home|Show the home screen');
+    lout.push(['core', 'home', 'Show the home screen']);
 
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[0];
         var file = await ReadFile(host + list[i]);
-        lout.push(base + ' help|' + getjsdesc(file));
+        var line = getjsdesc(file);
+        lout.push(line);
     }
 
     lout.sort();
@@ -399,7 +354,8 @@ function getjsdesc(str) {
 
     for (var i = 0; i < lines.length; i++) {
         if (lines[i].match(regex)) {
-            return lines[i].replace('// |','');
+            var line = lines[i].replace('// |', '');
+            return line.split();
         }
     }
 }
