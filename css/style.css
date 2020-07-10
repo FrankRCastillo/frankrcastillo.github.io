@@ -57,6 +57,16 @@ ul
 ; margin-bottom : 0
 }
 
+select
+{ margin      : 0px 0px 0px 0px
+; padding     : 0px 0px 0px 0px
+; background  : #000000
+; color       : #ffa500
+; font-family : 'MS PGothic'
+; font-size   : 20px
+; outline     : none
+}
+
 option
 { border      : 1px solid #ffa500
 ; margin      : 0px 0px 0px 0px
@@ -90,7 +100,7 @@ option:active
 }
 
 #maplist
-{ width  : 300px
+{ width : 300px
 }
 
 #mapframe
