@@ -64,7 +64,7 @@ ul
 }
 
 #contain
-{ border      : 1px solid #fa500
+{ border      : 1px solid #ffa500
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; width       : 100%
@@ -97,7 +97,7 @@ ul
 }
 
 #inputbox
-{ border      : 0px 0px 0px 0px
+{ border      : 1px solid #000000
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; outline     : none
