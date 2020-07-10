@@ -329,6 +329,7 @@ async function NewMenuDropDown() {
 
     for (var i = -1; i < lout.length; i++) {
         var opt = document.createElement('option');
+        var grp  = null;
 
         if (i == -1) {
             opt.setAttribute('disabled', true);
@@ -339,7 +340,6 @@ async function NewMenuDropDown() {
             opt.textContent = lout[i][1] + ' : ' + lout[i][2];
 
             var grps = menu.getElementsByTagName('optgroup')
-            var grp  = null;
 
             for (var j = 0; j < grps.length; j++) {
                 try {
@@ -358,9 +358,8 @@ async function NewMenuDropDown() {
                 grp.setAttribute('id'   , lout[i][0]);
                 menu.appendChild(grp);
             }
-
-            grp.appendChild(opt);
         }
+        grp.appendChild(opt);
     }
     return menu;
 }
