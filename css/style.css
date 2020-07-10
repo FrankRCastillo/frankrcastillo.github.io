@@ -115,6 +115,7 @@ select
 ; top          : 15px
 ; left         : 12px
 ; position     : absolute
+; overflow     : hidden
 }
 
 .menudiv-show
