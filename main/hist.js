@@ -95,7 +95,7 @@ function historychart(arr) {
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
                           , fills           : { defaultFill      : '#ffffff' }
-                          , geographyConfig : { highlightOnHover : true
+                          , geographyConfig : { highlightOnHover : false
                                               , popupOnHover     : false
                                               , borderColor      : '#000000'
                                               , borderWidth      : 1
