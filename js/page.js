@@ -41,7 +41,7 @@ async function SetConsole() {
     var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
                , [ 'div', 'console', [ [     'id','outtext'] ] ]
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [     'id','menuico']
+               , [ 'div', 'menudiv', [ [     'id','menusel']
                                      , [ 'object',     menu] ] ]
                , [ 'div', 'contain', [ [     'id','textdiv']
                                      , [ 'object',    clne ] ] ]
@@ -309,8 +309,6 @@ function setinputval(val) {
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
-
-    menu.setAttribute('id', 'menusel');
 
     for (var i = -1; i < lout; i++) {
         var opt = document.createElement('option');

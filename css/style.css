@@ -92,8 +92,9 @@ select
 ; width   : calc(100% - 4px)
 }
 
-#menusel {
-width : 20px
+#menusel
+{ width  : 20px
+; height : 25px
 }
 
 #menudiv
