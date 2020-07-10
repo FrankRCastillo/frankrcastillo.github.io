@@ -100,7 +100,8 @@ option:active
 }
 
 #maplist
-{ width : 300px
+{ width  : 300px
+; height : 28px
 }
 
 #mapframe
