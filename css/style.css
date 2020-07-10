@@ -58,7 +58,8 @@ ul
 }
 
 option
-{ margin      : 0px 0px 0px 0px
+{ border      : 1px solid #ffa500
+; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; background  : #000000
 ; color       : #ffa500
@@ -89,8 +90,8 @@ option:active
 }
 
 #maplist
-{ height : calc(100% - 4px)
-; width  : 250px
+{ height : 100%
+; width  : 245px
 ; float  : left
 }
 
