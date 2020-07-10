@@ -320,7 +320,15 @@ async function NewMenuDropDown() {
             opt.setAttribute('selected', true);
             opt.setAttribute('hidden'  , true);
         } else {
-            opt.setAttribute('value', lout[i]);
+            opt.setAttribute('value', lout[i][1]);
+            opt.textContent = lout[i][1] + '     ' + lout[i][2];
+
+            var grp = document.getElementById(lout[0]);
+            if (grp == null) {
+                grp = document.createElement('optgroup');
+                grp.setAttribute('label', lout[0]);
+            }
+            grp.appendChild(opt);
         }
         menu.appendChild(opt);
     }
