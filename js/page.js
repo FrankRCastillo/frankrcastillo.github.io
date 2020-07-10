@@ -309,7 +309,7 @@ function setinputval(val) {
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
-
+    var 
     menu.setAttribute('id', 'menusel');
 
     for (var i = -1; i < lout; i++) {
@@ -322,15 +322,16 @@ async function NewMenuDropDown() {
         } else {
             opt.setAttribute('value', lout[i][1]);
             opt.textContent = lout[i][1] + '     ' + lout[i][2];
+            grp.querySelector('#' + lout[0] + 'grp');
 
-            var grp = document.getElementById(lout[0]);
             if (grp == null) {
                 grp = document.createElement('optgroup');
                 grp.setAttribute('label', lout[0]);
+                menu.appendChild(grp);
             }
+
             grp.appendChild(opt);
         }
-        menu.appendChild(opt);
     }
     return menu;
 }
