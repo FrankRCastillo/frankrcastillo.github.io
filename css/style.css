@@ -92,8 +92,20 @@ select
 ; width   : calc(100% - 4px)
 }
 
+.menubtn-show
+{ border       : 1px solid #ffa500
+; padding      : 0px 0px 0px 0px
+; margin       : 0px 0px 0px 0px
+; background   : #000000
+; color        : #ffa500
+; width        : 850px
+; height       : 200px
+; top          : 45px
+; left         : 15px
+; position     : absolute
+}
 .menubtn-hide
-{ border-style : none
+{ border       : 1px solid #ffa500
 ; padding      : 0px 0px 0px 0px
 ; margin       : 0px 0px 0px 0px
 ; background   : #000000
@@ -105,7 +117,7 @@ select
 ; position     : absolute
 }
 
-.menubtn-show
+.menudiv-show
 { border-style : none
 ; padding      : 0px 0px 0px 0px
 ; margin       : 0px 0px 0px 0px
@@ -118,7 +130,18 @@ select
 ; position     : absolute
 }
 
-
+.menudiv-hide
+{ border-style : none
+; padding      : 0px 0px 0px 0px
+; margin       : 0px 0px 0px 0px
+; background   : #000000
+; color        : #ffa500
+; width        : 20px
+; height       : 25px
+; top          : 15px
+; left         : 12px
+; position     : absolute
+}
 
 #inputbox
 { border      : 1px solid #000000

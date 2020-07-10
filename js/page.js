@@ -311,10 +311,12 @@ function ShowMenuDropDown(showmenu) {
 
     if (showmenu) {
         btn.setAttribute('multiple', true);
-        div.setAttribute('class', 'menubtn-show');
+        div.setAttribute('class', 'menudiv-show');
+        btn.setAttribute('class', 'menubtn-show');
     } else {
         btn.setAttribute('multiple', false);
-        div.setAttribute('class', 'menubtn-hide');
+        div.setAttribute('class', 'menudiv-hide');
+        btn.setAttribute('class', 'menubtn-hide');
     }
 }
 
