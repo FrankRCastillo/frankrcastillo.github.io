@@ -77,6 +77,8 @@ option
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; outline     : none
+; width       : 200px
+; height      : 28px
 }
 
 option:checked,
@@ -101,8 +103,6 @@ option:active
 }
 
 #maplist
-{ width  : 300px
-; height : 28px
 }
 
 #mapframe

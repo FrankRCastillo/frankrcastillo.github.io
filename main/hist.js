@@ -80,11 +80,20 @@ function historychart(arr) {
 
     frm.setAttribute('id'      , 'mapframe');
     lst.setAttribute('id'      , 'maplist' );
+    
 
-    for (var i = 0; i < arr.length; i++) {
+    for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
-        opt.setAttribute('value', arr[i][0]);
-        opt.textContent = arr[i][1];
+
+        if (i == -1) {
+            opt.setAttribute('disabled', true);
+            opt.setAttribute('selected', true);
+            opt.setAttribute('hidden'  , true);
+            opt.textContent = 'Select Country...';
+        } else {
+            opt.setAttribute('value', arr[i][0]);
+            opt.textContent = arr[i][1];
+        }
         sel.appendChild(opt);
     }
     
