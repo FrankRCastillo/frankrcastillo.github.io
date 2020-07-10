@@ -57,6 +57,16 @@ ul
 ; margin-bottom : 0
 }
 
+option
+{ border      : 1px solid #ffa500
+; margin      : 0px 0px 0px 0px
+; padding     : 0px 0px 0px 0px
+; background  : #000000
+; color       : #ffa500
+; font-family : 'MS PGothic'
+; font-size   : 20px
+}
+
 #outtext
 { overflow : auto
 ; width    : 100%
@@ -64,23 +74,16 @@ ul
 }
 
 #contain
-{ border      : 1px solid #ffa500
-; margin      : 0px 0px 0px 0px
-; padding     : 0px 0px 0px 0px
-; width       : 100%
-; height      : 28px
+{ border  : 1px solid #ffa500
+; margin  : 0px 0px 0px 0px
+; padding : 0px 0px 0px 0px
+; width   : 100%
+; height  : 28px
 }
 
 #maplist
-{ border      : 1px solid #ffa500
-; margin      : 0px 0px 0px 0px
-; padding     : 0px 0px 0px 0px
-; height      : calc(100% - 2px)
-; width       : 300px
-; background  : #000000
-; color       : #ffa500
-; font-family : 'MS PGothic'
-; font-size   : 20px
+{ height : calc(100% - 2px)
+; width  : 300px
 }
 
 #mapframe
