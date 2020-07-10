@@ -80,7 +80,6 @@ function historychart(arr) {
 
     frm.setAttribute('id'      , 'mapframe');
     lst.setAttribute('id'      , 'maplist' );
-    sel.setAttribute('multiple', true      );
 
     for (var i = 0; i < arr.length; i++) {
         var opt = document.createElement('option');
