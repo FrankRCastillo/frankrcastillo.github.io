@@ -67,7 +67,8 @@ option
 ; font-size   : 20px
 }
 
-option:checked
+option:checked,
+option:active
 { color      : #ffa500
 ; background : #000000
 }
