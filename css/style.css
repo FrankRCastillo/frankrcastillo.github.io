@@ -92,6 +92,10 @@ select
 ; width   : calc(100% - 4px)
 }
 
+#menusel {
+width : 20px
+}
+
 #menudiv
 { float      : left
 ; padding    : 0px 0px 0px 0px
@@ -99,7 +103,6 @@ select
 ; color      : #ffa500
 ; background : #000000
 ; height     : 28px
-; width      : 18px
 }
 
 #inputbox
