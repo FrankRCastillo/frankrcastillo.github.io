@@ -92,9 +92,12 @@ select
 ; width   : calc(100% - 4px)
 }
 
+#menusel
+{ border : 1px solid #ffa500
+}
+
 .menubtn-show
-{ border     : 1px solid #ffa500
-; padding    : 0px 0px 0px 0px
+{ padding    : 0px 0px 0px 0px
 ; margin     : 0px 0px 0px 0px
 ; background : #000000
 ; color      : #ffa500
