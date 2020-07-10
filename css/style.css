@@ -119,13 +119,13 @@ ul
 }
 
 .cmdlist
-{ border      : 2px solid #323245
+{ border      : 1px solid #ffa500
 ; margin      : 0px 0px 0px 0px
-; padding     : 3px 3px 3px 3px
+; padding     : 2px 2px 2px 2px
 ; font-family : 'MS PGothic'
 ; font-size   : 20px
 ; color       : #ffffff
-; background  : #13131c
+; background  : #404040
 ; position    : absolute
 ; white-space : nowrap
 }
