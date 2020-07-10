@@ -32,9 +32,9 @@ function NewObject(prnt, attr) {
     return prnt;
 }
 
-function SetConsole() {
+async function SetConsole() {
     var clne = NewCommandLine();
-    var menu = NewMenuDropDown();
+    var menu = await NewMenuDropDown();
     var main = document.createElement('div');
     main.setAttribute('id', 'console');
 
