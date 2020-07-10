@@ -361,7 +361,7 @@ function getjsdesc(str) {
     for (var i = 0; i < lines.length; i++) {
         if (lines[i].match(regex)) {
             var line = lines[i].replace('// |', '');
-            return line.split();
+            return line.split('|');
         }
     }
 }
