@@ -309,7 +309,6 @@ function setinputval(val) {
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
-    var grp  = null;
 
     menu.setAttribute('id', 'menusel');
 
@@ -323,11 +322,12 @@ async function NewMenuDropDown() {
         } else {
             opt.setAttribute('value', lout[i][1]);
             opt.textContent = lout[i][1] + '     ' + lout[i][2];
-            grp = menu.querySelector('#' + lout[i][0] + 'grp');
+            var grps = menu.getElementsByTagName('optgroup')
+            var grp  = grps.find(x => x.label = lbout[i][0]);
 
-            if (grp == null) {
+            if (tgt == null) {
                 grp = document.createElement('optgroup');
-                grp.setAttribute('label', lout[i][0]);
+                grp.setAttribute('label', lout[i][0] + 'grp');
                 menu.appendChild(grp);
             }
 
