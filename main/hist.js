@@ -75,19 +75,21 @@ function parseHistory(str) {
 function historychart(arr) {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
-    var lst = document.createElement('select');
+    var lst = document.createElement('div');
+    var sel = document.createElement('select');
 
     frm.setAttribute('id'      , 'mapframe');
-    lst.setAttribute('id'      , 'maplist' );
-    lst.setAttribute('multiple', true      );
+    sel.setAttribute('id'      , 'maplist' );
+    sel.setAttribute('multiple', true      );
 
     for (var i = 0; i < arr.length; i++) {
         var opt = document.createElement('option');
         opt.setAttribute('value', arr[i][0]);
         opt.textContent = arr[i][1];
-        lst.appendChild(opt);
+        sel.appendChild(opt);
     }
     
+    lst.appendChild(sel);
     out.appendChild(lst);
     out.appendChild(frm);
 
