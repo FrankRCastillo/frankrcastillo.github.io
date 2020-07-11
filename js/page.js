@@ -279,8 +279,10 @@ function NewCommandLine() {
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
 
-    window.addEventListener('keydown', function() {
-        txtinput.focus();
+    window.addEventListener('keydown', function(e) {
+        if (e.keyCode != 38 && e.keyCode != 40) {
+            txtinput.focus();
+        }
     });
 
     window.addEventListener('keyup', function(e) {
