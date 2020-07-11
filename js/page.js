@@ -323,14 +323,14 @@ function ShowMenuDropDown(showmenu) {
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var lout = await getcmdinfo();
-    
+    var grp  = null;
+
     menu.setAttribute(   'id',      'menusel');
     menu.setAttribute('class', 'menubtn-hide');
 
     for (var i = -1; i < lout.length; i++) {
         var opt  = document.createElement('option');
         var grps = menu.getElementsByTagName('optgroup')
-        var grp  = null;
 
         if (grps == null) {
             grp = document.createElement('optgroup');
