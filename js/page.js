@@ -336,7 +336,6 @@ async function NewMenuDropDown() {
             grp = document.createElement('optgroup');
             grp.setAttribute('label', lout[i][0]);
             grp.setAttribute('id'   , lout[i][0]);
-            menu.appendChild(grp);
 
         } else {
             for (var j = 0; j < grps.length; j++) {
@@ -357,6 +356,7 @@ async function NewMenuDropDown() {
             }
         }
         grp.appendChild(opt);
+        menu.appendChild(grp);
     }
     return menu;
 }
