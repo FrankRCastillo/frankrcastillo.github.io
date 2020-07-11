@@ -275,7 +275,10 @@ function NewCommandLine() {
     txtinput.setAttribute('type', 'text');
 
     window.addEventListener('keydown', function(e) {
-        if (e.keyCode != 38 && e.keyCode != 40) {
+        if (e.keyCode == 38 || e.keyCode == 40) {
+            ShowCmdList(true);
+            SetInputVal(GetSelCmd());
+        } else {
             txtinput.focus();
         }
     });
@@ -302,16 +305,20 @@ function NewMenuIcon() {
     });
 
     div.addEventListener('click', function() {
-        ToggleObject('menusel');
+        if (document.getElementById('menusel').style.display == 'inline') {
+            ShowCmdList(true);
+        } else {
+            ShowCmdList(false);
+        }
     });
 
     return div; 
 }
 
-function ToggleObject(id) {
-    var elem = document.getElementById(id);
+function ShowCmdList(showlst) {
+    var elem = document.getElementById('menusel');
 
-    if (elem.style.display == 'none') {
+    if (showlst) {
         elem.style.display = 'inline';
     } else {
         elem.style.display = 'none';
@@ -360,6 +367,11 @@ async function NewMenuDropDown() {
     });
 
     return menu;
+}
+
+function GetSelCmd() {
+    var sel = document.getElementById('menusel');
+    return sel.options[sel.selectedIndex].value;
 }
 
 function GetInputVal() {
