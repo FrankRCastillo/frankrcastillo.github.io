@@ -322,13 +322,19 @@ function ShowMenuDropDown(showmenu) {
 
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
+    var blnk = document.createElement('option');
     var lout = await getcmdinfo();
-    var grp  = null;
 
-    menu.setAttribute(   'id',      'menusel');
-    menu.setAttribute('class', 'menubtn-hide');
+    menu.setAttribute(      'id',      'menusel');
+    menu.setAttribute(   'class', 'menubtn-hide');
+    blnk.setAttribute('disabled',           true);
+    blnk.setAttribute('selected',           true);
+    blnk.setAttribute('hidden'  ,           true);
 
-    for (var i = -1; i < lout.length; i++) {
+    menu.appendChild(blnk);
+    
+    for (var i = 0; i < lout.length; i++) {
+        var grp  = null;
         var opt  = document.createElement('option');
         var grps = menu.getElementsByTagName('optgroup')
 
@@ -342,20 +348,15 @@ async function NewMenuDropDown() {
                     break;
                 }
             }
-            if (i == -1) {
-                opt.setAttribute('disabled', true);
-                opt.setAttribute('selected', true);
-                opt.setAttribute('hidden'  , true);
-                menu.appendChild(opt);
-            } else {
-                grp.setAttribute('label', lout[i][0]);
-                grp.setAttribute('id'   , lout[i][0]);
-                opt.setAttribute('value', lout[i][1]);
-                opt.textContent = lout[i][1] + ' : ' + lout[i][2];
-                grp.appendChild(opt);
-                menu.appendChild(grp);
-            }
         }
+
+        grp.setAttribute('label', lout[i][0]);
+        grp.setAttribute('id'   , lout[i][0]);
+        opt.setAttribute('value', lout[i][1]);
+        opt.textContent = lout[i][1] + ' : ' + lout[i][2];
+        grp.appendChild(opt);
+        menu.appendChild(grp);
+
     }
 
     return menu;
