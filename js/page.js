@@ -305,31 +305,17 @@ function setinputval(val) {
     inputbox.focus();
 }
 
-function ShowMenuDropDown(showmenu) {
-    var btn = document.getElementById('menusel');
-    var div = document.getElementById('menudiv');
-
-    if (showmenu) {
-        btn.setAttribute('multiple', true);
-        div.setAttribute('class', 'menudiv-show');
-        btn.setAttribute('class', 'menubtn-show');
-    } else {
-        btn.setAttribute('multiple', false);
-        div.setAttribute('class', 'menudiv-hide');
-        btn.setAttribute('class', 'menubtn-hide');
-    }
-}
-
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var blnk = document.createElement('option');
     var lout = await getcmdinfo();
 
-    menu.setAttribute(      'id',      'menusel');
-    menu.setAttribute(   'class', 'menubtn-hide');
-    blnk.setAttribute('disabled',           true);
-    blnk.setAttribute('selected',           true);
-    blnk.setAttribute(  'hidden',           true);
+    menu.setAttribute(      'id', 'menusel');
+    menu.setAttribute(   'class', 'menubtn');
+    menu.setAttribute('multiple',      true);
+    blnk.setAttribute('disabled',      true);
+    blnk.setAttribute('selected',      true);
+    blnk.setAttribute(  'hidden',      true);
 
     menu.appendChild(blnk);
     
