@@ -159,21 +159,6 @@ function ArrayToTable(arr, hdrrow, haslink) {
     return table;
 }
 
-function clear() {
-    var outtext = document.getElementById("outtext");
-    outtext.innerHTML = '';
-}
-
-function home() {
-    read('/main/home/home.txt');
-}
-
-async function read(path) {
-    var txt = await ReadFile(path)
-    print('\n');
-    print(txt);
-}
-
 function isURL(url) {
     var results = false;
 
@@ -212,40 +197,39 @@ async function ReadFile(url) {
 
 async function CommandManager(input) {
     clear();
-    setinputval('');
+    SetInputVal('');
 
     var cmd = input.toLowerCase();
 
     switch (cmd) {
         case 'home' : home(); break;
         default:
-            cmdWait();
+            CmdWait();
 
             try {
                 let app = await import('/main/' + cmd + '.js');
                 eval('app.' + cmd + '()');
             } catch(err) {
-                cmdReady();
+                CmdReady();
                 print(cmd + ': command not available');
                 console.log(err.message);
             }
     }
 }
 
-function cmdReady() {
-    var inputbox = document.getElementById('inputbox');
-
-    inputbox.placeholder = '\u25B6 "help", or click menu button, for commands...';
-
-    setinputval('');
+function home() {
+    read('/main/home/home.txt');
 }
 
-function cmdWait() {
-    var inputbox = document.getElementById('inputbox');
+async function read(path) {
+    var txt = await ReadFile(path)
+    print('\n');
+    print(txt);
+}
 
-    inputbox.placeholder = '\u25A0 Loading...';
-
-    setinputval('');
+function clear() {
+    var outtext = document.getElementById("outtext");
+    outtext.innerHTML = '';
 }
 
 function print(text) {
@@ -274,8 +258,20 @@ function print(text) {
     }
 }
 
-function ChangeClass(id, classname) {
-    document.getElementById(id).className = classname;
+function CmdReady() {
+    var inputbox = document.getElementById('inputbox');
+
+    inputbox.placeholder = '\u25B6 "help", or click menu button, for commands...';
+
+    SetInputVal('');
+}
+
+function CmdWait() {
+    var inputbox = document.getElementById('inputbox');
+
+    inputbox.placeholder = '\u25A0 Loading...';
+
+    SetInputVal('');
 }
 
 function NewCommandLine() {
@@ -289,22 +285,11 @@ function NewCommandLine() {
 
     window.addEventListener('keyup', function(e) {
         if (e.keyCode == 13) {
-            CommandManager(getinputval());
+            CommandManager(GetInputVal());
         }
     });
 
     return txtinput;
-}
-
-function getinputval() {
-    var inputbox = document.getElementById('inputbox');
-    return inputbox.value.toLowerCase();
-}
-
-function setinputval(val) {
-    var inputbox = document.getElementById('inputbox');
-    inputbox.value = val;
-    inputbox.focus();
 }
 
 function NewMenuIcon() {
@@ -328,7 +313,7 @@ function ToggleObject(id) {
 async function NewMenuDropDown() {
     var menu = document.createElement('select');
     var blnk = document.createElement('option');
-    var lout = await getcmdinfo();
+    var lout = await GetCmdInfo();
 
     menu.setAttribute(      'id', 'menusel');
     menu.setAttribute(   'class', 'menubtn');
@@ -358,7 +343,18 @@ async function NewMenuDropDown() {
     return menu;
 }
 
-async function getcmdinfo() {
+function GetInputVal() {
+    var inputbox = document.getElementById('inputbox');
+    return inputbox.value.toLowerCase();
+}
+
+function SetInputVal(val) {
+    var inputbox = document.getElementById('inputbox');
+    inputbox.value = val;
+    inputbox.focus();
+}
+
+async function GetCmdInfo() {
     var host = window.location.href;
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
@@ -368,7 +364,7 @@ async function getcmdinfo() {
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[0];
         var file = await ReadFile(host + list[i]);
-        var line = getjsdesc(file);
+        var line = GetJsDesc(file);
         lout.push(line);
     }
 
@@ -377,7 +373,7 @@ async function getcmdinfo() {
     return lout;    
 }
 
-function getjsdesc(str) {
+function GetJsDesc(str) {
     var lines = str.split('\n');
     var regex = '^// |.*'
 
@@ -393,7 +389,7 @@ async function main() {
 
     body.appendChild(await SetConsole());
     home();
-    cmdReady();
+    CmdReady();
 }
 
 main()
