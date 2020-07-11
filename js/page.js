@@ -358,6 +358,7 @@ async function NewMenuDropDown() {
             menu.appendChild(grp);
         }
     }
+
     return menu;
 }
 
