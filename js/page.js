@@ -328,8 +328,20 @@ async function NewMenuDropDown() {
     menu.setAttribute('class', 'menubtn-hide');
 
     for (var i = -1; i < lout.length; i++) {
-        var opt = document.createElement('option');
+        var opt  = document.createElement('option');
+        var grps = menu.getElementsByTagName('optgroup')
         var grp  = null;
+
+        for (var j = 0; j < grps.length; j++) {
+            try {
+                if (grps[0].label == lout[i][0]) {
+                    grp = grps[0];
+                    break;
+                }
+            } catch(err) {
+                console.log(err.message);
+            }
+        }
 
         if (i == -1) {
             opt.setAttribute('disabled', true);
@@ -339,19 +351,6 @@ async function NewMenuDropDown() {
             opt.setAttribute('value', lout[i][1]);
             opt.textContent = lout[i][1] + ' : ' + lout[i][2];
 
-            var grps = menu.getElementsByTagName('optgroup')
-
-            for (var j = 0; j < grps.length; j++) {
-                try {
-                    if (grps[0].label == lout[i][0]) {
-                        grp = grps[0];
-                        break;
-                    }
-                } catch(err) {
-                    console.log(err.message);
-                }
-            }
-
             if (grp == null) {
                 grp = document.createElement('optgroup');
                 grp.setAttribute('label', lout[i][0]);
@@ -359,6 +358,7 @@ async function NewMenuDropDown() {
                 menu.appendChild(grp);
             }
         }
+
         grp.appendChild(opt);
     }
     return menu;
