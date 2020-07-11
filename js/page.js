@@ -332,34 +332,33 @@ async function NewMenuDropDown() {
         var grps = menu.getElementsByTagName('optgroup')
         var grp  = null;
 
-        for (var j = 0; j < grps.length; j++) {
-            try {
+        if (grps == null) {
+            grp = document.createElement('optgroup');
+            grp.setAttribute('label', lout[i][0]);
+            grp.setAttribute('id'   , lout[i][0]);
+            menu.appendChild(grp);
+
+        } else {
+            for (var j = 0; j < grps.length; j++) {
                 if (grps[0].label == lout[i][0]) {
                     grp = grps[0];
                     break;
                 }
-            } catch(err) {
-                console.log(err.message);
             }
+
+            if (i == -1) {
+                opt.setAttribute('disabled', true);
+                opt.setAttribute('selected', true);
+                opt.setAttribute('hidden'  , true);
+
+            } else {
+                opt.setAttribute('value', lout[i][1]);
+                opt.textContent = lout[i][1] + ' : ' + lout[i][2];
+            }
+
+            grp.appendChild(opt);
         }
 
-        if (i == -1) {
-            opt.setAttribute('disabled', true);
-            opt.setAttribute('selected', true);
-            opt.setAttribute('hidden'  , true);
-        } else {
-            opt.setAttribute('value', lout[i][1]);
-            opt.textContent = lout[i][1] + ' : ' + lout[i][2];
-
-            if (grp == null) {
-                grp = document.createElement('optgroup');
-                grp.setAttribute('label', lout[i][0]);
-                grp.setAttribute('id'   , lout[i][0]);
-                menu.appendChild(grp);
-            }
-        }
-
-        grp.appendChild(opt);
     }
     return menu;
 }
