@@ -342,12 +342,7 @@ async function NewMenuDropDown() {
             grp = document.createElement('optgroup');
 
         } else {
-            for (var j = 0; j < grps.length; j++) {
-                if (grps[j].label == lout[i][0]) {
-                    grp = grps[j];
-                    break;
-                }
-            }
+            grp = document.querySelector('optgroup[label="' + lout[i][0] + '"]');
         }
 
         grp.setAttribute('label', lout[i][0]);
