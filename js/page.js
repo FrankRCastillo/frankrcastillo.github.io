@@ -314,9 +314,15 @@ function ShowMenuDropDown(showmenu) {
         div.setAttribute('class', 'menudiv-show');
         btn.setAttribute('class', 'menubtn-show');
     } else {
+        var blnk = document.createElement('option');
+
+        blnk.setAttribute('disabled', true);
+        blnk.setAttribute('selected', true);
+        blnk.setAttribute(  'hidden', true);
         btn.setAttribute('multiple', false);
         div.setAttribute('class', 'menudiv-hide');
         btn.setAttribute('class', 'menubtn-hide');
+        btn.appendChild(blnk);
     }
 }
 
@@ -329,7 +335,7 @@ async function NewMenuDropDown() {
     menu.setAttribute(   'class', 'menubtn-hide');
     blnk.setAttribute('disabled',           true);
     blnk.setAttribute('selected',           true);
-    blnk.setAttribute('hidden'  ,           true);
+    blnk.setAttribute(  'hidden',           true);
 
     menu.appendChild(blnk);
     
