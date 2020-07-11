@@ -353,6 +353,20 @@ async function NewMenuDropDown() {
         menu.appendChild(grp);
     }
 
+    window.addEventListener('keydown', function(e) {
+        var actvesel = document.getElementById('menusel');
+        var inputbox = document.getElementById('inputbox');
+
+        if (actvesel.style.display == 'inline') {
+            if (e.keyCode == 38) {
+                inputbox.focus();
+            } else 
+            if (e.keyCode == 40) {
+                actvesel.selectedItem = 0;
+            }
+        }
+    });
+
     return menu;
 }
 
