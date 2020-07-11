@@ -334,16 +334,13 @@ async function NewMenuDropDown() {
     menu.appendChild(blnk);
     
     for (var i = 0; i < lout.length; i++) {
-        var grp  = null;
-        var opt  = document.createElement('option');
-        var grps = menu.getElementsByTagName('optgroup')
+        var grp = document.getElementById(lout[i][0]);
+        var opt = document.createElement('option');
 
-        if (grps.length == 0) {
+        if (grp == null) {
             grp = document.createElement('optgroup');
             grp.setAttribute('label', lout[i][0]);
             grp.setAttribute('id'   , lout[i][0]);
-        } else {
-            grp = document.getElementById(lout[i][0]);
         }
 
         opt.setAttribute('value', lout[i][1]);
