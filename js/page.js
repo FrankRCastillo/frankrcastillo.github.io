@@ -302,7 +302,7 @@ function NewMenuIcon() {
         ToggleObject('menusel');
     });
 
-    return node; 
+    return div; 
 }
 
 function ToggleObject(id) {
