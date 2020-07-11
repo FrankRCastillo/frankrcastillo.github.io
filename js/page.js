@@ -355,10 +355,8 @@ async function NewMenuDropDown() {
                 opt.setAttribute('value', lout[i][1]);
                 opt.textContent = lout[i][1] + ' : ' + lout[i][2];
             }
-
-            grp.appendChild(opt);
         }
-
+        grp.appendChild(opt);
     }
     return menu;
 }
