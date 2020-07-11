@@ -349,7 +349,7 @@ async function NewMenuDropDown() {
     }
 
     window.addEventListener('keydown', function(e) {
-        if (actvesel.style.display == 'inline') {
+        if (document.getElementById('inputbox').style.display == 'inline') {
             if (e.keyCode == 38) {
                 document.getElementById('inputbox').focus();
             } else 
