@@ -323,6 +323,7 @@ function ShowCmdList(showlst) {
     var elem = document.getElementById('menusel');
 
     if (showlst) {
+        elem.options.selectedIndex = 1;
         elem.style.display = 'inline';
     } else {
         elem.style.display = 'none';
