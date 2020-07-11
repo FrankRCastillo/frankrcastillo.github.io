@@ -298,6 +298,11 @@ function NewMenuIcon() {
     
     div.appendChild(node);
     div.style.cursor = 'pointer';
+
+    div.addEventListener('mouseover', function() {
+        this.focus()
+    });
+
     div.addEventListener('click', function() {
         ToggleObject('menusel');
     });
