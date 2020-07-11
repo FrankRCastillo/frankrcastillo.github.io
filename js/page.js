@@ -296,11 +296,12 @@ function NewMenuIcon() {
     var div  = document.createElement('div');
     var node = document.createTextNode('\u2630');
     
+    div.setAttribute('id', 'menuico');
     div.appendChild(node);
     div.style.cursor = 'pointer';
 
     div.addEventListener('mouseover', function() {
-        this.focus()
+        document.getElementById('menuico').focus()
     });
 
     div.addEventListener('click', function() {
