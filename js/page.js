@@ -317,7 +317,6 @@ function ShowMenuDropDown(showmenu) {
         btn.setAttribute('multiple', false);
         div.setAttribute('class', 'menudiv-hide');
         btn.setAttribute('class', 'menubtn-hide');
-        btn.appendChild(blnk);
     }
 }
 
