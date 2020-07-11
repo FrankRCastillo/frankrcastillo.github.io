@@ -334,8 +334,6 @@ async function NewMenuDropDown() {
 
         if (grps == null) {
             grp = document.createElement('optgroup');
-            grp.setAttribute('label', lout[i][0]);
-            grp.setAttribute('id'   , lout[i][0]);
 
         } else {
             for (var j = 0; j < grps.length; j++) {
@@ -344,19 +342,21 @@ async function NewMenuDropDown() {
                     break;
                 }
             }
-
-            if (i == -1) {
-                opt.setAttribute('disabled', true);
-                opt.setAttribute('selected', true);
-                opt.setAttribute('hidden'  , true);
-
-            } else {
-                opt.setAttribute('value', lout[i][1]);
-                opt.textContent = lout[i][1] + ' : ' + lout[i][2];
-            }
         }
-        grp.appendChild(opt);
-        menu.appendChild(grp);
+
+        if (i == -1) {
+            opt.setAttribute('disabled', true);
+            opt.setAttribute('selected', true);
+            opt.setAttribute('hidden'  , true);
+            menu.appendChild(opt);
+        } else {
+            grp.setAttribute('label', lout[i][0]);
+            grp.setAttribute('id'   , lout[i][0]);
+            opt.setAttribute('value', lout[i][1]);
+            opt.textContent = lout[i][1] + ' : ' + lout[i][2];
+            grp.appendChild(opt);
+            menu.appendChild(grp);
+        }
     }
     return menu;
 }
