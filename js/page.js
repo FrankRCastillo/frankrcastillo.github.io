@@ -300,8 +300,8 @@ function NewMenuIcon() {
     div.appendChild(node);
     div.style.cursor = 'pointer';
 
-    div.addEventListener('mouseover', function() {
-        document.getElementById('menuico').focus()
+    div.addEventListener('mouseover', function(event) {
+        event.focus();
     });
 
     div.addEventListener('click', function() {
