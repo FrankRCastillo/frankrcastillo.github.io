@@ -202,7 +202,8 @@ async function CommandManager(input) {
     var cmd = input.toLowerCase();
 
     switch (cmd) {
-        case 'home' : home(); break;
+        case 'home' : home()                 ; break;
+        case 'help' : ToggleObject('menusel'); break;
         default:
             CmdWait();
 
