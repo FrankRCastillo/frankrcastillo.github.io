@@ -334,7 +334,7 @@ async function NewMenuDropDown() {
     menu.appendChild(blnk);
     
     for (var i = 0; i < lout.length; i++) {
-        var grp = document.getElementById(lout[i][0]);
+        var grp = menu.getElementById(lout[i][0]);
         var opt = document.createElement('option');
 
         if (grp == null) {
