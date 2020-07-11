@@ -41,7 +41,7 @@ async function SetConsole() {
     var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
                , [ 'div', 'console', [ [     'id','outtext'] ] ]
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [   'text','\u2630' ] 
+               , [ 'div', 'menudiv', [ [   'text', '\u2630']
                                      , [ 'object',     menu] ] ]
                , [ 'div', 'contain', [ [     'id','textdiv']
                                      , [ 'object',    clne ] ] ]
