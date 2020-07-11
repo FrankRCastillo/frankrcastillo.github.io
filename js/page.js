@@ -228,8 +228,7 @@ async function read(path) {
 }
 
 function clear() {
-    var outtext = document.getElementById("outtext");
-    outtext.innerHTML = '';
+    document.getElementById('outtext').innerHTML = '';
 }
 
 function print(text) {
@@ -259,17 +258,13 @@ function print(text) {
 }
 
 function CmdReady() {
-    var inputbox = document.getElementById('inputbox');
-
-    inputbox.placeholder = '\u25B6 "help", or click menu button, for commands...';
+    document.getElementById('inputbox').placeholder = '\u25B6 "help", or click menu button, for commands...';
 
     SetInputVal('');
 }
 
 function CmdWait() {
-    var inputbox = document.getElementById('inputbox');
-
-    inputbox.placeholder = '\u25A0 Loading...';
+    document.getElementById('inputbox').placeholder = '\u25A0 Loading...';
 
     SetInputVal('');
 }
@@ -303,7 +298,7 @@ function NewMenuIcon() {
     div.style.cursor = 'pointer';
 
     div.addEventListener('mouseover', function(event) {
-        event.focus();
+        document.getElementById('menuico').focus();
     });
 
     div.addEventListener('click', function() {
@@ -354,15 +349,12 @@ async function NewMenuDropDown() {
     }
 
     window.addEventListener('keydown', function(e) {
-        var actvesel = document.getElementById('menusel');
-        var inputbox = document.getElementById('inputbox');
-
         if (actvesel.style.display == 'inline') {
             if (e.keyCode == 38) {
-                inputbox.focus();
+                document.getElementById('inputbox').focus();
             } else 
             if (e.keyCode == 40) {
-                actvesel.selectedItem = 0;
+                document.getElementById('menusel').selectedItem = 0;
             }
         }
     });
@@ -371,8 +363,7 @@ async function NewMenuDropDown() {
 }
 
 function GetInputVal() {
-    var inputbox = document.getElementById('inputbox');
-    return inputbox.value.toLowerCase();
+    return document.getElementById('inputbox').value.toLowerCase();
 }
 
 function SetInputVal(val) {
