@@ -203,7 +203,6 @@ async function CommandManager(input) {
 
     switch (cmd) {
         case 'home' : home()                 ; break;
-        case 'help' : ToggleObject('menusel'); break;
         default:
             CmdWait();
 
