@@ -34,6 +34,7 @@ function NewObject(prnt, attr) {
 
 async function SetConsole() {
     var clne = NewCommandLine();
+    var icon = NewMenuIcon();
     var menu = await NewMenuDropDown();
     var main = document.createElement('div');
     main.setAttribute('id', 'console');
@@ -41,7 +42,7 @@ async function SetConsole() {
     var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
                , [ 'div', 'console', [ [     'id','outtext'] ] ]
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [   'text', '\u2630']
+               , [ 'div', 'menudiv', [ [ 'object',     icon]
                                      , [ 'object',     menu] ] ]
                , [ 'div', 'contain', [ [     'id','textdiv']
                                      , [ 'object',    clne ] ] ]
@@ -304,6 +305,24 @@ function setinputval(val) {
     var inputbox = document.getElementById('inputbox');
     inputbox.value = val;
     inputbox.focus();
+}
+
+function NewMenuIcon() {
+    var node = document.createTextNode('\u2630');
+    
+    node.setAttribute('onclick', ToggleObject('menusel'));
+
+    return node; 
+}
+
+function ToggleObject(id) {
+    var elem = document.getElementById(id);
+
+    if (elem.style.display == 'none') {
+        elem.style.display = 'inline';
+    } else {
+        elem.style.display = 'none';
+    }
 }
 
 async function NewMenuDropDown() {
