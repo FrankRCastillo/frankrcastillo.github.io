@@ -286,6 +286,9 @@ function NewCommandLine() {
     window.addEventListener('keyup', function(e) {
         if (e.keyCode == 13) {
             CommandManager(GetInputVal());
+        } else
+        if (e.keyCode == 27) {
+            ShowCmdList(false);
         }
     });
 
