@@ -332,7 +332,7 @@ async function NewMenuDropDown() {
         var opt  = document.createElement('option');
         var grps = menu.getElementsByTagName('optgroup')
 
-        if (grps == null) {
+        if (grps.length == 0) {
             grp = document.createElement('optgroup');
 
         } else {
