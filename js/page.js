@@ -294,8 +294,10 @@ function NewCommandLine() {
 
 function NewMenuIcon() {
     var node = document.createTextNode('\u2630');
-    
-    node.setAttribute('onclick', ToggleObject('menusel'));
+
+    node.addEventListener('click', function() {
+        ToggleObject('menusel');
+    });
 
     return node; 
 }
