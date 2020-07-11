@@ -297,7 +297,7 @@ function NewMenuIcon() {
     var node = document.createTextNode('\u2630');
     
     div.appendChild(node);
-
+    div.style.cursor = 'pointer';
     div.addEventListener('click', function() {
         ToggleObject('menusel');
     });
