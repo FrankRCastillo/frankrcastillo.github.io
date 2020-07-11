@@ -18,7 +18,7 @@ export async function hist() {
     }
 
     historychart(arr);
-    cmdReady();
+    CmdReady();
 }
 
 function parseHistory(str) {

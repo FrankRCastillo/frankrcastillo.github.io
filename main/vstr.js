@@ -89,5 +89,5 @@ export async function vstr() {
     visitDiv.innerHTML = visitMsg;
 
     outtext.appendChild(visitDiv);
-    cmdReady();
+    CmdReady();
 }

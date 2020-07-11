@@ -6,5 +6,5 @@ export async function blog() {
 
     clear();
     print('blog in progres...');
-    cmdReady();
+    CmdReady();
 }

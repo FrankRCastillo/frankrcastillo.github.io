@@ -24,5 +24,5 @@ export async function news() {
     var tbl = ArrayToTable(arr, false, true);
     clear();
     otx.appendChild(tbl);
-    cmdReady();
+    CmdReady();
 }
