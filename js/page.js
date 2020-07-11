@@ -306,9 +306,9 @@ function NewMenuIcon() {
 
     div.addEventListener('click', function() {
         if (document.getElementById('menusel').style.display == 'inline') {
-            ShowCmdList(true);
-        } else {
             ShowCmdList(false);
+        } else {
+            ShowCmdList(true);
         }
     });
 
