@@ -104,20 +104,6 @@ select
 ; position   : absolute
 }
 
-.menubtn-hide
-{ border-style : none
-; padding      : 0px 0px 0px 0px
-; margin       : 0px 0px 0px 0px
-; background   : #000000
-; color        : #ffa500
-; width        : 20px
-; height       : 25px
-; top          : 15px
-; left         : 12px
-; position     : absolute
-; overflow     : hidden
-}
-
 .menudiv-show
 { border-style : none
 ; padding      : 0px 0px 0px 0px
@@ -129,6 +115,20 @@ select
 ; top          : 41px
 ; left         : 10px
 ; position     : absolute
+}
+
+.menubtn-hide
+{ border-style : none
+; padding      : 0px 0px 0px 0px
+; margin       : 0px 0px 0px 0px
+; background   : #000000
+; color        : #ffa500
+; width        : 20px
+; height       : 25px
+; top          : 0px
+; left         : 0px
+; position     : absolute
+; overflow     : hidden
 }
 
 .menudiv-hide
