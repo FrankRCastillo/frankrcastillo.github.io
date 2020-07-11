@@ -343,8 +343,8 @@ async function NewMenuDropDown() {
 
         } else {
             for (var j = 0; j < grps.length; j++) {
-                if (grps[0].label == lout[i][0]) {
-                    grp = grps[0];
+                if (grps[j].label == lout[i][0]) {
+                    grp = grps[j];
                     break;
                 }
             }
