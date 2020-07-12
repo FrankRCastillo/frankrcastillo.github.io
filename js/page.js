@@ -321,6 +321,7 @@ function ShowCmdList(showlst) {
 
     if (showlst) {
         elem.options.selectedIndex = 1;
+        elem.focus();
         SetInputVal(elem.options[elem.selectedIndex].value); 
         elem.style.display = 'inline';
     } else {
