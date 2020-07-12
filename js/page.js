@@ -342,8 +342,6 @@ async function GetCmdInfo() {
     var list = await FileList(/main\/.*\.js/);
     var lout = [];
 
-    lout.push(['core', 'home', 'Show the home screen']);
-
     for (var i = 0; i < list.length; i++) {
         var base = list[i].split('\/')[0];
         var file = await ReadFile(host + list[i]);
@@ -352,7 +350,7 @@ async function GetCmdInfo() {
     }
 
     lout.sort();
-
+    lout.unshift(['core', 'home', 'Show the home screen']);
     return lout;    
 }
 
