@@ -125,7 +125,9 @@ function historychart(arr) {
                                                   var path = d3.geo.path()
                                                                    .projection(projection);
 
-                                                  return {path: path, projection: projection};
+                                                  return { path       : path
+                                                         , projection : projection
+                                                         };
                                               }
     });
 
