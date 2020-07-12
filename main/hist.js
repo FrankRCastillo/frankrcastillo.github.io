@@ -103,10 +103,13 @@ function historychart(arr) {
     
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
-                          , fills           : { defaultFill      : '#000000' }
-                          , geographyConfig : { highlightOnHover : true
-                                              , popupOnHover     : false
-                                              , borderWidth      : 0
+                          , projection      : 'equirectangular'
+                          , fills           : { defaultFill          : '#000000' }
+                          , geographyConfig : { highlightOnHover     : true
+                                              , popupOnHover         : false
+                                              , borderWidth          : 1
+                                              , borderColor          : '#303030'
+                                              , highlightBorderColor : '#ffa500'
                                               }
     });
 
