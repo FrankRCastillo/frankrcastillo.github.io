@@ -92,6 +92,10 @@ select
 ; width   : calc(100% - 4px)
 }
 
+#mapselect
+{ height : 24px
+}
+
 #maptools
 { height : 26px
 }
