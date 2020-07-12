@@ -95,9 +95,9 @@ function historychart(arr) {
 
     for (var i = 0; i < zmCmd.length; i++) {
         var zmIco = document.createElement('button');
-        zmIco.textContent = zmBtn[i];
+        zmIco.textContent = zmCmd[i];
         zmIco.setAttribute('class', 'zoombtn');
-        zmIco.setAttribute('onclick', 'javascript:menuzoom("' + zmBtn[i] + '")');
+        zmIco.setAttribute('onclick', 'javascript:menuzoom("' + zmCmd[i] + '")');
         zmBtn.appendChild(zmIco);
     }
 
