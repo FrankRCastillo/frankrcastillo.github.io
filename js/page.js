@@ -321,7 +321,7 @@ function ShowCmdList(showlst) {
     var elem = document.getElementById('menusel');
 
     if (showlst) {
-        elem.options.selectedIndex = 1;
+        SetInputVal(elem.options[elem.selectedIndex].value); 
         elem.style.display = 'inline';
     } else {
         elem.style.display = 'none';
