@@ -141,7 +141,9 @@ function mapzoom() {
     out.textContent = '-';
     out.addEventListener('click', function() {
         var map = document.getElementsByClassName('datamap')[0];
-        map.currentScale -= 0.5;
+        if (map.currentScale <= 1) {
+            map.currentScale -= 0.5;
+        }
     });
 
     rst.textContent = '1:1';
