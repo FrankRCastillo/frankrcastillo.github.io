@@ -318,7 +318,7 @@ async function NewMenuDropDown() {
     menu.addEventListener('click', function(e) {
         var idx = e.path[0].selectedIndex;
         var val = e.path[0][idx].value;
-        console.log(val);
+        CommandManager(val);
     });
 
     return menu;
