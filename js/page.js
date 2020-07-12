@@ -315,7 +315,7 @@ async function NewMenuDropDown() {
         menu.appendChild(grp);
     }
 
-    menu.addEventListener('onchange', function(e) {
+    menu.addEventListener('click', function(e) {
         console.log(e);
     });
 
