@@ -116,7 +116,7 @@ function historychart(arr) {
     }
 
     lst.appendChild(sel);
-    lst.appendChild(mapbuttons());
+    lst.appendChild(zbt);
     out.appendChild(lst);
     out.appendChild(frm);
     
