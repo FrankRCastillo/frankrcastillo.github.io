@@ -1,8 +1,8 @@
 // |govt|hist|World history infographic (powered by CIA World Factbook)
 
 export async function hist() {
-    var url = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html'
-    var txt = await ReadFile(url);
+    var txt = await ReadFile('https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html');
+    var iso = await ReadFile('/main/hist/iso.csv');
     var doc = new DOMParser().parseFromString(txt, 'text/html');
     var lst = doc.getElementById('fieldListing');
     var bdy = lst.getElementsByTagName('tbody');
