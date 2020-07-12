@@ -124,7 +124,7 @@ function historychart(arr) {
     });
 
     document.getElementById('mapframe').addEventListener('dblclick', function() {
-        map.setProection : function(element) {
+        map.setProection = function(element) {
                                var offwdt = element.offsetWidth / 2;
                                var offhgt = element.offsetHeight / 2;
                                var projection = d3.geo.mercator()
