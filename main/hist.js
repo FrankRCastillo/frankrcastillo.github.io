@@ -96,8 +96,10 @@ function historychart(arr) {
         }
         sel.appendChild(opt);
     }
-    
+
     lst.appendChild(sel);
+    lst.appendChild(mapzoom());
+
     out.appendChild(lst);
     out.appendChild(frm);
     
@@ -122,23 +124,35 @@ function historychart(arr) {
                , fontSize   : 12
                , fontFamily : 'MS PGothic'
     });
+}
 
-    document.getElementById('mapframe').addEventListener('dblclick', function() {
-        map.setProjection = function(element) {
-                                var offwdt = element.offsetWidth / 2;
-                                var offhgt = element.offsetHeight / 2;
-                                var projection = d3.geo.mercator()
-                                                       .center([19, -3])
-                                                       .rotate([4.4, 0])
-                                                       .scale(400)
-                                                       .translate([offwdt, offhgt]);
- 
-                                var path = d3.geo.path()
-                                                 .projection(projection);
- 
-                                return { path       : path
-                                       , projection : projection
-                                       };
-                            }
+function mapzoom() {
+    var zin = document.createElement('button');
+    var out = document.createElement('button');
+    var rst = document.createElement('button');
+    var div = document.createElement('div');
+    
+    zin.textContent = '+';
+    zin.addEventListener('click' function() {
+        var map = document.getElementsByClass('datamap')[0];
+        map.currentScale += 0.5;
     });
+
+    out.textContent = '-';
+    out.addEventListener('click', function() {
+        var map = document.getElementsByClass('datamap')[0];
+        map.currentScale -= 0.5;
+    });
+
+    rst.textContent = '1:1';
+    rst.addEventListener('click', function() {
+        var map = document.getElementsByClass('datamap')[0];
+        map.currentScale = 1;
+    });
+
+    div.appendChild(zin);
+    div.appendChild(out);
+    div.appendChild(rst);
+
+    return div;
 }
