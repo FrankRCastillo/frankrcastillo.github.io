@@ -85,21 +85,12 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
-    var zmBtn = document.createElement('div');
-    var zmCmd = [ '+', '-', '1:1' ]
+    var zbt = document.createElement('div');
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
-    zmBtn.setAttribute('id', 'mapzoom');
-
-    for (var i = 0; i < zmCmd.length; i++) {
-        var zmIco = document.createElement('button');
-        zmIco.textContent = zmCmd[i];
-        zmIco.setAttribute('class', 'zoombtn');
-        zmIco.setAttribute('onclick', 'javascript:menuzoom("' + zmCmd[i] + '")');
-        zmBtn.appendChild(zmIco);
-    }
+    zbt.setAttribute('id', 'mapzoom');
 
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
@@ -116,7 +107,7 @@ function historychart(arr) {
     }
 
     lst.appendChild(sel);
-    lst.appendChild(zmBtn);
+    lst.appendChild(mapbuttonsi());
     out.appendChild(lst);
     out.appendChild(frm);
     
@@ -161,4 +152,19 @@ function mapzoom(action) {
             map.currentScale = 1;
             break;
     }
+}
+
+function mapbuttons() {
+    var zmBtn = document.createElement('div');
+    var zmCmd = [ '+', '-', '1:1' ];
+
+    for (var i = 0; i < zmCmd.length; i++) {
+        var zmIco = document.createElement('button');
+        zmIco.textContent = zmCmd[i];
+        zmIco.setAttribute('class', 'zoombtn');
+        zmIco.setAttribute('onclick', 'javascript:menuzoom("' + zmCmd[i] + '")');
+        zmBtn.appendChild(zmIco);
+    }
+
+    return zmBtn;
 }
