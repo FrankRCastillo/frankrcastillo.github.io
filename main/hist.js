@@ -132,19 +132,19 @@ function mapzoom() {
     
     zin.textContent = '+';
     zin.addEventListener('click', function() {
-        var map = document.getElementsByClass('datamap')[0];
+        var map = document.getElementsByClassName('datamap')[0];
         map.currentScale += 0.5;
     });
 
     out.textContent = '-';
     out.addEventListener('click', function() {
-        var map = document.getElementsByClass('datamap')[0];
+        var map = document.getElementsByClassName('datamap')[0];
         map.currentScale -= 0.5;
     });
 
     rst.textContent = '1:1';
     rst.addEventListener('click', function() {
-        var map = document.getElementsByClass('datamap')[0];
+        var map = document.getElementsByClassName('datamap')[0];
         map.currentScale = 1;
     });
 
