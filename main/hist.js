@@ -97,7 +97,7 @@ function historychart(arr) {
         var ico = document.createElement('button');
         ico.textContent = zmCmd[i];
         ico.setAttribute('class', 'zoombtn');
-        ico.addEventListener('click', mapzoom(zmCmd[i]));
+        ico.addEventListener('click', 'javascript:mapzoom("' + zmCmd[i] + '")');
         zbt.appendChild(zmIco);
     }
 
