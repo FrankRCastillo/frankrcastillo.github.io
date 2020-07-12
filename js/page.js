@@ -287,7 +287,6 @@ function NewCommandLine() {
 
             case 38: 
             case 40:
-                ShowCmdList(true);
                 SetInputVal(GetSelCmd());
                 break;
                      
