@@ -103,15 +103,15 @@ function historychart(arr) {
     
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
-                          , fills           : { defaultFill      : '#ffffff' }
+                          , fills           : { defaultFill      : '#000000' }
                           , geographyConfig : { highlightOnHover : true
                                               , popupOnHover     : false
                                               , borderWidth      : 0
                                               }
     });
 
-    map.labels({labelColor : '#ffa500'
-               , fontSize  : 6
+    map.labels({ labelColor : '#ffa500'
+               , fontSize   : 12
                , fontFamily : 'MS PGothic'
     });
 }
