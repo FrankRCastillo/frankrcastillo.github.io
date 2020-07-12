@@ -104,6 +104,7 @@ function historychart(arr) {
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
                           , projection      : 'equirectangular'
+                          , responsive      : true
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : false
