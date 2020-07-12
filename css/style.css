@@ -69,6 +69,16 @@ select
 ; width       : 200px
 }
 
+button
+{ border      : 1px solid #ffa500
+; margin      : 0px 0px 0px 0px
+; padding     : 0px 0px 0px 0px
+; background  : #000000
+; color       : #ffa500
+; font-family : courier
+; font-size   : 20px
+}
+
 #outtext
 { overflow : auto
 ; width    : calc100%
@@ -93,9 +103,14 @@ select
 }
 
 #mapzoom
-{ height   : 26px
-; left     : 200px
+{ top      : 0px
+; left     : 220px
 ; position : absolute
+}
+
+.zoombtn
+{ height : 26px
+; width  : 26px
 }
 
 #mapselect

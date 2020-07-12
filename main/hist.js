@@ -150,6 +150,10 @@ function mapzoom() {
         map.currentScale = 1;
     });
 
+    zin.setAttribute('class', 'zoombtn');
+    out.setAttribute('class', 'zoombtn');
+    rst.setAttribute('class', 'zoombtn');
+
     div.appendChild(zin);
     div.appendChild(out);
     div.appendChild(rst);
