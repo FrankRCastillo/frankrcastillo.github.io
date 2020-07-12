@@ -162,8 +162,3 @@ function mapzoom(action) {
             break;
     }
 }
-
-function mapbuttons() {
-
-    return zmBtn;
-}
