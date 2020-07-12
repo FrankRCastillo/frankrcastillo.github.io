@@ -131,7 +131,7 @@ function mapzoom() {
     var div = document.createElement('div');
     
     zin.textContent = '+';
-    zin.addEventListener('click' function() {
+    zin.addEventListener('click', function() {
         var map = document.getElementsByClass('datamap')[0];
         map.currentScale += 0.5;
     });
