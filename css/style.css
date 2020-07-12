@@ -97,11 +97,8 @@ select
 ; margin     : 0px 0px 0px 0px
 ; background : #000000
 ; color      : #ffa500
-; width      : 850px
-; height     : 215px
-; top        : 41px
-; left       : 10px
-; position   : absolute
+; width      : 25px
+; height     : 25px
 }
 
 .menudiv
@@ -110,10 +107,8 @@ select
 ; margin       : 0px 0px 0px 0px
 ; background   : #000000
 ; color        : #ffa500
-; width        : 850px
-; height       : 215px
-; top          : 41px
-; left         : 10px
+; width        : 25px
+; height       : 25px
 ; float        : left
 }
 

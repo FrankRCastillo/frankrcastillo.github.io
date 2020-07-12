@@ -34,7 +34,6 @@ function NewObject(prnt, attr) {
 
 async function SetConsole() {
     var clne = NewCommandLine();
-    var icon = NewMenuIcon();
     var menu = await NewMenuDropDown();
     var main = document.createElement('div');
     main.setAttribute('id', 'console');
@@ -42,8 +41,7 @@ async function SetConsole() {
     var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
                , [ 'div', 'console', [ [     'id','outtext'] ] ]
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [ 'object',     icon]
-                                     , [ 'object',     menu] ] ]
+               , [ 'div', 'menudiv', [ [ 'object',     menu] ] ]
                , [ 'div', 'contain', [ [     'id','textdiv']
                                      , [ 'object',    clne ] ] ]
                ]
