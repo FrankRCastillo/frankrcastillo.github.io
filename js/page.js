@@ -264,7 +264,6 @@ function CmdReady() {
 function CmdWait() {
     document.getElementById('inputbox').placeholder = '\u25A0 Loading...';
 
-    ShowCmdList(false);
     SetInputVal('');
 }
 
