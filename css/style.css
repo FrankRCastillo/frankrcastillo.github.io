@@ -76,7 +76,7 @@ button
 ; background  : #000000
 ; color       : #ffa500
 ; font-family : courier
-; font-size   : 20px
+; font-size   : 12px
 }
 
 #outtext
@@ -103,7 +103,7 @@ button
 }
 
 #mapzoom
-{ top      : 0px
+{ top      : 25px
 ; left     : 220px
 ; position : absolute
 }
