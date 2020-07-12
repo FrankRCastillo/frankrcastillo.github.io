@@ -180,6 +180,7 @@ async function ReadFile(url) {
 
             if ( readhost.hostname != currhost.hostname
               && readhost.hostname != 'api.github.com'
+              && readhost.hostname != 'freegeoip.app'
               && isURL(url)) {
                 corsprxy = 'https://cors-anywhere.herokuapp.com/';
             }
