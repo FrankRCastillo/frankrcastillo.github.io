@@ -78,9 +78,8 @@ function historychart(arr) {
     var lst = document.createElement('div');
     var sel = document.createElement('select');
 
-    frm.setAttribute('id'      , 'mapframe');
-    lst.setAttribute('id'      , 'maplist' );
-    
+    frm.setAttribute('id', 'mapframe');
+    lst.setAttribute('id', 'maptools' );
 
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
