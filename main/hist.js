@@ -77,12 +77,21 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
-    var zbt = mapzoom();
+    var zmBtn = document.createElement('div');
+    var zmCmd = [ '+', '-', '1:1' ]
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
-    zbt.setAttribute('id', 'mapzoom');
+    zmBtn.setAttribute('id', 'mapzoom');
+
+    for (var i = 0; i < zmCmd.length; i++) {
+        var zmIco = document.createElement('button');
+        zmIco.textContent = zmBtn[i];
+        zmIco.setAttribute('class', 'zoombtn');
+        zmIco.setAttribute('onclick', 'javascript:menuzoom("' + zmBtn[i] + '")');
+        zmBtn.appendChild(zmIco);
+    }
 
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
@@ -99,7 +108,7 @@ function historychart(arr) {
     }
 
     lst.appendChild(sel);
-    lst.appendChild(zbt);
+    lst.appendChild(zmBtn);
     out.appendChild(lst);
     out.appendChild(frm);
     
@@ -126,39 +135,22 @@ function historychart(arr) {
     });
 }
 
-function mapzoom() {
-    var zin = document.createElement('button');
-    var out = document.createElement('button');
-    var rst = document.createElement('button');
-    var div = document.createElement('div');
+function mapzoom(action) {
+    var map = document.getElementsByClassName('datamap')[0];
     
-    zin.textContent = '+';
-    zin.addEventListener('click', function() {
-        var map = document.getElementsByClassName('datamap')[0];
-        map.currentScale += 0.5;
-    });
+    switch(action) {
+        case '+':
+            map.currentScale += 0.5;
+            break;
 
-    out.textContent = '-';
-    out.addEventListener('click', function() {
-        var map = document.getElementsByClassName('datamap')[0];
-        if (map.currentScale - 0.5 >= 1) {
-            map.currentScale -= 0.5;
-        }
-    });
+        case '-':
+            if (map.currentScale - 0.5 >= 1) {
+                map.currentScale -= 0.5;
+            }
+            break;
 
-    rst.textContent = '1:1';
-    rst.addEventListener('click', function() {
-        var map = document.getElementsByClassName('datamap')[0];
-        map.currentScale = 1;
-    });
-
-    zin.setAttribute('class', 'zoombtn');
-    out.setAttribute('class', 'zoombtn');
-    rst.setAttribute('class', 'zoombtn');
-
-    div.appendChild(zin);
-    div.appendChild(out);
-    div.appendChild(rst);
-
-    return div;
+        case '1:1':
+            map.currentScale = 1;
+            break;
+    }
 }
