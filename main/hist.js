@@ -20,6 +20,7 @@ export async function hist() {
     historychart(arr);
 
     var map = document.getElementsByClassName('datamap')[0];
+
     map.addEventListener('dragover', function(event){
         var x = event.pageX;
         var y = event.pageY;
@@ -97,7 +98,9 @@ function historychart(arr) {
         var ico = document.createElement('button');
         ico.textContent = zmCmd[i];
         ico.setAttribute('class', 'zoombtn');
-        ico.setAttribute('onclick', 'mapzoom("' + zmCmd[i] + '")');
+        ico.addEventListener('onclick', function() {
+            mapzoom(zmCmd[i]);
+        });
         zbt.appendChild(ico);
     }
 
