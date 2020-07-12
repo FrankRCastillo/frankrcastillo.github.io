@@ -287,6 +287,7 @@ function NewCommandLine() {
 
             case 38: 
             case 40:
+
                 SetInputVal(GetSelCmd());
                 break;
                      
@@ -338,7 +339,6 @@ async function NewMenuDropDown() {
 
     menu.setAttribute(      'id', 'menusel');
     menu.setAttribute(   'class', 'menubtn');
-    menu.setAttribute('multiple',      true);
     blnk.setAttribute('disabled',      true);
     blnk.setAttribute('selected',      true);
     blnk.setAttribute(  'hidden',      true);

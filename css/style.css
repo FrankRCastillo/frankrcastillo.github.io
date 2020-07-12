@@ -102,7 +102,6 @@ select
 ; top        : 41px
 ; left       : 10px
 ; position   : absolute
-; display    : none
 }
 
 .menudiv
@@ -115,8 +114,7 @@ select
 ; height       : 215px
 ; top          : 41px
 ; left         : 10px
-; position     : absolute
-; display      : none
+; float        : left
 }
 
 #inputbox
@@ -130,9 +128,6 @@ select
 ; width       : calc(100% - 45px)
 ; color       : #ffa500
 ; background  : #000000
-; position    : absolute
-; top         : 11px
-; left        : 32px
 }
 
 #textdiv
