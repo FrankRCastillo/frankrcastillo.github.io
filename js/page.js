@@ -279,55 +279,11 @@ function NewCommandLine() {
                 CommandManager(GetInputVal());
                 break;
 
-            case 27:
-                ShowCmdList(false);
-                break;
-
-            case 38: 
-            case 40:
-
-                SetInputVal(GetSelCmd());
-                break;
-                     
             default:
         }
     });
 
     return txtinput;
-}
-
-function NewMenuIcon() {
-    var div  = document.createElement('div');
-    var node = document.createTextNode('\u2630');
-    
-    div.setAttribute('id', 'menuico');
-    div.appendChild(node);
-    div.style.cursor = 'pointer';
-
-    div.addEventListener('click', function() {
-        if (document.getElementById('menusel').style.display == 'inline') {
-            ShowCmdList(false);
-        } else {
-            ShowCmdList(true);
-        }
-    });
-
-    return div; 
-}
-
-function ShowCmdList(showlst) {
-    var elem = document.getElementById('menusel');
-
-    if (showlst) {
-        elem.options.selectedIndex = 1;
-        elem.focus();
-        SetInputVal(elem.options[elem.selectedIndex].value); 
-        elem.style.display = 'inline';
-    } else {
-        SetInputVal('');
-        elem.options.selectedIndex = 0;
-        elem.style.display = 'none';
-    }
 }
 
 async function NewMenuDropDown() {
