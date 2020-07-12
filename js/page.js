@@ -315,6 +315,10 @@ async function NewMenuDropDown() {
         menu.appendChild(grp);
     }
 
+    menu.addEventListener('onchange', function(e) {
+        console.log(e);
+    });
+
     return menu;
 }
 
