@@ -107,7 +107,7 @@ function historychart(arr) {
                           , responsive      : true
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
-                                              , popupOnHover         : false
+                                              , popupOnHover         : true
                                               , borderWidth          : 1
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
