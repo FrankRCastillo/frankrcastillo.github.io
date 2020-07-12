@@ -89,11 +89,11 @@ select
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
 ; height  : calc(100% - 35px)
-; width   : calc(100% - 2px)
+; width   : calc(100% - 4px)
 }
 
 #mapselect
-{ height : 24px
+{ height : 22px
 }
 
 #maptools
