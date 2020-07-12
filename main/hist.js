@@ -116,7 +116,7 @@ function historychart(arr) {
                           , setProjection   : function(element) {
                                                   var offwdt = element.offsetWidth / 2;
                                                   var offhgt = element.offsetHeight / 2;
-                                                  var projection = d3.geo.equirectangular()
+                                                  var projection = d3.geo.mercator()
                                                                          .center([19, -3])
                                                                          .rotate([4.4, 0])
                                                                          .scale(400)
