@@ -82,6 +82,17 @@ function historychart(arr) {
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
 
+    var map = new Datamap({ element         : document.getElementById('mapframe')
+                          , scope           : 'world'
+                          , fills           : { defaultFill      : '#ffffff' }
+                          , geographyConfig : { highlightOnHover : true
+                                              , popupOnHover     : false
+                                              , borderWidth      : 0
+                                              }
+    });
+
+    map.labels();
+
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
 
@@ -101,12 +112,5 @@ function historychart(arr) {
     out.appendChild(lst);
     out.appendChild(frm);
 
-    var map = new Datamap({ element         : document.getElementById('mapframe')
-                          , scope           : 'world'
-                          , fills           : { defaultFill      : '#ffffff' }
-                          , geographyConfig : { highlightOnHover : true
-                                              , popupOnHover     : false
-                                              , borderWidth      : 0
-                                              }
-    });
+    
 }
