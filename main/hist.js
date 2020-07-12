@@ -110,5 +110,8 @@ function historychart(arr) {
                                               }
     });
 
-    map.labels();
+    map.labels({labelColor : '#ffa500'
+               , fontSize  : 6
+               , fontFamily : 'MS PGothic'
+    });
 }
