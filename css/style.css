@@ -97,7 +97,10 @@ select
 }
 
 #maptools
-{ height : 26px
+{ height  : 26px
+; border  : 1px solid #000000
+; margin  : 0px 0px 0px 0px
+; padding : 0px 0px 0px 0px
 }
 
 .menubtn
