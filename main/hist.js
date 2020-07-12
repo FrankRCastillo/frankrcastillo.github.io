@@ -110,6 +110,7 @@ function historychart(arr) {
                                               , borderWidth          : 1
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
+                                              , highlightFillColor   : '#000000'
                                               }
     });
 
