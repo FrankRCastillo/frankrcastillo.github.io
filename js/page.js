@@ -204,14 +204,14 @@ async function CommandManager(input) {
         default:
             CmdWait();
 
-//            try {
+            try {
                 let app = await import('/main/' + cmd + '.js');
                 eval('app.' + cmd + '()');
-//            } catch(err) {
+            } catch(err) {
                 CmdReady();
-//                print(cmd + ': command not available');
-//                console.log(err.message);
-//            }
+                print(cmd + ': command not available');
+                console.log(err.message);
+            }
     }
 }
 
