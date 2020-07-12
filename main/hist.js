@@ -114,14 +114,16 @@ function historychart(arr) {
                                               , highlightFillColor   : '#000000'
                                               }
                           , setProjection   : function(element) {
+                                                  var offwdt = element.offsetWidth / 2;
+                                                  var offhgt = element.offsetHeight / 2;
                                                   var projection = d3.geo.equirectangular()
-                                                      .center([19, -3])
-                                                      .rotate([4.4, 0])
-                                                      .scale(400)
-                                                      .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+                                                                         .center([19, -3])
+                                                                         .rotate([4.4, 0])
+                                                                         .scale(400)
+                                                                         .translate([offwdt, offhgt]);
 
                                                   var path = d3.geo.path()
-                                                      .projection(projection);
+                                                                   .projection(projection);
 
                                                   return {path: path, projection: projection};
                                               }
