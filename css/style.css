@@ -71,7 +71,7 @@ select
 
 #outtext
 { overflow : auto
-; width    : 100%
+; width    : calc(100% - 4px)
 ; height   : calc(100vh - 55px)
 }
 
@@ -98,7 +98,7 @@ select
 
 #maptools
 { height  : 26px
-; width   : calc(100 - 2px)
+; width   : calc(100 - 4px)
 ; border  : 1px solid #ffa500
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
