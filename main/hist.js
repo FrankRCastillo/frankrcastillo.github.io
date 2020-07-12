@@ -112,9 +112,11 @@ function historychart(arr) {
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
-                                              , popupTemplate: function(geography, data) { // This function should just return a string
-                                                    return '&lt;div class="hoverinfo"&gt;&lt;strong&gt;' + geography.properties.name + '&lt;/strong&gt;&lt;/div&gt;';
-                                                },
+                                              , popupTemplate        : function(geography, data) {
+                                                                            return '<div class="hoverinfo"><strong>'
+                                                                                  + geography.properties.name
+                                                                                  + '</strong></div>';
+                                                                       }
                                               }
                           , setProjection   : function(element) {
                                                   var offwdt = element.offsetWidth / 2;
