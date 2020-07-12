@@ -90,7 +90,7 @@ function historychart(arr) {
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
-    zbt.setAttribute('id', 'mapzoom');
+    zbt.setAttribute('id', 'mapzoom'  );
 
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
