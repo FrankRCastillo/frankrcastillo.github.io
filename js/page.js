@@ -226,6 +226,7 @@ async function help() {
     lst.unshift(hdr);
     var tbl = ArrayToTable(lst, true, false); 
     print(tbl);
+    CmdReady();
 }
 
 async function read(path) {
