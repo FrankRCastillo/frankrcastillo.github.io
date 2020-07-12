@@ -275,21 +275,23 @@ function NewCommandLine() {
     txtinput.setAttribute('id', 'inputbox');
     txtinput.setAttribute('type', 'text');
 
-    window.addEventListener('keydown', function(e) {
-        if (e.keyCode == 38 || e.keyCode == 40) {
-            ShowCmdList(true);
-            SetInputVal(GetSelCmd());
-        } else {
-            txtinput.focus();
-        }
-    });
-
     window.addEventListener('keyup', function(e) {
-        if (e.keyCode == 13) {
-            CommandManager(GetInputVal());
-        } else
-        if (e.keyCode == 27) {
-            ShowCmdList(false);
+        switch (e.keyCode) {
+            case 13:
+                CommandManager(GetInputVal());
+                break;
+
+            case 27:
+                ShowCmdList(false);
+                break;
+
+            case 38: 
+            case 40:
+                ShowCmdList(true);
+                SetInputVal(GetSelCmd());
+                break;
+                     
+            default:
         }
     });
 
@@ -303,10 +305,6 @@ function NewMenuIcon() {
     div.setAttribute('id', 'menuico');
     div.appendChild(node);
     div.style.cursor = 'pointer';
-
-    div.addEventListener('mouseover', function(event) {
-        document.getElementById('menuico').focus();
-    });
 
     div.addEventListener('click', function() {
         if (document.getElementById('menusel').style.display == 'inline') {
@@ -360,17 +358,6 @@ async function NewMenuDropDown() {
         menu.appendChild(grp);
     }
 
-    window.addEventListener('keydown', function(e) {
-        if (document.getElementById('inputbox').style.display == 'inline') {
-            if (e.keyCode == 38) {
-                document.getElementById('inputbox').focus();
-            } else 
-            if (e.keyCode == 40) {
-                document.getElementById('menusel').selectedItem = 0;
-            }
-        }
-    });
-
     return menu;
 }
 
@@ -386,7 +373,6 @@ function GetInputVal() {
 function SetInputVal(val) {
     var inputbox = document.getElementById('inputbox');
     inputbox.value = val;
-    inputbox.focus();
 }
 
 async function GetCmdInfo() {
