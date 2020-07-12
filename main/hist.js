@@ -18,6 +18,14 @@ export async function hist() {
     }
 
     historychart(arr);
+
+    var map = document.getElementsByClassName('datamap')[0];
+    map.addEventListener('dragover', function(event){
+        var x = event.pageX;
+        var y = event.pageY;
+        console.log(x, y);
+    });
+
     CmdReady();
 }
 
