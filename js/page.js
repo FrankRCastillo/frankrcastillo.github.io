@@ -200,7 +200,8 @@ async function CommandManager(input) {
     var cmd = input.toLowerCase();
 
     switch (cmd) {
-        case 'home' : home()                 ; break;
+        case 'home' : home(); break;
+        case 'help' : help(); break;
         default:
             CmdWait();
 
@@ -217,6 +218,14 @@ async function CommandManager(input) {
 
 function home() {
     read('/main/home/home.txt');
+}
+
+async function help() {
+    var lst = await GetCmdInfo();
+    var hdr = ['Category', 'Command', 'Information'];
+    lst.unshift(hdr);
+    var tbl = ArrayToTable(lst, true, false); 
+    print(tbl);
 }
 
 async function read(path) {
@@ -321,11 +330,6 @@ async function NewMenuDropDown() {
     });
 
     return menu;
-}
-
-function GetSelCmd() {
-    var sel = document.getElementById('menusel');
-    return sel.options[sel.selectedIndex].value;
 }
 
 function GetInputVal() {
