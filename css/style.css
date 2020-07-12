@@ -71,7 +71,7 @@ select
 
 #outtext
 { overflow : auto
-; width    : calc(100% - 4px)
+; width    : calc100%
 ; height   : calc(100vh - 55px)
 }
 
@@ -79,7 +79,7 @@ select
 { border     : 1px solid #ffa500
 ; margin     : 0px 0px 0px 0px
 ; padding    : 0px 0px 0px 0px
-; width      : 100%
+; width      : calc(100% - 2px)
 ; height     : 28px
 ; background : #000000
 }
@@ -89,7 +89,7 @@ select
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
 ; height  : calc(100% - 35px)
-; width   : calc(100% - 4px)
+; width   : calc(100% - 2px)
 }
 
 #mapselect
@@ -98,7 +98,7 @@ select
 
 #maptools
 { height  : 26px
-; width   : calc(100% - 4px)
+; width   : calc(100% - 2px)
 ; border  : 1px solid #ffa500
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
