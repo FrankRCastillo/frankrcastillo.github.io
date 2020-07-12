@@ -81,6 +81,7 @@ function historychart(arr) {
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
+
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
 
@@ -105,8 +106,7 @@ function historychart(arr) {
                           , fills           : { defaultFill      : '#ffffff' }
                           , geographyConfig : { highlightOnHover : true
                                               , popupOnHover     : false
-                                              , borderColor      : '#000000'
-                                              , borderWidth      : 1
+                                              , borderWidth      : 0
                                               }
     });
 }

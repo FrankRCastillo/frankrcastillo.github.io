@@ -36,6 +36,7 @@ async function SetConsole() {
     var clne = NewCommandLine();
     var menu = await NewMenuDropDown();
     var main = document.createElement('div');
+
     main.setAttribute('id', 'console');
 
     var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
@@ -43,7 +44,7 @@ async function SetConsole() {
                , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
                , [ 'div', 'menudiv', [ [ 'object',     menu] ] ]
                , [ 'div', 'contain', [ [     'id','textdiv']
-                                     , [ 'object',    clne ] ] ]
+                                     , [ 'object',     clne] ] ]
                ]
 
     return NewObject(main, objs);
@@ -147,13 +148,10 @@ function ArrayToTable(arr, hdrrow, haslink) {
             } else {
                 cell.innerText = arr[i][j]
             }
-
             tr.appendChild(cell);
         }
-
         table.appendChild(tr);
     }
-
     return table;
 }
 
