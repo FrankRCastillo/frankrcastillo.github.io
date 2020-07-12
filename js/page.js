@@ -225,7 +225,7 @@ async function help() {
     var hdr = ['Category', 'Command', 'Information'];
     lst.unshift(hdr);
     var tbl = ArrayToTable(lst, true, false); 
-    print(tbl);
+    document.getElementById('outtext').appendChild(tbl);
     CmdReady();
 }
 
