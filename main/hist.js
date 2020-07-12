@@ -77,7 +77,7 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
-    var zbt = maptools();
+    var zbt = mapzoom();
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
