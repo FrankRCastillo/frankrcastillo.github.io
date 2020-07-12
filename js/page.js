@@ -267,7 +267,7 @@ function print(text) {
 }
 
 function CmdReady() {
-    document.getElementById('inputbox').placeholder = '\u25B6 click drop-down for commands...';
+    document.getElementById('inputbox').placeholder = '\u25B6 "help", or click drop-down, for commands...';
 
     SetInputVal('');
 }
