@@ -90,7 +90,6 @@ function historychart(arr) {
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
-    zbt.setAttribute('id', 'mapzoom'  );
 
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
@@ -107,7 +106,7 @@ function historychart(arr) {
     }
 
     lst.appendChild(sel);
-    lst.appendChild(mapbuttons());
+    lst.appendChild(mapzoom());
     out.appendChild(lst);
     out.appendChild(frm);
     
@@ -157,6 +156,8 @@ function mapzoom(action) {
 function mapbuttons() {
     var zmBtn = document.createElement('div');
     var zmCmd = [ '+', '-', '1:1' ];
+
+    zmBtn.setAttribute('id', 'mapzoom');
 
     for (var i = 0; i < zmCmd.length; i++) {
         var zmIco = document.createElement('button');
