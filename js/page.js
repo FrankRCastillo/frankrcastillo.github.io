@@ -283,11 +283,7 @@ function NewCommandLine() {
 
     window.addEventListener('keyup', function(e) {
         switch (e.keyCode) {
-            case 13:
-                CommandManager(GetInputVal());
-                break;
-
-            default:
+            case 13: CommandManager(GetInputVal()); break;
         }
     });
 
@@ -369,6 +365,7 @@ function GetJsDesc(str) {
         }
     }
 }
+
 async function main() {
     var body = document.body;
 
