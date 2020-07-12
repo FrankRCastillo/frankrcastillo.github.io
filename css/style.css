@@ -92,8 +92,15 @@ select
 ; width   : calc(100% - 4px)
 }
 
+#mapzoom
+{ height   : 26px
+; left     : 200px
+; position : absolute
+}
+
 #mapselect
 { height   : 26px
+; width    : 200px
 ; position : absolute
 }
 
