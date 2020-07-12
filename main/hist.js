@@ -103,8 +103,8 @@ function historychart(arr) {
     
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
-                          , projection      : 'equirectangular'
-                          , responsive      : true
+                          , projection      : 'mercator'
+                          , responsive      : false
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
@@ -119,8 +119,10 @@ function historychart(arr) {
                                                       .rotate([4.4, 0])
                                                       .scale(400)
                                                       .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+
                                                   var path = d3.geo.path()
                                                       .projection(projection);
+
                                                   return {path: path, projection: projection};
                                               }
     });
