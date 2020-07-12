@@ -256,7 +256,7 @@ function print(text) {
 }
 
 function CmdReady() {
-    document.getElementById('inputbox').placeholder = '\u25B6 "help", or click menu button, for commands...';
+    document.getElementById('inputbox').placeholder = '\u25B6 click dropdown for commands...';
 
     SetInputVal('');
 }
