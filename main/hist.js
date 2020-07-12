@@ -163,7 +163,7 @@ function mapbuttons() {
         var zmIco = document.createElement('button');
         zmIco.textContent = zmCmd[i];
         zmIco.setAttribute('class', 'zoombtn');
-        zmIco.setAttribute('onclick', 'javascript:mapzoom("' + zmCmd[i] + '")');
+        zmIco.addEventListener('click', mapzoom(zmCmd[i]));
         zmBtn.appendChild(zmIco);
     }
 
