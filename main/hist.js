@@ -88,7 +88,6 @@ function historychart(arr) {
         if (i == -1) {
             opt.setAttribute('disabled', true);
             opt.setAttribute('selected', true);
-            opt.setAttribute('hidden'  , true);
             opt.textContent = 'Select Country...';
         } else {
             opt.setAttribute('value', arr[i][0]);
