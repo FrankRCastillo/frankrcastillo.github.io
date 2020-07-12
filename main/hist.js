@@ -116,26 +116,29 @@ function historychart(arr) {
                                                                            return geography.properties.name;
                                                                        }
                                               }
-                          , setProjection   : function(element) {
-                                                  var offwdt = element.offsetWidth / 2;
-                                                  var offhgt = element.offsetHeight / 2;
-                                                  var projection = d3.geo.mercator()
-                                                                         .center([19, -3])
-                                                                         .rotate([4.4, 0])
-                                                                         .scale(400)
-                                                                         .translate([offwdt, offhgt]);
-
-                                                  var path = d3.geo.path()
-                                                                   .projection(projection);
-
-                                                  return { path       : path
-                                                         , projection : projection
-                                                         };
-                                              }
     });
 
     map.labels({ labelColor : '#ffa500'
                , fontSize   : 12
                , fontFamily : 'MS PGothic'
+    });
+
+    document.getElementById('mapframe').addEventListener('dblclick', function() {
+        map.setProection : function(element) {
+                               var offwdt = element.offsetWidth / 2;
+                               var offhgt = element.offsetHeight / 2;
+                               var projection = d3.geo.mercator()
+                                                      .center([19, -3])
+                                                      .rotate([4.4, 0])
+                                                      .scale(400)
+                                                      .translate([offwdt, offhgt]);
+
+                               var path = d3.geo.path()
+                                                .projection(projection);
+
+                               return { path       : path
+                                      , projection : projection
+                                      };
+                           }
     });
 }
