@@ -120,7 +120,7 @@ function historychart(arr) {
                           , done            : function(datamap){
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
                                                   function redraw() {
-                                                      if (d3.event.scale <= 7) {
+                                                      if (d3.event.scale < 8) {
                                                           datamap.svg.selectAll("g").attr("transform", "translate(" 
                                                                                                      + d3.event.translate
                                                                                                      + ")scale("
