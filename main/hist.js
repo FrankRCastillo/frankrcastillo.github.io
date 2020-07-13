@@ -130,7 +130,7 @@ function historychart(arr) {
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
                           , projection      : 'mercator'
-                          , responsive      : true
+                          , responsive      : false
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
@@ -147,7 +147,7 @@ function historychart(arr) {
     });
 
     map.labels({ labelColor : '#ffa500'
-               , fontSize   : 8
+               , fontSize   : 10
                , fontFamily : 'MS PGothic'
     });
 }
