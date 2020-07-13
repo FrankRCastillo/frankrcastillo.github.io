@@ -120,8 +120,8 @@ function historychart(arr) {
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
                                                   function redraw() {
-                                                      var negfont = (-1 * d3.event.scale) + 11;
-                                                      console.log(d3.event.scale);
+                                                      var negfont = Math.floor(Math.log(d3.event.scale / 0.7) / 0.03);
+
                                                       datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate
                                                                                                  + ")scale("    + d3.event.scale + ")"
                                                                                      );
