@@ -78,31 +78,29 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
-    var zbt = document.createElement('div');
-    var zmCmd = [ [     '+', '98px',  '0px']
-                , [     '-', '98px', '28px']
-                , [   '1:1', '98px', '76px']
-                , ['\u21E7',  '0px', '28px']
-                , ['\u21E9', '64px', '28px']
-                , ['\u21E6', '28px',  '0px']
-                , ['\u21E8', '28px', '76px']
+    
+    var zmCmd = [ [     '+',  'mapzoomin']
+                , [     '-', 'mapzoomout']
+                , [   '1:1', 'maprestore']
+                , ['\u21E7', 'mappanleft']
+                , ['\u21E9',   'mappanup']
+                , ['\u21E6', 'mappandown']
+                , ['\u21E8','mappanright']
                 ];
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
-    zbt.setAttribute('id', 'mapmove');
 
     for (var i = 0; i < zmCmd.length; i++) {
         var ico = document.createElement('button');
         ico.textContent = zmCmd[i][0];
         ico.setAttribute('class', 'zoombtn');
-        ico.style.top = zmCmd[i][1];
-        ico.style.left = zmCmd[i][2];
+        ico.setAttribute('id', zmCmd[i][1]);
         ico.addEventListener('click', function() {
             mapmove(this.textContent);
         });
-        zbt.appendChild(ico);
+        frm.appendChild(ico);
     }
 
     for (var i = -1; i < arr.length; i++) {

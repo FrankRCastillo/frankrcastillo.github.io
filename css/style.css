@@ -103,10 +103,46 @@ button
 ; width   : calc(100% - 4px)
 }
 
-#mapmove
-{ top      : 25px
+#mapzoomin
+{ position : absolute
+; top      : 84px
 ; left     : 0px
-; position : relative
+}
+
+#mapzoomout
+{ position : absolute
+; top      : 84px
+; left     : 28px
+}
+
+#maprestore
+{ position : absolute
+; top      : 84px
+; left     : 56px
+}
+
+#mappanleft
+{ position : absolute
+; top      : 28px
+; left     : 0px
+}
+
+#mappanup
+{ position : absolute
+; top      : 0px
+; left     : 28px
+}
+
+#mappandown
+{ position : absolute
+; top      : 56px
+; left     : 28px
+}
+
+#mappanright
+{ position : absolute
+; top      : 28px
+; left     : 56px
 }
 
 .hoverinfo
