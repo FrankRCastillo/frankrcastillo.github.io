@@ -124,7 +124,7 @@ button
 #mappanleft
 { position : absolute
 ; top      : 116px
-; left     : 84px
+; left     : 28px
 }
 
 #mappanup
@@ -141,8 +141,8 @@ button
 
 #mappanright
 { position : absolute
-; top      : 84px
-; left     : 116px
+; top      : 116px
+; left     : 84px
 }
 
 .hoverinfo
