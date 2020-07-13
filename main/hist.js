@@ -78,25 +78,24 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
-    
-    var zmCmd = [ [     '+',  'mapzoomin']
-                , [     '-', 'mapzoomout']
-                , [   '1:1', 'maprestore']
-                , ['\u21E6', 'mappanleft']
-                , ['\u21E7',   'mappanup']
-                , ['\u21E8', 'mappandown']
-                , ['\u21E9','mappanright']
-                ];
+    var btn = [ [     '+',  'mapzoomin']
+              , [     '-', 'mapzoomout']
+              , [   '1:1', 'maprestore']
+              , ['\u21E6', 'mappanleft']
+              , ['\u21E7',   'mappanup']
+              , ['\u21E8', 'mappandown']
+              , ['\u21E9','mappanright']
+              ];
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
 
-    for (var i = 0; i < zmCmd.length; i++) {
+    for (var i = 0; i < btn.length; i++) {
         var ico = document.createElement('button');
-        ico.textContent = zmCmd[i][0];
+        ico.textContent = btn[i][0];
         ico.setAttribute('class', 'zoombtn');
-        ico.setAttribute('id', zmCmd[i][1]);
+        ico.setAttribute('id', btn[i][1]);
         ico.addEventListener('click', function() {
             mapmove(this.textContent);
         });
