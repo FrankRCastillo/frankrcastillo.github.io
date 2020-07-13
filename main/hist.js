@@ -20,7 +20,7 @@ export async function hist() {
     historychart(arr);
     
     document.addEventListener('keydown', function(e) {
-        switch (e.keyDown) {
+        switch (e.keyCode) {
             case  37: mapmove('\u21E6'); break;
             case  38: mapmove('\u21E7'); break;
             case  39: mapmove('\u21E8'); break;
