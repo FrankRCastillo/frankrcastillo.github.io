@@ -106,7 +106,7 @@ button
 #mapmove
 { top      : 34px
 ; left     : 211px
-; position : absolute
+; position : relative
 }
 
 .hoverinfo
