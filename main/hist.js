@@ -124,11 +124,8 @@ function historychart(arr) {
                                                       if (d3.event.scale >= 8) {
                                                           scale = 8;
                                                       }
-                                                          datamap.svg.selectAll("g").attr("transform", "translate(" 
-                                                                                                     + d3.event.translate
-                                                                                                     + ")scale("
-                                                                                                     + scale
-                                                                                                     + ")"
+                                                          datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate
+                                                                                                     + ")scale("    + scale + ")"
                                                                                          );
                                                           var negfont = (-1 * d3.event.scale) + 11;
                                                           datamap.svg.selectAll("text").attr("style", "font-size: " + negfont + "px; "
