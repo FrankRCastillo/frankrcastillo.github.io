@@ -19,14 +19,6 @@ export async function hist() {
 
     historychart(arr);
 
-    var mapframe = document.getElementById('mapframe');
-
-    mapframe.addEventListener('dragover', function(event){
-        var x = event.pageX;
-        var y = event.pageY;
-        console.log(x, y);
-    });
-
     CmdReady();
 }
 
@@ -135,7 +127,9 @@ function historychart(arr) {
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
-                                                                           return geography.properties.name;
+                                                                           return '<div class=hoverinfo><strong>'
+                                                                                + geography.properties.name
+                                                                                + '</strong></div>';
                                                                        }
                                               }
     });
