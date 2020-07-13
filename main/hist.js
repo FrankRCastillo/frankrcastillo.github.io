@@ -126,7 +126,6 @@ function historychart(arr) {
     });
 
     map.labels({ labelColor : '#ffa500'
-               , fontSize   : 10
                , fontFamily : 'MS PGothic'
     });
 }
