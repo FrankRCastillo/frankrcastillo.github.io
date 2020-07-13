@@ -103,7 +103,7 @@ button
 ; width   : calc(100% - 4px)
 }
 
-#mapzoom
+#mapmove
 { top      : 34px
 ; left     : 211px
 ; position : absolute
