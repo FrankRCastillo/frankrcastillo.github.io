@@ -118,7 +118,6 @@ function historychart(arr) {
     }
 
     lst.appendChild(sel);
-    lst.appendChild(zbt);
     out.appendChild(lst);
     out.appendChild(frm);
     
