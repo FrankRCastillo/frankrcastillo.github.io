@@ -105,44 +105,44 @@ button
 
 #mapzoomin
 { position : absolute
-; top      : 84px
-; left     : 0px
+; top      : 172px
+; left     : 28px
 }
 
 #mapzoomout
 { position : absolute
-; top      : 84px
-; left     : 28px
+; top      : 172px
+; left     : 56px
 }
 
 #maprestore
 { position : absolute
-; top      : 84px
-; left     : 56px
+; top      : 172px
+; left     : 84px
 }
 
 #mappanleft
 { position : absolute
-; top      : 28px
-; left     : 0px
+; top      : 116px
+; left     : 28px
 }
 
 #mappanup
 { position : absolute
-; top      : 0px
-; left     : 28px
+; top      : 84px
+; left     : 56px
 }
 
 #mappandown
 { position : absolute
-; top      : 56px
-; left     : 28px
+; top      : 144px
+; left     : 56px
 }
 
 #mappanright
 { position : absolute
-; top      : 28px
-; left     : 56px
+; top      : 84px
+; left     : 116px
 }
 
 .hoverinfo
