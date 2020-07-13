@@ -98,7 +98,7 @@ function historychart(arr) {
         var ico = document.createElement('button');
         ico.textContent = zmCmd[i];
         ico.setAttribute('class', 'zoombtn');
-        ico.addEventListener('onclick', function() {
+        ico.addEventListener('click', function() {
             mapzoom(zmCmd[i]);
         });
         zbt.appendChild(ico);
