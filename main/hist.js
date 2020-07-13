@@ -169,16 +169,16 @@ function mapmove(action) {
 function cursormove() {
     // create navigation cursor based on btn array
     document.addEventListener('keydown', function(e) {
-        var btn = [ [     '+',  'mapzoomin', 187]
-                  , [     '-', 'mapzoomout', 189]
-                  , [   '1:1', 'maprestore',  67]
-                  , ['\u21E6', 'mappanleft',  37]
-                  , ['\u21E7',   'mappanup',  38]
-                  , ['\u21E8','mappanright',  39]
-                  , ['\u21E9', 'mappandown',  40]
+        var btn = [ [     '+', 187]
+                  , [     '-', 189]
+                  , [   '1:1',  67]
+                  , ['\u21E6',  37]
+                  , ['\u21E7',  38]
+                  , ['\u21E8',  39]
+                  , ['\u21E9',  40]
                   ];
         for (var i = 0; i < btn.length; i++) {
-            if (e.keyDown == btn[i][2]) {
+            if (e.keyDown == btn[i][1]) {
                 mapmove(btn[i][0]);
             }
         }
