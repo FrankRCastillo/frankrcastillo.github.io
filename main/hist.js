@@ -78,13 +78,13 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
-    var btn = [ [     '+',  'mapzoomin']
-              , [     '-', 'mapzoomout']
-              , [   '1:1', 'maprestore']
-              , ['\u21E6', 'mappanleft']
-              , ['\u21E7',   'mappanup']
-              , ['\u21E8','mappanright']
-              , ['\u21E9', 'mappandown']
+    var btn = [ [     '+',  'mapzoomin', 187]
+              , [     '-', 'mapzoomout', 189]
+              , [   '1:1', 'maprestore',  67]
+              , ['\u21E6', 'mappanleft',  37]
+              , ['\u21E7',   'mappanup',  38]
+              , ['\u21E8','mappanright',  39]
+              , ['\u21E9', 'mappandown',  40]
               ];
 
     frm.setAttribute('id', 'mapframe' );
@@ -99,6 +99,11 @@ function historychart(arr) {
         ico.addEventListener('click', function() {
             mapmove(this.textContent);
         });
+        ico.addEventListener('keydown', function(e) {
+            if (e.keyCode == btn[i][2]) {
+                mapmove(this.textContent);
+            }
+        })
         frm.appendChild(ico);
     }
 
@@ -149,9 +154,9 @@ function mapmove(action) {
     var map = document.getElementsByClassName('datamap')[0];
     var scl = map.currentScale;
     switch(action) {
-        case      '+': map.currentScale += 0.5                         ; break;
-        case      '-': if (scl - 0.5 >= 1) { map.currentScale -= 0.5; }; break;
-        case    '1:1': map.currentScale = 1                            ; break;
+        case      '+': map.currentScale += 0.5                         ; break; // zoom in
+        case      '-': if (scl - 0.5 >= 1) { map.currentScale -= 0.5; }; break; // zoom out
+        case    '1:1': map.currentScale = 1                            ; break; // restore
         case '\u21E6': map.currentTranslate.x += 100 / scl             ; break; // left
         case '\u21E7': map.currentTranslate.y += 100 / scl             ; break; // up
         case '\u21E8': map.currentTranslate.x -= 100 / scl             ; break; // right
