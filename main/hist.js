@@ -18,7 +18,7 @@ export async function hist() {
     }
 
     historychart(arr);
-
+    cursormove();
     CmdReady();
 }
 
@@ -164,4 +164,23 @@ function mapmove(action) {
         case '\u21E8': map.currentTranslate.x -= 100 / scl             ; break; // right
         case '\u21E9': map.currentTranslate.y -= 100 / scl             ; break; // down
     }
+}
+
+function cursormove() {
+    // create navigation cursor based on btn array
+    document.addEventListener('keydown', function(e) {
+        var btn = [ [     '+',  'mapzoomin', 187]
+                  , [     '-', 'mapzoomout', 189]
+                  , [   '1:1', 'maprestore',  67]
+                  , ['\u21E6', 'mappanleft',  37]
+                  , ['\u21E7',   'mappanup',  38]
+                  , ['\u21E8','mappanright',  39]
+                  , ['\u21E9', 'mappandown',  40]
+                  ];
+        for (var i = 0; i < btn.length; i++) {
+            if (e.keyDown == btn[i][2]) {
+                mapmove(btn[i][0]);
+            }
+        }
+    });
 }
