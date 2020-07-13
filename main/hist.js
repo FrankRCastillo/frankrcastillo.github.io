@@ -156,9 +156,9 @@ function mapmove(action) {
         case      '+': map.currentScale += 0.5                         ; break;
         case      '-': if (scl - 0.5 >= 1) { map.currentScale -= 0.5; }; break;
         case    '1:1': map.currentScale = 1                            ; break;
-        case '\u21E6': map.currentTranslate.x = -1 / scl               ; break;
-        case '\u21E7': map.currentTranslate.y =  1 / scl               ; break;
-        case '\u21E8': map.currentTranslate.y = -1 / scl               ; break;
-        case '\u21E9': map.currentTranslate.x =  1 / scl               ; break;
+        case '\u21E6': map.currentTranslate.x = -scl                   ; break; // left
+        case '\u21E7': map.currentTranslate.y =  scl                   ; break; // up
+        case '\u21E8': map.currentTranslate.y = -scl                   ; break; // down
+        case '\u21E9': map.currentTranslate.x =  scl                   ; break; // right
     }
 }
