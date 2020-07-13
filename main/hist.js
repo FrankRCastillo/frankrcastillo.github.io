@@ -120,11 +120,14 @@ function historychart(arr) {
                           , done            : function(datamap){
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
                                                   function redraw() {
-                                                      if (d3.event.scale < 8) {
+                                                      var scale = d3.event.scale;
+                                                      if (d3.event.scale >= 8) {
+                                                          scale = 8;
+                                                      }
                                                           datamap.svg.selectAll("g").attr("transform", "translate(" 
                                                                                                      + d3.event.translate
                                                                                                      + ")scale("
-                                                                                                     + d3.event.scale
+                                                                                                     + scale
                                                                                                      + ")"
                                                                                          );
                                                           var negfont = (-1 * d3.event.scale) + 11;
@@ -132,7 +135,6 @@ function historychart(arr) {
                                                                                                     + "font-family: \"MS PGothic\"; "
                                                                                                     + "fill: rgb(255, 165, 0);"
                                                                                             );
-                                                      }
                                                   }
                                               } 
     });
