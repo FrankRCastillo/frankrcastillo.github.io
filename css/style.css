@@ -103,6 +103,12 @@ button
 ; width   : calc(100% - 4px)
 }
 
+#mapmove
+{ top      : 100px
+; left     : 100px
+; position : relative
+}
+
 .hoverinfo
 { border      : 1px solid #000000
 ; background  : #ffa500
