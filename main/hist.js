@@ -98,7 +98,7 @@ function historychart(arr) {
         ico.setAttribute('class', 'zoombtn');
         ico.setAttribute('id', btn[i][1]);
         ico.setAttribute('value', btn[i][2])
-        ico.addEventListener('click', function() {
+        ico.addEventListener('mousedown', function() {
             mapmove(this.textContent);
         });
         ico.addEventListener('keydown', function(e) {
