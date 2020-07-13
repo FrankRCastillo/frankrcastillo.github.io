@@ -82,10 +82,10 @@ function historychart(arr) {
     var zmCmd = [ [     '+',  'mapzoomin']
                 , [     '-', 'mapzoomout']
                 , [   '1:1', 'maprestore']
-                , ['\u21E7', 'mappanleft']
-                , ['\u21E9',   'mappanup']
-                , ['\u21E6', 'mappandown']
-                , ['\u21E8','mappanright']
+                , ['\u21E6', 'mappanleft']
+                , ['\u21E7',   'mappanup']
+                , ['\u21E8', 'mappandown']
+                , ['\u21E9','mappanright']
                 ];
 
     frm.setAttribute('id', 'mapframe' );
