@@ -18,19 +18,6 @@ export async function hist() {
     }
 
     historychart(arr);
-    
-    document.addEventListener('keydown', function(e) {
-        switch (e.keyCode) {
-            case  37: mapmove('\u21E6'); break;
-            case  38: mapmove('\u21E7'); break;
-            case  39: mapmove('\u21E8'); break;
-            case  40: mapmove('\u21E9'); break;
-            case  67: mapmove('1:1')   ; break;
-            case 187: mapmove('+'); break;
-            case 189: mapmove('-'); break;
-        }
-    });
-
     CmdReady();
 }
 
@@ -142,18 +129,4 @@ function historychart(arr) {
                , fontSize   : 10
                , fontFamily : 'MS PGothic'
     });
-}
-
-function mapmove(action) {
-    var map = document.getElementsByClassName('datamap')[0];
-    var scl = map.currentScale;
-    switch(action) {
-        case      '+': map.currentScale += 0.5                         ; break; // zoom in
-        case      '-': if (scl - 0.5 >= 1) { map.currentScale -= 0.5; }; break; // zoom out
-        case    '1:1': map.currentScale = 1                            ; break; // restore
-        case '\u21E6': map.currentTranslate.x += 100 / scl             ; break; // left
-        case '\u21E7': map.currentTranslate.y += 100 / scl             ; break; // up
-        case '\u21E8': map.currentTranslate.x -= 100 / scl             ; break; // right
-        case '\u21E9': map.currentTranslate.y -= 100 / scl             ; break; // down
-    }
 }
