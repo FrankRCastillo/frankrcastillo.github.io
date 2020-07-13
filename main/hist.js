@@ -101,8 +101,19 @@ function historychart(arr) {
             mapmove(this.textContent);
         });
         ico.addEventListener('keydown', function(e) {
-            if (e.keyCode == btn[i][2]) {
-                mapmove(this.textContent);
+            var btn = [ [     '+',  'mapzoomin', 187]
+                      , [     '-', 'mapzoomout', 189]
+                      , [   '1:1', 'maprestore',  67]
+                      , ['\u21E6', 'mappanleft',  37]
+                      , ['\u21E7',   'mappanup',  38]
+                      , ['\u21E8','mappanright',  39]
+                      , ['\u21E9', 'mappandown',  40]
+                      ];
+            for (var j = 0; j < btn.length; j++) {
+                if (e.keyCode == btn[i][2]) {
+                    mapmove(btn[i][0]);
+                    break;
+                }
             }
         })
         frm.appendChild(ico);
