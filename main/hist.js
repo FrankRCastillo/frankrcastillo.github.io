@@ -117,7 +117,7 @@ function historychart(arr) {
                                                                                 + '</strong></div>';
                                                                        }
                                               }
-                          , done            : function(datamap){
+                          , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
                                                   function redraw() {
                                                       var scale = d3.event.scale;
