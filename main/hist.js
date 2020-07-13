@@ -151,20 +151,14 @@ function historychart(arr) {
 
 function mapmove(action) {
     var map = document.getElementsByClassName('datamap')[0];
-    
+    var scl = map.currentScale;
     switch(action) {
-        case '+':
-            map.currentScale += 0.5;
-            break;
-
-        case '-':
-            if (map.currentScale - 0.5 >= 1) {
-                map.currentScale -= 0.5;
-            }
-            break;
-
-        case '1:1':
-            map.currentScale = 1;
-            break;
+        case      '+': map.currentScale += 0.5                         ; break;
+        case      '-': if (scl - 0.5 >= 1) { map.currentScale -= 0.5; }; break;
+        case    '1:1': map.currentScale = 1                            ; break;
+        case '\u21E6': map.currentTranslate.x = -1 / scl               ; break;
+        case '\u21E7': map.currentTranslate.y =  1 / scl               ; break;
+        case '\u21E8': map.currentTranslate.y = -1 / scl               ; break;
+        case '\u21E9': map.currentTranslate.x =  1 / scl               ; break;
     }
 }
