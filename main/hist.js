@@ -91,6 +91,7 @@ function historychart(arr) {
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
 
+    // create navigation cursor based on btn array
     for (var i = 0; i < btn.length; i++) {
         var ico = document.createElement('button');
         ico.textContent = btn[i][0];
