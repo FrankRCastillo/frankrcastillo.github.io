@@ -83,8 +83,8 @@ function historychart(arr) {
               , [   '1:1', 'maprestore']
               , ['\u21E6', 'mappanleft']
               , ['\u21E7',   'mappanup']
-              , ['\u21E8', 'mappandown']
-              , ['\u21E9','mappanright']
+              , ['\u21E8','mappanright']
+              , ['\u21E9', 'mappandown']
               ];
 
     frm.setAttribute('id', 'mapframe' );
@@ -154,7 +154,7 @@ function mapmove(action) {
         case    '1:1': map.currentScale = 1                            ; break;
         case '\u21E6': map.currentTranslate.x *= -scl                  ; break; // left
         case '\u21E7': map.currentTranslate.y *=  scl                  ; break; // up
-        case '\u21E8': map.currentTranslate.y *= -scl                  ; break; // down
-        case '\u21E9': map.currentTranslate.x *=  scl                  ; break; // right
+        case '\u21E8': map.currentTranslate.x *=  scl                  ; break; // right
+        case '\u21E9': map.currentTranslate.y *= -scl                  ; break; // down
     }
 }
