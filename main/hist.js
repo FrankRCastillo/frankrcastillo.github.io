@@ -19,9 +19,9 @@ export async function hist() {
 
     historychart(arr);
 
-    var map = document.getElementsByClassName('datamap')[0];
+    var mapframe = document.getElementById('mapframe');
 
-    map.addEventListener('dragover', function(event){
+    mapframe.addEventListener('dragover', function(event){
         var x = event.pageX;
         var y = event.pageY;
         console.log(x, y);
