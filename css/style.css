@@ -109,6 +109,14 @@ button
 ; position : absolute
 }
 
+.hoverinfo
+{ border      : 1px solid #000000
+; background  : #ffa500
+; color       : #000000
+; font-family : 'MS PGothic'
+; font-size   : 12px
+}
+
 .zoombtn
 { height : 26px
 ; width  : 26px
