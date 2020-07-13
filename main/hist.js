@@ -139,7 +139,7 @@ function historychart(arr) {
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
-                                                                           return '<div class=hoverinfo><strong>'
+                                                                           return '<div class=maphover><strong>'
                                                                                 + geography.properties.name
                                                                                 + '</strong></div>';
                                                                        }
