@@ -130,6 +130,7 @@ function historychart(arr) {
                                                                                                 + "font-family: \"MS PGothic\"; "
                                                                                                 + "fill: rgb(255, 165, 0);"
                                                                                         );
+                                                  }
                                               } 
     });
 
