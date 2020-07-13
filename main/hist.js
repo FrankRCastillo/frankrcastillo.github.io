@@ -20,18 +20,14 @@ export async function hist() {
     historychart(arr);
     
     document.addEventListener('keydown', function(e) {
-        var btn = [ [     '+', 187]
-                  , [     '-', 189]
-                  , [   '1:1',  67]
-                  , ['\u21E6',  37]
-                  , ['\u21E7',  38]
-                  , ['\u21E8',  39]
-                  , ['\u21E9',  40]
-                  ];
-        for (var i = 0; i < btn.length; i++) {
-            if (e.keyDown == btn[i][1]) {
-                mapmove(btn[i][0]);
-            }
+        switch (e.keyDown) {
+            case  37: mapmove('\u21E6'); break;
+            case  38: mapmove('\u21E7'); break;
+            case  39: mapmove('\u21E8'); break;
+            case  40: mapmove('\u21E9'); break;
+            case  67: mapmove('1:1')   ; break;
+            case 187: mapmove('+'); break;
+            case 189: mapmove('-'); break;
         }
     });
 
