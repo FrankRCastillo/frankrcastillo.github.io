@@ -103,48 +103,6 @@ button
 ; width   : calc(100% - 4px)
 }
 
-#mapzoomin
-{ position : absolute
-; top      : 172px
-; left     : 28px
-}
-
-#mapzoomout
-{ position : absolute
-; top      : 172px
-; left     : 56px
-}
-
-#maprestore
-{ position : absolute
-; top      : 172px
-; left     : 84px
-}
-
-#mappanleft
-{ position : absolute
-; top      : 116px
-; left     : 28px
-}
-
-#mappanup
-{ position : absolute
-; top      : 88px
-; left     : 56px
-}
-
-#mappandown
-{ position : absolute
-; top      : 144px
-; left     : 56px
-}
-
-#mappanright
-{ position : absolute
-; top      : 116px
-; left     : 84px
-}
-
 .maphover
 { border      : 1px solid #000000
 ; background  : #ffa500

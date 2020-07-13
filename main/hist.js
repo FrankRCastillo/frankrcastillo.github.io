@@ -90,36 +90,10 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
-    var btn = [ [     '+',  'mapzoomin', 187]
-              , [     '-', 'mapzoomout', 189]
-              , [   '1:1', 'maprestore',  67]
-              , ['\u21E6', 'mappanleft',  37]
-              , ['\u21E7',   'mappanup',  38]
-              , ['\u21E8','mappanright',  39]
-              , ['\u21E9', 'mappandown',  40]
-              ];
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     sel.setAttribute('id', 'mapselect');
-
-    // create navigation cursor based on btn array
-    for (var i = 0; i < btn.length; i++) {
-        var ico = document.createElement('button');
-        ico.textContent = btn[i][0];
-        ico.setAttribute('class', 'zoombtn');
-        ico.setAttribute('id', btn[i][1]);
-        ico.setAttribute('value', btn[i][2])
-        ico.addEventListener('mousedown', function() {
-            mapmove(this.textContent);
-        });
-        ico.addEventListener('keydown', function(e) {
-            if (e.keyDown == this.value) {
-                mapmove(this.textContent);
-            }
-        });
-        frm.appendChild(ico);
-    }
 
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
