@@ -11,11 +11,12 @@ export async function hist() {
     var arr = [];
 
     for (var i = 0; i < tag.length; i++) {
-        var id   = tag[i].id;
+        var iso2  = tag[i].id;
+        var iso3 = csv[csv.map(x => x[1]).indexOf(id)][2]
         var name = tag[i].getElementsByClassName('country')[0].innerText.trim();
         var hist = tag[i].querySelector('#field-background').innerText.trim();
         var harr = parseHistory(hist);
-        arr.push([id, , name, harr]);
+        arr.push([iso2], iso3, name, harr]);
     }
 
     historychart(arr);
