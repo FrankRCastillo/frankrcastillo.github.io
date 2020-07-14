@@ -23,10 +23,12 @@ export async function hist() {
             console.log(err.message);
         }
     }
-
+    
     historychart(arr);                                                                  // send array to be plotted onto chart
     CmdReady();                                                                         // update page status as ready
 }
+
+
 
 function parseHistory(str) {
     var rgxexp = [ "([A-Za-z](\\.)){2,} [A-Z]"                                          // acronyms at the end of a sentence; delete all but last period
@@ -84,6 +86,7 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
+    var jsn = [];
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
@@ -98,7 +101,14 @@ function historychart(arr) {
             opt.textContent = 'Select Country...';
         } else {
             opt.setAttribute('value', arr[i][0]);
-            opt.textContent = arr[i][1];
+            opt.textContent = arr[i][2];
+            jsn.push({ "Country Name"    : arr[i][2]
+                     , "ISO"             : arr[i][0] + '/' + arr[i][1]
+                     , "Country History" : arr[i][3].map(x => { "Year"  : x[0]
+                                                              , "Event" : x[1]
+                                                              })
+                     });
+
         }
         sel.appendChild(opt);
     }
