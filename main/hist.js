@@ -102,9 +102,9 @@ function historychart(arr) {
         } else {
             opt.setAttribute('value', arr[i][0]);
             opt.textContent = arr[i][2];
-            jsn.push({ "Country Name"    : arr[i][2]
-                     , "ISO"             : arr[i][0] + '/' + arr[i][1]
-                     , "Country History" : Object.fromEntries(arr[i][3])
+            jsn.push({ Name    : arr[i][2]
+                     , ISO     : arr[i][0] + '/' + arr[i][1]
+                     , History : Object.fromEntries(arr[i][3])
                      });
         }
         sel.appendChild(opt);
