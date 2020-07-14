@@ -118,6 +118,7 @@ function historychart(arr) {
                           , scope           : 'world'
                           , projection      : 'mercator'
                           , responsive      : false
+                          , data            : jsn
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
@@ -125,7 +126,6 @@ function historychart(arr) {
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
-                                              , data                 : jsn
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover><strong>'
                                                                                 + geography.properties.name
