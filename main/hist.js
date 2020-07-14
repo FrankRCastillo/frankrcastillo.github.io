@@ -129,12 +129,10 @@ function historychart(arr) {
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
                                                                            var elem = window.ctyjson.filter(elem => elem.ISO3 == geography.id)[0];
-                                                                           var iso2 = elem.ISO2;
-                                                                           var iso3 = elem.ISO3;
-                                                                           
+                                                                            
                                                                            return '<div class=maphover><strong>'
-                                                                                + geography.properties.name + '<br/>'
-                                                                                + 
+                                                                                + geography.properties.name + '(' + elem.ISO2 + '/' + ')<br/>'
+                                                                                + Object.keys(country.History).map(x => x + ": " + country.History[x]).join('<br/>')
                                                                                 + '</strong>'
                                                                                 + '</div>';
                                                                        }
