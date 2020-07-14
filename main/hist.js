@@ -1,6 +1,6 @@
 // |govt|hist|World history infographic (powered by CIA World Factbook)
 
-var json = []
+window.ctyjson = [];
 
 export async function hist() {
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
@@ -103,11 +103,11 @@ function historychart(arr) {
         } else {
             opt.setAttribute('value', arr[i][0]);
             opt.textContent = arr[i][2];
-            json.push({ Name    : arr[i][2]
-                      , ISO2    : arr[i][0]
-                      , ISO3    : arr[i][1]
-                      , History : Object.fromEntries(arr[i][3])
-                     });
+            window.json.push({ Name    : arr[i][2]
+                             , ISO2    : arr[i][0]
+                             , ISO3    : arr[i][1]
+                             , History : Object.fromEntries(arr[i][3])
+                             });
         }
         sel.appendChild(opt);
     }
