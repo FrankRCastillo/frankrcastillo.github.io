@@ -103,11 +103,11 @@ function historychart(arr) {
         } else {
             opt.setAttribute('value', arr[i][0]);
             opt.textContent = arr[i][2];
-            window.json.push({ Name    : arr[i][2]
-                             , ISO2    : arr[i][0]
-                             , ISO3    : arr[i][1]
-                             , History : Object.fromEntries(arr[i][3])
-                             });
+            window.ctyjson.push({ Name    : arr[i][2]
+                                , ISO2    : arr[i][0]
+                                , ISO3    : arr[i][1]
+                                , History : Object.fromEntries(arr[i][3])
+                                });
         }
         sel.appendChild(opt);
     }
