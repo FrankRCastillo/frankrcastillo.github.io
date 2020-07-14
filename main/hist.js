@@ -16,7 +16,7 @@ export async function hist() {
         var name = tag[i].getElementsByClassName('country')[0].innerText.trim();
         var hist = tag[i].querySelector('#field-background').innerText.trim();
         var harr = parseHistory(hist);
-        arr.push([iso2], iso3, name, harr]);
+        arr.push([iso2, iso3, name, harr]);
     }
 
     historychart(arr);
