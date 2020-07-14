@@ -103,11 +103,11 @@ function historychart(arr) {
         } else {
             opt.setAttribute('value', arr[i][0]);
             opt.textContent = arr[i][2];
-            json.push({ 
-                      , Name    : arr[i][2]
-                      , ISO     : arr[i][0] + '/' + arr[i][1]
+            json.push({ Name    : arr[i][2]
+                      , ISO2    : arr[i][0]
+                      , ISO3    : arr[i][1]
                       , History : Object.fromEntries(arr[i][3])
-                      });
+                     });
         }
         sel.appendChild(opt);
     }
@@ -124,12 +124,13 @@ function historychart(arr) {
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
                                               , borderWidth          : 1
+                                              , data                 : jsn
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover><strong>'
-                                                                                + geography.properties.name
+                                                                                + geography.properties.name + '(' + data.ISO + ')'
                                                                                 + '</strong>'
                                                                                 + '</div>';
                                                                        }
