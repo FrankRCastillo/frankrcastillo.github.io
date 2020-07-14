@@ -12,7 +12,6 @@ export async function hist() {
 
     for (var i = 0; i < tag.length; i++) {                                              // iterate through country listing array
         var iso2 = tag[i].id;                                                           // capture iso2 country code
-        console.log(iso2);
         var iso3 = '';
         try{
             iso3 = iso[iso.map(x => x[1]).indexOf(iso2)][2]                             // convert iso2 to iso3 using csv loaded earlier
