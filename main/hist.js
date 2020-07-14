@@ -125,11 +125,14 @@ function historychart(arr) {
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
+                                              , data                 : jsn
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover><strong>'
                                                                                 + geography.properties.name
                                                                                 + '</strong>'
-                                                                                + 
+                                                                                + data."Country Name" + "<br/>"
+                                                                                + data."ISO"          + "<br/>"
+                                                                                + data."Country History"
                                                                                 + '</div>';
                                                                        }
                                               }
