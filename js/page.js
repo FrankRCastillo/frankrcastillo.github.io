@@ -366,6 +366,10 @@ function GetJsDesc(str) {
     }
 }
 
+function csv2arr(txt) {
+    return txt.split('\n').map(x => x.split(','));
+}
+
 async function main() {
     var body = document.body;
 

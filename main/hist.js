@@ -3,6 +3,7 @@
 export async function hist() {
     var txt = await ReadFile('https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html');
     var iso = await ReadFile('/main/hist/iso.csv');
+    var csv = csv2arr(iso);
     var doc = new DOMParser().parseFromString(txt, 'text/html');
     var lst = doc.getElementById('fieldListing');
     var bdy = lst.getElementsByTagName('tbody');
@@ -14,7 +15,7 @@ export async function hist() {
         var name = tag[i].getElementsByClassName('country')[0].innerText.trim();
         var hist = tag[i].querySelector('#field-background').innerText.trim();
         var harr = parseHistory(hist);
-        arr.push([id, name, harr]);
+        arr.push([id, , name, harr]);
     }
 
     historychart(arr);
@@ -114,7 +115,9 @@ function historychart(arr) {
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover><strong>'
                                                                                 + geography.properties.name
-                                                                                + '</strong></div>';
+                                                                                + '</strong>'
+                                                                                + 
+                                                                                + '</div>';
                                                                        }
                                               }
                           , done            : function(datamap) {
