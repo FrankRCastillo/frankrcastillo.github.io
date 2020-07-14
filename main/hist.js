@@ -128,11 +128,14 @@ function historychart(arr) {
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
-                                                                           var elem = window.ctyjson.filter(elem => elem.ISO3 == geography.id)[0];
+                                                                           var ctry = window.ctyjson.filter(elem => elem.ISO3 == geography.id)[0];
                                                                            var name = geography.properties.name;
-                                                                           var isos = '(' + elem.ISO2 + '/' + elem.ISO3 + ')';
-                                                                           var hjsn = Object.keys(elem.History).map(x => x + ": " + elem.History[x]).join('<br/>');
-                                                                           return '<div class=maphover><strong>' + name + ' ' + isos + '<br/>' + hjst
+                                                                           var isos = '(' + ctry.ISO2 + '/' + ctry.ISO3 + ')';
+                                                                           var hjsn = Object.keys(ctry).History.map(x => x + ": " + ctry.History[x]).join('<br/>');
+                                                                           return '<div class=maphover><strong>'
+                                                                                + name + ' '
+                                                                                + isos + '<br/>'
+                                                                                + hjst
                                                                                 + '</strong>'
                                                                                 + '</div>';
                                                                        }
