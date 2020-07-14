@@ -118,11 +118,11 @@ function historychart(arr) {
                           , scope           : 'world'
                           , projection      : 'mercator'
                           , responsive      : false
-                          , data            : jsn
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
                                               , borderWidth          : 1
+                                              , data                 : jsn
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
