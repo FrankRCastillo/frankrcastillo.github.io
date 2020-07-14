@@ -77,7 +77,7 @@ function parseHistory(str) {
             info = Math.max.apply(null, yrgx);
         }
         
-        return [info, elem + '.'];
+        return [info, elem.slice(-1) == '.' ? elem : elem + '.'];
     });
 
     return rtn;
@@ -128,8 +128,13 @@ function historychart(arr) {
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
+                                                                           var elem = window.ctyjson.filter(elem => elem.ISO3 == geography.id)[0];
+                                                                           var iso2 = elem.ISO2;
+                                                                           var iso3 = elem.ISO3;
+                                                                           
                                                                            return '<div class=maphover><strong>'
-                                                                                + geography.properties.name
+                                                                                + geography.properties.name + '<br/>'
+                                                                                + 
                                                                                 + '</strong>'
                                                                                 + '</div>';
                                                                        }
