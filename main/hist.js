@@ -15,13 +15,13 @@ export async function hist() {
         var iso3 = '';
         try{
             iso3 = iso[iso.map(x => x[1]).indexOf(iso2)][2]                             // convert iso2 to iso3 using csv loaded earlier
+            var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
+            var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
+            var harr = parseHistory(hist);                                              // run history through parser; returns array of year and sentence
+            arr.push([iso2, iso3, name, harr]);                                         // add elements into array
         } catch(err) {
             console.log(err.message);
         }
-        var name = tag[i].getElementsByClassName('country')[0].innerText.trim();        // get country name, trim whitespaces at the edges
-        var hist = tag[i].querySelector('#field-background').innerText.trim();          // get country history listing, trim whitespaces
-        var harr = parseHistory(hist);                                                  // run history through parser; returns array of year and sentence
-        arr.push([iso2, iso3, name, harr]);                                             // add elements into array
     }
 
     historychart(arr);                                                                  // send array to be plotted onto chart
