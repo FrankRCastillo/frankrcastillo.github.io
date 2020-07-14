@@ -1,5 +1,7 @@
 // |govt|hist|World history infographic (powered by CIA World Factbook)
 
+var json = []
+
 export async function hist() {
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
     var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
@@ -86,7 +88,6 @@ function historychart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var sel = document.createElement('select');
-    var jsn = [];
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
@@ -102,10 +103,11 @@ function historychart(arr) {
         } else {
             opt.setAttribute('value', arr[i][0]);
             opt.textContent = arr[i][2];
-            jsn.push({ Name    : arr[i][2]
-                     , ISO     : arr[i][0] + '/' + arr[i][1]
-                     , History : Object.fromEntries(arr[i][3])
-                     });
+            json.push({ 
+                      , Name    : arr[i][2]
+                      , ISO     : arr[i][0] + '/' + arr[i][1]
+                      , History : Object.fromEntries(arr[i][3])
+                      });
         }
         sel.appendChild(opt);
     }
@@ -122,13 +124,12 @@ function historychart(arr) {
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
                                               , borderWidth          : 1
-                                              , data                 : jsn
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover><strong>'
-                                                                                + geography.properties.name + '(' + data.ISO + ')'
+                                                                                + geography.properties.name
                                                                                 + '</strong>'
                                                                                 + '</div>';
                                                                        }
