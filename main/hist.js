@@ -128,11 +128,8 @@ function historychart(arr) {
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover><strong>'
-                                                                                + geography.properties.name
+                                                                                + geography.properties.name + '(' + data.ISO + ')'
                                                                                 + '</strong>'
-                                                                                + data."Country Name" + "<br/>"
-                                                                                + data."ISO"          + "<br/>"
-                                                                                + data."Country History"
                                                                                 + '</div>';
                                                                        }
                                               }
