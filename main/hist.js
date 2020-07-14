@@ -104,11 +104,8 @@ function historychart(arr) {
             opt.textContent = arr[i][2];
             jsn.push({ "Country Name"    : arr[i][2]
                      , "ISO"             : arr[i][0] + '/' + arr[i][1]
-                     , "Country History" : arr[i][3].map(x => { "Year"  : x[0]
-                                                              , "Event" : x[1]
-                                                              })
+                     , "Country History" : arr[i][3].map(x => {"Year":row[0], "Event":row[1]})
                      });
-
         }
         sel.appendChild(opt);
     }
