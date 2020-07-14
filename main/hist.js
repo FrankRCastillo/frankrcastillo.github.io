@@ -12,7 +12,7 @@ export async function hist() {
 
     for (var i = 0; i < tag.length; i++) {
         var iso2  = tag[i].id;
-        var iso3 = csv[csv.map(x => x[1]).indexOf(id)][2]
+        var iso3 = csv[csv.map(x => x[1]).indexOf(iso2)][2]
         var name = tag[i].getElementsByClassName('country')[0].innerText.trim();
         var hist = tag[i].querySelector('#field-background').innerText.trim();
         var harr = parseHistory(hist);
