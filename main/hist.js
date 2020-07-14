@@ -132,10 +132,11 @@ function historychart(arr) {
                                                                            var name = geography.properties.name;
                                                                            var isos = '(' + ctry.ISO2 + '/' + ctry.ISO3 + ')';
                                                                            var hjsn = Object.keys(ctry).History.map(x => x + ": " + ctry.History[x]).join('<br/>');
+
                                                                            return '<div class=maphover><strong>'
                                                                                 + name + ' '
                                                                                 + isos + '<br/>'
-                                                                                + hjst
+                                                                                + hjsn
                                                                                 + '</strong>'
                                                                                 + '</div>';
                                                                        }
