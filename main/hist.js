@@ -118,7 +118,7 @@ function historychart(arr) {
     
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
-                          , projection      : 'mercator'
+                          , projection      : 'equirectangular'
                           , responsive      : false
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
