@@ -118,6 +118,7 @@ function historychart(arr) {
                           , scope           : 'world'
                           , projection      : 'mercator'
                           , responsive      : false
+                          , done            : updatemap(datamap)
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
@@ -126,32 +127,36 @@ function historychart(arr) {
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
-                                              , popupTemplate        : function(geography, data) {
-                                                                           return '<div class=maphover><strong>'
-                                                                                + geography.properties.name + '(' + data.ISO + ')'
-                                                                                + '</strong>'
-                                                                                + '</div>';
-                                                                       }
+                                              , popupTemplate        : popupTemplate(geography, data)
                                               }
-                          , done            : function(datamap) {
-                                                  datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
-
-                                                  function redraw() {
-                                                      var negfont = 10 / d3.event.scale;
-
-                                                      datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate
-                                                                                                 + ")scale("    + d3.event.scale + ")"
-                                                                                     );
-
-                                                      datamap.svg.selectAll("text").attr("style", "font-size: " + negfont + "px; "
-                                                                                                + "font-family: \"MS PGothic\"; "
-                                                                                                + "fill: rgb(255, 165, 0);"
-                                                                                        );
-                                                  }
-                                              } 
     });
 
     map.labels({ labelColor : '#ffa500'
                , fontFamily : 'MS PGothic'
     });
+}
+
+function popupTemplate(geography, data) {
+    return '<div class=maphover><strong>'
+         + geography.properties.name + '(' + data.ISO + ')'
+         + '</strong>'
+         + '</div>';
+}
+
+function updatemap(datamap) {
+    datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
+
+}
+
+function redraw() {
+    var negfont = 10 / d3.event.scale;
+
+    datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate
+                                 + ")scale("    + d3.event.scale + ")"
+                     );
+
+    datamap.svg.selectAll("text").attr("style", "font-size: " + negfont + "px; "
+                                + "font-family: \"MS PGothic\"; "
+                                + "fill: rgb(255, 165, 0);"
+                        );
 }
