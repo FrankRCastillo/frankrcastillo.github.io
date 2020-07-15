@@ -160,13 +160,13 @@ function historychart(arr) {
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
-                                              , popupTemplate   : function(geography, data) {
-                                                                      return '<div class=maphover>'
-                                                                           + '<strong>'
-                                                                           + geography.properties.name
-                                                                           + '</strong>'
-                                                                           + '</div>';
-                                                                  }
+                                              , popupTemplate        : function(geography, data) {
+                                                                          return '<div class=maphover>'
+                                                                               + '<strong>'
+                                                                               + geography.properties.name
+                                                                               + '</strong>'
+                                                                               + '</div>';
+                                                                       }
                                               }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
