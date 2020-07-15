@@ -96,13 +96,14 @@ button
 }
 
 #mapdata
-{ border  : 1px solid #ffa500
-; margin  : 0px 0px 0px 0px
-; padding : 0px 0px 0px 0px
-; width   : 250px
-; height  : calc(100% - 35px)
-; left    : relative
-; float   : left
+{ border    : 1px solid #ffa500
+; margin    : 0px 0px 0px 0px
+; padding   : 0px 0px 0px 0px
+; width     : 250px
+; height    : calc(100% - 35px)
+; left      : relative
+; float     : left
+; font-size : 12px
 }
 
 #mapframe
