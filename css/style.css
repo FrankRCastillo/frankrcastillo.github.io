@@ -118,8 +118,12 @@ button
 }
 
 .yearTag
+{ cursor : pointer
+; color  : #ffa500
+}
+
+.yearTag:hover
 { text-decoration : underline
-; cursor          : pointer
 }
 
 .maphover
