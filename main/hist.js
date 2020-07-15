@@ -160,7 +160,10 @@ function historychart(arr) {
                                               , highlightFillColor   : '#000000'
                                               }
                           , popupTemplate   : function(geography, data) {
-                                                  return '';
+                                                  return '<div class=maphover>'
+                                                       + '<strong>'
+                                                       + geography.properties.name
+                                                       + '</strong>';
                                               }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
