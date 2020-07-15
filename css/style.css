@@ -117,12 +117,12 @@ button
 ; float    : left
 }
 
-.yearTag
+.yearTag .countryTag
 { cursor : pointer
 ; color  : #ffa500
 }
 
-.yearTag:hover
+.yearTag:hover .countryTag:hover
 { text-decoration : underline
 }
 
