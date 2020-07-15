@@ -71,13 +71,13 @@ function parseHistory(str) {
     var rtn = arr.map(function(elem, i, orig) {
         var yrgx = elem.match(/([1](?<=1)[0-9]|20)[0-9]{2}/)
         var info = Math.max.apply(null, yrgx);
+        var sntc = elem.slice(-1) == '.' ? elem : elem + '.';
 
         if (Number.isFinite(info) == false && i > 0) {
-            yrgx = orig[i - 1].match(/([1](?<=1)[0-9]|20)[0-9]{2}/)
-            info = Math.max.apply(null, yrgx);
+            sntc = orig[i - 1] + ' ' + sntc;
         }
         
-        return [info, elem.slice(-1) == '.' ? elem : elem + '.'];
+        return [info, sntc];
     });
 
     return rtn;
