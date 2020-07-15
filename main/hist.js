@@ -159,7 +159,7 @@ function historychart(arr) {
 }
 
 function countryInfo(countryCode) {
-    var countryData = window.ctyjson.filter(elem => elem.ISO2 == countryCode)[0];
+    var countryData = window.ctryData.filter(elem => elem.ISO2 == countryCode)[0];
     var countryName = countryData.Name;
     var countryIsos = '(' + countryData.ISO2 + '/' + countryData.ISO3 + ')';
     var countryKeys = Object.keys(countryData.History)
