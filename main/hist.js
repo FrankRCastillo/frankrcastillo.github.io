@@ -66,22 +66,33 @@ function parseHistory(str) {
         }
     }
 
-    var arr = tmp.split('. ');
+    var arr = gethistdate(tmp.split('. '));
 
-    var rtn = arr.map(function(elem, i, orig) {
-        var yrgx = elem.match(/([1](?<=1)[0-9]|20)[0-9]{2}/)
-        var info = Math.max.apply(null, yrgx);
-        var sntc = elem.slice(-1) == '.' ? elem : elem + '.';
+    return arr;
+}
 
-        if (Number.isFinite(info) == false && i > 0) {
-            sntc = orig[i - 1] + ' ' + sntc;
+function gethistdate(arr) {
+    var rtn = [];
+    var evnt = '';
+    var year = 0;
+
+    for (var i = 0; i < arr.length; i++) {
+        var yrrgx = arr[i].match(/([1](?<=1)[0-9]|20)[0-9]{2}/);
+        var yrmax = Math.max.apply(null, yrgx);
+
+        if (Number.isFinite(yrmax)) {
+            rtn.push([yrmax, (evnt == '' ? evnt : evnt + '. ') + arr[i]]);
+            evnt = '';
+
+        } else {
+            evnt += arr[i];
+
         }
-        
-        return [info, sntc];
-    });
+    }
 
     return rtn;
 }
+
 
 function historychart(arr) {
     var out = document.getElementById('outtext');
