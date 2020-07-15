@@ -82,7 +82,7 @@ function getHistDate(arr) {
         var ctrow = (arr[i].slice(-1) == '.' ? arr[i] : arr[i] + '. ');
 
         if (Number.isFinite(yrmax)) {
-            rtn.push([yrmax, ctrow];
+            rtn.push([yrmax, ctrow]);
             evnt = '';
 
         } else {
