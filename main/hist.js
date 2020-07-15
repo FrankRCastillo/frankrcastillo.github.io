@@ -159,6 +159,9 @@ function historychart(arr) {
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
                                               }
+                          , popupTemplate   : function(geography, data) {
+                                                  return '';
+                                              }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
 
