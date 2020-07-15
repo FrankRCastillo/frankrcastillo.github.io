@@ -79,13 +79,14 @@ function getHistDate(arr) {
     for (var i = 0; i < arr.length; i++) {
         var yrrgx = arr[i].match(/([1](?<=1)[0-9]|20)[0-9]{2}/);
         var yrmax = Math.max.apply(null, yrrgx);
+        var ctrow = (arr[i].slice(-1) == '.' ? arr[i] : arr[i] + '. ');
 
         if (Number.isFinite(yrmax)) {
-            rtn.push([yrmax, (evnt == '' ? evnt : evnt + '. ') + arr[i]]);
+            rtn.push([yrmax, ctrow];
             evnt = '';
 
         } else {
-            evnt += (arr[i].slice(-1) == '.' ? arr[i] : arr[i] + '. ');
+            evnt += ctrow;
 
         }
     }
