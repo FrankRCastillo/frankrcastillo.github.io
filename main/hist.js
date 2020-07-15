@@ -159,15 +159,13 @@ function historychart(arr) {
 }
 
 function countryInfo(countryCode) {
-    var countryData = window.ctryData.filter(elem => elem.ISO2 == countryCode)[0];
-    var countryName = countryData.Name;
-    var countryIsos = '(' + countryData.ISO2 + '/' + countryData.ISO3 + ')';
-    var countryKeys = Object.keys(countryData.History)
-    var countryHist = countryKeys.map(x => x + ": " + countryData.History[x]).join('<br/><br/>');
+    var countryData = window.ctryData.filter(elem => elem[1] == countryCode)[0];
+    var countryName = countryData[2];
+    var countryIsos = '(' + countryData[0] + '/' + countryData[1] + ')';
 
     return '<strong>'
           + countryName + ' '
           + countryIsos + '<br/>'
           + '</strong>'
-          + countryHist;
+          + countryData[3];
 }
