@@ -102,13 +102,25 @@ function historychart(arr) {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
+    var btn = document.createElement('button');
     var dta = document.createElement('div');
     var sel = document.createElement('select');
+    var msg = 'Select Country...';
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
     dta.setAttribute('id', 'mapdata'  );
     sel.setAttribute('id', 'mapselect');
+    btn.setAttribute('id', 'ctryfind' );
+
+    btn.addEventListener('click', function() {
+        var dta = document.getElementById('mapdata');
+        var sel = document.getElementById('mapselect');
+        var iso = sel.options[sel.selectedIndex].value;
+        if (iso != '') {
+            dta.innerHTML = countryInfo(iso);
+        }
+    });
 
     for (var i = -1; i < arr.length; i++) {
         var opt = document.createElement('option');
@@ -116,7 +128,7 @@ function historychart(arr) {
         if (i == -1) {
             opt.setAttribute('disabled', true);
             opt.setAttribute('selected', true);
-            opt.textContent = 'Select Country...';
+            opt.textContent = msg;
         } else {
             opt.setAttribute('value', arr[i][0]);
             opt.textContent = arr[i][2];
@@ -145,19 +157,6 @@ function historychart(arr) {
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
-                                              , popupTemplate        : function(geography, data) {
-                                                                           var ctry = window.ctyjson.filter(elem => elem.ISO3 == geography.id)[0];
-                                                                           var name = geography.properties.name;
-                                                                           var isos = '(' + ctry.ISO2 + '/' + ctry.ISO3 + ')';
-                                                                           var hjsn = Object.keys(ctry.History).map(x => x + ": " + ctry.History[x]).join('<br/><br/>');
-
-                                                                           return '<div class=maphover><strong>'
-                                                                                + name + ' '
-                                                                                + isos + '<br/>'
-                                                                                + '</strong>'
-                                                                                + hjsn
-                                                                                + '</div>';
-                                                                       }
                                               }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
@@ -180,4 +179,18 @@ function historychart(arr) {
     map.labels({ labelColor : '#ffa500'
                , fontFamily : 'MS PGothic'
     });
+}
+
+function countryInfo(countryCode) {
+    var countryData = window.ctyjson.filter(elem => elem.ISO2 == countryCode)[0];
+    var countryName = countryData.Name;
+    var countryIsos = '(' + countryData.ISO2 + '/' + countryData.ISO3 + ')';
+    var countryKeys = Object.keys(countryData.History)
+    var countryHist = countryKeys.map(x => x + ": " + countryKeys[x]).join('<br/><br/>');
+
+    return '<strong>'
+          + countryName + ' '
+          + countryIsos + '<br/>'
+          + '</strong>'
+          + countryHist;
 }
