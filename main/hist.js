@@ -8,11 +8,6 @@ export async function hist() {
     var iso = csv2arr(await ReadFile('/main/hist/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
     var doc = new DOMParser().parseFromString(txt, 'text/html');                        // parse CIA world factbook text into HTML
     var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
-
-    lst.innerHTML = lst.innerHTML.replace( /([1](?<=1)[0-9]|20)[0-9]{2}/g
-                                         , '<strong class=yearTag>$&</strong>'
-                                         );
-
     var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
     var tag = bdy[0].getElementsByTagName('tr');                                        // get rows from table body; each row = one country listing
     var arr = [];
@@ -32,13 +27,13 @@ export async function hist() {
 
     var countries = window.ctryData.map(x => x[2]);
     var ctryregex = new RegExp("(" + countries.join("|") + ")");
+    var yearregex = /([1](?<=1)[0-9]|20)[0-9]{2}/g;
 
     window.ctryData = window.ctryData.map(x => [ x[0]
                                                , x[1]
                                                , x[2]
-                                               , x[3].replace( ctryregex
-                                                             , "<strong class=countryTag>$&</strong>"
-                                                             )
+                                               , x[3].replace(ctryregex, '<strong class=ctryTag>$&</strong>')
+                                                     .replace(yearregex, '<strong class=yearTag>$&</strong>')
                                                ]);
 
     historychart(window.ctryData);                                                      // send array to be plotted onto chart
