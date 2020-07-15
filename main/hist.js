@@ -78,7 +78,7 @@ function getHistDate(arr) {
 
     for (var i = 0; i < arr.length; i++) {
         var yrrgx = arr[i].match(/([1](?<=1)[0-9]|20)[0-9]{2}/);
-        var yrmax = Math.max.apply(null, yrgx);
+        var yrmax = Math.max.apply(null, yrrgx);
 
         if (Number.isFinite(yrmax)) {
             rtn.push([yrmax, (evnt == '' ? evnt : evnt + '. ') + arr[i]]);
