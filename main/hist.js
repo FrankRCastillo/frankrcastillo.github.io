@@ -158,14 +158,14 @@ function historychart(arr) {
     });
 }
 
-function countryInfo(countryCode) {
-    var countryData = window.ctryData.filter(elem => elem[1] == countryCode)[0];
-    var countryName = countryData[2];
-    var countryIsos = '(' + countryData[0] + '/' + countryData[1] + ')';
+function countryInfo(iso2) {
+    var data = window.ctryData.filter(elem => elem[0] == iso2)[0];
+    var name = data[2];
+    var isos = '(' + data[0] + '/' + data[1] + ')';
 
     return '<strong>'
-          + countryName + ' '
-          + countryIsos + '<br/>'
+          + name + ' '
+          + isos + '<br/>'
           + '</strong>'
-          + countryData[3];
+          + data[3];
 }
