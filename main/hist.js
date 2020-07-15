@@ -30,8 +30,6 @@ export async function hist() {
     CmdReady();                                                                         // update page status as ready
 }
 
-
-
 function parseHistory(str) {
     var rgxexp = [ "([A-Za-z](\\.)){2,} [A-Z]"                                          // acronyms at the end of a sentence; delete all but last period
                  , "([A-Za-z](\\.)){2,} [^A-Z]"                                         // acronyms within a sentece, but not the end; delete all periods
@@ -40,12 +38,12 @@ function parseHistory(str) {
     
     var tmp = str;
 
-    for (var i = 0; i < rgxexp.length; i++) {
+    for (var i = 0; i < rgxexp.length; i++) {                                           // iterate through regular expressions
         var rgxdom = new RegExp(rgxexp[i]);
         var rgxget = tmp.match(rgxdom);
         
         try {
-            for (var j = 0; j < rgxget.length; j++) {
+            for (var j = 0; j < rgxget.length; j++) {                                   // iterate through regular expression matches
                 var rgxmod = '';
 
                 // first regex requires that all but last periods be removed
