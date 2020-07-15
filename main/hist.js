@@ -25,8 +25,8 @@ export async function hist() {
             var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
             var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
 //            var harr = parseHistory(hist);                                              // run history through parser; returns array of event sentences
-            var harr = dateHyperlink(hist);                                             // convert each year in sentences into hyperlink
-            window.ctryData.push([iso2, iso3, name, harr]);                             // add elements into array
+//            var harr = dateHyperlink(hist);                                             // convert each year in sentences into hyperlink
+            window.ctryData.push([iso2, iso3, name, hist]);                             // add elements into array
         } catch(err) {
             console.log(err.message);
         }
