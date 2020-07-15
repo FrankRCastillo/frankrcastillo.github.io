@@ -79,7 +79,6 @@ function historychart(arr) {
     var btn = document.createElement('button');
     var dta = document.createElement('div');
     var sel = document.createElement('select');
-    var msg = 'Select Country...';
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
@@ -103,7 +102,7 @@ function historychart(arr) {
         if (i == -1) {
             opt.setAttribute('disabled', true);
             opt.setAttribute('selected', true);
-            opt.textContent = msg;
+            opt.textContent = 'Select Country...';
         } else {
             opt.setAttribute('value', arr[i][0]);
             opt.textContent = arr[i][2];
