@@ -1144,7 +1144,6 @@
             return "";
           }
         })
-        .style('left', ( position[0]) + "px");
     });
 
     d3.select(self.svg[0][0].parentNode).select('.datamaps-hoverover').style('display', 'block');
