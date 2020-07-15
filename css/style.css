@@ -101,10 +101,10 @@ button
 ; padding   : 0px 0px 0px 0px
 ; width     : 250px
 ; height    : calc(100% - 35px)
-; left      : relative
 ; float     : left
 ; font-size : 12px
 ; overflow  : auto
+; z-index   
 }
 
 #mapframe
