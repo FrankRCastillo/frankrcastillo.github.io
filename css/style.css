@@ -109,10 +109,8 @@ button
 ; color       : #000000
 ; font-family : 'MS PGothic'
 ; font-size   : 12px
-; min-height  : max-content
-; max-height  : 300px
-; width       : 400px
-; overflow    : auto
+; max-height  : max-content
+; width       : 75%
 }
 
 .zoombtn
