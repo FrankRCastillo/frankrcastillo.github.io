@@ -117,12 +117,12 @@ button
 ; float    : left
 }
 
-.yearTag .ctryTag
+.yearTag, .ctryTag
 { cursor : pointer
 ; color  : #ffa500
 }
 
-.yearTag:hover .ctryTag:hover
+.yearTag:hover, .ctryTag:hover
 { text-decoration : underline
 }
 
