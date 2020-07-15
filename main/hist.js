@@ -8,6 +8,11 @@ export async function hist() {
     var iso = csv2arr(await ReadFile('/main/hist/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
     var doc = new DOMParser().parseFromString(txt, 'text/html');                        // parse CIA world factbook text into HTML
     var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
+
+    lst.innerHTML = lst.innerHTML.replace( /([1](?<=1)[0-9]|20)[0-9]{2}/g
+                                         , '<strong class=yearTag>$&</strong>'
+                                         );
+
     var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
     var tag = bdy[0].getElementsByTagName('tr');                                        // get rows from table body; each row = one country listing
     var arr = [];
@@ -26,7 +31,13 @@ export async function hist() {
             console.log(err.message);
         }
     }
-    
+
+    var countries = window.ctryData.map(x => x[2]);
+
+
+
+    //window.ctryData = window.ctryData.map(x => x[3] = x[3].replace() )
+
     historychart(window.ctryData);                                                      // send array to be plotted onto chart
     CmdReady();                                                                         // update page status as ready
 }
@@ -66,10 +77,6 @@ function parseHistory(str) {
     }
 
     return tmp.split('. ');
-}
-
-function dateHyperlink(str) {
-    return str.replace(/([1](?<=1)[0-9]|20)[0-9]{2}/g, '<strong class=yearTag>$&</strong>');
 }
 
 function historychart(arr) {
