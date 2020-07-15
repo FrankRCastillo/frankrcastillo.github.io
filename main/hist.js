@@ -33,10 +33,9 @@ export async function hist() {
     }
 
     var countries = window.ctryData.map(x => x[2]);
+    var ctryregex = new RegExp("(" + countries.join("|") + ")");
 
-
-
-    //window.ctryData = window.ctryData.map(x => x[3] = x[3].replace() )
+    window.ctryData = window.ctryData.map(x => x[3] = x[3].replace(ctryregex, "<strong class=countryTag>$&</strong>"));
 
     historychart(window.ctryData);                                                      // send array to be plotted onto chart
     CmdReady();                                                                         // update page status as ready
