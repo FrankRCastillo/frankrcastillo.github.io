@@ -1,6 +1,6 @@
 // |govt|hist|World history infographic (powered by CIA World Factbook)
 
-window.ctyjson = [];
+window.ctryData = [];
 
 export async function hist() {
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
@@ -21,13 +21,13 @@ export async function hist() {
             var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
 //            var harr = parseHistory(hist);                                              // run history through parser; returns array of event sentences
             var harr = dateHyperlink(hist);                                             // convert each year in sentences into hyperlink
-            arr.push([iso2, iso3, name, harr]);                                         // add elements into array
+            window.ctryData.push([iso2, iso3, name, harr]);                             // add elements into array
         } catch(err) {
             console.log(err.message);
         }
     }
     
-    historychart(arr);                                                                  // send array to be plotted onto chart
+    historychart(window.ctryData);                                                      // send array to be plotted onto chart
     CmdReady();                                                                         // update page status as ready
 }
 
@@ -107,11 +107,6 @@ function historychart(arr) {
         } else {
             opt.setAttribute('value', arr[i][0]);
             opt.textContent = arr[i][2];
-            window.ctyjson.push({ Name    : arr[i][2]
-                                , ISO2    : arr[i][0]
-                                , ISO3    : arr[i][1]
-                                , History : Object.fromEntries(arr[i][3])
-                                });
         }
         sel.appendChild(opt);
     }

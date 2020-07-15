@@ -117,6 +117,10 @@ button
 ; float    : left
 }
 
+.yearTag
+{ text-decoration : underline
+}
+
 .maphover
 { border      : 1px solid #000000
 ; background  : #ffa500
