@@ -111,8 +111,9 @@ button
 ; padding  : 0px 0px 0px 0px
 ; left     : 250px
 ; height   : calc(100% - 35px)
-; width    : calc(100% - 252px)
+; width    : calc(100% - 255px)
 ; position : relative
+; float    : left
 }
 
 .maphover
