@@ -10,7 +10,6 @@ export async function hist() {
     var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
     var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
     var tag = bdy[0].getElementsByTagName('tr');                                        // get rows from table body; each row = one country listing
-    var arr = [];
 
     for (var i = 0; i < tag.length; i++) {                                              // iterate through country listing array
         var iso2 = tag[i].id;                                                           // capture iso2 country code
