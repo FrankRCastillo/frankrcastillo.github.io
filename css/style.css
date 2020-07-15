@@ -76,7 +76,7 @@ button
 ; background  : #ffa500
 ; color       : #000000
 ; font-family : courier
-; font-size   : 12px
+; font-size   : 20px
 ; outline     : none
 }
 
@@ -138,8 +138,9 @@ button
 
 #ctryfind
 { height   : 26px
-; width    : 50px
-; position : static
+; width    : 95px
+; position : absolute
+; left     : 261px
 }
 
 #maptools
