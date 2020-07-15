@@ -104,6 +104,7 @@ button
 ; left      : relative
 ; float     : left
 ; font-size : 12px
+; overflow  : auto
 }
 
 #mapframe
