@@ -69,7 +69,7 @@ function parseHistory(str) {
 }
 
 function dateHyperlink(str) {
-    return str.replace(/1([1](?<=1)[0-9]|20)[0-9]{2}/g, '<strong class=yearTag>$&</strong>');
+    return str.replace(/([1](?<=1)[0-9]|20)[0-9]{2}/g, '<strong class=yearTag>$&</strong>');
 }
 
 function historychart(arr) {
