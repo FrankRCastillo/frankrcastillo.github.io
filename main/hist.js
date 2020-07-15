@@ -90,6 +90,10 @@ function getHistDate(arr) {
         }
     }
 
+    if (evnt != '') {
+        rtn[rtn.length - 1][1] += evnt;
+    }
+
     return rtn;
 }
 
