@@ -142,6 +142,7 @@ function historychart(arr) {
     }
 
     lst.appendChild(sel);
+    lst.appendChild(btn);
     out.appendChild(lst);
     out.appendChild(dta);
     out.appendChild(frm);
