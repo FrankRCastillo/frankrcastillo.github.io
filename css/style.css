@@ -133,6 +133,7 @@ button
 { height   : 26px
 ; width    : 250px
 ; position : absolute
+; float    : left
 }
 
 #maptools
