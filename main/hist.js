@@ -98,7 +98,6 @@ function getHistDate(arr) {
     return rtn;
 }
 
-
 function historychart(arr) {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
