@@ -66,12 +66,12 @@ function parseHistory(str) {
         }
     }
 
-    var arr = gethistdate(tmp.split('. '));
+    var arr = getHistDate(tmp.split('. '));
 
     return arr;
 }
 
-function gethistdate(arr) {
+function getHistDate(arr) {
     var rtn = [];
     var evnt = '';
     var year = 0;
