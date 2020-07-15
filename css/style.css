@@ -119,6 +119,7 @@ button
 
 .yearTag
 { text-decoration : underline
+; cursor          : pointer
 }
 
 .maphover
