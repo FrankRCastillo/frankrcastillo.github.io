@@ -85,7 +85,7 @@ function getHistDate(arr) {
             evnt = '';
 
         } else {
-            evnt += (arr[i].slice(-1) == '.' ? arr[i] : arr[i] + '. ';
+            evnt += (arr[i].slice(-1) == '.' ? arr[i] : arr[i] + '. ');
 
         }
     }
