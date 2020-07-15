@@ -139,9 +139,7 @@ button
 #ctryfind
 { height   : 26px
 ; width    : 50px
-; position : absolute
-; top      : 0px
-; left     : 250px
+; position : static
 }
 
 #maptools
