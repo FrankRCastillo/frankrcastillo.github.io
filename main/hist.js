@@ -85,7 +85,7 @@ function getHistDate(arr) {
             evnt = '';
 
         } else {
-            evnt += arr[i];
+            evnt += arr[i] + '. ';
 
         }
     }
