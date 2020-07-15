@@ -78,7 +78,6 @@ button
 ; font-family : courier
 ; font-size   : 12px
 ; outline     : none
-; float       : left
 }
 
 #outtext
@@ -135,6 +134,12 @@ button
 ; width    : 250px
 ; position : absolute
 ; float    : left
+}
+
+#ctryfind
+{ height   : 26px
+; width    : 40px
+; position : relative
 }
 
 #maptools
