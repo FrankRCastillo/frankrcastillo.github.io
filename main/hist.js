@@ -195,7 +195,7 @@ function countryInfo(countryCode) {
     var countryName = countryData.Name;
     var countryIsos = '(' + countryData.ISO2 + '/' + countryData.ISO3 + ')';
     var countryKeys = Object.keys(countryData.History)
-    var countryHist = countryKeys.map(x => x + ": " + countryKeys[x]).join('<br/><br/>');
+    var countryHist = countryKeys.map(x => x + ": " + countryData[x]).join('<br/><br/>');
 
     return '<strong>'
           + countryName + ' '
