@@ -163,7 +163,8 @@ function historychart(arr) {
                                                   return '<div class=maphover>'
                                                        + '<strong>'
                                                        + geography.properties.name
-                                                       + '</strong>';
+                                                       + '</strong>'
+                                                       + '</div>';
                                               }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
