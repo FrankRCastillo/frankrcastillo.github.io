@@ -70,7 +70,7 @@ select
 }
 
 button
-{ border      : 1px solid #ffa500
+{ border      : 1px solid #000000
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; background  : #ffa500
@@ -78,6 +78,7 @@ button
 ; font-family : courier
 ; font-size   : 12px
 ; outline     : none
+; float       : left
 }
 
 #outtext
