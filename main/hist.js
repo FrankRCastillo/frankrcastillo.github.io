@@ -19,7 +19,8 @@ export async function hist() {
             iso3 = iso[iso.map(x => x[1]).indexOf(iso2)][2]                             // convert iso2 to iso3 using csv loaded earlier
             var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
             var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
-            var harr = parseHistory(hist);                                              // run history through parser; returns array of year and sentence
+//            var harr = parseHistory(hist);                                              // run history through parser; returns array of event sentences
+            var harr = dateHyperlink(hist);                                             // convert each year in sentences into hyperlink
             arr.push([iso2, iso3, name, harr]);                                         // add elements into array
         } catch(err) {
             console.log(err.message);
@@ -64,36 +65,11 @@ function parseHistory(str) {
         }
     }
 
-    var arr = getHistDate(tmp.split('. '));
-
-    return arr;
+    return tmp.split('. ');
 }
 
-function getHistDate(arr) {
-    var rtn = [];
-    var evnt = '';
-    var year = 0;
-
-    for (var i = 0; i < arr.length; i++) {
-        var yrrgx = arr[i].match(/([1](?<=1)[0-9]|20)[0-9]{2}/);
-        var yrmax = Math.max.apply(null, yrrgx);
-        var ctrow = (arr[i].slice(-1) == '.' ? arr[i] : arr[i] + '. ');
-
-        if (Number.isFinite(yrmax)) {
-            rtn.push([yrmax, ctrow]);
-            evnt = '';
-
-        } else {
-            evnt += ctrow;
-
-        }
-    }
-
-    if (evnt != '') {
-        rtn[rtn.length - 1][1] += evnt;
-    }
-
-    return rtn;
+function dateHyperlink(str) {
+    return str.replace(/1([1](?<=1)[0-9]|20)[0-9]{2}/g, '<strong class=yearTag>$&</strong>');
 }
 
 function historychart(arr) {
