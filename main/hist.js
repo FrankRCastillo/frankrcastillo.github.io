@@ -102,10 +102,12 @@ function historychart(arr) {
     var out = document.getElementById('outtext');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
+    var dta = document.createElement('div');
     var sel = document.createElement('select');
 
     frm.setAttribute('id', 'mapframe' );
     lst.setAttribute('id', 'maptools' );
+    dta.setAttribute('id', 'mapdata'  );
     sel.setAttribute('id', 'mapselect');
 
     for (var i = -1; i < arr.length; i++) {
@@ -129,6 +131,7 @@ function historychart(arr) {
 
     lst.appendChild(sel);
     out.appendChild(lst);
+    out.appendChild(dta);
     out.appendChild(frm);
     
     var map = new Datamap({ element         : document.getElementById('mapframe')

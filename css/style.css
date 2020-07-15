@@ -95,13 +95,24 @@ button
 ; background : #000000
 }
 
-#mapframe
+#mapdata
 { border  : 1px solid #ffa500
 ; margin  : 0px 0px 0px 0px
 ; padding : 0px 0px 0px 0px
-; left    : 250px
+; width   : 250px
 ; height  : calc(100% - 35px)
-; width   : calc(100% - 252px)
+; left    : relative
+; float   : left
+}
+
+#mapframe
+{ border   : 1px solid #ffa500
+; margin   : 0px 0px 0px 0px
+; padding  : 0px 0px 0px 0px
+; left     : 250px
+; height   : calc(100% - 35px)
+; width    : calc(100% - 252px)
+; position : relative
 }
 
 .maphover
