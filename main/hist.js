@@ -25,14 +25,14 @@ export async function hist() {
     }
 
     var countries = window.ctryData.map(x => x[2]);
-    var ctryregex = new RegExp('(' + countries.join('|') + ')', 'g');
-    var yearregex = /([1](?<=1)[0-9]|20)[0-9]{2}/g;
 
     window.ctryData = window.ctryData.map(x => [ x[0]
                                                , x[1]
                                                , x[2]
-                                               , x[3].replace(ctryregex, '<strong class=ctryTag>$&</strong>')
-                                                     .replace(yearregex, '<strong class=yearTag>$&</strong>')
+                                               , x[3].replace( new RegExp('(' + countries.filter(e => return e != x[2]).join('|') + ')', 'g')
+                                                             , '<strong class=ctryTag>$&</strong>')
+                                                     .replace( /([1](?<=1)[0-9]|20)[0-9]{2}/g
+                                                             , '<strong class=yearTag>$&</strong>')
                                                ]);
 
     historychart(window.ctryData);                                                      // send array to be plotted onto chart
