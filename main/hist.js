@@ -141,10 +141,11 @@ function historychart(arr) {
                                               }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
-
-                                                  datamap.svg.call(this.on('click', function(elem) {
-                                                      console.log(elem);
-                                                  }));
+                                                  
+                                                  datamap.svg.selectAll('.datamaps-subunits').on('click', function(geography) {
+                                                      var dta = document.getElementById('mapdata');
+                                                      dta.innerHTML = countryInfo(geography.properties.code);
+                                                  });
 
                                                   function redraw() {
                                                       var negfont = 10 / d3.event.scale;
@@ -166,8 +167,10 @@ function historychart(arr) {
     });
 }
 
-function countryInfo(iso2) {
-    var data = window.ctryData.filter(elem => elem[0] == iso2)[0];
+// isoType : iso2 or iso3
+function countryInfo(iso) {
+    var idx  = (iso.length == 2 ? 0 : 1);
+    var data = window.ctryData.filter(elem => elem[idx] == iso2)[0];
     var name = data[2];
     var isos = '(' + data[0] + '/' + data[1] + ')';
 
