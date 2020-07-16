@@ -89,7 +89,7 @@ function historychart(arr) {
     dta.setAttribute('id', 'mapdata'  );
     sel.setAttribute('id', 'mapselect');
     btn.setAttribute('id', 'ctryfind' );
-    btn.textContent = 'Find...';
+    btn.textContent = 'Find';
 
     btn.addEventListener('click', function() {
         var dta = document.getElementById('mapdata');
