@@ -141,12 +141,15 @@ function historychart(arr) {
                                               }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on('zoom', function() {
+                                                      // font size divided by scale
                                                       var negfont = 10 / d3.event.scale;
-
+                                                      
+                                                      // enables pan and zoom
                                                       datamap.svg.selectAll('g').attr('transform', 'translate(' + d3.event.translate
                                                                                                  + ')scale('    + d3.event.scale + ')'
                                                                                      );
 
+                                                      // reduces font based on scaling factor as screen zooms in
                                                       datamap.svg.selectAll('text').attr('style', 'font-size: ' + negfont + 'px; '
                                                                                                 + 'font-family: \'MS PGothic\'; '
                                                                                                 + 'fill: rgb(255, 165, 0);'
@@ -174,8 +177,8 @@ function countryInfo(iso) {
     var isos = '(' + data[0] + '/' + data[1] + ')';                     // concatenate iso2 and iso3 values
 
     return '<strong>'
-          + name + ' '
-          + isos + '<br/>'
-          + '</strong>'
-          + data[3];
+         + name + ' '
+         + isos + '<br/>'
+         + '</strong>'
+         + data[3];
 }
