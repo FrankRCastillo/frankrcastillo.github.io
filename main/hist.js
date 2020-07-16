@@ -158,14 +158,15 @@ function historychart(arr) {
                                                   
                                                   // on click functions
                                                   datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+                                                      var iso = geography.properties.iso
+
+                                                      // change selection dropdown to clicked country
+                                                      var sel = document.getElementById('mapselect');
+                                                      sel.querySelector('option[value=' + iso + ']').selected = true;
+
                                                       // post the profile of the clicked country in the mapdata frame
                                                       var dta = document.getElementById('mapdata');
-                                                      dta.innerHTML = countryInfo(geography.properties.iso);
-
-                                                      // clear all countries then highlight selected country
-                                                      datamap.svg.selectAll('.datamaps-subunit').style('fill', '#000000');
-                                                      d3.select(this).style('fill', '#ffa500');
-
+                                                      dta.innerHTML = countryInfo(iso);
                                                   });
 
                                                   
