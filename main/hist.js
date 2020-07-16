@@ -25,7 +25,7 @@ export async function hist() {
     }
 
     var countries = window.ctryData.map(x => x[2]);
-    var ctryregex = new RegExp("(" + countries.join("|") + ")");
+    var ctryregex = new RegExp('(' + countries.join('|') + ')', 'g');
     var yearregex = /([1](?<=1)[0-9]|20)[0-9]{2}/g;
 
     window.ctryData = window.ctryData.map(x => [ x[0]
