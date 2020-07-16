@@ -144,7 +144,7 @@ function historychart(arr) {
                                                   
                                                   datamap.svg.selectAll('.datamaps-subunits').on('click', function(geography) {
                                                       var dta = document.getElementById('mapdata');
-                                                      dta.innerHTML = countryInfo(geography.properties.code);
+                                                      dta.innerHTML = countryInfo(geography.properties.iso);
                                                   });
 
                                                   function redraw() {
