@@ -1134,8 +1134,8 @@
     element.on('mousemove', function() {
       var position = d3.mouse(self.options.element);
       d3.select(self.svg[0][0].parentNode).select('.datamaps-hoverover')
-        .style('left', (position[0])      + "px")
-        .style( 'top', (position[1] + 30) + "px")
+        .style('left', (position[0] - 20) + "px")
+        .style( 'top', (position[1] - 20) + "px")
         .html(function() {
           var data = JSON.parse(element.attr('data-info'));
           try {
