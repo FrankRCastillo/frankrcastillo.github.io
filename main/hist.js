@@ -140,25 +140,25 @@ function historychart(arr) {
                                                                        }
                                               }
                           , done            : function(datamap) {
-                                                  datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
+                                                  datamap.svg.call(d3.behavior.zoom().on('zoom', function() {
+                                                      var negfont = 10 / d3.event.scale;
+
+                                                      datamap.svg.selectAll('g').attr('transform', 'translate(' + d3.event.translate
+                                                                                                 + ')scale('    + d3.event.scale + ')'
+                                                                                     );
+
+                                                      datamap.svg.selectAll('text').attr('style', 'font-size: ' + negfont + 'px; '
+                                                                                                + 'font-family: \'MS PGothic\'; '
+                                                                                                + 'fill: rgb(255, 165, 0);'
+                                                                                        );
+                                                  }));
                                                   
                                                   datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
                                                       var dta = document.getElementById('mapdata');
                                                       dta.innerHTML = countryInfo(geography.properties.iso);
                                                   });
 
-                                                  function redraw() {
-                                                      var negfont = 10 / d3.event.scale;
-
-                                                      datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate
-                                                                                                 + ")scale("    + d3.event.scale + ")"
-                                                                                     );
-
-                                                      datamap.svg.selectAll("text").attr("style", "font-size: " + negfont + "px; "
-                                                                                                + "font-family: \"MS PGothic\"; "
-                                                                                                + "fill: rgb(255, 165, 0);"
-                                                                                        );
-                                                  }
+                                                  
                                               } 
     });
 
