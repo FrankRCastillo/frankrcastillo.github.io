@@ -141,9 +141,10 @@ function historychart(arr) {
                                               }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
-                                                  datamap.svg.select(this).on('click', function(elem) {
+
+                                                  datamap.svg.call(this.on('click', function(elem) {
                                                       console.log(elem);
-                                                  });
+                                                  }));
 
                                                   function redraw() {
                                                       var negfont = 10 / d3.event.scale;
