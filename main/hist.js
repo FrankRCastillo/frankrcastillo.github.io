@@ -170,9 +170,11 @@ function historychart(arr) {
 // isoType : iso2 or iso3
 function countryInfo(iso) {
     var idx  = (iso.length == 2 ? 0 : 1);
-    var data = window.ctryData.filter(elem => elem[idx] == iso2)[0];
+    var data = window.ctryData.filter(elem => elem[idx] == iso)[0];
     var name = data[2];
-    var isos = '(' + data[0] + '/' + data[1] + ')';
+    var isos = '(' + data[0]
+             + '/' + data[1]
+             + ')';
 
     return '<strong>'
           + name + ' '
