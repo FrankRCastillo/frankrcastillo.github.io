@@ -156,9 +156,16 @@ function historychart(arr) {
                                                                                         );
                                                   }));
                                                   
+                                                  // on click functions
                                                   datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+                                                      // post the profile of the clicked country in the mapdata frame
                                                       var dta = document.getElementById('mapdata');
                                                       dta.innerHTML = countryInfo(geography.properties.iso);
+
+                                                      // clear all countries then highlight selected country
+
+                                                      var $this = d3.select(this);
+
                                                   });
 
                                                   
