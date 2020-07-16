@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar-track
-{ background : #09090f
+{ background : #101010
 }
 
 ::-webkit-scrollbar-thumb
@@ -18,7 +18,7 @@ html
 }
 
 body
-{ background-color : #07070d
+{ background-color : #000000
 ; color            : #ffffff
 ; vertical-align   : middle
 ; align-content    : center
