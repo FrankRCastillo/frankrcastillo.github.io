@@ -163,7 +163,7 @@ function historychart(arr) {
                                                       dta.innerHTML = countryInfo(geography.properties.iso);
 
                                                       // clear all countries then highlight selected country
-                                                      datamaps.svg.selectAll('.datamaps-subunit').style('fill', '#000000');
+                                                      datamap.svg.selectAll('.datamaps-subunit').style('fill', '#000000');
                                                       d3.select(this).style('fill', '#ffa500');
 
                                                   });
