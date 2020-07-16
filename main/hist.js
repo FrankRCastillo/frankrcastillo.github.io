@@ -167,14 +167,11 @@ function historychart(arr) {
     });
 }
 
-// isoType : iso2 or iso3
 function countryInfo(iso) {
-    var idx  = (iso.length == 2 ? 0 : 1);
-    var data = window.ctryData.filter(elem => elem[idx] == iso)[0];
-    var name = data[2];
-    var isos = '(' + data[0]
-             + '/' + data[1]
-             + ')';
+    var idx  = (iso.length == 2 ? 0 : 1);                               // if iso length is two, set index to retrieve iso2 property. otherwise, for iso3
+    var data = window.ctryData.filter(elem => elem[idx] == iso)[0];     // get iso property from window.ctryData global variable
+    var name = data[2];                                                 // get country name
+    var isos = '(' + data[0] + '/' + data[1] + ')';                     // concatenate iso2 and iso3 values
 
     return '<strong>'
           + name + ' '
