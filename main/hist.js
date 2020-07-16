@@ -142,7 +142,7 @@ function historychart(arr) {
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
                                                   
-                                                  datamap.svg.selectAll('.datamaps-subunits').on('click', function(geography) {
+                                                  datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
                                                       var dta = document.getElementById('mapdata');
                                                       dta.innerHTML = countryInfo(geography.properties.iso);
                                                   });
