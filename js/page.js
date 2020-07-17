@@ -63,7 +63,7 @@ function NewTabLayout(elems) {
     pfrm.style.height = 'calc(100% - 35px)';
 
     bfrm.style.width = '100%';
-    dfrm.style.width = 100%';
+    dfrm.style.width = '100%';
 
     btn1.textContent = 'button1';
     btn1.style.float = 'left';
