@@ -51,26 +51,16 @@ async function SetConsole() {
 }
 
 function NewTabLayout(elems) {
-    return elems.map(function (elem) {
-        var frm = document.createElement('div');
-        var div = document.createElement('div');
-        var btn = document.createElement('button');
+    var frm = document.createElement('div');
+    var div = document.createElement('div');
+    var btn = document.createElement('button');
 
-        if (typeof elem == 'string') {
-            btn.textContent = elem;
-            div.setAttribute('id', elem);
-            btn.style.float = 'left';
+    btn.textContent = 'button1';
+    div.setAttribute('id', 'button1');
+    frm.appendChild(btn);
+    frm.appendChild(div);
 
-        } else {
-            div.appendChild(NewTabLayout(Object.values(elem)));
-
-        }
-
-        frm.appendChild(btn);
-        frm.appendChild(div);
-
-        return frm;
-    });
+    return frm;    
 }
 
 async function FileList(filter) {
