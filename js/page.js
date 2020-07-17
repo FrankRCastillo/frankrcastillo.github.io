@@ -76,9 +76,9 @@ function NewTabLayout(elems) {
     btn1.addEventListener('click', function() {
         var panels = document.getElementsByClassName('panel');
         for (var i = 0; i < panels.length; i++) {
-            panels[i].display = 'none';
+            panels[i].style.display = 'none';
         }
-        document.getElementById(this.textContent).display = 'block';
+        document.getElementById(this.textContent).style.display = 'block';
     });
     div1.setAttribute('id', 'panel1');
     div1.setAttribute('class', 'panel');
@@ -89,9 +89,9 @@ function NewTabLayout(elems) {
     btn2.addEventListener('click', function() {
         var panels = document.getElementsByClassName('panel');
         for (var i = 0; i < panels.length; i++) {
-            panels[i].display = 'none';
+            panels[i].style.display = 'none';
         }
-        document.getElementById(this.textContent).display = 'block';
+        document.getElementById(this.textContent).style.display = 'block';
     });
     div2.setAttribute('id', 'panel2');
     div2.setAttribute('class', 'panel');
