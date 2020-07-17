@@ -50,22 +50,22 @@ async function SetConsole() {
     return NewObject(main, objs);
 }
 
-function NewTabLayout(json) {
+function NewTabLayout(elems) {
     var par = document.createElement('div');
 
-    var chd = json.map(function (elems) {
+    var chd = elems.map(function (elem) {
         var btn = document.createElement('button');
         var div = document.createElement('div');
 
         btn.setAttribute('class', 'tabbtn');
         div.setAttribute('class', 'tabdiv');
 
-        if (typeof elems == 'string') {
-            btn.textContent = elems;
-            div.setAttribute('id', elems);
+        if (typeof elem == 'string') {
+            btn.textContent = elem;
+            div.setAttribute('id', elem);
 
         } else {
-            div.appendChild(NewTabLayout(Object.values(elems)));
+            div.appendChild(NewTabLayout(elem));
         }
 
         return div;
