@@ -67,6 +67,8 @@ function NewTabLayout(elems) {
 
         frm.appendChild(btn);
         frm.appendChild(div);
+
+        return frm;
     });
 }
 
