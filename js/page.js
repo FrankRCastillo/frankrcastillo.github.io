@@ -58,7 +58,7 @@ function NewTabLayout(json) {
         btn.setAttribute('class', 'tabbtn');
         div.setAttribute('class', 'tabdiv');
 
-        if (typeOf elems == 'string') {
+        if (typeof elems == 'string') {
             btn.textContent = elems;
 
         } else {
