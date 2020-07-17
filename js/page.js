@@ -61,6 +61,7 @@ function NewTabLayout(elems) {
 
     pfrm.style.width  = '100%';
     pfrm.style.height = 'calc(100% - 35px)';
+    pfrm.style.display = 'block';
 
     bfrm.style.width = '100%';
     dfrm.style.width = '100%';
