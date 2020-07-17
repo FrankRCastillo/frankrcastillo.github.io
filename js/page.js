@@ -64,7 +64,10 @@ function NewTabLayout(elems) {
     pfrm.style.display = 'block';
 
     bfrm.style.width = '100%';
+    bfrm.style.display = 'block';
+
     dfrm.style.width = '100%';
+    dfrm.style.display = 'block';
 
     btn1.textContent = 'button1';
     btn1.style.float = 'left';
