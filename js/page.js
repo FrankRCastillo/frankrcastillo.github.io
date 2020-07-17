@@ -50,6 +50,12 @@ async function SetConsole() {
     return NewObject(main, objs);
 }
 
+function NewTabLayout(json) {
+    return json.map(function (elems) {
+
+    });
+}
+
 async function FileList(filter) {
     var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
     var text = await ReadFile(gapi);
