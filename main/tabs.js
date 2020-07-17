@@ -2,8 +2,8 @@
 
 export async function tabs() {
     var l = [ { 'History'    : [ 'Map'
-                             , 'Gantt'
-                             ]
+                               , 'Gantt'
+                               ]
               }
             , { 'Government' : [ 'Leaders'
                                , 'Structure'
@@ -18,7 +18,7 @@ export async function tabs() {
                                ]
               }
             , { 'Sources'    : 'Sources' }
-            ];
+        ];
     var page = NewTabLayout(l);
 }
 

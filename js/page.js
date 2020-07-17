@@ -52,7 +52,21 @@ async function SetConsole() {
 
 function NewTabLayout(json) {
     return json.map(function (elems) {
+        var btn = document.createElement('button');
+        var div = document.createElement('div');
 
+        btn.setAttribute('class', 'tabbtn');
+        div.setAttribute('class', 'tabdiv');
+
+        if (typeOf elems == 'string') {
+            btn.textContent = elems;
+
+        } else {
+            div.setAttribute('id', Object.keys(elems)[0]);
+            div.appendChild(NewTabLayout(Object.values(elems)[0]));
+        }
+
+        return div;
     });
 }
 
