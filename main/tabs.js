@@ -1,6 +1,8 @@
 // |test|tabs|Testing page for tabs functionality
 
 export async function tabs() {
+    var o = document.getElementById('outtext');
+
     var l = [ { 'History'    : [ 'Map'
                                , 'Gantt'
                                ]
@@ -19,7 +21,8 @@ export async function tabs() {
               }
             , { 'Sources'    : 'Sources' }
         ];
-    var page = NewTabLayout(l);
+    o.appendChild(NewTabLayout(l));
+    
     console.log("pause");
 }
 
