@@ -65,6 +65,7 @@ function NewTabLayout(elems) {
         
         tabdiv.setAttribute(   'id', elems[i]);
         tabdiv.setAttribute('class',  'panel');
+        tabdiv.textContent = elems[i];
         tabbtn.textContent = elems[i];
         tabbtn.addEventListener('click', function() {
             var panels = document.getElementsByClassName('panel');
@@ -73,7 +74,6 @@ function NewTabLayout(elems) {
             }
             document.getElementById(this.textContent).style.display = 'block';
         });
-
         tabfrm.appendChild(tabbtn);
         bdyfrm.appendChild(tabdiv);
     }
