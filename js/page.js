@@ -59,8 +59,8 @@ function NewTabLayout(elems) {
     var div2 = document.createElement('div');
     var btn2 = document.createElement('button');
 
-    pfrm.style( 'width',              '100%')
-        .style('height', 'calc(100% - 35px)');
+    pfrm.style( 'width',              '100%');
+    pfrm.style('height', 'calc(100% - 35px)');
 
     bfrm.style('width', '100%');
     dfrm.style('width', '100%');
