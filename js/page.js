@@ -59,6 +59,7 @@ function NewTabLayout(elems) {
         if (typeof elem == 'string') {
             btn.textContent = elem;
             div.setAttribute('id', elem);
+            btn.style.float = 'left';
 
         } else {
             div.appendChild(NewTabLayout(Object.values(elem)));
