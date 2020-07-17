@@ -51,7 +51,9 @@ async function SetConsole() {
 }
 
 function NewTabLayout(json) {
-    return json.map(function (elems) {
+    var par = document.createElement('div');
+
+    var chd = json.map(function (elems) {
         var btn = document.createElement('button');
         var div = document.createElement('div');
 
@@ -60,14 +62,18 @@ function NewTabLayout(json) {
 
         if (typeof elems == 'string') {
             btn.textContent = elems;
+            div.setAttribute('id', elems);
 
         } else {
-            div.setAttribute('id', Object.keys(elems)[0]);
-            div.appendChild(NewTabLayout(Object.values(elems)[0]));
+            div.appendChild(NewTabLayout(Object.values(elems)));
         }
 
         return div;
     });
+
+    par.appendChild(chd);
+
+    return par;
 }
 
 async function FileList(filter) {
