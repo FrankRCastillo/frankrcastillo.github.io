@@ -51,14 +51,10 @@ async function SetConsole() {
 }
 
 function NewTabLayout(elems) {
-    var par = document.createElement('div');
-
-    var chd = elems.map(function (elem) {
-        var btn = document.createElement('button');
+    return elems.map(function (elem) {
+        var frm = document.createElement('div');
         var div = document.createElement('div');
-
-        btn.setAttribute('class', 'tabbtn');
-        div.setAttribute('class', 'tabdiv');
+        var btn = document.createElement('button');
 
         if (typeof elem == 'string') {
             btn.textContent = elem;
@@ -66,14 +62,12 @@ function NewTabLayout(elems) {
 
         } else {
             div.appendChild(NewTabLayout(Object.values(elem)));
+
         }
 
-        return div;
+        frm.appendChild(btn);
+        frm.appendChild(div);
     });
-
-    par.appendChild(chd);
-
-    return par;
 }
 
 async function FileList(filter) {
