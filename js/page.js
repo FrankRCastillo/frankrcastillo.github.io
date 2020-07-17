@@ -51,63 +51,37 @@ async function SetConsole() {
 }
 
 function NewTabLayout(elems) {
-    var pfrm = document.createElement('div'); // primary frame
+    var frame  = document.createElement('div');
+    var tabfrm = document.createElement('div');
+    var bdyfrm = document.createElement('div');
 
-    var bfrm = document.createElement('div'); // button frame
-    var dfrm = document.createElement('div'); // div frame
- 
-    var div1 = document.createElement('div');
-    var btn1 = document.createElement('button');
+    frame.style.width   = '100%';
+    frame.style.height  = '100%';
+    frame.style.display = 'block';
 
-    var div2 = document.createElement('div');
-    var btn2 = document.createElement('button');
+    for (var i = 0; i < elems.length; i++) {
+        var tabbtn = document.createElement('button');
+        var tabdiv = document.createElement('div');
+        
+        tabdiv.setAttribute(   'id', elems[i]);
+        tabdiv.setAttribute('class',  'panel');
+        tabbtn.textContent = elems[i];
+        tabbtn.addEventListener('click', function() {
+            var panels = document.getElementsByClassName('panel');
+            for (var j = 0; j < panels.length; j++) {
+                panels[j].style.display = 'none';
+            }
+            document.getElementById(this.textContent).style.display = 'block';
+        });
 
-    pfrm.style.width  = '100%';
-    pfrm.style.height = 'calc(100% - 35px)';
-    pfrm.style.display = 'block';
+        tabfrm.appendChild(tabbtn);
+        bdyfrm.appendChild(tabdiv);
+    }
 
-    bfrm.style.width = '100%';
-    bfrm.style.display = 'block';
+    frame.appendChild(tabfrm);
+    frame.appendChild(bdyfrm);
 
-    dfrm.style.width = '100%';
-    dfrm.style.display = 'block';
-
-    btn1.textContent = 'panel1';
-    btn1.addEventListener('click', function() {
-        var panels = document.getElementsByClassName('panel');
-        for (var i = 0; i < panels.length; i++) {
-            panels[i].style.display = 'none';
-        }
-        document.getElementById(this.textContent).style.display = 'block';
-    });
-    div1.setAttribute('id', 'panel1');
-    div1.setAttribute('class', 'panel');
-    div1.style.display = 'block';
-    div1.textContent = 'div1';
-
-    btn2.textContent = 'panel2';
-    btn2.addEventListener('click', function() {
-        var panels = document.getElementsByClassName('panel');
-        for (var i = 0; i < panels.length; i++) {
-            panels[i].style.display = 'none';
-        }
-        document.getElementById(this.textContent).style.display = 'block';
-    });
-    div2.setAttribute('id', 'panel2');
-    div2.setAttribute('class', 'panel');
-    div2.style.display = 'none';
-    div2.textContent = 'div2';
-
-    bfrm.appendChild(btn1);
-    bfrm.appendChild(btn2);
-
-    dfrm.appendChild(div1);
-    dfrm.appendChild(div2);
-
-    pfrm.appendChild(bfrm);
-    pfrm.appendChild(dfrm);
-
-    return pfrm;
+    return frame;
 }
 
 async function FileList(filter) {
