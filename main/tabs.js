@@ -20,6 +20,7 @@ export async function tabs() {
             , { 'Sources'    : 'Sources' }
         ];
     var page = NewTabLayout(l);
+    console.log("pause");
 }
 
 
