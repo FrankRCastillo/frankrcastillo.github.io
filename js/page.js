@@ -60,10 +60,14 @@ function NewTabLayout(elems) {
     btn1.textContent = 'button1';
     btn1.style.float = 'left';
     div1.setAttribute('id', 'button1');
+    div1.style.display = 'block';
+    div1.textContent = 'div1';
 
     btn2.textContent = 'button2';
     btn2.style.float = 'left';
     div2.setAttribute('id', 'button2');
+    div2.style.display = 'none';
+    div2.textContent = 'div2';
 
     frm.appendChild(btn1);
     frm.appendChild(btn2);
