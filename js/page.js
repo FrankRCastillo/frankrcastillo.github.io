@@ -51,7 +51,10 @@ async function SetConsole() {
 }
 
 function NewTabLayout(elems) {
-    var frm = document.createElement('div');
+    var dfrm = document.createElement('div'); // div frame
+    var bfrm = document.createElement('div'); // button frame
+    var pfrm = document.createElement('div'); // primary frame
+
     var div1 = document.createElement('div');
     var btn1 = document.createElement('button');
     var div2 = document.createElement('div');
@@ -69,13 +72,16 @@ function NewTabLayout(elems) {
     div2.style.display = 'none';
     div2.textContent = 'div2';
 
-    frm.appendChild(btn1);
-    frm.appendChild(btn2);
+    bfrm.appendChild(btn1);
+    bfrm.appendChild(btn2);
 
-    frm.appendChild(div1);
-    frm.appendChild(div2);
+    dfrm.appendChild(div1);
+    dfrm.appendChild(div2);
 
-    return frm;    
+    pfrm.appendChild(bfrm);
+    pfrm.appendChild(dfrm);
+
+    return pfrm;
 }
 
 async function FileList(filter) {
