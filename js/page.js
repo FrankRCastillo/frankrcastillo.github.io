@@ -65,7 +65,7 @@ function NewTabLayout(elems) {
             div.setAttribute('id', elem);
 
         } else {
-            div.appendChild(NewTabLayout(elem));
+            div.appendChild(NewTabLayout(Object.values(elem)));
         }
 
         return div;
