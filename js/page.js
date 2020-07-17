@@ -52,13 +52,24 @@ async function SetConsole() {
 
 function NewTabLayout(elems) {
     var frm = document.createElement('div');
-    var div = document.createElement('div');
-    var btn = document.createElement('button');
+    var div1 = document.createElement('div');
+    var btn1 = document.createElement('button');
+    var div2 = document.createElement('div');
+    var btn2 = document.createElement('button');
 
-    btn.textContent = 'button1';
-    div.setAttribute('id', 'button1');
-    frm.appendChild(btn);
-    frm.appendChild(div);
+    btn1.textContent = 'button1';
+    btn1.style.float = 'left';
+    div1.setAttribute('id', 'button1');
+
+    btn2.textContent = 'button2';
+    btn2.style.float = 'left';
+    div2.setAttribute('id', 'button2');
+
+    frm.appendChild(btn1);
+    frm.appendChild(btn2);
+
+    frm.appendChild(div1);
+    frm.appendChild(div2);
 
     return frm;    
 }
