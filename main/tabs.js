@@ -16,8 +16,8 @@ export async function tabs() {
                                              ]
                                  }
                                ]
-            , { 'Sources'    : {}
               }
+            , { 'Sources'    : 'Sources' }
             ];
     var page = NewTabLayout(l);
 }
