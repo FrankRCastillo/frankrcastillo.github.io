@@ -52,10 +52,13 @@ async function SetConsole() {
 
 function NewTabLayout(elems) {
     var pfrm = document.createElement('div'); // primary frame
+
     var bfrm = document.createElement('div'); // button frame
     var dfrm = document.createElement('div'); // div frame
+ 
     var div1 = document.createElement('div');
     var btn1 = document.createElement('button');
+
     var div2 = document.createElement('div');
     var btn2 = document.createElement('button');
 
@@ -69,15 +72,29 @@ function NewTabLayout(elems) {
     dfrm.style.width = '100%';
     dfrm.style.display = 'block';
 
-    btn1.textContent = 'button1';
-    btn1.style.float = 'left';
-    div1.setAttribute('id', 'button1');
+    btn1.textContent = 'panel1';
+    btn1.addEventListener('click', function() {
+        var panels = document.getElementsByClassName('panel');
+        for (var i = 0; i < panels.length; i++) {
+            panels[i].display = 'none';
+        }
+        document.getElementById(this.textContent).display = 'block';
+    });
+    div1.setAttribute('id', 'panel1');
+    div1.setAttribute('class', 'panel');
     div1.style.display = 'block';
     div1.textContent = 'div1';
 
-    btn2.textContent = 'button2';
-    btn2.style.float = 'left';
-    div2.setAttribute('id', 'button2');
+    btn2.textContent = 'panel2';
+    btn2.addEventListener('click', function() {
+        var panels = document.getElementsByClassName('panel');
+        for (var i = 0; i < panels.length; i++) {
+            panels[i].display = 'none';
+        }
+        document.getElementById(this.textContent).display = 'block';
+    });
+    div2.setAttribute('id', 'panel2');
+    div2.setAttribute('class', 'panel');
     div2.style.display = 'none';
     div2.textContent = 'div2';
 
