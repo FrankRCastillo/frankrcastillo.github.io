@@ -5,7 +5,7 @@ window.ctryData = [];
 export async function ctry() {
     var l = [ 'WorldMap', 'GanttChart' ];
 
-    window.ctryData = generateData();
+    window.ctryData = await generateData();
     
     var g = historychart(window.ctryData);                                              // send array to be plotted onto chart
 
