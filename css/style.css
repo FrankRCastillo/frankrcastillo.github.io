@@ -104,7 +104,7 @@ button:hover
 }
 
 #mapdata
-{ border     : 1px solid #ffa500
+{ border     : 0px
 ; margin     : 0px 0px 0px 0px
 ; padding    : 0px 0px 0px 0px
 ; width      : 250px
@@ -116,7 +116,7 @@ button:hover
 }
 
 #mapframe
-{ border           : 1px solid #ffa500
+{ border           : 0px
 ; margin           : 0px 0px 0px 0px
 ; padding          : 0px 0px 0px 0px
 ; height           : calc(100% - 53px)
