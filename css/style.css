@@ -70,7 +70,7 @@ select
 }
 
 button
-{ border      : 0px 2px 0px 0px
+{ border      : 1px solid #000000
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; background  : #ffa500
@@ -89,7 +89,7 @@ button:hover
 { border     : 1px solid #ffa500
 ; overflow   : auto
 ; width      : calc(100% - 20px)
-; height     : calc(100% - 45px)
+; height     : calc(100% - 50px)
 ; position   : absolute
 ; box-sizing : border-box
 }
@@ -137,7 +137,7 @@ button:hover
 .tabfrme
 { border     : 0px
 ; box-sizing : border-box
-; height     : 27px
+; height     : 25px
 ; width      : 100%
 }
 
