@@ -129,7 +129,8 @@ button
 }
 
 .tabbtns
-{ height : 25px
+{ height   : 25px
+; position : absolute
 }
 
 .bdyfrme
