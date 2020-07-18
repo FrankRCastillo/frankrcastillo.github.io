@@ -16,6 +16,7 @@ export async function ctry() {
 }
 
 async function generateData() {
+    var rtn = [];
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
     var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
     var iso = csv2arr(await ReadFile('/main/ctry/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
@@ -31,23 +32,24 @@ async function generateData() {
             iso3 = iso[iso.map(x => x[1]).indexOf(iso2)][2]                             // convert iso2 to iso3 using csv loaded earlier
             var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
             var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
-            window.ctryData.push([iso2, iso3, name, hist]);                             // add elements into array
+            rtn.push([iso2, iso3, name, hist]);                             // add elements into array
         } catch(err) {
             console.log(err.message);
         }
     }
 
-    var countries = window.ctryData.map(x => x[2]);
+    var countries = rtn.map(x => x[2]);
 
-    window.ctryData = window.ctryData.map(x => [ x[0]
-                                               , x[1]
-                                               , x[2]
-                                               , x[3].replace( new RegExp('(' + countries.filter(e => e != x[2]).join('|') + ')', 'g')
-                                                             , '<strong class=ctryTag>$&</strong>')
-                                                     .replace( /([1](?<=1)[0-9]|20)[0-9]{2}/g
-                                                             , '<strong class=yearTag>$&</strong>')
-                                               ]);
+    rtn = rtn.map(x => [ x[0]
+                       , x[1]
+                       , x[2]
+                       , x[3].replace( new RegExp('(' + countries.filter(e => e != x[2]).join('|') + ')', 'g')
+                                     , '<strong class=ctryTag>$&</strong>')
+                             .replace( /([1](?<=1)[0-9]|20)[0-9]{2}/g
+                                     , '<strong class=yearTag>$&</strong>')
+                       ]);
 
+    return rtn;
 }
 
 function parseHistory(str) {
