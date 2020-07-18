@@ -65,10 +65,15 @@ function NewTabLayout(elems) {
  
         tabbtn.addEventListener('click', function() {
             var bdyelem = document.getElementsByClassName('panel');
+            var tgtelem = document.getElementById(this.textContent);
+
             for (var j = 0; j < bdyelem.length; j++) {
                 bdyelem[j].style.display = 'none';
+                bdyelem[j].style.background = '#505050';
             }
-            document.getElementById(this.textContent).style.display = 'block';
+
+            tgtelem.style.display = 'block';
+            tgtelem.style.backgorund = '#ffa500';
         });
 
         tabbtn.setAttribute('class', 'tabbtns');
