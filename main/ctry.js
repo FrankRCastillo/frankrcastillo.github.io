@@ -3,6 +3,19 @@
 window.ctryData = [];
 
 export async function ctry() {
+    var l = [ 'WorldMap', 'GanttChart' ];
+
+    window.ctryData = generateData();
+    
+    var g = historychart(window.ctryData);                                              // send array to be plotted onto chart
+
+    document.getElementById( 'outtext').appendChild(NewTabLayout(l));
+    document.getElementById('WorldMap').appendChild(g);
+
+    CmdReady();                                                                         // update page status as ready
+}
+
+async function generateData() {
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
     var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
     var iso = csv2arr(await ReadFile('/main/ctry/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
@@ -35,8 +48,6 @@ export async function ctry() {
                                                              , '<strong class=yearTag>$&</strong>')
                                                ]);
 
-    historychart(window.ctryData);                                                      // send array to be plotted onto chart
-    CmdReady();                                                                         // update page status as ready
 }
 
 function parseHistory(str) {
@@ -77,7 +88,7 @@ function parseHistory(str) {
 }
 
 function historychart(arr) {
-    var out = document.getElementById('outtext');
+    var out = document.createElement('div');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var btn = document.createElement('button');
@@ -177,6 +188,8 @@ function historychart(arr) {
     map.labels({ labelColor : '#ffa500'
                , fontFamily : 'MS PGothic'
     });
+
+    return out;
 }
 
 function countryInfo(iso) {
