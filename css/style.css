@@ -223,7 +223,7 @@ button
 #textdiv
 { float  : left
 ; width  : calc(100% - 25px)
-; height : 25px
+; height : 24px
 }
 
 #newstable
