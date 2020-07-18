@@ -120,8 +120,8 @@ button:hover
 ; margin           : 0px 0px 0px 0px
 ; padding          : 0px 0px 0px 0px
 ; height           : calc(100% - 53px)
-; width            : calc(100% - 252px)
-; position         : relative
+; width            : calc(100% - 250px)
+; position         : absolute
 ; float            : left
 ; background-color : #030312
 ; left             : 250px
