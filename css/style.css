@@ -123,10 +123,10 @@ button
 }
 
 .tabfrme
-{ border        : 1px solid #ffa500
-; border-sizing : border-box
-; height        : 25px
-; width         : 100%
+{ border     : 1px solid #ffa500
+; box-sizing : border-box
+; height     : 25px
+; width      : 100%
 }
 
 .tabbtns
@@ -135,10 +135,10 @@ button
 }
 
 .bdyfrme
-{ border        : 1px solid #ffa500
-; border-sizing : border-box
-; height        : 100%
-; width         : 100%
+{ border     : 1px solid #ffa500
+; box-sizing : border-box
+; height     : 100%
+; width      : 100%
 }
 
 .yearTag, .ctryTag
