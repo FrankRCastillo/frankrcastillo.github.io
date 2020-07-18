@@ -59,6 +59,9 @@ function NewTabLayout(elems) {
     frame.style.height  = '100%';
     frame.style.display = 'block';
 
+    tabfrm.style.border = '1px solid #ffa500';
+    bdyfrm.style.border = '1px solid #ffa500';
+
     for (var i = 0; i < elems.length; i++) {
         var tabbtn = document.createElement('button');
         var tabdiv = document.createElement('div');
@@ -79,8 +82,9 @@ function NewTabLayout(elems) {
             tabdiv.style.display = 'none';
         }
 
-        tabdiv.textContent = elems[i];
-        tabbtn.textContent = elems[i];
+        tabdiv.textContent  = elems[i];
+        tabbtn.textContent  = elems[i];
+        
         tabfrm.appendChild(tabbtn);
         bdyfrm.appendChild(tabdiv);
     }
