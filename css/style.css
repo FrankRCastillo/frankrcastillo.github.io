@@ -70,7 +70,7 @@ select
 }
 
 button
-{ border      : 1px solid #000000
+{ border      : 0px
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; background  : #ffa500
@@ -80,10 +80,16 @@ button
 ; outline     : none
 }
 
+button:hover
+{ background : #000000
+; color      : #ffa500
+}
+
 #outtext
 { overflow : auto
 ; width    : 100%
-; height   : calc(100vh - 60px)
+; height   : calc(100% - 32px)
+; position : absolute
 }
 
 #contain
@@ -96,14 +102,16 @@ button
 }
 
 #mapdata
-{ border    : 1px solid #ffa500
-; margin    : 0px 0px 0px 0px
-; padding   : 0px 0px 0px 0px
-; width     : 250px
-; height    : calc(100% - 35px)
-; float     : left
-; font-size : 12px
-; overflow  : auto
+{ border     : 1px solid #ffa500
+; margin     : 0px 0px 0px 0px
+; padding    : 0px 0px 0px 0px
+; width      : 250px
+; height     : 100%
+; float      : left
+; font-size  : 12px
+; overflow   : auto
+; position   : absolute
+; box-sizing : border-box
 }
 
 #mapframe
@@ -121,10 +129,11 @@ button
 { height     : 100%
 ; width      : 100%
 ; box-sizing : border-box
+; position   : relative
 }
 
 .tabfrme
-{ border     : 1px solid #ffa500
+{ border     : 0px
 ; box-sizing : border-box
 ; height     : 27px
 ; width      : 100%
@@ -136,9 +145,8 @@ button
 }
 
 .bdyfrme
-{ border     : 1px solid #ffa500
-; box-sizing : border-box
-; height     : calc(100% - 27px)
+{ border     : 0px
+; height     : 100%
 ; width      : 100%
 }
 
@@ -168,7 +176,6 @@ button
 #mapselect
 { height   : 26px
 ; width    : 250px
-; position : absolute
 ; float    : left
 }
 
@@ -176,31 +183,31 @@ button
 { height   : 26px
 ; width    : 60px
 ; position : absolute
-; left     : 261px
 ; cursor   : pointer
 }
 
 #maptools
-{ height  : 26px
-; width   : 100%
-; border  : 1px solid #ffa500
-; margin  : 0px 0px 0px 0px
-; padding : 0px 0px 0px 0px
+{ height     : 26px
+; width      : 100%
+; border     : 0px
+; margin     : 0px 0px 0px 0px
+; padding    : 0px 0px 0px 0px
+; box-sizing : border-box
 }
 
 .menubtn
-{ border     : 1px solid #000000 
+{ border     : 0px
 ; padding    : 0px 0px 0px 0px
 ; margin     : 0px 0px 0px 0px
 ; background : #000000
 ; color      : #ffa500
 ; width      : 20px
-; height     : 25px
+; height     : 28px
 ; float      : left
 }
 
 .menudiv
-{ border-style : none
+{ border       : 0px
 ; padding      : 0px 0px 0px 0px
 ; margin       : 0px 0px 0px 0px
 ; background   : #000000
@@ -211,7 +218,7 @@ button
 }
 
 #inputbox
-{ border      : 1px solid #000000
+{ border      : 0px
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; outline     : none
