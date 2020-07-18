@@ -63,10 +63,6 @@ function NewTabLayout(elems) {
         var tabbtn = document.createElement('button');
         var tabdiv = document.createElement('div');
         
-        tabdiv.setAttribute(   'id', elems[i]);
-        tabdiv.setAttribute('class',  'panel');
-        tabdiv.textContent = elems[i];
-        tabbtn.textContent = elems[i];
         tabbtn.addEventListener('click', function() {
             var panels = document.getElementsByClassName('panel');
             for (var j = 0; j < panels.length; j++) {
@@ -74,6 +70,17 @@ function NewTabLayout(elems) {
             }
             document.getElementById(this.textContent).style.display = 'block';
         });
+        tabdiv.setAttribute(   'id', elems[i]);
+        tabdiv.setAttribute('class',  'panel');
+
+        if (i == 0) {
+            tabdiv.style.display = 'block';
+        } else {
+            tabdiv.style.display = 'none';
+        }
+
+        tabdiv.textContent = elems[i];
+        tabbtn.textContent = elems[i];
         tabfrm.appendChild(tabbtn);
         bdyfrm.appendChild(tabdiv);
     }
