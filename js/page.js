@@ -64,7 +64,8 @@ function NewTabLayout(elems) {
         var tabbdy = document.createElement('div');
  
         tabbtn.addEventListener('click', function() {
-            var bdyelem = document.getElementsByClassName('tabbody');
+            var partabs = this.parentElement.parentElement;
+            var bdyelem = partabs.getElementsByClassName('tabbody');
             var tgtelem = document.getElementById(this.textContent);
 
             for (var j = 0; j < bdyelem.length; j++) {
