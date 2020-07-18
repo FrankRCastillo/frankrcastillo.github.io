@@ -129,8 +129,8 @@ button
 }
 
 .tabbtns
-{ height   : 25px
-; position : absolute
+{ height : 25px
+; float  : left
 }
 
 .bdyfrme
