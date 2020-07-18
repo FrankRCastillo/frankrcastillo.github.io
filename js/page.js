@@ -64,9 +64,9 @@ function NewTabLayout(elems) {
         var tabbdy = document.createElement('div');
  
         tabbtn.addEventListener('click', function() {
-            var tabbdy = document.getElementsByClassName('bdyfrme');
-            for (var j = 0; j < tabbdy.length; j++) {
-                tabbdy[j].style.display = 'none';
+            var bdyelem = document.getElementsByClassName('bdyfrme');
+            for (var j = 0; j < bdyelem.length; j++) {
+                bdyelem[j].style.display = 'none';
             }
             document.getElementById(this.textContent).style.display = 'block';
         });
