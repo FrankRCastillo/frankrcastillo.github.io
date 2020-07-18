@@ -86,10 +86,11 @@ button:hover
 }
 
 #outtext
-{ overflow : auto
-; width    : 100%
-; height   : calc(100% - 32px)
-; position : absolute
+{ overflow   : auto
+; width      : calc(100% - 20px)
+; height     : calc(100% - 32px)
+; position   : absolute
+; box-sizing : border-box
 }
 
 #contain
