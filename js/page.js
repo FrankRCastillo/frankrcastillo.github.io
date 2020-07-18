@@ -69,11 +69,9 @@ function NewTabLayout(elems) {
 
             for (var j = 0; j < bdyelem.length; j++) {
                 bdyelem[j].style.display = 'none';
-                bdyelem[j].style.background = '#505050';
             }
 
             tgtelem.style.display = 'block';
-            tgtelem.style.backgorund = '#ffa500';
         });
 
         tabbtn.setAttribute('class', 'tabbtns');
