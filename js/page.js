@@ -51,7 +51,7 @@ async function SetConsole() {
 }
 
 function NewTabLayout(elems) {
-    var stamp = Date.now()
+    var stamp = Date.now();
     var encls = document.createElement('div');
     var tbfrm = document.createElement('div');
     var bdfrm = document.createElement('div');
