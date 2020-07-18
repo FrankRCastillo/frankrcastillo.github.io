@@ -61,29 +61,29 @@ function NewTabLayout(elems) {
 
     for (var i = 0; i < elems.length; i++) {
         var tabbtn = document.createElement('button');
-        var tabdiv = document.createElement('div');
+        var tabbdy = document.createElement('div');
         
         tabbtn.addEventListener('click', function() {
-            var panels = document.getElementsByClassName('tabfrme');
+            var panels = document.getElementsByClassName('bdyfrme');
             for (var j = 0; j < panels.length; j++) {
                 panels[j].style.display = 'none';
             }
             document.getElementById(this.textContent).style.display = 'block';
         });
         tabbtn.setAttribute('class', 'tabbtns');
-        tabdiv.setAttribute('class', 'tabfrme');
-        tabdiv.setAttribute(   'id',  elems[i]);
-        tabdiv.textContent = elems[i];
+        tabbdy.setAttribute('class', 'bdyfrme');
+        tabbdy.setAttribute(   'id',  elems[i]);
+        tabbdy.textContent = elems[i];
         tabbtn.textContent = elems[i];
         
         if (i == 0) {
-            tabdiv.style.display = 'block';
+            tabbdy.style.display = 'block';
         } else {
-            tabdiv.style.display = 'none';
+            tabbdy.style.display = 'none';
         }
 
         tbfrm.appendChild(tabbtn);
-        bdfrm.appendChild(tabdiv);
+        bdfrm.appendChild(tabbdy);
     }
 
     encls.appendChild(tbfrm);
