@@ -74,7 +74,6 @@ function NewTabLayout(elems) {
         tabbtn.setAttribute('class', 'tabbtns');
         tabbdy.setAttribute('class', 'tabbody');
         tabbdy.setAttribute(   'id',  elems[i]);
-        tabbdy.textContent = elems[i];
         tabbtn.textContent = elems[i];
         
         if (i == 0) {
