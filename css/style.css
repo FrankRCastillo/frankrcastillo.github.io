@@ -90,7 +90,7 @@ button
 { border     : 1px solid #ffa500
 ; margin     : 0px 0px 0px 0px
 ; padding    : 0px 0px 0px 0px
-; width      : 100%
+; width      : calc(100% - 2px)
 ; height     : 25px
 ; background : #000000
 }
@@ -138,7 +138,7 @@ button
 .bdyfrme
 { border     : 1px solid #ffa500
 ; box-sizing : border-box
-; height     : 100%
+; height     : calc(100% - 27px)
 ; width      : 100%
 }
 
