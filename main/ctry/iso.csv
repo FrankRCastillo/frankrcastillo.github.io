@@ -21,7 +21,7 @@ Burkina Faso,UV,BFA
 Bangladesh,BG,BGD
 Bulgaria,BU,BGR
 Bahrain,BA,BHR
-Bahamas, The,BF,BHS
+Bahamas,BF,BHS
 Bosnia and Herzegovina,BK,BIH
 Saint Barthelemy,TB,BLM
 Belarus,BO,BLR
@@ -42,8 +42,8 @@ Chile,CI,CHL
 China,CH,CHN
 Cote d'Ivoire,IV,CIV
 Cameroon,CM,CMR
-Congo, Democratic Republic of the,CG,COD
-Congo, Republic of the,CF,COG
+Democratic Republic of the Congo,CG,COD
+Republic of the Congo,CF,COG
 Cook Islands,CW,COK
 Colombia,CO,COL
 Comoros,CN,COM
@@ -73,7 +73,7 @@ Fiji,FJ,FJI
 Falkland Islands (Islas Malvinas),FK,FLK
 France,FR,FRA
 Faroe Islands,FO,FRO
-Micronesia, Federated States of,FM,FSM
+Micronesiai,FM,FSM
 Gabon,GB,GAB
 United Kingdom,UK,GBR
 Georgia,GG,GEO
@@ -81,7 +81,7 @@ Guernsey,GK,GGY
 Ghana,GH,GHA
 Gibraltar,GI,GIB
 Guinea,GV,GIN
-Gambia, The,GA,GMB
+The Gambia,GA,GMB
 Guinea-Bissau,PU,GNB
 Equatorial Guinea,EK,GNQ
 Greece,GR,GRC
@@ -116,7 +116,7 @@ Kyrgyzstan,KG,KGZ
 Cambodia,CB,KHM
 Kiribati,KR,KIR
 Saint Kitts and Nevis,SC,KNA
-Korea, South,KS,KOR
+South Korea,KS,KOR
 Kuwait,KU,KWT
 Laos,LA,LAO
 Lebanon,LE,LBN
@@ -172,7 +172,7 @@ Palau,PS,PLW
 Papua New Guinea,PP,PNG
 Poland,PL,POL
 Puerto Rico,RQ,PRI
-Korea, North,KN,PRK
+North Korea,KN,PRK
 Portugal,PO,PRT
 Paraguay,PA,PRY
 Gaza Strip,GZ,PSE
@@ -187,7 +187,7 @@ Sudan,SU,SDN
 Senegal,SG,SEN
 Singapore,SN,SGP
 South Georgia and South Sandwich Islands,SX,SGS
-Saint Helena, Ascension, and Tristan da Cunha,SH,SHN
+Saint Helena Ascension and Tristan da Cunha,SH,SHN
 Svalbard,SV,SJM
 Solomon Islands,BP,SLB
 Sierra Leone,SL,SLE
@@ -239,4 +239,4 @@ Yemen,YM,YEM
 South Africa,SF,ZAF
 Zambia,ZA,ZMB
 Zimbabwe,ZI,ZWE
-Kosovo,KV,
+Kosovo,KV,RKS

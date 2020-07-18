@@ -3,7 +3,7 @@
 window.ctryData = [];
 
 export async function ctry() {
-    var l = [ 'WorldMap', 'GanttChart' ];
+    var l = [ 'WorldMap', 'GanttChart', 'Leaders', 'Government' ];
 
     window.ctryData = await generateData();
     document.getElementById( 'outtext').appendChild(NewTabLayout(l));
