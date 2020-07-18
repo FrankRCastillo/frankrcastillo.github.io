@@ -70,7 +70,7 @@ select
 }
 
 button
-{ border      : 0px
+{ border      : 0px 2px 0px 0px
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; background  : #ffa500
@@ -107,23 +107,23 @@ button:hover
 ; margin     : 0px 0px 0px 0px
 ; padding    : 0px 0px 0px 0px
 ; width      : 250px
-; height     : 100%
+; height     : calc(100% - 60px)
 ; float      : left
 ; font-size  : 12px
 ; overflow   : auto
 ; position   : absolute
-; box-sizing : border-box
 }
 
 #mapframe
 { border           : 1px solid #ffa500
 ; margin           : 0px 0px 0px 0px
 ; padding          : 0px 0px 0px 0px
-; height           : calc(100% - 35px)
-; width            : calc(100% - 256px)
+; height           : calc(100% - 60px)
+; width            : calc(100% - 252px)
 ; position         : relative
 ; float            : left
 ; background-color : #030312
+; left             : 250px
 }
 
 .tabencl
@@ -146,9 +146,9 @@ button:hover
 }
 
 .bdyfrme
-{ border     : 0px
-; height     : 100%
-; width      : 100%
+{ border : 0px
+; height : calc(100% - 30px)
+; width  : 100%
 }
 
 .yearTag, .ctryTag
