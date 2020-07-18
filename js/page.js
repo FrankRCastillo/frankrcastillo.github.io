@@ -51,6 +51,7 @@ async function SetConsole() {
 }
 
 function NewTabLayout(elems) {
+    var stamp = Date.now()
     var encls = document.createElement('div');
     var tbfrm = document.createElement('div');
     var bdfrm = document.createElement('div');
@@ -64,7 +65,7 @@ function NewTabLayout(elems) {
         var tabbdy = document.createElement('div');
  
         tabbtn.addEventListener('click', function() {
-            var bdyelem = document.getElementsByClassName('tabbody');
+            var bdyelem = document.getElementsByClassName(stamp);
             for (var j = 0; j < bdyelem.length; j++) {
                 bdyelem[j].style.display = 'none';
             }
