@@ -135,10 +135,10 @@ button
 }
 
 .bdyfrme
-{ border : 1px solid #ffa500
+{ border        : 1px solid #ffa500
 ; border-sizing : border-box
-; height : calc(100% - 25px)
-; width  : 100%
+; height        : calc(100% - 25px)
+; width         : 100%
 }
 
 .yearTag, .ctryTag
