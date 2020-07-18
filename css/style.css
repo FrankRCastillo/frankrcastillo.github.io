@@ -192,7 +192,7 @@ button
 ; background : #000000
 ; color      : #ffa500
 ; width      : 20px
-; height     : 27px
+; height     : 25px
 ; float      : left
 }
 
@@ -218,12 +218,13 @@ button
 ; width       : calc(100% - 45px)
 ; color       : #ffa500
 ; background  : #000000
+; position    : absolute
 }
 
 #textdiv
 { float  : left
 ; width  : calc(100% - 25px)
-; height : 27px
+; height : 25px
 }
 
 #newstable
