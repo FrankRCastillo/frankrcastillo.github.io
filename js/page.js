@@ -64,17 +64,17 @@ function NewTabLayout(elems) {
         var tabdiv = document.createElement('div');
         
         tabbtn.addEventListener('click', function() {
-            var panels = document.getElementsByClassName('panel');
+            var panels = document.getElementsByClassName('tabfrme');
             for (var j = 0; j < panels.length; j++) {
                 panels[j].style.display = 'none';
             }
             document.getElementById(this.textContent).style.display = 'block';
         });
-        tabbtn.setAttribute('class',  'tabbtns');
-        tabdiv.setAttribute('class', 'tabpanel');
-        tabdiv.setAttribute(   'id',   elems[i]);
-        tabdiv.textContent  = elems[i];
-        tabbtn.textContent  = elems[i];
+        tabbtn.setAttribute('class', 'tabbtns');
+        tabdiv.setAttribute('class', 'tabfrme');
+        tabdiv.setAttribute(   'id',  elems[i]);
+        tabdiv.textContent = elems[i];
+        tabbtn.textContent = elems[i];
         
         if (i == 0) {
             tabdiv.style.display = 'block';
