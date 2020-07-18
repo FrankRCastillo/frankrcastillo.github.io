@@ -50,7 +50,7 @@ async function SetConsole() {
     return NewObject(main, objs);
 }
 
-function NewTabLayout(elems, barname) {
+function NewTabLayout(elems) {
     var encls = document.createElement('div');
     var tbfrm = document.createElement('div');
     var bdfrm = document.createElement('div');
@@ -64,7 +64,7 @@ function NewTabLayout(elems, barname) {
         var tabbdy = document.createElement('div');
  
         tabbtn.addEventListener('click', function() {
-            var bdyelem = document.getElementsByClassName(barname);
+            var bdyelem = document.getElementsByClassName('panel');
             for (var j = 0; j < bdyelem.length; j++) {
                 bdyelem[j].style.display = 'none';
             }
