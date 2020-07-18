@@ -51,16 +51,13 @@ async function SetConsole() {
 }
 
 function NewTabLayout(elems) {
-    var frame  = document.createElement('div');
-    var tabfrm = document.createElement('div');
-    var bdyfrm = document.createElement('div');
+    var encls = document.createElement('div');
+    var tbfrm = document.createElement('div');
+    var bdfrm = document.createElement('div');
 
-    frame.style.width   = '100%';
-    frame.style.height  = '100%';
-    frame.style.display = 'block';
-
-    tabfrm.style.border = '1px solid #ffa500';
-    bdyfrm.style.border = '1px solid #ffa500';
+    encls.setAttribute('class', 'tabencl');
+    tbfrm.setAttribute('class', 'tabfrme');
+    bdfrm.setAttribute('class', 'bdyfrme');
 
     for (var i = 0; i < elems.length; i++) {
         var tabbtn = document.createElement('button');
@@ -73,26 +70,26 @@ function NewTabLayout(elems) {
             }
             document.getElementById(this.textContent).style.display = 'block';
         });
-        tabdiv.setAttribute(   'id', elems[i]);
-        tabdiv.setAttribute('class',  'panel');
-
+        tabbtn.setAttribute('class',  'tabbtns');
+        tabdiv.setAttribute('class', 'tabpanel');
+        tabdiv.setAttribute(   'id',   elems[i]);
+        tabdiv.textContent  = elems[i];
+        tabbtn.textContent  = elems[i];
+        
         if (i == 0) {
             tabdiv.style.display = 'block';
         } else {
             tabdiv.style.display = 'none';
         }
 
-        tabdiv.textContent  = elems[i];
-        tabbtn.textContent  = elems[i];
-        
-        tabfrm.appendChild(tabbtn);
-        bdyfrm.appendChild(tabdiv);
+        tbfrm.appendChild(tabbtn);
+        bdfrm.appendChild(tabdiv);
     }
 
-    frame.appendChild(tabfrm);
-    frame.appendChild(bdyfrm);
+    encls.appendChild(tbfrm);
+    encls.appendChild(bdfrm);
 
-    return frame;
+    return encls;
 }
 
 async function FileList(filter) {

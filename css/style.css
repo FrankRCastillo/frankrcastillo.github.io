@@ -117,6 +117,27 @@ button
 ; background-color : #030312
 }
 
+.tabencl
+{ height : 100%
+; width  : 100%
+}
+
+.tabfrme
+{ border : 1px solid #ffa500
+; height : 35px
+; width  : 100%
+}
+
+.tabbtns
+{ height : 35px
+}
+
+.bdyfrme
+{ border : 1px solid #ffa500
+; height : calc(100% - 35px)
+; width  : 100%
+}
+
 .yearTag, .ctryTag
 { cursor : pointer
 ; color  : #ffa500
