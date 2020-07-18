@@ -64,7 +64,7 @@ function NewTabLayout(elems) {
         var tabbdy = document.createElement('div');
  
         tabbtn.addEventListener('click', function() {
-            var bdyelem = document.getElementsByClassName('bdyfrme');
+            var bdyelem = document.getElementsByClassName('tabbody');
             for (var j = 0; j < bdyelem.length; j++) {
                 bdyelem[j].style.display = 'none';
             }
@@ -72,7 +72,7 @@ function NewTabLayout(elems) {
         });
 
         tabbtn.setAttribute('class', 'tabbtns');
-        tabbdy.setAttribute('class', 'bdyfrme');
+        tabbdy.setAttribute('class', 'tabbody');
         tabbdy.setAttribute(   'id',  elems[i]);
         tabbdy.textContent = elems[i];
         tabbtn.textContent = elems[i];
