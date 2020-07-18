@@ -133,7 +133,7 @@ function historychart(arr) {
     out.appendChild(dta);
     out.appendChild(frm);
     
-    var map = new Datamap({ element         : document.getElementById('mapframe')
+    var map = new Datamap({ element         : frm //document.getElementById('mapframe')
                           , scope           : 'world'
                           , projection      : 'equirectangular'
                           , responsive      : false
