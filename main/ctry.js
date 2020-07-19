@@ -22,7 +22,7 @@ export async function ctry() {
 
 function SetCountry(iso3) {
     var mapframe = document.getElementById('mapframe');
-    var dataPath = '/main/ctry/json/' + iso3 + '.json';
+    var dataPath = '/main/ctry/json/' + iso3.toLowerCase() + '.json';
 
     mapframe.innerHTML = '';
 
