@@ -385,7 +385,7 @@ function SetInputVal(val) {
 
 async function GetCmdInfo() {
     var host = window.location.href;
-    var list = await FileList(/main\/.*\.js/);
+    var list = await FileList(/main\/.*\.js$/);
     var lout = [];
 
     for (var i = 0; i < list.length; i++) {
