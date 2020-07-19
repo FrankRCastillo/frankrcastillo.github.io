@@ -48,7 +48,7 @@ export async function ctry() {
                                                   // on click functions
                                                   datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
                                                       var iso3 = geography.properties.iso
-                                                      var iso2 = window.ctryData.filter(x => x[1] == iso3)[0][0]
+                                                      var iso2 = window.ctryData.filter(x => x[1] == iso3)[0][0];
 
                                                       // change selection dropdown to clicked country
                                                       var sel = document.getElementById('mapselect');
@@ -57,6 +57,8 @@ export async function ctry() {
                                                       // post the profile of the clicked country in the mapdata frame
                                                       var dta = document.getElementById('mapdata');
                                                       dta.innerHTML = countryInfo(iso3);
+
+                                                      datamap.options.scope = iso3.toLowerCase();
                                                   });
 
                                                   
