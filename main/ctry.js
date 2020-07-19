@@ -76,9 +76,6 @@ export async function ctry() {
     CmdReady();                                                                         // update page status as ready
 }
 
-function CreateMap(iso) {
-}
-
 async function GenerateData() {
     var rtn = [];
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
