@@ -5,7 +5,12 @@ window.ctryData = [];
 export async function ctry() {
     window.ctryData = await generateData();
     
-    var l = [ 'WorldMap', 'GanttChart', 'Leaders', 'Government' ];
+    var l = [ 'WorldMap'
+            , 'GanttChart'
+            , 'Leaders'
+            , 'Government'
+            ];
+
     var t = NewTabLayout(l);
     var h = HistoryChart(window.ctryData);
 
