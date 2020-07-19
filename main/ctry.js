@@ -16,9 +16,18 @@ export async function ctry() {
 
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
+    SetCountry('wrld')
+    CmdReady();                                                                         // update page status as ready
+}
 
-    var map = new Datamap({ element         : document.getElementById('mapframe')
-                          , scope           : 'world'
+function SetCountry(iso3) {
+    var mapframe = document.getElementById('mapframe');
+    var dataPath = '/main/ctry/json/' + iso3 + '.json';
+
+    mapframe.innerHTML = '';
+
+    var map = new Datamap({ element         : mapframe
+                          , scope           : 'custom'
                           , projection      : 'equirectangular'
                           , responsive      : false
                           , fills           : { defaultFill          : '#000000' }
@@ -28,6 +37,7 @@ export async function ctry() {
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
+                                              , dataUrl              : dataPath
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover>'
                                                                                 + '<strong>'
@@ -72,8 +82,6 @@ export async function ctry() {
     map.labels({ labelColor : '#ffa500'
                , fontFamily : 'MS PGothic'
     });
-
-    CmdReady();                                                                         // update page status as ready
 }
 
 async function GenerateData() {
