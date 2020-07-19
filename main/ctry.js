@@ -121,7 +121,7 @@ async function GenerateData() {
     return rtn;
 }
 
-function parseHistory(str) {
+function ParseHistory(str) {
     var rgxexp = [ "([A-Za-z](\\.)){2,} [A-Z]"                                          // acronyms at the end of a sentence; delete all but last period
                  , "([A-Za-z](\\.)){2,} [^A-Z]"                                         // acronyms within a sentece, but not the end; delete all periods
                  , "[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}"  // ranks and titles; excludes the title of King
@@ -163,6 +163,7 @@ function HistoryChart(arr) {
     var frm = document.createElement('div');
     var lst = document.createElement('div');
     var btn = document.createElement('button');
+    var fcs = document.createElement('button');
     var dta = document.createElement('div');
     var sel = document.createElement('select');
 
@@ -170,8 +171,10 @@ function HistoryChart(arr) {
     lst.setAttribute('id', 'maptools' );
     dta.setAttribute('id', 'mapdata'  );
     sel.setAttribute('id', 'mapselect');
-    btn.setAttribute('id', 'ctryfind' );
+    btn.setAttribute('class', 'mapbtn');
+    fcs.setAttribute('class', 'mapbtn');
     btn.textContent = 'Find';
+    fcs.textContent = 'Focus';
 
     btn.addEventListener('click', function() {
         var dta = document.getElementById('mapdata');
@@ -198,10 +201,10 @@ function HistoryChart(arr) {
 
     lst.appendChild(sel);
     lst.appendChild(btn);
+    lst.appendChild(fcs);
     out.appendChild(lst);
     out.appendChild(dta);
     out.appendChild(frm);
-    
 
     return out;
 }

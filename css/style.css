@@ -169,19 +169,13 @@ button:hover
 ; font-size   : 12px
 }
 
-.zoombtn
-{ height : 26px
-; width  : 26px
-; cursor : pointer
-}
-
 #mapselect
 { height   : 26px
 ; width    : 250px
 ; float    : left
 }
 
-#ctryfind
+.mapbtn
 { height   : 26px
 ; width    : 60px
 ; position : absolute
