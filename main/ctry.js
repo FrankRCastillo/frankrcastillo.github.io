@@ -60,8 +60,6 @@ export async function ctry() {
 
                                                       datamap.options.scope = iso3.toLowerCase();
                                                   });
-
-                                                  
                                               } 
     });
 
