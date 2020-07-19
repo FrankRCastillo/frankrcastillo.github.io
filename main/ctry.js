@@ -33,7 +33,7 @@ function SetCountry(iso3) {
                           , fills           : { defaultFill          : '#000000' }
                           , setProjection   : function(element, options) {
                                                   var projection, path;
-                                                  projection = d3.geo.albersUsa()
+                                                  projection = d3.geo.mercator()
                                                       .center([78.9629, 23.5937])
                                                       .scale(element.offsetWidth)
                                                       .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
