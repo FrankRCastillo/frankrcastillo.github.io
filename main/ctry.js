@@ -3,11 +3,14 @@
 window.ctryData = [];
 
 export async function ctry() {
-    var l = [ 'WorldMap', 'GanttChart', 'Leaders', 'Government' ];
-
     window.ctryData = await generateData();
-    document.getElementById( 'outtext').appendChild(NewTabLayout(l));
-    document.getElementById('WorldMap').appendChild(historychart(window.ctryData));
+    
+    var l = [ 'WorldMap', 'GanttChart', 'Leaders', 'Government' ];
+    var t = NewTabLayout(l);
+    var h = HistoryChart(window.ctryData);
+
+    document.getElementById( 'outtext').appendChild(t);
+    document.getElementById('WorldMap').appendChild(h);
 
     var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'world'
@@ -143,7 +146,7 @@ function parseHistory(str) {
     return tmp.split('. ');
 }
 
-function historychart(arr) {
+function HistoryChart(arr) {
     var out = document.createElement('div');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
