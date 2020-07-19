@@ -1,6 +1,7 @@
 // |wrld|ctry|Country information (powered by CIA World Factbook)
 
 window.ctryData = [];
+var map = none;
 
 export async function ctry() {
     window.ctryData = await GenerateData();
@@ -17,7 +18,7 @@ export async function ctry() {
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
 
-    var map = new CreateMap('world');
+    map = new CreateMap('world');
 
     map.labels({ labelColor : '#ffa500'
                , fontFamily : 'MS PGothic'
