@@ -1,7 +1,7 @@
 // |wrld|ctry|Country information (powered by CIA World Factbook)
 
 window.ctryData = [];
-var map = none;
+var map = null;
 
 export async function ctry() {
     window.ctryData = await GenerateData();
