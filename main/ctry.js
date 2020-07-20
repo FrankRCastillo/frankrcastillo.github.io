@@ -21,10 +21,7 @@ export async function ctry() {
 }
 
 function CreateMap() {
-    var map = L.map( 'mapframe'
-                   , { center : [51.505, -0.09]
-                     , zoom   : 13
-    });
+    var map = L.map( 'mapframe', { center : [51.505, -0.09] });
 }
 
 async function GenerateData() {
