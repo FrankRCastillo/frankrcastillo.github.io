@@ -111,9 +111,7 @@ function NewCtryPage(arr) {
     dta.setAttribute('id', 'mapdata'  );
     sel.setAttribute('id', 'mapselect');
     btn.setAttribute('class', 'mapbtn');
-    fcs.setAttribute('class', 'mapbtn');
     btn.textContent = 'Find';
-    fcs.textContent = 'Focus';
 
     btn.addEventListener('click', function() {
         var dta = document.getElementById('mapdata');
@@ -140,7 +138,6 @@ function NewCtryPage(arr) {
 
     lst.appendChild(sel);
     lst.appendChild(btn);
-    lst.appendChild(fcs);
     out.appendChild(lst);
     out.appendChild(dta);
     out.appendChild(frm);
