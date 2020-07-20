@@ -26,7 +26,7 @@ function CreateMap() {
                , { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>contributors'
 	}).addTo(map);
 
-    map.setView([45.522, -122.6777], 13);
+    map.setView([0, 0], 1);
 }
 
 async function GenerateData() {
