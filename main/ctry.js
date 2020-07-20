@@ -12,66 +12,15 @@ export async function ctry() {
             ];
 
     var t = NewTabLayout(l);
-    var h = HistoryChart(window.ctryData);
+    var h = NewCtryPage(window.ctryData);
 
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
-    SetCountry()
+    CreateMap()
     CmdReady();                                                                         // update page status as ready
 }
 
-function SetCountry() {
-    var map = new Datamap({ element         : document.getElementById('mapframe')
-                          , scope           : 'world'
-                          , projection      : 'equirectangular'
-                          , responsive      : true
-                          , fills           : { defaultFill          : '#000000' }
-                          , geographyConfig : { highlightOnHover     : true
-                                              , popupOnHover         : true
-                                              , borderColor          : '#303030'
-                                              , highlightBorderColor : '#ffa500'
-                                              , highlightFillColor   : '#000000'
-                                              , popupTemplate        : function(geography, data) {
-                                                                           return '<div class=maphover><strong>'
-                                                                                + geography.properties.name
-                                                                                + '</strong></div>';
-                                                                       }
-                                              }
-                          , done            : function(datamap) {
-                                                  datamap.svg.call(d3.behavior.zoom().on('zoom', function() {
-                                                      // font size divided by scale
-                                                      var negfont = 10 / d3.event.scale;
-                                                      
-                                                      // enables pan and zoom
-                                                      datamap.svg.selectAll('g').attr('transform', 'translate(' + d3.event.translate
-                                                                                                 + ')scale('    + d3.event.scale + ')'
-                                                                                     );
-                                                      // reduces font based on scaling factor as screen zooms in
-                                                      datamap.svg.selectAll('text').attr('style', 'font-size: ' + negfont + 'px; '
-                                                                                                + 'font-family: \'MS PGothic\'; '
-                                                                                                + 'fill: rgb(255, 165, 0);'
-                                                                                        );
-                                                  }));
-                                                  
-                                                  // on click functions
-                                                  datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-                                                      var iso3 = geography.properties.iso
-                                                      var iso2 = window.ctryData.filter(x => x[1] == iso3)[0][0]
-       
-                                                      // change selection dropdown to clicked country
-                                                      var sel = document.getElementById('mapselect');
-                                                      sel.querySelector('option[value=' + iso2 + ']').selected = true;
-                                                      
-                                                      // post the profile of the clicked country in the mapdata frame
-                                                      var dta = document.getElementById('mapdata');
-                                                      dta.innerHTML = countryInfo(iso3);
-                                                  });
-                                                  
-                                              } 
-    });
-    map.labels({ labelColor : '#ffa500'
-               , fontFamily : 'MS PGothic'
-    });
+function CreateMap() {
 }
 
 async function GenerateData() {
@@ -148,7 +97,7 @@ function ParseHistory(str) {
     return tmp.split('. ');
 }
 
-function HistoryChart(arr) {
+function NewCtryPage(arr) {
     var out = document.createElement('div');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
