@@ -23,8 +23,8 @@ export async function ctry() {
 function CreateMap() {
     var map = L.map('mapframe');
 
-    L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
-        { attribution : 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>'
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { attribution : '&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         , maxZoom     : 17
         , minZoom     : 9
     }).addTo(map);
