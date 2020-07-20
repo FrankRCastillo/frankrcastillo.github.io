@@ -28,16 +28,13 @@ function SetCountry() {
                           , fills           : { defaultFill          : '#000000' }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
-                                              , borderWidth          : 1
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
                                               , popupTemplate        : function(geography, data) {
-                                                                           return '<div class=maphover>'
-                                                                                + '<strong>'
+                                                                           return '<div class=maphover><strong>'
                                                                                 + geography.properties.name
-                                                                                + '</strong>'
-                                                                                + '</div>';
+                                                                                + '</strong></div>';
                                                                        }
                                               }
                           , done            : function(datamap) {
