@@ -22,7 +22,7 @@ export async function ctry() {
 
 function SetCountry(iso3) {
     var map = new Datamap({ element         : document.getElementById('mapframe')
-                          , scope           : iso3
+                          , scope           : 'world'
                           , projection      : 'equirectangular'
                           , responsive      : false
                           , fills           : { defaultFill          : '#000000' }
