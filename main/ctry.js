@@ -16,37 +16,22 @@ export async function ctry() {
 
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
-    SetCountry('world')
+    SetCountry()
     CmdReady();                                                                         // update page status as ready
 }
 
-function SetCountry(iso3) {
-    var isoscope = (iso3 == 'world' ? 'world' : iso3)
-    var isolabel = (iso3 == 'world' ?  'wrld' : iso3)
-
+function SetCountry() {
     var map = new Datamap({ element         : document.getElementById('mapframe')
-                          , scope           : isoscope
+                          , scope           : 'world'
                           , projection      : 'equirectangular'
                           , responsive      : false
                           , fills           : { defaultFill          : '#000000' }
-                          , setProjection   : function(element, options) {
-                                                  var projection, path;
-                                                  projection = d3.geo.equirectangular()
-                                                      .scale(element.offsetWidth)
-                                                      .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-
-                                                  path = d3.geo.path()
-                                                      .projection( projection );
-
-                                                  return {path: path, projection: projection};
-                                              }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
                                               , borderWidth          : 1
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
-                                              , dataUrl              : '/main/ctry/json/' + isolabel  + '.json'
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover>'
                                                                                 + '<strong>'
