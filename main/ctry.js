@@ -16,12 +16,18 @@ export async function ctry() {
 
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
-    var map = CreateMap();
+    CreateMap();
     CmdReady();                                                                         // update page status as ready
 }
 
 function CreateMap() {
-    return L.map( 'mapframe', { });
+    var map = L.map('mapframe');
+
+    L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
+        { attribution : 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>'
+        , maxZoom     : 17
+        , minZoom     : 9
+    }).addTo(map);
 }
 
 async function GenerateData() {
