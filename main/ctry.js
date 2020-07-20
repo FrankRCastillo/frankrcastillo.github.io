@@ -16,12 +16,12 @@ export async function ctry() {
 
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
-    CreateMap()
+    var map = CreateMap();
     CmdReady();                                                                         // update page status as ready
 }
 
 function CreateMap() {
-    var map = L.map( 'mapframe', { });
+    return L.map( 'mapframe', { });
 }
 
 async function GenerateData() {
