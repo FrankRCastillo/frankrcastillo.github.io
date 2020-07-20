@@ -26,8 +26,6 @@ function CreateMap() {
                , { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>contributors'
 	}).addTo(map);
 
-    map.addLayer( { 'paint': { 'fill-color': '#030312' } } );
-
     map.setView([25, 0], 2);
 }
 
