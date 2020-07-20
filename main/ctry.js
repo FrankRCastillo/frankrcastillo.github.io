@@ -91,9 +91,9 @@ function SetCountry(iso3) {
                                              } 
     });
 
-//    map.labels({ labelColor : '#ffa500'
-//               , fontFamily : 'MS PGothic'
-//    });
+    map.labels({ labelColor : '#ffa500'
+               , fontFamily : 'MS PGothic'
+    });
 
     return map;
 }
