@@ -21,7 +21,7 @@ export async function ctry() {
 }
 
 function SetCountry(iso3) {
-    var map = new Datamap({ element         : document.getElementById('mapframe');
+    var map = new Datamap({ element         : document.getElementById('mapframe')
                           , scope           : 'custom'
                           , projection      : 'equirectangular'
                           , responsive      : false
