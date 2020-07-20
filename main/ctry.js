@@ -16,7 +16,7 @@ export async function ctry() {
 
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
-    SetCountry('wrld')
+    var map = new SetCountry('wrld')
     CmdReady();                                                                         // update page status as ready
 }
 
@@ -94,6 +94,8 @@ function SetCountry(iso3) {
     map.labels({ labelColor : '#ffa500'
                , fontFamily : 'MS PGothic'
     });
+
+    return map;
 }
 
 async function GenerateData() {
