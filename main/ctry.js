@@ -25,6 +25,8 @@ function CreateMap() {
     L.tileLayer( 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
                , { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>contributors'
 	}).addTo(map);
+
+    map.setView([45.522, -122.6777], 13);
 }
 
 async function GenerateData() {
