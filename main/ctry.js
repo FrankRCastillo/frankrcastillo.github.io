@@ -38,7 +38,7 @@ function SetCountry() {
                                                                                 + geography.properties.name
                                                                                 + '</strong>'
                                                                                 + '</div>';
-                                                                           }
+                                                                       }
                                               }
                           , done            : function(datamap) {
                                                   datamap.svg.call(d3.behavior.zoom().on('zoom', function() {
@@ -49,7 +49,6 @@ function SetCountry() {
                                                       datamap.svg.selectAll('g').attr('transform', 'translate(' + d3.event.translate
                                                                                                  + ')scale('    + d3.event.scale + ')'
                                                                                      );
-        
                                                       // reduces font based on scaling factor as screen zooms in
                                                       datamap.svg.selectAll('text').attr('style', 'font-size: ' + negfont + 'px; '
                                                                                                 + 'font-family: \'MS PGothic\'; '
@@ -60,19 +59,19 @@ function SetCountry() {
                                                   // on click functions
                                                   datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
                                                       var iso3 = geography.properties.iso
-                                                      var iso2 = window.ctryData.filter(x => x[1] == iso3)[0][0];
-        
+                                                      var iso2 = window.ctryData.filter(x => x[1] == iso3)[0][0]
+       
                                                       // change selection dropdown to clicked country
                                                       var sel = document.getElementById('mapselect');
                                                       sel.querySelector('option[value=' + iso2 + ']').selected = true;
-        
+                                                      
                                                       // post the profile of the clicked country in the mapdata frame
                                                       var dta = document.getElementById('mapdata');
                                                       dta.innerHTML = countryInfo(iso3);
-                                                 });
-                                             } 
+                                                  });
+                                                  
+                                              } 
     });
-
     map.labels({ labelColor : '#ffa500'
                , fontFamily : 'MS PGothic'
     });
