@@ -21,12 +21,7 @@ export async function ctry() {
 }
 
 function SetCountry(iso3) {
-    var mapframe = document.getElementById('mapframe');
-    var dataPath = '/main/ctry/json/' + iso3.toLowerCase() + '.json';
-
-    mapframe.innerHTML = '';
-
-    var map = new Datamap({ element         : mapframe
+    var map = new Datamap({ element         : document.getElementById('mapframe');
                           , scope           : 'custom'
                           , projection      : 'equirectangular'
                           , responsive      : false
@@ -49,7 +44,7 @@ function SetCountry(iso3) {
                                               , borderColor          : '#303030'
                                               , highlightBorderColor : '#ffa500'
                                               , highlightFillColor   : '#000000'
-                                              , dataUrl              : dataPath
+                                              , dataUrl              : '/main/ctry/json/' + iso3 + '.json'
                                               , popupTemplate        : function(geography, data) {
                                                                            return '<div class=maphover>'
                                                                                 + '<strong>'
