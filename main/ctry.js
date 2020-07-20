@@ -26,18 +26,6 @@ function SetCountry(iso3) {
                           , projection      : 'equirectangular'
                           , responsive      : false
                           , fills           : { defaultFill          : '#000000' }
-                          , setProjection   : function(element, options) {
-                                                  var projection, path;
-                                                  projection = d3.geo.equirectangular()
-                                                      .center([78.9629, 23.5937])
-                                                      .scale(element.offsetWidth)
-                                                      .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-
-                                                  path = d3.geo.path()
-                                                      .projection( projection );
-
-                                                  return {path: path, projection: projection};
-                                              }
                           , geographyConfig : { highlightOnHover     : true
                                               , popupOnHover         : true
                                               , borderWidth          : 1
