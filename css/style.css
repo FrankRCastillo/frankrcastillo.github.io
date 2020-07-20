@@ -176,10 +176,10 @@ button:hover
 }
 
 .mapbtn
-{ height   : 26px
-; width    : 60px
-; position : absolute
-; cursor   : pointer
+{ height : 26px
+; width  : 60px
+; float  : left
+; cursor : pointer
 }
 
 #maptools
