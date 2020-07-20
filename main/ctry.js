@@ -16,7 +16,7 @@ export async function ctry() {
 
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
-    SetCountry('wrld')
+    SetCountry('world')
     CmdReady();                                                                         // update page status as ready
 }
 
