@@ -22,12 +22,9 @@ export async function ctry() {
 
 function CreateMap() {
     var map = L.map('mapframe');
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { attribution : '&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        , maxZoom     : 17
-        , minZoom     : 9
-    }).addTo(map);
+    L.tileLayer( 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+               , { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>contributors'
+	}).addTo(map);
 }
 
 async function GenerateData() {
