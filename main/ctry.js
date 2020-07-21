@@ -27,7 +27,7 @@ function CreateMap() {
     var osmAttrib ='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
     var osm       = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 17, attribution: osmAttrib});		
 
-    map.setView(new L.LatLng(25, 0), 1);
+    map.setView(new L.LatLng(25, 0), 3);
     map.addLayer(osm);
     L.control.scale().addTo(map);
 
