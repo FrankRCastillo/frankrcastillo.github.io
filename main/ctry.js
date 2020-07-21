@@ -36,16 +36,12 @@ function CreateMap() {
                 .getCode ( e.latlng.lat
                          , e.latlng.lng
                          , function (err, code) {
-                               var msg;
-                               if (err) {
-                                   msg = err;
-                               } else {
-                                   msg = "You clicked on: " + code;
-                               }
-                               L.popup()
-                                .setLatLng(e.latlng)
-                                .setContent(msg)
-                                .openOn(map);
+                             try {
+                                 document.getElementById('mapselect');
+                                 sel.querySelector('option[value=' + code + ']').selected = true;
+                             } catch (err) {
+                                 console.log(err.message);
+                             }
                            });
     });
 
