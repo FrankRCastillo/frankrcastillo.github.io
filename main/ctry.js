@@ -20,9 +20,7 @@ export async function ctry() {
 }
 
 function CreateMap() {
-    var map = L.map('mapframe');
-
-    // create the tile layer with correct attribution
+    var map       = L.map('mapframe');
     var osmUrl    ='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib ='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
     var osm       = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 17, attribution: osmAttrib});		
