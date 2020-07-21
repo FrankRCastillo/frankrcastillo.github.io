@@ -42,9 +42,10 @@ function CreateMap() {
                                } else {
                                    msg = "You clicked on: " + code;
                                }
-                               popup.setLatLng (e.latlng)
-                                    .setContent (msg)
-                                    .openOn(map);
+                               L.popup()
+                                .setLatLng(e.latlng)
+                                .setContent(msg)
+                                .openOn(map);
                            });
     });
 
