@@ -37,8 +37,10 @@ function CreateMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
-                                 document.getElementById('mapselect');
-                                 sel.querySelector('option[value=' + code + ']').selected = true;
+                                 document
+                                     .getElementById('mapselect');
+                                     .querySelector('option[value=' + code + ']')
+                                     .selected = true;
                              } catch (err) {
                                  console.log(err.message);
                              }
