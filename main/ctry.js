@@ -48,21 +48,21 @@ function CreateMap() {
                            });
     });
 
-    map.on ('mousemove', L.Util.limitExecByInterval(function(e) {
-        codegrid.CodeGrid()
-                .getCode ( e.latlng.lat
-                         , e.latlng.lng
-                         , function (err, code) {
-                               var msg;
-                               if (err) {
-                                   msg = err;
-                               } else {
-                                   msg = "You are on: " + code;
-                               }
-                               console.log(msg);
-                           }
-                         );
-        },5));
+//    map.on ('mousemove', L.Util.limitExecByInterval(function(e) {
+//        codegrid.CodeGrid()
+//                .getCode ( e.latlng.lat
+//                         , e.latlng.lng
+//                         , function (err, code) {
+//                               var msg;
+//                               if (err) {
+//                                   msg = err;
+//                               } else {
+//                                   msg = "You are on: " + code;
+//                               }
+//                               console.log(msg);
+//                           }
+//                         );
+//        },5));
 }
 
 async function GenerateData() {
