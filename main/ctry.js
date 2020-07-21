@@ -57,7 +57,7 @@ function CreateMap() {
                              try {
                                  var ncode = iso[code.toUpperCase()];
                                  
-                                 ncode = (ncode == '' ? code.toUpperCase() : ncode);
+                                 ncode = (ncode === undefined ? code.toUpperCase() : ncode);
 
                                  document.getElementById('mapselect')
                                          .querySelector('option[value=' + ncode + ']')
