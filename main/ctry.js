@@ -37,9 +37,14 @@ function CreateMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
+                                 var iso = code.toUpperCase();
+
                                  document.getElementById('mapselect')
-                                         .querySelector('option[value=' + code.toUpperCase() + ']')
+                                         .querySelector('option[value=' + iso + ']')
                                          .selected = true;
+
+                                 document.getElementById('mapdata')
+                                         .innerHTML = countryInfo(iso);
                              } catch (err) {
                                  console.log(err.message);
                              }
