@@ -38,7 +38,7 @@ function CreateMap() {
                          , function (err, code) {
                              try {
                                  document.getElementById('mapselect')
-                                         .querySelector('option[value=' + code + ']')
+                                         .querySelector('option[value=' + code.toUpperCase() + ']')
                                          .selected = true;
                              } catch (err) {
                                  console.log(err.message);
