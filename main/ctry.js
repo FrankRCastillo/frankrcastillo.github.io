@@ -1,5 +1,4 @@
 // |wrld|ctry|Country information (powered by CIA World Factbook)
-
 window.ctryData = [];
 
 export async function ctry() {
@@ -22,15 +21,48 @@ export async function ctry() {
 
 function CreateMap() {
     var map = L.map('mapframe');
-    L.tileLayer( 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-               , { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>contributors'
-	}).addTo(map);
-    
-    map.on('click', function(e) {
-        console.log("test");
+
+    // create the tile layer with correct attribution
+    var osmUrl    ='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttrib ='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osm       = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 17, attribution: osmAttrib});		
+
+    map.setView(new L.LatLng(22.506, 114.051),15);
+    map.addLayer(osm);
+    L.control.scale().addTo(map);
+
+    map.on ('click', function(e) {
+        codegrid.CodeGrid()
+                .getCode ( e.latlng.lat
+                         , e.latlng.lng
+                         , function (err, code) {
+                               var msg;
+                               if (err) {
+                                   msg = err;
+                               } else {
+                                   msg = "You clicked on: " + code;
+                               }
+                               popup.setLatLng (e.latlng)
+                                    .setContent (msg)
+                                    .openOn(map);
+                           });
     });
 
-    map.setView([25, 0], 2);
+    map.on ('mousemove', L.Util.limitExecByInterval(function(e) {
+        codegrid.CodeGrid()
+                .getCode ( e.latlng.lat
+                         , e.latlng.lng
+                         , function (err, code) {
+                               var msg;
+                               if (err) {
+                                   msg = err;
+                               } else {
+                                   msg = "You are on: " + code;
+                               }
+                               console.log(msg);
+                           }
+                         );
+        },5));
 }
 
 async function GenerateData() {
