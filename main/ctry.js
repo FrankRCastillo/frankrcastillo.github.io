@@ -30,7 +30,32 @@ function CreateMap() {
         console.log("test");
     });
 
+    var stateLayer = L.geoJson(null, {onEachFeature: forEachFeature});
+
+    stateLayer.addTo(map);
+
     map.setView([25, 0], 2);
+}
+
+function forEachFeature(feature, layer) {
+    // Tagging each state poly with their name for the search control.
+    layer._leaflet_id = feature.properties.STATE_NAME;
+
+    var popupContent = "<p><b>STATE: </b>"+ feature.properties.STATE_NAME +
+        "</br>REGION: "+ feature.properties.SUB_REGION +
+        "</br>STATE ABBR: "+ feature.properties.STATE_ABBR +
+        "</br>POP2010: "+ feature.properties.POP2010.toLocaleString() +
+        "</br>Pop 2010 per SQMI: "+ feature.properties.POP10_SQMI.toLocaleString() +
+        "</br>Males: "+ feature.properties.MALES.toLocaleString() +
+        "</br>Females: "+ feature.properties.FEMALES.toLocaleString() +
+        "</br>SQ Miles: "+ feature.properties.SQMI.toLocaleString() +'</p>';
+
+    layer.bindPopup(popupContent);
+
+    layer.on("click", function (e) { 
+        stateLayer.setStyle(style); //resets layer colors
+        layer.setStyle(highlight);  //highlights selected.
+    }); 
 }
 
 async function GenerateData() {
