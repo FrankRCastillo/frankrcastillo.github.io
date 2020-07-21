@@ -130,7 +130,7 @@ function ParseHistory(str, country, countries) {
                                   }
                               });
 
-    return tmp.split('. ');
+    return tmp.split('. ').map(x => x.replace(x, '<span class=evntTag>$&</span>'));
 }
 
 function NewCtryPage(arr) {
