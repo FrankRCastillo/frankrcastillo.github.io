@@ -20,6 +20,26 @@ export async function ctry() {
 }
 
 function CreateMap() {
+    var iso = { "AD": "AN", "AG": "AC", "AI": "AV", "AS": "AQ", "AT": "AU", "AU": "AS", "AX": "FI", "AZ": "AJ"
+              , "BA": "BK", "BD": "BG", "BF": "UV", "BG": "BU", "BH": "BA", "BI": "BY", "BJ": "BN", "BL": "TB"
+              , "BM": "BD", "BN": "BX", "BO": "BL", "BQ": "NL", "BS": "BF", "BW": "BC", "BY": "BO", "BZ": "BH"
+              , "CD": "CG", "CF": "CT", "CG": "CF", "CH": "SZ", "CI": "IV", "CK": "CW", "CL": "CI", "CN": "CH"
+              , "CR": "CS", "CW": "UC", "CZ": "EZ", "DE": "GM", "DK": "DA", "DM": "DO", "DO": "DR", "DZ": "AG"
+              , "EE": "EN", "EH": "WI", "ES": "SP", "GA": "GB", "GB": "UK", "GD": "GJ", "GE": "GG", "GF": "FR"
+              , "GG": "GK", "GM": "GA", "GN": "GV", "GP": "FR", "GQ": "EK", "GS": "SX", "GU": "GQ", "GW": "PU"
+              , "HN": "HO", "HT": "HA", "IE": "EI", "IL": "IS", "IQ": "IZ", "IS": "IC", "JP": "JA", "KH": "CB"
+              , "KI": "KR", "KM": "CN", "KN": "SC", "KP": "KN", "KR": "KS", "KW": "KU", "KY": "CJ", "LB": "LE"
+              , "LC": "ST", "LI": "LS", "LK": "CE", "LR": "LI", "LS": "LT", "LT": "LH", "LV": "LG", "MA": "MO"
+              , "MC": "MN", "ME": "MJ", "MF": "RN", "MG": "MA", "MH": "RM", "MM": "BM", "MN": "MG", "MP": "CQ"
+              , "MQ": "FR", "MS": "MH", "MU": "MP", "MW": "MI", "NA": "WA", "NE": "NG", "NG": "NI", "NI": "NU"
+              , "NU": "NE", "OM": "MU", "PA": "PM", "PF": "FP", "PG": "PP", "PH": "RP", "PM": "SB", "PN": "UK"
+              , "PR": "RQ", "PS": "GZ", "PT": "PO", "PW": "PS", "PY": "PA", "RE": "FR", "RS": "RI", "RU": "RS"
+              , "SB": "BP", "SC": "SE", "SD": "SU", "SE": "SW", "SG": "SN", "SJ": "SV", "SK": "LO", "SN": "SG"
+              , "SR": "NS", "SS": "OD", "ST": "TP", "SV": "ES", "SX": "NN", "SZ": "WZ", "TC": "TK", "TD": "CD"
+              , "TF": "FR", "TG": "TO", "TJ": "TI", "TK": "TL", "TL": "TT", "TM": "TX", "TN": "TS", "TO": "TN"
+              , "TR": "TU", "TT": "TD", "UA": "UP", "UM": "US", "VA": "VT", "VG": "VI", "VN": "VM", "VU": "NH"
+              , "YE": "YM", "YT": "FR", "ZA": "SF", "ZM": "ZA", "ZW": "ZI" }
+
     var map       = L.map('mapframe');
     var osmUrl    ='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib ='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -35,14 +55,16 @@ function CreateMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
-                                 var iso = code.toUpperCase();
+                                 var ncode = iso[code.toUpperCase()];
+                                 
+                                 ncode = (ncode == '' ? code.toUpperCase() : ncode);
 
                                  document.getElementById('mapselect')
-                                         .querySelector('option[value=' + iso + ']')
+                                         .querySelector('option[value=' + ncode + ']')
                                          .selected = true;
 
                                  document.getElementById('mapdata')
-                                         .innerHTML = countryInfo(iso);
+                                         .innerHTML = countryInfo(ncode);
                              } catch (err) {
                                  console.log(err.message);
                              }
@@ -184,3 +206,4 @@ function countryInfo(iso) {
          + '</strong>'
          + data[3];
 }
+
