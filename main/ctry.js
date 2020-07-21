@@ -38,7 +38,8 @@ function CreateMap() {
               , "SR": "NS", "SS": "OD", "ST": "TP", "SV": "ES", "SX": "NN", "SZ": "WZ", "TC": "TK", "TD": "CD"
               , "TF": "FR", "TG": "TO", "TJ": "TI", "TK": "TL", "TL": "TT", "TM": "TX", "TN": "TS", "TO": "TN"
               , "TR": "TU", "TT": "TD", "UA": "UP", "UM": "US", "VA": "VT", "VG": "VI", "VN": "VM", "VU": "NH"
-              , "YE": "YM", "YT": "FR", "ZA": "SF", "ZM": "ZA", "ZW": "ZI" }
+              , "YE": "YM", "YT": "FR", "ZA": "SF", "ZM": "ZA", "ZW": "ZI"
+              }
 
     var map       = L.map('mapframe');
     var osmUrl    ='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -97,51 +98,37 @@ async function GenerateData() {
 
     var countries = rtn.map(x => x[2]);
 
-    rtn = rtn.map(x => [ x[0]
-                       , x[1]
-                       , x[2]
-                       , x[3].replace( new RegExp('(' + countries.filter(e => e != x[2]).join('|') + ')', 'g')
-                                     , '<strong class=ctryTag>$&</strong>')
-                             .replace( /([1](?<=1)[0-9]|20)[0-9]{2}/g
-                                     , '<strong class=yearTag>$&</strong>')
-                       ]);
+    rtn = rtn.map(x => [ x[0], x[1], x[2], ParseHistory(x[3], x[2], countries) ]);
 
     return rtn;
 }
 
-function ParseHistory(str) {
-    var rgxexp = [ "([A-Za-z](\\.)){2,} [A-Z]"                                          // acronyms at the end of a sentence; delete all but last period
-                 , "([A-Za-z](\\.)){2,} [^A-Z]"                                         // acronyms within a sentece, but not the end; delete all periods
-                 , "[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}"  // ranks and titles; excludes the title of King
+function ParseHistory(str, country, countries) {
+    var rgxexp = [ '[A-Za-z](\\.)){2,} [A-Z]'                                          // acronyms at the end of a sentence; delete all but last period
+                 , '[A-Za-z](\\.)){2,} [^A-Z]'                                         // acronyms within a sentece, but not the end; delete all periods
+                 , '[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}' // ranks and titles; excludes the title of King
+                 , '(' + countries.filter(e => e != country).join('|') + ')'           // find all countries except for the current country
+                 , '([1](?<=1)[0-9]|20)[0-9]{2}'                                       // find year
                  ]
     
-    var tmp = str;
+    var rgxstr = rgxexp.map(x => x.source).join('|');
+    var rgxpat = new RegExp(rgxstr, 'g');
+    var tmp    = str.replace( rgxpat
+                            , function() {
+                                  var x = arguments;
 
-    for (var i = 0; i < rgxexp.length; i++) {                                           // iterate through regular expressions
-        var rgxdom = new RegExp(rgxexp[i]);
-        var rgxget = tmp.match(rgxdom);
-        
-        try {
-            for (var j = 0; j < rgxget.length; j++) {                                   // iterate through regular expression matches
-                var rgxmod = '';
+                                  switch(true) {
+                                      case (Boolean)(x[0]):
+                                          var rgxarr = x[0].split('.');
+                                          return rgxarr.slice(0, rgxarr.length - 2).join('')
+                                               + rgxarr[rgxarr.length - 1];
 
-                // first regex requires that all but last periods be removed
-                if (i == 0) {
-                    var rgxarr = rgxget[j].split('.');
-                    var penult = rgxarr.slice(0, rgxarr.length - 2).join('');
-                    var ultima = rgxarr[rgxarr.length - 1];
-                    rgxmod = penult + '.' + ultima;
-
-                } else {
-                    rgxmod = rgxget[j].replace('.', '');
-                }
-
-                tmp = tmp.replace(rgxget[j], rgxmod);
-            }
-        } catch(err) {
-            console.log(err.message);
-        }
-    }
+                                      case (Boolean)(x[1]): return x[1].replace('.', '');
+                                      case (Boolean)(x[2]): return x[2].replace('.', '');
+                                      case (Boolean)(x[3]): return x[3].replace(x[3], '<strong class=ctryTag>$&</strong>');
+                                      case (Boolean)(x[4]): return x[4].replace(x[4], '<strong class=yearTag>$&</strong>');
+                                  }
+                              });
 
     return tmp.split('. ');
 }
@@ -205,5 +192,8 @@ function countryInfo(iso) {
          + isos + '<br/>'
          + '</strong>'
          + data[3];
+}
+
+function GenerateGanttChart(iso) {
 }
 
