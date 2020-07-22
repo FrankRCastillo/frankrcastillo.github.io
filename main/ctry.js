@@ -111,7 +111,7 @@ function ParseHistory(str, country, countries) {
                  , '([1](?<=1)[0-9]|20)[0-9]{2})'                                      // find year
                  ]
     
-    var rgxpat = rgxexp.map(x => new RegExp(x, 'g')).join('|');
+    var rgxpat = '(' + rgxexp.map(x => new RegExp(x, 'g')).join('|') + ')';
     var tmp    = str.replace( rgxpat
                             , function() {
                                   var x = arguments;
