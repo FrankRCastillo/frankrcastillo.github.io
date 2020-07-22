@@ -111,23 +111,21 @@ function ParseHistory(str, country, countries) {
                  , '([1](?<=1)[0-9]|20)[0-9]{2}'                                        // find year
                  ]
     
-    var rgxpat = '(' + rgxexp.map(x => new RegExp(x, 'g')).join('|') + ')';
-    var tmp    = str.replace( rgxpat
-                            , function() {
-                                  var x = arguments;
-
-                                  switch(true) {
-                                      case (Boolean)(x[0]):
-                                          var rgxarr = x[0].split('.');
-                                          return rgxarr.slice(0, rgxarr.length - 2).join('')
-                                               + rgxarr[rgxarr.length - 1];
-
-                                      case (Boolean)(x[1]): return x[1].replace('.', '');
-                                      case (Boolean)(x[2]): return x[2].replace('.', '');
-                                      case (Boolean)(x[3]): return x[3].replace(x[3], '<strong class=ctryTag>$&</strong>');
-                                      case (Boolean)(x[4]): return x[4].replace(x[4], '<strong class=yearTag>$&</strong>');
-                                  }
-                              });
+    var rgxpat = rgxexp.map(x => new RegExp(x, 'g'));
+    
+    var tmp = rgxexp.map(function(x, i) {
+        var rgxobj = new RegExp(x, 'g');
+        var rgxstr = str.match(rgxobj);
+        switch(i) {
+            case 0: var rgxarr = rgxstr.split('.');
+                    return rgxarr.slice(0, rgxarr.length - 2).join('')
+                         + rgxarr[rgxarr.length - 1];
+            case 1:
+            case 2: return str.replace('.', '');
+            case 3: return str.replace(rgxstr, '<strong class=ctryTag></strong>');
+            case 4: return str.replace(rgxstr, '<strong class=yearTag></strong>');
+        }
+    });
 
     return tmp.split('. ')
               .map(x => '<span class=evntTag>' + (x.slice(-1) == '.' ? x : x + '. ') + '</span>')
