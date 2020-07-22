@@ -114,25 +114,24 @@ function ParseHistory(str, country, countries) {
     
     for (var i = 0; i < rgxexp.length; i++)  {
         var rgxobj = new RegExp(rgxexp[i], 'g');
-        var rgxtmp = tmp.match(rgxobj);
 
-        if (rgxtmp != null) {
-            switch(i) {
-                case 0: var rgxarr = rgxtmp.split('.');
-                        tmp = tmp.replace( rgxtmp
-                                         , rgxarr.slice(0, rgxarr.length - 2)
-                                                 .join('')
-                                                 + rgxarr[rgxarr.length - 1]
-                                         );
-                        break;
-                case 1:
-                case 2: tmp = rgxtmp.replace('.', '');
-                        break;
-                case 3: tmp = tmp.replace(rgxtmp, '<tmpong class=ctryTag>$&</tmpong>');
-                        break;
-                case 4: tmp =  tmp.replace(rgxtmp, '<tmpong class=yearTag>$&</tmpong>');
-                        break;
-            }
+        switch(i) {
+            case 0: var rgxarr = rgxtmp.split('.');
+                    tmp = tmp.replace( rgxobj
+                                     , rgxarr.slice(0, rgxarr.length - 2)
+                                             .join('')
+                                             + rgxarr[rgxarr.length - 1]
+                                     );
+                    break;
+            case 1:
+            case 2: var rgxold = tmp.match(rgxobj);
+                    var rgxnew = rgxold.map(x => x.replace('.', ''));
+                    tmp = tmp.match(rgxold, rgxnew);
+                    break;
+            case 3: tmp = tmp.replace(rgxobj, '<tmpong class=ctryTag>$&</tmpong>');
+                    break;
+            case 4: tmp =  tmp.replace(rgxobj, '<tmpong class=yearTag>$&</tmpong>');
+                    break;
         }
     };
 
