@@ -104,6 +104,7 @@ async function GetData() {
 }
 
 function ParseHistory(str, country, countries) {
+    var tmp    = str;
     var rgxexp = [ '([A-Za-z](\\.)){2,} [A-Z]'                                          // acronyms at the end of a sentence; delete all but last period
                  , '([A-Za-z](\\.)){2,} [^A-Z]'                                         // acronyms within a sentece, but not the end; delete all periods
                  , '[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}'  // ranks and titles; excludes the title of King
@@ -113,29 +114,29 @@ function ParseHistory(str, country, countries) {
     
     for (var i = 0; i < rgxexp.length; i++)  {
         var rgxobj = new RegExp(rgxexp[i], 'g');
-        var rgxstr = str.match(rgxobj);
+        var rgxtmp = tmp.match(rgxobj);
 
-        if (rgxstr != null) {
+        if (rgxtmp != null) {
             switch(i) {
-                case 0: var rgxarr = rgxstr.split('.');
-                        str = str.replace( rgxstr
+                case 0: var rgxarr = rgxtmp.split('.');
+                        tmp = tmp.replace( rgxtmp
                                          , rgxarr.slice(0, rgxarr.length - 2)
                                                  .join('')
                                                  + rgxarr[rgxarr.length - 1]
                                          );
                         break;
                 case 1:
-                case 2: str = rgxstr.replace('.', '');
+                case 2: tmp = rgxtmp.replace('.', '');
                         break;
-                case 3: str = str.replace(rgxstr, '<strong class=ctryTag>$&</strong>');
+                case 3: tmp = tmp.replace(rgxtmp, '<tmpong class=ctryTag>$&</tmpong>');
                         break;
-                case 4: str =  str.replace(rgxstr, '<strong class=yearTag>$&</strong>');
+                case 4: tmp =  tmp.replace(rgxtmp, '<tmpong class=yearTag>$&</tmpong>');
                         break;
             }
         }
     };
 
-    return str.split('. ')
+    return tmp.split('. ')
               .map(x => '<span class=evntTag>'
                       + (x.slice(-1) == '.' ? x : x + '. ')
                       + '</span>')
