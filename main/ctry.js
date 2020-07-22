@@ -218,23 +218,24 @@ function NewGanttPage() {
     var ctry = document.getElementsByClassName('ctryTag');
     var year = document.getElementsByClassName('yearTag');
     var tble = document.createElement('table');
+    var earr = Array.from(evnt).map(x => x.innerText).sort();
+    var yarr = Array.from(year).map(x => x.innerText).sort();
 
-    ctry.sort();
-    ctry.unshift('Events');
+    yarr.unshift('Events');
 
-    for (var i = 0; i < evnt.length; i++) {
+    for (var i = 0; i < earr.length; i++) {
         var tr = document.createElement('tr');
 
-        for (var j = 0; j < year.length; j++) {
+        for (var j = 0; j < yarr.length; j++) {
             if (i == 0) {
                 var th = document.createElement('th');
-                th.textContent = year[j];
+                th.textContent = yarr[j];
                 tr.appendChild(th);
             } else {
                 var td = document.createElement('td');
 
                 if (j == 0) {
-                    td.textContent = evnt[i - 1];
+                    td.textContent = earr[i - 1];
 
                 } else {
                     td.textContent = '';
