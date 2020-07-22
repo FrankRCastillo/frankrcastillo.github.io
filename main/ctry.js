@@ -117,7 +117,7 @@ function ParseHistory(val, country, countries) {
 
         if(rgxold != null) {
             switch(i) {
-                case 0: var rgxarr = match(rgxobj);
+                case 0: var rgxarr = val.match(rgxobj);
                         val = val.replace( rgxobj
                                          , rgxarr.slice(0, rgxarr.length - 2)
                                                  .join('')
