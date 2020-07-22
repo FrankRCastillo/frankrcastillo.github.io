@@ -56,6 +56,7 @@ function CreateMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
+                                 var gantt = document.getElementById('GanttChart');
                                  var ncode = iso[code.toUpperCase()];
                                  
                                  ncode = (ncode === undefined ? code.toUpperCase() : ncode);
@@ -66,6 +67,9 @@ function CreateMap() {
 
                                  document.getElementById('mapdata')
                                          .innerHTML = countryInfo(ncode);
+
+                                 gantt.innerHTML = '';
+                                 gantt.appendChild(NewGanttPage());
                              } catch (err) {
                                  console.log(err.message);
                              }
