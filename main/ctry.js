@@ -111,8 +111,6 @@ function ParseHistory(str, country, countries) {
                  , '([1](?<=1)[0-9]|20)[0-9]{2}'                                        // find year
                  ]
     
-    var rgxpat = rgxexp.map(x => new RegExp(x, 'g'));
-    
     for (var i = 0; i < rgxexp.length; i++)  {
         var rgxobj = new RegExp(rgxexp[i], 'g');
         var rgxstr = str.match(rgxobj);
@@ -125,7 +123,7 @@ function ParseHistory(str, country, countries) {
                                          );
                         break;
                 case 1:
-                case 2: str = str.replace('.', '');
+                case 2: str = rgxstr.replace('.', '');
                         break;
                 case 3: str = str.replace(rgxstr, '<strong class=ctryTag></strong>');
                         break;
