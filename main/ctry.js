@@ -127,9 +127,9 @@ function ParseHistory(str, country, countries) {
                 case 1:
                 case 2: str = rgxstr.replace('.', '');
                         break;
-                case 3: str = str.replace(rgxstr, '<strong class=ctryTag></strong>');
+                case 3: str = str.replace(rgxstr, '<strong class=ctryTag>$&</strong>');
                         break;
-                case 4: str =  str.replace(rgxstr, '<strong class=yearTag></strong>');
+                case 4: str =  str.replace(rgxstr, '<strong class=yearTag>$&</strong>');
                         break;
             }
         }
