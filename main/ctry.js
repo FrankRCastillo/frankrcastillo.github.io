@@ -42,7 +42,7 @@ function CreateMap() {
               }
 
     var map       = L.map('mapframe');
-    var osmUrl    ='https://.tile.openstreetmap.us/vectiles-skeletron/{z}/{x}/{y}.png';
+    var osmUrl    ='https://tile.openstreetmap.us/vectiles-skeletron/{z}/{x}/{y}.png';
     var osmAttrib ='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
     var osm       = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 17, attribution: osmAttrib});		
 
