@@ -170,6 +170,11 @@ button:hover
 ; font-size   : 12px
 }
 
+#GanttTable
+{ font-family : 'courier new'
+; font-size   : 10px
+}
+
 #mapselect
 { height   : 26px
 ; width    : 250px

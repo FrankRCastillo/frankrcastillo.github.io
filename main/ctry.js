@@ -221,6 +221,7 @@ function NewGanttPage() {
     var earr = Array.from(evnt).map(x => x.innerText).sort();
     var yarr = Array.from(year).map(x => x.innerText).sort();
 
+    tble.setAttribute('id', 'GanttTable');
     yarr.unshift('Events');
 
     for (var i = 0; i < earr.length; i++) {
