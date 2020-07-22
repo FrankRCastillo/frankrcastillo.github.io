@@ -113,21 +113,27 @@ function ParseHistory(str, country, countries) {
     
     var rgxpat = rgxexp.map(x => new RegExp(x, 'g'));
     
-    var tmp = rgxexp.map(function(x, i) {
-        var rgxobj = new RegExp(x, 'g');
+    for (var i = 0; i < rgxexp.length; i++)  {
+        var rgxobj = new RegExp(rgxexp[i], 'g');
         var rgxstr = str.match(rgxobj);
+
         if (rgxstr != null) {
             switch(i) {
                 case 0: var rgxarr = rgxstr.split('.');
-                        return rgxarr.slice(0, rgxarr.length - 2).join('')
-                             + rgxarr[rgxarr.length - 1];
+                        str = str.replace(rgxstr, rgxarr.slice(0, rgxarr.length - 2).join('')
+                                                + rgxarr[rgxarr.length - 1]
+                                         );
+                        break;
                 case 1:
-                case 2: return str.replace('.', '');
-                case 3: return str.replace(rgxstr, '<strong class=ctryTag></strong>');
-                case 4: return str.replace(rgxstr, '<strong class=yearTag></strong>');
+                case 2: str = str.replace('.', '');
+                        break;
+                case 3: str = str.replace(rgxstr, '<strong class=ctryTag></strong>');
+                        break;
+                case 4: str =  str.replace(rgxstr, '<strong class=yearTag></strong>');
+                        break;
             }
         }
-    });
+    };
 
     return tmp.split('. ')
               .map(x => '<span class=evntTag>' + (x.slice(-1) == '.' ? x : x + '. ') + '</span>')
