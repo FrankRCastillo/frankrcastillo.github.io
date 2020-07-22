@@ -135,8 +135,10 @@ function ParseHistory(str, country, countries) {
         }
     };
 
-    return tmp.split('. ')
-              .map(x => '<span class=evntTag>' + (x.slice(-1) == '.' ? x : x + '. ') + '</span>')
+    return str.split('. ')
+              .map(x => '<span class=evntTag>'
+                      + (x.slice(-1) == '.' ? x : x + '. ')
+                      + '</span>')
               .join('. ');
 }
 
