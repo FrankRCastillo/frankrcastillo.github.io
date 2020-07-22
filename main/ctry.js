@@ -104,8 +104,8 @@ async function GetData() {
 }
 
 function ParseHistory(str, country, countries) {
-    var rgxexp = [ '[A-Za-z](\\.)){2,} [A-Z]'                                          // acronyms at the end of a sentence; delete all but last period
-                 , '[A-Za-z](\\.)){2,} [^A-Z]'                                         // acronyms within a sentece, but not the end; delete all periods
+    var rgxexp = [ '([A-Za-z](\\.)){2,} [A-Z]'                                          // acronyms at the end of a sentence; delete all but last period
+                 , '([A-Za-z](\\.)){2,} [^A-Z]'                                         // acronyms within a sentece, but not the end; delete all periods
                  , '[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}' // ranks and titles; excludes the title of King
                  , '(' + countries.filter(e => e != country).join('|') + ')'           // find all countries except for the current country
                  , '([1](?<=1)[0-9]|20)[0-9]{2})'                                      // find year
