@@ -103,8 +103,7 @@ async function GetData() {
     return rtn;
 }
 
-function ParseHistory(str, country, countries) {
-    var tmp    = str;
+function ParseHistory(val, country, countries) {
     var rgxexp = [ '([A-Za-z](\\.)){2,} [A-Z]'                                          // acronyms at the end of a sentence; delete all but last period
                  , '([A-Za-z](\\.)){2,} [^A-Z]'                                         // acronyms within a sentece, but not the end; delete all periods
                  , '[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}'  // ranks and titles; excludes the title of King
@@ -114,28 +113,30 @@ function ParseHistory(str, country, countries) {
     
     for (var i = 0; i < rgxexp.length; i++)  {
         var rgxobj = new RegExp(rgxexp[i], 'g');
+        var rgxold = val.match(rgxobj);
 
-        switch(i) {
-            case 0: var rgxarr = rgxtmp.split('.');
-                    tmp = tmp.replace( rgxobj
-                                     , rgxarr.slice(0, rgxarr.length - 2)
-                                             .join('')
-                                             + rgxarr[rgxarr.length - 1]
-                                     );
-                    break;
-            case 1:
-            case 2: var rgxold = tmp.match(rgxobj);
-                    var rgxnew = rgxold.map(x => x.replace('.', ''));
-                    tmp = tmp.match(rgxold, rgxnew);
-                    break;
-            case 3: tmp = tmp.replace(rgxobj, '<tmpong class=ctryTag>$&</tmpong>');
-                    break;
-            case 4: tmp =  tmp.replace(rgxobj, '<tmpong class=yearTag>$&</tmpong>');
-                    break;
+        if(rgxold != null) {
+            switch(i) {
+                case 0: var rgxarr = match(rgxobj);
+                        val = val.replace( rgxobj
+                                         , rgxarr.slice(0, rgxarr.length - 2)
+                                                 .join('')
+                                                 + rgxarr[rgxarr.length - 1]
+                                         );
+                        break;
+                case 1:
+                case 2: var rgxnew = rgxold.map(x => x.replace('.', ''));
+                        val = val.match(rgxold, rgxnew);
+                        break;
+                case 3: val = val.replace(rgxobj, '<valong class=ctryTag>$&</valong>');
+                        break;
+                case 4: val =  val.replace(rgxobj, '<valong class=yearTag>$&</valong>');
+                        break;
+            }
         }
     };
 
-    return tmp.split('. ')
+    return val.split('. ')
               .map(x => '<span class=evntTag>'
                       + (x.slice(-1) == '.' ? x : x + '. ')
                       + '</span>')
