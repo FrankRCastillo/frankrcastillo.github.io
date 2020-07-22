@@ -162,11 +162,13 @@ function NewCtryPage(arr) {
     btn.textContent = 'Find';
 
     btn.addEventListener('click', function() {
-        var dta = document.getElementById('mapdata');
         var sel = document.getElementById('mapselect');
+        var gnt = document.getElementById('GanttChart');
         var iso = sel.options[sel.selectedIndex].value;
         if (iso != '') {
             dta.innerHTML = countryInfo(iso);
+            gnt.innerHTML = '';
+            gnt.appendChild(NewGanttPage());
         }
     });
 
@@ -206,18 +208,43 @@ function countryInfo(iso) {
          + data[3];
 }
 
-function NewGanttPage(iso) {
+function NewGanttPage() {
+    var page = document.createElement('div');
     var evnt = document.getElementsByClassName('evntTag');
     var ctry = document.getElementsByClassName('ctryTag');
     var year = document.getElementsByClassName('yearTag');
     var tble = document.createElement('table');
-    var tr   = document.createElement('tr');
+
     ctry.sort();
     ctry.unshift('Events');
 
-    for (var i = 0; i < ctry.length; i++) {
+    for (var i = 0; i < evnt.length; i++) {
+        var tr = document.createElement('tr');
 
+        for (var j = 0; j < year.length; j++) {
+            if (i == 0) {
+                var th = document.createElement('th');
+                th.textContent = year[j];
+                tr.appendChild(th);
+            } else {
+                var td = document.createElement('td');
+
+                if (j == 0) {
+                    td.textContent = evnt[i - 1];
+
+                } else {
+                    td.textContent = '';
+
+                }
+                tr.appendChild(td);
+            }
+        }
+
+        tble.appendChild(tr);
     }
-    
+
+    page.appendChild(tble);
+
+    return page;
 }
 
