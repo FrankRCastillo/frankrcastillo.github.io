@@ -118,8 +118,10 @@ function ParseHistory(str, country, countries) {
         if (rgxstr != null) {
             switch(i) {
                 case 0: var rgxarr = rgxstr.split('.');
-                        str = str.replace(rgxstr, rgxarr.slice(0, rgxarr.length - 2).join('')
-                                                + rgxarr[rgxarr.length - 1]
+                        str = str.replace( rgxstr
+                                         , rgxarr.slice(0, rgxarr.length - 2)
+                                                 .join('')
+                                                 + rgxarr[rgxarr.length - 1]
                                          );
                         break;
                 case 1:
