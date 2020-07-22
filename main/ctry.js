@@ -126,7 +126,9 @@ function ParseHistory(val, country, countries) {
                         break;
                 case 1:
                 case 2: var rgxnew = rgxold.map(x => x.replace('.', ''));
-                        val = val.match(rgxold, rgxnew);
+                        for (var j = 0; j < rgxnew.length; j++) {
+                            val = val.replace(rgxold[i], rgxnew[i]);
+                        }
                         break;
                 case 3: val = val.replace(rgxobj, '<valong class=ctryTag>$&</valong>');
                         break;
