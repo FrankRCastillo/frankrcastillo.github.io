@@ -42,7 +42,7 @@ function CreateMap() {
               }
 
     var map       = L.map('mapframe');
-    var osmUrl    ='https://{s}.tile.openstreetmap.us/osmus_shields/{z}/{x}/{y}.png';
+    var osmUrl    ='https://{s}.tile.openstreetmap.us/usgs_large_scale/{z}/{x}/{y}.png';
     var osmAttrib ='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
     var osm       = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 17, attribution: osmAttrib});		
 
