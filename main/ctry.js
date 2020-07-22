@@ -142,7 +142,7 @@ function ParseHistory(val, country, countries) {
               .map(x => '<span class=evntTag>'
                       + (x.slice(-1) == '.' ? x : x + '. ')
                       + '</span>')
-              .join('. ');
+              .join('');
 }
 
 function NewCtryPage(arr) {
