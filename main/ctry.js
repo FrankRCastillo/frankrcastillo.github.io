@@ -2,7 +2,7 @@
 window.ctryData = [];
 
 export async function ctry() {
-    window.ctryData = await GenerateData();
+    window.ctryData = await GetData();
     
     var l = [ 'WorldMap'
             , 'GanttChart'
@@ -73,7 +73,7 @@ function CreateMap() {
     });
 }
 
-async function GenerateData() {
+async function GetData() {
     var rtn = [];
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
     var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
@@ -193,6 +193,6 @@ function countryInfo(iso) {
          + data[3];
 }
 
-function GenerateGanttChart(iso) {
+function CreateGanttChart(iso) {
 }
 
