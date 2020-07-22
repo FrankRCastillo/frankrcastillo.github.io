@@ -206,6 +206,18 @@ function countryInfo(iso) {
          + data[3];
 }
 
-function CreateGanttChart(iso) {
+function NewGanttPage(iso) {
+    var evnt = document.getElementsByClassName('evntTag');
+    var ctry = document.getElementsByClassName('ctryTag');
+    var year = document.getElementsByClassName('yearTag');
+    var tble = document.createElement('table');
+    var tr   = document.createElement('tr');
+    ctry.sort();
+    ctry.unshift('Events');
+
+    for (var i = 0; i < ctry.length; i++) {
+
+    }
+    
 }
 

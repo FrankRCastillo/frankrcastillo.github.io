@@ -86,7 +86,7 @@ button:hover
 }
 
 #outtext
-{ border     : 1px solid #ffa500
+{ border     : 0px
 ; overflow   : auto
 ; width      : calc(100% - 20px)
 ; height     : calc(100% - 50px)
@@ -113,6 +113,7 @@ button:hover
 ; font-size  : 12px
 ; overflow   : auto
 ; position   : absolute
+; background : #030312
 }
 
 #mapframe
