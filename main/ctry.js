@@ -18,8 +18,8 @@ export async function ctry() {
 
     document.getElementById(   'outtext').appendChild(t);
     document.getElementById(  'WorldMap').appendChild(h);
-    document.getElementById('GanttChart').appendChild(g);
     CreateMap();
+    NewGanttChart();
     CmdReady();                                                                         // update page status as ready
 }
 
@@ -196,17 +196,16 @@ function countryInfo(iso) {
 }
 
 function NewGanttPage() {
-    var page = document.createElement('div');
+    var gntt = document.getElementById('GanttChart');
     var tble = document.createElement('table');
     var year = new Date().getFullYear();
     var yhdr = new Array(year).fill(1).map((x, i) => i + 1);
 
+    gntt.appendChild(tble);
     yhdr.sort((a,b) => b - a);
     yhdr.unshift('');
-
     tble.setAttribute('id', 'GanttTable');
     
-
     for (var i = 0; i < window.ctryData.length; i++) {
         var tr = document.createElement('tr');
 
@@ -229,9 +228,5 @@ function NewGanttPage() {
 
         tble.appendChild(tr);
     }
-
-    page.appendChild(tble);
-
-    return page;
 }
 
