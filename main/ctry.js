@@ -18,6 +18,7 @@ export async function ctry() {
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
     CreateMap();
+    document.getElementById('GanttChart').appendChild(NewGanttPage());
     CmdReady();                                                                         // update page status as ready
 }
 
@@ -66,7 +67,6 @@ function CreateMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
-                                 var gantt = document.getElementById('GanttChart');
                                  var ncode = window.ctryData[window.ctryData.map(x => x[2]).indexOf(code.toUpperCase())][0]
 
                                  document.getElementById('mapselect')
@@ -76,8 +76,6 @@ function CreateMap() {
                                  document.getElementById('mapdata')
                                          .innerHTML = countryInfo(ncode);
 
-                                 gantt.innerHTML = '';
-                                 gantt.appendChild(NewGanttPage());
                              } catch (err) {
                                  console.log(err.message);
                              }
@@ -145,12 +143,9 @@ function NewCtryPage() {
 
     btn.addEventListener('click', function() {
         var sel = document.getElementById('mapselect');
-        var gnt = document.getElementById('GanttChart');
         var iso = sel.options[sel.selectedIndex].value;
         if (iso != '') {
             dta.innerHTML = countryInfo(iso);
-            gnt.innerHTML = '';
-            gnt.appendChild(NewGanttPage());
         }
     });
 
