@@ -63,6 +63,7 @@ function CreateMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
+                                 var gantt = window.getElementById('GanttChart');
                                  var ncode = window.ctryData[window.ctryData.map(x => x[2]).indexOf(code.toUpperCase())][0]
 
                                  document.getElementById('mapselect')
@@ -72,8 +73,8 @@ function CreateMap() {
                                  document.getElementById('mapdata')
                                          .innerHTML = countryInfo(ncode);
 
-                                 document.getElementById('GanttChart')
-                                         .appendChild(NewGanttPage());
+                                 gantt.innerHTML = '';
+                                 gantt.appendChild(NewGanttPage());
 
                              } catch (err) {
                                  console.log(err.message);
@@ -146,6 +147,7 @@ async function NewCtryPage() {
         var iso = sel.options[sel.selectedIndex].value;
         if (iso != '') {
             dta.innerHTML = countryInfo(iso);
+            gnt.innerHTML = '';
             gnt.appendChild(NewGanttPage());
         }
     });
