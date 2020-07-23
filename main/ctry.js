@@ -4,6 +4,8 @@ window.ctryData = [];
 export async function ctry() {
     window.ctryData = await GetData();
     
+    window.ctryData.sort((a, b) => a[3] - b[3]);
+
     var l = [ 'WorldMap'
             , 'GanttChart'
             , 'Leaders'
@@ -11,7 +13,7 @@ export async function ctry() {
             ];
 
     var t = NewTabLayout(l);
-    var h = NewCtryPage(window.ctryData);
+    var h = NewCtryPage();
 
     document.getElementById( 'outtext').appendChild(t);
     document.getElementById('WorldMap').appendChild(h);
@@ -125,7 +127,7 @@ function ParseHistory(val, country, countries) {
               .join('');
 }
 
-function NewCtryPage(arr) {
+function NewCtryPage() {
     var out = document.createElement('div');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
@@ -152,18 +154,27 @@ function NewCtryPage(arr) {
         }
     });
 
-    for (var i = -1; i < arr.length; i++) {
+    for (var i = -1; i < window.ctryData.length; i++) {
+        var grp = sel.querySelector('#' + window.ctryData[i][3])
         var opt = document.createElement('option');
 
         if (i == -1) {
             opt.setAttribute('disabled', true);
             opt.setAttribute('selected', true);
             opt.textContent = 'Select Country...';
+            sel.appendChild(opt);
         } else {
-            opt.setAttribute('value', arr[i][0]);
-            opt.textContent = arr[i][2];
+            if (grp == null) {
+                grp = document.createElement('optgroup');
+                grp.setAttribute('label', window.ctryData[i][3]);
+                grp.setAttribute('id'   , window.ctryData[i][3])[]
+            }
+
+            opt.setAttribute('value', window.ctryData[i][0]);
+            opt.textContent = window.ctryData[i][4];
+            grp.appendChild(opt);
+            sel.appendChild(grp);
         }
-        sel.appendChild(opt);
     }
 
     lst.appendChild(sel);
