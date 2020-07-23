@@ -231,6 +231,6 @@ function NewGanttPage() {
         tble.appendChild(tr);
     }
 
-    return table;
+    return tble;
 }
 
