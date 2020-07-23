@@ -202,11 +202,8 @@ function NewGanttPage() {
     var ctry = document.getElementsByClassName('ctryTag');
     var year = document.getElementsByClassName('yearTag');
     var carr = Array.from(ctry).map(x => x.innerText).sort();
-    var yarr = Array.from(year).map(x => parseInt(x.innerText)).sort();
-    var ymin = Math.min.apply(Math, yarr);
-    var ymax = Math.max.apply(Math, yarr);
+    var yhdr = Array.from(year).map(x => parseInt(x.innerText)).sort();
     var tble = document.createElement('table');
-    var yhdr = new Array(ymax - ymin + 1).fill().map((x, i) => ymax + i);
 
     yhdr.sort((a,b) => b - a);
     yhdr.unshift('Country');
