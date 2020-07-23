@@ -201,8 +201,8 @@ function NewGanttPage() {
     for (var i = 0; i < window.ctryData; i++) {
         var tr = document.createElement('tr');
 
-        if (window.ctryData[i][3] != year[0]) {
-            year[0] = window.ctryData[i][3];
+        if (year[0] != window.ctryData[i][3]) {
+            year[0]  = window.ctryData[i][3];
             for (var j = 0; j < year.length; j++) {
                 var th = document.createElement('th');
                 th.textContent = year[j];
