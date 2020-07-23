@@ -214,17 +214,18 @@ function countryInfo(iso) {
 
 function NewGanttPage() {
     var page = document.createElement('div');
-    var evnt = document.getElementsByClassName('evntTag');
+    var tble = document.createElement('table');
+//    var evnt = document.getElementsByClassName('evntTag');
     var ctry = document.getElementsByClassName('ctryTag');
     var year = document.getElementsByClassName('yearTag');
-    var tble = document.createElement('table');
-    var earr = Array.from(evnt).map(x => x.innerText);
+//    var earr = Array.from(evnt).map(x => x.innerText);
+    var carr = Array.from(ctry).map(x => x.innerText).sort();
     var yarr = Array.from(year).map(x => x.innerText).sort();
 
     tble.setAttribute('id', 'GanttTable');
-    yarr.unshift('Events');
+    yarr.unshift('Countries');
 
-    for (var i = 0; i < earr.length; i++) {
+    for (var i = 0; i < carr.length; i++) {
         var tr = document.createElement('tr');
 
         for (var j = 0; j < yarr.length; j++) {
@@ -236,7 +237,7 @@ function NewGanttPage() {
                 var td = document.createElement('td');
 
                 if (j == 0) {
-                    td.textContent = earr[i - 1];
+                    td.textContent = carr[i - 1];
 
                 } else {
                     td.textContent = '';
