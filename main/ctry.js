@@ -217,6 +217,7 @@ function NewGanttPage() {
         
         for (var j = 0; j < yhdr.length; j++) {
             var td = document.createElement('td');
+
             if (i == -1) {
                 td.textContent = yhdr[j];
             } else {
