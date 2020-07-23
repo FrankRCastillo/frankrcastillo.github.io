@@ -199,9 +199,8 @@ function countryInfo(iso) {
 }
 
 function NewGanttPage() {
-    var frme = document.getElementById('mapframe');
-    var ctry = frme.querySelector('.ctryTag');
-    var year = frme.querySelector('.yearTag');
+    var ctry = document.getElementsByClassName('ctryTag');
+    var year = document.getElementsByClassName('yearTag');
     var carr = Array.from(ctry).map(x => x.innerText).sort();
     var yarr = Array.from(year).map(x => parseInt(x.innerText)).sort();
     var ymin = Math.min.apply(Math, yarr);
