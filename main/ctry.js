@@ -198,7 +198,7 @@ function NewGanttPage() {
     var tble = document.createElement('table');
     var year = [ '', 2020, 2019 ]
 
-    for (var i = 0; i < window.ctryData; i++) {
+    for (var i = 0; i < window.ctryData.length; i++) {
         var tr = document.createElement('tr');
 
         if (year[0] != window.ctryData[i][3]) {
