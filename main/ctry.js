@@ -202,33 +202,30 @@ function countryInfo(iso) {
 function NewGanttPage() {
     var page = document.createElement('div');
     var tble = document.createElement('table');
-//    var evnt = document.getElementsByClassName('evntTag');
-    var ctry = document.getElementsByClassName('ctryTag');
-    var year = document.getElementsByClassName('yearTag');
-//    var earr = Array.from(evnt).map(x => x.innerText);
-    var carr = Array.from(ctry).map(x => x.innerText).sort();
-    var yarr = Array.from(year).map(x => x.innerText).sort();
+    var year = new Date().getFullYear();
+    var yhdr = new Array(year).fill(1).map((x, i) => i + 1);
+
+    yhdr.sort((a,b) => b - a);
+    yhdr.unshift('');
 
     tble.setAttribute('id', 'GanttTable');
-    yarr.unshift('Countries');
+    
 
-    for (var i = 0; i < carr.length; i++) {
+    for (var i = 0; i < window.ctryData.length; i++) {
         var tr = document.createElement('tr');
 
-        for (var j = 0; j < yarr.length; j++) {
-            if (i == 0) {
+        for (var j = 0; j < yhdr.length; j++) {
+            if (yhdr[0] != window.ctryData[i][3]) {
+                yhdr[0] = window.ctryData[i][3];
                 var th = document.createElement('th');
-                th.textContent = yarr[j];
+                th.textContent = yhdr[j];
                 tr.appendChild(th);
             } else {
                 var td = document.createElement('td');
-
-                if (j == 0) {
-                    td.textContent = carr[i - 1];
-
+                if (j = 0) {
+                    td.textContent = window.ctryData[i][4];
                 } else {
                     td.textContent = '';
-
                 }
                 tr.appendChild(td);
             }
