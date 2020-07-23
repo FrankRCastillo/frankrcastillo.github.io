@@ -207,8 +207,8 @@ function NewGanttPage() {
                 var th = document.createElement('th');
                 if (j == 0){
                     th.style.textAlign = 'left';
-                    th.textContent = year[j];
                 }
+                th.textContent = year[j];
                 tr.appendChild(th);
             }
         } else {
