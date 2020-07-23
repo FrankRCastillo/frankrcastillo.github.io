@@ -2,7 +2,7 @@
 window.ctryData = [];
 
 export async function ctry() {
-    window.ctryData = await GetData(iso);
+    window.ctryData = await GetData();
     
     var l = [ 'WorldMap'
             , 'GanttChart'
