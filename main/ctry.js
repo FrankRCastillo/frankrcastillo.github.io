@@ -42,10 +42,9 @@ async function GetData() {
         }
     }
 
-    var countries = rtn.map(x => x[2]);
+    var countries = rtn.map(x => x[4]);
 
-    rtn = rtn.map(x => [ x[0], x[1], x[2], ParseHistory(x[3], x[2], countries) ]);
-
+    rtn = rtn.map(x => [ x[0], x[1], x[2], x[3], x[4], ParseHistory(x[5], x[4], countries) ]);
     return rtn;
 }
 
