@@ -63,7 +63,7 @@ function CreateMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
-                                 var gantt = window.getElementById('GanttChart');
+                                 var gantt = document.getElementById('GanttChart');
                                  var ncode = window.ctryData[window.ctryData.map(x => x[2]).indexOf(code.toUpperCase())][0]
 
                                  document.getElementById('mapselect')
