@@ -192,7 +192,6 @@ function countryInfo(iso) {
 }
 
 async function NewGanttPage() {
-    var page = document.createElement('div');
     var tble = document.createElement('table');
     var year = new Date().getFullYear();
     var yhdr = new Array(year).fill(1).map((x, i) => i + 1);
@@ -224,8 +223,6 @@ async function NewGanttPage() {
         tble.appendChild(tr);
     }
 
-    page.appendChild(table);
-
-    return page;
+    return table;
 }
 
