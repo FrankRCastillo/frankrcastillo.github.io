@@ -218,7 +218,7 @@ function NewGanttPage() {
     var ctry = document.getElementsByClassName('ctryTag');
     var year = document.getElementsByClassName('yearTag');
     var tble = document.createElement('table');
-    var earr = Array.from(evnt).map(x => x.innerText).sort();
+    var earr = Array.from(evnt).map(x => x.innerText);
     var yarr = Array.from(year).map(x => x.innerText).sort();
 
     tble.setAttribute('id', 'GanttTable');
