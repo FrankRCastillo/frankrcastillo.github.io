@@ -14,7 +14,7 @@ export async function ctry() {
 
     document.getElementById(   'outtext').appendChild(NewTabLayout(l));
     document.getElementById(  'WorldMap').appendChild(await NewCtryPage());
-//    document.getElementById('GanttChart').appendChild(await NewGanttPage());
+    document.getElementById('GanttChart').appendChild(await NewGanttPage());
     CreateMap();
     CmdReady();                                                                         // update page status as ready
 }
