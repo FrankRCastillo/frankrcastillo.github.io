@@ -1,1000 +1,242 @@
-Aruba,ABW,AA,AA,NA
-Afghanistan,AFG,AF,AF,AS
-Angola,AGO,AO,AO,AF
-Anguilla,AIA,AV,AV,NA
-Albania,ALB,AL,AL,EU
-Andorra,AND,AN,AN,EU
-United Arab Emirates,ARE,AE,AE,AS
-Argentina,ARG,AR,AR,SA
-Armenia,ARM,AM,AM,AS
-American Samoa,ASM,AQ,AQ,OC
-Antarctica,ATA,AY,AY,AN
-French Southern and Antarctic Lands,ATF,FS,FS,AF
-Antigua and Barbuda,ATG,AC,AC,NA
-Australia,AUS,AS,AQ,OC
-Austria,AUT,AU,AS,EU
-Azerbaijan,AZE,AJ,AJ,AS
-Burundi,BDI,BY,BO,AF
-Belgium,BEL,BE,BE,EU
-Benin,BEN,BN,BX,AF
-Burkina Faso,BFA,UV,UV,AF
-Bangladesh,BGD,BG,BU,AS
-Bulgaria,BGR,BU,BU,EU
-Bahrain,BHR,BA,BK,AS
-Bahamas,BHS,BF,UV,NA
-Bosnia and Herzegovina,BIH,BK,BK,EU
-Saint Barthelemy,BLM,TB,TB,NA
-Belarus,BLR,BO,BL,EU
-Belize,BLZ,BH,BA,NA
-Bermuda,BMU,BD,BG,NA
-Bolivia,BOL,BL,TB,SA
-Brazil,BRA,BR,BR,SA
-Barbados,BRB,BB,BB,NA
-Brunei,BRN,BX,BX,AS
-Bhutan,BTN,BT,BT,AS
-Bouvet Island,BVT,BV,BV,AN
-Botswana,BWA,BC,BC,AF
-Central African Republic,CAF,CT,CT,AF
-Canada,CAN,CA,CA,NA
-Cocos (Keeling) Islands,CCK,CK,CW,AS
-Switzerland,CHE,SZ,WZ,EU
-Chile,CHL,CI,IV,SA
-China,CHN,CH,SZ,AS
-Cote d'Ivoire,CIV,IV,IV,AF
-Cameroon,CMR,CM,CM,AF
-Democratic Republic of the Congo,COD,CG,CF,AF
-Republic of the Congo,COG,CF,CT,AF
-Cook Islands,COK,CW,UC,OC
-Colombia,COL,CO,CO,SA
-Comoros,COM,CN,CH,AF
-Cabo Verde,CPV,CV,CV,AF
-Costa Rica,CRI,CS,CS,NA
-Cuba,CUB,CU,CU,NA
-Curacao,CUW,UC,UC,NA
-Christmas Island,CXR,KT,KT,AS
-Cayman Islands,CYM,CJ,CJ,NA
-Cyprus,CYP,CY,CY,AS
-Czechia,CZE,EZ,EZ,EU
-Germany,DEU,GM,GA,EU
-Djibouti,DJI,DJ,DJ,AF
-Dominica,DMA,DO,DR,NA
-Denmark,DNK,DA,DA,EU
-Dominican Republic,DOM,DR,DR,NA
-Algeria,DZA,AG,AC,AF
-Ecuador,ECU,EC,EC,SA
-Egypt,EGY,EG,EG,AF
-Eritrea,ERI,ER,ER,AF
-Western Sahara,ESH,WI,WI,AF
-Spain,ESP,SP,SP,EU
-Estonia,EST,EN,EN,EU
-Ethiopia,ETH,ET,ET,AF
-Finland,FIN,FI,FI,EU
-Fiji,FJI,FJ,FJ,OC
-Falkland Islands (Islas Malvinas),FLK,FK,FK,SA
-France,FRA,FR,FR,EU
-Faroe Islands,FRO,FO,FO,EU
-Micronesiai,FSM,FM,FM,OC
-Gabon,GAB,GB,UK,AF
-United Kingdom,GBR,UK,UK,EU
-Georgia,GEO,GG,GK,AS
-Guernsey,GGY,GK,GK,EU
-Ghana,GHA,GH,GH,AF
-Gibraltar,GIB,GI,GI,EU
-Guinea,GIN,GV,GV,AF
-The Gambia,GMB,GA,GB,AF
-Guinea-Bissau,GNB,PU,PU,AF
-Equatorial Guinea,GNQ,EK,EK,AF
-Greece,GRC,GR,GR,EU
-Grenada,GRD,GJ,GJ,NA
-Greenland,GRL,GL,GL,NA
-Guatemala,GTM,GT,GT,NA
-Guam,GUM,GQ,EK,OC
-Guyana,GUY,GY,GY,SA
-Hong Kong,HKG,HK,HK,AS
-Heard Island and McDonald Islands,HMD,HM,HM,AN
-Honduras,HND,HO,HO,NA
-Croatia,HRV,HR,HR,EU
-Haiti,HTI,HA,HA,NA
-Hungary,HUN,HU,HU,EU
-Indonesia,IDN,ID,ID,AS
-Isle of Man,IMN,IM,IM,EU
-India,IND,IN,IN,AS
-British Indian Ocean Territory,IOT,IO,IO,AF
-Ireland,IRL,EI,EI,EU
-Iran,IRN,IR,IR,AS
-Iraq,IRQ,IZ,IZ,AS
-Iceland,ISL,IC,IC,EU
-Israel,ISR,IS,IC,AS
-Italy,ITA,IT,IT,EU
-Jamaica,JAM,JM,JM,NA
-Jersey,JEY,JE,JE,EU
-Jordan,JOR,JO,JO,AS
-Japan,JPN,JA,JA,AS
-Kazakhstan,KAZ,KZ,KZ,AS
-Kenya,KEN,KE,KE,AF
-Kyrgyzstan,KGZ,KG,KG,AS
-Cambodia,KHM,CB,CB,AS
-Kiribati,KIR,KR,KS,OC
-Saint Kitts and Nevis,KNA,SC,SE,NA
-South Korea,KOR,KS,KS,AS
-Kuwait,KWT,KU,KU,AS
-Laos,LAO,LA,LA,AS
-Lebanon,LBN,LE,LE,AS
-Liberia,LBR,LI,LS,AF
-Libya,LBY,LY,LY,AF
-Saint Lucia,LCA,ST,TP,NA
-Liechtenstein,LIE,LS,LT,EU
-Sri Lanka,LKA,CE,CE,AS
-Lesotho,LSO,LT,LH,AF
-Lithuania,LTU,LH,LH,EU
-Luxembourg,LUX,LU,LU,EU
-Latvia,LVA,LG,LG,EU
-Macau,MAC,MC,MN,AS
-Saint Martin,MAF,RN,RN,NA
-Morocco,MAR,MO,MO,AF
-Monaco,MCO,MN,MG,EU
-Moldova,MDA,MD,MD,EU
-Madagascar,MDG,MA,MO,AF
-Maldives,MDV,MV,MV,AS
-Mexico,MEX,MX,MX,NA
-Marshall Islands,MHL,RM,RM,OC
-North Macedonia,MKD,MK,MK,EU
-Mali,MLI,ML,ML,AF
-Malta,MLT,MT,MT,EU
-Burma,MMR,BM,BD,AS
-Montenegro,MNE,MJ,MJ,EU
-Mongolia,MNG,MG,MA,AS
-Northern Mariana Islands,MNP,CQ,CQ,OC
-Mozambique,MOZ,MZ,MZ,AF
-Mauritania,MRT,MR,MR,AF
-Montserrat,MSR,MH,RM,NA
-Mauritius,MUS,MP,CQ,AF
-Malawi,MWI,MI,MI,AF
-Malaysia,MYS,MY,MY,AS
-Namibia,NAM,WA,WA,AF
-New Caledonia,NCL,NC,NC,OC
-Niger,NER,NG,NI,AF
-Norfolk Island,NFK,NF,NF,OC
-Nigeria,NGA,NI,NU,AF
-Nicaragua,NIC,NU,NE,NA
-Niue,NIU,NE,NG,OC
-Netherlands,NLD,NL,NL,EU
-Norway,NOR,NO,NO,EU
-Nepal,NPL,NP,NP,AS
-Nauru,NRU,NR,NR,OC
-New Zealand,NZL,NZ,NZ,OC
-Oman,OMN,MU,MP,AS
-Pakistan,PAK,PK,PK,AS
-Panama,PAN,PM,SB,NA
-Peru,PER,PE,PE,SA
-Philippines,PHL,RP,RP,AS
-Palau,PLW,PS,GZ,OC
-Papua New Guinea,PNG,PP,PP,OC
-Poland,POL,PL,PL,EU
-Puerto Rico,PRI,RQ,RQ,NA
-North Korea,PRK,KN,SC,AS
-Portugal,PRT,PO,PO,EU
-Paraguay,PRY,PA,PM,SA
-Gaza Strip,PSE,GZ,GZ,AS
-West Bank,PSE,WE,WE,AS
-French Polynesia,PYF,FP,FP,OC
-Qatar,QAT,QA,QA,AS
-Romania,ROU,RO,RO,EU
-Russia,RUS,RS,RI,AS
-Rwanda,RWA,RW,RW,AF
-Saudi Arabia,SAU,SA,SA,AS
-Sudan,SDN,SU,SU,AF
-Senegal,SEN,SG,SN,AF
-Singapore,SGP,SN,SG,AS
-South Georgia and South Sandwich Islands,SGS,SX,NN,AN
-Saint Helena Ascension and Tristan da Cunha,SHN,SH,SH,AF
-Svalbard,SJM,SV,ES,EU
-Solomon Islands,SLB,BP,BP,OC
-Sierra Leone,SLE,SL,SL,AF
-El Salvador,SLV,ES,SP,NA
-San Marino,SMR,SM,SM,EU
-Somalia,SOM,SO,SO,AF
-Saint Pierre and Miquelon,SPM,SB,BP,NA
-Serbia,SRB,RI,RI,EU
-South Sudan,SSD,OD,OD,AF
-Sao Tome and Principe,STP,TP,TP,AF
-Suriname,SUR,NS,NS,SA
-Slovakia,SVK,LO,LO,EU
-Slovenia,SVN,SI,SI,EU
-Sweden,SWE,SW,SW,EU
-Eswatini,SWZ,WZ,WZ,AF
-Sint Maarten,SXM,NN,NN,NA
-Seychelles,SYC,SE,SW,AF
-Syria,SYR,SY,SY,AS
-Turks and Caicos Islands,TCA,TK,TL,NA
-Chad,TCD,CD,CG,AF
-Togo,TGO,TO,TN,AF
-Thailand,THA,TH,TH,AS
-Tajikistan,TJK,TI,TI,AS
-Tokelau,TKL,TL,TT,OC
-Turkmenistan,TKM,TX,TX,AS
-Timor-Leste,TLS,TT,TD,AS
-Tonga,TON,TN,TS,OC
-Trinidad and Tobago,TTO,TD,CD,NA
-Tunisia,TUN,TS,TS,AF
-Turkey,TUR,TU,TU,AS
-Tuvalu,TUV,TV,TV,OC
-Taiwan,TWN,TW,TW,AS
-Tanzania,TZA,TZ,TZ,AF
-Uganda,UGA,UG,UG,AF
-Ukraine,UKR,UP,UP,EU
-Uruguay,URY,UY,UY,SA
-United States,USA,US,US,NA
-Uzbekistan,UZB,UZ,UZ,AS
-Holy See (Vatican City),VAT,VT,VT,EU
-Saint Vincent and the Grenadines,VCT,VC,VC,NA
-Venezuela,VEN,VE,VE,SA
-British Virgin Islands,VGB,VI,VI,NA
-Virgin Islands,VIR,VQ,VQ,NA
-Vietnam,VNM,VM,VM,AS
-Vanuatu,VUT,NH,NH,OC
-Wallis and Futuna,WLF,WF,WF,OC
-Samoa,WSM,WS,WS,OC
-Yemen,YEM,YM,YM,AS
-South Africa,ZAF,SF,SF,AF
-Zambia,ZMB,ZA,SF,AF
-Zimbabwe,ZWE,ZI,ZI,AF
-Kosovo,RKS,KV,KV,EU
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
-,,,,
+Aruba,ABW,AA,AA,NORTHAMERICA
+Afghanistan,AFG,AF,AF,ASIA
+Angola,AGO,AO,AO,AFRICA
+Anguilla,AIA,AV,AV,NORTHAMERICA
+Albania,ALB,AL,AL,EUROPE
+Andorra,AND,AN,AN,EUROPE
+United Arab Emirates,ARE,AE,AE,ASIA
+Argentina,ARG,AR,AR,SOUTHAMERICA
+Armenia,ARM,AM,AM,ASIA
+American Samoa,ASM,AQ,AQ,OCEANIA
+Antarctica,ATA,AY,AY,ANTARTICA
+French Southern and Antarctic Lands,ATF,FS,FS,AFRICA
+Antigua and Barbuda,ATG,AC,AC,NORTHAMERICA
+Australia,AUS,AS,AQ,OCEANIA
+Austria,AUT,AU,AS,EUROPE
+Azerbaijan,AZE,AJ,AJ,ASIA
+Burundi,BDI,BY,BO,AFRICA
+Belgium,BEL,BE,BE,EUROPE
+Benin,BEN,BN,BX,AFRICA
+Burkina Faso,BFA,UV,UV,AFRICA
+Bangladesh,BGD,BG,BU,ASIA
+Bulgaria,BGR,BU,BU,EUROPE
+Bahrain,BHR,BA,BK,ASIA
+Bahamas,BHS,BF,UV,NORTHAMERICA
+Bosnia and Herzegovina,BIH,BK,BK,EUROPE
+Saint Barthelemy,BLM,TB,TB,NORTHAMERICA
+Belarus,BLR,BO,BL,EUROPE
+Belize,BLZ,BH,BA,NORTHAMERICA
+Bermuda,BMU,BD,BG,NORTHAMERICA
+Bolivia,BOL,BL,TB,SOUTHAMERICA
+Brazil,BRA,BR,BR,SOUTHAMERICA
+Barbados,BRB,BB,BB,NORTHAMERICA
+Brunei,BRN,BX,BX,ASIA
+Bhutan,BTN,BT,BT,ASIA
+Bouvet Island,BVT,BV,BV,ANTARTICA
+Botswana,BWA,BC,BC,AFRICA
+Central African Republic,CAF,CT,CT,AFRICA
+Canada,CAN,CA,CA,NORTHAMERICA
+Cocos (Keeling) Islands,CCK,CK,CW,ASIA
+Switzerland,CHE,SZ,WZ,EUROPE
+Chile,CHL,CI,IV,SOUTHAMERICA
+China,CHN,CH,SZ,ASIA
+Cote d'Ivoire,CIV,IV,IV,AFRICA
+Cameroon,CMR,CM,CM,AFRICA
+Democratic Republic of the Congo,COD,CG,CF,AFRICA
+Republic of the Congo,COG,CF,CT,AFRICA
+Cook Islands,COK,CW,UC,OCEANIA
+Colombia,COL,CO,CO,SOUTHAMERICA
+Comoros,COM,CN,CH,AFRICA
+Cabo Verde,CPV,CV,CV,AFRICA
+Costa Rica,CRI,CS,CS,NORTHAMERICA
+Cuba,CUB,CU,CU,NORTHAMERICA
+Curacao,CUW,UC,UC,NORTHAMERICA
+Christmas Island,CXR,KT,KT,ASIA
+Cayman Islands,CYM,CJ,CJ,NORTHAMERICA
+Cyprus,CYP,CY,CY,ASIA
+Czechia,CZE,EZ,EZ,EUROPE
+Germany,DEU,GM,GA,EUROPE
+Djibouti,DJI,DJ,DJ,AFRICA
+Dominica,DMA,DO,DR,NORTHAMERICA
+Denmark,DNK,DA,DA,EUROPE
+Dominican Republic,DOM,DR,DR,NORTHAMERICA
+Algeria,DZA,AG,AC,AFRICA
+Ecuador,ECU,EC,EC,SOUTHAMERICA
+Egypt,EGY,EG,EG,AFRICA
+Eritrea,ERI,ER,ER,AFRICA
+Western Sahara,ESH,WI,WI,AFRICA
+Spain,ESP,SP,SP,EUROPE
+Estonia,EST,EN,EN,EUROPE
+Ethiopia,ETH,ET,ET,AFRICA
+Finland,FIN,FI,FI,EUROPE
+Fiji,FJI,FJ,FJ,OCEANIA
+Falkland Islands (Islas Malvinas),FLK,FK,FK,SOUTHAMERICA
+France,FRA,FR,FR,EUROPE
+Faroe Islands,FRO,FO,FO,EUROPE
+Micronesiai,FSM,FM,FM,OCEANIA
+Gabon,GAB,GB,UK,AFRICA
+United Kingdom,GBR,UK,UK,EUROPE
+Georgia,GEO,GG,GK,ASIA
+Guernsey,GGY,GK,GK,EUROPE
+Ghana,GHA,GH,GH,AFRICA
+Gibraltar,GIB,GI,GI,EUROPE
+Guinea,GIN,GV,GV,AFRICA
+The Gambia,GMB,GA,GB,AFRICA
+Guinea-Bissau,GNB,PU,PU,AFRICA
+Equatorial Guinea,GNQ,EK,EK,AFRICA
+Greece,GRC,GR,GR,EUROPE
+Grenada,GRD,GJ,GJ,NORTHAMERICA
+Greenland,GRL,GL,GL,NORTHAMERICA
+Guatemala,GTM,GT,GT,NORTHAMERICA
+Guam,GUM,GQ,EK,OCEANIA
+Guyana,GUY,GY,GY,SOUTHAMERICA
+Hong Kong,HKG,HK,HK,ASIA
+Heard Island and McDonald Islands,HMD,HM,HM,ANTARTICA
+Honduras,HND,HO,HO,NORTHAMERICA
+Croatia,HRV,HR,HR,EUROPE
+Haiti,HTI,HA,HA,NORTHAMERICA
+Hungary,HUN,HU,HU,EUROPE
+Indonesia,IDN,ID,ID,ASIA
+Isle of Man,IMN,IM,IM,EUROPE
+India,IND,IN,IN,ASIA
+British Indian Ocean Territory,IOT,IO,IO,AFRICA
+Ireland,IRL,EI,EI,EUROPE
+Iran,IRN,IR,IR,ASIA
+Iraq,IRQ,IZ,IZ,ASIA
+Iceland,ISL,IC,IC,EUROPE
+Israel,ISR,IS,IC,ASIA
+Italy,ITA,IT,IT,EUROPE
+Jamaica,JAM,JM,JM,NORTHAMERICA
+Jersey,JEY,JE,JE,EUROPE
+Jordan,JOR,JO,JO,ASIA
+Japan,JPN,JA,JA,ASIA
+Kazakhstan,KAZ,KZ,KZ,ASIA
+Kenya,KEN,KE,KE,AFRICA
+Kyrgyzstan,KGZ,KG,KG,ASIA
+Cambodia,KHM,CB,CB,ASIA
+Kiribati,KIR,KR,KS,OCEANIA
+Saint Kitts and Nevis,KNA,SC,SE,NORTHAMERICA
+South Korea,KOR,KS,KS,ASIA
+Kuwait,KWT,KU,KU,ASIA
+Laos,LAO,LA,LA,ASIA
+Lebanon,LBN,LE,LE,ASIA
+Liberia,LBR,LI,LS,AFRICA
+Libya,LBY,LY,LY,AFRICA
+Saint Lucia,LCA,ST,TP,NORTHAMERICA
+Liechtenstein,LIE,LS,LT,EUROPE
+Sri Lanka,LKA,CE,CE,ASIA
+Lesotho,LSO,LT,LH,AFRICA
+Lithuania,LTU,LH,LH,EUROPE
+Luxembourg,LUX,LU,LU,EUROPE
+Latvia,LVA,LG,LG,EUROPE
+Macau,MAC,MC,MN,ASIA
+Saint Martin,MAF,RN,RN,NORTHAMERICA
+Morocco,MAR,MO,MO,AFRICA
+Monaco,MCO,MN,MG,EUROPE
+Moldova,MDA,MD,MD,EUROPE
+Madagascar,MDG,MA,MO,AFRICA
+Maldives,MDV,MV,MV,ASIA
+Mexico,MEX,MX,MX,NORTHAMERICA
+Marshall Islands,MHL,RM,RM,OCEANIA
+North Macedonia,MKD,MK,MK,EUROPE
+Mali,MLI,ML,ML,AFRICA
+Malta,MLT,MT,MT,EUROPE
+Burma,MMR,BM,BD,ASIA
+Montenegro,MNE,MJ,MJ,EUROPE
+Mongolia,MNG,MG,MA,ASIA
+Northern Mariana Islands,MNP,CQ,CQ,OCEANIA
+Mozambique,MOZ,MZ,MZ,AFRICA
+Mauritania,MRT,MR,MR,AFRICA
+Montserrat,MSR,MH,RM,NORTHAMERICA
+Mauritius,MUS,MP,CQ,AFRICA
+Malawi,MWI,MI,MI,AFRICA
+Malaysia,MYS,MY,MY,ASIA
+Namibia,NAM,WA,WA,AFRICA
+New Caledonia,NCL,NC,NC,OCEANIA
+Niger,NER,NG,NI,AFRICA
+Norfolk Island,NFK,NF,NF,OCEANIA
+Nigeria,NGA,NI,NU,AFRICA
+Nicaragua,NIC,NU,NE,NORTHAMERICA
+Niue,NIU,NE,NG,OCEANIA
+Netherlands,NLD,NL,NL,EUROPE
+Norway,NOR,NO,NO,EUROPE
+Nepal,NPL,NP,NP,ASIA
+Nauru,NRU,NR,NR,OCEANIA
+New Zealand,NZL,NZ,NZ,OCEANIA
+Oman,OMN,MU,MP,ASIA
+Pakistan,PAK,PK,PK,ASIA
+Panama,PAN,PM,SB,NORTHAMERICA
+Peru,PER,PE,PE,SOUTHAMERICA
+Philippines,PHL,RP,RP,ASIA
+Palau,PLW,PS,GZ,OCEANIA
+Papua New Guinea,PNG,PP,PP,OCEANIA
+Poland,POL,PL,PL,EUROPE
+Puerto Rico,PRI,RQ,RQ,NORTHAMERICA
+North Korea,PRK,KN,SC,ASIA
+Portugal,PRT,PO,PO,EUROPE
+Paraguay,PRY,PA,PM,SOUTHAMERICA
+Gaza Strip,PSE,GZ,GZ,ASIA
+West Bank,PSE,WE,WE,ASIA
+French Polynesia,PYF,FP,FP,OCEANIA
+Qatar,QAT,QA,QA,ASIA
+Romania,ROU,RO,RO,EUROPE
+Russia,RUS,RS,RI,ASIA
+Rwanda,RWA,RW,RW,AFRICA
+Saudi Arabia,SAU,SA,SA,ASIA
+Sudan,SDN,SU,SU,AFRICA
+Senegal,SEN,SG,SN,AFRICA
+Singapore,SGP,SN,SG,ASIA
+South Georgia and South Sandwich Islands,SGS,SX,NN,ANTARTICA
+Saint Helena Ascension and Tristan da Cunha,SHN,SH,SH,AFRICA
+Svalbard,SJM,SV,ES,EUROPE
+Solomon Islands,SLB,BP,BP,OCEANIA
+Sierra Leone,SLE,SL,SL,AFRICA
+El Salvador,SLV,ES,SP,NORTHAMERICA
+San Marino,SMR,SM,SM,EUROPE
+Somalia,SOM,SO,SO,AFRICA
+Saint Pierre and Miquelon,SPM,SB,BP,NORTHAMERICA
+Serbia,SRB,RI,RI,EUROPE
+South Sudan,SSD,OD,OD,AFRICA
+Sao Tome and Principe,STP,TP,TP,AFRICA
+Suriname,SUR,NS,NS,SOUTHAMERICA
+Slovakia,SVK,LO,LO,EUROPE
+Slovenia,SVN,SI,SI,EUROPE
+Sweden,SWE,SW,SW,EUROPE
+Eswatini,SWZ,WZ,WZ,AFRICA
+Sint Maarten,SXM,NN,NN,NORTHAMERICA
+Seychelles,SYC,SE,SW,AFRICA
+Syria,SYR,SY,SY,ASIA
+Turks and Caicos Islands,TCA,TK,TL,NORTHAMERICA
+Chad,TCD,CD,CG,AFRICA
+Togo,TGO,TO,TN,AFRICA
+Thailand,THA,TH,TH,ASIA
+Tajikistan,TJK,TI,TI,ASIA
+Tokelau,TKL,TL,TT,OCEANIA
+Turkmenistan,TKM,TX,TX,ASIA
+Timor-Leste,TLS,TT,TD,ASIA
+Tonga,TON,TN,TS,OCEANIA
+Trinidad and Tobago,TTO,TD,CD,NORTHAMERICA
+Tunisia,TUN,TS,TS,AFRICA
+Turkey,TUR,TU,TU,ASIA
+Tuvalu,TUV,TV,TV,OCEANIA
+Taiwan,TWN,TW,TW,ASIA
+Tanzania,TZA,TZ,TZ,AFRICA
+Uganda,UGA,UG,UG,AFRICA
+Ukraine,UKR,UP,UP,EUROPE
+Uruguay,URY,UY,UY,SOUTHAMERICA
+United States,USA,US,US,NORTHAMERICA
+Uzbekistan,UZB,UZ,UZ,ASIA
+Holy See (Vatican City),VAT,VT,VT,EUROPE
+Saint Vincent and the Grenadines,VCT,VC,VC,NORTHAMERICA
+Venezuela,VEN,VE,VE,SOUTHAMERICA
+British Virgin Islands,VGB,VI,VI,NORTHAMERICA
+Virgin Islands,VIR,VQ,VQ,NORTHAMERICA
+Vietnam,VNM,VM,VM,ASIA
+Vanuatu,VUT,NH,NH,OCEANIA
+Wallis and Futuna,WLF,WF,WF,OCEANIA
+Samoa,WSM,WS,WS,OCEANIA
+Yemen,YEM,YM,YM,ASIA
+South Africa,ZAF,SF,SF,AFRICA
+Zambia,ZMB,ZA,SF,AFRICA
+Zimbabwe,ZWE,ZI,ZI,AFRICA
+Kosovo,RKS,KV,KV,EUROPE
