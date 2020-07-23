@@ -134,9 +134,9 @@ function ParseHistory(val, country, countries) {
                             val = val.replace(rgxold[i], rgxnew[i]);
                         }
                         break;
-                case 3: val = val.replace(rgxobj, '<valong class=ctryTag>$&</valong>');
+                case 3: val = val.replace(rgxobj, '<strong class=ctryTag>$&</strong>');
                         break;
-                case 4: val =  val.replace(rgxobj, '<valong class=yearTag>$&</valong>');
+                case 4: val = val.replace(rgxobj, '<strong class=yearTag>$&</strong>');
                         break;
             }
         }
