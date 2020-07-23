@@ -65,9 +65,7 @@ function CreateMap() {
                          , function (err, code) {
                              try {
                                  var gantt = document.getElementById('GanttChart');
-                                 var ncode = '' // iso[iso.map(x => x[3]).indexOf(code.toUpperCase())][2];
-                                 
-                                 //ncode = (ncode === undefined ? code.toUpperCase() : ncode);
+                                 var ncode = window.ctryData[window.ctryData.map(x => x[2]).indexOf(code.toUpperCase())][2]
 
                                  document.getElementById('mapselect')
                                          .querySelector('option[value=' + ncode + ']')
