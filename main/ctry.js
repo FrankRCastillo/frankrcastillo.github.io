@@ -155,7 +155,6 @@ function NewCtryPage() {
     });
 
     for (var i = -1; i < window.ctryData.length; i++) {
-        var grp = sel.querySelector('#' + window.ctryData[i][3])
         var opt = document.createElement('option');
 
         if (i == -1) {
@@ -164,6 +163,7 @@ function NewCtryPage() {
             opt.textContent = 'Select Country...';
             sel.appendChild(opt);
         } else {
+            var grp = sel.querySelector('#' + window.ctryData[i][3]);
             if (grp == null) {
                 grp = document.createElement('optgroup');
                 grp.setAttribute('label', window.ctryData[i][3]);
