@@ -205,7 +205,10 @@ function NewGanttPage() {
             year[0]  = window.ctryData[i][3];
             for (var j = 0; j < year.length; j++) {
                 var th = document.createElement('th');
-                th.textContent = year[j];
+                if (j == 0){
+                    th.style.textAlign = 'left';
+                    th.textContent = year[j];
+                }
                 tr.appendChild(th);
             }
         } else {
@@ -213,7 +216,8 @@ function NewGanttPage() {
                 var td = document.createElement('td');
 
                 if (j == 0) {
-                    td.innerHTML = '<span class=ctryInd>' + window.ctryData[i][4] + '</span>';
+                    td.style.textIndent = 30px;
+                    td.textContent = window.ctryData[i][4];
                 }
 
                 tr.appendChild(td);
