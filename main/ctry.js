@@ -176,16 +176,16 @@ function NewCtryPage(arr) {
 }
 
 function countryInfo(iso) {
-    var idx  = (iso.length == 2 ? 0 : 1);                               // if iso length is two, set index to retrieve iso2 property. otherwise, for iso3
-    var data = window.ctryData.filter(elem => elem[idx] == iso)[0];     // get iso property from window.ctryData global variable
-    var name = data[2];                                                 // get country name
-    var isos = '(' + data[0] + '/' + data[1] + ')';                     // concatenate iso2 and iso3 values
+    var idx  = (iso.length == 2 ? 2 : 1);                                               // if iso length is two, set index to retrieve iso2 property. otherwise, for iso3
+    var data = window.ctryData[window.ctryData.map(elem => elem[idx]).indexOf(iso)]     // get iso property from window.ctryData global variable
+    var name = data[0];                                                                 // get country name
+    var isos = '(' + data[2] + '/' + data[1] + ')';                                     // concatenate iso2 and iso3 values
 
     return '<strong>'
          + name + ' '
          + isos + '<br/>'
          + '</strong>'
-         + data[3];
+         + data[5];
 }
 
 function NewGanttPage() {
