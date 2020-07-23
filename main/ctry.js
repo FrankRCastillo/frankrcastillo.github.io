@@ -12,8 +12,9 @@ export async function ctry() {
             , 'Government'
             ];
 
-    document.getElementById( 'outtext').appendChild(NewTabLayout(l));
-    document.getElementById('WorldMap').appendChild(await NewCtryPage());
+    document.getElementById(   'outtext').appendChild(NewTabLayout(l));
+    document.getElementById(  'WorldMap').appendChild(NewCtryPage());
+    document.getElementById('GanttChart').appendChild(NewGanttPage());
     CreateMap();
     CmdReady();                                                                         // update page status as ready
 }
@@ -63,7 +64,6 @@ function CreateMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
-                                 var gantt = document.getElementById('GanttChart');
                                  var ncode = window.ctryData[window.ctryData.map(x => x[2]).indexOf(code.toUpperCase())][0]
 
                                  document.getElementById('mapselect')
@@ -72,10 +72,6 @@ function CreateMap() {
 
                                  document.getElementById('mapdata')
                                          .innerHTML = countryInfo(ncode);
-
-                                 gantt.innerHTML = '';
-                                 gantt.appendChild(NewGanttPage());
-
                              } catch (err) {
                                  console.log(err.message);
                              }
@@ -125,7 +121,7 @@ function ParseHistory(val, country, countries) {
               .join('');
 }
 
-async function NewCtryPage() {
+function NewCtryPage() {
     var out = document.createElement('div');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
@@ -143,12 +139,10 @@ async function NewCtryPage() {
 
     btn.addEventListener('click', function() {
         var sel = document.getElementById('mapselect');
-        var gnt = document.getElementById('GanttChart');
         var iso = sel.options[sel.selectedIndex].value;
         if (iso != '') {
             dta.innerHTML = countryInfo(iso);
             gnt.innerHTML = '';
-            gnt.appendChild(NewGanttPage());
         }
     });
 
