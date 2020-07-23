@@ -219,7 +219,7 @@ function NewGanttPage() {
             if (i == -1) {
                 td.textContent = yhdr[j];
             } else {
-                if (j = 0) {
+                if (j == 0) {
                     td.textContent = carr[i];
                 } else {
                     td.textContent = '';
