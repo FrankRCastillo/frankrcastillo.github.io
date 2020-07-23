@@ -2,8 +2,6 @@
 window.ctryData = [];
 
 export async function ctry() {
-    var iso = csv2arr(await ReadFile('/main/ctry/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
-
     window.ctryData = await GetData(iso);
     
     var l = [ 'WorldMap'
@@ -21,7 +19,37 @@ export async function ctry() {
     CmdReady();                                                                         // update page status as ready
 }
 
-function CreateMap(iso) {
+async function GetData() {
+    var rtn = [];
+    var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
+    var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
+    var doc = new DOMParser().parseFromString(txt, 'text/html');                        // parse CIA world factbook text into HTML
+    var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
+    var iso = csv2arr(await ReadFile('/main/ctry/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
+    var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
+    var tag = bdy[0].getElementsByTagName('tr');                                        // get rows from table body; each row = one country listing
+
+    for (var i = 0; i < tag.length; i++) {                                              // iterate through country listing array
+        var iso2 = tag[i].id;                                                           // capture iso2 country code
+        var iso3 = '';
+        try{
+            isom = iso[iso.map(x => x[2]).indexOf(iso2)]
+            var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
+            var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
+            rtn.push([iso2, isom[1], isom[3], isom[4], name, hist]);                    // add elements into array
+        } catch(err) {
+            console.log(err.message);
+        }
+    }
+
+    var countries = rtn.map(x => x[2]);
+
+    rtn = rtn.map(x => [ x[0], x[1], x[2], ParseHistory(x[3], x[2], countries) ]);
+
+    return rtn;
+}
+
+function CreateMap() {
     var map       = L.map('mapframe');
     var osmUrl    ='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib ='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -38,9 +66,9 @@ function CreateMap(iso) {
                          , function (err, code) {
                              try {
                                  var gantt = document.getElementById('GanttChart');
-                                 var ncode = iso[iso.map(x => x[3]).indexOf(code.toUpperCase())][2];
+                                 var ncode = '' // iso[iso.map(x => x[3]).indexOf(code.toUpperCase())][2];
                                  
-                                 ncode = (ncode === undefined ? code.toUpperCase() : ncode);
+                                 //ncode = (ncode === undefined ? code.toUpperCase() : ncode);
 
                                  document.getElementById('mapselect')
                                          .querySelector('option[value=' + ncode + ']')
@@ -56,35 +84,6 @@ function CreateMap(iso) {
                              }
                            });
     });
-}
-
-async function GetData(iso) {
-    var rtn = [];
-    var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
-    var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
-    var doc = new DOMParser().parseFromString(txt, 'text/html');                        // parse CIA world factbook text into HTML
-    var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
-    var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
-    var tag = bdy[0].getElementsByTagName('tr');                                        // get rows from table body; each row = one country listing
-
-    for (var i = 0; i < tag.length; i++) {                                              // iterate through country listing array
-        var iso2 = tag[i].id;                                                           // capture iso2 country code
-        var iso3 = '';
-        try{
-            iso3 = iso[iso.map(x => x[2]).indexOf(iso2)][1]                             // convert iso2 to iso3 using csv loaded earlier
-            var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
-            var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
-            rtn.push([iso2, iso3, name, hist]);                                         // add elements into array
-        } catch(err) {
-            console.log(err.message);
-        }
-    }
-
-    var countries = rtn.map(x => x[2]);
-
-    rtn = rtn.map(x => [ x[0], x[1], x[2], ParseHistory(x[3], x[2], countries) ]);
-
-    return rtn;
 }
 
 function ParseHistory(val, country, countries) {
