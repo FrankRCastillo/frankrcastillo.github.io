@@ -14,7 +14,6 @@ export async function ctry() {
 
     document.getElementById(   'outtext').appendChild(NewTabLayout(l));
     document.getElementById(  'WorldMap').appendChild(await NewCtryPage());
-    document.getElementById('GanttChart').appendChild(await NewGanttPage());
     CreateMap();
     CmdReady();                                                                         // update page status as ready
 }
@@ -72,6 +71,9 @@ function CreateMap() {
 
                                  document.getElementById('mapdata')
                                          .innerHTML = countryInfo(ncode);
+
+                                 document.getElementById('GanttChart')
+                                         .appendChild(NewGanttPage());
 
                              } catch (err) {
                                  console.log(err.message);
@@ -140,9 +142,11 @@ async function NewCtryPage() {
 
     btn.addEventListener('click', function() {
         var sel = document.getElementById('mapselect');
+        var gnt = document.getElementById('GanttChart');
         var iso = sel.options[sel.selectedIndex].value;
         if (iso != '') {
             dta.innerHTML = countryInfo(iso);
+            gnt.appendChild(NewGanttPage());
         }
     });
 
@@ -156,6 +160,7 @@ async function NewCtryPage() {
             sel.appendChild(opt);
         } else {
             var grp = sel.querySelector('#' + window.ctryData[i][3]);
+
             if (grp == null) {
                 grp = document.createElement('optgroup');
                 grp.setAttribute('label', window.ctryData[i][3]);
@@ -185,38 +190,43 @@ function countryInfo(iso) {
     var isos = '(' + data[0] + '/' + data[1] + ')';                                     // concatenate iso2 and iso3 values
 
     return '<strong>'
-         + name + ' '
-         + isos + '<br/>'
+         + '<span class=ctryTag>'
+         + name 
+         + '</span>'
+         + ' ' + isos + '<br/>'
          + '</strong>'
          + data[5];
 }
 
-async function NewGanttPage() {
+function NewGanttPage() {
+    var frme = document.getElementById('mapframe');
+    var ctry = frme.querySelector('.ctryTag');
+    var year = frme.querySelector('.yearTag');
+    var carr = Array.from(ctry).map(x => x.innerText).sort();
+    var yarr = Array.from(year).map(x => parseInt(x.innerText)).sort();
+    var ymin = Math.min.apply(Math, yarr);
+    var ymax = Math.max.apply(Math, yarr);
     var tble = document.createElement('table');
-    var year = new Date().getFullYear();
-    var yhdr = new Array(year).fill(1).map((x, i) => i + 1);
+    var yhdr = new Array(ymax - ymin + 1).fill().map((x, i) => ymax + i);
 
     yhdr.sort((a,b) => b - a);
-    yhdr.unshift('');
+    yhdr.unshift('Country');
     
-    for (var i = 0; i < 10; i++) {
+    for (var i = -1; i < carr.length; i++) {
         var tr = document.createElement('tr');
-
+        
         for (var j = 0; j < yhdr.length; j++) {
-            if (yhdr[0] != window.ctryData[i][3]) {
-                yhdr[0] = window.ctryData[i][3];
-                var th = document.createElement('th');
-                th.textContent = yhdr[j];
-                tr.appendChild(th);
+            var td = document.createElement('td');
+            if (i == -1) {
+                td.textContent = yhdr[j];
             } else {
-                var td = document.createElement('td');
                 if (j = 0) {
-                    td.textContent = window.ctryData[i][4];
+                    td.textContent = carr[i];
                 } else {
                     td.textContent = '';
                 }
-                tr.appendChild(td);
             }
+            tr.appendChild(td);
         }
 
         tble.appendChild(tr);
