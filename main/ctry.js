@@ -33,7 +33,7 @@ async function GetData() {
         var iso2 = tag[i].id;                                                           // capture iso2 country code
         var iso3 = '';
         try{
-            isom = iso[iso.map(x => x[2]).indexOf(iso2)]
+            var isom = iso[iso.map(x => x[2]).indexOf(iso2)]
             var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
             var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
             rtn.push([iso2, isom[1], isom[3], isom[4], name, hist]);                    // add elements into array
