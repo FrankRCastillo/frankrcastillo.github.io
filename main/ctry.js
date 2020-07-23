@@ -14,11 +14,12 @@ export async function ctry() {
 
     var t = NewTabLayout(l);
     var h = NewCtryPage();
+    var g = NewGanttPage();
 
-    document.getElementById( 'outtext').appendChild(t);
-    document.getElementById('WorldMap').appendChild(h);
+    document.getElementById(   'outtext').appendChild(t);
+    document.getElementById(  'WorldMap').appendChild(h);
+    document.getElementById('GanttChart').appendChild(g;
     CreateMap();
-    document.getElementById('GanttChart').appendChild(NewGanttPage());
     CmdReady();                                                                         // update page status as ready
 }
 
