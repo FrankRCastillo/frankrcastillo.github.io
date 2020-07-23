@@ -12,14 +12,10 @@ export async function ctry() {
             , 'Government'
             ];
 
-    var t = NewTabLayout(l);
-    var h = NewCtryPage();
-    var g = NewGanttPage();
-
-    document.getElementById(   'outtext').appendChild(t);
-    document.getElementById(  'WorldMap').appendChild(h);
+    document.getElementById(   'outtext').appendChild(NewTabLayout(l));
+    document.getElementById(  'WorldMap').appendChild(await NewCtryPage());
+    document.getElementById('GanttChart').appendChild(await NewGanttPage());
     CreateMap();
-    NewGanttChart();
     CmdReady();                                                                         // update page status as ready
 }
 
@@ -126,7 +122,7 @@ function ParseHistory(val, country, countries) {
               .join('');
 }
 
-function NewCtryPage() {
+async function NewCtryPage() {
     var out = document.createElement('div');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
@@ -195,8 +191,9 @@ function countryInfo(iso) {
          + data[5];
 }
 
-function NewGanttPage() {
+async function NewGanttPage() {
     var gntt = document.getElementById('GanttChart');
+    var page = document.createElement('div');
     var tble = document.createElement('table');
     var year = new Date().getFullYear();
     var yhdr = new Array(year).fill(1).map((x, i) => i + 1);
@@ -228,5 +225,9 @@ function NewGanttPage() {
 
         tble.appendChild(tr);
     }
+
+    page.appendChild(table);
+
+    return table;
 }
 
