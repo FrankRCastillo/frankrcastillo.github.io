@@ -212,7 +212,7 @@ function NewGanttPage() {
             for (var j = 0; j < year.length; j++) {
                 var td = document.createElement('td');
 
-                if (j = 0) {
+                if (j == 0) {
                     td.textContent = window.ctryData[i][3];
                 }
 
