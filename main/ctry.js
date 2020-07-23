@@ -192,7 +192,6 @@ function countryInfo(iso) {
 }
 
 async function NewGanttPage() {
-    var gntt = document.getElementById('GanttChart');
     var page = document.createElement('div');
     var tble = document.createElement('table');
     var year = new Date().getFullYear();
@@ -201,7 +200,6 @@ async function NewGanttPage() {
     gntt.appendChild(tble);
     yhdr.sort((a,b) => b - a);
     yhdr.unshift('');
-    tble.setAttribute('id', 'GanttTable');
     
     for (var i = 0; i < window.ctryData.length; i++) {
         var tr = document.createElement('tr');
@@ -228,6 +226,6 @@ async function NewGanttPage() {
 
     page.appendChild(table);
 
-    return table;
+    return page;
 }
 
