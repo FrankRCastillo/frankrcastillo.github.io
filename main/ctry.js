@@ -216,7 +216,7 @@ function NewGanttPage() {
                 var td = document.createElement('td');
 
                 if (j == 0) {
-                    td.style.textIndent = 30px;
+                    td.style.textIndent = '30px';
                     td.textContent = window.ctryData[i][4];
                 }
 
