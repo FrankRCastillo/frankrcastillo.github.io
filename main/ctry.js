@@ -12,8 +12,8 @@ export async function ctry() {
             , 'Government'
             ];
 
-    document.getElementById(   'outtext').appendChild(NewTabLayout(l));
-    document.getElementById(  'WorldMap').appendChild(await NewCtryPage());
+    document.getElementById( 'outtext').appendChild(NewTabLayout(l));
+    document.getElementById('WorldMap').appendChild(await NewCtryPage());
     CreateMap();
     CmdReady();                                                                         // update page status as ready
 }
