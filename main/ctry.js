@@ -200,7 +200,7 @@ async function NewGanttPage() {
     yhdr.sort((a,b) => b - a);
     yhdr.unshift('');
     
-    for (var i = 0; i < window.ctryData.length; i++) {
+    for (var i = 0; i < 10; i++) {
         var tr = document.createElement('tr');
 
         for (var j = 0; j < yhdr.length; j++) {
