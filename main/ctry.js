@@ -213,7 +213,7 @@ function NewGanttPage() {
                 var td = document.createElement('td');
 
                 if (j == 0) {
-                    td.textContent = window.ctryData[i][4];
+                    td.innerHTML = '<span class=ctryInd>' + window.ctryData[i][4] + '</span>';
                 }
 
                 tr.appendChild(td);

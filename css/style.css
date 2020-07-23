@@ -173,6 +173,11 @@ button:hover
 #GanttTable
 { font-family : 'courier new'
 ; font-size   : 12px
+; text-align  : left
+}
+
+.ctryInd
+{ text-indent : 20px
 }
 
 #mapselect
