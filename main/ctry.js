@@ -201,33 +201,30 @@ function countryInfo(iso) {
 }
 
 function NewGanttPage() {
-    var ctry = document.getElementsByClassName('ctryTag');
-    var year = document.getElementsByClassName('yearTag');
-    var carr = Array.from(ctry).map(x => x.innerText).sort();
-    var yhdr = Array.from(year).map(x => parseInt(x.innerText)).sort();
     var tble = document.createElement('table');
+    var year = [ '', 2020, 2019 ]
 
-    yhdr.sort((a,b) => b - a);
-    yhdr.unshift('Country');
-    
-    for (var i = -1; i < carr.length; i++) {
+    for (var i = 0; i < window.ctryData; i++) {
         var tr = document.createElement('tr');
-        
-        for (var j = 0; j < yhdr.length; j++) {
-            var td = document.createElement('td');
 
-            if (i == -1) {
-                td.textContent = yhdr[j];
-            } else {
-                if (j == 0) {
-                    td.textContent = carr[i];
-                } else {
-                    td.textContent = '';
-                }
+        if (window.ctryData[i][3] != year[0]) {
+            year[0] = window.ctryData[i][3];
+            for (var j = 0; j < year.length; j++) {
+                var th = document.createElement('th');
+                th.textContent = year[j];
+                tr.appendChild(th);
             }
-            tr.appendChild(td);
-        }
+        } else {
+            for (var j = 0; j < year.length; j++) {
+                var td = document.createElement('td');
 
+                if (j = 0) {
+                    td.textContent = window.ctryData[i][3];
+                }
+
+                tr.appendChild(td);
+            }
+        }
         tble.appendChild(tr);
     }
 
