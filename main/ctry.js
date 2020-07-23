@@ -2,7 +2,9 @@
 window.ctryData = [];
 
 export async function ctry() {
-    window.ctryData = await GetData();
+    var iso = csv2arr(await ReadFile('/main/ctry/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
+
+    window.ctryData = await GetData(iso);
     
     var l = [ 'WorldMap'
             , 'GanttChart'
@@ -19,28 +21,7 @@ export async function ctry() {
     CmdReady();                                                                         // update page status as ready
 }
 
-function CreateMap() {
-    var iso = { "AD": "AN", "AG": "AC", "AI": "AV", "AS": "AQ", "AT": "AU", "AU": "AS", "AX": "FI", "AZ": "AJ"
-              , "BA": "BK", "BD": "BG", "BF": "UV", "BG": "BU", "BH": "BA", "BI": "BY", "BJ": "BN", "BL": "TB"
-              , "BM": "BD", "BN": "BX", "BO": "BL", "BQ": "NL", "BS": "BF", "BW": "BC", "BY": "BO", "BZ": "BH"
-              , "CD": "CG", "CF": "CT", "CG": "CF", "CH": "SZ", "CI": "IV", "CK": "CW", "CL": "CI", "CN": "CH"
-              , "CR": "CS", "CW": "UC", "CZ": "EZ", "DE": "GM", "DK": "DA", "DM": "DO", "DO": "DR", "DZ": "AG"
-              , "EE": "EN", "EH": "WI", "ES": "SP", "GA": "GB", "GB": "UK", "GD": "GJ", "GE": "GG", "GF": "FR"
-              , "GG": "GK", "GM": "GA", "GN": "GV", "GP": "FR", "GQ": "EK", "GS": "SX", "GU": "GQ", "GW": "PU"
-              , "HN": "HO", "HT": "HA", "IE": "EI", "IL": "IS", "IQ": "IZ", "IS": "IC", "JP": "JA", "KH": "CB"
-              , "KI": "KR", "KM": "CN", "KN": "SC", "KP": "KN", "KR": "KS", "KW": "KU", "KY": "CJ", "LB": "LE"
-              , "LC": "ST", "LI": "LS", "LK": "CE", "LR": "LI", "LS": "LT", "LT": "LH", "LV": "LG", "MA": "MO"
-              , "MC": "MN", "ME": "MJ", "MF": "RN", "MG": "MA", "MH": "RM", "MM": "BM", "MN": "MG", "MP": "CQ"
-              , "MQ": "FR", "MS": "MH", "MU": "MP", "MW": "MI", "NA": "WA", "NE": "NG", "NG": "NI", "NI": "NU"
-              , "NU": "NE", "OM": "MU", "PA": "PM", "PF": "FP", "PG": "PP", "PH": "RP", "PM": "SB", "PN": "UK"
-              , "PR": "RQ", "PS": "GZ", "PT": "PO", "PW": "PS", "PY": "PA", "RE": "FR", "RS": "RI", "RU": "RS"
-              , "SB": "BP", "SC": "SE", "SD": "SU", "SE": "SW", "SG": "SN", "SJ": "SV", "SK": "LO", "SN": "SG"
-              , "SR": "NS", "SS": "OD", "ST": "TP", "SV": "ES", "SX": "NN", "SZ": "WZ", "TC": "TK", "TD": "CD"
-              , "TF": "FR", "TG": "TO", "TJ": "TI", "TK": "TL", "TL": "TT", "TM": "TX", "TN": "TS", "TO": "TN"
-              , "TR": "TU", "TT": "TD", "UA": "UP", "UM": "US", "VA": "VT", "VG": "VI", "VN": "VM", "VU": "NH"
-              , "YE": "YM", "YT": "FR", "ZA": "SF", "ZM": "ZA", "ZW": "ZI"
-              }
-
+function CreateMap(iso) {
     var map       = L.map('mapframe');
     var osmUrl    ='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib ='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -57,7 +38,7 @@ function CreateMap() {
                          , function (err, code) {
                              try {
                                  var gantt = document.getElementById('GanttChart');
-                                 var ncode = iso[code.toUpperCase()];
+                                 var ncode = iso[iso.map(x => x[3]).indexOf(code.toUpperCase())][2];
                                  
                                  ncode = (ncode === undefined ? code.toUpperCase() : ncode);
 
@@ -77,11 +58,10 @@ function CreateMap() {
     });
 }
 
-async function GetData() {
+async function GetData(iso) {
     var rtn = [];
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
     var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
-    var iso = csv2arr(await ReadFile('/main/ctry/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
     var doc = new DOMParser().parseFromString(txt, 'text/html');                        // parse CIA world factbook text into HTML
     var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
     var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
@@ -91,7 +71,7 @@ async function GetData() {
         var iso2 = tag[i].id;                                                           // capture iso2 country code
         var iso3 = '';
         try{
-            iso3 = iso[iso.map(x => x[1]).indexOf(iso2)][2]                             // convert iso2 to iso3 using csv loaded earlier
+            iso3 = iso[iso.map(x => x[2]).indexOf(iso2)][1]                             // convert iso2 to iso3 using csv loaded earlier
             var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
             var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
             rtn.push([iso2, iso3, name, hist]);                                         // add elements into array

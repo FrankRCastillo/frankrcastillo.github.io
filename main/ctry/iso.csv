@@ -1,242 +1,1000 @@
-Aruba,AA,ABW
-Afghanistan,AF,AFG
-Angola,AO,AGO
-Anguilla,AV,AIA
-Albania,AL,ALB
-Andorra,AN,AND
-United Arab Emirates,AE,ARE
-Argentina,AR,ARG
-Armenia,AM,ARM
-American Samoa,AQ,ASM
-Antarctica,AY,ATA
-French Southern and Antarctic Lands,FS,ATF
-Antigua and Barbuda,AC,ATG
-Australia,AS,AUS
-Austria,AU,AUT
-Azerbaijan,AJ,AZE
-Burundi,BY,BDI
-Belgium,BE,BEL
-Benin,BN,BEN
-Burkina Faso,UV,BFA
-Bangladesh,BG,BGD
-Bulgaria,BU,BGR
-Bahrain,BA,BHR
-Bahamas,BF,BHS
-Bosnia and Herzegovina,BK,BIH
-Saint Barthelemy,TB,BLM
-Belarus,BO,BLR
-Belize,BH,BLZ
-Bermuda,BD,BMU
-Bolivia,BL,BOL
-Brazil,BR,BRA
-Barbados,BB,BRB
-Brunei,BX,BRN
-Bhutan,BT,BTN
-Bouvet Island,BV,BVT
-Botswana,BC,BWA
-Central African Republic,CT,CAF
-Canada,CA,CAN
-Cocos (Keeling) Islands,CK,CCK
-Switzerland,SZ,CHE
-Chile,CI,CHL
-China,CH,CHN
-Cote d'Ivoire,IV,CIV
-Cameroon,CM,CMR
-Democratic Republic of the Congo,CG,COD
-Republic of the Congo,CF,COG
-Cook Islands,CW,COK
-Colombia,CO,COL
-Comoros,CN,COM
-Cabo Verde,CV,CPV
-Costa Rica,CS,CRI
-Cuba,CU,CUB
-Curacao,UC,CUW
-Christmas Island,KT,CXR
-Cayman Islands,CJ,CYM
-Cyprus,CY,CYP
-Czechia,EZ,CZE
-Germany,GM,DEU
-Djibouti,DJ,DJI
-Dominica,DO,DMA
-Denmark,DA,DNK
-Dominican Republic,DR,DOM
-Algeria,AG,DZA
-Ecuador,EC,ECU
-Egypt,EG,EGY
-Eritrea,ER,ERI
-Western Sahara,WI,ESH
-Spain,SP,ESP
-Estonia,EN,EST
-Ethiopia,ET,ETH
-Finland,FI,FIN
-Fiji,FJ,FJI
-Falkland Islands (Islas Malvinas),FK,FLK
-France,FR,FRA
-Faroe Islands,FO,FRO
-Micronesiai,FM,FSM
-Gabon,GB,GAB
-United Kingdom,UK,GBR
-Georgia,GG,GEO
-Guernsey,GK,GGY
-Ghana,GH,GHA
-Gibraltar,GI,GIB
-Guinea,GV,GIN
-The Gambia,GA,GMB
-Guinea-Bissau,PU,GNB
-Equatorial Guinea,EK,GNQ
-Greece,GR,GRC
-Grenada,GJ,GRD
-Greenland,GL,GRL
-Guatemala,GT,GTM
-Guam,GQ,GUM
-Guyana,GY,GUY
-Hong Kong,HK,HKG
-Heard Island and McDonald Islands,HM,HMD
-Honduras,HO,HND
-Croatia,HR,HRV
-Haiti,HA,HTI
-Hungary,HU,HUN
-Indonesia,ID,IDN
-Isle of Man,IM,IMN
-India,IN,IND
-British Indian Ocean Territory,IO,IOT
-Ireland,EI,IRL
-Iran,IR,IRN
-Iraq,IZ,IRQ
-Iceland,IC,ISL
-Israel,IS,ISR
-Italy,IT,ITA
-Jamaica,JM,JAM
-Jersey,JE,JEY
-Jordan,JO,JOR
-Japan,JA,JPN
-Kazakhstan,KZ,KAZ
-Kenya,KE,KEN
-Kyrgyzstan,KG,KGZ
-Cambodia,CB,KHM
-Kiribati,KR,KIR
-Saint Kitts and Nevis,SC,KNA
-South Korea,KS,KOR
-Kuwait,KU,KWT
-Laos,LA,LAO
-Lebanon,LE,LBN
-Liberia,LI,LBR
-Libya,LY,LBY
-Saint Lucia,ST,LCA
-Liechtenstein,LS,LIE
-Sri Lanka,CE,LKA
-Lesotho,LT,LSO
-Lithuania,LH,LTU
-Luxembourg,LU,LUX
-Latvia,LG,LVA
-Macau,MC,MAC
-Saint Martin,RN,MAF
-Morocco,MO,MAR
-Monaco,MN,MCO
-Moldova,MD,MDA
-Madagascar,MA,MDG
-Maldives,MV,MDV
-Mexico,MX,MEX
-Marshall Islands,RM,MHL
-North Macedonia,MK,MKD
-Mali,ML,MLI
-Malta,MT,MLT
-Burma,BM,MMR
-Montenegro,MJ,MNE
-Mongolia,MG,MNG
-Northern Mariana Islands,CQ,MNP
-Mozambique,MZ,MOZ
-Mauritania,MR,MRT
-Montserrat,MH,MSR
-Mauritius,MP,MUS
-Malawi,MI,MWI
-Malaysia,MY,MYS
-Namibia,WA,NAM
-New Caledonia,NC,NCL
-Niger,NG,NER
-Norfolk Island,NF,NFK
-Nigeria,NI,NGA
-Nicaragua,NU,NIC
-Niue,NE,NIU
-Netherlands,NL,NLD
-Norway,NO,NOR
-Nepal,NP,NPL
-Nauru,NR,NRU
-New Zealand,NZ,NZL
-Oman,MU,OMN
-Pakistan,PK,PAK
-Panama,PM,PAN
-Peru,PE,PER
-Philippines,RP,PHL
-Palau,PS,PLW
-Papua New Guinea,PP,PNG
-Poland,PL,POL
-Puerto Rico,RQ,PRI
-North Korea,KN,PRK
-Portugal,PO,PRT
-Paraguay,PA,PRY
-Gaza Strip,GZ,PSE
-West Bank,WE,PSE
-French Polynesia,FP,PYF
-Qatar,QA,QAT
-Romania,RO,ROU
-Russia,RS,RUS
-Rwanda,RW,RWA
-Saudi Arabia,SA,SAU
-Sudan,SU,SDN
-Senegal,SG,SEN
-Singapore,SN,SGP
-South Georgia and South Sandwich Islands,SX,SGS
-Saint Helena Ascension and Tristan da Cunha,SH,SHN
-Svalbard,SV,SJM
-Solomon Islands,BP,SLB
-Sierra Leone,SL,SLE
-El Salvador,ES,SLV
-San Marino,SM,SMR
-Somalia,SO,SOM
-Saint Pierre and Miquelon,SB,SPM
-Serbia,RI,SRB
-South Sudan,OD,SSD
-Sao Tome and Principe,TP,STP
-Suriname,NS,SUR
-Slovakia,LO,SVK
-Slovenia,SI,SVN
-Sweden,SW,SWE
-Eswatini,WZ,SWZ
-Sint Maarten,NN,SXM
-Seychelles,SE,SYC
-Syria,SY,SYR
-Turks and Caicos Islands,TK,TCA
-Chad,CD,TCD
-Togo,TO,TGO
-Thailand,TH,THA
-Tajikistan,TI,TJK
-Tokelau,TL,TKL
-Turkmenistan,TX,TKM
-Timor-Leste,TT,TLS
-Tonga,TN,TON
-Trinidad and Tobago,TD,TTO
-Tunisia,TS,TUN
-Turkey,TU,TUR
-Tuvalu,TV,TUV
-Taiwan,TW,TWN
-Tanzania,TZ,TZA
-Uganda,UG,UGA
-Ukraine,UP,UKR
-Uruguay,UY,URY
-United States,US,USA
-Uzbekistan,UZ,UZB
-Holy See (Vatican City),VT,VAT
-Saint Vincent and the Grenadines,VC,VCT
-Venezuela,VE,VEN
-British Virgin Islands,VI,VGB
-Virgin Islands,VQ,VIR
-Vietnam,VM,VNM
-Vanuatu,NH,VUT
-Wallis and Futuna,WF,WLF
-Samoa,WS,WSM
-Yemen,YM,YEM
-South Africa,SF,ZAF
-Zambia,ZA,ZMB
-Zimbabwe,ZI,ZWE
-Kosovo,KV,RKS
+Aruba,ABW,AA,AA,NA
+Afghanistan,AFG,AF,AF,AS
+Angola,AGO,AO,AO,AF
+Anguilla,AIA,AV,AV,NA
+Albania,ALB,AL,AL,EU
+Andorra,AND,AN,AN,EU
+United Arab Emirates,ARE,AE,AE,AS
+Argentina,ARG,AR,AR,SA
+Armenia,ARM,AM,AM,AS
+American Samoa,ASM,AQ,AQ,OC
+Antarctica,ATA,AY,AY,AN
+French Southern and Antarctic Lands,ATF,FS,FS,AF
+Antigua and Barbuda,ATG,AC,AC,NA
+Australia,AUS,AS,AQ,OC
+Austria,AUT,AU,AS,EU
+Azerbaijan,AZE,AJ,AJ,AS
+Burundi,BDI,BY,BO,AF
+Belgium,BEL,BE,BE,EU
+Benin,BEN,BN,BX,AF
+Burkina Faso,BFA,UV,UV,AF
+Bangladesh,BGD,BG,BU,AS
+Bulgaria,BGR,BU,BU,EU
+Bahrain,BHR,BA,BK,AS
+Bahamas,BHS,BF,UV,NA
+Bosnia and Herzegovina,BIH,BK,BK,EU
+Saint Barthelemy,BLM,TB,TB,NA
+Belarus,BLR,BO,BL,EU
+Belize,BLZ,BH,BA,NA
+Bermuda,BMU,BD,BG,NA
+Bolivia,BOL,BL,TB,SA
+Brazil,BRA,BR,BR,SA
+Barbados,BRB,BB,BB,NA
+Brunei,BRN,BX,BX,AS
+Bhutan,BTN,BT,BT,AS
+Bouvet Island,BVT,BV,BV,AN
+Botswana,BWA,BC,BC,AF
+Central African Republic,CAF,CT,CT,AF
+Canada,CAN,CA,CA,NA
+Cocos (Keeling) Islands,CCK,CK,CW,AS
+Switzerland,CHE,SZ,WZ,EU
+Chile,CHL,CI,IV,SA
+China,CHN,CH,SZ,AS
+Cote d'Ivoire,CIV,IV,IV,AF
+Cameroon,CMR,CM,CM,AF
+Democratic Republic of the Congo,COD,CG,CF,AF
+Republic of the Congo,COG,CF,CT,AF
+Cook Islands,COK,CW,UC,OC
+Colombia,COL,CO,CO,SA
+Comoros,COM,CN,CH,AF
+Cabo Verde,CPV,CV,CV,AF
+Costa Rica,CRI,CS,CS,NA
+Cuba,CUB,CU,CU,NA
+Curacao,CUW,UC,UC,NA
+Christmas Island,CXR,KT,KT,AS
+Cayman Islands,CYM,CJ,CJ,NA
+Cyprus,CYP,CY,CY,AS
+Czechia,CZE,EZ,EZ,EU
+Germany,DEU,GM,GA,EU
+Djibouti,DJI,DJ,DJ,AF
+Dominica,DMA,DO,DR,NA
+Denmark,DNK,DA,DA,EU
+Dominican Republic,DOM,DR,DR,NA
+Algeria,DZA,AG,AC,AF
+Ecuador,ECU,EC,EC,SA
+Egypt,EGY,EG,EG,AF
+Eritrea,ERI,ER,ER,AF
+Western Sahara,ESH,WI,WI,AF
+Spain,ESP,SP,SP,EU
+Estonia,EST,EN,EN,EU
+Ethiopia,ETH,ET,ET,AF
+Finland,FIN,FI,FI,EU
+Fiji,FJI,FJ,FJ,OC
+Falkland Islands (Islas Malvinas),FLK,FK,FK,SA
+France,FRA,FR,FR,EU
+Faroe Islands,FRO,FO,FO,EU
+Micronesiai,FSM,FM,FM,OC
+Gabon,GAB,GB,UK,AF
+United Kingdom,GBR,UK,UK,EU
+Georgia,GEO,GG,GK,AS
+Guernsey,GGY,GK,GK,EU
+Ghana,GHA,GH,GH,AF
+Gibraltar,GIB,GI,GI,EU
+Guinea,GIN,GV,GV,AF
+The Gambia,GMB,GA,GB,AF
+Guinea-Bissau,GNB,PU,PU,AF
+Equatorial Guinea,GNQ,EK,EK,AF
+Greece,GRC,GR,GR,EU
+Grenada,GRD,GJ,GJ,NA
+Greenland,GRL,GL,GL,NA
+Guatemala,GTM,GT,GT,NA
+Guam,GUM,GQ,EK,OC
+Guyana,GUY,GY,GY,SA
+Hong Kong,HKG,HK,HK,AS
+Heard Island and McDonald Islands,HMD,HM,HM,AN
+Honduras,HND,HO,HO,NA
+Croatia,HRV,HR,HR,EU
+Haiti,HTI,HA,HA,NA
+Hungary,HUN,HU,HU,EU
+Indonesia,IDN,ID,ID,AS
+Isle of Man,IMN,IM,IM,EU
+India,IND,IN,IN,AS
+British Indian Ocean Territory,IOT,IO,IO,AF
+Ireland,IRL,EI,EI,EU
+Iran,IRN,IR,IR,AS
+Iraq,IRQ,IZ,IZ,AS
+Iceland,ISL,IC,IC,EU
+Israel,ISR,IS,IC,AS
+Italy,ITA,IT,IT,EU
+Jamaica,JAM,JM,JM,NA
+Jersey,JEY,JE,JE,EU
+Jordan,JOR,JO,JO,AS
+Japan,JPN,JA,JA,AS
+Kazakhstan,KAZ,KZ,KZ,AS
+Kenya,KEN,KE,KE,AF
+Kyrgyzstan,KGZ,KG,KG,AS
+Cambodia,KHM,CB,CB,AS
+Kiribati,KIR,KR,KS,OC
+Saint Kitts and Nevis,KNA,SC,SE,NA
+South Korea,KOR,KS,KS,AS
+Kuwait,KWT,KU,KU,AS
+Laos,LAO,LA,LA,AS
+Lebanon,LBN,LE,LE,AS
+Liberia,LBR,LI,LS,AF
+Libya,LBY,LY,LY,AF
+Saint Lucia,LCA,ST,TP,NA
+Liechtenstein,LIE,LS,LT,EU
+Sri Lanka,LKA,CE,CE,AS
+Lesotho,LSO,LT,LH,AF
+Lithuania,LTU,LH,LH,EU
+Luxembourg,LUX,LU,LU,EU
+Latvia,LVA,LG,LG,EU
+Macau,MAC,MC,MN,AS
+Saint Martin,MAF,RN,RN,NA
+Morocco,MAR,MO,MO,AF
+Monaco,MCO,MN,MG,EU
+Moldova,MDA,MD,MD,EU
+Madagascar,MDG,MA,MO,AF
+Maldives,MDV,MV,MV,AS
+Mexico,MEX,MX,MX,NA
+Marshall Islands,MHL,RM,RM,OC
+North Macedonia,MKD,MK,MK,EU
+Mali,MLI,ML,ML,AF
+Malta,MLT,MT,MT,EU
+Burma,MMR,BM,BD,AS
+Montenegro,MNE,MJ,MJ,EU
+Mongolia,MNG,MG,MA,AS
+Northern Mariana Islands,MNP,CQ,CQ,OC
+Mozambique,MOZ,MZ,MZ,AF
+Mauritania,MRT,MR,MR,AF
+Montserrat,MSR,MH,RM,NA
+Mauritius,MUS,MP,CQ,AF
+Malawi,MWI,MI,MI,AF
+Malaysia,MYS,MY,MY,AS
+Namibia,NAM,WA,WA,AF
+New Caledonia,NCL,NC,NC,OC
+Niger,NER,NG,NI,AF
+Norfolk Island,NFK,NF,NF,OC
+Nigeria,NGA,NI,NU,AF
+Nicaragua,NIC,NU,NE,NA
+Niue,NIU,NE,NG,OC
+Netherlands,NLD,NL,NL,EU
+Norway,NOR,NO,NO,EU
+Nepal,NPL,NP,NP,AS
+Nauru,NRU,NR,NR,OC
+New Zealand,NZL,NZ,NZ,OC
+Oman,OMN,MU,MP,AS
+Pakistan,PAK,PK,PK,AS
+Panama,PAN,PM,SB,NA
+Peru,PER,PE,PE,SA
+Philippines,PHL,RP,RP,AS
+Palau,PLW,PS,GZ,OC
+Papua New Guinea,PNG,PP,PP,OC
+Poland,POL,PL,PL,EU
+Puerto Rico,PRI,RQ,RQ,NA
+North Korea,PRK,KN,SC,AS
+Portugal,PRT,PO,PO,EU
+Paraguay,PRY,PA,PM,SA
+Gaza Strip,PSE,GZ,GZ,AS
+West Bank,PSE,WE,WE,AS
+French Polynesia,PYF,FP,FP,OC
+Qatar,QAT,QA,QA,AS
+Romania,ROU,RO,RO,EU
+Russia,RUS,RS,RI,AS
+Rwanda,RWA,RW,RW,AF
+Saudi Arabia,SAU,SA,SA,AS
+Sudan,SDN,SU,SU,AF
+Senegal,SEN,SG,SN,AF
+Singapore,SGP,SN,SG,AS
+South Georgia and South Sandwich Islands,SGS,SX,NN,AN
+Saint Helena Ascension and Tristan da Cunha,SHN,SH,SH,AF
+Svalbard,SJM,SV,ES,EU
+Solomon Islands,SLB,BP,BP,OC
+Sierra Leone,SLE,SL,SL,AF
+El Salvador,SLV,ES,SP,NA
+San Marino,SMR,SM,SM,EU
+Somalia,SOM,SO,SO,AF
+Saint Pierre and Miquelon,SPM,SB,BP,NA
+Serbia,SRB,RI,RI,EU
+South Sudan,SSD,OD,OD,AF
+Sao Tome and Principe,STP,TP,TP,AF
+Suriname,SUR,NS,NS,SA
+Slovakia,SVK,LO,LO,EU
+Slovenia,SVN,SI,SI,EU
+Sweden,SWE,SW,SW,EU
+Eswatini,SWZ,WZ,WZ,AF
+Sint Maarten,SXM,NN,NN,NA
+Seychelles,SYC,SE,SW,AF
+Syria,SYR,SY,SY,AS
+Turks and Caicos Islands,TCA,TK,TL,NA
+Chad,TCD,CD,CG,AF
+Togo,TGO,TO,TN,AF
+Thailand,THA,TH,TH,AS
+Tajikistan,TJK,TI,TI,AS
+Tokelau,TKL,TL,TT,OC
+Turkmenistan,TKM,TX,TX,AS
+Timor-Leste,TLS,TT,TD,AS
+Tonga,TON,TN,TS,OC
+Trinidad and Tobago,TTO,TD,CD,NA
+Tunisia,TUN,TS,TS,AF
+Turkey,TUR,TU,TU,AS
+Tuvalu,TUV,TV,TV,OC
+Taiwan,TWN,TW,TW,AS
+Tanzania,TZA,TZ,TZ,AF
+Uganda,UGA,UG,UG,AF
+Ukraine,UKR,UP,UP,EU
+Uruguay,URY,UY,UY,SA
+United States,USA,US,US,NA
+Uzbekistan,UZB,UZ,UZ,AS
+Holy See (Vatican City),VAT,VT,VT,EU
+Saint Vincent and the Grenadines,VCT,VC,VC,NA
+Venezuela,VEN,VE,VE,SA
+British Virgin Islands,VGB,VI,VI,NA
+Virgin Islands,VIR,VQ,VQ,NA
+Vietnam,VNM,VM,VM,AS
+Vanuatu,VUT,NH,NH,OC
+Wallis and Futuna,WLF,WF,WF,OC
+Samoa,WSM,WS,WS,OC
+Yemen,YEM,YM,YM,AS
+South Africa,ZAF,SF,SF,AF
+Zambia,ZMB,ZA,SF,AF
+Zimbabwe,ZWE,ZI,ZI,AF
+Kosovo,RKS,KV,KV,EU
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
