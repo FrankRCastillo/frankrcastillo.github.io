@@ -196,7 +196,6 @@ async function NewGanttPage() {
     var year = new Date().getFullYear();
     var yhdr = new Array(year).fill(1).map((x, i) => i + 1);
 
-    gntt.appendChild(tble);
     yhdr.sort((a,b) => b - a);
     yhdr.unshift('');
     
