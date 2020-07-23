@@ -4,7 +4,7 @@ window.ctryData = [];
 export async function ctry() {
     window.ctryData = await GetData();
     
-    window.ctryData.sort((a, b) => a[3] - b[3]);
+    window.ctryData.sort((a, b) => a[3].localeCompare(b[3]));
 
     var l = [ 'WorldMap'
             , 'GanttChart'
