@@ -25,6 +25,10 @@ body
 ; margin           : 10px 10px 10px 10px
 }
 
+table
+{ border : 0px
+}
+
 ::placeholder
 { color : #ffffff
 }
