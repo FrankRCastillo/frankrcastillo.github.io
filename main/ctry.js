@@ -244,7 +244,9 @@ function NewGanttPage() {
                     ico.innerText = '\u26AB';
                     ico.setAttribute('ctryidx', i)
                     ico.addEventListener('mouseover', function() {
-                        console.log(window.ctryData[this.ctryidx][5]);
+                        var idx = parseInt(this.ctryidx);
+                        console.log(window.ctryData[idx][5]);
+                    var ico = document.createTextNode('\u26AB');
                     });
                     td.appendChild(ico);
                 }
