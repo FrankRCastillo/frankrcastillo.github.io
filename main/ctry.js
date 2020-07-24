@@ -277,7 +277,6 @@ function NewGanttPage() {
                     });
 
                     ico.addEventListener('mouseout', function() {
-                        this.style.color = '#ffffff';
                         this.innerHTML = '';
                         this.innerText = '\u26AB';
                     });
