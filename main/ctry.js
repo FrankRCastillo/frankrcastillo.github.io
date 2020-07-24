@@ -257,7 +257,7 @@ function NewGanttPage() {
 
                         var evntTags = hist.getElementsByClassName('evntTag');
                         
-                        var histEvnt = Array.from(evntTags).map(x => function () {
+                        var histEvnt = Array.from(evntTags).map(function (x) {
                             var yearTag = x.getElementsByClassName('yearTag');
                             var yearInt = parseInt(yearTag.innerText);
                             if (yearInt == yearidx) {
