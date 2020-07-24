@@ -208,8 +208,7 @@ button:hover
 }
 
 .tooltip .tooltiptext::after
-{ content          : ' '
-; position         : absolute
+{ position         : absolute
 ; top              : 50%
 ; left             : 100%
 ; margin-top       : -5px
