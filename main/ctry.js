@@ -196,19 +196,25 @@ function countryInfo(iso) {
 
 function NewGanttPage() {
     var tble = document.createElement('table');
-    var year = new Date().getFullYear()
+    var year = new Date().getFullYear();
+    var cont = '';
 
     for (var i = 0; i < window.ctryData.length; i++) {
         var tr = document.createElement('tr');
 
-        if (year[0] != window.ctryData[i][3]) {
-            year[0]  = window.ctryData[i][3];
-            for (var j = 0; j < year.length; j++) {
+        if (cont != window.ctryData[i][3]) {
+            cont  = window.ctryData[i][3];
+            for (var j = year; j >= 1000; j--) {
                 var th = document.createElement('th');
-                if (j == 0){
-                    th.style.textAlign = 'left';
+
+                if (j == year){
+                    var contTd = document.createElement('th');
+                    contTd.style.textAlign = 'left';
+                    contTd.textContent = cont;
+                    tr.appendChild(contTd);
                 }
-                th.textContent = year[j];
+
+                th.textContent = j;
                 tr.appendChild(th);
             }
         } else {
