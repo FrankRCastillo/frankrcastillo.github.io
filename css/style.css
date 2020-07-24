@@ -193,7 +193,7 @@ button:hover
 
 .GanttHeader > div
 { transform : translate(24px, 9px) rotate(315deg)
-; border-bottom : 2px dotted #fa500
+; border-bottom : 2px dotted #ffa500
 }
 
 .ctryEvent
