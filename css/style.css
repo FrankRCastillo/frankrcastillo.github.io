@@ -176,6 +176,38 @@ button:hover
 ; text-align  : left
 }
 
+.tooltip
+{ position : relative
+; display  : inline-block
+}
+
+.tooltip .tooltiptext
+{ visibility : hidden
+; width      : 200px
+; background-color : '#000000'
+; color            : '#ffa500'
+; text-align       : center
+; border-radius    : 5px
+; padding          : 5px 0
+; position         : absolute
+; z-index          : 1
+; top              : -5px
+; right            : 110%
+}
+
+.tooltip .tooltiptext::after
+{ content    : ' '
+; position   : absolute
+; top        : 50%
+; left       : 100%
+; margin-top : -5px
+; border     : 5px solid #000000
+}
+
+.tooltip: hover .tooltiptext
+{ visibility : visible
+}
+
 #mapselect
 { height   : 26px
 ; width    : 250px

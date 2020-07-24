@@ -240,18 +240,42 @@ function NewGanttPage() {
 
                 if (rgxyrhst){
                     td.style.textAlign = 'center';
-                    var ico = document.createElement('span');
+                    var ico = document.createElement('div');
                     ico.innerText = '\u26AB';
-                    ico.setAttribute('ctryidx', i)
+                    ico.setAttribute('class', 'tooltip');
+                    ico.setAttribute('ctryidx', i);
+                    ico.setAttribute('yearidx', j);
                     ico.addEventListener('mouseover', function() {
-                        var idx = parseInt(this.getAttribute('ctryidx'));
+                        var ctryidx = parseInt(this.getAttribute('ctryidx'));
+                        var yearidx = parseInt(this.getAttribute('yearidx'));
+
                         this.style.color = '#ffa500';
-                        console.log(window.ctryData[idx][5]);
+
+                        var hist = document.createElement('span');
+                        
+                        hist.innerHTML = window.ctryData[ctryidx][5];
+
+                        var evntTags = hist.getElementsByClassName('evntTag');
+                        
+                        var histEvnt = Array.from(evntTags).map(x => function () {
+                            var yearTag = x.getElementsByClassName('yearTag');
+                            var yearInt = parseInt(yearTag.innerText);
+                            if (yearInt == yearidx) {
+                                return yearTag.innerHTML;
+                            }
+                        });
+                        
+                        var span = document.createElement('span');
+                        span.innerHTML = histEvnt.join('');
+                        this.appendChild(span);
                     });
 
                     ico.addEventListener('mouseout', function() {
                         this.style.color = '#ffffff';
+                        this.innerHTML = '';
+                        this.innerText = '\u26AB';
                     });
+
                     td.appendChild(ico);
                 }
 
