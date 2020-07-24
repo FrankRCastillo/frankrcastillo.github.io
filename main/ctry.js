@@ -260,6 +260,8 @@ function NewGanttPage() {
                         var histEvnt = Array.from(evntTags).map(function (x) {
                             var yearTag = x.getElementsByClassName('yearTag');
                             var yearArr = Array.from(yearTag).map(x => parseInt(x.innerText));
+                            yearArr.sort((a,b) => b - a);
+
                             for (var yearEle in yearArr) {
                                 if (yearEle == yearidx) {
                                     return x;
