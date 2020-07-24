@@ -200,8 +200,8 @@ button:hover
 ; width            : 200px
 ; font-family      : courier
 ; font-size        : 11px
-; background-color : #ffa500
-; color            : #000000
+; background-color : #000000
+; color            : #ffa500
 ; text-align       : left
 ; border-radius    : 2px
 ; padding          : 5px 0
@@ -216,7 +216,7 @@ button:hover
 ; top              : 50%
 ; left             : 100%
 ; margin-top       : -5px
-; border           : 5px solid #000000
+; border           : 5px solid #ffa500
 ; font-family      : courier
 ; font-size        : 11px
 ; background-color : #ffa500
