@@ -179,12 +179,20 @@ button:hover
 ; border-spacing : 0px
 }
 
-#GantTable td
+#GanttTable td
 { height : 25px
 }
 
 #GanttTable tr:nth-child(even)
 { background-color : #0f0f0f
+}
+
+.ctryEvent
+{ color : #ffffff
+}
+
+.ctryEvent:hover
+{ color : #ffa500
 }
 
 .tooltip

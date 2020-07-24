@@ -244,16 +244,14 @@ function NewGanttPage() {
                     td.style.textAlign = 'center';
                     var ico = document.createElement('div');
                     ico.innerText = '\u26AB';
-                    ico.setAttribute('class', 'tooltip');
-                    ico.setAttribute('ctryidx', i);
-                    ico.setAttribute('yearidx', j);
+                    ico.setAttribute(     'id', 'ctryEvent');
+                    ico.setAttribute(  'class',   'tooltip');
+                    ico.setAttribute('ctryidx',           i);
+                    ico.setAttribute('yearidx',           j);
                     ico.addEventListener('mouseover', function() {
                         var ctryidx = parseInt(this.getAttribute('ctryidx'));
                         var yearidx = parseInt(this.getAttribute('yearidx'));
-
-                        this.style.color = '#ffa500';
-
-                        var hist = document.createElement('span');
+                        var hist    = document.createElement('span');
                         
                         hist.innerHTML = window.ctryData[ctryidx][5];
 
