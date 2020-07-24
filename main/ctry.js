@@ -207,7 +207,8 @@ function NewGanttPage() {
         if (cont != window.ctryData[i][3]) {
             cont  = window.ctryData[i][3];
             for (var j = year; j >= year - 20; j--) {
-                var th = document.createElement('th');
+                var th  = document.createElement('th');
+                var div = document.createElement('div');
 
                 if (j == year){
                     var contTd = document.createElement('th');
@@ -215,8 +216,10 @@ function NewGanttPage() {
                     contTd.textContent = cont;
                     tr.appendChild(contTd);
                 }
-
-                th.textContent = j;
+                
+                div.textContent = j;
+                div.setAttribute('class', 'GanttHeader');
+                th.appendChild(div);
                 tr.appendChild(th);
             }
         } else {

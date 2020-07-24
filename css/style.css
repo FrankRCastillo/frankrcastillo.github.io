@@ -187,6 +187,12 @@ button:hover
 { background-color : #0f0f0f
 }
 
+.GanttHeader
+{ transform : translate(25px, 51px)
+              rotate(315deg)
+; width     : 30px
+}
+
 .ctryEvent
 { color  : #ffffff
 ; cursor : pointer
