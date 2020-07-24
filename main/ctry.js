@@ -245,7 +245,12 @@ function NewGanttPage() {
                     ico.setAttribute('ctryidx', i)
                     ico.addEventListener('mouseover', function() {
                         var idx = parseInt(this.getAttribute('ctryidx'));
+                        this.style.color = '#ffa500';
                         console.log(window.ctryData[idx][5]);
+                    });
+
+                    ico.addEventListener('mouseout', function() {
+                        this.style.color = '#ffffff';
                     });
                     td.appendChild(ico);
                 }
