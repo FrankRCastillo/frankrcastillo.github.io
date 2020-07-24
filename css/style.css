@@ -180,7 +180,7 @@ button:hover
 }
 
 #GantTable td
-{ height : 20px
+{ height : 25px
 }
 
 #GanttTable tr:nth-child(even)
