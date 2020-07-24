@@ -25,10 +25,6 @@ body
 ; margin           : 10px 10px 10px 10px
 }
 
-table
-{ border-spacing : 0px
-}
-
 ::placeholder
 { color : #ffffff
 }
@@ -176,10 +172,11 @@ button:hover
 }
 
 #GanttTable
-{ font-family : courier
-; font-size   : 14px
-; text-align  : left
-; width       : 100%
+{ font-family    : courier
+; font-size      : 14px
+; text-align     : left
+; width          : 100%
+; border-spacing : 0px
 }
 
 #GantTable tr
