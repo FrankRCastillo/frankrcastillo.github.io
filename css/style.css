@@ -206,6 +206,7 @@ button:hover
 ; z-index          : 100001
 ; top              : -5px
 ; right            : 110%
+; border           : 1px solid #ffa500
 }
 
 .tooltip .tooltiptext::after
@@ -213,7 +214,6 @@ button:hover
 ; top              : 50%
 ; left             : 100%
 ; margin-top       : -5px
-; border           : 5px solid #ffa500
 ; font-family      : courier
 ; font-size        : 11px
 ; background-color : #ffa500
