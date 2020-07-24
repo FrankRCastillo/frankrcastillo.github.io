@@ -244,7 +244,7 @@ function NewGanttPage() {
                     ico.innerText = '\u26AB';
                     ico.setAttribute('ctryidx', i)
                     ico.addEventListener('mouseover', function() {
-                        var idx = parseInt(this.ctryidx);
+                        var idx = parseInt(this.getAttribute('ctryidx'));
                         console.log(window.ctryData[idx][5]);
                     var ico = document.createTextNode('\u26AB');
                     });
