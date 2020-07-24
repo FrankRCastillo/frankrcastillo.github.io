@@ -184,6 +184,7 @@ button:hover
 .tooltip .tooltiptext
 { visibility       : hidden
 ; width            : 200px
+; min-height       :
 ; font-family      : courier
 ; font-size        : 11px
 ; background-color : '#ffa500'
@@ -195,6 +196,7 @@ button:hover
 ; z-index          : 100001
 ; top              : -5px
 ; right            : 110%
+; overflow         : auto
 }
 
 .tooltip .tooltiptext::after
