@@ -246,7 +246,6 @@ function NewGanttPage() {
                     ico.addEventListener('mouseover', function() {
                         var idx = parseInt(this.getAttribute('ctryidx'));
                         console.log(window.ctryData[idx][5]);
-                    var ico = document.createTextNode('\u26AB');
                     });
                     td.appendChild(ico);
                 }
