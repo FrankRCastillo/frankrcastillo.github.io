@@ -196,8 +196,8 @@ button:hover
 ; width            : 200px
 ; font-family      : courier
 ; font-size        : 11px
-; background-color : '#ffa500'
-; color            : '#000000'
+; background-color : #ffa500
+; color            : #000000
 ; text-align       : left
 ; border-radius    : 5px
 ; padding          : 5px 0
@@ -208,15 +208,16 @@ button:hover
 }
 
 .tooltip .tooltiptext::after
-{ position         : absolute
+{ content          : ' '
+; position         : absolute
 ; top              : 50%
 ; left             : 100%
 ; margin-top       : -5px
 ; border           : 5px solid #000000
 ; font-family      : courier
 ; font-size        : 11px
-; background-color : '#ffa500'
-; color            : '#000000'
+; background-color : #ffa500
+; color            : #000000
 }
 
 .tooltip:hover .tooltiptext
