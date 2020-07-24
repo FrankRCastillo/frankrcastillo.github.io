@@ -176,6 +176,10 @@ button:hover
 ; text-align  : left
 }
 
+#GantTable tr
+{ height : 14px
+}
+
 #GanttTable tr:nth-child(even)
 { background-color : #0f0f0f
 }
