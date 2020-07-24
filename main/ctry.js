@@ -196,7 +196,7 @@ function countryInfo(iso) {
 
 function NewGanttPage() {
     var tble = document.createElement('table');
-    var year = [ '', 2020, 2019 ]
+    var year = new Date().getFullYear()
 
     for (var i = 0; i < window.ctryData.length; i++) {
         var tr = document.createElement('tr');
@@ -212,24 +212,26 @@ function NewGanttPage() {
                 tr.appendChild(th);
             }
         } else {
-            for (var j = 0; j < year.length; j++) {
+            for (var j = year; j >= 1000; j--) {
                 var td = document.createElement('td');
+                var rgxmatch = window.ctryData[i][5].match(/([1](?<=1)[0-9]|20)[0-9]{2}/);
+                var rgxyrhst = rgxmatch.includes(j);
 
-                if (j == 0) {
-                    td.style.textIndent = '30px';
-                    td.textContent = window.ctryData[i][4];
-                } else {
-                    var rgxmatch = window.ctryData[i][5].match(/([1](?<=1)[0-9]|20)[0-9]{2}/);
-                    var rgxyrhst = rgxmatch.includes(year[j]);
-                    if (rgxyrhst){
-                        td.style.textAlign = 'center';
-                        var ico = document.createTextNode('\u26AB');
-                        ico.setAttribute('CtryIdx', i)
-                        ico.addEventListener('mouseover', function() {
-                            console.log(window.ctryData[this.CtryIdx][5]);
-                        });
-                        td.appendChild(ico);
-                    }
+                if (j == year) {
+                    var ctryTd = document.createElement('td');
+                    ctryTd.style.textIndent = '30px';
+                    ctryTd.textContent = window.ctryData[i][4];
+                    tr.appendChild(ctryTd);
+                }
+
+                if (rgxyrhst){
+                    td.style.textAlign = 'center';
+                    var ico = document.createTextNode('\u26AB');
+                    ico.setAttribute('CtryIdx', i)
+                    ico.addEventListener('mouseover', function() {
+                        console.log(window.ctryData[this.CtryIdx][5]);
+                    });
+                    td.appendChild(ico);
                 }
 
                 tr.appendChild(td);
