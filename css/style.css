@@ -181,6 +181,7 @@ button:hover
 
 #GanttTable td
 { height : 25px
+; border : 1px dotted #ffa500
 }
 
 #GanttTable tr:nth-child(even)
@@ -188,9 +189,8 @@ button:hover
 }
 
 .GanttHeader
-{ transform : translate(25px, 51px)
-              rotate(315deg)
-; width     : 30px
+{ transform : rotate(315deg)
+; height    : 70px
 }
 
 .ctryEvent
