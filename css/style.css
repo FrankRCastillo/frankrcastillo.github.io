@@ -176,6 +176,10 @@ button:hover
 ; text-align  : left
 }
 
+#GanttTable:nth-child(even)
+{ background-color : #0f0f0f
+}
+
 .tooltip
 { position : relative
 ; display  : inline-block
