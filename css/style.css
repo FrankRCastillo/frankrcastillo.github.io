@@ -195,7 +195,6 @@ button:hover
 ; z-index          : 100001
 ; top              : -5px
 ; right            : 110%
-; overflow         : auto
 }
 
 .tooltip .tooltiptext::after
