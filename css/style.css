@@ -175,9 +175,7 @@ button:hover
 { font-family    : courier
 ; font-size      : 14px
 ; text-align     : left
-; width          : 100%
 ; border-spacing : 0px
-; white-space : nowrap
 }
 
 #GanttTable td
@@ -190,12 +188,12 @@ button:hover
 }
 
 .GanttHeader
-{ border      : 1px dotted #ffa500
+{ border-bottom : 1px dotted #ffa500
 }
 
 .GanttHeader > div
-{ transform : rotate(315deg)
-; height    : 70px
+{ transform : translate(24px, 9px) rotate(315deg)
+; border-bottom : 2px dotted #fa500
 }
 
 .ctryEvent
