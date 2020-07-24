@@ -261,7 +261,7 @@ function NewGanttPage() {
                             var yearTag = x.getElementsByClassName('yearTag');
                             var yearInt = parseInt(yearTag.innerText);
                             if (yearInt == yearidx) {
-                                return yearTag.innerHTML;
+                                return x;
                             }
                         });
                         
