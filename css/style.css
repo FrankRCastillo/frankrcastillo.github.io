@@ -188,7 +188,8 @@ button:hover
 }
 
 .ctryEvent
-{ color : #ffffff
+{ color  : #ffffff
+; cursor : pointer
 }
 
 .ctryEvent:hover
