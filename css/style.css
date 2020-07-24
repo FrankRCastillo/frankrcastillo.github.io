@@ -203,7 +203,7 @@ button:hover
 ; background-color : #ffa500
 ; color            : #000000
 ; text-align       : left
-; border-radius    : 5px
+; border-radius    : 2px
 ; padding          : 5px 0
 ; position         : absolute
 ; z-index          : 100001
@@ -212,8 +212,7 @@ button:hover
 }
 
 .tooltip .tooltiptext::after
-{ content          : ' '
-; position         : absolute
+{ position         : absolute
 ; top              : 50%
 ; left             : 100%
 ; margin-top       : -5px
