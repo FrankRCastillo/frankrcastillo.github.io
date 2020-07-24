@@ -174,10 +174,11 @@ button:hover
 { font-family : courier
 ; font-size   : 14px
 ; text-align  : left
+; width       : 100%
 }
 
 #GantTable tr
-{ height : 14px
+{ height : 16px
 }
 
 #GanttTable tr:nth-child(even)
