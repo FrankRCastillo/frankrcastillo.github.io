@@ -276,11 +276,6 @@ function NewGanttPage() {
                         this.appendChild(span);
                     });
 
-                    ico.addEventListener('mouseout', function() {
-                        this.innerHTML = '';
-                        this.innerText = '\u26AB';
-                    });
-
                     td.appendChild(ico);
                 }
 
