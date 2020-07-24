@@ -225,7 +225,7 @@ function NewGanttPage() {
                 histobj.innerHTML = window.ctryData[i][5];
                 
                 var histyrs = histobj.getElementsByClassName('yearTag');
-                var histarr = Array.from(histobj).map(x => parseInt(x.innerText));
+                var histarr = Array.from(histyrs).map(x => parseInt(x.innerText));
                 
                 histarr.sort((a,b) => b - a);
 
