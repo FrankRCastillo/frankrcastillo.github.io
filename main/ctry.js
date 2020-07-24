@@ -199,6 +199,8 @@ function NewGanttPage() {
     var year = new Date().getFullYear();
     var cont = '';
 
+    tble.setAttribute('id', 'GanttTable');
+
     for (var i = 0; i < window.ctryData.length; i++) {
         var tr = document.createElement('tr');
 
