@@ -261,7 +261,7 @@ function NewGanttPage() {
                             var yearTag = x.getElementsByClassName('yearTag');
                             var yearArr = Array.from(yearTag).map(x => parseInt(x.innerText));
                             for (var yearEle in yearArr) {
-                                if (yearInt == yearidx) {
+                                if (yearEle == yearidx) {
                                     return x;
                                 }
                             }
