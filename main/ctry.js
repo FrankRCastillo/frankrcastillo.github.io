@@ -242,9 +242,9 @@ function NewGanttPage() {
                     td.style.textAlign = 'center';
                     var ico = document.createElement('span');
                     ico.innerText = '\u26AB';
-                    ico.setAttribute('CtryIdx', i)
+                    ico.setAttribute('ctryidx', i)
                     ico.addEventListener('mouseover', function() {
-                        console.log(window.ctryData[this.CtryIdx][5]);
+                        console.log(window.ctryData[this.ctryidx][5]);
                     });
                     td.appendChild(ico);
                 }
