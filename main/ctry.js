@@ -265,7 +265,7 @@ function NewGanttPage() {
 
                             for (var k = 0; k < yearArr.length; k++) {
                                 if (yearArr[k] == yearidx) {
-                                    return x;
+                                    return x.innerHTML;
                                 }
                             }
                         });
