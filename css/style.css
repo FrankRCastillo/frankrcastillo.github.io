@@ -177,6 +177,7 @@ button:hover
 ; text-align     : left
 ; width          : 100%
 ; border-spacing : 0px
+; white-space : nowrap
 }
 
 #GanttTable td
@@ -189,7 +190,7 @@ button:hover
 }
 
 .GanttHeader
-{ border : 1px dotted #ffa500
+{ border      : 1px dotted #ffa500
 }
 
 .GanttHeader > div
