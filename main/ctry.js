@@ -218,6 +218,18 @@ function NewGanttPage() {
                 if (j == 0) {
                     td.style.textIndent = '30px';
                     td.textContent = window.ctryData[i][4];
+                } else {
+                    var rgxmatch = window.ctryData[i][5].match(/([1](?<=1)[0-9]|20)[0-9]{2}/);
+                    var rgxyrhst = rgxmatch.includes(year[j]);
+                    if (rgxyrhst){
+                        td.style.textAlign = 'center';
+                        var ico = document.createTextNode('\u26AB');
+                        ico.setAttribute('CtryIdx', i)
+                        ico.addEventListener('mouseover', function() {
+                            console.log(window.ctryData[this.CtryIdx][5]);
+                        });
+                        td.appendChild(ico);
+                    }
                 }
 
                 tr.appendChild(td);
