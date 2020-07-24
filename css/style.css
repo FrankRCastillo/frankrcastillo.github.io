@@ -189,6 +189,10 @@ button:hover
 }
 
 .GanttHeader
+{ border : 1px dotted #ffa500
+}
+
+.GanttHeader > div
 { transform : rotate(315deg)
 ; height    : 70px
 }

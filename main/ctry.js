@@ -218,7 +218,7 @@ function NewGanttPage() {
                 }
                 
                 div.textContent = j;
-                div.setAttribute('class', 'GanttHeader');
+                th.setAttribute('class', 'GanttHeader');
                 th.appendChild(div);
                 tr.appendChild(th);
             }
