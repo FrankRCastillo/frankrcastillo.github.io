@@ -104,7 +104,7 @@ button:hover
 ; margin     : 0px 0px 0px 0px
 ; padding    : 0px 0px 0px 0px
 ; width      : 250px
-; height     : calc(100% - 53px)
+; height     : calc(100% - 26px)
 ; float      : left
 ; font-size  : 12px
 ; overflow   : auto
@@ -116,7 +116,7 @@ button:hover
 { border           : 0px
 ; margin           : 0px 0px 0px 0px
 ; padding          : 0px 0px 0px 0px
-; height           : calc(100% - 53px)
+; height           : calc(100% - 26px)
 ; width            : calc(100% - 250px)
 ; position         : absolute
 ; float            : left
