@@ -204,7 +204,7 @@ function NewGanttPage() {
 
         if (cont != window.ctryData[i][3]) {
             cont  = window.ctryData[i][3];
-            for (var j = year; j >= 1000; j--) {
+            for (var j = year; j >= year - 20; j--) {
                 var th = document.createElement('th');
 
                 if (j == year){
@@ -218,7 +218,7 @@ function NewGanttPage() {
                 tr.appendChild(th);
             }
         } else {
-            for (var j = year; j >= 1000; j--) {
+            for (var j = year; j >= year - 20; j--) {
                 var td = document.createElement('td');
                 var histobj = document.createElement('span');
 
