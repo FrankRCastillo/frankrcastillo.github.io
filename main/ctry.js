@@ -240,7 +240,8 @@ function NewGanttPage() {
 
                 if (rgxyrhst){
                     td.style.textAlign = 'center';
-                    var ico = document.createTextNode('\u26AB');
+                    var ico = document.createElement('span');
+                    ico.innerText = '\u26AB';
                     ico.setAttribute('CtryIdx', i)
                     ico.addEventListener('mouseover', function() {
                         console.log(window.ctryData[this.CtryIdx][5]);
