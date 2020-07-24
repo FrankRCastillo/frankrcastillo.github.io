@@ -180,7 +180,7 @@ function NewCtryPage() {
 }
 
 function countryInfo(iso) {
-    var idx  = (iso.length == 2 ? 2 : 1);                                               // if iso length is two, set index to retrieve iso2 property. otherwise, for iso3
+    var idx  = (iso.length == 2 ? 0 : 1);                                               // if iso length is two, set index to retrieve iso2 property. otherwise, for iso3
     var data = window.ctryData[window.ctryData.map(elem => elem[idx]).indexOf(iso)]     // get iso property from window.ctryData global variable
     var name = data[4];                                                                 // get country name
     var isos = '(' + data[0] + '/' + data[1] + ')';                                     // concatenate iso2 and iso3 values
