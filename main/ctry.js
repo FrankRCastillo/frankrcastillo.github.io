@@ -263,8 +263,8 @@ function NewGanttPage() {
 
                             yearArr.sort((a,b) => b - a);
 
-                            for (var yearEle in yearArr) {
-                                if (yearEle == yearidx) {
+                            for (var k = 0; k < yearArr.length; k++) {
+                                if (yearArr[k] == yearidx) {
                                     return x;
                                 }
                             }
