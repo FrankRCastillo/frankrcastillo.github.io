@@ -124,6 +124,12 @@ button:hover
 ; left             : 250px
 }
 
+.tabbody
+{ display  : block
+; position : absolute
+; top      : 30px
+}
+
 .tabencl
 { height     : 100%
 ; width      : 100%
@@ -132,10 +138,13 @@ button:hover
 }
 
 .tabfrme
-{ border     : 0px
-; box-sizing : border-box
-; height     : 25px
-; width      : 100%
+{ border           : 0px
+; box-sizing       : border-box
+; height           : 25px
+; width            : 100%
+; position         : fixed
+; z-index          : 100001
+; background-color : #000000
 }
 
 .tabbtns
