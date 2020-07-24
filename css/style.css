@@ -181,17 +181,13 @@ button:hover
 ; display  : inline-block
 }
 
-.tooltiptext
-{ border : 1px solid #ffa500
-}
-
 .tooltip .tooltiptext
 { visibility       : hidden
 ; width            : 200px
 ; font-family      : courier
 ; font-size        : 11px
-; background-color : '#000000'
-; color            : '#ffa500'
+; background-color : '#ffa500'
+; color            : '#000000'
 ; text-align       : center
 ; border-radius    : 5px
 ; padding          : 5px 0
