@@ -147,9 +147,11 @@ button:hover
 }
 
 .bdyfrme
-{ border : 0px
-; height : calc(100% - 30px)
-; width  : 100%
+{ border   : 0px
+; height   : calc(100% - 26px)
+; width    : 100%
+; position : absolute
+; top      : 25px
 }
 
 .yearTag, .ctryTag
