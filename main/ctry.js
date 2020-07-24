@@ -220,8 +220,15 @@ function NewGanttPage() {
         } else {
             for (var j = year; j >= 1000; j--) {
                 var td = document.createElement('td');
-                var rgxmatch = window.ctryData[i][5].match(/([1](?<=1)[0-9]|20)[0-9]{2}/);
-                var rgxyrhst = rgxmatch.includes(j);
+                var histobj = document.createElement('span');
+
+                histobj.innerHTML = window.ctryData[i][5];
+
+                var histarr = Array.from(histobj).map(x => parseInt(x.innerText));
+                
+                histarr.sort((a,b) => b - a);
+
+                var rgxyrhst = histarr.includes(j);
 
                 if (j == year) {
                     var ctryTd = document.createElement('td');
