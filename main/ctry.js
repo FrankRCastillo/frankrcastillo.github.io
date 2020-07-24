@@ -271,6 +271,7 @@ function NewGanttPage() {
                         });
                         
                         var span = document.createElement('span');
+                        span.setAttribute('class', 'tooltiptext');
                         span.innerHTML = histEvnt.join('');
                         this.appendChild(span);
                     });
