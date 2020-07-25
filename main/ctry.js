@@ -292,12 +292,12 @@ function NewGanttPage(year, scale) {
                 histobj.innerHTML = window.ctryData[i][5];
 
                 var histyrs = histobj.getElementsByClassName('yearTag');
-                var histtmp = Array.from(histyrs).map(x => parseInt(x.innerText));
+                var histtmp = parseInt(histyrs.innerText);
                 
                 histtmp.sort((a,b) => b - a);
 
                 var histarr = Array.from(new Set(histtmp)); 
-                var rgxyrhst = histarr.includes(j);
+                var rgxyrhst = true;
 
                 if (year == j) {
                     var ctryTd = document.createElement('td');
