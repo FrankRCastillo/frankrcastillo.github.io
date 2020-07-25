@@ -298,7 +298,7 @@ function NewGanttPage(year, scale) {
 
                 var rgxyrhst = histarr.includes(j);
 
-                if (year >= j && j >= year - (20 * scale)) {
+                if (year == j) {
                     var ctryTd = document.createElement('td');
                     ctryTd.style.textIndent = '30px';
                     ctryTd.textContent = window.ctryData[i][4];
