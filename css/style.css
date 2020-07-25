@@ -94,7 +94,9 @@ input
 }
 
 #GanttEndYear
-{ border : 1px solid #ffa500 
+{ border   : 1px solid #ffa500
+; position : relative
+; top      : 3px
 }
 
 #outtext
