@@ -284,7 +284,7 @@ function NewGanttPage(year, scale) {
                 tr.appendChild(th);
             }
         } else {
-            for (var j = year; j >= year - (20 - scale); j -= scale) {
+            for (var j = year; j >= year - (20 * scale); j -= scale) {
                 var td = document.createElement('td');
                 var histobj = document.createElement('span');
 
