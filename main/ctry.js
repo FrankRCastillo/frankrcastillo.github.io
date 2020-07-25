@@ -197,12 +197,13 @@ function countryInfo(iso) {
          + data[5];
 }
 
-function NewGanttToolbar(year) {
+function NewGanttToolbar() {
     var dte = new Date().getFullYear();             // present year
     var bar = document.createElement('div');        // toolbar div
     var yin = document.createElement('input');      // ending year input
     var sel = document.createElement('select');     // time interval selector
-    var lbl = ['<', '>'];                           // button labels
+    var lft = document.createElement('button');     // move interval later
+    var rgt = document.createElement('button');     // move interval earlier
     var per = [ [   '1 year',  1 ]
               , [  '5 years',  5 ]
               , [ '10 years', 10 ]
@@ -223,34 +224,44 @@ function NewGanttToolbar(year) {
 
         sel.appendChild(opt);
     }
-    
-    yin.setAttribute('id', 'GanttEndYear');
-    sel.setAttribute('id', 'GanttInterval');
 
+    yin.setAttribute('readonly', true);
+    yin.setAttribute('id', 'GanttEndYear');
+
+    sel.setAttribute('id', 'GanttInterval');
+    sel.addEventListener('change', function() {
+        var eyr = document.getElementById('GanttEndYear');
+        var sel = document.getElementById('GanttInterval');
+        var ysl = parseInt(sel.options[sel.selectedIndex].value);
+        var gnt = document.getElementById('GanttChart');
+        gnt.innerHTML = '';
+        gnt.appendChild(NewGanttToolBar());
+        gnt.appendChild(NewGanttPage(parseInt(eyr.value), ysl));
+    });
+
+    lft.textContent = '<';
+    lft.addEventListener('click', GanttButton('<'));
+
+    rgt.textContent = '>';
+    rgt.addEventListener('click', GanttButton('>'));
+
+    bar.appendChild(lft);
+    bar.appendChild(rgt);
     bar.appendChild(yin);
     bar.appendChild(sel);
 
-    for (var i = 0; i < lbl.length; i++) {
-        var btn = document.createElement('button');
-        btn.textContent = lbl[i];
-
-        btn.addEventListener('click', function() {
-            var yin = document.getElementById('GanttEndYear');
-            var yvl = yin.value;
-            var sel = document.getElementById('GanttInterval');
-            var ysl = sel.options[sel.selectedIndex].value;
-            var dir = this.bind(lbl[i]);
-            var gnt = document.getElementById('GanttChart');
-            //gnt.innerHTML = '';
-            //gnt.appendChild(NewGanttPage());
-            //
-            console.log('test');
-        });
-
-        bar.appendChild(btn);
-    }
-
     return bar;
+}
+
+function GanttButton(dir) {
+    var eyr = document.getElementById('GanttEndYear');
+    var sel = document.getElementById('GanttInterval');
+    var ysl = parseInt(sel.options[sel.selectedIndex].value);
+    var gnt = document.getElementById('GanttChart');
+//    gnt.innerHTML = '';
+//    gnt.appendChild(NewGanttToolbar());
+//    gnt.appendChild(NewGanttPage());
+    console.log(dir);
 }
 
 function NewGanttPage(year, scale) {
