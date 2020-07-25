@@ -240,6 +240,7 @@ function NewGanttPage() {
                     var ctryTd = document.createElement('td');
                     ctryTd.style.textIndent = '30px';
                     ctryTd.textContent = window.ctryData[i][4];
+                    ctryTd.setAttribute('class', 'ctryLabel');
                     tr.appendChild(ctryTd);
                 }
 

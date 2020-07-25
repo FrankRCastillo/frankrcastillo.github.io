@@ -196,6 +196,10 @@ button:hover
 ; border-bottom : 2px dotted #ffa500
 }
 
+.ctryLabel
+{ white-space : nowrap
+}
+
 .ctryEvent
 { color  : #ffffff
 ; cursor : pointer
