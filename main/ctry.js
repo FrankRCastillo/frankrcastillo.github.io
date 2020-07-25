@@ -285,20 +285,7 @@ function NewGanttPage(year, scale) {
                 tr.appendChild(th);
             }
         } else {
-            var td = document.createElement('td');
-            var histobj = document.createElement('span');
-
-            histobj.innerHTML = window.ctryData[i][5];
-
-            var histyrs = histobj.getElementsByClassName('yearTag');
-            var histtmp = Array.from(histyrs).map(x => parseInt(x.innerText));
-            
-            histtmp.sort((a,b) => b - a);
-
-            var histarr = Array.from(new Set(histtmp)); 
-
             for (var j = year; j >= year - (20 * scale); j -= scale) {
-                var rgxyrhst = histarr.includes(j);
 
                 if (year == j) {
                     var ctryTd = document.createElement('td');
@@ -309,6 +296,19 @@ function NewGanttPage(year, scale) {
                 }
 
                 if (rgxyrhst){
+                    var td = document.createElement('td');
+                    var histobj = document.createElement('span');
+
+                    histobj.innerHTML = window.ctryData[i][5];
+
+                    var histyrs = histobj.getElementsByClassName('yearTag');
+                    var histtmp = Array.from(histyrs).map(x => parseInt(x.innerText));
+                    
+                    histtmp.sort((a,b) => b - a);
+
+                    var histarr = Array.from(new Set(histtmp)); 
+                    var rgxyrhst = histarr.includes(j);
+
                     td.style.textAlign = 'center';
 
                     var yearRng = Array(scale).fill(j).map((x, i) => x - i).join(',');
