@@ -285,17 +285,19 @@ function NewGanttPage(year, scale) {
                 tr.appendChild(th);
             }
         } else {
+            var td = document.createElement('td');
+            var histobj = document.createElement('span');
+
+            histobj.innerHTML = window.ctryData[i][5];
+
+            var histyrs = histobj.getElementsByClassName('yearTag');
+            var histtmp = Array.from(histyrs).map(x => parseInt(x.innerText));
+            
+            histtmp.sort((a,b) => b - a);
+
+            var histarr = Array.from(new Set(histtmp)); 
+
             for (var j = year; j >= year - (20 * scale); j -= scale) {
-                var td = document.createElement('td');
-                var histobj = document.createElement('span');
-
-                histobj.innerHTML = window.ctryData[i][5];
-                
-                var histyrs = histobj.getElementsByClassName('yearTag');
-                var histarr = Array.from(histyrs).map(x => parseInt(x.innerText));
-                
-                histarr.sort((a,b) => b - a);
-
                 var rgxyrhst = histarr.includes(j);
 
                 if (year == j) {
