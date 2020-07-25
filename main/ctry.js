@@ -245,6 +245,7 @@ function NewGanttToolbar() {
     rgt.textContent = '>';
 //    rgt.addEventListener('click', GanttButton('>'));
 
+    bar.setAttribute('id', 'GanttToolbar');
     bar.appendChild(lft);
     bar.appendChild(rgt);
     bar.appendChild(yin);
