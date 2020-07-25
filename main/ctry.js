@@ -310,19 +310,20 @@ function NewGanttPage(year, scale) {
                 if (rgxyrhst){
                     td.style.textAlign = 'center';
 
-                    var yearRng = Array(scale).fill(j).map((x, i) => x - i).join(',');
                     var ico = document.createElement('div');
 
                     ico.innerText = '\u26AB';
                     ico.setAttribute(     'id', 'ctryEvent');
                     ico.setAttribute(  'class',   'tooltip');
                     ico.setAttribute('ctryidx',           i);
-                    ico.setAttribute('yearidx',     yearRng);
+                    ico.setAttribute('yearidx',           j);
+                    ico.setAttribute(  'scale',       scale);
                     ico.addEventListener('mouseover', function() {
                         var endYear = document.getElementById('GanttEndYear');
                         var intYear = document.getElementById('GanttInterval');
                         var ctryidx = parseInt(this.getAttribute('ctryidx'));
-                        var yearidx = this.getAttribute('yearidx').split(',').map(x => parseInt(x));
+                        var yearidx = parseInt(this.getAttribute('yearidx'));
+                        var scale   = parseInt(this.getAttribute('scale'));
                         var hist    = document.createElement('span');
                         
                         hist.innerHTML = window.ctryData[ctryidx][5];
@@ -336,7 +337,7 @@ function NewGanttPage(year, scale) {
                             yearArr.sort((a,b) => b - a);
 
                             for (var k = 0; k < yearArr.length; k++) {
-                                if (yearidx.includes(yearArr[k])) {
+                                if (yearArr[k] >= yearidx && yearidx >= yearArr[k] - (20 * scale)) {
                                     return x.innerHTML;
                                 }
                             }
