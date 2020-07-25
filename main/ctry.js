@@ -253,17 +253,6 @@ function NewGanttToolbar() {
     return bar;
 }
 
-function GanttButton(dir) {
-    var eyr = document.getElementById('GanttEndYear');
-    var sel = document.getElementById('GanttInterval');
-    var ysl = parseInt(sel.options[sel.selectedIndex].value);
-    var gnt = document.getElementById('GanttChart');
-//    gnt.innerHTML = '';
-//    gnt.appendChild(NewGanttToolbar());
-//    gnt.appendChild(NewGanttPage());
-    console.log(dir);
-}
-
 function NewGanttPage(year, scale) {
     var tble = document.createElement('table');
     var cont = '';
