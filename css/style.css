@@ -197,7 +197,7 @@ button:hover
 }
 
 .GanttHeader > div
-{ transform     : translate(24px, 9px) rotate(315deg)
+{ transform     : translate(24px, -9px) rotate(315deg)
 ; border-bottom : 2px dotted #ffa500
 }
 
