@@ -100,6 +100,13 @@ input
 ; width    : 60px
 }
 
+#GanttToolbar
+{ position         : fixed
+; background-color : #000000
+; width            : 100%
+; top              : 65px
+}
+
 #outtext
 { border     : 0px
 ; overflow   : auto
