@@ -239,10 +239,10 @@ function NewGanttToolbar() {
         gnt.appendChild(NewGanttPage(parseInt(eyr.value), ysl));
     });
 
-    lft.textContent = '<';
+    lft.textContent = 'Next';
 //    lft.addEventListener('click', GanttButton('<'));
 
-    rgt.textContent = '>';
+    rgt.textContent = 'Prev';
 //    rgt.addEventListener('click', GanttButton('>'));
 
     bar.setAttribute('id', 'GanttToolbar');
