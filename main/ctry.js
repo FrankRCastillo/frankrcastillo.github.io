@@ -316,12 +316,12 @@ function NewGanttPage(year, scale) {
                     ico.setAttribute(     'id', 'ctryEvent');
                     ico.setAttribute(  'class',   'tooltip');
                     ico.setAttribute('ctryidx',           i);
-                    ico.setAttribute('yearidx',           j);
+                    ico.setAttribute('yearidx',     yearRng);
                     ico.addEventListener('mouseover', function() {
                         var endYear = document.getElementById('GanttEndYear');
                         var intYear = document.getElementById('GanttInterval');
                         var ctryidx = parseInt(this.getAttribute('ctryidx'));
-                        var yearidx = parseInt(this.getAttribute('yearidx'));
+                        var yearidx = this.getAttribute('yearidx').split(',').map(x => parseInt(x));
                         var hist    = document.createElement('span');
                         
                         hist.innerHTML = window.ctryData[ctryidx][5];
@@ -335,7 +335,7 @@ function NewGanttPage(year, scale) {
                             yearArr.sort((a,b) => b - a);
 
                             for (var k = 0; k < yearArr.length; k++) {
-                                if (yearArr[k] == yearidx) {
+                                if (yearidx.includes(yearArr[k])) {
                                     return x.innerHTML;
                                 }
                             }
