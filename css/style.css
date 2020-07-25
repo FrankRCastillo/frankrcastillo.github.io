@@ -187,10 +187,13 @@ button:hover
 { background-color : #0f0f0f
 }
 
+#GanttTable th
+{ vertical-align : bottom
+}
+
 .GanttHeader
 { border-bottom  : 1px dotted #ffa500
 ; height         : 50px
-; vertical-align : bottom
 }
 
 .GanttHeader > div
