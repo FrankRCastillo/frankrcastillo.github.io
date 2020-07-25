@@ -321,7 +321,7 @@ function NewGanttPage(year, scale) {
                         var endYear = document.getElementById('GanttEndYear');
                         var intYear = document.getElementById('GanttInterval');
                         var ctryidx = parseInt(this.getAttribute('ctryidx'));
-                        var yearidx = this.getAttribute('yearidx').split(',');
+                        var yearidx = this.getAttribute('yearidx').split(',')[0];
                         var hist    = document.createElement('span');
                         
                         hist.innerHTML = window.ctryData[ctryidx][5];
