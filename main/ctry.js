@@ -240,10 +240,10 @@ function NewGanttToolbar() {
     });
 
     lft.textContent = '<';
-    lft.addEventListener('click', GanttButton('<'));
+//    lft.addEventListener('click', GanttButton('<'));
 
     rgt.textContent = '>';
-    rgt.addEventListener('click', GanttButton('>'));
+//    rgt.addEventListener('click', GanttButton('>'));
 
     bar.appendChild(lft);
     bar.appendChild(rgt);
