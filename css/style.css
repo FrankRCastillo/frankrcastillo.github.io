@@ -81,6 +81,18 @@ button:hover
 ; color      : #ffa500
 }
 
+input
+{ border      : 0px
+; margin      : 0px 0px 0px 0px
+; padding     : 0px 0px 0px 0px
+; outline     : none
+; font-family : 'MS PGothic'
+; font-size   : 20px
+; height      : 25px
+; color       : #ffa500
+; background  : #000000
+}
+
 #outtext
 { border     : 0px
 ; overflow   : auto
