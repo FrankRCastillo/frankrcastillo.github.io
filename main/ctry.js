@@ -292,7 +292,7 @@ function NewGanttPage(year, scale) {
                 histobj.innerHTML = window.ctryData[i][5];
 
                 var histyrs = histobj.getElementsByClassName('yearTag');
-                var histtmp = parseInt(histyrs.innerText);
+                var histtmp = Array.from(histyrs.innerText).map(x => parseInt(x.innerText));
                 
                 histtmp.sort((a,b) => b - a);
 
