@@ -197,7 +197,7 @@ function countryInfo(iso) {
          + data[5];
 }
 
-function NewGanttToolbar() {
+function NewGanttToolbar(year) {
     var dte = new Date().getFullYear();             // present year
     var bar = document.createElement('div');        // toolbar div
     var yin = document.createElement('input');      // ending year input
