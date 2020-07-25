@@ -189,6 +189,7 @@ button:hover
 
 .GanttHeader
 { border-bottom : 1px dotted #ffa500
+; height        : 50px
 }
 
 .GanttHeader > div
