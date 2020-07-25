@@ -235,7 +235,7 @@ function NewGanttToolbar() {
         var ysl = parseInt(sel.options[sel.selectedIndex].value);
         var gnt = document.getElementById('GanttChart');
         gnt.innerHTML = '';
-        gnt.appendChild(NewGanttToolBar());
+        gnt.appendChild(NewGanttToolbar());
         gnt.appendChild(NewGanttPage(parseInt(eyr.value), ysl));
     });
 
