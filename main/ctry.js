@@ -225,9 +225,9 @@ function NewGanttToolbar() {
     }
     
     yin.setAttribute('id', 'GanttEndYear');
-    bar.appendChild(yin);
-
     sel.setAttribute('id', 'GanttInterval');
+
+    bar.appendChild(yin);
     bar.appendChild(sel);
 
     for (var i = 0; i < lbl.length; i++) {
