@@ -232,7 +232,7 @@ function NewGanttToolbar() {
 
     for (var i = 0; i < lbl.length; i++) {
         var btn = document.createElement('button');
-        btn.textContent(lbl[i]);
+        btn.textContent = lbl[i];
 
         btn.addEventListener('click', function() {
             var yin = document.getElementById('GanttEndYear');
