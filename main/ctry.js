@@ -309,7 +309,7 @@ function NewGanttPage(year, scale) {
                 if (rgxyrhst){
                     td.style.textAlign = 'center';
 
-                    var yearRng = Array(scale).fill(j).map((x, i) => i + 1).join(',');
+                    var yearRng = Array(scale).fill(j).map((x, i) => x - i).join(',');
                     var ico = document.createElement('div');
 
                     ico.innerText = '\u26AB';
