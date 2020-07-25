@@ -2,6 +2,8 @@
 window.ctryData = [];
 
 export async function ctry() {
+    var year = new Date().getFullYear();
+
     window.ctryData = await GetData();
     
     window.ctryData.sort((a, b) => a[3].localeCompare(b[3]));
@@ -14,7 +16,8 @@ export async function ctry() {
 
     document.getElementById(   'outtext').appendChild(NewTabLayout(l));
     document.getElementById(  'WorldMap').appendChild(NewCtryPage());
-    document.getElementById('GanttChart').appendChild(NewGanttPage());
+    document.getElementById('GanttChart').appendChild(NewGanttToolbar());
+    document.getElementById('GanttChart').appendChild(NewGanttPage(year, 1));
     CreateMap();
     CmdReady();                                                                         // update page status as ready
 }
@@ -194,9 +197,64 @@ function countryInfo(iso) {
          + data[5];
 }
 
-function NewGanttPage() {
+function NewGanttToolbar() {
+    var dte = new Date().getFullYear();             // present year
+    var bar = document.createElement('div');        // toolbar div
+    var yin = document.createElement('input');      // ending year input
+    var sel = document.createElement('select');     // time interval selector
+    var lbl = ['<', '>'];                           // button labels
+    var per = [ [   '1 year',  1 ]
+              , [  '5 years',  5 ]
+              , [ '10 years', 10 ]
+              , [ '25 years', 25 ]
+              ]   
+
+    for (var i = -1; i < per.length; i++) {
+        var opt = document.createElement('option');
+
+        if (i == -1) { 
+            opt.setAttribute('disabled', true);
+            opt.setAttribute('selected', true);
+            opt.textContent = 'Select Interval...';
+        } else {
+            opt.setAttribute('value', per[i][1]);
+            opt.textContent = per[i][0];
+        }
+
+        sel.appendChild(opt);
+    }
+    
+    yin.setAttribute('id', 'GanttEndYear');
+    bar.appendChild(yin);
+
+    sel.setAttribute('id', 'GanttInterval');
+    bar.appendChild(sel);
+
+    for (var i = 0; i < lbl.length; i++) {
+        var btn = document.createElement('button');
+        btn.textContent(lbl[i]);
+
+        btn.addEventListener('click', function() {
+            var yin = document.getElementById('GanttEndYear');
+            var yvl = yin.value;
+            var sel = document.getElementById('GanttInterval');
+            var ysl = sel.options[sel.selectedIndex].value;
+            var dir = this.bind(lbl[i]);
+            var gnt = document.getElementById('GanttChart');
+            //gnt.innerHTML = '';
+            //gnt.appendChild(NewGanttPage());
+            //
+            console.log('test');
+        });
+
+        bar.appendChild(btn);
+    }
+
+    return bar;
+}
+
+function NewGanttPage(year, scale) {
     var tble = document.createElement('table');
-    var year = new Date().getFullYear();
     var cont = '';
 
     tble.setAttribute('id', 'GanttTable');
@@ -206,7 +264,7 @@ function NewGanttPage() {
 
         if (cont != window.ctryData[i][3]) {
             cont  = window.ctryData[i][3];
-            for (var j = year; j >= year - 20; j--) {
+            for (var j = year; j >= year - (20 * scale); j -= scale) {
                 var th  = document.createElement('th');
                 var div = document.createElement('div');
 
@@ -223,7 +281,7 @@ function NewGanttPage() {
                 tr.appendChild(th);
             }
         } else {
-            for (var j = year; j >= year - 20; j--) {
+            for (var j = year; j >= year - (20 - scale); j -= scale) {
                 var td = document.createElement('td');
                 var histobj = document.createElement('span');
 
