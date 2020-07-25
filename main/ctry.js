@@ -258,7 +258,7 @@ function NewGanttPage(year, scale) {
     var tbar = document.getElementById('GanttEndYear');
     var cont = '';
 
-    year.value = tbar.textContent
+    tbar.value = year;
 
     tble.setAttribute('id', 'GanttTable');
 
