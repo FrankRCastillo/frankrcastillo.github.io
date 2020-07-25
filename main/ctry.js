@@ -255,7 +255,10 @@ function NewGanttToolbar() {
 
 function NewGanttPage(year, scale) {
     var tble = document.createElement('table');
+    var tbar = document.getElementById('GanttEndYear');
     var cont = '';
+
+    year.value = tbar.textContent
 
     tble.setAttribute('id', 'GanttTable');
 
