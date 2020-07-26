@@ -295,6 +295,9 @@ function NewGanttPage(year, scale) {
                 var histtmp = Array.from(histyrs).map(x => parseInt(x.innerText));
                 
                 histtmp.sort((a,b) => b - a);
+                
+                var histarr = Array.from(new Set(histtmp)); 
+                var yearFnd = histarray.includes(j);
 
                 if (year == j) {
                     var ctryTd = document.createElement('td');
@@ -304,10 +307,7 @@ function NewGanttPage(year, scale) {
                     tr.appendChild(ctryTd);
                 }
 
-                var histarray = Array.from(new Set(histtmp)); 
-                var yearFound = histarray.includes(j);
-
-                if (yearFound){
+                if (yearFnd){
                     td.style.textAlign = 'center';
 
                     var ico = document.createElement('div');
@@ -332,7 +332,8 @@ function NewGanttPage(year, scale) {
                         
                         var histEvnt = Array.from(evntTags).map(function (x) {
                             var yearTag = x.getElementsByClassName('yearTag');
-                            var yearArr = Array.from(yearTag).map(x => parseInt(x.innerText));
+                            var yearTmp = Array.from(yearTag).map(x => parseInt(x.innerText));
+                            var yearArr = Array.from(new Set(yearTmp)); 
 
                             yearArr.sort((a,b) => b - a);
 
