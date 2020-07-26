@@ -214,10 +214,6 @@ function NewGanttToolbar() {
     for (var i = 0; i < per.length; i++) {
         var opt = document.createElement('option');
 
-        if (i == 0) { 
-            opt.setAttribute('selected', true);
-        }
-
         opt.setAttribute('value', per[i][1]);
         opt.textContent = per[i][0];
         sel.appendChild(opt);
