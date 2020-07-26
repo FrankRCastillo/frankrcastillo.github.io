@@ -344,11 +344,6 @@ input
 ; height : 30px
 }
 
-#newstable
-{ padding : 0px 10px 0px 0px
-; width   : 100%
-}
-
 #vstr
 { white-space : nowrap
 ; font-family : monospace
