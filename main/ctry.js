@@ -297,7 +297,6 @@ function NewGanttPage(year, scale) {
 
                 var histarr = Array.from(new Set(histtmp));
                 var histrng = histarr.filter(x => j >= x && x > j - scale);
-                var yearFnd = histrng.includes(j);
 
                 if (year == j) {
                     var ctryTd = document.createElement('td');
@@ -307,7 +306,7 @@ function NewGanttPage(year, scale) {
                     tr.appendChild(ctryTd);
                 }
 
-                if (yearFnd){
+                if (histrng.length > 0){
                     td.style.textAlign = 'center';
 
                     var ico = document.createElement('div');
