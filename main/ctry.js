@@ -207,6 +207,8 @@ function NewGanttToolbar() {
               , [  '5 years',  5 ]
               , [ '10 years', 10 ]
               , [ '25 years', 25 ]
+              , [ '50 years', 50 ]
+              , ['100 years',100 ]
               ]   
 
     for (var i = 0; i < per.length; i++) {
