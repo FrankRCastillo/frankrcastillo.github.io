@@ -332,15 +332,14 @@ function NewGanttPage(year, scale) {
                         
                         var histEvnt = Array.from(evntTags).map(function (x) {
                             var yearTag = x.getElementsByClassName('yearTag');
-                            if (yearTag.length > 0) {
-                                var yearTmp = yearTag[0].innerText.split(',');
-                                var yearMap = Array.from(yearTmp).map(x => parseInt(x.innerText));
-                                var yearArr = Array.from(new Set(yearTmp)); 
+                            var yearMap = Array.from(yearTag).map(x => parseInt(x.innerText));
+                            var yearArr = Array.from(new Set(yearMap));
 
-                                for (var k = 0; k < yearArr.length; k++) {
-                                    if (yearArr[k] >= yearidx && yearidx >= yearArr[k] - (20 * scale)) {
-                                        return x.innerHTML;
-                                    }
+                            yearArr.sort((a,b) => b - a);
+
+                            for (var k = 0; k < yearArr.length; k++) {
+                                if (yearArr[k] >= yearidx && yearidx >= yearArr[k] - (20 * scale)) {
+                                    return x.innerHTML;
                                 }
                             }
                         });
