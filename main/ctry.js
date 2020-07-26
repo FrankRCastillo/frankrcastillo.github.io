@@ -268,7 +268,7 @@ function GanttTimeShift(dir) {
         var gnt = document.getElementById('GanttChart');
         var tbl = document.getElementById('GanttTable');
 
-        eyr.value = nendyr;
+        eyr.value = nendyr + (20 * dir * scale);
 
         tbl.remove();
         gnt.appendChild(NewGanttPage(nendyr, scale));
