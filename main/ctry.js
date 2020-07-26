@@ -226,8 +226,12 @@ function NewGanttToolbar() {
     sel.addEventListener('change', function() {
         var eyr = document.getElementById('GanttEndYear');
         var sel = document.getElementById('GanttInterval');
-        var ysl = parseInt(sel.options[sel.selectedIndex].value);
+        var nsl = sel.options[sel.selectedIndex];
+        var ysl = parseInt(nsl.value);
         var gnt = document.getElementById('GanttChart');
+
+        nsl.setAttribute('selected', true);
+
         gnt.innerHTML = '';
         gnt.appendChild(NewGanttToolbar());
         gnt.appendChild(NewGanttPage(parseInt(eyr.value), ysl));
