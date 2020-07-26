@@ -19,8 +19,14 @@ export async function news() {
     }
 
     arr.sort((a, b) => Date.parse(b[2]) - Date.parse(a[2]));
+    
+    var tmp = arr.map(x => [ x[0]
+                           , x[1]
+                           , new Date(x[2]).toString('MM/DD HH:MMZ')
+                           , x[3]
+                           ]);
 
-    var tbl = ArrayToTable(arr, false, true);
+    var tbl = ArrayToTable(tmp, false, true);
     clear();
     document.getElementById('outtext').appendChild(tbl);
     CmdReady();
