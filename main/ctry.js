@@ -331,8 +331,9 @@ function NewGanttPage(year, scale) {
                         var evntTags = hist.getElementsByClassName('evntTag');
                         
                         var histEvnt = Array.from(evntTags).map(function (x) {
-                            var yearTag = x.getElementsByClassName('yearTag').split(',');
-                            var yearTmp = Array.from(yearTag).map(x => parseInt(x.innerText));
+                            var yearTag = x.getElementsByClassName('yearTag');
+                            var yearTmp = yearTag.split(',');
+                            var yearMap = Array.from(yearTmp).map(x => parseInt(x.innerText));
                             var yearArr = Array.from(new Set(yearTmp)); 
 
                             for (var k = 0; k < yearArr.length; k++) {
