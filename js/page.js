@@ -239,25 +239,27 @@ async function ReadFile(url) {
 }
 
 async function CommandManager(input) {
-    clear();
-    SetInputVal('');
+    if (input != '') {
+        clear();
+        SetInputVal('');
 
-    var cmd = input.toLowerCase();
+        var cmd = input.toLowerCase();
 
-    switch (cmd) {
-        case 'home' : home(); break;
-        case 'help' : help(); break;
-        default:
-            CmdWait();
+        switch (cmd) {
+            case 'home' : home(); break;
+            case 'help' : help(); break;
+            default:
+                CmdWait();
 
-            try {
-                let app = await import('/main/' + cmd + '.js');
-                eval('app.' + cmd + '()');
-            } catch(err) {
-                CmdReady();
-                print(cmd + ': command not available');
-                console.log(err.message);
-            }
+                try {
+                    let app = await import('/main/' + cmd + '.js');
+                    eval('app.' + cmd + '()');
+                } catch(err) {
+                    CmdReady();
+                    print(cmd + ': command not available');
+                    console.log(err.message);
+                }
+        }
     }
 }
 
