@@ -237,6 +237,11 @@ function NewGanttToolbar() {
         gnt.appendChild(NewGanttPage(parseInt(eyr.value), ysl));
     });
 
+    prs.textContent = 'Pres';
+    prs.addEventListener('click', function() {
+        GanttTimeShift(0);
+    });
+
     nxt.textContent = 'Next';
     nxt.addEventListener('click', function() {
         GanttTimeShift(1);
@@ -248,6 +253,7 @@ function NewGanttToolbar() {
     });
 
     bar.setAttribute('id', 'GanttToolbar');
+    bar.appendChild(prs);
     bar.appendChild(nxt);
     bar.appendChild(prv);
     bar.appendChild(yin);
@@ -263,7 +269,7 @@ function GanttTimeShift(dir) {
     var scale  = parseInt(sel.options[sel.selectedIndex].value);
     var nscale = (20 * dir * scale);
     var oendyr = parseInt(eyr.value);
-    var nendyr = oendyr + (dir * scale);
+    var nendyr = (dir == 0 ? year : oendyr + (dir * scale));
     
     if (year >= nendyr && nendyr + nscale > 0) {
         var gnt = document.getElementById('GanttChart');
