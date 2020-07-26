@@ -294,7 +294,7 @@ function NewGanttPage(year, scale) {
                 var histyrs = histobj.getElementsByClassName('yearTag');
                 var histtmp = Array.from(histyrs).map(x => parseInt(x.innerText));
                 
-                histtmp.sort((a, b) = b - a);
+                histtmp.sort((a, b) => b - a);
 
                 var histrng = histtmp.filter(x => j >= x && x >= j - scale);
                 var histarr = Array.from(new Set(histrng));
