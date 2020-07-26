@@ -296,9 +296,9 @@ function NewGanttPage(year, scale) {
                 
                 histtmp.sort((a, b) => b - a);
 
-                var histrng = histtmp.filter(x => j >= x && x >= j - scale);
-                var histarr = Array.from(new Set(histrng));
-                var yearFnd = histarr.includes(j);
+                var histarr = Array.from(new Set(histtmp));
+                var histrng = histarr.filter(x => j >= x && x >= j - scale);
+                var yearFnd = histrng.includes(j);
 
                 if (year == j) {
                     var ctryTd = document.createElement('td');
