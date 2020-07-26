@@ -261,14 +261,15 @@ function GanttTimeShift(dir) {
     var sel    = document.getElementById('GanttInterval');
     var eyr    = document.getElementById('GanttEndYear');
     var scale  = parseInt(sel.options[sel.selectedIndex].value);
+    var nscale = (20 * dir * scale);
     var oendyr = parseInt(eyr.value);
     var nendyr = oendyr + (dir * scale);
     
-    if (year >= nendyr && nendyr - scale > 0) {
+    if (year >= nendyr && nendyr + nscale > 0) {
         var gnt = document.getElementById('GanttChart');
         var tbl = document.getElementById('GanttTable');
 
-        eyr.value = nendyr + (20 * dir * scale);
+        eyr.value = nendyr + nscale;
 
         tbl.remove();
         gnt.appendChild(NewGanttPage(eyr.value, scale));
