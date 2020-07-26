@@ -209,18 +209,15 @@ function NewGanttToolbar() {
               , [ '25 years', 25 ]
               ]   
 
-    for (var i = -1; i < per.length; i++) {
+    for (var i = 0; i < per.length; i++) {
         var opt = document.createElement('option');
 
-        if (i == -1) { 
-            opt.setAttribute('disabled', true);
+        if (i == 0) { 
             opt.setAttribute('selected', true);
-            opt.textContent = 'Select Interval...';
-        } else {
-            opt.setAttribute('value', per[i][1]);
-            opt.textContent = per[i][0];
         }
 
+        opt.setAttribute('value', per[i][1]);
+        opt.textContent = per[i][0];
         sel.appendChild(opt);
     }
 
