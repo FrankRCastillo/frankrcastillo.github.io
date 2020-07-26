@@ -238,10 +238,10 @@ function NewGanttToolbar() {
     });
 
     lft.textContent = 'Next';
-//    lft.addEventListener('click', GanttButton('<'));
+    lft.addEventListener('click', GanttTimeShift(-1));
 
     rgt.textContent = 'Prev';
-//    rgt.addEventListener('click', GanttButton('>'));
+    rgt.addEventListener('click', GanttTimeShift(1));
 
     bar.setAttribute('id', 'GanttToolbar');
     bar.appendChild(lft);
@@ -250,6 +250,26 @@ function NewGanttToolbar() {
     bar.appendChild(sel);
 
     return bar;
+}
+
+function GanttTimeShift(dir) {
+    var year = new Date().getFullYear();
+
+    var sel = document.getElementById('GanttInterval');
+    var eyr = document.getElementById('GanttEndYear');
+
+    var oscale = parseInt(sel.options[sel.selectedIndex].value);
+    var oendyr = parseInt(eyr.value);
+    var nscale = 20 * oscale;
+    var nendyr = oendyr + (dir * nscale);
+    
+    if (year >= nendyr && nendyr - nscale > 0) {
+        var gnt = document.getElementById('GanttChart');
+        var tbl = document.getElementById('GanttTable');
+
+        tbl.remove();
+        gnt.appendChild(NewGanttPage(nendyr, nscale));
+    }
 }
 
 function NewGanttPage(year, scale) {
@@ -283,7 +303,7 @@ function NewGanttPage(year, scale) {
                 tr.appendChild(th);
             }
         } else {
-            for (var j = year; j >= year - (20 * scale); j -= scale) {
+            for (var j = year; j >= year - (20 * scale) && j > 0; j -= scale) {
                 var td = document.createElement('td');
                 var histobj = document.createElement('span');
 
