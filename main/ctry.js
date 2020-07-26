@@ -313,11 +313,11 @@ function NewGanttPage(year, scale) {
                     var ico = document.createElement('div');
 
                     ico.innerText = '\u26AB';
-                    ico.setAttribute(     'id', 'ctryEvent');
-                    ico.setAttribute(  'class',   'tooltip');
-                    ico.setAttribute('ctryidx',           i);
-                    ico.setAttribute('yearidx',           j);
-                    ico.setAttribute(  'scale',       scale);
+                    ico.setAttribute(     'id',       'ctryEvent');
+                    ico.setAttribute(  'class',         'tooltip');
+                    ico.setAttribute('ctryidx',                 i);
+                    ico.setAttribute('yearidx', histarr.join(','));
+                    ico.setAttribute(  'scale',             scale);
                     ico.addEventListener('mouseover', function() {
                         var endYear = document.getElementById('GanttEndYear');
                         var intYear = document.getElementById('GanttInterval');
@@ -331,11 +331,9 @@ function NewGanttPage(year, scale) {
                         var evntTags = hist.getElementsByClassName('evntTag');
                         
                         var histEvnt = Array.from(evntTags).map(function (x) {
-                            var yearTag = x.getElementsByClassName('yearTag');
+                            var yearTag = x.getElementsByClassName('yearTag').split(',');
                             var yearTmp = Array.from(yearTag).map(x => parseInt(x.innerText));
                             var yearArr = Array.from(new Set(yearTmp)); 
-
-                            yearArr.sort((a,b) => b - a);
 
                             for (var k = 0; k < yearArr.length; k++) {
                                 if (yearArr[k] >= yearidx && yearidx >= yearArr[k] - (20 * scale)) {
