@@ -329,7 +329,7 @@ function NewGanttPage(year, scale) {
 
                         var evntTags = hist.getElementsByClassName('evntTag');
                         
-                        var histEvnt = Array.from(evntTags).filter(function(x) {
+                        var histEvnt = Array.from(evntTags).map(function(x) {
                             var yearTag = x.getElementsByClassName('yearTag');
                             var yearArr = Array.from(yearTag).map(x => parseInt(x.innerText));
                             var yearMrg = yearArr.filter(x => yearidx.includes(x));
