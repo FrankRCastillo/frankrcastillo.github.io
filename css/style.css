@@ -107,7 +107,7 @@ input
 
 #GanttToolbar
 { position         : fixed
-; background-color : #000000
+; background-color : #080817
 ; width            : 100%
 ; top              : 65px
 ; z-index          : 100001
@@ -170,7 +170,7 @@ input
 ; width            : 100%
 ; position         : fixed
 ; z-index          : 100001
-; background-color : #000000
+; background-color : #030312
 }
 
 .tabbtns
