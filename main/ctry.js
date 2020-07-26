@@ -293,10 +293,11 @@ function NewGanttPage(year, scale) {
 
                 var histyrs = histobj.getElementsByClassName('yearTag');
                 var histtmp = Array.from(histyrs).map(x => parseInt(x.innerText));
+                var histrng = histtmp.filter(x => j >= x && x >= j - scale);
+                var histarr = Array.from(new Set(histrng));
+
+                histarr.sort((a,b) => b - a);
                 
-                histtmp.sort((a,b) => b - a);
-                
-                var histarr = Array.from(new Set(histtmp)); 
                 var yearFnd = histarr.includes(j);
 
                 if (year == j) {
@@ -322,7 +323,7 @@ function NewGanttPage(year, scale) {
                         var endYear = document.getElementById('GanttEndYear');
                         var intYear = document.getElementById('GanttInterval');
                         var ctryidx = parseInt(this.getAttribute('ctryidx'));
-                        var yearidx = parseInt(this.getAttribute('yearidx'));
+                        var yearidx = this.getAttribute('yearidx').split(',').map(x => parseInt(x));
                         var scale   = parseInt(this.getAttribute('scale'));
                         var hist    = document.createElement('span');
                         
@@ -331,14 +332,12 @@ function NewGanttPage(year, scale) {
                         var evntTags = hist.getElementsByClassName('evntTag');
                         
                         var histEvnt = Array.from(evntTags).map(function (x) {
-                            var yearTag = x.getElementsByClassName('yearTag');
-                            var yearMap = Array.from(yearTag).map(x => parseInt(x.innerText));
-                            var yearArr = Array.from(new Set(yearMap));
-
-                            yearArr.sort((a,b) => b - a);
+                            var yearDom = x.getElementsByClassName('yearTag');
+                            var yearArr = Array.from(yearDom).map(x => parseInt(x.innerText));
+                            var yearMrg = yearArr.filter(x => yearidx.includes(x));
 
                             for (var k = 0; k < yearArr.length; k++) {
-                                if (yearArr[k] >= yearidx && yearidx >= yearArr[k] - (20 * scale)) {
+                                if (yearMrg.includes(yearArr[k])) {
                                     return x.innerHTML;
                                 }
                             }
