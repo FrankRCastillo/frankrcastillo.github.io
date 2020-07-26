@@ -296,9 +296,6 @@ function NewGanttPage(year, scale) {
                 
                 histtmp.sort((a,b) => b - a);
 
-                var histarr = Array.from(new Set(histtmp)); 
-                var rgxyrhst = true;
-
                 if (year == j) {
                     var ctryTd = document.createElement('td');
                     ctryTd.style.textIndent = '30px';
@@ -307,7 +304,10 @@ function NewGanttPage(year, scale) {
                     tr.appendChild(ctryTd);
                 }
 
-                if (rgxyrhst){
+                var histarray = Array.from(new Set(histtmp)); 
+                var yearFound = histarray.includes(j);
+
+                if (yearFound){
                     td.style.textAlign = 'center';
 
                     var ico = document.createElement('div');
