@@ -93,6 +93,11 @@ input
 ; background  : #000000
 }
 
+#NewsTable
+{ white-space : nowrap
+; width       : calc(100% - 20px)
+}
+
 #GanttChart
 { position : relative
 ; top      : 20px
