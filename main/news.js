@@ -22,7 +22,14 @@ export async function news() {
     
     var tmp = arr.map(x => [ x[0]
                            , x[1]
-                           , new Date(x[2]).toString('MM/DD HH:MMZ')
+                           , new Intl.DateTimeFormat( 'en-US'
+                                                    , { month  : '2-digit'
+                                                      , day    : '2-digit'
+                                                      , hour   : '2-digit'
+                                                      , minute : '2-digit'
+                                                      , hour12 : false
+                                                      }).format(new Date(x[2]))
+                                                        .replace(',', '')
                            , x[3]
                            ]);
 
