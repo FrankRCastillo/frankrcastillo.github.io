@@ -211,7 +211,8 @@ input
 }
 
 #GanttTable td
-{ height : 25px
+{ height : 32px
+; width  : 32px
 ; border : 1px dotted #ffa500
 }
 
