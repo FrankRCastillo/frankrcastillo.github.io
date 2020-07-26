@@ -141,7 +141,7 @@ input
 ; font-size  : 12px
 ; overflow   : auto
 ; position   : absolute
-; background : #030312
+; background : #0a0a19
 }
 
 #mapframe
@@ -167,10 +167,10 @@ input
 { border           : 0px
 ; box-sizing       : border-box
 ; height           : 25px
-; width            : 100%
+; width            : calc(100% - 20px)
 ; position         : fixed
 ; z-index          : 100001
-; background-color : #030312
+; background-color : #0d0d19
 }
 
 .tabbtns
