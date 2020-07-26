@@ -201,6 +201,7 @@ function NewGanttToolbar() {
     var bar = document.createElement('div');        // toolbar div
     var yin = document.createElement('input');      // ending year input
     var sel = document.createElement('select');     // time interval selector
+    var prs = document.createElement('button');     // move interval to the present
     var nxt = document.createElement('button');     // move interval later
     var prv = document.createElement('button');     // move interval earlier
     var per = [ [   '1 year',  1 ]                  // periods of time
