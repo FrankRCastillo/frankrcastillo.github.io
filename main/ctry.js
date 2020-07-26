@@ -320,8 +320,6 @@ function NewGanttPage(year, scale) {
                     ico.setAttribute('yearidx', histarr.join(','));
                     ico.setAttribute(  'scale',             scale);
                     ico.addEventListener('mouseover', function() {
-                        var endYear = document.getElementById('GanttEndYear');
-                        var intYear = document.getElementById('GanttInterval');
                         var ctryidx = parseInt(this.getAttribute('ctryidx'));
                         var yearidx = this.getAttribute('yearidx').split(',').map(x => parseInt(x));
                         var scale   = parseInt(this.getAttribute('scale'));
@@ -331,15 +329,13 @@ function NewGanttPage(year, scale) {
 
                         var evntTags = hist.getElementsByClassName('evntTag');
                         
-                        var histEvnt = Array.from(evntTags).map(function (x) {
-                            var yearDom = x.getElementsByClassName('yearTag');
-                            var yearArr = Array.from(yearDom).map(x => parseInt(x.innerText));
+                        var histEvnt = Array.from(evntTags).filter(function(x) {
+                            var yearTag = x.getElementsByClassName('yearTag');
+                            var yearArr = Array.from(yearTag).map(x => parseInt(x.innerText));
                             var yearMrg = yearArr.filter(x => yearidx.includes(x));
 
-                            for (var k = 0; k < yearArr.length; k++) {
-                                if (yearMrg.includes(yearArr[k])) {
-                                    return x.innerHTML;
-                                }
+                            if (yearMrg.length > 0) {
+                                return x.innerHTML;
                             }
                         });
                         
