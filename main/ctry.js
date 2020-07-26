@@ -257,17 +257,14 @@ function NewGanttToolbar() {
 }
 
 function GanttTimeShift(dir) {
-    var year = new Date().getFullYear();
-
-    var sel = document.getElementById('GanttInterval');
-    var eyr = document.getElementById('GanttEndYear');
-
-    var oscale = parseInt(sel.options[sel.selectedIndex].value);
+    var year   = new Date().getFullYear();
+    var sel    = document.getElementById('GanttInterval');
+    var eyr    = document.getElementById('GanttEndYear');
+    var scale  = parseInt(sel.options[sel.selectedIndex].value);
     var oendyr = parseInt(eyr.value);
-    var nscale = 20 * oscale;
-    var nendyr = oendyr + (dir * nscale);
+    var nendyr = oendyr + (dir * scale);
     
-    if (year >= nendyr && nendyr - nscale > 0) {
+    if (year >= nendyr && nendyr - scale > 0) {
         var gnt = document.getElementById('GanttChart');
         var tbl = document.getElementById('GanttTable');
 
