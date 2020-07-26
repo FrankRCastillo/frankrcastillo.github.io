@@ -201,8 +201,8 @@ function NewGanttToolbar() {
     var bar = document.createElement('div');        // toolbar div
     var yin = document.createElement('input');      // ending year input
     var sel = document.createElement('select');     // time interval selector
-    var lft = document.createElement('button');     // move interval later
-    var rgt = document.createElement('button');     // move interval earlier
+    var nxt = document.createElement('button');     // move interval later
+    var prv = document.createElement('button');     // move interval earlier
     var per = [ [   '1 year',  1 ]                  // periods of time
               , [  '5 years',  5 ]
               , [ '10 years', 10 ]
@@ -237,15 +237,19 @@ function NewGanttToolbar() {
         gnt.appendChild(NewGanttPage(parseInt(eyr.value), ysl));
     });
 
-    lft.textContent = 'Next';
-    lft.addEventListener('click', GanttTimeShift(-1));
+    nxt.textContent = 'Next';
+    nxt.addEventListener('click', function() {
+        GanttTimeShift(1);
+    });
 
-    rgt.textContent = 'Prev';
-    rgt.addEventListener('click', GanttTimeShift(1));
+    prv.textContent = 'Prev';
+    prv.addEventListener('click', function() {
+        GanttTimeShift(-1)
+    });
 
     bar.setAttribute('id', 'GanttToolbar');
-    bar.appendChild(lft);
-    bar.appendChild(rgt);
+    bar.appendChild(nxt);
+    bar.appendChild(prv);
     bar.appendChild(yin);
     bar.appendChild(sel);
 
