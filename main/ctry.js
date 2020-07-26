@@ -145,7 +145,6 @@ function NewCtryPage() {
         var iso = sel.options[sel.selectedIndex].value;
         if (iso != '') {
             dta.innerHTML = countryInfo(iso);
-            gnt.innerHTML = '';
         }
     });
 
