@@ -297,7 +297,7 @@ function NewGanttPage(year, scale) {
                 histtmp.sort((a, b) => b - a);
 
                 var histarr = Array.from(new Set(histtmp));
-                var histrng = histarr.filter(x => j >= x && x >= j - scale);
+                var histrng = histarr.filter(x => j >= x && x > j - scale);
                 var yearFnd = histrng.includes(j);
 
                 if (year == j) {
