@@ -229,11 +229,11 @@ function NewGanttToolbar() {
         var nsl = sel.options[sel.selectedIndex];
         var ysl = parseInt(nsl.value);
         var gnt = document.getElementById('GanttChart');
+        var tbl = document.getElementById('GanttTable');
 
         nsl.setAttribute('selected', true);
 
-        gnt.innerHTML = '';
-        gnt.appendChild(NewGanttToolbar());
+        tbl.remove();
         gnt.appendChild(NewGanttPage(parseInt(eyr.value), ysl));
     });
 
