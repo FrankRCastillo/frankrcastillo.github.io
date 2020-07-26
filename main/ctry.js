@@ -271,7 +271,7 @@ function GanttTimeShift(dir) {
         eyr.value = nendyr;
 
         tbl.remove();
-        gnt.appendChild(NewGanttPage(nendyr, nscale));
+        gnt.appendChild(NewGanttPage(nendyr, scale));
     }
 }
 
