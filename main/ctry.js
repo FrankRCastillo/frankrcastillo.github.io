@@ -317,7 +317,7 @@ function NewGanttPage(year, scale) {
                     ico.setAttribute(     'id',       'ctryEvent');
                     ico.setAttribute(  'class',         'tooltip');
                     ico.setAttribute('ctryidx',                 i);
-                    ico.setAttribute('yearidx', histarr.join(','));
+                    ico.setAttribute('yearidx', histrng.join(','));
                     ico.setAttribute(  'scale',             scale);
                     ico.addEventListener('mouseover', function() {
                         var ctryidx = parseInt(this.getAttribute('ctryidx'));
