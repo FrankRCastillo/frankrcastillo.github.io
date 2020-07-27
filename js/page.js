@@ -3,12 +3,17 @@ async function SetConsole() {
     var menu = await NewCommandLine();
     var main = document.createElement('div');
     var otxt = document.createElement('div');
-    
+    var ndiv = document.createElement('div');
+    var news = await import('/main/news.js');
+
     main.setAttribute('id', 'console');
     otxt.setAttribute('id', 'outtext');
+    ndiv.setAttribute('id', 'newspnl');
 
     main.appendChild(menu);
     main.appendChild(otxt);
+    ndiv.appendChild(await news.GetNewsFeed());
+    main.appendChild(ndiv);
 
     return main;
 }
@@ -57,12 +62,6 @@ function NewTabLayout(elems) {
     encls.appendChild(bdfrm);
 
     return encls;
-}
-
-async function NewNewsPanel() {
-    let app = await import('/main/news.js');
-    
-
 }
 
 async function FileList(filter) {
@@ -220,13 +219,13 @@ async function CommandManager(input) {
             case 'help' : help(); break;
             default:
 
-                try {
+//                try {
                     let app = await import('/main/' + cmd + '.js');
                     eval('app.' + cmd + '()');
-                } catch(err) {
-                    print(cmd + ': command not available');
-                    console.log(err.message);
-                }
+//                } catch(err) {
+//                    print(cmd + ': command not available');
+//                    console.log(err.message);
+//                }
         }
     }
 }
