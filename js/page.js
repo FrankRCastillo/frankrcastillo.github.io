@@ -11,7 +11,11 @@ async function SetConsole() {
     main.setAttribute('id', 'console');
     otxt.setAttribute('id', 'outtext');
 
-    nlnk.addEventListener('click', news.news());
+    nlnk.addEventListener('click', function () {
+        var news = await import('/main/news.js');
+        await news.news();
+    });
+
     nlnk.textContent = 'Toggle';
 
     nhdr.setAttribute('id', 'newshdr');
@@ -303,17 +307,6 @@ async function NewCommandLine() {
     var cmmndInfo = await GetCmdInfo();
 
     cmdSelect.setAttribute('id', 'cmdSelect')
-
-    window.addEventListener('keyup',
-        function (e) {
-            var cmdSelect = document.getElementById('cmdSelect');
-            if (cmdSelect != null) {
-                var selValue  = cmdSelect.options[cmdSelect.selectedIndex].value;
-
-                if (e.keyCode == 13) { CommandManager(selValue); }
-            }
-        }
-    );
 
     for (var i = -1; i < cmmndInfo.length; i++) {
         var cmdOption = document.createElement('option');
