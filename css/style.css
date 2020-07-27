@@ -127,18 +127,9 @@ input
 ; box-sizing : border-box
 }
 
-#textframe
-{ border     : 1px solid #ffa500
-; margin     : 0px 0px 0px 0px
-; padding    : 0px 0px 0px 0px
-; width      : calc(100% - 2px)
-; height     : 30px
-; background : #000000
-}
-
-#textinput
-{ width    : calc(100% - 45px)
-; position : absolute
+#cmdSelect
+{ width  : 100%
+; height : 30px
 }
 
 #mapdata

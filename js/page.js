@@ -287,12 +287,10 @@ function print(text) {
 //}
 
 async function NewCommandLine() {
-    var textframe = document.createElement('div');
     var cmdSelect = document.createElement('select');
     var cmmndInfo = await GetCmdInfo();
 
-    textframe.setAttribute(   'id', 'textframe');
-    cmdSelect.setAttribute(   'id', 'cmdSelect')
+    cmdSelect.setAttribute('id', 'cmdSelect')
 
     window.addEventListener('keyup',
         function (e) {
