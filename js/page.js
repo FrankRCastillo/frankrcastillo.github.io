@@ -217,7 +217,6 @@ async function CommandManager(input) {
                     let app = await import('/main/' + cmd + '.js');
                     eval('app.' + cmd + '()');
                 } catch(err) {
-                    ////CmdReady();
                     print(cmd + ': command not available');
                     console.log(err.message);
                 }
@@ -273,16 +272,6 @@ function print(text) {
         outtxt.appendChild(newtxt);
     }
 }
-
-//function ////CmdReady() {
-//    var sel = document.getElementById('cmdSelect');
-//    sel[0].textContent = '\u25B6 "help", or click drop-down, for commands...';
-//}
-
-//function //CmdWait() {
-//    var sel = document.getElementById('cmdSelect');
-//    sel[0].textContent = '\u25A0 Loading...';
-//}
 
 async function NewCommandLine() {
     var cmdSelect = document.createElement('select');
