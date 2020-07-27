@@ -4,7 +4,7 @@ export async function news() {
     clear();
     document.getElementById('outtext').appendChild(await GetNewsFeed());
 
-    window.appinterval = setTimeout(async news(), 60000);
+    window.appinterval = await etTimeout(async news(), 60000);
 }
 
 async function GetNewsFeed() {
