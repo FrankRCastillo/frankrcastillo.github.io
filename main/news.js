@@ -32,6 +32,8 @@ async function GetNewsFeed() {
     var tbl = ArrayToTable(arr, false, true)
 
     tbl.setAttribute('id', 'NewsTable');
+
     clear();
+
     document.getElementById('outtext').appendChild(tbl);
 }
