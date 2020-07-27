@@ -3,7 +3,7 @@
 export async function news() {
     var out = document.getElementById('outtext');
 
-    window.interval = setInterval(function() {
+    window.appinterval = setInterval(function() {
         var arr = GetNewsFeed();
         var tbl = ArrayToTable(arr, false, true);
         tbl.setAttribute('id', 'NewsTable');
