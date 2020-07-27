@@ -2,7 +2,11 @@
 
 export async function news() {
     clear();
-    document.getElementById('outtext').appendChild(await GetNewsFeed());
+    var out = document.getElementById('outtext');
+
+    if (out != null) {
+        out.appendChild(await GetNewsFeed());
+    }
 
     window.appinterval = await setTimeout(async function() {
         await news();
