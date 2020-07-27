@@ -329,12 +329,6 @@ input
 ; float        : left
 }
 
-#textdiv
-{ float  : left
-; width  : calc(100% - 25px)
-; height : 30px
-}
-
 #vstr
 { white-space : nowrap
 ; font-family : monospace
