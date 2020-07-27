@@ -9,7 +9,7 @@ export async function news() {
     }, 60000);
 }
 
-async function GetNewsFeed() {
+export async function GetNewsFeed() {
     var src = await ReadFile('/main/news/news.txt');
     var url = src.split('\n').filter(x => x != '');
     var xml = await Promise.all(url.map(async (x) => ReadFile(x)));
