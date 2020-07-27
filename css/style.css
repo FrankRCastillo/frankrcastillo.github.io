@@ -122,7 +122,7 @@ input
 { border     : 0px
 ; overflow   : auto
 ; width      : 100%
-; height     : calc(100vh - 185px)
+; height     : calc(100vh - 202px)
 ; position   : relative
 ; box-sizing : border-box
 ; display    : block
@@ -137,7 +137,7 @@ input
 
 #newspnl
 { background-color : #060617
-; height           : 100px
+; height           : 120px
 ; position         : relative
 ; display          : block
 ; overflow         : hidden
