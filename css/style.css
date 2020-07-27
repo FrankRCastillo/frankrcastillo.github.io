@@ -126,16 +126,17 @@ input
 }
 
 #newshdr
-{ background-color : #080817
+{ background-color : #101530
 ; position         : relative
 ; text-align       : right
+; cursor           : pointer
 }
 
 #newspnl
-{ background-color : #030312
+{ background-color : #060617
 ; height           : 100px
 ; position         : relative
-; overflow         : auto
+; overflow         : hidden
 }
 
 #cmdSelect
