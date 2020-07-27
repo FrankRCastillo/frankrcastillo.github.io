@@ -12,6 +12,8 @@ async function SetConsole() {
     main.appendChild(otxt);
     main.appendChild(npnl);
 
+    
+
     return main;
 }
 
@@ -33,6 +35,12 @@ async function NewNewsPanel() {
 
     npnl.appendChild(nhdr);
     npnl.appendChild(ndiv);
+
+    window.newspnlinterval = await setTimeout(async function() {
+        var npnl = document.getElementById('newspnl');
+        npnl.innerHTML = '';
+        npnl.appendChild(await news.GetNewsFeed());
+    }, 60000);
 
     return npnl;
 }
