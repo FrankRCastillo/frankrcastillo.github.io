@@ -277,7 +277,8 @@ async function read(path) {
 }
 
 function clear() {
-    document.getElementById('outtext').innerHTML = '';
+    var out = document.getElementById('outtext');
+    if (out != null) { out.innerHTML = ''; }
 }
 
 function print(text) {
