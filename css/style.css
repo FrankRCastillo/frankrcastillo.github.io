@@ -122,15 +122,14 @@ input
 { border     : 0px
 ; overflow   : auto
 ; width      : calc(100% - 20px)
-; height     : calc(100% - 350px)
+; height     : calc(100% - 200px)
 ; position   : absolute
 ; box-sizing : border-box
-; float      : left
 }
 
 #newspnl
 { background-color : #030312
-; height           : 300px
+; height           : 150px
 ; position         : absolute
 ; overflow         : auto
 }
