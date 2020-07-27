@@ -12,11 +12,12 @@ async function GetNewsFeed() {
     var src = await ReadFile('/main/news/news.txt');
     var url = src.split('\n').filter(x => x != '');
     var xml = await Promise.all(url.map(async (x) => ReadFile(x)));
-    var arr = xml.map(x => RSSParser(x));
+    var par = xml.map(x => RSSParser(x));
+    var tmp = [].concat.apply([], par);
 
-    arr.sort((a,b,) => Date.parse(b[2]) - Date.parse(a[2]));
+    tmp.sort((a,b,) => Date.parse(b[2]) - Date.parse(a[2]));
 
-    var tmp = arr.map(x => [ x[0]
+    var arr = tmp.map(x => [ x[0]
                            , x[1]
                            , new Intl.DateTimeFormat( 'en-US'
                              , { month  : '2-digit'
@@ -28,7 +29,7 @@ async function GetNewsFeed() {
                                  .replace(',', '')
                            , x[3]
                            ]);
-    var tbl = ArrayToTable(tmp, false, true)
+    var tbl = ArrayToTable(arr, false, true)
 
     tbl.setAttribute('id', 'NewsTable');
     clear();
