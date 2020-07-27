@@ -136,12 +136,9 @@ function NewCtryPage() {
     lst.setAttribute('id', 'maptools' );
     dta.setAttribute('id', 'mapdata'  );
     sel.setAttribute('id', 'mapselect');
-    btn.setAttribute('class', 'mapbtn');
-    btn.textContent = 'Find';
-
-    btn.addEventListener('click', function() {
-        var sel = document.getElementById('mapselect');
-        var iso = sel.options[sel.selectedIndex].value;
+    
+    sel.addEventListener('change', function() {
+        var iso = this.options[this.selectedIndex].value;
         if (iso != '') {
             dta.innerHTML = countryInfo(iso);
         }
@@ -172,7 +169,6 @@ function NewCtryPage() {
     }
 
     lst.appendChild(sel);
-    lst.appendChild(btn);
     out.appendChild(lst);
     out.appendChild(dta);
     out.appendChild(frm);
