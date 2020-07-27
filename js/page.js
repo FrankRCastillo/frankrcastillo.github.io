@@ -3,19 +3,38 @@ async function SetConsole() {
     var menu = await NewCommandLine();
     var main = document.createElement('div');
     var otxt = document.createElement('div');
-    var ndiv = document.createElement('div');
-    var news = await import('/main/news.js');
+    var npnl = await NewNewsPanel();
 
     main.setAttribute('id', 'console');
     otxt.setAttribute('id', 'outtext');
-    ndiv.setAttribute('id', 'newspnl');
 
     main.appendChild(menu);
     main.appendChild(otxt);
-    ndiv.appendChild(await news.GetNewsFeed());
-    main.appendChild(ndiv);
+    main.appendChild(npnl);
 
     return main;
+}
+
+async function NewNewsPanel() {
+    var npnl = document.createElement('div');
+    var nhdr = document.createElement('div');
+    var ndiv = document.createElement('div');
+    var nlnk = document.createElement('a');
+    var news = await import('/main/news.js');
+
+    nlnk.addEventListener('click', CommandManager("news"));
+    nlnk.textContent = "Expand";
+
+    nhdr.setAttribute('id', 'newshdr');
+    nhdr.appendChild(nlnk);
+
+    ndiv.setAttribute('id', 'newspnl');
+    ndiv.appendChild(await news.GetNewsFeed());
+
+    npnl.appendChild(nhdr);
+    npnl.appendChild(ndiv);
+
+    return npnl;
 }
 
 function NewTabLayout(elems) {

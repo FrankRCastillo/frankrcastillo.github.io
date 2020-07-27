@@ -125,6 +125,11 @@ input
 ; box-sizing : border-box
 }
 
+#newshdr
+{ background-color : #080817
+; position         : relative
+}
+
 #newspnl
 { background-color : #030312
 ; height           : 100px
