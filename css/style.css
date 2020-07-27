@@ -125,6 +125,7 @@ input
 ; height     : calc(100% - 350px)
 ; position   : absolute
 ; box-sizing : border-box
+; float      : left
 }
 
 #newspnl
