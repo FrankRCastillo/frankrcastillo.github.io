@@ -1,28 +1,15 @@
 async function SetConsole() {
+    var news = await import('/main/news.js');
     var clne = NewCommandLine();
     var menu = await NewCommandLine();
     var main = document.createElement('div');
     var otxt = document.createElement('div');
-    var npnl = await NewNewsPanel();
-
-    main.setAttribute('id', 'console');
-    otxt.setAttribute('id', 'outtext');
-
-    main.appendChild(menu);
-    main.appendChild(otxt);
-    main.appendChild(npnl);
-
-    
-
-    return main;
-}
-
-async function NewNewsPanel() {
-    var npnl = document.createElement('div');
     var nhdr = document.createElement('div');
     var ndiv = document.createElement('div');
     var nlnk = document.createElement('a');
-    var news = await import('/main/news.js');
+
+    main.setAttribute('id', 'console');
+    otxt.setAttribute('id', 'outtext');
 
     nlnk.addEventListener('click', CommandManager("news"));
     nlnk.textContent = "Expand";
@@ -35,14 +22,18 @@ async function NewNewsPanel() {
 
     npnl.appendChild(nhdr);
     npnl.appendChild(ndiv);
+    main.appendChild(menu);
+    main.appendChild(otxt);
+    main.appendChild(npnl);
 
-    window.newspnlinterval = await setTimeout(async function() {
+    window.nwspnlinterval = await setInterval(async function () {
         var npnl = document.getElementById('newspnl');
-        npnl.innerHTML = '';
-        npnl.appendChild(await news.GetNewsFeed());
+        var nget = await news.GetNewsFeed();
+        npnl.innerHTML = ''
+        npnl.appendChild(nget);
     }, 60000);
 
-    return npnl;
+    return main;
 }
 
 function NewTabLayout(elems) {

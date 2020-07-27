@@ -8,8 +8,8 @@ export async function news() {
         out.appendChild(await GetNewsFeed());
     }
 
-    window.appinterval = await setTimeout(async function() {
-        await news();
+    window.appinterval = await setInterval(async function() {
+        document.getElementById('outtext').appendChild(await GetNewsFeed());
     }, 60000);
 }
 
