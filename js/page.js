@@ -286,7 +286,7 @@ function CmdWait() {
     sel[0].textContent = '\u25A0 Loading...';
 }
 
-function NewCommandLine() {
+async function NewCommandLine() {
     var textframe = document.createElement('div');
     var cmdSelect = document.createElement('select');
     var cmmndInfo = await GetCmdInfo();
