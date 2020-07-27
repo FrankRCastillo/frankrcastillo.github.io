@@ -9,7 +9,7 @@ export function news() {
             case 'none':
                 out.style.display  = 'block';
                 pnl.style.height   = '100px';
-                pnl.style.overflow = 'none';
+                pnl.style.overflow = 'hidden';
                 break;
 
             default:
