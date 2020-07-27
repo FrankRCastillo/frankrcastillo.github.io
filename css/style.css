@@ -122,9 +122,15 @@ input
 { border     : 0px
 ; overflow   : auto
 ; width      : calc(100% - 20px)
-; height     : calc(100% - 50px)
+; height     : calc(100% - 350px)
 ; position   : absolute
 ; box-sizing : border-box
+}
+
+#newspnl
+{ background-color : #303012
+; height           : 300px
+; position         : relative
 }
 
 #cmdSelect
