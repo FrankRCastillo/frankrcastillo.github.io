@@ -121,7 +121,7 @@ input
 #outtext
 { border     : 0px
 ; overflow   : auto
-; width      : calc(100%  -  20px)
+; width      : 100%
 ; height     : calc(100vh - 155px)
 ; position   : relative
 ; box-sizing : border-box
