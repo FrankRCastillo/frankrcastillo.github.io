@@ -3,7 +3,7 @@
 export async function news() {
     await GetNewsFeed()
 
-    window.appinterval = setInterval(function() {
+    window.appinterval = setInterval(async function() {
         await GetNewsFeed();
     }, 60000);
 }
