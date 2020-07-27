@@ -121,8 +121,8 @@ input
 #outtext
 { border     : 0px
 ; overflow   : auto
-; width      : calc(100% - 20px)
-; height     : calc(100% - 100px)
+; width      : calc(100%  -  20px)
+; height     : calc(100vh - 155px)
 ; position   : relative
 ; box-sizing : border-box
 }
@@ -132,7 +132,6 @@ input
 ; height           : 100px
 ; position         : relative
 ; overflow         : auto
-; top              : 110px
 }
 
 #cmdSelect
