@@ -59,6 +59,10 @@ function NewTabLayout(elems) {
     return encls;
 }
 
+async function NewNewsPanel() {
+
+}
+
 async function FileList(filter) {
     var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
     var text = await ReadFile(gapi);

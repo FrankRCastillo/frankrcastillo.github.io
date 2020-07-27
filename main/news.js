@@ -1,10 +1,10 @@
 // |apps|news|RSS feed from various news sources
 
 export async function news() {
-    await GetNewsFeed()
+    document.getElementById('outtext').appendChild(await GetNewsFeed());
 
     window.appinterval = setInterval(async function() {
-        await GetNewsFeed();
+        document.getElementById('outtext').appendChild(await GetNewsFeed());
     }, 60000);
 }
 
@@ -35,5 +35,5 @@ async function GetNewsFeed() {
 
     clear();
 
-    document.getElementById('outtext').appendChild(tbl);
+    return tbl;
 }
