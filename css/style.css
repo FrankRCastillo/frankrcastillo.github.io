@@ -120,7 +120,7 @@ input
 { border     : 0px
 ; overflow   : auto
 ; width      : 100%
-; height     : calc(100vh - 155px)
+; height     : calc(100vh - 185px)
 ; position   : relative
 ; box-sizing : border-box
 }
