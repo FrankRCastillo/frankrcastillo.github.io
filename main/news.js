@@ -13,7 +13,8 @@ async function GetNewsFeed() {
     var url = src.split('\n');
     var xml = url.map(async function(x) {
         if (x != '') { return await ReadFile(x); }
-    }
+    });
+
     var arr = xml.map(x => RSSParser(x));
 
     arr.sort((a,b,) => Date.parse(b[2]) - Date.parse(a[2]));
