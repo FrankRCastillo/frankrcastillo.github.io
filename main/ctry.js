@@ -19,7 +19,6 @@ export async function ctry() {
     document.getElementById('GanttChart').appendChild(NewGanttToolbar());
     document.getElementById('GanttChart').appendChild(NewGanttPage(year, 1));
     CreateMap();
-    CmdReady();                                                                         // update page status as ready
 }
 
 async function GetData() {

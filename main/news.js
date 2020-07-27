@@ -37,5 +37,4 @@ export async function news() {
     tbl.setAttribute('id', 'NewsTable');
     clear();
     document.getElementById('outtext').appendChild(tbl);
-    CmdReady();
 }
