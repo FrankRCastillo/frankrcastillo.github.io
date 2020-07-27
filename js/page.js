@@ -204,6 +204,7 @@ async function ReadFile(url) {
 
 async function CommandManager(input) {
     if (input != '') {
+        clearInterval(window.interval);
         clear();
 
         var cmd = input.toLowerCase();
