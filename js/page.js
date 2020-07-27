@@ -14,7 +14,7 @@ async function SetConsole() {
     nlnk.textContent = 'Toggle';
     nlnk.addEventListener('click', async function () {
         var news = await import('/main/news.js');
-        await news.news();
+        news.news();
     });
 
     nhdr.setAttribute('id', 'newshdr');
