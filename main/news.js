@@ -10,11 +10,13 @@ export function news() {
                 out.style.display  = 'block';
                 pnl.style.height   = '100px';
                 pnl.style.overflow = 'none';
+                break;
 
             default:
                 out.style.display  = 'none';
                 pnl.style.height   = '100%';
                 pnl.style.overflow = 'auto';
+                break;
         }
     }
 }
