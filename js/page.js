@@ -1,53 +1,16 @@
-function NewObject(prnt, attr) {
-    for (var i = 0; i < attr.length; i++) {
-        var child = document.createElement(attr[i][0]);
-
-        for (var j = 0; j < attr[i][2].length; j++) {
-            var atrtype = attr[i][2][j][0];
-            var attrval = attr[i][2][j][1];
-
-            switch (atrtype) {
-                case 'text':
-                    var text = document.createTextNode(attrval);
-                    child.appendChild(text);
-                    break;
-
-                case 'object':
-                    child.appendChild(attrval);
-                    break;
-
-                default:
-                    child.setAttribute(atrtype, attrval);
-                    break;
-            }
-        }
-        
-        if (prnt.id == attr[i][1]) {
-            prnt.appendChild(child);
-        } else {
-            prnt.querySelector('#' + attr[i][1]).appendChild(child);
-        }
-    }
-
-    return prnt;
-}
-
 async function SetConsole() {
     var clne = NewCommandLine();
-    var menu = await NewMenuDropDown();
+    var menu = await NewCommandLine();
     var main = document.createElement('div');
-
+    var otxt = document.createElement('div');
+    
     main.setAttribute('id', 'console');
+    otxt.setAttribute('id', 'outtext');
 
-    var objs = [ [ 'div', 'console', [ [     'id','contain'] ] ]
-               , [ 'div', 'console', [ [     'id','outtext'] ] ]
-               , [ 'div', 'contain', [ [     'id','menudiv'] ] ]
-               , [ 'div', 'menudiv', [ [ 'object',     menu] ] ]
-               , [ 'div', 'contain', [ [     'id','textdiv']
-                                     , [ 'object',     clne] ] ]
-               ]
+    main.appendChild(menu);
+    main.appendChild(otxt);
 
-    return NewObject(main, objs);
+    return main;
 }
 
 function NewTabLayout(elems) {
@@ -314,67 +277,61 @@ function print(text) {
 }
 
 function CmdReady() {
-    document.getElementById('inputbox').placeholder = '\u25B6 "help", or click drop-down, for commands...';
-
-    SetInputVal('');
+    var sel = document.getElementById('cmdSelect');
+    sel[0].textContent = '\u25B6 "help", or click drop-down, for commands...';
 }
 
 function CmdWait() {
-    document.getElementById('inputbox').placeholder = '\u25A0 Loading...';
-
-    SetInputVal('');
+    var sel = document.getElementById('cmdSelect');
+    sel[0].textContent = '\u25A0 Loading...';
 }
 
 function NewCommandLine() {
-    txtinput = document.createElement('input');
-    txtinput.setAttribute('id', 'inputbox');
-    txtinput.setAttribute('type', 'text');
+    var textframe = document.createElement('div');
+    var cmdSelect = document.createElement('select');
+    var cmmndInfo = await GetCmdInfo();
 
-    window.addEventListener('keyup', function(e) {
-        switch (e.keyCode) {
-            case 13: CommandManager(GetInputVal()); break;
+    textframe.setAttribute(   'id', 'textframe');
+    cmdSelect.setAttribute(   'id', 'cmdSelect')
+
+    window.addEventListener('keyup',
+        function (e) {
+            var cmdSelect = document.getElementById('cmdSelect');
+            var selValue  = cmdSelect.options[cmdSelect.selectedIndex].value;
+
+            if (e.keyCode == 13) { CommandManager(selValue); }
         }
-    });
+    );
 
-    return txtinput;
-}
+    for (var i = -1; i < cmmndInfo.length; i++) {
+        var cmdOption = document.createElement('option');
 
-async function NewMenuDropDown() {
-    var menu = document.createElement('select');
-    var blnk = document.createElement('option');
-    var lout = await GetCmdInfo();
+        if (i == -1) {
+            cmdOption.textContent = '';
+            cmdOption.setAttribute(   'value',   '');
+            cmdOption.setAttribute(  'hidden', true);
+            cmdOption.setAttribute('selected', true);
+        } else {
+            var cmdGroup  = cmdSelect.querySelector('#' + cmmndInfo[i][0]);
 
-    menu.setAttribute(      'id', 'menusel');
-    menu.setAttribute(   'class', 'menubtn');
-    blnk.setAttribute('disabled',      true);
-    blnk.setAttribute('selected',      true);
-    blnk.setAttribute(  'hidden',      true);
+            if (cmdGroup == null) {
+                cmdGroup = document.createElement('optgroup');
+                cmdGroup.setAttribute('label', cmmndInfo[i][0]);
+                cmdGroup.setAttribute(   'id', cmmndInfo[i][0]);
+            }
 
-    menu.appendChild(blnk);
-    
-    for (var i = 0; i < lout.length; i++) {
-        var grp = menu.querySelector('#' + lout[i][0]);
-        var opt = document.createElement('option');
-
-        if (grp == null) {
-            grp = document.createElement('optgroup');
-            grp.setAttribute('label', lout[i][0]);
-            grp.setAttribute('id'   , lout[i][0]);
+            cmdOption.setAttribute('value', cmmndInfo[i][1]);
+            cmdOption.textContent = cmmndInfo[i][1] + ' : ' + cmmndInfo[i][2];
+            cmdGroup.appendChild(cmdOption);
+            cmdSelect.appendChild(cmdGroup);
         }
-
-        opt.setAttribute('value', lout[i][1]);
-        opt.textContent = lout[i][1] + ' : ' + lout[i][2];
-        grp.appendChild(opt);
-        menu.appendChild(grp);
     }
 
-    menu.addEventListener('click', function(e) {
-        var idx = e.path[0].selectedIndex;
-        var val = e.path[0][idx].value;
-        CommandManager(val);
-    });
+    cmdSelect.addEventListener(
+        'click', (e => CommandManager(e.path[0][e.path[0].selectedIndex].value))
+    );
 
-    return menu;
+    return cmdSelect;
 }
 
 function GetInputVal() {

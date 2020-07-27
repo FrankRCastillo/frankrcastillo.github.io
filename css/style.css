@@ -127,13 +127,18 @@ input
 ; box-sizing : border-box
 }
 
-#contain
+#textframe
 { border     : 1px solid #ffa500
 ; margin     : 0px 0px 0px 0px
 ; padding    : 0px 0px 0px 0px
 ; width      : calc(100% - 2px)
 ; height     : 30px
 ; background : #000000
+}
+
+#textinput
+{ width    : calc(100% - 45px)
+; position : absolute
 }
 
 #mapdata
@@ -331,11 +336,6 @@ input
 ; width        : 20px
 ; height       : 27px
 ; float        : left
-}
-
-#inputbox
-{ width    : calc(100% - 45px)
-; position : absolute
 }
 
 #textdiv
