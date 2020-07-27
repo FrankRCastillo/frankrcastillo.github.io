@@ -11,7 +11,7 @@ async function SetConsole() {
     main.setAttribute('id', 'console');
     otxt.setAttribute('id', 'outtext');
 
-    nlnk.addEventListener('click', function () {
+    nlnk.addEventListener('click', async function () {
         var news = await import('/main/news.js');
         await news.news();
     });
