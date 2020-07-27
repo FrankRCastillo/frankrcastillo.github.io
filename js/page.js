@@ -12,7 +12,7 @@ async function SetConsole() {
     otxt.setAttribute('id', 'outtext');
 
     nlnk.addEventListener('click', news.news());
-    nlnk.textContent = 'Toggle Panel';
+    nlnk.textContent = 'Toggle';
 
     nhdr.setAttribute('id', 'newshdr');
     nhdr.appendChild(nlnk);
