@@ -4,6 +4,7 @@ async function SetConsole() {
     var menu = await NewCommandLine();
     var main = document.createElement('div');
     var otxt = document.createElement('div');
+    var npnl = document.createElement('div');
     var nhdr = document.createElement('div');
     var ndiv = document.createElement('div');
     var nlnk = document.createElement('a');
