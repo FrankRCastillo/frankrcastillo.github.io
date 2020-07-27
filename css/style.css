@@ -114,7 +114,6 @@ input
 { position         : fixed
 ; background-color : #000000
 ; width            : calc(100% - 20px)
-; top              : 65px
 ; z-index          : 100001
 }
 
@@ -216,6 +215,8 @@ input
 ; font-size      : 14px
 ; text-align     : left
 ; border-spacing : 0px
+; position       : relative
+; top            : 15px
 }
 
 #GanttTable td
