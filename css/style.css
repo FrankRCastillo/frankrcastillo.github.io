@@ -132,6 +132,7 @@ input
 { background-color : #303012
 ; height           : 300px
 ; position         : relative
+; overflow         : auto
 }
 
 #cmdSelect
