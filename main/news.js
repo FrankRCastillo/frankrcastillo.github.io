@@ -13,9 +13,10 @@ export async function news() {
 }
 
 async function GetNewsFeed() {
-    var src  = await ReadFile('/main/news/news.txt');
-    var urls = src.split('\n');
-    var arr  = urls.map(x => await ReadFile(x).map(data => RSSParser(data)));
+    var src = await ReadFile('/main/news/news.txt');
+    var url = src.split('\n');
+    var xml = url.map(async x => await ReadFile(x));
+    var arr = xml.map(x => RSSParser(x));
 
     arr.sort((a,b,) => Date.parse(b[2]) - Date.parse(a[2]));
 
