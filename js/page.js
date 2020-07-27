@@ -1,4 +1,7 @@
 async function SetConsole() {
+    clearInterval(window.appinterval);
+    clearInterval(window.nwspnlinterval);
+
     var news = await import('/main/news.js');
     var clne = NewCommandLine();
     var menu = await NewCommandLine();
