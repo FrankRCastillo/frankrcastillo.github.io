@@ -15,10 +15,7 @@ export async function news() {
 async function GetNewsFeed() {
     var src  = await ReadFile('/main/news/news.txt');
     var urls = src.split('\n');
-    var arr  = urls.map(function(url) {
-        var xml = await ReadFile(url);
-        return xml.map(data => RSSParser(data));
-    });
+    var arr  = urls.map(x => await ReadFile(x).map(data => RSSParser(data)));
 
     arr.sort((a,b,) => Date.parse(b[2]) - Date.parse(a[2]));
 
