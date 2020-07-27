@@ -107,7 +107,7 @@ function RSSParser(xml) {
     xmldoc   = parser.parseFromString(xml, 'text/xml');
     var arr  = [];
     var wwdt = window.innerWidth;
-    var fwdt = Math.floor(wwdt / 10) - 18;          // (window width / font width) - dtg = pub and title width
+    var fwdt = Math.floor(wwdt / 10) - 20;          // (window width / font width) - dtg = pub and title width
     var pwdt = Math.floor(fwdt * 0.20);             // quarter of screen goes to publication
     var awdt = Math.floor(fwdt * 0.80);             // half of screen goes to article title
     var src  = trunc(xmldoc.getElementsByTagName('title')[0].textContent, pwdt);
