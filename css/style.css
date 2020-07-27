@@ -123,14 +123,14 @@ input
 ; overflow   : auto
 ; width      : calc(100% - 20px)
 ; height     : calc(100% - 200px)
-; position   : absolute
+; position   : relative
 ; box-sizing : border-box
 }
 
 #newspnl
 { background-color : #030312
 ; height           : 150px
-; position         : absolute
+; position         : relative
 ; overflow         : auto
 }
 
