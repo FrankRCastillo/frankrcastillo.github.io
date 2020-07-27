@@ -1,15 +1,19 @@
 // |apps|news|RSS feed from various news sources
 
 export async function news() {
-    clear();
     var out = document.getElementById('outtext');
 
     if (out != null) {
-        out.appendChild(await GetNewsFeed());
+        var feed = await GetNewsFeed();
+        out.innerHTML = '';
+        out.appendChild(feed);
     }
 
-    window.appinterval = await setInterval(async function() {
-        document.getElementById('outtext').appendChild(await GetNewsFeed());
+    window.appinterval = await setInterval(async function() { 
+        var out = document.getElementById('outtext');
+        var feed = await GetNewsFeed();
+        out.innerHTML = '';
+        out.appendChild(feed);
     }, 60000);
 }
 
