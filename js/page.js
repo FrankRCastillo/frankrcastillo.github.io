@@ -1,9 +1,5 @@
 async function SetConsole() {
-    clearInterval(window.appinterval);
-    clearInterval(window.nwspnlinterval);
-
     var news = await import('/main/news.js');
-    var clne = NewCommandLine();
     var menu = await NewCommandLine();
     var main = document.createElement('div');
     var otxt = document.createElement('div');
@@ -15,8 +11,8 @@ async function SetConsole() {
     main.setAttribute('id', 'console');
     otxt.setAttribute('id', 'outtext');
 
-    nlnk.addEventListener('click', CommandManager("news"));
-    nlnk.textContent = "Expand";
+    nlnk.addEventListener('click', news.news());
+    nlnk.textContent = 'Toggle Panel';
 
     nhdr.setAttribute('id', 'newshdr');
     nhdr.appendChild(nlnk);
@@ -30,12 +26,12 @@ async function SetConsole() {
     main.appendChild(otxt);
     main.appendChild(npnl);
 
-    window.nwspnlinterval = await setInterval(async function () {
+    window.newsinterval = await setInterval(async function () {
         var npnl = document.getElementById('newspnl');
         var nget = await news.GetNewsFeed();
         npnl.innerHTML = ''
         npnl.appendChild(nget);
-    }, 60000);
+    }, 120000);
 
     return main;
 }

@@ -1,20 +1,20 @@
 // |apps|news|RSS feed from various news sources
 
-export async function news() {
+export function news() {
     var out = document.getElementById('outtext');
+    var pnl = document.getElementById('newspnl');
 
-    if (out != null) {
-        var feed = await GetNewsFeed();
-        out.innerHTML = '';
-        out.appendChild(feed);
+    switch (out.style.display) {
+        case 'block':
+            out.style.display  = 'none';
+            pnl.style.height   = '100%';
+            pnl.style.overflow = 'auto';
+
+        case 'none':
+            out.style.display  = 'block';
+            pnl.style.height   = '100px';
+            pnl.style.overflow = 'none';
     }
-
-    window.appinterval = await setInterval(async function() { 
-        var out = document.getElementById('outtext');
-        var feed = await GetNewsFeed();
-        out.innerHTML = '';
-        out.appendChild(feed);
-    }, 60000);
 }
 
 export async function GetNewsFeed() {
