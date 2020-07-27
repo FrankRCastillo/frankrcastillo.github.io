@@ -6,15 +6,15 @@ export function news() {
 
     if (out != null) {
         switch (out.style.display) {
-            case 'block':
-                out.style.display  = 'none';
-                pnl.style.height   = '100%';
-                pnl.style.overflow = 'auto';
-
             case 'none':
                 out.style.display  = 'block';
                 pnl.style.height   = '100px';
                 pnl.style.overflow = 'none';
+
+            default:
+                out.style.display  = 'none';
+                pnl.style.height   = '100%';
+                pnl.style.overflow = 'auto';
         }
     }
 }
