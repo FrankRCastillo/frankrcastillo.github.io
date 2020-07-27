@@ -11,12 +11,11 @@ async function SetConsole() {
     main.setAttribute('id', 'console');
     otxt.setAttribute('id', 'outtext');
 
+    nlnk.textContent = 'Toggle';
     nlnk.addEventListener('click', async function () {
         var news = await import('/main/news.js');
         await news.news();
     });
-
-    nlnk.textContent = 'Toggle';
 
     nhdr.setAttribute('id', 'newshdr');
     nhdr.appendChild(nlnk);
@@ -26,6 +25,7 @@ async function SetConsole() {
 
     npnl.appendChild(nhdr);
     npnl.appendChild(ndiv);
+
     main.appendChild(menu);
     main.appendChild(otxt);
     main.appendChild(npnl);
