@@ -214,13 +214,13 @@ async function CommandManager(input) {
             case 'help' : help(); break;
             default:
 
-                try {
+         //       try {
                     let app = await import('/main/' + cmd + '.js');
                     eval('app.' + cmd + '()');
-                } catch(err) {
-                    print(cmd + ': command not available');
-                    console.log(err.message);
-                }
+         //       } catch(err) {
+         //           print(cmd + ': command not available');
+         //           console.log(err.message);
+         //       }
         }
     }
 }
