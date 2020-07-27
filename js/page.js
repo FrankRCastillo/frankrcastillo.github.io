@@ -205,7 +205,6 @@ async function ReadFile(url) {
 async function CommandManager(input) {
     if (input != '') {
         clear();
-        SetInputVal('');
 
         var cmd = input.toLowerCase();
 
@@ -213,7 +212,6 @@ async function CommandManager(input) {
             case 'home' : home(); break;
             case 'help' : help(); break;
             default:
-                CmdWait();
 
                 try {
                     let app = await import('/main/' + cmd + '.js');
@@ -281,7 +279,7 @@ function print(text) {
 //    sel[0].textContent = '\u25B6 "help", or click drop-down, for commands...';
 //}
 
-//function CmdWait() {
+//function //CmdWait() {
 //    var sel = document.getElementById('cmdSelect');
 //    sel[0].textContent = '\u25A0 Loading...';
 //}
@@ -330,15 +328,6 @@ async function NewCommandLine() {
     );
 
     return cmdSelect;
-}
-
-function GetInputVal() {
-    return document.getElementById('inputbox').value.toLowerCase();
-}
-
-function SetInputVal(val) {
-    var inputbox = document.getElementById('inputbox');
-    inputbox.value = val;
 }
 
 async function GetCmdInfo() {
