@@ -4,16 +4,18 @@ export function news() {
     var out = document.getElementById('outtext');
     var pnl = document.getElementById('newspnl');
 
-    switch (out.style.display) {
-        case 'block':
-            out.style.display  = 'none';
-            pnl.style.height   = '100%';
-            pnl.style.overflow = 'auto';
+    if (out != null) {
+        switch (out.style.display) {
+            case 'block':
+                out.style.display  = 'none';
+                pnl.style.height   = '100%';
+                pnl.style.overflow = 'auto';
 
-        case 'none':
-            out.style.display  = 'block';
-            pnl.style.height   = '100px';
-            pnl.style.overflow = 'none';
+            case 'none':
+                out.style.display  = 'block';
+                pnl.style.height   = '100px';
+                pnl.style.overflow = 'none';
+        }
     }
 }
 
