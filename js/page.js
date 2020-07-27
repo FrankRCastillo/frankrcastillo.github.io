@@ -219,7 +219,7 @@ async function CommandManager(input) {
                     let app = await import('/main/' + cmd + '.js');
                     eval('app.' + cmd + '()');
                 } catch(err) {
-                    CmdReady();
+                    ////CmdReady();
                     print(cmd + ': command not available');
                     console.log(err.message);
                 }
@@ -237,7 +237,7 @@ async function help() {
     lst.unshift(hdr);
     var tbl = ArrayToTable(lst, true, false); 
     document.getElementById('outtext').appendChild(tbl);
-    CmdReady();
+    ////CmdReady();
 }
 
 async function read(path) {
@@ -276,15 +276,15 @@ function print(text) {
     }
 }
 
-function CmdReady() {
-    var sel = document.getElementById('cmdSelect');
-    sel[0].textContent = '\u25B6 "help", or click drop-down, for commands...';
-}
+//function ////CmdReady() {
+//    var sel = document.getElementById('cmdSelect');
+//    sel[0].textContent = '\u25B6 "help", or click drop-down, for commands...';
+//}
 
-function CmdWait() {
-    var sel = document.getElementById('cmdSelect');
-    sel[0].textContent = '\u25A0 Loading...';
-}
+//function CmdWait() {
+//    var sel = document.getElementById('cmdSelect');
+//    sel[0].textContent = '\u25A0 Loading...';
+//}
 
 async function NewCommandLine() {
     var textframe = document.createElement('div');
@@ -381,7 +381,7 @@ async function main() {
 
     body.appendChild(await SetConsole());
     home();
-    CmdReady();
+    ////CmdReady();
 }
 
 main()
