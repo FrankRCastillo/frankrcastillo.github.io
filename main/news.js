@@ -7,6 +7,7 @@ export async function news() {
         var arr = GetNewsFeed();
         var tbl = ArrayToTable(arr, false, true);
         tbl.setAttribute('id', 'NewsTable');
+        clear();
         out.appendChild(tbl);
     }, 60000);
 }
