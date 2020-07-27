@@ -96,6 +96,8 @@ input
 #NewsTable
 { white-space : nowrap
 ; width       : calc(100% - 20px)
+; font-family : courier
+; font-size   : 17px
 }
 
 #GanttChart
