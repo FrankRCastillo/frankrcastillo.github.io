@@ -127,7 +127,6 @@ function NewCtryPage() {
     var out = document.createElement('div');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
-    var btn = document.createElement('button');
     var fcs = document.createElement('button');
     var dta = document.createElement('div');
     var sel = document.createElement('select');
