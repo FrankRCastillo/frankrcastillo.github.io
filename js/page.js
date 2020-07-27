@@ -307,9 +307,11 @@ async function NewCommandLine() {
     window.addEventListener('keyup',
         function (e) {
             var cmdSelect = document.getElementById('cmdSelect');
-            var selValue  = cmdSelect.options[cmdSelect.selectedIndex].value;
+            if (cmdSelect != null) {
+                var selValue  = cmdSelect.options[cmdSelect.selectedIndex].value;
 
-            if (e.keyCode == 13) { CommandManager(selValue); }
+                if (e.keyCode == 13) { CommandManager(selValue); }
+            }
         }
     );
 
