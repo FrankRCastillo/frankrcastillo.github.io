@@ -25,7 +25,7 @@ export async function lead() {
     var tmp = Array.from(lnk)
                    .map(x => x.href)
                    .filter(x => x.match('.*ChiefsDirectory.pdf'));
-    var pdf = tmp.map(function(x){
+    var arr = tmp.map(function(x){
         var s = x.split('/');
         var m = (mth.indexOf(s[8].split(s[7])[0]) + 1).toString();
 
@@ -35,7 +35,8 @@ export async function lead() {
                ]
     });
 
-    var doc = await pdfjsLib.getDocument(pdf[0][2]).promise;
+    var pdf = await ReadFile(arr[0][2]);
+    var doc = await pdfjsLib.getDocument(pdf).promise;
 
     clear();
     print(pdf);
