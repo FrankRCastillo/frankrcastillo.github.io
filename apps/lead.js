@@ -8,7 +8,7 @@ export async function lead() {
     bse.setAttribute('href', url);
     dom.head.append(bse);
     var lnk = dom.getElementsByTagName('a');
-    var pdf = Array.from(lnk).map(x => x.href);
+    var pdf = Array.from(lnk).map(x => x.href).filter(x => x.endsWith('.pdf'));
 
     clear();
     document.getElementById('outtext').appendChild(ArrayToTable(pdf));
