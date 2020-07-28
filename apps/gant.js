@@ -12,9 +12,9 @@ export async function gant() {
     var out = document.getElementById('outtext')
     var gnt = document.createElement('div');
     gnt.setAttribute('id', 'GanttChart');
+    out.appendChild(gnt);
     gnt.appendChild(NewGanttToolbar());
     gnt.appendChild(NewGanttPage(year, 1));
-    out.appendChild(gnt);
 }
 
 function NewGanttToolbar() {
