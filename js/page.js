@@ -107,8 +107,8 @@ function RSSParser(xml) {
     xmldoc   = parser.parseFromString(xml, 'text/xml');
     var arr  = [];
     var wwdt = window.innerWidth;
-    var fwdt = Math.floor(wwdt / 10) - 12;          // (window width / font width) - dtg = pub and title width
-    var awdt = Math.floor(fwdt * 0.80);             // half of screen goes to article title
+    var fwdt = Math.floor(wwdt / 10);               // (window width / font width) - dtg = pub and title width
+    var awdt = Math.floor(fwdt * 0.85);             // half of screen goes to article title
     var obj  = document.createElement('a');
     
     obj.href = xmldoc.getElementsByTagName('link')[0].textContent;
