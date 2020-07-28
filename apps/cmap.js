@@ -2,7 +2,6 @@
 
 export async function cmap() {
     var year = new Date().getFullYear();
-    
     var cia = await import('/js/cia.js');
 
     if (window.ctryData.length == 0) {
