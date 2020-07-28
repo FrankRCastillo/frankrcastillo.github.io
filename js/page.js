@@ -216,8 +216,9 @@ async function ReadFile(url) {
 
     switch (url.slice(-3)) {
         case 'pdf':
-            hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' }
-                  , type    : 'application/pdf;base64'
+            hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
+                              , 'type' : 'application/pdf;base64'
+                              }
                   };
             break;
 
