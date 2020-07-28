@@ -250,8 +250,9 @@ async function ReadFile(url) {
     }
 }
 
-// https://stackoverflow.com/questions/24535799/pdf-js-and-viewer-js-pass-a-stream-or-blob-to-the-viewer
+// https://gist.github.com/borismus/1032746
 function convertDataURIToBinary(dataURI) {
+    var BASE64_MARKER = ';base64,';
     var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
     var base64 = dataURI.substring(base64Index);
     var raw = window.atob(base64);
