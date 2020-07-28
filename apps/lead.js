@@ -35,8 +35,9 @@ export async function lead() {
                ]
     });
 
-    var pdf = await ReadFile(arr[0][2]);
-    var doc = await pdfjsLib.getDocument(pdf).promise;
+    var get = await ReadFile(arr[0][2]);
+    var bin = convertDataURIToBinary("data:application/pdf;base64, " + get);
+    var doc = await pdfjsLib.getDocument(bin).promise;
 
     clear();
     print(pdf);

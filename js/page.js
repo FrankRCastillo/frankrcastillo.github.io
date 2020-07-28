@@ -212,7 +212,19 @@ function isURL(url) {
 }
 
 async function ReadFile(url) {
-    var hdr = { headers: { 'Access-Control-Request-Headers' : 'origin' }};
+    var hdr = {}
+
+    switch (url.slice(-3)) {
+        case 'pdf':
+            hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
+            break;
+
+        default:
+            hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' }
+                  , type    : 'application/pdf;base64'
+                  };
+    }
+
     try{
         var corsprxy = '';
 
@@ -230,14 +242,26 @@ async function ReadFile(url) {
             console.log(err.message);
         }
         
-        switch (url.slice(-3)) {
-            case 'pdf' : return (await fetch(corsprxy + url, hdr)).then(r => r.blob());
-            default    : return (await fetch(corsprxy + url, hdr)).text();
-        }
+        return (await fetch(corsprxy + url, hdr)).text();
 
     } catch(err2) {
         console.log(err2.message);
     }
+}
+
+// https://stackoverflow.com/questions/24535799/pdf-js-and-viewer-js-pass-a-stream-or-blob-to-the-viewer
+function convertDataURIToBinary(dataURI) {
+    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64 = dataURI.substring(base64Index);
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (i = 0; i < rawLength; i++) {
+        array[i] = raw.charCodeAt(i);
+    }
+
+    return array;
 }
 
 async function CommandManager(input) {
