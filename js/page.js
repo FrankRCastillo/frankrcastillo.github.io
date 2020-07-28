@@ -212,19 +212,19 @@ function isURL(url) {
 }
 
 async function ReadFile(url) {
-    var hdr = {}
-    var corsprxy = '';
-    var currhost = new URL(window.location.href);
-    var readhost = new URL(url);
-
-    if ( readhost.hostname != currhost.hostname
-      && readhost.hostname != 'api.github.com'
-      && readhost.hostname != 'freegeoip.app'
-      && isURL(url)) {
-        corsprxy = 'https://cors-anywhere.herokuapp.com/';
-    }
-
     try{
+        var hdr = {}
+        var corsprxy = '';
+        var currhost = new URL(window.location.href);
+        var readhost = new URL(url);
+
+        if ( readhost.hostname != currhost.hostname
+          && readhost.hostname != 'api.github.com'
+          && readhost.hostname != 'freegeoip.app'
+          && isURL(url)) {
+            corsprxy = 'https://cors-anywhere.herokuapp.com/';
+        }
+
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
