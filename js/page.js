@@ -374,7 +374,7 @@ function GetJsDesc(str) {
     }
 }
 
-function tabletoarr(txt, delim) {
+function TableToArray(txt, delim) {
     return txt.split('\n').map(x => x.split(delim));
 }
 

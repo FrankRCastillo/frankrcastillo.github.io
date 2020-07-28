@@ -6,7 +6,7 @@ export async function GetData() {
     var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
     var doc = new DOMParser().parseFromString(txt, 'text/html');                        // parse CIA world factbook text into HTML
     var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
-    var iso = tabletoarr(await ReadFile('/js/iso.tsv'), '\t');                            // read csv file with iso2 to iso3 table and convert to array
+    var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');                            // read csv file with iso2 to iso3 table and convert to array
     var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
     var tag = bdy[0].getElementsByTagName('tr');                                        // get rows from table body; each row = one country listing
 
