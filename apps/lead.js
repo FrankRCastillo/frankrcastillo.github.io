@@ -35,7 +35,7 @@ export async function lead() {
                ]
     });
 
-
+    var doc = await pdfjsLib.getDocument(pdf[0][2]).promise;
 
     clear();
     print(pdf);
