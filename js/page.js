@@ -216,7 +216,7 @@ async function ReadFile(url) {
         var hdr = {}
         var corsprxy = '';
         var currhost = new URL(window.location.href);
-        var readhost = new URL(url);
+        var readhost = new URL(url, currhost);
 
         if ( readhost.hostname != currhost.hostname
           && readhost.hostname != 'api.github.com'
