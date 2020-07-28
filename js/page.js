@@ -212,6 +212,7 @@ function isURL(url) {
 }
 
 async function ReadFile(url) {
+    var hdr = { headers: { 'Access-Control-Request-Headers' : 'origin' }};
     try{
         var corsprxy = '';
 
@@ -228,8 +229,12 @@ async function ReadFile(url) {
         } catch(err) {
             console.log(err.message);
         }
+        
+        switch (url.slice(-3)) {
+            case 'pdf' : return (await fetch(corsprxy + url, hdr)).then(r => r.blob());
+            default    : return (await fetch(corsprxy + url, hdr)).text();
+        }
 
-        return (await fetch(corsprxy + url, { headers: { 'Access-Control-Request-Headers' : 'origin' }})).text();
     } catch(err2) {
         console.log(err2.message);
     }
