@@ -1,4 +1,4 @@
-// |wrld|cmap|World map with countries' history
+// |wrld|cmap|World map with countries' history (source: CIA WFB)
 
 export async function cmap() {
     var year = new Date().getFullYear();

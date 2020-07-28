@@ -1,4 +1,4 @@
-// |wrld|gant|Gantt chart of countries' history
+// |wrld|gant|Gantt chart of countries' history (source: CIA WFB)
 
 export async function gant() {
     var year = new Date().getFullYear();
