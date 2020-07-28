@@ -107,13 +107,20 @@ function RSSParser(xml) {
     xmldoc   = parser.parseFromString(xml, 'text/xml');
     var arr  = [];
     var wwdt = window.innerWidth;
-    var fwdt = Math.floor(wwdt / 10) - 22;          // (window width / font width) - dtg = pub and title width
-    var pwdt = Math.floor(fwdt * 0.20);             // quarter of screen goes to publication
+    var fwdt = Math.floor(wwdt / 10) - 15;          // (window width / font width) - dtg = pub and title width
     var awdt = Math.floor(fwdt * 0.80);             // half of screen goes to article title
-    var src  = trunc(xmldoc.getElementsByTagName('title')[0].textContent, pwdt);
+    var obj  = document.createElement('a');
+    
+    obj.href = xmldoc.getElementsByTagName('link')[0].textContent;
+
+    var src  = obj.host
+                  .replace('www.', '')
+                  .replace('.com', '');
     var itm  = xmldoc.getElementsByTagName('item');
+    var hrf  = document.createElement('a');
 
     for (var i = 0; i < itm.length; i++) {
+
         title = itm[i].getElementsByTagName('title'  )[0].textContent;
         pubdt = itm[i].getElementsByTagName('pubDate')[0].textContent;
         lnkst = itm[i].getElementsByTagName('link'   )[0].textContent;
