@@ -377,7 +377,6 @@ async function main() {
 
     body.appendChild(await SetConsole());
     home();
-    ////CmdReady();
 }
 
 main()
