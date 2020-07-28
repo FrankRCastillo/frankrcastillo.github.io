@@ -266,6 +266,11 @@ input
 { color : #ffa500
 }
 
+.ctryFlag
+{ height : 25px
+; width  : 25px
+}
+
 .tooltip
 { position : relative
 ; display  : inline-block

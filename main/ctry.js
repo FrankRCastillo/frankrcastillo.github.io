@@ -327,6 +327,7 @@ function NewGanttPage(year, scale) {
                     var ctryFlag = document.createElement('img');
                     var ctryName = document.createElement('span');
 
+                    ctryFlag.setAttribute('class', 'ctryFlag');
                     ctryFlag.setAttribute('src', window.ctryData[i][6]);
                     ctryName.textContent = window.ctryData[i][4];
 
