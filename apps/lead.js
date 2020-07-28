@@ -11,5 +11,5 @@ export async function lead() {
     var pdf = Array.from(lnk).map(x => x.href).filter(x => x.endsWith('.pdf'));
 
     clear();
-    document.getElementById('outtext').appendChild(ArrayToTable(pdf));
+    print(pdf);
 }
