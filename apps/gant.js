@@ -4,7 +4,7 @@ export async function gant() {
     var year = new Date().getFullYear();
     var cia  = await import('/js/cia.js');
 
-    if (window.ctryData.length == 0) {
+    if (window.ctryData == null && window.ctryData.length == 0) {
         window.ctryData = await cia.GetData();
         window.ctryData.sort((a, b) => a[3].localeCompare(b[3]));
     }
