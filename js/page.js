@@ -1,5 +1,5 @@
 async function SetConsole() {
-    var news = await import('/main/news.js');
+    var news = await import('/apps/news.js');
     var menu = await NewCommandLine();
     var main = document.createElement('div');
     var otxt = document.createElement('div');
@@ -13,7 +13,7 @@ async function SetConsole() {
 
     nlnk.textContent = 'Toggle';
     nlnk.addEventListener('click', async function () {
-        var news = await import('/main/news.js');
+        var news = await import('/apps/news.js');
         news.news();
     });
 
@@ -107,8 +107,7 @@ function RSSParser(xml) {
     xmldoc   = parser.parseFromString(xml, 'text/xml');
     var arr  = [];
     var wwdt = window.innerWidth;
-    var fwdt = Math.floor(wwdt / 10);               // (window width / font width) - dtg = pub and title width
-    var awdt = Math.floor(fwdt * 0.85);             // half of screen goes to article title
+    var awdt = Math.floor(wwdt / 10) - 30;          // half of screen goes to article title
     var obj  = document.createElement('a');
     
     obj.href = xmldoc.getElementsByTagName('link')[0].textContent;
@@ -249,7 +248,7 @@ async function CommandManager(input) {
             default:
 
 //                try {
-                    let app = await import('/main/' + cmd + '.js');
+                    let app = await import('/apps/' + cmd + '.js');
                     eval('app.' + cmd + '()');
 //                } catch(err) {
 //                    print(cmd + ': command not available');
@@ -260,7 +259,7 @@ async function CommandManager(input) {
 }
 
 function home() {
-    read('/main/home/home.txt');
+    read('/apps/home/home.txt');
 }
 
 async function help() {
@@ -348,7 +347,7 @@ async function NewCommandLine() {
 
 async function GetCmdInfo() {
     var host = window.location.href;
-    var list = await FileList(/main\/.*\.js$/);
+    var list = await FileList(/apps\/.*\.js$/);
     var lout = [];
 
     for (var i = 0; i < list.length; i++) {
