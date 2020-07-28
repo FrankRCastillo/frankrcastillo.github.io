@@ -368,8 +368,8 @@ function GetJsDesc(str) {
     }
 }
 
-function csv2arr(txt) {
-    return txt.split('\n').map(x => x.split(','));
+function tabletoarr(txt, delim) {
+    return txt.split('\n').map(x => x.split(delim));
 }
 
 async function main() {

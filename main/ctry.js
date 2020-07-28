@@ -27,7 +27,7 @@ async function GetData() {
     var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
     var doc = new DOMParser().parseFromString(txt, 'text/html');                        // parse CIA world factbook text into HTML
     var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
-    var iso = csv2arr(await ReadFile('/main/ctry/iso.csv'));                            // read csv file with iso2 to iso3 table and convert to array
+    var iso = tabletoarr(await ReadFile('/main/ctry/iso.tsv'), '\t');                            // read csv file with iso2 to iso3 table and convert to array
     var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
     var tag = bdy[0].getElementsByTagName('tr');                                        // get rows from table body; each row = one country listing
 
@@ -38,7 +38,7 @@ async function GetData() {
             var isom = iso[iso.map(x => x[2]).indexOf(iso2)]
             var name = tag[i].getElementsByClassName('country')[0].innerText.trim();    // get country name, trim whitespaces at the edges
             var hist = tag[i].querySelector('#field-background').innerText.trim();      // get country history listing, trim whitespaces
-            rtn.push([iso2, isom[1], isom[3], isom[4], name, hist]);                    // add elements into array
+            rtn.push([iso2, isom[1], isom[3], isom[4], name, hist, isom[5]]);                    // add elements into array
         } catch(err) {
             console.log(err.message);
         }
@@ -323,9 +323,16 @@ function NewGanttPage(year, scale) {
                 var histrng = histarr.filter(x => j >= x && x > j - scale);
 
                 if (year == j) {
-                    var ctryTd = document.createElement('td');
+                    var ctryTd   = document.createElement('td');
+                    var ctryFlag = document.createElement('img');
+                    var ctryName = document.createElement('span');
+
+                    ctryFlag.setAttribute('src', window.ctryData[i][5]);
+                    ctryName.textContent = window.ctryData[i][4];
+
                     ctryTd.style.textIndent = '30px';
-                    ctryTd.textContent = window.ctryData[i][4];
+                    ctryTd.appendChild(ctryFlag);
+                    ctryTd.appendChild(ctryName);
                     ctryTd.setAttribute('class', 'ctryLabel');
                     tr.appendChild(ctryTd);
                 }
