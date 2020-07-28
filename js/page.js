@@ -213,40 +213,34 @@ function isURL(url) {
 
 async function ReadFile(url) {
     var hdr = {}
+    var corsprxy = '';
+    var currhost = new URL(window.location.href);
+    var readhost = new URL(url);
 
-    switch (url.slice(-3)) {
-        case 'pdf':
-            hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
-                              , 'type' : 'application/pdf;base64'
-                              }
-                  };
-            break;
-
-        default:
-            hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
+    if ( readhost.hostname != currhost.hostname
+      && readhost.hostname != 'api.github.com'
+      && readhost.hostname != 'freegeoip.app'
+      && isURL(url)) {
+        corsprxy = 'https://cors-anywhere.herokuapp.com/';
     }
 
     try{
-        var corsprxy = '';
+        switch (url.slice(-3)) {
+            case 'pdf':
+                hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
+                                  , 'type' : 'application/pdf;base64'
+                                  }
+                      };
+                return (await fetch(corsprxy + url, hdr)).then(res  => res.blob())
+                                                         .then(blob => blob.dataUrl());
 
-        try {
-            var currhost = new URL(window.location.href);
-            var readhost = new URL(url);
-
-            if ( readhost.hostname != currhost.hostname
-              && readhost.hostname != 'api.github.com'
-              && readhost.hostname != 'freegeoip.app'
-              && isURL(url)) {
-                corsprxy = 'https://cors-anywhere.herokuapp.com/';
-            }
-        } catch(err) {
-            console.log(err.message);
+            default:
+                hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
+                return (await fetch(corsprxy + url, hdr)).text();
         }
-        
-        return (await fetch(corsprxy + url, hdr)).text();
 
-    } catch(err2) {
-        console.log(err2.message);
+    } catch(err) {
+        console.log(err.message);
     }
 }
 
