@@ -27,7 +27,12 @@ export async function lead() {
                    .filter(x => x.match('.*ChiefsDirectory.pdf'));
     var pdf = tmp.map(function(x){
         var s = x.split('/');
-        return [ s[7], s[8].split(s[7])[0], x]
+        var m = (mth.indexOf(s[8].split(s[7])[0]) + 1).toString();
+
+        return [ s[7]
+               , (m.length == 1 ? "0" + m : m)
+               , x
+               ]
     });
 
     clear();
