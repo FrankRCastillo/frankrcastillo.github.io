@@ -1,0 +1,9 @@
+https://www.aljazeera.com/xml/rss/all.xml
+https://www.yahoo.com/news/rss/world
+https://www.theguardian.com/world/rss
+https://www.cnbc.com/id/100727362/device/rss/rss.html
+https://feeds.npr.org/1004/rss.xml
+https://www.spiegel.de/international/index.rss
+https://abcnews.go.com/abcnews/internationalheadlines
+https://www.cbsnews.com/latest/rss/world
+https://www.france24.com/en/rss
