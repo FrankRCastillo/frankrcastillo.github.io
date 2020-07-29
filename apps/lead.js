@@ -40,7 +40,7 @@ export async function lead() {
     print("Under construction");
 }
 
-function readPdf(url) {
+async function readPdf(url) {
     var get = await ReadFile(url);
     var bin = convertDataURIToBinary(get);
     pdfjsLib.getDocument(bin).promise.then(function(pdf) {
