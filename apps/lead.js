@@ -4,7 +4,7 @@ export async function lead() {
     var arr = await FileList(/apps\/lead\/.*\.pdf/)
     var out = arr.map(async function(x) {
         var path = x.split('/')
-        var date = path.split('.');
+        var date = path[2].split('.');
         var file = await readPdf(x);
 
         return [date[0], date[1], file];
