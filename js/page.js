@@ -112,7 +112,6 @@ function RSSParser(xml) {
                   .replace('www.', '')
                   .replace('.com', '');
     var itm = xmldoc.getElementsByTagName('item');
-    var hrf = document.createElement('a');
     var arr = Array.from(itm).map(function(x){
         return [ src
                , trunc(decodeHtml(x.getElementsByTagName('title')[0].textContent), awdt)
