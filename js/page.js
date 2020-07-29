@@ -231,10 +231,9 @@ async function ReadFile(url) {
                                   , 'Content-Type' : 'application/pdf;base64'
                                   }
                       };
-                var ftc = await fetch(corsprxy + url, hdr);
-                var blb = await ftc.blob();
-
-                return blb(blobToBase64);
+                return await ( await( await fetch(corsprxy + url, hdr) 
+                                    ).then(res => res.blob())
+                                    ).then(blobToBase64);
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
