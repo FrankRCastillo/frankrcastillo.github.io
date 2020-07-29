@@ -231,12 +231,14 @@ async function ReadFile(url) {
                                   , 'Content-Type' : 'application/pdf;base64'
                                   }
                       };
+                
                 var blob = await(await fetch(corsprxy + url, hdr)).blob();
 
                 return blobToBase64(blob);
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
+                
                 return (await fetch(corsprxy + url, hdr)).text();
         }
 
