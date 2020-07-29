@@ -35,7 +35,7 @@ export async function lead() {
                ]
     });
 
-    var out = arr.map(x => readPdf(x[2]));
+    var out = arr.map(async x => await readPdf(x[2]));
 
     print("Under construction");
 }
