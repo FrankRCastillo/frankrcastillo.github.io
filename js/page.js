@@ -231,8 +231,9 @@ async function ReadFile(url) {
                                   , 'Content-Type' : 'application/pdf;base64'
                                   }
                       };
-                return (await fetch(corsprxy + url, hdr).then(res  => res.blob())
-                                                        .then(blob => blob.dataUrl()));
+                var obj = await fetch(corsprxy + url, hdr);
+                var rsb = obj.then(res  => res.blob());
+                var bdu = rsb.then(blob => blob.dataUrl());
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
