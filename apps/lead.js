@@ -37,7 +37,7 @@ export async function lead() {
 
     var get = await ReadFile(arr[0][2]);
     var bin = convertDataURIToBinary(get);
-    pdfjsLib.getDocument(bin).then(function(pdf) {
+    pdfjsLib.getDocument(bin).promise.then(function(pdf) {
         for (var i = 1; i <= pdf.numPages; i++) {
             pdf.getPage(i).then(function(page) {
                 page.getTextContent({ normalizeWhitespace : true }).then(function(content){
