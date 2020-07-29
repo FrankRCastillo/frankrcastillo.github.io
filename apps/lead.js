@@ -22,8 +22,16 @@ async function readPdf(url) {
             .then(function(pdf) {
         for (var i = 1; i <= pdf.numPages; i++) {
             pdf.getPage(i)
-               .then(page => page.getTextContent({ normalizeWhitespace : true })
-               .then(content => content.items.forEach(item => str += item.str)));
+               .then(function(page){
+                   page.getTextContent({ normalizeWhitespace : true })
+                       .then(function(content){
+                           content.items.forEach(
+                               function(item){
+                                   str += item.str;
+                               }
+                           )
+                       })
+               })
         }
     });
 
