@@ -24,9 +24,9 @@ async function readPdf(url) {
                                 .getTextContent())
                                 .items
                                 .map(token =>  token.str)
-                                .join('\n');
+                                //.join('\n');
     });
 
-    return (await Promise.all(txt)).join('');
+    return (await Promise.all(txt)); //.join('\n');
 }
 
