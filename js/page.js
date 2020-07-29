@@ -237,7 +237,7 @@ async function ReadFile(url) {
                 rdr.readAsDataBlob(blb);
                 rdr.onloadend = function() { reader.result; }
 
-                return return rdr.onloadend;
+                return rdr.onloadend;
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
