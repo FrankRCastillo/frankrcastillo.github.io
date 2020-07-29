@@ -375,7 +375,7 @@ async function NewCommandLine() {
 
 async function GetCmdInfo() {
     var list = await FileList(/apps\/.*\.js$/);
-    var lout = Promise.all(await list.map(async x => GetJsDesc(await ReadFile(x))));
+    var lout = await Promise.all(list.map(async x => GetJsDesc(await ReadFile(x))));
 
     lout.sort();
     lout.unshift(['core', 'home', 'Show the home screen']);
