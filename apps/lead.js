@@ -20,7 +20,8 @@ async function readPdf(url) {
     var wht = { normalizeWhitespace : true };
     var doc = await pdfjsLib.getDocument(bin).promise;
     var txt = Array.from({length : doc.numPages}, async (x, i) => {
-        return (await (await doc.getPage(i + 1)).getTextContent())
+        return (await (await doc.getPage(i + 1))
+                                .getTextContent())
                                 .items
                                 .map(token =>  token.str)
                                 .join('\n');
