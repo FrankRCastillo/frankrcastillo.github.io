@@ -37,10 +37,16 @@ export async function lead() {
 
     var get = await ReadFile(arr[0][2]);
     var bin = convertDataURIToBinary(get);
-    var doc = pdfjsLib.getDocument(bin);
-    var rtn = doc.then(function(pdf) {
-        var pgCnt = pdf.pdfInfo.numPages;
-        var pages = Array.from(pdf).map(x => x.getPage);
+    pdfjsLib.getDocument(bin).then(function(pdf) {
+        for (var i = 1; i <= pdf.numPages; i++) {
+            pdf.getPage(i).then(function(page) {
+                page.getTextContent({ normalizeWhitespace : true }).then(function(content){
+                    content.items.forEach(function(item){
+                        console.log(item.str);
+                    });
+                });
+            });
+        }
     });
 
     print("Under construction");
