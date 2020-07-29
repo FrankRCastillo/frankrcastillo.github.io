@@ -38,6 +38,7 @@ export async function lead() {
     var get = await ReadFile(arr[0][2]);
     var bin = convertDataURIToBinary(get);
     var doc = await pdfjsLib.getDocument(bin).promise;
+    var pge = await doc.getPageIndex();
 
     print("Under construction");
 }
