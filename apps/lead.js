@@ -14,18 +14,19 @@ export async function lead() {
 }
 
 async function readPdf(url) {
+    var str = '';
     var get = await ReadFile(url);
     var bin = convertDataURIToBinary(get);
-    pdfjsLib.getDocument(bin).promise.then(function(pdf) {
+    pdfjsLib.getDocument(bin)
+            .promise
+            .then(function(pdf) {
         for (var i = 1; i <= pdf.numPages; i++) {
-            pdf.getPage(i).then(function(page) {
-                page.getTextContent({ normalizeWhitespace : true }).then(function(content){
-                    content.items.forEach(function(item){
-                        console.log(item.str);
-                    });
-                });
-            });
+            str += pdf.getPage(i)
+                      .then(page => page.getTextContent({ normalizeWhitespace : true })
+                      .then(content => content.items.forEach(item => item.str)));
         }
     });
+
+    return str;
 }
 
