@@ -18,23 +18,15 @@ async function readPdf(url) {
     var get = await ReadFile(url);
     var bin = convertDataURIToBinary(get);
     var wht = { normalizeWhitespace : true };
-
-    pdfjsLib.getDocument(bin)
-            .promise
-            .then(function(pdf) {
-        for (var i = 1; i <= pdf.numPages; i++) {
-            pdf.getPage(i).then(function(page){
-                   page.getTextContent(wht).then(function(content){
-                           content.items.forEach(
-                               function(item){
-                                   arr.push(item.str);
-                               }
-                           )
-                       })
-               })
-        }
+    var doc = await pdfjsLib.getDocument(bin);
+    var txt = Array.from({length : doc.numPages}, async (x, i) => {
+        return (await (await doc.getPage(i + 1)
+                                .getTextContent()
+                                .items
+                                .map(token =>  token.str)
+                                .join('');))
     });
 
-    return arr;
+    return (await Promise.all(txt)).join('');
 }
 
