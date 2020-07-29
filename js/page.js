@@ -322,7 +322,11 @@ function print(text) {
         if (rgxget != null) {
             for (var i = 0; i < rgxget.length; i++) {
                 var oldurl = rgxget[i];
-                var newurl = '<a href="' + rgxget[i] + '" target="_blank">' + rgxget[i] + '</a>';
+                var newurl = '<a href="'
+                           + rgxget[i]
+                           + '" target="_blank">'
+                           + rgxget[i]
+                           + '</a>';
                 text = text.replace(new RegExp(oldurl, 'gi'), newurl);
             }
         }
@@ -373,14 +377,12 @@ async function NewCommandLine() {
 async function GetCmdInfo() {
     var host = window.location.href;
     var list = await FileList(/apps\/.*\.js$/);
-    var lout = [];
-
-    for (var i = 0; i < list.length; i++) {
-        var base = list[i].split('\/')[0];
-        var file = await ReadFile(host + list[i]);
+    var lout = list.map(function(x){
+        var base = x.split('\/')[0];
+        var file = await ReadFile(host + x);
         var line = GetJsDesc(file);
-        lout.push(line);
-    }
+        return line;
+    });
 
     lout.sort();
     lout.unshift(['core', 'home', 'Show the home screen']);
