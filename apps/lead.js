@@ -38,7 +38,7 @@ export async function lead() {
     var get = await ReadFile(arr[0][2]);
     var bin = convertDataURIToBinary(get);
     var doc = pdfjsLib.getDocument(bin);
-    var rtn = pdf.then(function(pdf) {
+    var rtn = doc.then(function(pdf) {
         var pgCnt = pdf.pdfInfo.numPages;
         var pages = Array.from(pdf).map(x => x.getPage);
     });
