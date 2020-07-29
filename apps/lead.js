@@ -1,7 +1,7 @@
 // |wrld|lead|Listing of government leaders (national, provincial, local; source: CIA WFB)
 
 export async function lead() {
-    var pdf = await FileList(/apps\/lead\/.*\.pdf/)
+    var arr = await FileList(/apps\/lead\/.*\.pdf/)
     var out = arr.map(async function(x) {
         var path = x.split('/')
         var date = path.split('.');
