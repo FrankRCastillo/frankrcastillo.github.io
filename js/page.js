@@ -234,7 +234,7 @@ async function ReadFile(url) {
                 var ftc = await fetch(corsprxy + url, hdr);
                 var blb = await ftc.blob();
                 var rdr = new FileReader();
-                rdr.readAsDataBlob(blb);
+                rdr.readAsDataURL(blb);
                 rdr.onloadend = function() { reader.result; }
 
                 return rdr.onloadend;
