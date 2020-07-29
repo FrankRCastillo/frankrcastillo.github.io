@@ -91,13 +91,9 @@ async function FileList(filter) {
     var text = await ReadFile(gapi);
     var json = JSON.parse(text);
     var tree = json.tree;
-    var list = [];
-
-    for (var i = 0; i < tree.length; i++) {
-        if (tree[i].path.search(filter) > -1) {
-            list.push(tree[i].path);
-        }
-    }
+    var list = Array.from(tree)
+                    .map(x => x.path)
+                    .filter(x => x.match(filter));
 
     return list;
 }

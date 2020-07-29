@@ -1,41 +1,14 @@
 // |wrld|lead|Listing of government leaders (national, provincial, local; source: CIA WFB)
 
 export async function lead() {
-   var mth = [ 'January'
-             , 'February'
-             , 'March'
-             , 'April'
-             , 'May'
-             , 'June'
-             , 'July'
-             , 'August'
-             , 'September'
-             , 'October'
-             , 'November'
-             , 'December'
-             ];
-    
-    var url = "https://www.cia.gov/library/publications/world-leaders-1/";
-    var txt = await ReadFile(url);
-    var dom = new DOMParser().parseFromString(txt, 'text/html');
-    var bse = dom.createElement('base');
-    bse.setAttribute('href', url);
-    dom.head.append(bse);
-    var lnk = dom.getElementsByTagName('a');
-    var tmp = Array.from(lnk)
-                   .map(x => x.href)
-                   .filter(x => x.match('.*ChiefsDirectory.pdf'));
-    var arr = tmp.map(function(x){
-        var s = x.split('/');
-        var m = (mth.indexOf(s[8].split(s[7])[0]) + 1).toString();
+    var pdf = await FileList(/apps\/lead\/.*\.pdf/)
+    var out = arr.map(async function(x) {
+        var path = x.split('/')
+        var date = path.split('.');
+        var file = await readPdf(x);
 
-        return [ s[7]
-               , (m.length == 1 ? "0" + m : m)
-               , x
-               ]
+        return [date[0], date[1], file];
     });
-
-    var out = arr.map(async x => await readPdf(x[2]));
 
     print("Under construction");
 }
