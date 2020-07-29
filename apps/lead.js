@@ -35,7 +35,13 @@ export async function lead() {
                ]
     });
 
-    var get = await ReadFile(arr[0][2]);
+    var out = arr.map(x => readPdf(x[2]));
+
+    print("Under construction");
+}
+
+function readPdf(url) {
+    var get = await ReadFile(url);
     var bin = convertDataURIToBinary(get);
     pdfjsLib.getDocument(bin).promise.then(function(pdf) {
         for (var i = 1; i <= pdf.numPages; i++) {
@@ -48,7 +54,5 @@ export async function lead() {
             });
         }
     });
-
-    print("Under construction");
 }
 
