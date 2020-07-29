@@ -18,7 +18,7 @@ async function readPdf(url) {
     var get = await ReadFile(url);
     var bin = convertDataURIToBinary(get);
     var wht = { normalizeWhitespace : true };
-    var doc = await pdfjsLib.getDocument(bin);
+    var doc = await pdfjsLib.getDocument(bin).promise;
     var txt = Array.from({length : doc.numPages}, async (x, i) => {
         return (await (await doc.getPage(i + 1)
                                 .getTextContent()
