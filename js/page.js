@@ -113,17 +113,13 @@ function RSSParser(xml) {
                   .replace('.com', '');
     var itm  = xmldoc.getElementsByTagName('item');
     var hrf  = document.createElement('a');
-
-    for (var i = 0; i < itm.length; i++) {
-
-        title = itm[i].getElementsByTagName('title'  )[0].textContent;
-        pubdt = itm[i].getElementsByTagName('pubDate')[0].textContent;
-        lnkst = itm[i].getElementsByTagName('link'   )[0].textContent;
-        deurl = decodeHtml(title);
-        isodt = DateISO(pubdt);
-
-        arr.push([ src, trunc(deurl, awdt), isodt, lnkst ]);
-    }
+    var arr = itm.map(function(x){
+        return [ src
+               , trunc(decodeHtml(x.getElementsByTagName('title')[0].textContent), awdt)
+               , DateISO(x.getElementsByTagName('pubDate')[0].textContent)
+               , x.getElementsByTagName('link')[0].textContent
+               ];
+    });
     
     return arr;
 }
@@ -261,12 +257,8 @@ function convertDataURIToBinary(dataURI) {
     var raw = window.atob(base64);
     var rawLength = raw.length;
     var array = new Uint8Array(new ArrayBuffer(rawLength));
-
-    for (i = 0; i < rawLength; i++) {
-        array[i] = raw.charCodeAt(i);
-    }
-
-    return array;
+    
+    return array.map((x, i) => raw.charCodeAt(i));
 }
 
 async function CommandManager(input) {
