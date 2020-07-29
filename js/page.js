@@ -228,7 +228,7 @@ async function ReadFile(url) {
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
-                                  , 'type' : 'application/pdf;base64'
+                                  , 'Content-Type' : 'application/pdf;base64'
                                   }
                       };
                 return (await fetch(corsprxy + url, hdr)).then(res  => res.blob())
