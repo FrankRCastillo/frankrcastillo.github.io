@@ -233,7 +233,11 @@ async function ReadFile(url) {
                       };
                 var ftc = await fetch(corsprxy + url, hdr);
                 var blb = await ftc.blob();
-                return await blb.dataUrl();
+                var rdr = new FileReader();
+                rdr.readAsDataBlob(blb);
+                rdr.onloadend = function() { reader.result; }
+
+                return return rdr.onloadend;
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
@@ -244,6 +248,10 @@ async function ReadFile(url) {
         console.log(err.message);
     }
 }
+
+function BlobToBase64(blob, callback) {
+
+};
 
 // https://gist.github.com/borismus/1032746
 function convertDataURIToBinary(dataURI) {
