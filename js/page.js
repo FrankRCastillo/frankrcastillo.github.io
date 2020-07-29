@@ -293,7 +293,6 @@ async function help() {
     lst.unshift(hdr);
     var tbl = ArrayToTable(lst, true, false); 
     document.getElementById('outtext').appendChild(tbl);
-    ////CmdReady();
 }
 
 async function read(path) {
@@ -377,7 +376,7 @@ async function NewCommandLine() {
 async function GetCmdInfo() {
     var host = window.location.href;
     var list = await FileList(/apps\/.*\.js$/);
-    var lout = list.map(function(x){
+    var lout = list.map(async function(x){
         var base = x.split('\/')[0];
         var file = await ReadFile(host + x);
         var line = GetJsDesc(file);
