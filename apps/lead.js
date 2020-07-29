@@ -14,20 +14,20 @@ export async function lead() {
 }
 
 async function readPdf(url) {
-    var str = '';
+    var arr = [];
     var get = await ReadFile(url);
     var bin = convertDataURIToBinary(get);
+    var wht = { normalizeWhitespace : true };
+
     pdfjsLib.getDocument(bin)
             .promise
             .then(function(pdf) {
         for (var i = 1; i <= pdf.numPages; i++) {
-            pdf.getPage(i)
-               .then(function(page){
-                   page.getTextContent({ normalizeWhitespace : true })
-                       .then(function(content){
+            pdf.getPage(i).then(function(page){
+                   page.getTextContent(wht).then(function(content){
                            content.items.forEach(
                                function(item){
-                                   str += item.str;
+                                   arr.push(item.str);
                                }
                            )
                        })
@@ -35,6 +35,6 @@ async function readPdf(url) {
         }
     });
 
-    return str;
+    return arr;
 }
 
