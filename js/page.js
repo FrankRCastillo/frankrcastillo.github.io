@@ -231,9 +231,9 @@ async function ReadFile(url) {
                                   , 'Content-Type' : 'application/pdf;base64'
                                   }
                       };
-                return await ( await( await fetch(corsprxy + url, hdr) 
-                                    ).then(res => res.blob())
-                                    ).then(blobToBase64);
+                var blob = await(await fetch(corsprxy + url, hdr)).blob();
+
+                return blobToBase64(blob);
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
@@ -245,14 +245,14 @@ async function ReadFile(url) {
     }
 }
 
-const blobToBase64 = blob => {
-  const reader = new FileReader();
-  reader.readAsDataURL(blob);
-  return new Promise(resolve => {
-    reader.onloadend = () => {
-      resolve(reader.result);
-    };
-  });
+function blobToBase64(blob) {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    return new Promise(resolve => {
+        reader.onloadend = () => {
+            resolve(reader.result);
+        };
+    });
 };
 
 // https://gist.github.com/borismus/1032746
