@@ -232,8 +232,8 @@ async function ReadFile(url) {
                                   }
                       };
                 return await (await (await fetch(corsprxy + url, hdr)
-                                    ).then(res  => res.blob())
-                                    ).then(blob => blob.dataUrl());
+                                    ).blob()
+                                    ).dataUrl();
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
