@@ -34,11 +34,9 @@ async function readPdf(url) {
 function parsePages(arr, iso) {
     var abbrevArr = arr.filter((x, i) => x[0] == 'Key To Abbreviations' && i > 0)
                        .map(function(x, i, orig){
-                           var entry = null;
                            if(i % 2 == 0){
-                               entry = [ orig[i - 1], orig[i] ];
+                               return [ orig[i - 1], orig[i] ];
                            }
-                           return entry;
                        }).filter(x => x != null || x != undefined);
     
 
