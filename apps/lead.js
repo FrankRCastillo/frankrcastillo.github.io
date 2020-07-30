@@ -32,7 +32,7 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    var ctryMatch = arr.map(function(x, i, orig){
+    var ctryMatch = arr.map((x, i, orig) => {
         if(iso.map(r => r[0]).includes(x[0])){
             if(i + 1 < orig.length - 1){
                 // looks for whether the first element in the array is a country, as per the imported
@@ -44,15 +44,17 @@ function parsePages(arr, iso) {
                 // end of the previous string element, and set the original element to null for later
                 // filtering. This allows the honorifics to be appended to the names of the respective
                 // individuals.
-                var mergeHonors = appendEntry.map(function(word, j, entry){
+                var mergeHonors = appendEntry.map((word, j, entry) => {
                     if(j + 1 < entry.length) {
                         if(entry[j + 1].charAt(0) == ','){
                             entry[j] = entry[j] + entry[j + 1];
                             entry[j + 1] = null;
                         }
                     }
-                    return entry[j] == null ? null : entry[j].trim();
-                }).filter(x => x != null);
+                    return entry[j] == null ? null : entry[j].trim();})
+                .filter(x => x != null
+                          || x != '- NDE'
+                          || x != 'Last Updated:')
 
                 return mergeHonors;
             }
