@@ -38,7 +38,7 @@ function parsePages(arr, iso) {
                 // looks for whether the first element in the array is a country, as per the imported
                 // ISO file. If not, that array "row" is appended to the end of the previous array,
                 // resulting in each country to have its own row.
-                var appendEntry = (iso.map(r => r[0]).includes(orig[i + 1][0] ? x : [].concat(x, orig[i + 1])));
+                var appendEntry = (iso.map(r => r[0]).includes(orig[i + 1][0]) ? x : [].concat(x, orig[i + 1]));
 
                 // look for string element in the array that start with comma, append them to the
                 // end of the previous string element, and set the original element to null for later
