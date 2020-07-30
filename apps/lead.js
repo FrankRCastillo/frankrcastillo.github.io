@@ -32,10 +32,13 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    var abbrevArr = arr.filter(x => x[0] == 'Key To Abbreviations')[0]
-                       .filter(x => x    != 'Key To Abbreviations')
+    var abbrevKey = 'Key To Abbreviations'
+    var abbrevArr = arr.filter(x => x[0] == abbrevKey)[0]
+                       .filter(x => x    != abbrevKey)
                        .map((x, i, orig) => i % 2 != 0 ? [ orig[i - 1], orig[i] ] : null)
-                       .filter(x => x != null || x != undefined);
+                       .filter(x => x != null || x != undefined)
+    
+    abbrevArr.push([['CEO', 'Chief Executive Officer']]);
 
     var ctryMatch = arr.map(function(x, i, orig){
         if(iso.map(r => r[0]).includes(x[0])){
