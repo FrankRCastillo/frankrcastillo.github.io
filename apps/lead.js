@@ -44,14 +44,14 @@ function parsePages(arr, iso) {
                 // end of the previous string element, and set the original element to null for later
                 // filtering. This allows the honorifics to be appended to the names of the respective
                 // individuals.
-                var mergeHonors = appendEntry.map(function(word, idx, entry){
-                    if(idx + 1 < entry.length) {
-                        if(entry[idx + 1].charAt(0) == ','){
-                            entry[idx] = entry[idx] + entry[idx + 1];
-                            entry[idx + 1] = null;
+                var mergeHonors = appendEntry.map(function(word, j, entry){
+                    if(j + 1 < entry.length) {
+                        if(entry[j + 1].charAt(0) == ','){
+                            entry[j] = entry[j] + entry[j + 1];
+                            entry[j + 1] = null;
                         }
                     }
-                    return entry[idx] == null ? null : entry[idx].trim();
+                    return entry[j] == null ? null : entry[j].trim();
                 }).filter(x => x != null);
 
                 return mergeHonors;
