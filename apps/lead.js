@@ -33,7 +33,12 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
+    var ctryMatch = arr.map(function(x){
+        if(iso.map(r => r[0]).includes(x[0])){
+            console.log("pause");
+        }
+    });
 
-    return arr;
+    return ctryMatch;
 }
 
