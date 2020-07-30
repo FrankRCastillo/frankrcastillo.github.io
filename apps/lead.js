@@ -46,9 +46,11 @@ function parsePages(arr, iso) {
                 }
 
                 var mergeHonors = appendEntry.map(function(word, idx, entry){
-                    if(entry[idx + 1].charAt(0) == ','){
-                        entry[idx] = entry[idx] + entry[idx + 1];
-                        entry[idx + 1] = null;
+                    if(idx + 1 < entry.length) {
+                        if(entry[idx + 1].charAt(0) == ','){
+                            entry[idx] = entry[idx] + entry[idx + 1];
+                            entry[idx + 1] = null;
+                        }
                     }
                     return entry[idx];
                 });
