@@ -203,6 +203,8 @@ function isURL(url) {
 }
 
 async function ReadFile(url) {
+    var rtn = null;
+
     try{
         var hdr = {}
         var corsprxy = '';
@@ -225,17 +227,19 @@ async function ReadFile(url) {
                 
                 var blob = await(await fetch(corsprxy + url, hdr)).blob();
 
-                return blobToBase64(blob);
+                rtn = blobToBase64(blob);
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
                 
-                return (await fetch(corsprxy + url, hdr)).text();
+                rtn = (await fetch(corsprxy + url, hdr)).text();
         }
 
     } catch(err) {
         console.log(err.message);
     }
+
+    return rtn;
 }
 
 function blobToBase64(blob) {
