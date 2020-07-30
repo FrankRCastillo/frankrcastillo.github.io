@@ -45,14 +45,12 @@ function parsePages(arr, iso) {
                         }
                     }
                     return entry[j] == null ? null : entry[j].trim();})
-                .filter(x => ![ null
-                              , undefined
-                              , '- NDE'
-                              , 'Last Updated:'
-                              ].includes(x))
+                .filter(x => x != null
+                          && x != undefined
+                          && x != '- NDE'
+                          && x != 'Last Updated:')
                 .map((x, i, orig) => ( i % 2 == 0 ? [ orig[i - 1], orig[i] ] : null))
                 .filter(x => x != null)
-
             }
         }
     }).filter(x => x != undefined);
