@@ -32,7 +32,8 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    var abbrevArr = arr.filter((x, i) => x != 'Key To Abbreviations')
+    var abbrevArr = arr.filter(x => x == 'Key To Abbreviations')
+                       .filter(x => x != 'Key To Abbreviations')
                        .map((x, i, orig) => i % 2 == 0 ? [ orig[i - 1], orig[i] ] : null)
                        .filter(x => x != null || x != undefined);
 
