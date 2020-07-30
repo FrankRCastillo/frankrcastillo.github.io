@@ -228,7 +228,6 @@ async function ReadFile(url) {
     } catch(err) {
         console.log(err.message);
     }
-
 }
 
 function blobToBase64(blob) {
