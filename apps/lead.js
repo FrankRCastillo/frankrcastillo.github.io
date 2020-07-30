@@ -36,8 +36,8 @@ function parsePages(arr, iso) {
         if(iso.map(r => r[0]).includes(x[0])){
             if(i + 1 < orig.length - 1){
                 return ( iso.map(r => r[0])
-                            .includes(orig[i + 1][0]) ? x : [].concat(x, orig[i + 1]));
-                        .map((word, j, entry) => {
+                            .includes(orig[i + 1][0]) ? x : [].concat(x, orig[i + 1])
+                       ).map((word, j, entry) => {
                             if(j + 1 < entry.length) {
                                 if(entry[j + 1].charAt(0) == ','){
                                     entry[j] = entry[j] + entry[j + 1];
