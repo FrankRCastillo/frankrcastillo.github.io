@@ -33,14 +33,26 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
+    var abbrevArr = arr.filter(x => x[0] == 'Key To Abbreviations');
     var ctryMatch = arr.map(function(x, i, orig){
         if(iso.map(r => r[0]).includes(x[0])){
             if(i + 1 < orig.length - 1){
+                var appendEntry = null;
+
                 if(iso.map(r => r[0]).includes(orig[i + 1][0])){
-                    return x;
+                    appendEntry = x;
                 } else {
-                    return [].concat(x, orig[i + 1]);
+                    appendEntry = [].concat(x, orig[i + 1]);
                 }
+
+                var mergeHonors = appendEntry.map(function(word, idx, entry){
+                    if(entry[idx].charAt(0) == ','){
+                        entry[idx - 1] = entry[idx] + entry[idx - 1];
+                        entry[idx] = null;
+                    }
+                });
+
+                return mergeHonors
             }
         }
     });
