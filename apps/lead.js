@@ -36,7 +36,9 @@ function parsePages(arr, iso) {
     var ctryMatch = arr.map(function(x, i, orig){
         if(iso.map(r => r[0]).includes(x[0])){
             if(i + 1 < orig.length - 1){
-                if(iso.map(r => r[0]).includes(orig[i + 1][0]) == false){
+                if(iso.map(r => r[0]).includes(orig[i + 1][0])){
+                    return x;
+                } else {
                     return [].concat(x, orig[i + 1]);
                 }
             }
