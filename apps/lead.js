@@ -32,28 +32,26 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    return arr.map((x, i, orig) => {                                                    // iterate through array containing page (one row = one page)
-        if(iso.map(r => r[0]).includes(x[0])){                                          // check that all countries are listed in the ISO array
-            if(i + 1 < orig.length - 1){                                                // ensure that no out of bounds exceptions occur
-                var ctryRow = iso.map(r => r[0]).includes(orig[i + 1][0])               // check that each row corresponds to a country...
-                return (ctryRow ? x : [].concat(x, orig[i + 1]))                        // ...and if true, return row; otherwise, return row-n + row-n+1
-                .map((word, j, entry) => {                                              // iterate country rows. each element is a role, name, or honorific
-                    if(j + 1 < entry.length) {                                          // another out of bounds check
-                        if(entry[j + 1].charAt(0) == ','){                              // if an element in the row starts with a comma, it is an honorific...
-                            entry[j] = entry[j] + entry[j + 1];                         // ...which should be appended to the name prior to it...
-                            entry[j + 1] = null;                                        // ...and that value should be nulled out for later removal
-                        }
-                    }
-                    return (entry[j] == null ? null : entry[j].trim());                 // these nulls are moved here, while other strings are trimmed
-                })                                                       
-                .filter(x => x != null)
-                .filter(x => x != undefined)
-                .filter(x => x != '- NDE')
-                .filter(x => x != 'Last Updated:')
-                .map((x, i, arr) => ( i % 2 == 0 ? [ arr[i - 1], arr[i] ] : null))
-                .filter(x => x != null)
-            }
-        }
-    }).filter(x => x != undefined);
+    return arr.filter(x => iso.map(m => m[0]).includes(x[0]))
+              .map((x, i, r) => {
+                  if(i + 1 < r.length - 1){
+                      var row = iso.map(m => m[0]).includes(r[i + 1][0])
+                      return (row ? x : [].concat(x, r[i + 1]))
+                  }
+              })
+              .map((x, i, r) => {
+                  if(i + 1 < r.length - 1){
+                      if(r[i + 1].charAt(0) == ','){
+                          r[i] += r[i + 1];
+                          r[i + 1] = null;
+                      }
+                  }
+                  return (r[j] == null ? null : r[j].trim());
+              })
+              .filter(x => x != null
+                        && x != undefined
+                        && x != '- NDE'
+                        && x != 'Last Updated:')
+              .map((x, i, r) => (i % 2 == 0 ? [ r[i - 1], r[i] ] : null));
 }
 
