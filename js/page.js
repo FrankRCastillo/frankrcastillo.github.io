@@ -204,7 +204,6 @@ function isURL(url) {
 
 async function ReadFile(url) {
     try{
-        var rtn = null;
         var blb = null;
         var hdr = {}
         var currhost = new URL(window.location.href);
@@ -220,14 +219,12 @@ async function ReadFile(url) {
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
                                   , 'Content-Type' : 'application/pdf;base64'  }};
                 blb = await(await fetch(corsprxy + url, hdr)).blob();
-                rtn = blobToBase64(blb);
+                return blobToBase64(blb);
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
-                rtn = (await fetch(corsprxy + url, hdr)).text();
+                return (await fetch(corsprxy + url, hdr)).text();
         }
-
-        return rtn;
     } catch(err) {
         console.log(err.message);
     }
@@ -247,11 +244,11 @@ function blobToBase64(blob) {
 // https://gist.github.com/borismus/1032746
 function convertDataURIToBinary(dataURI) {
     var BASE64_MARKER = ';base64,';
-    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
-    var base64 = dataURI.substring(base64Index);
-    var raw = window.atob(base64);
-    var rawLength = raw.length;
-    var array = new Uint8Array(new ArrayBuffer(rawLength));
+    var base64Index   = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64        = dataURI.substring(base64Index);
+    var raw           = window.atob(base64);
+    var rawLength     = raw.length;
+    var array         = new Uint8Array(new ArrayBuffer(rawLength));
     
     return array.map((x, i) => raw.charCodeAt(i));
 }
