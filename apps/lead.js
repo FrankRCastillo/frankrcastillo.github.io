@@ -37,12 +37,9 @@ function parsePages(arr, iso) {
         if(iso.map(r => r[0]).includes(x[0])){
             if(i + 1 < orig.length - 1){
                 if(iso.map(r => r[0]).includes(orig[i + 1][0]) == false){
-                    console.log("pause");
                     return [].concat(x, orig[i + 1]);
                 }
             }
-
-            console.log("pause");
         }
     });
 
