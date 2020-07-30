@@ -50,6 +50,7 @@ function parsePages(arr, iso) {
                         entry[idx - 1] = entry[idx] + entry[idx - 1];
                         entry[idx] = null;
                     }
+                    return word;
                 });
 
                 return mergeHonors
