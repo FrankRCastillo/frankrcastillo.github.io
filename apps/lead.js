@@ -32,49 +32,29 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    var ctryMatch = arr.map((x, i, orig) => {
+    return arr.map((x, i, orig) => {
         if(iso.map(r => r[0]).includes(x[0])){
             if(i + 1 < orig.length - 1){
                 return ( iso.map(r => r[0])
-                            .includes(orig[i + 1][0]) ? x : [].concat(x, orig[i + 1])
-                       ).map((word, j, entry) => {
-                            if(j + 1 < entry.length) {
-                                if(entry[j + 1].charAt(0) == ','){
-                                    entry[j] = entry[j] + entry[j + 1];
-                                    entry[j + 1] = null;
-                                }
-                            }
-                            return entry[j] == null ? null : entry[j].trim();})
-                        .filter(x => ![null, '- NDE', 'Last Updated:'].includes(x))
-                        .map((x, i, orig) => ( i % 2 == 0 ? [ orig[i - 1], orig[i] ] : null))
-                        .filter(x => x != null)
+                            .includes(orig[i + 1][0]) ? x : [].concat(x, orig[i + 1]))
+                .map((word, j, entry) => {
+                    if(j + 1 < entry.length) {
+                        if(entry[j + 1].charAt(0) == ','){
+                            entry[j] = entry[j] + entry[j + 1];
+                            entry[j + 1] = null;
+                        }
+                    }
+                    return entry[j] == null ? null : entry[j].trim();})
+                .filter(x => ![ null
+                              , undefined
+                              , '- NDE'
+                              , 'Last Updated:'
+                              ].includes(x))
+                .map((x, i, orig) => ( i % 2 == 0 ? [ orig[i - 1], orig[i] ] : null))
+                .filter(x => x != null)
 
-//                // looks for whether the first element in the array is a country, as per the imported
-//                // ISO file. If not, that array "row" is appended to the end of the previous array,
-//                // resulting in each country to have its own row.
-//                var appendEntry = (iso.map(r => r[0]).includes(orig[i + 1][0]) ? x : [].concat(x, orig[i + 1]));
-//
-//                // look for string element in the array that start with comma, append them to the
-//                // end of the previous string element, and set the original element to null for later
-//                // filtering. This allows the honorifics to be appended to the names of the respective
-//                // individuals.
-//                var mergeHonors = appendEntry.map((word, j, entry) => {
-//                    if(j + 1 < entry.length) {
-//                        if(entry[j + 1].charAt(0) == ','){
-//                            entry[j] = entry[j] + entry[j + 1];
-//                            entry[j + 1] = null;
-//                        }
-//                    }
-//                    return entry[j] == null ? null : entry[j].trim();})
-//                .filter(x => ![null, '- NDE', 'Last Updated:'].includes(x))
-//                .map((x, i, orig) => ( i % 2 == 0 ? [ orig[i - 1], orig[i] ] : null))
-//                .filter(x => x != null)
-//
-//                return mergeHonors;
             }
         }
-    });
-    
-    return ctryMatch.filter(x => x != undefined);
+    }).filter(x => x != undefined);
 }
 
