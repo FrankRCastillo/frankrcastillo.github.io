@@ -203,43 +203,35 @@ function isURL(url) {
 }
 
 async function ReadFile(url) {
-    var rtn = null;
-
     try{
+        var rtn = null;
+        var blb = null;
         var hdr = {}
-        var corsprxy = '';
         var currhost = new URL(window.location.href);
         var readhost = new URL(url, currhost);
-
-        if ( readhost.hostname != currhost.hostname
-          && readhost.hostname != 'api.github.com'
-          && readhost.hostname != 'freegeoip.app'
-          && isURL(url)) {
-            corsprxy = 'https://cors-anywhere.herokuapp.com/';
-        }
-
+        var corsurl  = 'https://cors-anywhere.herokuapp.com/';
+        var corsprxy = (![ currhost.hostname
+                         , 'api.github.com'
+                         , 'freegeoip.app'
+                         ].includes(readhost.hostname) && isURL(url) ? corsurl : '');
+        
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
-                                  , 'Content-Type' : 'application/pdf;base64'
-                                  }
-                      };
-                
-                var blob = await(await fetch(corsprxy + url, hdr)).blob();
-
-                rtn = blobToBase64(blob);
+                                  , 'Content-Type' : 'application/pdf;base64'  }};
+                blb = await(await fetch(corsprxy + url, hdr)).blob();
+                rtn = blobToBase64(blb);
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
-                
                 rtn = (await fetch(corsprxy + url, hdr)).text();
         }
 
+        return rtn;
     } catch(err) {
         console.log(err.message);
     }
 
-    return rtn;
 }
 
 function blobToBase64(blob) {
