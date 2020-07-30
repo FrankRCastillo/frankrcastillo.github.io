@@ -26,10 +26,9 @@ async function readPdf(url) {
                                 .getTextContent())
                                 .items
                                 .map(token =>  token.str)
-                                //.join('\n');
     });
 
-    return (await Promise.all(txt)); //.join('\n');
+    return (await Promise.all(txt));
 }
 
 function parsePages(arr, iso) {
