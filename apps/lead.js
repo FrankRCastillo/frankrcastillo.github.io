@@ -50,7 +50,7 @@ function parsePages(arr, iso) {
                 .filter(x => x != undefined)
                 .filter(x => x != '- NDE')
                 .filter(x => x != 'Last Updated:')
-                .map((x, i, orig) => ( i % 2 == 0 ? [ orig[i - 1], orig[i] ] : null))
+                .map((x, i, arr) => ( i % 2 == 0 ? [ arr[i - 1], arr[i] ] : null))
                 .filter(x => x != null)
             }
         }
