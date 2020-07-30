@@ -33,8 +33,14 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    var ctryMatch = arr.map(function(x){
+    var ctryMatch = arr.map(function(x, i, orig){
         if(iso.map(r => r[0]).includes(x[0])){
+            if(i + 1 < orig.length - 1){
+                if(iso.map(r => r[0]).includes(orig[i + 1]) == false){
+                    console.log("pause");
+                }
+            }
+
             console.log("pause");
         }
     });
