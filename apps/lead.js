@@ -44,7 +44,7 @@ function parsePages(arr, iso) {
             }
         }
     });
-
-    return ctryMatch;
+    
+    return ctryMatch.filter(x => x != undefined);
 }
 
