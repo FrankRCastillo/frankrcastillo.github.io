@@ -105,9 +105,7 @@ function RSSParser(xml) {
     var wwdt = window.innerWidth;
     var awdt = Math.floor(wwdt / 10) - 32;          // half of screen goes to article title
     var obj  = document.createElement('a');
-    
     obj.href = xmldoc.getElementsByTagName('link')[0].textContent;
-
     var src  = obj.host
                   .replace('www.', '')
                   .replace('.com', '');
@@ -375,15 +373,10 @@ async function GetCmdInfo() {
 }
 
 function GetJsDesc(str) {
-    var lines = str.split('\n');
-    var regex = '^// |.*'
-
-    for (var i = 0; i < lines.length; i++) {
-        if (lines[i].match(regex)) {
-            var line = lines[i].replace('// |', '');
-            return line.split('|');
-        }
-    }
+    return str.split('\n')
+              .filter(x => x.match('^// |.*'))[0]
+              .replace('// |', '')
+              .split('|');
 }
 
 function TableToArray(txt, delim) {
