@@ -32,25 +32,18 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    var abbrevKey = 'Key To Abbreviations'
-    var abbrevArr = arr.filter(x => x[0] == abbrevKey)[0]
-                       .filter(x => x    != abbrevKey)
-                       .map((x, i, orig) => i % 2 != 0 ? [ orig[i - 1], orig[i] ] : null)
-                       .filter(x => x != null || x != undefined)
-    
-    abbrevArr.push([['CEO', 'Chief Executive Officer']]);
-
     var ctryMatch = arr.map(function(x, i, orig){
         if(iso.map(r => r[0]).includes(x[0])){
             if(i + 1 < orig.length - 1){
-                var appendEntry = null;
+                // looks for whether the first element in the array is a country, as per the imported
+                // ISO file. If not, that array "row" is appended to the end of the previous array,
+                // resulting in each country to have its own row.
+                var appendEntry = (iso.map(r => r[0]).includes(orig[i + 1][0] ? x : [].concat(x, orig[i + 1])));
 
-                if(iso.map(r => r[0]).includes(orig[i + 1][0])){
-                    appendEntry = x;
-                } else {
-                    appendEntry = [].concat(x, orig[i + 1]);
-                }
-
+                // look for string element in the array that start with comma, append them to the
+                // end of the previous string element, and set the original element to null for later
+                // filtering. This allows the honorifics to be appended to the names of the respective
+                // individuals.
                 var mergeHonors = appendEntry.map(function(word, idx, entry){
                     if(idx + 1 < entry.length) {
                         if(entry[idx + 1].charAt(0) == ','){
@@ -59,11 +52,9 @@ function parsePages(arr, iso) {
                         }
                     }
                     return entry[idx] == null ? entry[idx] : entry[idx].trim();
-                });
+                }).filter(x => x != null);
 
-                var finalEntry = mergeHonors.filter(x => x != null);
-
-                return finalEntry;
+                return mergeHonors;
             }
         }
     });
