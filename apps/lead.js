@@ -32,12 +32,9 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    var abbrevArr = arr.filter((x, i) => x[0] == 'Key To Abbreviations' && i > 0)
-                       .map(function(x, i, orig){
-                           if(i % 2 == 0){
-                               return [ orig[i - 1], orig[i] ];
-                           }
-                       }).filter(x => x != null || x != undefined);
+    var abbrevArr = arr.filter((x, i) => x != 'Key To Abbreviations')
+                       .map(function(x, i, orig){ if(i % 2 == 0){ return [ orig[i - 1], orig[i] ]; }})
+                       .filter(x => x != null || x != undefined);
     
 
     var ctryMatch = arr.map(function(x, i, orig){
