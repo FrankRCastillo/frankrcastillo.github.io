@@ -52,7 +52,7 @@ function parsePages(arr, iso) {
                             entry[idx + 1] = null;
                         }
                     }
-                    return entry[idx];
+                    return entry[idx].trim();
                 });
 
                 var finalEntry = mergeHonors.filter(x => x != null);
