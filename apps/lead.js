@@ -32,19 +32,20 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    return arr.map((x, i, orig) => {
-        if(iso.map(r => r[0]).includes(x[0])){
-            if(i + 1 < orig.length - 1){
-                return ( iso.map(r => r[0])
-                            .includes(orig[i + 1][0]) ? x : [].concat(x, orig[i + 1]))
-                .map((word, j, entry) => {
-                    if(j + 1 < entry.length) {
-                        if(entry[j + 1].charAt(0) == ','){
-                            entry[j] = entry[j] + entry[j + 1];
-                            entry[j + 1] = null;
+    return arr.map((x, i, orig) => {                                                    // iterate through array containing page (one row = one page)
+        if(iso.map(r => r[0]).includes(x[0])){                                          // check that all countries are listed in the ISO array
+            if(i + 1 < orig.length - 1){                                                // ensure that no out of bounds exceptions occur
+                var ctryRow = iso.map(r => r[0]).includes(orig[i + 1][0])               // because some rows may not have positions and countries, check the row for countries...
+                return (iso.map(ctryRow ? x : [].concat(x, orig[i + 1])))               // ...and if true, return the row, otherwise, concatenate the follow row to it and return
+                .map((word, j, entry) => {                                              // iterate through country rows. each row element is a position, name, or honorific
+                    if(j + 1 < entry.length) {                                          // another out of bounds check
+                        if(entry[j + 1].charAt(0) == ','){                              // if an element in the row starts with a comma, it is an honorific...
+                            entry[j] = entry[j] + entry[j + 1];                         // ...which should be appended to the name prior to it...
+                            entry[j + 1] = null;                                        // ...and that value should be nulled out for later removal
                         }
                     }
-                    return entry[j] == null ? null : entry[j].trim();})
+                    return (entry[j] == null ? null : entry[j].trim());
+                })                 // these nulls are moved here, while other strings are trimmed
                 .filter(x => x != null
                           && x != undefined
                           && x != '- NDE'
