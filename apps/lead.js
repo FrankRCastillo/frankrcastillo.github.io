@@ -47,9 +47,9 @@ function parsePages(arr, iso) {
                     return (entry[j] == null ? null : entry[j].trim());                 // these nulls are moved here, while other strings are trimmed
                 })                                                       
                 .filter(x => x != null
-                      && x != undefined
-                      && x != '- NDE'
-                      && x != 'Last Updated:')
+                          && x != undefined
+                          && x != '- NDE'
+                          && x != 'Last Updated:')
                 .map((x, i, orig) => ( i % 2 == 0 ? [ orig[i - 1], orig[i] ] : null))
                 .filter(x => x != null)
             }
