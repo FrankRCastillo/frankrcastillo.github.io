@@ -46,9 +46,9 @@ function parsePages(arr, iso) {
                 }
 
                 var mergeHonors = appendEntry.map(function(word, idx, entry){
-                    if(entry[idx].charAt(0) == ','){
-                        entry[idx - 1] = entry[idx - 1] + entry[idx];
-                        entry[idx] = null;
+                    if(entry[idx + 1].charAt(0) == ','){
+                        entry[idx] = entry[idx] + entry[idx + 1];
+                        entry[idx + 1] = null;
                     }
                     return entry[idx];
                 });
