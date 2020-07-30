@@ -44,9 +44,9 @@ function parsePages(arr, iso) {
                             entry[j + 1] = null;                                        // ...and that value should be nulled out for later removal
                         }
                     }
-                    return (entry[j] == null ? null : entry[j].trim());
-                })                 // these nulls are moved here, while other strings are trimmed
-                .filter(x => x != null
+                    return (entry[j] == null ? null : entry[j].trim());                 // these nulls are moved here, while other strings are trimmed
+                })                                                       
+                    .filter(x => x != null
                           && x != undefined
                           && x != '- NDE'
                           && x != 'Last Updated:')
