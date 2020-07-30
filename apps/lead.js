@@ -39,7 +39,7 @@ function parsePages(arr, iso) {
                                entry = [ orig[i - 1], orig[i] ];
                            }
                            return entry;
-                       }).filter(x => x != null);
+                       }).filter(x => x != null || x != undefined);
     
 
     var ctryMatch = arr.map(function(x, i, orig){
