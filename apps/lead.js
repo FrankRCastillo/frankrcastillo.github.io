@@ -33,7 +33,7 @@ async function readPdf(url) {
 
 function parsePages(arr, iso) {
     var isoCty = iso.map(m => m[0]);
-    arr.map((x, i, r) => {
+    return arr.map((x, i, r) => {
         return (( i + 1 < r.length 
                && isoCty.includes(r[i][0])
                && isoCty.includes(r[i + 1][0])
