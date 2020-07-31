@@ -36,22 +36,21 @@ function parsePages(arr, iso) {
               .map((x, i, r) => {
                   if(i + 1 < r.length - 1){
                       var row = iso.map(m => m[0]).includes(r[i + 1][0])
-                      return (row ? x : [].concat(x, r[i + 1]))
-                  }
-              })
-              .map((x, i, r) => {
-                  if(i + 1 < r.length - 1){
-                      if(r[i + 1].charAt(0) == ','){
-                          r[i] += r[i + 1];
-                          r[i + 1] = null;
-                      }
-                  }
-                  return (r[j] == null ? null : r[j].trim());
-              })
-              .filter(x => x != null
-                        && x != undefined
-                        && x != '- NDE'
-                        && x != 'Last Updated:')
-              .map((x, i, r) => (i % 2 == 0 ? [ r[i - 1], r[i] ] : null));
+                      return (row ? x : [].concat(x, r[i + 1])).map((p, j, q) => {
+                          if(j + 1 < q.length - 1){
+                              if(r[j + 1].charAt(0) == ','){
+                                  q[j] += q[j + 1];
+                                  q[j + 1] = null;
+                              }
+                          }
+                          return (q[j] == null ? null : q[j].trim());
+                      })
+                      .filter(p => p != null
+                                && p != undefined
+                                && p != '- NDE'
+                                && p != 'Last Updated:')
+                      .map((p, j, q) => (j % 2 == 0 ? [ q[j - 1], r[j] ] : null));
+                          }
+                      })
 }
 
