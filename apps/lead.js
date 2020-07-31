@@ -38,7 +38,7 @@ function parsePages(arr, iso) {
                       var row = iso.map(m => m[0]).includes(r[i + 1][0])
                       return (row ? x : [].concat(x, r[i + 1])).map((p, j, q) => {
                           if(j + 1 < q.length - 1){
-                              if(r[j + 1].charAt(0) == ','){
+                              if(q[j + 1].charAt(0) == ','){
                                   q[j] += q[j + 1];
                                   q[j + 1] = null;
                               }
@@ -49,7 +49,7 @@ function parsePages(arr, iso) {
                                 && p != undefined
                                 && p != '- NDE'
                                 && p != 'Last Updated:')
-                      .map((p, j, q) => (j % 2 == 0 ? [ q[j - 1], r[j] ] : null));
+                      .map((p, j, q) => (j % 2 == 0 ? [ q[j - 1], q[j] ] : null));
                           }
                       })
 }
