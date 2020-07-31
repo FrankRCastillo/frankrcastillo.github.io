@@ -61,7 +61,6 @@ function parsePages(arr, iso) {
                           && !q[j].match(/.*[A-Z]{2,}.*/)
                           && !q[j].match(/ US/)
                           && !q[j].match(/ UN/)
-                          && !q[j].match(/[A-Z]{1}[a-z]{1,}/)
                           && !q[j + 1].match(/.*[A-Z]{2,}.*/)
                           && (q[j + 1].match(/ US/)
                           ||  q[j + 1].match(/ UN/)
