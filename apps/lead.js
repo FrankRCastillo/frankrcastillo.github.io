@@ -58,7 +58,7 @@ function parsePages(arr, iso) {
                         } else
                         if ( j > 1 
                           && j + 1 < q.length
-                          && !q[j].match(/.*[A-Z]{2,}.*/)
+                          &&  q[j].match(/.*[A-Z]{2,}.*/)
                           && !q[j].match(/ US/)
                           && !q[j].match(/ UN/)
                           && !q[j + 1].match(/.*[A-Z]{2,}.*/)
