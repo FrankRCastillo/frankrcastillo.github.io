@@ -50,33 +50,32 @@ function parsePages(arr, iso) {
                 .map(p => p.trim())
                 .map((p, j, q) => {
                     var rtn = '';
-                    if (q[j] != null) {
-                        if ( j + 1 < q.length 
-                          && q[j + 1][0] == ',') {
-                            rtn = q[j] + q[j + 1];
-                            q[j + 1] = null;
-                        } else
-                        if ( j > 1 
-                          && j + 1 < q.length
-                          && j % 2 == 0
-                          && !q[j + 1].match(/[A-Z]{2,}/)                   // next element doesn't have an uppercase word with two or more characters
-                          && (q[j].match(/[A-Z]{1}[a-z]{2,}/)               // current element has one capital followed by multiple lowercase...
-                          ||  q[j].match(/ US/)                             // ...or contains the word " US"
-                          ||  q[j].match(/ UN/)                             // ...or contains the word " UN"
-                          ||  q[j].match(/\./)                              // ...or contains a period
-                          ||  q[j].match(/\,/))                             // ...or contains a comma
-                          && (q[j + 1].match(/[A-Z]{1}[a-z]{2,}/)           // next element has one capital followed by multiple lowercase...
-                          ||  q[j + 1].match(/ US/)                         // ...or contains the word " US"
-                          ||  q[j + 1].match(/ UN/)                         // ...or contains the word " UN"
-                          ||  q[j + 1].match(/\./)                          // ...or contains a period
-                          ||  q[j + 1].match(/\,/))){                       // ...or contains a comma
-                            rtn = q[j] + ' ' + q[j + 1];
-                            q[j + 1] = null;
-                        } else {
-                            rtn = q[j];
-                        }
-                        return rtn;
+
+                    if ( j + 1 < q.length 
+                      && q[j + 1][0] == ',') {
+                        rtn = q[j] + q[j + 1];
+                        q[j + 1] = null;
+                    } else
+                    if ( j > 1 
+                      && j + 1 < q.length
+                      && !q[j + 1].match(/[A-Z]{2,}/)                   // next element doesn't have an uppercase word with two or more characters
+                      && (q[j].match(/[A-Z]{1}[a-z]{2,}/)               // current element has one capital followed by multiple lowercase...
+                      ||  q[j].match(/ US/)                             // ...or contains the word " US"
+                      ||  q[j].match(/ UN/)                             // ...or contains the word " UN"
+                      ||  q[j].match(/\./)                              // ...or contains a period
+                      ||  q[j].match(/\,/))                             // ...or contains a comma
+                      && (q[j + 1].match(/[A-Z]{1}[a-z]{2,}/)           // next element has one capital followed by multiple lowercase...
+                      ||  q[j + 1].match(/ US/)                         // ...or contains the word " US"
+                      ||  q[j + 1].match(/ UN/)                         // ...or contains the word " UN"
+                      ||  q[j + 1].match(/\./)                          // ...or contains a period
+                      ||  q[j + 1].match(/\,/))){                       // ...or contains a comma
+                        rtn = q[j] + ' ' + q[j + 1];
+                        q[j + 1] = null;
+                    } else {
+                        rtn = q[j];
                     }
+
+                    return rtn;
                 })
                 .filter(p => p != null)
                 .map((p, j, q) => j % 2 == 0 ? [q[j], q[j + 1]] : null)
