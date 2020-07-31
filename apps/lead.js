@@ -73,7 +73,7 @@ function parsePages(arr, iso) {
                 })
                 .filter(p => p != null)
                 .map((p, j, q) => {
-                    var rtn = j % 2 == 0 ? [q[0], q[1], q[j], q[j + 1]] : null
+                    var rtn = j % 2 == 0 ? [q[j], q[j + 1]] : null
                     q[0] = null;
                     return rtn;
                 })
