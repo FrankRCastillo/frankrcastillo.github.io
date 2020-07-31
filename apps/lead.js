@@ -61,7 +61,28 @@ function parsePages(arr, iso) {
                     }
                 })
                 .filter(p => p != null)
-                .map((p, j, q) => j % 2 == 0 ? [q[j], q[j + 1]] : null)
+                .map((p, j, q) => {
+                    if (j > 0 && j + 1 < q.length){
+                        var rtn = null;
+
+                        if (q[j + 1].match(/.*[A-Z]{2,}.*/)
+                        && !q[j + 1].match(/ US/)
+                        && !q[j + 1].match(/ UN/)
+                        && j % 2 != 0){
+                            rtn = q[j];
+                        } else {
+                            rtn = q[j] + q[j + 1];
+                            q[j + 1] = null;
+                        }
+
+                        return rtn;
+                    }
+                })
+                .map((p, j, q) => {
+                    var rtn = j % 2 == 0 ? [q[0][0], q[0][1], q[j], q[j + 1]] : null
+                    q[0] = null;
+                    return rtn;
+                })
                 .filter(p => p != null)
     })
     .filter(x => x != null)
