@@ -43,7 +43,7 @@ function parsePages(arr, iso) {
                                       q[j + 1] = null;
                                   }
                               }
-                              return (q[j] == null ? null : q[j].trim());
+                              return (q[j] != null ? q[j].trim() : null);
                           })
                           .filter(p => p != null
                                     && p != undefined
