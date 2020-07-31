@@ -41,7 +41,11 @@ function parsePages(arr, iso) {
     })
     .filter(x => isoCty.includes(x[0]))
     .map(x => {
-        return x.filter(p => ![null, undefined, '- NDE', 'Last Updated:'].includes(p))
+        return x.filter(p => ![ null
+                              , undefined
+                              , '- NDE'
+                              , 'Last Updated:'
+                              ].includes(p))
                 .map(p => p.trim())
                 .map((p, j, q) => {
                     if (j + 1 < q.length) {
