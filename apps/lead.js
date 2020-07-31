@@ -58,13 +58,14 @@ function parsePages(arr, iso) {
                         } else
                         if ( j > 1 
                           && j + 1 < q.length
-                          &&  q[j].match(/.*[A-Z]{2,}.*/)
-                          && !q[j].match(/ US/)
-                          && !q[j].match(/ UN/)
-                          && !q[j + 1].match(/.*[A-Z]{2,}.*/)
-                          && (q[j + 1].match(/ US/)
-                          ||  q[j + 1].match(/ UN/)
-                          ||  q[j + 1].match(/[A-Z]{1}[a-z]{1,}/))) {
+                          && j % 2 == 0
+                          && (q[j].match(/[A-Z]{1}[a-z]{2,}/)               // current element has one capital followed by multiple lowercase...
+                          ||  q[j].match(/ US/)                             // ...or current element contains the word " US"
+                          ||  q[j].match(/ UN/))                            // ...or current element contains the word " UN"
+                          && !q[j + 1].match(/[A-Z]{2,}/)                   // next element doesn't have an uppercase word with two or more characters
+                          && (q[j + 1].match(/[A-Z]{1}[a-z]{2,}/)           // next element has one capital followed by multiple lowercase...
+                          ||  q[j + 1].match(/ US/)                         // ...next element contains the word " US"
+                          ||  q[j + 1].match(/ UN/))){                      // ...next element contains the word " UN"
                             rtn = q[j] + ' ' + q[j + 1];
                             q[j + 1] = null;
                         } else {
