@@ -49,7 +49,7 @@ function parsePages(arr, iso) {
                                 && p != undefined
                                 && p != '- NDE'
                                 && p != 'Last Updated:')
-                      .map((p, j, q) => (j % 2 == 0 ? [ q[j - 1], q[j] ] : null));
+                      .map((p, j, q) => (j % 2 != 0 ? [ q[j - 1], q[j] ] : null));
                           }
                       })
 }
