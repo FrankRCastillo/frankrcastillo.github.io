@@ -32,27 +32,33 @@ async function readPdf(url) {
 }
 
 function parsePages(arr, iso) {
-    return arr.map((x, i, r) => {
-        return (iso.map(m => m[0]).includes(r[i][0]) ? r[i] : [].concat(r[i], r[i + 1]))
-    }).map((x, i, r) => {
-        if(i + 1 < r.length - 1){
-            var row = iso.map(m => m[0]).includes(r[i + 1][0])
-            return (row ? x : [].concat(x, r[i + 1])).map((p, j, q) => {
-                if(j + 1 < q.length - 1){
-                    if(q[j + 1].charAt(0) == ','){
-                        q[j] += q[j + 1];
-                        q[j + 1] = null;
-                    }
-                }
-                return (q[j] != null ? q[j].trim() : null);
-            })
-            .filter(p => p != null
-                      && p != undefined
-                      && p != '- NDE'
-                      && p != 'Last Updated:')
-            .map((p, j, q) => (j + 1 < q.length - 1 && j % 2 != 0 ? [ q[j], q[j + 1] ] : null))
-            .filter(x => x != null);
-        }
+    var isoCty = iso.map(m => m[0]);
+    arr.map((x, i, r) => {
+        return (( i + 1 < r.length 
+               && isoCty.includes(r[i][0])
+               && isoCty.includes(r[i + 1][0])
+               )? r[i] : [].concat(r[i], r[i + 1]))
     })
+    .filter(x => isoCty.includes(x[0]))
+    .map(x => {
+        return x.filter(p => ![null, undefined, '- NDE', 'Last Updated:'].includes(p))
+                .map(p => p.trim())
+                .map((p, j, q) => {
+                    if (j + 1 < q.length) {
+                        var rtn = '';
+                        if(q[j + 1][0] == ','){
+                            rtn = q[j] + q[j + 1];
+                            q[j + 1] = null;
+                        } else {
+                            rtn = q[j];
+                        }
+                        return rtn;
+                    }
+                })
+                .filter(p => p != null)
+                .map((p, j, q) => j % 2 == 0 ? [q[j], q[j + 1]] : null)
+                .filter(p => p != null)
+    })
+    .filter(x => x != null)
 }
 
