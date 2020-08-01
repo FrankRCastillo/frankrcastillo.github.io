@@ -56,7 +56,7 @@ function roleTest(str){
 
 function parsePages(arr, iso) {
     var isoCty = iso.map(m => m[0]);
-    var rtnArr = [];
+    var rtnArr = [['','','','']];
 
     return arr.map((x, i, r) => {
         return (( i + 1 < r.length                  
