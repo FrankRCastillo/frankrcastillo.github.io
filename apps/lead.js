@@ -48,10 +48,10 @@ function ctryTest(str, iso){
 }
 
 function roleTest(str){
-    return / US/.test(c[i])
-       ||  / UN/.test(c[i])
-       ||  /CEO/.test(c[i])
-       ||  /[A-Z]{1}[a-z]{2,}/.test(c[i]);
+    return / US/.test(str)
+       ||  / UN/.test(str)
+       ||  /CEO/.test(str)
+       ||  /[A-Z]{1}[a-z]{2,}/.test(str);
 }
 
 function parsePages(arr, iso) {
