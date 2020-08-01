@@ -106,15 +106,14 @@ function parsePages(arr, iso) {
                         n = t[i];
                         break;
 
-                    case (nameTest(rtnArr[rtnArr.length - 1][3]) 
-                       || dateTest(rtnArr[rtnArr.length - 1][1]))
-                       && roleTest(t[i]):
+                    case !nameTest(t[i])
+                      && !dateTest(t[i]) 
+                      &&  roleTest(t[i]):
                         r = t[i];
                         break;
 
                     case  roleTest(t[i])
-                      &&  roleTest(rtnArr[rtnArr.length - 1][2])
-                      && !dateTest(rtnArr[rtnArr.length - 1][1]):
+                      &&  roleTest(rtnArr[rtnArr.length - 1][2]):
                         rtnArr[rtnArr.length - 1][2] += ' ' + t[i];
                         break;
 
