@@ -55,11 +55,6 @@ function roleTest(str){
 }
 
 function parsePages(arr, iso) {
-    var rtn = [];
-    var c = '';
-    var d = '';
-    var r = '';
-    var n = '';
     var isoCty = iso.map(m => m[0]);
 
     return arr.map((x, i, r) => {
@@ -89,6 +84,12 @@ function parsePages(arr, iso) {
                      return rtn;
                  })
                  .filter(x => x != null)
+
+        var rtn = [];
+        var c = '';
+        var d = '';
+        var r = '';
+        var n = '';
 
         for (var i = 0; i < c.length; i++) {
             if (c[i] != null) {
