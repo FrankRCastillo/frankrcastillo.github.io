@@ -59,11 +59,11 @@ function parsePages(arr, iso) {
 
     return arr.map((x, i, r) => {
         return (( i + 1 < r.length                  
-               && iso.map(m => m[0]).includes(r[i][0])          
-               && iso.map(m => m[0]).includes(r[i + 1][0])      
+               && isoCty.includes(r[i][0])          
+               && isoCty.includes(r[i + 1][0])      
                )? r[i] : [].concat(r[i], r[i + 1])) 
     })                                              
-    .filter(x => iso.map(m => m[0]).includes(x[0]))             
+    .filter(x => isoCty.includes(x[0]))             
     .map(x => {
         var rtn = [];
 
