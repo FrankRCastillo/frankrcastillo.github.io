@@ -102,19 +102,24 @@ function parsePages(arr, iso) {
                         rtn.push('[ D ]\t' + c[i]);
                         break;
 
-                    // name: one word with two or more upper case characters, one word with one upper case character and two or more lower case, doesn't have the words " US", " UN", or "CEO".
+                    // name: one word with two or more upper case characters, one word with
+                    // one upper case character and two or more lower case, doesn't have the
+                    // words " US", " UN", or "CEO".
                     case nameTest(c[i]):
                         rtn.push('[ N ]\t' + c[i]);
                         break;
                     
-                    // role: previous element in returning array pass the name or date tests, and current element passes the role test.
+                    // role: previous element in returning array pass the name or date tests,
+                    // and current element passes the role test.
                     case ( nameTest(rtn[rtn.length - 1]) 
                         || dateTest(rtn[rtn.length - 1]))
                         && roleTest(c[i]):
                         rtn.push('[ R ]\t' + c[i]);
                         break;
 
-                    // role with new line break: both the previous element and the current one pass the role test, as well as the previous string not being a  date, in which case the current string is appended to the previous element.
+                    // role with new line break: both the previous element and the current one
+                    // pass the role test, as well as the previous string not being a  date,
+                    // in which case the current string is appended to the previous element.
                     case  roleTest(c[i])
                       &&  roleTest(rtn[rtn.length - 1])
                       && !dateTest(rtn[rtn.length - 1]):
