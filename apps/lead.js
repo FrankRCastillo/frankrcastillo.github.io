@@ -44,7 +44,7 @@ function dateTest(str){
 }
 
 function ctryTest(str, iso){
-    return iso.map(m => m[0]).includes(str);
+    return iso.includes(str);
 }
 
 function roleTest(str){
@@ -94,7 +94,7 @@ function parsePages(arr, iso) {
         for (var i = 0; i < t.length; i++) {
             if (t[i] != null) {
                 switch (true) {
-                    case ctryTest(t[i], iso):
+                    case ctryTest(t[i], isoCty):
                         c = t[i];
                         break;
 
