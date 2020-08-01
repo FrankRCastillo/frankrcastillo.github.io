@@ -128,6 +128,8 @@ function parsePages(arr, iso) {
                 n = '';
             }
         }
+    
+        rtnArr.shift();
 
         return rtnArr;
     })
