@@ -106,16 +106,16 @@ function parsePages(arr, iso) {
                         n = c[i];
                         break;
 
-                    case (nameTest(rtn[rtn.length - 1][3]) 
-                       || dateTest(rtn[rtn.length - 1][1]))
+                    case (nameTest(rtnArr[rtnArr.length - 1][3]) 
+                       || dateTest(rtnArr[rtnArr.length - 1][1]))
                        && roleTest(c[i]):
                         r = c[i];
                         break;
 
                     case  roleTest(c[i])
-                      &&  roleTest(rtn[rtn.length - 1][2])
-                      && !dateTest(rtn[rtn.length - 1][1]):
-                        rtn[rtn.length - 1][2] += ' ' + c[i];
+                      &&  roleTest(rtnArr[rtnArr.length - 1][2])
+                      && !dateTest(rtnArr[rtnArr.length - 1][1]):
+                        rtnArr[rtnArr.length - 1][2] += ' ' + c[i];
                         break;
 
                     //default:
