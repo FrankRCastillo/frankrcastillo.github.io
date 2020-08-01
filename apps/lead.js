@@ -66,7 +66,7 @@ function parsePages(arr, iso) {
     })                                              
     .filter(x => isoCty.includes(x[0]))             
     .map(x => {
-        var c = x.filter(p => ![ null             
+        var t = x.filter(p => ![ null             
                                , undefined
                                , '- NDE'
                                , 'Last Updated:'     
@@ -91,31 +91,31 @@ function parsePages(arr, iso) {
         var r = '';
         var n = '';
 
-        for (var i = 0; i < c.length; i++) {
-            if (c[i] != null) {
+        for (var i = 0; i < t.length; i++) {
+            if (t[i] != null) {
                 switch (true) {
-                    case ctryTest(c[i], iso):
-                        c = c[i];
+                    case ctryTest(t[i], iso):
+                        c = t[i];
                         break;
 
-                    case dateTest(c[i]):
-                        d = c[i];
+                    case dateTest(t[i]):
+                        d = t[i];
                         break;
 
-                    case nameTest(c[i]):
-                        n = c[i];
+                    case nameTest(t[i]):
+                        n = t[i];
                         break;
 
                     case (nameTest(rtnArr[rtnArr.length - 1][3]) 
                        || dateTest(rtnArr[rtnArr.length - 1][1]))
-                       && roleTest(c[i]):
-                        r = c[i];
+                       && roleTest(t[i]):
+                        r = t[i];
                         break;
 
-                    case  roleTest(c[i])
+                    case  roleTest(t[i])
                       &&  roleTest(rtnArr[rtnArr.length - 1][2])
                       && !dateTest(rtnArr[rtnArr.length - 1][1]):
-                        rtnArr[rtnArr.length - 1][2] += ' ' + c[i];
+                        rtnArr[rtnArr.length - 1][2] += ' ' + t[i];
                         break;
 
                     //default:
