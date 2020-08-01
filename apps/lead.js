@@ -65,8 +65,6 @@ function parsePages(arr, iso) {
     })                                              
     .filter(x => isoCty.includes(x[0]))             
     .map(x => {
-        var rtn = [];
-
         var c = x.filter(p => ![ null             
                                , undefined
                                , '- NDE'
@@ -87,55 +85,51 @@ function parsePages(arr, iso) {
                  })
                  .filter(x => x != null)
 
-        for (var i = 0; i < c.length; i++) {
-            var rtnEnd = rtn[rtn.length - 1];
+        var rtn = [];
+        var c = '';
+        var d = '';
+        var r = '';
+        var n = '';
 
+        for (var i = 0; i < c.length; i++) {
             if (c[i] != null) {
                 switch (true) {
-                    // country: country name listed in the ISO array.
                     case ctryTest(c[i], iso):
-                        rtn.push('[ C ]\t' + c[i]);
+                        c = c[i];
                         break;
 
-                    // date: REGEX check for string in date form
                     case dateTest(c[i]):
-                        rtn.push('[ D ]\t' + c[i]);
+                        d = c[i];
                         break;
 
-                    // name: one word with two or more upper case characters, one word with
-                    // one upper case character and two or more lower case, doesn't have the
-                    // words " US", " UN", or "CEO".
                     case nameTest(c[i]):
-                        rtn.push('[ N ]\t' + c[i]);
-                        break;
-                    
-                    // role: previous element in returning array pass the name or date tests,
-                    // and current element passes the role test.
-                    case ( nameTest(rtn[rtn.length - 1]) 
-                        || dateTest(rtn[rtn.length - 1]))
-                        && roleTest(c[i]):
-                        rtn.push('[ R ]\t' + c[i]);
+                        n = c[i];
                         break;
 
-                    // role with new line break: both the previous element and the current one
-                    // pass the role test, as well as the previous string not being a  date,
-                    // in which case the current string is appended to the previous element.
+                    case (nameTest(rtn[rtn.length - 1][3]) 
+                       || dateTest(rtn[rtn.length - 1][1]))
+                       && roleTest(c[i]):
+                        r = c[i];
+                        break;
+
                     case  roleTest(c[i])
-                      &&  roleTest(rtn[rtn.length - 1])
-                      && !dateTest(rtn[rtn.length - 1]):
-                        rtn[rtn.length - 1] += '_' + c[i];
+                      &&  roleTest(rtn[rtn.length - 1][2])
+                      && !dateTest(rtn[rtn.length - 1][1]):
+                        rtn[rtn.length - 1][2] += ' ' + c[i];
                         break;
 
-                    // other elements that did not pass any of the previous tests.
-                    default:
-                        rtn.push('[ O ]\t' + c[i]);
+                    //default:
+                    //    rtn.push('[ O ]\t' + c[i]);
                 }
+            }
+            if (c != '' && d != '' && r != '' && n != '') {
+                rtn.push([c, d, r, n]);
+                r = '';
+                n = '';
             }
         }
 
-        return rtn.filter(p => p != null)
-                  .map((p, j, q) => j % 2 == 0 ? [q[j], q[j + 1]] : null)
+        return rtn;
     })
-    .filter(p => p != null)
 }
 
