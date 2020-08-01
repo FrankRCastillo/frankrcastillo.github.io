@@ -130,7 +130,7 @@ function parsePages(arr, iso) {
             }
         }
 
-        return rtn;
+        return rtnArr;
     })
 }
 
