@@ -125,10 +125,9 @@ function parsePages(arr, iso) {
                 n = '';
             }
         }
-    
-        rtnArr.shift();
-
-        return rtnArr;
     })
+    rtnArr.shift();
+
+    return rtnArr;
 }
 
