@@ -53,16 +53,17 @@ function roleTest(str){
 
 function parsePages(arr, iso) {
     var isoCty = iso.map(m => m[0]);
-    var rtnArr = [['','','','']];
 
-    return arr.map((x, i, r) => {
+    var consol = arr.map((x, i, r) => {
         return (( i + 1 < r.length                  
                && isoCty.includes(r[i][0])          
                && isoCty.includes(r[i + 1][0])      
                )? r[i] : [].concat(r[i], r[i + 1])) 
-    })                                              
-    .filter(x => isoCty.includes(x[0]))             
-    .map(x => {
+    });
+
+    var ctyArr = consol.filter(x => isoCty.includes(x[0]));
+    var getArr = ctyArr.map(x => {
+        var rtnArr = [['','','','']];
         var t = x.filter(p => ![ null             
                                , undefined
                                , '- NDE'
@@ -71,7 +72,7 @@ function parsePages(arr, iso) {
                  .map(p => p.trim())
                  .map((p, j, q) => {        
                      var rtn = '';             
-
+ 
                      if ( j + 1 < q.length     
                        && q[j + 1][0] == ','){
                           rtn = q[j] + q[j + 1];
@@ -80,45 +81,45 @@ function parsePages(arr, iso) {
                           rtn = q[j]
                      }
                      return rtn;
-                 })
+                  })
                  .filter(x => x != null)
 
         var c = '';
         var d = '';
         var r = '';
         var n = '';
-
+ 
         for (var i = 0; i < t.length; i++) {
             if (t[i] != null) {
                 switch (true) {
                     case ctryTest(t[i], isoCty):
                         c = t[i];
                         break;
-
+ 
                     case dateTest(t[i]):
                         d = t[i];
                         break;
-
+ 
                     case nameTest(t[i]):
                         n = t[i];
                         break;
-
+ 
                     case !nameTest(t[i])
                       && !dateTest(t[i]) 
                       &&  roleTest(t[i]):
                         r = t[i];
                         break;
-
+ 
                     case  roleTest(t[i])
                       &&  roleTest(rtnArr[rtnArr.length - 1][2]):
                         rtnArr[rtnArr.length - 1][2] += ' ' + t[i];
                         break;
-
+ 
                     //default:
                     //    rtn.push('[ O ]\t' + c[i]);
                 }
             }
-
+ 
             if (c != '' && d != '' && r != '' && n != '') {
                 rtnArr.push([c, d, r, n]);
                 r = '';
@@ -129,5 +130,7 @@ function parsePages(arr, iso) {
 
         return rtnArr;
     })
+
+    return getArr;
 }
 
