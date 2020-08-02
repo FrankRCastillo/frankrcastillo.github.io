@@ -3,8 +3,7 @@
 export async function lead() {
     var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');                            // read csv file with iso2 to iso3 table and convert to array
     var arr = await FileList(/apps\/lead\/2015\.05\.pdf/);
-    var txt = await readPdf(x);
-    var out = arr.map(x => parsePages(txt, iso));
+    var out = arr.map(async x => parsePages(await readPdf(x), iso));
 
     print("Under construction");
 }
