@@ -1,11 +1,11 @@
 // |wrld|lead|Government leaders (national, provincial, local; source: CIA WFB)
 
 export async function lead() {
-    var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');                            // read csv file with iso2 to iso3 table and convert to array
+    var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');                    // read csv file with iso2 to iso3 table and convert to array
     var arr = await FileList(/apps\/lead\/2015\.05\.pdf/);
-    var out = arr.map(async x => {
+    var out = await arr.map(async x => {
         var txt = await readPdf(x);
-        return parsePages(txt, iso)
+        return parsePages(txt, iso);
     });
 
     print("Under construction");
