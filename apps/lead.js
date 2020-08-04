@@ -11,8 +11,7 @@ export async function lead() {
         var file = val.split('\/');
         var base = file[file.length - 1].split('.');
         var text = await readPdf(val);
-        var prse = parsePages(text, iso, base[0], base[1]);
-        acc.push(pageToArray(prse));
+        acc.push(parsePages(text, iso, base[0], base[1]));
     });
 }
 
