@@ -4,41 +4,23 @@ export async function lead() {
     var out = document.getElementById('outtext');
     var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');
     var arr = await FileList(/apps\/lead\/2018.*\.pdf/);
-    var prs = [];
 
-    for (var i = 0; i < arr.length; i++) {
-        var fle = arr[i].split('\/');
-        var bse = fle[fle.length - 1].split('.');
-        var txt = await readPdf(arr[i]);
+    arr.sort((a, b) => b - a)
 
-        prs.push([ bse[0], bse[1], parsePages(txt, iso) ]);
-    };
-
-    out.appendChild(leadGantt(prs));
+    var prs = arr.reduce(async (acc, val) => {
+        var file = x.split('\/');
+        var base = file[file.length - 1].split('.');
+        var text = await readPdf(val);
+        var prse = parsePages(text, iso, base[0], base[1]);
+        acc.push(pageToArray(prse));
+    });
 }
 
-function leadGantt(arr){
-    var tbl = document.createElement('table');
-    var ytr = document.createElement('tr');
-    var mtr = document.createElement('tr');
+function pageToArray(arr){
     var sel = document.createElement('select');
-    var mth = 'JFMAMJJASOND';
+    var tbl = document.createElement('table');
 
-    for (var i = 0; i < arr.length; i++) {
-        if (i % 12 == 0){
-            var ytd = document.createElement('td');
-            ytd.textContent = arr[i][0];
-            ytd.setAttribute('colspan', 12);
-            ytr.appendChild(ytd);
-        }
 
-        var mtd = document.createElement('td');
-        mtd.textContent = mth[i % 12];
-        mtr.appendChild(mtd);
-    }
-
-    tbl.appendChild(ytr);
-    tbl.appendChild(mtr);
 
     return tbl;
 }
@@ -82,7 +64,7 @@ function roleTest(str){
        ||  /[A-Z]{1}[a-z]{2,}/.test(str);
 }
 
-function parsePages(arr, iso) {
+function parsePages(arr, iso, year, month) {
     var isoCty = iso.map(m => m[0]);
 
     var consol = arr.map((x, i, r) => {
@@ -94,7 +76,7 @@ function parsePages(arr, iso) {
 
     var ctyArr = consol.filter(x => isoCty.includes(x[0]));
     var getArr = ctyArr.map(x => {
-        var rtnArr = [['','','']];
+        var rtnArr = [['','','','','']];
         var c = '';
         var r = '';
         var n = ''; 
@@ -145,7 +127,7 @@ function parsePages(arr, iso) {
             }
  
             if (c != '' && r != '' && n != '') {
-                rtnArr.push([c, r, n]);
+                rtnArr.push([year, month, c, r, n]);
                 r = '';
                 n = '';
             }
