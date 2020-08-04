@@ -17,7 +17,7 @@ export async function lead() {
     out.appendChild(leadGantt(prs));
 }
 
-functionV leadGantt(arr){
+function leadGantt(arr){
     var tbl = document.createElement('table');
     var ytr = document.createElement('tr');
     var mtr = document.createElement('tr');
