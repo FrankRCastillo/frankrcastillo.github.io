@@ -1,17 +1,48 @@
-// |wrld|lead|Government leaders (national, provincial, local; source: CIA WFB)
+// |wrld|lead|National leaders and tenures (source: CIA WFB)
 
 export async function lead() {
-    var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');                    // read csv file with iso2 to iso3 table and convert to array
+    var out = document.getElementById('outtext');
+    var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');
     var arr = await FileList(/apps\/lead\/2015\.05\.pdf/);
-    var out = await arr.map(async x => {
-        var txt = await readPdf(x);
-        return parsePages(txt, iso);
-    });
+    var prs = [];
 
-    print("Under construction");
+    for (var i = 0; i < arr.length; i++) {
+        var fle = arr[i].split('\/');
+        var bse = fle[fle.length - 1].split('.');
+        var txt = await readPdf(arr[i]);
+        var tmp = [ bse[0], bse[1], parsePages(txt, iso)];
+        prs = [].concat(tmp, prs);
+    };
+
+    out.appendChild(leadGantt(prs));
 }
 
-async function readPdf(url) {
+functionV leadGantt(arr){
+    var tbl = document.createElement('table');
+    var ytr = document.createElement('tr');
+    var mtr = document.createElement('tr');
+    var sel = document.createElement('select');
+    var mth = 'JFMAMJJASOND';
+
+    for (var i = 0; i < arr.length; i++) {
+        if (i % 12 == 0){
+            var ytd = document.createElement('td');
+            ytd.textContent = arr[i][0];
+            ytd.setAttribute('colspan', 12);
+            ytr.appendChild(ytd);
+        }
+
+        var mtd = document.createElement('td');
+        mtd.textContent = mth[i % 12];
+        mtr.appendChild(mtd);
+    }
+    tbl.appendChild(ytr);
+    tbl.appendChild(mtr);
+
+    return tbl;
+}
+
+async function readPdf(url){
     var arr = [];
     var get = await ReadFile(url);
     var bin = convertDataURIToBinary(get);
@@ -62,7 +93,10 @@ function parsePages(arr, iso) {
 
     var ctyArr = consol.filter(x => isoCty.includes(x[0]));
     var getArr = ctyArr.map(x => {
-        var rtnArr = [['','','','']];
+        var rtnArr = [['','','']];
+        var c = '';
+        var r = '';
+        var n = ''; 
         var t = x.filter(p => ![ null             
                                , undefined
                                , '- NDE'
@@ -83,11 +117,6 @@ function parsePages(arr, iso) {
                   })
                  .filter(x => x != null)
 
-        var c = '';
-        var d = '';
-        var r = '';
-        var n = '';
- 
         for (var i = 0; i < t.length; i++) {
             if (t[i] != null) {
                 switch (true) {
@@ -95,16 +124,11 @@ function parsePages(arr, iso) {
                         c = t[i];
                         break;
  
-                    case dateTest(t[i]):
-                        d = t[i];
-                        break;
- 
                     case nameTest(t[i]):
                         n = t[i];
                         break;
  
                     case !nameTest(t[i])
-                      && !dateTest(t[i]) 
                       &&  roleTest(t[i]):
                         r = t[i];
                         break;
@@ -119,8 +143,8 @@ function parsePages(arr, iso) {
                 }
             }
  
-            if (c != '' && d != '' && r != '' && n != '') {
-                rtnArr.push([c, d, r, n]);
+            if (c != '' && r != '' && n != '') {
+                rtnArr.push([c, r, n]);
                 r = '';
                 n = '';
             }
