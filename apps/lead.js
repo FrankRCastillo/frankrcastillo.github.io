@@ -8,7 +8,7 @@ export async function lead() {
     arr.sort((a, b) => b - a)
 
     var prs = arr.reduce(async (acc, val) => {
-        var file = x.split('\/');
+        var file = val.split('\/');
         var base = file[file.length - 1].split('.');
         var text = await readPdf(val);
         var prse = parsePages(text, iso, base[0], base[1]);
