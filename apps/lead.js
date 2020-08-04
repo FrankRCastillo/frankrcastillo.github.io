@@ -10,8 +10,11 @@ export async function lead() {
     var prs = await arr.map(async x => {
         var file = x.split('\/');
         var base = file[file.length - 1].split('.');
-        var text = await readPdf(x);
-        return parsePages(text, iso, base[0], base[1]);
+        return await readPdf(x).then(txt => parsePages( txt
+                                                      , iso
+                                                      , base[0]
+                                                      , base[1]
+                                                      ));
     });
     
     console.log("pause");
