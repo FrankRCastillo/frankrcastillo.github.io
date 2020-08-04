@@ -3,7 +3,7 @@
 export async function lead() {
     var out = document.getElementById('outtext');
     var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');
-    var arr = await FileList(/apps\/lead\/2019.*\.pdf/);
+    var arr = await FileList(/apps\/lead\/2018.*\.pdf/);
     var prs = [];
 
     for (var i = 0; i < arr.length; i++) {
