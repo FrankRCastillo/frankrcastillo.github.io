@@ -7,7 +7,7 @@ export async function lead() {
 
     arr.sort((a, b) => b - a)
 
-    var prs = Promise.all(arr.map(async x => {
+    var prs = Promise.all(await arr.map(async x => {
         var file = x.split('\/');
         var base = file[file.length - 1].split('.');
         var text = await readPdf(x);
