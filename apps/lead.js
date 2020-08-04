@@ -7,12 +7,12 @@ export async function lead() {
 
     arr.sort((a, b) => b - a)
 
-    var prs = Promise.all(await arr.map(async x => {
+    var prs = await arr.map(async x => {
         var file = x.split('\/');
         var base = file[file.length - 1].split('.');
         var text = await readPdf(x);
         return parsePages(text, iso, base[0], base[1]);
-    }));
+    });
     
     console.log("pause");
 }
