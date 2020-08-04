@@ -13,6 +13,8 @@ export async function lead() {
         var text = await readPdf(x);
         return parsePages(text, iso, base[0], base[1]);
     });
+    
+    console.log("pause");
 }
 
 function pageToArray(arr){
