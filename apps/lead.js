@@ -10,9 +10,8 @@ export async function lead() {
         var fle = arr[i].split('\/');
         var bse = fle[fle.length - 1].split('.');
         var txt = await readPdf(arr[i]);
-        var tmp = [ bse[0], bse[1], parsePages(txt, iso) ];
 
-        prs = [].concat(tmp, prs);
+        prs.push([ bse[0], bse[1], parsePages(txt, iso) ]);
     };
 
     out.appendChild(leadGantt(prs));
