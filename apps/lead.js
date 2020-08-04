@@ -9,7 +9,7 @@ export async function lead() {
 
     print('Reading sources...');
 
-    var prs = await arr.map(async x => {
+    var prs = arr.map(async x => {
         var file = x.split('\/');
         var base = file[file.length - 1].split('.');
         return await readPdf(x).then(txt => parsePages( txt
