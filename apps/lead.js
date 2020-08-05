@@ -26,7 +26,7 @@ export async function lead() {
 function createLeadGantt() {
     var tbl = document.createElement('table');
     var ytr = document.createElement('tr');
-    var mtr = document.createElement('tr'):
+    var mtr = document.createElement('tr');
     var bdy = document.createElement('tr');
     var sel = document.createElement('select');
     var div = document.createElement('div');
