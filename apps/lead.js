@@ -17,8 +17,8 @@ export async function lead() {
 
         return await readPdf(bnry).then(pdf => parsePages( pdf
                                                          , iso
-                                                         , base[0]
-                                                         , base[1]
+                                                         , barr[0]
+                                                         , barr[1]
                                                          ));
     });
     
