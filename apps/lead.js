@@ -8,32 +8,66 @@ export async function lead() {
 
     arr.sort((a, b) => b - a)
 
-    print('Reading sources...');
+    out.appendChild(createLeadGantt());
 
     for (var i = 0; i < arr.length; i++) {
         var fileArr = arr[i].split('\/');
         var baseArr = fileArr[fileArr.length - 1].split('.');
         var bnryPdf = await ReadFile(arr[i]);
-        var textPdf = await readPdf(bnryPdf).then(x => parsePages( x
+        var results = await readPdf(bnryPdf).then(x => parsePages( x
                                                                  , iso
                                                                  , baseArr[0]
                                                                  , baseArr[1]
                                                                  ));
-        print(textPdf);
+        addToLeadGantt(results);
     }
 }
 
-function pageToArray(arr){
-    var sel = document.createElement('select');
+function createLeadGantt() {
     var tbl = document.createElement('table');
+    var ytr = document.createElement('tr');
+    var mtr = document.createElement('tr'):
+    var bdy = document.createElement('tr');
+    var sel = document.createElement('select');
+    var div = document.createElement('div');
+    tbl.setAttribute('id', 'GanttTable');
+    ytr.setAttribute('id', 'YearRow');
+    mtr.setAttribute('id', 'MonthRow');
+    bdy.setAttribute('id', 'BodyRow');
+    tbl.appendChild(ytr);
+    tbl.appendChild(mtr);
+    tbl.appendChild(bdy);
+    div.appendChild(sel);
+    div.appendChild(tbl);
 
-
-
-    return tbl;
+    return div;
 }
 
-async function readPdf(binary){
-    var arr = [];
+function addToLeadGantt(arr) {
+    for (var i = 0; i < arr.length; i++) {
+        var year = document.getElementById(arr[i][0]);
+        if (year == null) {
+            year = document.createElement('td');
+            year.textContent = arr[i][0];
+            year.setAttribute('id', arr[i][0]);
+            year.setAttribute('colspan', 0);
+            document.getElementById('YearRow').appendChild(year);
+        }
+
+        var monthId = arr[i][0] + '.' + arr[i][1];
+        var month = document.getElementById(monthId);
+        if (month == null) {
+            month = document.createElement('td');
+            month.textContent = arr[i][1];
+            month.setAttribute('id', monthId);
+            year.setAttribute('colspan', year.getAttribute('colspan') + 1)
+            document.getElementById('MonthRow').appendChild(month);
+        }
+    }
+    
+}
+
+async function readPdf(binary) {
     var bin = convertDataURIToBinary(binary);
     var wht = { normalizeWhitespace : true };
     var doc = await pdfjsLib.getDocument(bin).promise;
@@ -47,7 +81,7 @@ async function readPdf(binary){
     return (await Promise.all(txt));
 }
 
-function nameTest(str){
+function nameTest(str) {
     return /[A-Z]{2,}/.test(str)
        &&  /[A-Z]{1}[a-z]{2,}/.test(str)
        && !/ US/.test(str)
@@ -55,15 +89,15 @@ function nameTest(str){
        && !/CEO/.test(str);
 }
 
-function dateTest(str){
+function dateTest(str) {
     return /(|[0-3][0-9]) [A-Za-z]{3} [0-9]{4}/.test(str);
 }
 
-function ctryTest(str, iso){
+function ctryTest(str, iso) {
     return iso.includes(str);
 }
 
-function roleTest(str){
+function roleTest(str) {
     return / US/.test(str)
        ||  / UN/.test(str)
        ||  /CEO/.test(str)
@@ -96,7 +130,7 @@ function parsePages(arr, iso, year, month) {
                      var rtn = '';             
  
                      if ( j + 1 < q.length     
-                       && q[j + 1][0] == ','){
+                       && q[j + 1][0] == ',') {
                           rtn = q[j] + q[j + 1];
                           q[j + 1] = null;      
                      } else {
