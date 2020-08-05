@@ -2,21 +2,22 @@
 
 export async function lead() {
     var out = document.getElementById('outtext');
-    var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');
+    var tsv = await ReadFile('/js/iso.tsv');
+    var iso = TableToArray(tsv, '\t');
     var arr = await FileList(/apps\/lead\/2018.*\.pdf/);
 
     arr.sort((a, b) => b - a)
 
     print('Reading sources...');
 
-    var prs = arr.map(async x => {
+    var prs = arr.map(x => {
         var file = x.split('\/');
         var base = file[file.length - 1].split('.');
-        return await readPdf(x).then(txt => parsePages( txt
-                                                      , iso
-                                                      , base[0]
-                                                      , base[1]
-                                                      ));
+        return readPdf(x).then(txt => parsePages( txt
+                                                , iso
+                                                , base[0]
+                                                , base[1]
+                                                ));
     });
     
     console.log("pause");
