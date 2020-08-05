@@ -10,7 +10,7 @@ export async function lead() {
 
     print('Reading sources...');
 
-    var prs = arr.map(async x => {
+    var prs = await arr.map(async x => {
         var farr = x.split('\/');
         var barr = farr[farr.length - 1].split('.');
         var bnry = await ReadFile(x);
