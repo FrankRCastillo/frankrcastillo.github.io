@@ -10,19 +10,17 @@ export async function lead() {
 
     print('Reading sources...');
 
-    var prs = await arr.map(async x => {
-        var farr = x.split('\/');
-        var barr = farr[farr.length - 1].split('.');
-        var bnry = await ReadFile(x);
-
-        return await readPdf(bnry).then(pdf => parsePages( pdf
-                                                         , iso
-                                                         , barr[0]
-                                                         , barr[1]
-                                                         ));
-    });
-    
-    print(prs);
+    for (var i = 0; i < arr.length; i++) {
+        var fileArr = arr[i].split('\/');
+        var baseArr = fileArr[fileArr.length - 1].split('.');
+        var bnryPdf = await ReadFile(x);
+        var textPdf = await readPdf(bnryPdf).then(x => parsePages( x
+                                                                 , iso
+                                                                 , baseArr[0]
+                                                                 , baseArr[1]
+                                                                 ));
+        print(textPdf);
+    }
 }
 
 function pageToArray(arr){
