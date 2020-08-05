@@ -22,7 +22,7 @@ export async function lead() {
                                                          ));
     });
     
-    console.log("pause");
+    print(prs);
 }
 
 function pageToArray(arr){
