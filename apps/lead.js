@@ -14,10 +14,12 @@ export async function lead() {
         var farr = x.split('\/');
         var barr = farr[farr.length - 1].split('.');
         var bnry = await ReadFile(x);
-        var text = readPdf(bnry)
-        var prsd = parsePages(text, iso, base[0], base[1]);
 
-        return (await Promise.all(prsd));
+        return await readPdf(bnry).then(pdf => parsePages( pdf
+                                                         , iso
+                                                         , base[0]
+                                                         , base[1]
+                                                         ));
     });
     
     console.log("pause");
