@@ -49,16 +49,16 @@ function addToLeadGantt(arr) {
         if (year == null) {
             year = document.createElement('td');
             year.textContent = arr[i][0];
-            year.setAttribute('id', arr[i][0]);
+            year.setAttribute('id', arr[i][0][0]);
             year.setAttribute('colspan', 0);
             document.getElementById('YearRow').appendChild(year);
         }
 
-        var monthId = arr[i][0] + '.' + arr[i][1];
+        var monthId = arr[i][0][0] + '.' + arr[i][0][1];
         var month = document.getElementById(monthId);
         if (month == null) {
             month = document.createElement('td');
-            month.textContent = arr[i][1];
+            month.textContent = arr[i][0][1];
             month.setAttribute('id', monthId);
             year.setAttribute('colspan', year.getAttribute('colspan') + 1)
             document.getElementById('MonthRow').appendChild(month);
