@@ -11,13 +11,13 @@ export async function lead() {
     print('Reading sources...');
 
     var prs = arr.map(x => {
-        var file = x.split('\/');
-        var base = file[file.length - 1].split('.');
-        return readPdf(x).then(txt => parsePages( txt
-                                                , iso
-                                                , base[0]
-                                                , base[1]
-                                                ));
+        var farr = x.split('\/');
+        var barr = farr[farr.length - 1].split('.');
+        var bnry = await ReadFile(x);
+        var text = readPdf(bnry)
+        var prsd = parsePages(text, iso, base[0], base[1]);
+
+        return (await Promise.all(prsd));
     });
     
     console.log("pause");
@@ -32,10 +32,9 @@ function pageToArray(arr){
     return tbl;
 }
 
-async function readPdf(url){
+async function readPdf(binary){
     var arr = [];
-    var get = await ReadFile(url);
-    var bin = convertDataURIToBinary(get);
+    var bin = convertDataURIToBinary(binary);
     var wht = { normalizeWhitespace : true };
     var doc = await pdfjsLib.getDocument(bin).promise;
     var txt = Array.from({length : doc.numPages}, async (x, i) => {
