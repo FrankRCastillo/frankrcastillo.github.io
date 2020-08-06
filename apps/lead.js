@@ -4,7 +4,7 @@ export async function lead() {
     var out = document.getElementById('outtext');
     var tsv = await ReadFile('/js/iso.tsv');
     var iso = TableToArray(tsv, '\t');
-    var arr = await FileList(/apps\/lead\/2018.*\.pdf/);
+    var arr = await FileList(/apps\/lead\/.*\.pdf/);
     var dic = {};
 
     arr.sort((a, b) => b - a)
