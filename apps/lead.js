@@ -26,9 +26,13 @@ export async function lead() {
                 var rle = prsdFle[j][k][2];
                 var psn = prsdFle[j][k][3];
 
+                if (!dic[cty]) dic[cty] = {};
+                if (!dic[cty][rle]) dic[cty][rle] = {};
+                if (!dic[cty][rle][psn]) dic[cty][rle][psn] = {};
+
                 var ele = dic[cty][rle][psn];
 
-                dic[cty][rle][psn] = ( ele == null
+                dic[cty][rle][psn] = ( Object.keys(ele).length == 0
                                      ? { start : dte     , end : ''  }
                                      : { start : ele.end , end : dte }
                                      );
