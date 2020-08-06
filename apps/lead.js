@@ -27,9 +27,13 @@ export async function lead() {
                 var key = { [ cty ] : { [ rle ] : { [ psn ] } } };
 
                 if (key in dic) {
-                    dic[key] = [ dic[key][1], prsdFle[j][k][0] ];
+                    dic[key] = { start : dic[key][1]
+                               , end   : prsdFle[j][k][0]
+                               };
                 } else {
-                    dic[key] = [ prsdFle[j][k][0], '' ];
+                    dic[key] = { start : prsdFle[j][k][0]
+                               , end   : ''
+                               };
                 }
             }
         }
