@@ -5,7 +5,7 @@ export async function lead() {
     var tsv = await ReadFile('/js/iso.tsv');
     var iso = TableToArray(tsv, '\t');
     var arr = await FileList(/apps\/lead\/2018.*\.pdf/);
-    var dic = {};
+    var map = new Map();
 
     arr.sort((a, b) => b - a)
 
@@ -24,16 +24,13 @@ export async function lead() {
                 var cty = prsdFle[j][k][1];
                 var rle = prsdFle[j][k][2];
                 var psn = prsdFle[j][k][3];
-                var key = { [ cty ] : { [ rle ] : {  person : [ psn ] } } };
+                var key = { [ cty ] : { [ rle ] : {  person : psn } } };
 
-                if (key in dic) {
-                    dic[key] = { start : dic[key][1]
-                               , end   : prsdFle[j][k][0]
-                               };
+                if (map.has(key)) {
+                    map.get(key).end = prsdFle[j][k][0];
+
                 } else {
-                    dic[key] = { start : prsdFle[j][k][0]
-                               , end   : ''
-                               };
+                    map.set(key, {start : prsdFle[j][k][0], end : ''});
                 }
             }
         }
