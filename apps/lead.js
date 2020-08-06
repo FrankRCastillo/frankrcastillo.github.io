@@ -13,7 +13,7 @@ export async function lead() {
     for (var i = 0; i < arr.length; i++) {
         var fileArr = arr[i].split('\/');
         var baseArr = fileArr[fileArr.length - 1];
-        var fileDte = baseArr[0]+baseArr[1];
+        var fileDte = baseArr[0] + '' + baseArr[1];
         var bnryPdf = await ReadFile(arr[i]);
         var results = await readPdf(bnryPdf).then(x => parsePages( x
                                                                  , iso
