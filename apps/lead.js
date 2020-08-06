@@ -17,7 +17,9 @@ export async function lead() {
         var bnryPdf = await ReadFile(x);
         var readFle = await readPdf(bnryPdf);
         return parsePages(readFle, iso, fileDte);
-    }).map((x, i, s) => {
+    });
+
+    var flt = Promise.all(rsl).then((x, i, s) => {
         return s[i].filter((sx, si, ss) => ss[1] == s[i][1]
                                         && ss[2] == s[i][2]
                                         );
