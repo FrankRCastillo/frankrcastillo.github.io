@@ -28,9 +28,9 @@ export async function lead() {
                               ].join('_');
 
                 if (dictKey in dic) {
-                    dic[dictKey] = [ prsdFle[j][k][0], dic[dictKey][1] ];
+                    dic[dictKey] = [ dic[dictKey][1], prsdFle[j][k][0] ];
                 } else {
-                    dic[dictKey] = [ '',  prsdFle[j][k][0] ];
+                    dic[dictKey] = [ prsdFle[j][k][0], '' ];
                 }
             }
         }
