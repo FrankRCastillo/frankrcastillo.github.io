@@ -18,10 +18,9 @@ export async function lead() {
         var readFle = await readPdf(bnryPdf)
         return readFle.map(m => parsePages(x, iso, fleDte));
     }).map((x, i, s) => {
-        var orig = s[i].filter((sx, si, ss) => ss[1] == s[i][1]
-                                            && ss[2] == s[i][2]
-                                            );
-        return orig;
+        return s[i].filter((sx, si, ss) => ss[1] == s[i][1]
+                                        && ss[2] == s[i][2]
+                                        );
     });
     console.log("pause");
 }
