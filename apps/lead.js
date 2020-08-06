@@ -15,8 +15,8 @@ export async function lead() {
         var baseFle = fileArr[fileArr.length - 1];
         var fileDte = baseFle.replace(/\D/g, '');
         var bnryPdf = await ReadFile(x);
-        var readPdf = await readPdf(bnryPdf)
-        return readPdf(m => parsePages(x, iso, fleDte));
+        var readFle = await readPdf(bnryPdf)
+        return readFle.map(m => parsePages(x, iso, fleDte));
     }).map((x, i, s) => {
         var orig = s[i].filter((sx, si, ss) => ss[1] == s[i][1]
                                             && ss[2] == s[i][2]
