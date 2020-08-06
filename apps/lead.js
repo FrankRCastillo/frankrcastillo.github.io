@@ -17,11 +17,13 @@ export async function lead() {
         var bnryPdf = await ReadFile(x);
         var readFle = await readPdf(bnryPdf);
         return readFle.map(m => parsePages(x, iso, fileDte));
-    }).map((x, i, s) => {
+    }).then((x, i, s) => {
         return s[i].filter((sx, si, ss) => ss[1] == s[i][1]
                                         && ss[2] == s[i][2]
                                         );
     });
+
+
     console.log("pause");
 }
 
