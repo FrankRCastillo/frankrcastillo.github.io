@@ -18,12 +18,19 @@ export async function lead() {
         var bnryPdf = await ReadFile(arr[i]);
         var readFle = await readPdf(bnryPdf);
         var prsdFle = parsePages(readFle, iso, fileDte);
-        var dictKey = [prsdFle[1], prsdFle[2], prsdFle[3], prsdFle[4]].join('_');
 
-        if (dictKey in dic) {
-            dic[dictKey] = [ '',  prsdFle[0] ];
-        } else {
-            dic[dictKey] = [ prsdFle[0], dic[dictKey][1] ]
+        for (var j = 0; j < prsdFle.length; j++) {
+            var dictKey = [ prsdFle[j][1]
+                          , prsdFle[j][2]
+                          , prsdFle[j][3]
+                          , prsdFle[j][4]
+                          ].join('_');
+
+            if (dictKey in dic) {
+                dic[dictKey] = [ '',  prsdFle[j][0] ];
+            } else {
+                dic[dictKey] = [ prsdFle[j][0], dic[dictKey][1] ]
+            }
         }
     }
 
