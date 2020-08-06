@@ -5,31 +5,32 @@ export async function lead() {
     var tsv = await ReadFile('/js/iso.tsv');
     var iso = TableToArray(tsv, '\t');
     var arr = await FileList(/apps\/lead\/2018.*\.pdf/);
+    var dic = {};
 
     arr.sort((a, b) => b - a)
 
-    out.appendChild(createLeadGantt());
+    out.appendChild(createLeadGantt(arr));
 
-    var rsl = await arr.map(async x => {
-        var fileArr = x.split('\/');
+    for (var i = 0; i < arr.length; i++) {
+        var fileArr = arr[i].split('\/');
         var baseFle = fileArr[fileArr.length - 1];
         var fileDte = baseFle.replace(/\D/g, '');
-        var bnryPdf = await ReadFile(x);
+        var bnryPdf = await ReadFile(arr[i]);
         var readFle = await readPdf(bnryPdf);
-        return parsePages(readFle, iso, fileDte);
-    });
+        var prsdFle = parsePages(readFle, iso, fileDte);
+        var dictKey = [prsdFle[1], prsdFle[2], prsdFle[3], prsdFle[4]].join('_');
 
-    var flt = Promise.all(rsl).then((x, i, s) => {
-        return s[i].filter((sx, si, ss) => ss[1] == s[i][1]
-                                        && ss[2] == s[i][2]
-                                        );
-    });
-
+        if (dictKey in dic) {
+            dic[dictKey] = [ '',  prsdFle[0] ];
+        } else {
+            dic[dictKey] = [ prsdFle[0], dic[dictKey][1] ]
+        }
+    }
 
     console.log("pause");
 }
 
-function createLeadGantt() {
+function createLeadGantt(arr) {
     var tbl = document.createElement('table');
     var ytr = document.createElement('tr');
     var mtr = document.createElement('tr');
