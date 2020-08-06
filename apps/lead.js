@@ -25,12 +25,13 @@ export async function lead() {
                 var cty = prsdFle[j][k][1];
                 var rle = prsdFle[j][k][2];
                 var psn = prsdFle[j][k][3];
-                var key = { [ cty ] : { [ rle ] : {  person : psn } } };
+                var key = { [ cty ] : { role : rle } };
 
                 if (map.has(key)) {
-                    map.get(key).end = dte;
+                    map.get(key).person = psn;
+                    map.get(key).end    = dte;
                 } else {
-                    map.set(key, {start : dte, end : ''});
+                    map.set(key, {person : psn, start : dte, end : ''});
                 }
             }
         }
