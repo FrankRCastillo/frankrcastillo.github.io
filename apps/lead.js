@@ -5,7 +5,7 @@ export async function lead() {
     var tsv = await ReadFile('/js/iso.tsv');
     var iso = TableToArray(tsv, '\t');
     var arr = await FileList(/apps\/lead\/2018.*\.pdf/);
-    var map = new Map();
+    var dic = {};
 
     arr.sort((a, b) => b - a)
 
@@ -21,17 +21,24 @@ export async function lead() {
 
         for (var j = 0; j < prsdFle.length; j++) {
             for (var k = 0; k < prsdFle[j].length; k++) {
+                var add = false;
                 var dte = prsdFle[j][k][0];
                 var cty = prsdFle[j][k][1];
                 var rle = prsdFle[j][k][2];
                 var psn = prsdFle[j][k][3];
-                var key = { [ cty ] : { role : rle } };
 
-                if (map.has(key)) {
-                    map.get(key).person = psn;
-                    map.get(key).end    = dte;
+                if (cty in dic) {
+                    if (rle in dic[cty]) {
+                        if (psn in dic[cty[rle]]) {
+                            dic[cty[rle[psn]]] = { start : dte, end : dic[cty[rle[psn]]].start } 
+                        } else {
+                            dic[cty[rle[psn]]] = { start : dte, end : '' };
+                        }
+                    } else {
+                        dic[cty[rle[psn]]] = { start : dte, end : '' };
+                    }
                 } else {
-                    map.set(key, {person : psn, start : dte, end : ''});
+                    dic[cty[rle[psn]]] = { start : dte, end : '' };
                 }
             }
         }
