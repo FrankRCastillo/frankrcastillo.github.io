@@ -10,17 +10,20 @@ export async function lead() {
 
     out.appendChild(createLeadGantt());
 
-    for (var i = 0; i < arr.length; i++) {
-        var fileArr = arr[i].split('\/');
+    var rsl = arr.map((x, i r) => {
+        var fileArr = x.split('\/');
         var baseFle = fileArr[fileArr.length - 1];
         var fileDte = baseFle.replace(/\D/g, '');
-        var bnryPdf = await ReadFile(arr[i]);
-        var results = await readPdf(bnryPdf).then(x => parsePages( x
-                                                                 , iso
-                                                                 , fileDte
-                                                                 ));
-        addToLeadGantt(results);
-    }
+        var bnryPdf = await ReadFile(x);
+        var readPdf = await readPdf(bnryPdf)
+        return readPdf(m => parsePages(x, iso, fleDte));
+    }).map((x, i, s) => {
+        var orig = s[i].filter((sx, si, ss) => ss[1] == s[i][1]
+                                            && ss[2] == s[i][2]
+                                            );
+        return orig;
+    });
+
 }
 
 function createLeadGantt() {
