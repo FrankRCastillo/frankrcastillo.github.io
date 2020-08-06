@@ -21,16 +21,17 @@ export async function lead() {
 
         for (var j = 0; j < prsdFle.length; j++) {
             for (var k = 0; k < prsdFle[j].length; k++) {
+                var dte = prsdFle[j][k][0];
                 var cty = prsdFle[j][k][1];
                 var rle = prsdFle[j][k][2];
                 var psn = prsdFle[j][k][3];
                 var key = { [ cty ] : { [ rle ] : {  person : psn } } };
 
                 if (map.has(key)) {
-                    map.get(key).end = prsdFle[j][k][0];
+                    map.get(key).end = dte;
 
                 } else {
-                    map.set(key, {start : prsdFle[j][k][0], end : ''});
+                    map.set(key, {start : dte, end : ''});
                 }
             }
         }
