@@ -12,12 +12,12 @@ export async function lead() {
 
     for (var i = 0; i < arr.length; i++) {
         var fileArr = arr[i].split('\/');
-        var baseArr = fileArr[fileArr.length - 1].split('.');
+        var baseArr = fileArr[fileArr.length - 1];
+        var fileDte = baseArr[0]+baseArr[1];
         var bnryPdf = await ReadFile(arr[i]);
         var results = await readPdf(bnryPdf).then(x => parsePages( x
                                                                  , iso
-                                                                 , baseArr[0]
-                                                                 , baseArr[1]
+                                                                 , fileDte
                                                                  ));
         addToLeadGantt(results);
     }
@@ -27,16 +27,17 @@ function createLeadGantt() {
     var tbl = document.createElement('table');
     var ytr = document.createElement('tr');
     var mtr = document.createElement('tr');
-    var bdy = document.createElement('tr');
+    var ylb = document.createElement('td');
+    var mlb = document.createElement('td');
     var sel = document.createElement('select');
     var div = document.createElement('div');
     tbl.setAttribute('id', 'GanttTable');
     ytr.setAttribute('id', 'YearRow');
     mtr.setAttribute('id', 'MonthRow');
-    bdy.setAttribute('id', 'BodyRow');
+    ytr.appendChild(ylb);
+    mtr.appendChild(mlb);
     tbl.appendChild(ytr);
     tbl.appendChild(mtr);
-    tbl.appendChild(bdy);
     div.appendChild(sel);
     div.appendChild(tbl);
 
@@ -44,27 +45,38 @@ function createLeadGantt() {
 }
 
 function addToLeadGantt(arr) {
-    for (var i = 0; i < arr.length; i++) {
-        var year = document.getElementById(arr[i][0]);
-        if (year == null) {
-            year = document.createElement('td');
-            year.textContent = arr[i][0];
-            year.setAttribute('id', arr[i][0][0]);
-            year.setAttribute('colspan', 0);
-            document.getElementById('YearRow').appendChild(year);
-        }
+    var table = document.getElementById('GanttTable');
+    var years = document.getElementById('YearRow');
+    var month = document.getElementById('MonthRow');
 
-        var monthId = arr[i][0][0] + '.' + arr[i][0][1];
-        var month = document.getElementById(monthId);
-        if (month == null) {
-            month = document.createElement('td');
-            month.textContent = arr[i][0][1];
-            month.setAttribute('id', monthId);
-            year.setAttribute('colspan', year.getAttribute('colspan') + 1)
-            document.getElementById('MonthRow').appendChild(month);
+    // countries
+    for (var i = 0; i < arr[i].length; i++) {
+
+        // position
+        for (var j = 0; j < arr[i][j].length; j++) {
+            var date    = arr[i][j][0];
+            var country = arr[i][j][1];
+            var role    = arr[i][j][2];
+            var person  = arr[i][j][3];
+            var roleTd  = table.querySelector('[country="' + country + '"][role="' + role + '"]');
+            var prsnTd  = roleTd.getElementsByTagName('td');
+
+            if (roleTd == null) {
+                roleTd = document.createElement('tr');
+                roleTd.setAttribute('country', country);
+                roleTd.setAttribute('role', role);
+                roleTd.textContent = person;
+                table.appendChild(roleTd);
+            }
+
+            if (prsnTd == null) {
+                prsnTd = document.createElement('td');
+                prsnTd.setAttribute('dateStart', date)
+                prsnTd.textContent = '';
+            }
+            
         }
-    }
-    
+    } 
 }
 
 async function readPdf(binary) {
@@ -104,7 +116,7 @@ function roleTest(str) {
        ||  /[A-Z]{1}[a-z]{2,}/.test(str);
 }
 
-function parsePages(arr, iso, year, month) {
+function parsePages(arr, iso, date) {
     var isoCty = iso.map(m => m[0]);
 
     var consol = arr.map((x, i, r) => {
@@ -167,7 +179,7 @@ function parsePages(arr, iso, year, month) {
             }
  
             if (c != '' && r != '' && n != '') {
-                rtnArr.push([year, month, c, r, n]);
+                rtnArr.push([date, c, r, n]);
                 r = '';
                 n = '';
             }
