@@ -24,7 +24,7 @@ export async function lead() {
                 var cty = prsdFle[j][k][1];
                 var rle = prsdFle[j][k][2];
                 var psn = prsdFle[j][k][3];
-                var key = { [ cty ] : { [ rle ] : { psn } } };
+                var key = { [ cty ] : { [ rle ] : { [ psn ] } } };
 
                 if (key in dic) {
                     dic[key] = [ dic[key][1], prsdFle[j][k][0] ];
