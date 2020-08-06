@@ -20,16 +20,18 @@ export async function lead() {
         var prsdFle = parsePages(readFle, iso, fileDte);
 
         for (var j = 0; j < prsdFle.length; j++) {
-            var dictKey = [ prsdFle[j][1]
-                          , prsdFle[j][2]
-                          , prsdFle[j][3]
-                          , prsdFle[j][4]
-                          ].join('_');
+            for (var k = 0; k < prsdFle[j].length; k++) {
+                var dictKey = [ prsdFle[j][1]
+                              , prsdFle[j][2]
+                              , prsdFle[j][3]
+                              , prsdFle[j][4]
+                              ].join('_');
 
-            if (dictKey in dic) {
-                dic[dictKey] = [ prsdFle[j][0], dic[dictKey][1] ]
-            } else {
-                dic[dictKey] = [ '',  prsdFle[j][0] ];
+                if (dictKey in dic) {
+                    dic[dictKey] = [ prsdFle[j][0], dic[dictKey][1] ]
+                } else {
+                    dic[dictKey] = [ '',  prsdFle[j][0] ];
+                }
             }
         }
     }
