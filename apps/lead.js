@@ -29,7 +29,6 @@ export async function lead() {
 
                 if (map.has(key)) {
                     map.get(key).end = dte;
-
                 } else {
                     map.set(key, {start : dte, end : ''});
                 }
