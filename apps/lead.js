@@ -30,12 +30,7 @@ export async function lead() {
                 if (!dic[cty][rle]) dic[cty][rle] = {};
                 if (!dic[cty][rle][psn]) dic[cty][rle][psn] = {};
 
-                var ele = dic[cty][rle][psn];
-
-                dic[cty][rle][psn] = ( Object.keys(ele).length == 0
-                                     ? { start : dte     , end : ''  }
-                                     : { start : ele.end , end : dte }
-                                     );
+                dic[cty][rle][psn] = dte;
             }
         }
     }
