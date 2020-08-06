@@ -10,7 +10,7 @@ export async function lead() {
 
     out.appendChild(createLeadGantt());
 
-    var rsl = arr.map((x, i r) => {
+    var rsl = arr.map((x, i, r) => {
         var fileArr = x.split('\/');
         var baseFle = fileArr[fileArr.length - 1];
         var fileDte = baseFle.replace(/\D/g, '');
