@@ -21,30 +21,35 @@ export async function lead() {
 
         for (var j = 0; j < prsdFle.length; j++) {
             for (var k = 0; k < prsdFle[j].length; k++) {
-                var add = false;
                 var dte = prsdFle[j][k][0];
                 var cty = prsdFle[j][k][1];
                 var rle = prsdFle[j][k][2];
                 var psn = prsdFle[j][k][3];
 
-                if (cty in dic) {
-                    if (rle in dic[cty]) {
-                        if (psn in dic[cty[rle]]) {
-                            dic[cty[rle[psn]]] = { start : dte, end : dic[cty[rle[psn]]].start } 
-                        } else {
-                            dic[cty[rle[psn]]] = { start : dte, end : '' };
-                        }
-                    } else {
-                        dic[cty[rle[psn]]] = { start : dte, end : '' };
-                    }
-                } else {
-                    dic[cty[rle[psn]]] = { start : dte, end : '' };
-                }
+                var ele = dic[cty][rle][psn];
+
+                dic[cty][rle][psn] = ( ele == null
+                                     ? { start : dte     , end : ''  }
+                                     : { start : ele.end , end : dte }
+                                     );
             }
         }
     }
 
     console.log("pause");
+}
+
+function nestedDict(path, delim) {
+    var dic = {};
+    var arr = path.split(delim);
+
+    if (arr.length > 1) {
+        var ele = arr[0];
+        var npt = arr.shift().join(delim)
+        dic[ele] = nestedDict(npt, delim); 
+    }
+
+    return dic;
 }
 
 function createLeadGantt(arr) {
