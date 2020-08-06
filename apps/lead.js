@@ -21,16 +21,16 @@ export async function lead() {
 
         for (var j = 0; j < prsdFle.length; j++) {
             for (var k = 0; k < prsdFle[j].length; k++) {
-                var dictKey = [ prsdFle[j][1]
-                              , prsdFle[j][2]
-                              , prsdFle[j][3]
-                              , prsdFle[j][4]
+                var dictKey = [ prsdFle[j][k][1]
+                              , prsdFle[j][k][2]
+                              , prsdFle[j][k][3]
+                              , prsdFle[j][k][4]
                               ].join('_');
 
                 if (dictKey in dic) {
-                    dic[dictKey] = [ prsdFle[j][0], dic[dictKey][1] ]
+                    dic[dictKey] = [ prsdFle[j][k][0], dic[dictKey][1] ]
                 } else {
-                    dic[dictKey] = [ '',  prsdFle[j][0] ];
+                    dic[dictKey] = [ '',  prsdFle[j][k][0] ];
                 }
             }
         }
