@@ -34,51 +34,7 @@ export async function lead() {
         });
     });
 
-
-    for (var i = 0; i < arr.length; i++) {
-        
-        var fileArr = arr[i].split('\/');
-        var baseFle = fileArr[fileArr.length - 1];
-        var fileDte = baseFle.replace(/\D/g, '');
-        var bnryPdf = await ReadFile(arr[i]);
-
-        try {
-            var readFle = await readPdf(bnryPdf);
-            var prsdFle = parsePages(readFle, iso, fileDte);
-
-            for (var j = 0; j < prsdFle.length; j++) {
-                for (var k = 0; k < prsdFle[j].length; k++) {
-                    var dte = prsdFle[j][k][0];
-                    var cty = prsdFle[j][k][1];
-                    var rle = prsdFle[j][k][2];
-                    var psn = prsdFle[j][k][3];
-
-                    if (!dic[cty]) dic[cty] = {};
-                    if (!dic[cty][rle]) dic[cty][rle] = {};
-                    if (!dic[cty][rle][psn]) dic[cty][rle][psn] = '';
-
-                    dic[cty][rle][psn] = dte;
-                }
-            }
-        } catch(err) {
-            console.log(err.message);
-        }
-    }
-
     console.log("pause");
-}
-
-function nestedDict(path, delim) {
-    var dic = {};
-    var arr = path.split(delim);
-
-    if (arr.length > 1) {
-        var ele = arr[0];
-        var npt = arr.shift().join(delim)
-        dic[ele] = nestedDict(npt, delim); 
-    }
-
-    return dic;
 }
 
 function createLeadGantt(arr) {
