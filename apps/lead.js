@@ -29,7 +29,7 @@ export async function lead() {
                 if (!dic[ctry][role]) dic[ctry][role] = {};
                 if (!dic[ctry][role][prsn]) dic[ctry][role][prsn] = '';
 
-                dic[ctry][role][prsn] = dte;
+                dic[ctry][role][prsn] = date;
             });            
         });
     });
