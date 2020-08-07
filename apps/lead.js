@@ -25,11 +25,11 @@ export async function lead() {
                 var role = j[2];
                 var prsn = j[3];
 
-                if (!dic[cty]) dic[cty] = {};
-                if (!dic[cty][rle]) dic[cty][rle] = {};
-                if (!dic[cty][rle][psn]) dic[cty][rle][psn] = '';
+                if (!dic[ctry]) dic[ctry] = {};
+                if (!dic[ctry][role]) dic[ctry][role] = {};
+                if (!dic[ctry][role][prsn]) dic[ctry][role][prsn] = '';
 
-                dic[cty][rle][psn] = dte;
+                dic[ctry][role][prsn] = dte;
             });            
         });
     });
