@@ -10,7 +10,7 @@ export async function lead() {
 
     out.appendChild(createLeadGantt(arr));
 
-    arr.forEach(url => {
+    arr.forEach(async url => {
         var file = url.split('\/');
         var base = file[file.length - 1].replace(/\D/g, '');
         var bnry = await ReadFile(url);
