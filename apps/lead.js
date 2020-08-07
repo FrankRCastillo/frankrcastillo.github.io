@@ -12,26 +12,32 @@ export async function lead() {
     out.appendChild(createLeadGantt(arr));
 
     for (var i = 0; i < arr.length; i++) {
+        
         var fileArr = arr[i].split('\/');
         var baseFle = fileArr[fileArr.length - 1];
         var fileDte = baseFle.replace(/\D/g, '');
         var bnryPdf = await ReadFile(arr[i]);
-        var readFle = await readPdf(bnryPdf);
-        var prsdFle = parsePages(readFle, iso, fileDte);
 
-        for (var j = 0; j < prsdFle.length; j++) {
-            for (var k = 0; k < prsdFle[j].length; k++) {
-                var dte = prsdFle[j][k][0];
-                var cty = prsdFle[j][k][1];
-                var rle = prsdFle[j][k][2];
-                var psn = prsdFle[j][k][3];
+        try{
+            var readFle = await readPdf(bnryPdf);
+            var prsdFle = parsePages(readFle, iso, fileDte);
 
-                if (!dic[cty]) dic[cty] = {};
-                if (!dic[cty][rle]) dic[cty][rle] = {};
-                if (!dic[cty][rle][psn]) dic[cty][rle][psn] = {};
+            for (var j = 0; j < prsdFle.length; j++) {
+                for (var k = 0; k < prsdFle[j].length; k++) {
+                    var dte = prsdFle[j][k][0];
+                    var cty = prsdFle[j][k][1];
+                    var rle = prsdFle[j][k][2];
+                    var psn = prsdFle[j][k][3];
 
-                dic[cty][rle][psn] = dte;
+                    if (!dic[cty]) dic[cty] = {};
+                    if (!dic[cty][rle]) dic[cty][rle] = {};
+                    if (!dic[cty][rle][psn]) dic[cty][rle][psn] = '';
+
+                    dic[cty][rle][psn] = dte;
+                }
             }
+        } catch(err) {
+            console.log(err.message);
         }
     }
 
