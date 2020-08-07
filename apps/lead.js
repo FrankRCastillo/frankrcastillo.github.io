@@ -4,11 +4,35 @@ export async function lead() {
     var out = document.getElementById('outtext');
     var tsv = await ReadFile('/js/iso.tsv');
     var iso = TableToArray(tsv, '\t');
-    var arr = await FileList(/apps\/lead\/201[5-9].*\.pdf/);
+    var arr = await FileList(/apps\/lead\/201[7-9].*\.pdf/);
 
     arr.sort((a, b) => b - a)
 
     out.appendChild(createLeadGantt(arr));
+
+    arr.forEach(url => {
+        var file = url.split('\/');
+        var base = file[file.length - 1].replace(/\D/g, '');
+        var bnry = await ReadFile(url);
+        var read = await readPdf(bnry);
+        var prsd = parsePages(read, iso, base);
+
+        prsd.forEach(i => {
+            i.forEach(j => {
+                var date = j[0];
+                var ctry = j[1];
+                var role = j[2];
+                var prsn = j[3];
+
+                if (!dic[cty]) dic[cty] = {};
+                if (!dic[cty][rle]) dic[cty][rle] = {};
+                if (!dic[cty][rle][psn]) dic[cty][rle][psn] = '';
+
+                dic[cty][rle][psn] = dte;
+            });            
+        });
+    });
+
 
     for (var i = 0; i < arr.length; i++) {
         
@@ -17,7 +41,7 @@ export async function lead() {
         var fileDte = baseFle.replace(/\D/g, '');
         var bnryPdf = await ReadFile(arr[i]);
 
-        try{
+        try {
             var readFle = await readPdf(bnryPdf);
             var prsdFle = parsePages(readFle, iso, fileDte);
 
