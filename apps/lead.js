@@ -2,20 +2,23 @@
 
 export async function lead() {
     var url = 'http://rulers.org/';
-    var txt = await readFile(url);
-    var dom = new DOMParser().parseFromString(txt, 'text/html')
-                             .getElementsByTagName('a'); 
-    var arr = Array.from(dom)
+    var arr = Array.from(getPageElem(url, 'a'))
                    .map(x => x.href.replace(x.baseURI, url))
                    .filter(x => x.match(url + 'rul.*\.html'));
 
     arr.forEach(async x => {
-        var get = await readFile(x);
-        var tmp = new DOMParser().parseFromString(get, 'text/html')
-                                 .getElementsByTagName('body');
-        tmp.outerHTML = tmp.outerHTML.replace('<a href=\"', '\(delimit\)$&');
-        var cty = tmp.innerText;
-        console.log(cty);
+        var get = getPageElem(x, 'body');
+
+        get.outerHTML = get.outerHTML.replace('<a href=\"', '\(delimit\)$&');
+
+        console.log(get.innerText);
     });
+}
+
+async function getPageElem(url, elem) {
+    return readFile(url).then(x => {
+        return new DOMParser().parseFromString(x, 'text/html')
+                              .getElementsByTagName(elem);
+    })
 }
 
