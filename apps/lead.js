@@ -15,7 +15,7 @@ export async function lead() {
     });
 }
 
-async function getPageElem(url, elem) {
+function getPageElem(url, elem) {
     return readFile(url).then(x => {
         return new DOMParser().parseFromString(x, 'text/html')
                               .getElementsByTagName(elem);
