@@ -1,12 +1,12 @@
 // Support functions for querying CIA World Factbook
 
-export async function GetData() {
+export async function getData() {
     var rtn = [];
     var cia = 'https://www.cia.gov/library/publications/resources/the-world-factbook/fields/325.html';
-    var txt = await ReadFile(cia);                                                      // read CIA world factbook history page for all countries
+    var txt = await readFile(cia);                                                      // read CIA world factbook history page for all countries
     var doc = new DOMParser().parseFromString(txt, 'text/html');                        // parse CIA world factbook text into HTML
     var lst = doc.getElementById('fieldListing');                                       // get element in factbook that contains the history listings
-    var iso = TableToArray(await ReadFile('/js/iso.tsv'), '\t');                            // read csv file with iso2 to iso3 table and convert to array
+    var iso = tableToArray(await readFile('/js/iso.tsv'), '\t');                            // read csv file with iso2 to iso3 table and convert to array
     var bdy = lst.getElementsByTagName('tbody');                                        // get tag that contains the table body
     var tag = bdy[0].getElementsByTagName('tr');                                        // get rows from table body; each row = one country listing
 
@@ -25,11 +25,11 @@ export async function GetData() {
 
     var countries = rtn.map(x => x[4]);
 
-    rtn = rtn.map(x => [ x[0], x[1], x[2], x[3], x[4], ParseHistory(x[5], x[4], countries), x[6] ]);
+    rtn = rtn.map(x => [ x[0], x[1], x[2], x[3], x[4], parseHistory(x[5], x[4], countries), x[6] ]);
     return rtn;
 }
 
-function ParseHistory(val, country, countries) {
+function parseHistory(val, country, countries) {
     var rgxexp = [ '([A-Za-z](\\.)){2,} [A-Z]'                                          // acronyms at the end of a sentence; delete all but last period
                  , '([A-Za-z](\\.)){2,} [^A-Z]'                                         // acronyms within a sentece, but not the end; delete all periods
                  , '[A-Z]{1}[a-z]{1,3}(\\.) (?!King)([A-Z]{1}[a-z]{1,} ){0,}[A-Z]{2,}'  // ranks and titles; excludes the title of King
