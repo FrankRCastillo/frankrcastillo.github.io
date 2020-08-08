@@ -1,12 +1,12 @@
 // |wrld|lead|National leaders and tenures (source: rulers.org)
 
-export async function lead() {
+export function lead() {
     var url = 'http://rulers.org/';
     var arr = Array.from(getPageElem(url, 'a'))
                    .map(x => x.href.replace(x.baseURI, url))
                    .filter(x => x.match(url + 'rul.*\.html'));
 
-    arr.forEach(async x => {
+    arr.forEach(x => {
         var get = getPageElem(x, 'body');
 
         get.outerHTML = get.outerHTML.replace('<a href=\"', '\(delimit\)$&');
