@@ -1,6 +1,6 @@
-async function SetConsole() {
+async function setConsole() {
     var news = await import('/apps/news.js');
-    var menu = await NewCommandLine();
+    var menu = await newCmdLine();
     var main = document.createElement('div');
     var otxt = document.createElement('div');
     var npnl = document.createElement('div');
@@ -40,7 +40,7 @@ async function SetConsole() {
     return main;
 }
 
-function NewTabLayout(elems) {
+function newTabLayout(elems) {
     var encls = document.createElement('div');
     var tbfrm = document.createElement('div');
     var bdfrm = document.createElement('div');
@@ -86,9 +86,9 @@ function NewTabLayout(elems) {
     return encls;
 }
 
-async function FileList(filter) {
+async function fileList(filter) {
     var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
-    var text = await ReadFile(gapi);
+    var text = await readFile(gapi);
     var json = JSON.parse(text);
     var tree = json.tree;
     var list = Array.from(tree)
@@ -98,7 +98,7 @@ async function FileList(filter) {
     return list;
 }
 
-function RSSParser(xml) {
+function rssParser(xml) {
     parser   = new DOMParser();
     xmldoc   = parser.parseFromString(xml, 'text/xml');
     var arr  = [];
@@ -113,7 +113,7 @@ function RSSParser(xml) {
     var arr = Array.from(itm).map(function(x){
         return [ src
                , trunc(decodeHtml(x.getElementsByTagName('title')[0].textContent), awdt)
-               , DateISO(x.getElementsByTagName('pubDate')[0].textContent)
+               , dateISO(x.getElementsByTagName('pubDate')[0].textContent)
                , x.getElementsByTagName('link')[0].textContent
                ];
     });
@@ -135,14 +135,14 @@ function trunc(str, len) {
     }
 }
 
-function DateISO(str) {
+function dateISO(str) {
     var reldtg = Date.parse(str);
     var isodtg = new Date(reldtg).toISOString();
 
     return isodtg.split('.')[0] + 'Z';
 }
 
-function DateUTC(str) {
+function dateUTC(str) {
     var reldtg = Date.parse(str);
     var utcdtg = new Date(reldtg);
 
@@ -151,7 +151,7 @@ function DateUTC(str) {
 
 // if hdrrow is true, function will treat first row in array as table header
 // if haslink is true, will treat last element in row as link
-function ArrayToTable(arr, hdrrow, haslink) {
+function arrayToTable(arr, hdrrow, haslink) {
     var table = document.createElement('table');
     var golnk = 0;
 
@@ -200,7 +200,7 @@ function isURL(url) {
     return results;
 }
 
-async function ReadFile(url) {
+async function readFile(url) {
     try{
         var blb = null;
         var hdr = {}
@@ -228,6 +228,20 @@ async function ReadFile(url) {
     }
 }
 
+async function readPdf(binary) {
+    var bin = convertDataURIToBinary(binary);
+    var wht = { normalizeWhitespace : true };
+    var doc = await pdfjsLib.getDocument(bin).promise;
+    var txt = Array.from({length : doc.numPages}, async (x, i) => {
+        return (await (await doc.getPage(i + 1))
+                                .getTextContent())
+                                .items
+                                .map(token =>  token.str)
+    });
+
+    return (await Promise.all(txt));
+}
+
 function blobToBase64(blob) {
     const reader = new FileReader();
     reader.readAsDataURL(blob);
@@ -250,7 +264,7 @@ function convertDataURIToBinary(dataURI) {
     return array.map((x, i) => raw.charCodeAt(i));
 }
 
-async function CommandManager(input) {
+async function cmdMgr(input) {
     if (input != '') {
         clearInterval(window.appinterval);
         clear();
@@ -278,15 +292,15 @@ function home() {
 }
 
 async function help() {
-    var lst = await GetCmdInfo();
+    var lst = await getCmdInfo();
     var hdr = ['Category', 'Command', 'Information'];
     lst.unshift(hdr);
-    var tbl = ArrayToTable(lst, true, false); 
+    var tbl = arrayToTable(lst, true, false); 
     document.getElementById('outtext').appendChild(tbl);
 }
 
 async function read(path) {
-    var txt = await ReadFile(path)
+    var txt = await readFile(path)
     print('\n');
     print(txt);
 }
@@ -326,9 +340,9 @@ function print(text) {
     }
 }
 
-async function NewCommandLine() {
+async function newCmdLine() {
     var cmdSelect = document.createElement('select');
-    var cmmndInfo = await GetCmdInfo();
+    var cmmndInfo = await getCmdInfo();
 
     cmdSelect.setAttribute('id', 'cmdSelect')
 
@@ -357,36 +371,36 @@ async function NewCommandLine() {
     }
 
     cmdSelect.addEventListener(
-        'click', (e => CommandManager(e.path[0][e.path[0].selectedIndex].value))
+        'click', (e => cmdMgr(e.path[0][e.path[0].selectedIndex].value))
     );
 
     return cmdSelect;
 }
 
-async function GetCmdInfo() {
-    var list = await FileList(/apps\/.*\.js$/);
-    var lout = await Promise.all(list.map(async x => GetJsDesc(await ReadFile(x))));
+async function getCmdInfo() {
+    var list = await fileList(/apps\/.*\.js$/);
+    var lout = await Promise.all(list.map(async x => getJsDesc(await readFile(x))));
 
     lout.sort();
     lout.unshift(['core', 'home', 'Show the home screen']);
     return lout;    
 }
 
-function GetJsDesc(str) {
+function getJsDesc(str) {
     return str.split('\n')
               .filter(x => x.match('^// |.*'))[0]
               .replace('// |', '')
               .split('|');
 }
 
-function TableToArray(txt, delim) {
+function tableToArray(txt, delim) {
     return txt.split('\n').map(x => x.split(delim));
 }
 
 async function main() {
     var body = document.body;
 
-    body.appendChild(await SetConsole());
+    body.appendChild(await setConsole());
     home();
 }
 
