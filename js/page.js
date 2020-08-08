@@ -21,7 +21,7 @@ async function setConsole() {
     nhdr.appendChild(nlnk);
 
     ndiv.setAttribute('id', 'newspnl');
-    ndiv.appendChild(await news.GetNewsFeed());
+    ndiv.appendChild(await news.getNewsFeed());
 
     npnl.appendChild(nhdr);
     npnl.appendChild(ndiv);
@@ -32,7 +32,7 @@ async function setConsole() {
 
     window.newsinterval = await setInterval(async function () {
         var npnl = document.getElementById('newspnl');
-        var nget = await news.GetNewsFeed();
+        var nget = await news.getNewsFeed();
         npnl.innerHTML = ''
         npnl.appendChild(nget);
     }, 120000);
