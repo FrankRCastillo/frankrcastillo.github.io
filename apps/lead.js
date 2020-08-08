@@ -2,7 +2,7 @@
 
 export async function lead() {
     var url = 'http://rulers.org/index.html';
-    var get = readFile(url);
+    var get = await readFile(url);
     var dom = new DOMParser().parseFromString(get, 'text/html')
                              .getElementsByTagName('a'); 
     var arr = Array.from(dom)
