@@ -7,7 +7,7 @@ export async function lead() {
                              .getElementsByTagName('a'); 
     var arr = Array.from(dom)
                    .map(x => x.href.replace(x.baseURI, url))
-                   .filter(x => x.match('rul.*\.html'));
+                   .filter(x => x.match(url + 'rul.*\.html'));
 
     console.log('pause');
 }
