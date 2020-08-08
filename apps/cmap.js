@@ -5,7 +5,7 @@ export async function cmap() {
     var cia = await import('/js/cia.js');
 
     if (window.ctryData == null) {
-        window.ctryData = await cia.GetData();
+        window.ctryData = await cia.getData();
         
         window.ctryData.sort((a, b) => a[3].localeCompare(b[3]));
     }
