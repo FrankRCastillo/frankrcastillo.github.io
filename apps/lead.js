@@ -11,7 +11,11 @@ export async function lead() {
 
     arr.forEach(async x => {
         var get = await readFile(x);
-        console.log(get);
+        var tmp = new DOMParser().parseFromString(get, 'text/html')
+                                 .getElementsByTagName('body');
+        tmp.outerHTML = tmp.outerHTML.replace('<a href=\"', '\(delimit\)$&');
+        var cty = tmp.innerText;
+        console.log(cty);
     });
 }
 
