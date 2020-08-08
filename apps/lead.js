@@ -6,7 +6,7 @@ export async function lead() {
                    .map(x => x.href.replace(x.baseURI, url))
                    .filter(x => x.match(url + 'rul.*\.html'));
 
-    arr.forEach(x => {
+    arr.forEach(async x => {
         var get = await getPageElem(x, 'body');
 
         get.outerHTML = get.outerHTML.replace('<a href=\"', '\(delimit\)$&');
