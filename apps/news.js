@@ -22,9 +22,9 @@ export function news() {
 }
 
 export async function GetNewsFeed() {
-    var src = await ReadFile('/apps/news/news.txt');
+    var src = await readFile('/apps/news/news.txt');
     var url = src.split('\n').filter(x => x != '');
-    var xml = await Promise.all(url.map(async (x) => ReadFile(x)));
+    var xml = await Promise.all(url.map(async (x) => readFile(x)));
     var par = xml.map(x => RSSParser(x));
     var tmp = [].concat.apply([], par);
 
@@ -42,7 +42,7 @@ export async function GetNewsFeed() {
                                  .replace(',', '')
                            , x[3]
                            ]);
-    var tbl = ArrayToTable(arr, false, true)
+    var tbl = arrayToTable(arr, false, true)
 
     tbl.setAttribute('id', 'NewsTable');
 
