@@ -7,11 +7,10 @@ export async function lead() {
                    .filter(x => x.match(url + 'rul.*\.html'));
 
     arr.forEach(async x => {
-        var get = await getPageElem(x, 'body');
-
-        get.outerHTML = get.outerHTML.replace('<a href=\"', '\(delimit\)$&');
-
-        console.log(get.innerText);
+        var get = await getPageElem(x, 'body').then(k => {
+            k.outerHTML = k.outerHTML.replace('<a href=\"', '\(delimit\)$&');
+            return k.innerText;
+        }).then(x => console.log(x));
     });
 }
 
