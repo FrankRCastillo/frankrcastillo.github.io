@@ -12,12 +12,12 @@ export async function cmap() {
 
     var out = document.getElementById('outtext')
     var wmp = document.createElement('WorldMap')
-    wmp.appendChild(NewCtryPage());
+    wmp.appendChild(newCtryPage());
     out.appendChild(wmp);
-    CreateMap();
+    createMap();
 }
 
-function CreateMap() {
+function createMap() {
     var map       = L.map('mapframe');
     var osmUrl    ='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib ='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -48,7 +48,7 @@ function CreateMap() {
     });
 }
 
-function NewCtryPage() {
+function newCtryPage() {
     var out = document.createElement('div');
     var frm = document.createElement('div');
     var lst = document.createElement('div');
