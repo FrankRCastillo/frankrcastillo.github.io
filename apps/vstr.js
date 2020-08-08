@@ -53,7 +53,7 @@ export async function vstr() {
     for (var i = 0; i < 370; i++) {
         worldmap[maparea[i][0]][maparea[i][1]] = ".";
     }
-    var ipdata   = await ReadFile("https://freegeoip.app/json/");
+    var ipdata   = await readFile("https://freegeoip.app/json/");
     var data     = JSON.parse(ipdata);
     var visitMsg = "<div id='vstr'>";
     var coordx   = parseInt((-0.1 * data.latitude) + 11);
