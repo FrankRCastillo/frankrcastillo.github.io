@@ -5,7 +5,7 @@ export async function gant() {
     var cia  = await import('/js/cia.js');
 
     if (window.ctryData == null) {
-        window.ctryData = await cia.GetData();
+        window.ctryData = await cia.getData();
         window.ctryData.sort((a, b) => a[3].localeCompare(b[3]));
     }
 
@@ -13,11 +13,11 @@ export async function gant() {
     var gnt = document.createElement('div');
     gnt.setAttribute('id', 'GanttChart');
     out.appendChild(gnt);
-    gnt.appendChild(NewGanttToolbar());
-    gnt.appendChild(NewGanttPage(year, 1));
+    gnt.appendChild(newGanttToolbar());
+    gnt.appendChild(newGanttPage(year, 1));
 }
 
-function NewGanttToolbar() {
+function newGanttToolbar() {
     var dte = new Date().getFullYear();             // present year
     var bar = document.createElement('div');        // toolbar div
     var yin = document.createElement('input');      // ending year input
@@ -56,22 +56,22 @@ function NewGanttToolbar() {
         nsl.setAttribute('selected', true);
 
         tbl.remove();
-        gnt.appendChild(NewGanttPage(parseInt(eyr.value), ysl));
+        gnt.appendChild(newGanttPage(parseInt(eyr.value), ysl));
     });
 
     prs.textContent = 'Pres';
     prs.addEventListener('click', function() {
-        GanttTimeShift(0);
+        ganttTimeShift(0);
     });
 
     nxt.textContent = 'Next';
     nxt.addEventListener('click', function() {
-        GanttTimeShift(1);
+        ganttTimeShift(1);
     });
 
     prv.textContent = 'Prev';
     prv.addEventListener('click', function() {
-        GanttTimeShift(-1)
+        ganttTimeShift(-1)
     });
 
     bar.setAttribute('id', 'GanttToolbar');
@@ -84,7 +84,7 @@ function NewGanttToolbar() {
     return bar;
 }
 
-function GanttTimeShift(dir) {
+function ganttTimeShift(dir) {
     var year   = new Date().getFullYear();
     var sel    = document.getElementById('GanttInterval');
     var eyr    = document.getElementById('GanttEndYear');
@@ -100,11 +100,11 @@ function GanttTimeShift(dir) {
         eyr.value = nendyr + nscale;
 
         tbl.remove();
-        gnt.appendChild(NewGanttPage(eyr.value, scale));
+        gnt.appendChild(newGanttPage(eyr.value, scale));
     }
 }
 
-function NewGanttPage(year, scale) {
+function newGanttPage(year, scale) {
     var tble = document.createElement('table');
     var tbar = document.getElementById('GanttEndYear');
     var cont = '';
