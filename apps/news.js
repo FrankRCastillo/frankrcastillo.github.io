@@ -21,7 +21,7 @@ export function news() {
     }
 }
 
-export async function GetNewsFeed() {
+export async function getNewsFeed() {
     var src = await readFile('/apps/news/news.txt');
     var url = src.split('\n').filter(x => x != '');
     var xml = await Promise.all(url.map(async (x) => readFile(x)));
