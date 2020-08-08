@@ -6,7 +6,7 @@ export async function lead() {
     var dom = new DOMParser().parseFromString(get, 'text/html')
                              .getElementsByTagName('a'); 
     var arr = Array.from(dom)
-                   .map(x => new URL(x.href))
+                   .map(x => dom.baseURI + x.href)
                    .filter(x => x.match('rul.*\.html'));
 
     console.log('pause');
