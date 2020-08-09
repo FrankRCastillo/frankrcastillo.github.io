@@ -9,7 +9,7 @@ export async function lead() {
     arr.forEach(async x => {
         var get = await getPageElem(x, 'body').then(k => {
             k[0].outerHTML = k[0].outerHTML
-                                 .replace( /<a href=\"\w+\">[\s\t\n]+<hr>[\s\t\n]+<h2>\w+<\/h2>[\s\t\n]+<\/a>/g
+                                 .replace( /<a name=\"\w+\"><hr><h2>\w+<\/h2>/g
                                          , '\[delimit\]$&'
                                          );
             return k[0].innerText;
