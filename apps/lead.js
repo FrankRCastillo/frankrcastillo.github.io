@@ -13,13 +13,17 @@ export async function lead() {
                                  .replace( /<a name=\"\w+\"><hr><h2>\w+<\/h2>/g
                                          , '\[delimit\]$&<br\/>'
                                          );
-            return k[0].innerText;
+            return k[0].outerHTML;
         }).then(x => {
             x.split('[delimit]')
              .filter(ele => !ele.match(/^Rulers.*/))
-             .map(ele => tmp.push(ele));
+             .map(ele => parseCountry(ele));
         });
     });
+}
+
+function parseCountry(html) {
+    console.log(html);
 }
 
 async function getPageElem(url, elem) {
