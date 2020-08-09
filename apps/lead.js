@@ -15,7 +15,9 @@ export async function lead() {
                                          );
             return k[0].innerText;
         }).then(x => {
-            x.split('[delimit]').map(ele => tmp.push(ele));
+            x.split('[delimit]')
+             .filter(ele => !ele.match(/^Rulers.*))
+             .map(ele => tmp.push(ele));
         });
     });
 }
