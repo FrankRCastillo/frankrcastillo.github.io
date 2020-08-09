@@ -1,6 +1,7 @@
 // |wrld|lead|National leaders and tenures (source: rulers.org)
 
 export async function lead() {
+    var tmp = [];
     var url = 'http://rulers.org/';
     var arr = Array.from(await getPageElem(url, 'a'))
                    .map(x => x.href.replace(x.baseURI, url))
@@ -13,7 +14,9 @@ export async function lead() {
                                          , '\[delimit\]$&'
                                          );
             return k[0].innerText;
-        }).then(x => console.log(x));
+        }).then(x => {
+            tmp.push(x.split('[delimit]'));
+        });
     });
 }
 
