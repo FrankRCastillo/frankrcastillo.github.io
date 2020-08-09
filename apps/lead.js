@@ -16,7 +16,7 @@ export async function lead() {
             return k[0].innerText;
         }).then(x => {
             x.split('[delimit]')
-             .filter(ele => !ele.match(/^Rulers.*))
+             .filter(ele => !ele.match(/^Rulers.*/))
              .map(ele => tmp.push(ele));
         });
     });
