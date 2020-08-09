@@ -11,7 +11,7 @@ export async function lead() {
         var get = await getPageElem(x, 'body').then(k => {
             k[0].outerHTML = k[0].outerHTML
                                  .replace( /<a name=\"\w+\"><hr><h2>\w+<\/h2>/g
-                                         , '\[delimit\]$&'
+                                         , '\[delimit\]$&<br\/>'
                                          );
             return k[0].innerText;
         }).then(x => {
