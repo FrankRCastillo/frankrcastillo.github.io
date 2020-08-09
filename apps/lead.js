@@ -15,7 +15,7 @@ export async function lead() {
                                          );
             return k[0].innerText;
         }).then(x => {
-            tmp.push(x.split('[delimit]'));
+            x.split('[delimit]').map(ele => tmp.push(ele));
         });
     });
 }
