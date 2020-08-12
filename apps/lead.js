@@ -1,7 +1,8 @@
 // |wrld|lead|National leaders and tenures (source: rulers.org)
 
+window.rulers = [];
+
 export async function lead() {
-    var tmp = [];
     var url = 'http://rulers.org/';
     var arr = Array.from(await getPageElem(url, 'a'))
                    .map(x => x.href.replace(x.baseURI, url))
@@ -17,13 +18,15 @@ export async function lead() {
         }).then(x => {
             x.split('[delimit]')
              .filter(ele => !ele.match(/^Rulers.*/))
-             .map(ele => parseCountry(ele));
+             .map(ele => saveRulers(ele));
         });
     });
 }
 
-function parseCountry(html) {
-    console.log(html);
+function saveRulers(html) {
+    var dom = new DOMParser().parseFromString(html, 'text/html');
+
+    console.log('pause');
 }
 
 async function getPageElem(url, elem) {
