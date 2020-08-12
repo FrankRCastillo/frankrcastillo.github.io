@@ -13,7 +13,7 @@
 }
 
 html
-{ font-family : 'MS PGothic'
+{ font-family : courier
 ; font-size   : 20px
 }
 
@@ -86,7 +86,7 @@ input
 ; margin      : 0px 0px 0px 0px
 ; padding     : 0px 0px 0px 0px
 ; outline     : none
-; font-family : 'MS PGothic'
+; font-family : courier
 ; font-size   : 20px
 ; height      : 25px
 ; color       : #ffa500
@@ -216,7 +216,7 @@ input
 { border      : 1px solid #000000
 ; background  : #ffa500
 ; color       : #000000
-; font-family : 'MS PGothic'
+; font-family : courier
 ; font-size   : 12px
 }
 
