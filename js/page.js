@@ -222,6 +222,8 @@ async function readFile(url) {
         var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
                        , 'https://cors-proxy.htmldriven.com/?url='
                        , 'https://yacdn.org/proxy/'
+                       , 'http://alloworigin.com/get?url='
+                       , 'https://api.allorigins.win/raw?url='
                        ];
         var randidx  = getRandomInt(0, corsarr.length - 1);
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
