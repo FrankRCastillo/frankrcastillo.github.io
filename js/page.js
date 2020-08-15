@@ -221,7 +221,7 @@ async function readFile(url) {
         var corsprxy = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl : ''); 
 
         if (corsprxy != '') {
-            hdr['headers']['Access-Control-Allow-Origin'] = ;
+            hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
         }
 
         switch (url.slice(-3)) {
