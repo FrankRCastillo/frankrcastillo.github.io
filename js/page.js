@@ -207,7 +207,12 @@ async function readFile(url) {
         var hdr = {}
         var currhost = new URL(window.location.href);
         var readhost = new URL(url, currhost);
-        var corsurl  = 'https://cors-anywhere.herokuapp.com/';
+        var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
+                       , 'https://thingproxy.freeboard.io/fetch/'
+                       , 'https://yacdn.org/proxy/'
+                       , 'https://cors-proxy.htmldriven.com/?url='
+                       ];
+        var corsurl  = corsarr[Math.floor(Math.random() * 5)];
         var corsprxy = (![ currhost.hostname
                          , 'api.github.com'
                          , 'freegeoip.app'
