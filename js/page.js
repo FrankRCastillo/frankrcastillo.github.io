@@ -204,7 +204,7 @@ function isURL(url) {
 async function readFile(url) {
     try{
         var blb = null;
-        var hdr = {}
+        var hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } };
         var currhost = new URL(window.location.href);
         var readhost = new URL(url, currhost);
         var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
@@ -220,21 +220,17 @@ async function readFile(url) {
                        ]
         var corsprxy = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl : ''); 
 
+        if (corsurl != '') {
+            hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
+        }
+
         switch (url.slice(-3)) {
             case 'pdf':
-                hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
-                                  , 'Access-Control-Allow-Origin'    : readhost.hostname
-                                  , 'Content-Type'                   : 'application/pdf;base64'
-                                  }
-                      };
+                hdr['headers']['Content-Type'] = 'application/pdf;base64';
                 blb = await(await fetch(corsprxy + url, hdr)).blob();
                 return blobToBase64(blb);
 
             default:
-                hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
-                                  , 'Access-Control-Allow-Origin'    : readhost.hostname
-                                  }
-                      }
                 return (await fetch(corsprxy + url, hdr)).text();
         }
     } catch(err) {
