@@ -221,7 +221,7 @@ async function readFile(url) {
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
         if ((!homeurls.includes(readhost.hostname) && corsurl != corsarr[2]) || corsurl == corsarr[1]) {
-            hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
+            hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
         }
 
         switch (url.slice(-3)) {
