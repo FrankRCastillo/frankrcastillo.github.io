@@ -221,12 +221,18 @@ async function readFile(url) {
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
-                                  , 'Content-Type' : 'application/pdf;base64'  }};
+                                  , 'Access-Control-Allow-Origin'    : currhost.hostname
+                                  , 'Content-Type'                   : 'application/pdf;base64'
+                                  }
+                      };
                 blb = await(await fetch(corsprxy + url, hdr)).blob();
                 return blobToBase64(blb);
 
             default:
-                hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } }
+                hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
+                                  , 'Access-Control-Allow-Origin'    : currhost.hostname
+                                  }
+                      }
                 return (await fetch(corsprxy + url, hdr)).text();
         }
     } catch(err) {
