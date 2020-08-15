@@ -214,15 +214,17 @@ async function readFile(url) {
                        ];
         var randidx  = Math.floor(Math.random() * corsarr.length - 1);
         var corsurl  = corsarr[randidx];
-        var corsprxy = (![ currhost.hostname
-                         , 'api.github.com'
-                         , 'freegeoip.app'
-                         ].includes(readhost.hostname) && isURL(url) ? corsurl : '');
-        
+        var homeurls = [ currhost.hostname
+                       , 'api.github.com'
+                       , 'freegeoip.app'
+                       ]
+        var corsprxy = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl : ''); 
+        var origurl  = (corsprxy == '' : readhost.hostname);
+
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
-                                  , 'Access-Control-Allow-Origin'    : currhost.hostname
+                                  , 'Access-Control-Allow-Origin'    : origurl
                                   , 'Content-Type'                   : 'application/pdf;base64'
                                   }
                       };
@@ -231,7 +233,7 @@ async function readFile(url) {
 
             default:
                 hdr = { headers : { 'Access-Control-Request-Headers' : 'origin'
-                                  , 'Access-Control-Allow-Origin'    : currhost.hostname
+                                  , 'Access-Control-Allow-Origin'    : origurl
                                   }
                       }
                 return (await fetch(corsprxy + url, hdr)).text();
