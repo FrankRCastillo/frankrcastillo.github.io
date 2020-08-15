@@ -14,7 +14,7 @@
 
 html
 { font-family : courier
-; font-size   : 20px
+; font-size   : 16px
 }
 
 body
@@ -60,7 +60,7 @@ select
 ; background  : #000000
 ; color       : #ffa500
 ; font-family : courier
-; font-size   : 20px
+; font-size   : 16px
 ; outline     : none
 ; width       : 200px
 }
@@ -72,7 +72,7 @@ button
 ; background  : #ffa500
 ; color       : #000000
 ; font-family : courier
-; font-size   : 20px
+; font-size   : 16px
 ; outline     : none
 }
 
@@ -87,7 +87,7 @@ input
 ; padding     : 0px 0px 0px 0px
 ; outline     : none
 ; font-family : courier
-; font-size   : 20px
+; font-size   : 16px
 ; height      : 25px
 ; color       : #ffa500
 ; background  : #000000
@@ -97,7 +97,7 @@ input
 { white-space : nowrap
 ; width       : calc(100% - 20px)
 ; font-family : courier
-; font-size   : 17px
+; font-size   : 16px
 }
 
 #GanttChart
@@ -153,7 +153,7 @@ input
 ; width      : 250px
 ; height     : calc(100% - 26px)
 ; float      : left
-; font-size  : 12px
+; font-size  : 16px
 ; overflow   : auto
 ; position   : absolute
 ; background : #0a0a19
@@ -215,12 +215,12 @@ input
 ; background  : #ffa500
 ; color       : #000000
 ; font-family : courier
-; font-size   : 12px
+; font-size   : 16px
 }
 
 #GanttTable
 { font-family    : courier
-; font-size      : 14px
+; font-size      : 16px
 ; text-align     : left
 ; border-spacing : 0px
 ; position       : relative
@@ -279,7 +279,7 @@ input
 { visibility       : hidden
 ; width            : 350px
 ; font-family      : courier
-; font-size        : 11px
+; font-size        : 12px
 ; background-color : #000000
 ; color            : #ffa500
 ; text-align       : left
@@ -298,7 +298,7 @@ input
 ; left             : 100%
 ; margin-top       : -5px
 ; font-family      : courier
-; font-size        : 11px
+; font-size        : 12px
 ; background-color : #ffa500
 ; color            : #000000
 }
