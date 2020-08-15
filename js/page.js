@@ -204,7 +204,7 @@ function isURL(url) {
 async function readFile(url) {
     try{
         var blb = null;
-        var hdr = {};
+        var hdr = { headers : { } };
         var currhost = new URL(window.location.href);
         var readhost = new URL(url, currhost);
         var homeurls = [ currhost.hostname
