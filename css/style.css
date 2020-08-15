@@ -127,7 +127,7 @@ input
 }
 
 #newsdiv
-{ height   : 100%
+{ height   : 120px
 ; position : fixed
 ; width    : calc(100% - 20px)
 ; display  : block
