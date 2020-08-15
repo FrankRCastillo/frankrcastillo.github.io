@@ -227,7 +227,7 @@ async function readFile(url) {
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
-        if (readhost.hostname != 'api.github.com' && corsurl != corsarr[4]) {
+        if (readhost.hostname != 'api.github.com' && ![corsarr[2], corsarr[4]].includes(corsurl)) {
             hdr['headers']['Access-Control-Request-Headers'] = '*';
             hdr['headers']['Access-Control-Allow-Origin']    = '*';
         }
