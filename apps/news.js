@@ -2,19 +2,20 @@
 
 export function news() {
     var out = document.getElementById('outtext');
+    var div = document.getElementById('newsdiv');
     var pnl = document.getElementById('newspnl');
 
     if (out != null) {
         switch (out.style.display) {
             case 'none':
                 out.style.display  = 'block';
-                pnl.style.height   = '120px';
+                div.style.height   = '120px';
                 pnl.style.overflow = 'hidden';
                 break;
 
             default:
                 out.style.display  = 'none';
-                pnl.style.height   = '100%';
+                div.style.height   = '100%';
                 pnl.style.overflow = 'auto';
                 break;
         }

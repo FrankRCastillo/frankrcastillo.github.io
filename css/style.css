@@ -130,6 +130,7 @@ input
 { height   : 100%
 ; position : fixed
 ; width    : calc(100% - 20px)
+; display  : block
 }
 
 #newshdr
@@ -142,7 +143,6 @@ input
 #newspnl
 { background-color : #060617
 ; height           : 120px
-; position         : relative
 ; display          : block
 ; overflow         : hidden
 }
