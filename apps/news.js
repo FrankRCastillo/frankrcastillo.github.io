@@ -8,6 +8,7 @@ export function news() {
     if (out != null) {
         switch (out.style.display) {
             case 'none':
+                clear();
                 home();
                 out.style.display  = 'block';
                 div.style.height   = '120px';
