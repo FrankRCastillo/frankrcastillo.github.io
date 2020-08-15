@@ -15,7 +15,7 @@ export function news() {
 
             default:
                 out.style.display  = 'none';
-                div.style.height   = 'calc(100% - 20px)';
+                div.style.height   = 'calc(100% - 55px)';
                 pnl.style.overflow = 'auto';
                 break;
         }
