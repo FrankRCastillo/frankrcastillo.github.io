@@ -201,6 +201,12 @@ function isURL(url) {
     return results;
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 async function readFile(url) {
     try{
         var rtn = null;
@@ -217,7 +223,7 @@ async function readFile(url) {
                        , 'https://yacdn.org/proxy/'
                        , 'https://cors-proxy.htmldriven.com/?url='
                        ];
-        var randidx  = Math.floor(Math.random() * corsarr.length - 1);
+        var randidx  = getRandomInt(0, corsarr.length - 1);
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
