@@ -100,14 +100,15 @@ async function fileList(filter) {
 }
 
 function rssParser(xml) {
-    parser   = new DOMParser();
-    xmldoc   = parser.parseFromString(xml, 'text/xml');
-    var arr  = [];
-    var wwdt = window.innerWidth;
-    var awdt = Math.floor(wwdt / 10) - 32;          // half of screen goes to article title
-    var obj  = document.createElement('a');
-    obj.href = xmldoc.getElementsByTagName('link')[0].textContent;
-    var src  = obj.host
+    var parser = new DOMParser();
+    var xmldoc = parser.parseFromString(xml, 'text/xml');
+    var arr    = [];
+    
+    var wwdt   = window.innerWidth;
+    var awdt   = Math.floor(wwdt / 10) - 32;          // half of screen goes to article title
+    var obj    = document.createElement('a');
+    obj.href   = xmldoc.getElementsByTagName('link')[0].textContent;
+    var src    = obj.host
                   .replace('www.', '')
                   .replace('.com', '');
     var itm = xmldoc.getElementsByTagName('item');
@@ -228,6 +229,8 @@ async function readFile(url) {
 
         if (!homeurls.includes(readhost.hostname) && corsurl != corsarr[0]) {
             hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
+        } else {
+            hdr['headers']['Access-Control-Request-Headers'] = 'origin';
         }
 
         switch (url.slice(-3)) {
