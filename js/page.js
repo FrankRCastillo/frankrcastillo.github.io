@@ -219,15 +219,14 @@ async function readFile(url) {
                        , 'freegeoip.app'
                        ]
         var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
-                       , 'https://thingproxy.freeboard.io/fetch/'
-                       , 'https://yacdn.org/proxy/'
                        , 'https://cors-proxy.htmldriven.com/?url='
+                       , 'https://yacdn.org/proxy/'
                        ];
         var randidx  = getRandomInt(0, corsarr.length - 1);
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
-        if (!homeurls.includes(readhost.hostname) && corsurl != corsarr[2]) {
+        if (!homeurls.includes(readhost.hostname) && corsurl != corsarr[0]) {
             hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
         }
 
