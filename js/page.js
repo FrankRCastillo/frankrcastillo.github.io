@@ -229,14 +229,16 @@ async function readFile(url) {
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
-        if (!homeurls.includes(readhost.hostname) && corsurl != corsarr[0]) {
-            hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
-        } else
-        if (corsurl == corsarr[4]) {
-        } else {
-            hdr['headers']['Access-Control-Request-Headers'] = 'origin';
-        }
+        switch (corsurl) {
+            case corsarr[0]:
+            case corsarr[4]:
+                hdr['headers']['Access-Control-Request-Headers'] = 'origin';
+                default;
 
+            default:
+                hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
+        }
+        
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr['headers']['Content-Type'] = 'application/pdf;base64';
