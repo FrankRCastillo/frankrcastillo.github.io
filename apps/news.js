@@ -10,13 +10,12 @@ export function news() {
             case 'none':
                 out.style.display  = 'block';
                 div.style.height   = '120px';
-                pnl.style.height   = 
                 pnl.style.overflow = 'hidden';
                 break;
 
             default:
                 out.style.display  = 'none';
-                div.style.height   = '100%';
+                div.style.height   = 'calc(100% - 20px)';
                 pnl.style.overflow = 'auto';
                 break;
         }
