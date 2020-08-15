@@ -232,8 +232,10 @@ async function readFile(url) {
                 rtn = blobToBase64(blb);
 
             default:
-                rtn = (await fetch(procurl, hdr)).text();
+                var tmp = (await fetch(procurl, hdr))
+                rtn = (tmp == null ? null : tmp.text());
         }
+
         return rtn;
     } catch(err) {
         console.log(err.message);
