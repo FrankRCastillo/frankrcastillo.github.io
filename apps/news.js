@@ -27,19 +27,8 @@ export function news() {
 export async function getNewsFeed() {
     var src = await readFile('/apps/news/news.txt');
     var url = src.split('\n').filter(x => x != '');
-    var xml = await Promise.all(url.map(async (x) => {
-        var rtn = null;
-
-        try {
-            rtn = readFile(x)
-        } catch(err) {
-            console.log(err.message);
-        }
-
-        return rtn;
-    }).filter(x => x != null));
-    var par = xml.map(x => rssParser(x));
-    var tmp = [].concat.apply([], par);
+    var xml = url.map(async (x) => readFile(x).then(resp => rssParser(x)))
+    var tmp = [].concat.apply([], xml);
 
     tmp.sort((a,b,) => Date.parse(b[2]) - Date.parse(a[2]));
 
