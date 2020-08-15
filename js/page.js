@@ -217,7 +217,7 @@ async function readFile(url) {
                        , 'https://cors-proxy.htmldriven.com/?url='
                        ];
         var randidx  = Math.floor(Math.random() * corsarr.length - 1);
-        var corsurl  = corsarr[randidx];
+        var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
         if (readhost.hostname != 'api.github.com') {
