@@ -142,7 +142,7 @@ input
 
 #newspnl
 { background-color : #060617
-; height           : 120px
+; height           : 100%
 ; display          : block
 ; overflow         : hidden
 }
