@@ -20,15 +20,16 @@ async function setConsole() {
     nhdr.setAttribute('id', 'newshdr');
     nhdr.appendChild(nlnk);
 
-    ndiv.setAttribute('id', 'newspnl');
-    ndiv.appendChild(await news.getNewsFeed());
+    npnl.setAttribute('id', 'newspnl');
+    npnl.appendChild(await news.getNewsFeed());
 
-    npnl.appendChild(nhdr);
-    npnl.appendChild(ndiv);
+    ndiv.setAttribute('id', 'newsdiv');
+    ndiv.appendChild(nhdr);
+    ndiv.appendChild(npnl);
 
     main.appendChild(menu);
     main.appendChild(otxt);
-    main.appendChild(npnl);
+    main.appendChild(ndiv);
 
     window.newsinterval = await setInterval(async function () {
         var npnl = document.getElementById('newspnl');

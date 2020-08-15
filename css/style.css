@@ -126,6 +126,12 @@ input
 ; display    : block
 }
 
+#newsdiv
+{ height   : 100%
+; position : fixed
+; width    : calc(100% - 20px)
+}
+
 #newshdr
 { background-color : #101530
 ; position         : relative
