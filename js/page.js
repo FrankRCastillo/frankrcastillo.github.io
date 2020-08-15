@@ -220,9 +220,7 @@ async function readFile(url) {
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
-        if (readhost.hostname != 'api.github.com') {
-            hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
-        }
+        hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
 
         switch (url.slice(-3)) {
             case 'pdf':
