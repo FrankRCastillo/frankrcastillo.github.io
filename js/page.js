@@ -231,12 +231,9 @@ async function readFile(url) {
 
         switch (corsurl) {
             case corsarr[0]:
-            case corsarr[4]:
-                hdr['headers']['Access-Control-Request-Headers'] = 'origin';
-                default;
-
-            default:
-                hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
+            case corsarr[4]: hdr['headers']['Access-Control-Request-Headers'] = 'origin'; break;
+            case corsarr[2]: break;
+            default:         hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
         }
         
         switch (url.slice(-3)) {
