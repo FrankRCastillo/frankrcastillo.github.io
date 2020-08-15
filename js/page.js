@@ -220,11 +220,7 @@ async function readFile(url) {
         var corsurl  = corsarr[randidx];
         var corsprxy = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl : ''); 
 
-        if (corsprxy == '') {
-            hdr['headers']['Access-Control-Request-Headers'] = 'origin';
-        } else {
-            hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
-        }
+        hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
 
         switch (url.slice(-3)) {
             case 'pdf':
