@@ -218,7 +218,7 @@ async function readFile(url) {
                        ];
         var randidx  = Math.floor(Math.random() * corsarr.length - 1);
         var corsurl  = corsarr[randidx];
-        var corsprxy = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl : ''); 
+        var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
         if (readhost.hostname != 'api.github.com') {
             hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
@@ -227,11 +227,11 @@ async function readFile(url) {
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr['headers']['Content-Type'] = 'application/pdf;base64';
-                blb = await(await fetch(corsprxy + url, hdr)).blob();
+                blb = await(await fetch(procurl, hdr)).blob();
                 return blobToBase64(blb);
 
             default:
-                return (await fetch(corsprxy + url, hdr)).text();
+                return (await fetch(procurl, hdr)).text();
         }
     } catch(err) {
         console.log(err.message);
