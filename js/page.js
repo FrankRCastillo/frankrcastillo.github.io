@@ -229,7 +229,7 @@ async function readFile(url) {
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
-        switch (corsurl) {
+        switch (corsurl && procurl != url) {
             case corsarr[0]:
             case corsarr[4]:
                 hdr['headers']['Access-Control-Request-Headers'] = 'origin';
