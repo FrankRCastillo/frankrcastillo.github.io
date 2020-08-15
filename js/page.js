@@ -207,6 +207,10 @@ async function readFile(url) {
         var hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } };
         var currhost = new URL(window.location.href);
         var readhost = new URL(url, currhost);
+        var homeurls = [ currhost.hostname
+                       , 'api.github.com'
+                       , 'freegeoip.app'
+                       ]
         var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
                        , 'https://thingproxy.freeboard.io/fetch/'
                        , 'https://yacdn.org/proxy/'
@@ -214,14 +218,10 @@ async function readFile(url) {
                        ];
         var randidx  = Math.floor(Math.random() * corsarr.length - 1);
         var corsurl  = corsarr[randidx];
-        var homeurls = [ currhost.hostname
-                       , 'api.github.com'
-                       , 'freegeoip.app'
-                       ]
         var corsprxy = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl : ''); 
 
-        if (corsurl != '') {
-            hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
+        if (corsprxy '') {
+            hdr['headers']['Access-Control-Allow-Origin'] = ;
         }
 
         switch (url.slice(-3)) {
