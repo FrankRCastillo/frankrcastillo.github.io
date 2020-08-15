@@ -234,6 +234,9 @@ async function readFile(url) {
                 break;
 
             case corsarr[1]:
+                hdr['headers']['Access-Control-Request-Headers'] = '*';
+                break;
+
             case corsarr[2]:
                 hdr['headers']['Access-Control-Allow-Origin'] = currhost.hostname;
                 break;
