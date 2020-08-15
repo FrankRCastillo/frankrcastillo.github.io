@@ -210,8 +210,6 @@ function getRandomInt(min, max) {
 
 async function readFile(url) {
     try{
-        var rtn = null;
-        var blb = null;
         var hdr = { headers : {} };
         var currhost = new URL(window.location.href);
         var readhost = new URL(url, currhost);
@@ -244,16 +242,17 @@ async function readFile(url) {
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr['headers']['Content-Type'] = 'application/pdf;base64';
-                blb = await fetch(procurl, hdr)
-                            .then(response => response.blob())
-                            .catch(() => console.log('Error getting ' + procurl));
+                const rtn = await fetch(procurl, hdr)
+                                  .then(response => response.blob())
+                                  .catch(() => console.log('Error getting ' + procurl));
 
-                return (blb == null ? null : blobToBase64(blb));
+                return (rtn == null ? null : blobToBase64(rtn));
 
             default:
-                return await fetch(procurl, hdr)
-                             .then(response => response.text())
-                             .catch(() => console.log('Error getting ' + procurl));
+                const rtn = await fetch(procurl, hdr)
+                                  .then(response => response.text())
+                                  .catch(() => console.log('Error getting ' + procurl));
+                return rtn;
         }
     } catch(err) {
         console.log(err.message);
