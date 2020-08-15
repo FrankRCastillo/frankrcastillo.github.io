@@ -203,6 +203,7 @@ function isURL(url) {
 
 async function readFile(url) {
     try{
+        var rtn = null;
         var blb = null;
         var hdr = { headers : {} };
         var currhost = new URL(window.location.href);
@@ -228,11 +229,12 @@ async function readFile(url) {
             case 'pdf':
                 hdr['headers']['Content-Type'] = 'application/pdf;base64';
                 blb = await(await fetch(procurl, hdr)).blob();
-                return blobToBase64(blb);
+                rtn = blobToBase64(blb);
 
             default:
-                return (await fetch(procurl, hdr)).text();
+                rtn = (await fetch(procurl, hdr)).text();
         }
+        return rtn;
     } catch(err) {
         console.log(err.message);
     }
