@@ -220,7 +220,7 @@ async function readFile(url) {
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
-        if ( !homeurls.includes(readhost.hostname) && corsurl != corsarr[2]) {
+        if ((!homeurls.includes(readhost.hostname) && corsurl != corsarr[2]) || corsurl == corsarr[1]) {
             hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
         }
 
