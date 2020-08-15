@@ -8,6 +8,7 @@ export function news() {
     if (out != null) {
         switch (out.style.display) {
             case 'none':
+                home();
                 out.style.display  = 'block';
                 div.style.height   = '120px';
                 pnl.style.overflow = 'hidden';
