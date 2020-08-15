@@ -204,7 +204,7 @@ function isURL(url) {
 async function readFile(url) {
     try{
         var blb = null;
-        var hdr = { headers : { 'Access-Control-Request-Headers' : 'origin' } };
+        var hdr = {};
         var currhost = new URL(window.location.href);
         var readhost = new URL(url, currhost);
         var homeurls = [ currhost.hostname
@@ -220,7 +220,7 @@ async function readFile(url) {
         var corsurl  = corsarr[randidx];
         var corsprxy = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl : ''); 
 
-        if (corsprxy == '') {
+        if (corsprxy != '') {
             hdr['headers']['Access-Control-Allow-Origin'] = readhost.hostname;
         }
 
