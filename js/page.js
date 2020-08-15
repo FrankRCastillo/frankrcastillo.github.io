@@ -212,7 +212,7 @@ async function readFile(url) {
                        , 'https://yacdn.org/proxy/'
                        , 'https://cors-proxy.htmldriven.com/?url='
                        ];
-        var corsurl  = corsarr[Math.floor(Math.random() * 5)];
+        var corsurl  = corsarr[Math.floor(Math.random() * corsarr.length - 1)];
         var corsprxy = (![ currhost.hostname
                          , 'api.github.com'
                          , 'freegeoip.app'
