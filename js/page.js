@@ -242,17 +242,15 @@ async function readFile(url) {
         switch (url.slice(-3)) {
             case 'pdf':
                 hdr['headers']['Content-Type'] = 'application/pdf;base64';
-                const rtn = await fetch(procurl, hdr)
-                                  .then(response => response.blob())
-                                  .catch(() => console.log('Error getting ' + procurl));
-
-                return (rtn == null ? null : blobToBase64(rtn));
+                return await fetch(procurl, hdr)
+                             .then(response => response.blob())
+                             .then(response => blobToBase64(response))
+                             .catch(() => console.log('Error getting ' + procurl));
 
             default:
-                const rtn = await fetch(procurl, hdr)
-                                  .then(response => response.text())
-                                  .catch(() => console.log('Error getting ' + procurl));
-                return rtn;
+                return await fetch(procurl, hdr)
+                             .then(response => response.text())
+                             .catch(() => console.log('Error getting ' + procurl));
         }
     } catch(err) {
         console.log(err.message);
