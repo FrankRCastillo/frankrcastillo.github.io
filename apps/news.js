@@ -37,7 +37,7 @@ export async function getNewsFeed() {
         }
 
         return rtn;
-    })).filter(x => x != null);
+    }).filter(x => x != null));
     var par = xml.map(x => rssParser(x));
     var tmp = [].concat.apply([], par);
 
