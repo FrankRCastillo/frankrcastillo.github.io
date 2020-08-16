@@ -437,7 +437,7 @@ async function main() {
 
     body.appendChild(await setConsole());
     home();
-
+    scaleResize('console');
     window.addEventListener('resize', scaleResize('console'));
 }
 
