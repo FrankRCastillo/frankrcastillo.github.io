@@ -218,7 +218,6 @@ async function readFile(url) {
                        , 'freegeoip.app'
                        ]
         var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
-                       , 'https://yacdn.org/proxy/'
                        , 'https://alloworigin.com/get?url='
                        , 'https://api.allorigins.win/raw?url='
                        ];
@@ -227,7 +226,7 @@ async function readFile(url) {
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
         if (!homeurls.includes(readhost.hostname) 
-         && ![corsarr[1], corsarr[3]].includes(corsurl)) {
+         && corsarr[2] != corsurl) {
             hdr['headers']['Access-Control-Request-Headers'] = 'origin';
             hdr['headers']['Access-Control-Allow-Origin']    = '*';
         }
