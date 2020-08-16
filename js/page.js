@@ -430,10 +430,18 @@ function tableToArray(txt, delim) {
 function scaleResize(id) {
     var elem = document.getElementById(id);
     var csty = getComputedStyle(elem);
-    var ewdt = csty.width.replace('px','') * 1.6;
-    var wwdt = window.innerWidth;
+    var fact = 1.6
+    var eHgt = csty.height.replace('px', '') * fact;
+    var eWdt = csty.width.replace('px','') * fact;
+    var wHgt = window.innerHeight;
+    var wWdt = window.innerWidth;
 
-    elem.style.transform = 'scale(calc(' + wwdt + ' / ' + ewdt + '))';
+    if (wWdt > wHgt) {
+        elem.style.transform = 'scale(calc(' + wWdt + ' / ' + eWdt + '))';
+    } else {
+        elem.style.transform = 'scale(calc(' + wHgt + ' / ' + eHgt + '))';
+    }
+
 }
 
 async function main() {
@@ -441,10 +449,10 @@ async function main() {
 
     body.appendChild(await setConsole());
     home();
-//    scaleResize('console');
-//    window.addEventListener('resize', function() {
-//        scaleResize('console')
-//    }, true);
+    scaleResize('console');
+    window.addEventListener('resize', function() {
+        scaleResize('console')
+    }, true);
 }
 
 main()
