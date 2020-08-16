@@ -430,15 +430,19 @@ function tableToArray(txt, delim) {
 function scaleResize(id) {
     var elem = document.getElementById(id);
     var csty = getComputedStyle(elem);
-    var eHgt = csty.height.replace('px', '');
-    var eWdt = csty.width.replace('px','');
-    var wHgt = window.innerHeight;
-    var wWdt = window.innerWidth;
 
-    if (wWdt > wHgt) {
-        elem.style.transform = 'scale(calc(' + wWdt + ' / ' + eWdt + '))';
+    if (window.innerWidth > window.innerHeight) {
+        elem.style.transform = 'scale(calc('
+                             + window.innerWidth
+                             + ' / '
+                             + csty.width.replace('px', '')
+                             + '))';
     } else {
-        elem.style.transform = 'scale(calc(' + wHgt + ' / ' + eHgt + '))';
+        elem.style.transform = 'scale(calc('
+                             + window.innerHeight
+                             + ' / '
+                             + csty.width.replace('px', '')
+                             + '))';
     }
 
 }
