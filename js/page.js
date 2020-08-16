@@ -438,10 +438,10 @@ async function main() {
 
     body.appendChild(await setConsole());
     home();
-    scaleResize('console');
-    window.addEventListener('resize', function() {
-        scaleResize('console')
-    }, true);
+//    scaleResize('console');
+//    window.addEventListener('resize', function() {
+//        scaleResize('console')
+//    }, true);
 }
 
 main()
