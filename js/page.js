@@ -220,7 +220,7 @@ async function readFile(url) {
         var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
                        , 'https://api.allorigins.win/raw?url='
                        ];
-        var randidx  = 1; //getRandomInt(0, corsarr.length - 1);
+        var randidx  = getRandomInt(0, corsarr.length - 1);
         var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
         var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
 
