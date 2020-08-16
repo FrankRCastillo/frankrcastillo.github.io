@@ -424,20 +424,21 @@ function tableToArray(txt, delim) {
     return txt.split('\n').map(x => x.split(delim));
 }
 
+function scaleResize(id) {
+    var elem = document.getElementById(id);
+    var ehgt = elem.style.height;
+    var whgt = window.innerHeight;
+
+    elem.style.transform = 'scale((' + whgt + ' - 30) / ' + ehgt + ')';
+}
+
 async function main() {
     var body = document.body;
 
     body.appendChild(await setConsole());
     home();
 
-    document.getElementById('console')
-            .addEventListener('resize', event => {
-        event.style.transform = 'scale(('
-                              + window.innerHeight
-                              + ' - 30) / '
-                              + this.style.height
-                              + ')';
-    });
+    window.addEventListener('resize', scaleResize('console'));
 }
 
 main()
