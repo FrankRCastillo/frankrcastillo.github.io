@@ -34,15 +34,15 @@ export async function getNewsFeed() {
     tmp.sort((a,b,) => Date.parse(b[2]) - Date.parse(a[2]));
 
     var arr = tmp.map(x => [ x[0]
-                           , x[1]
                            , new Intl.DateTimeFormat( 'en-US'
                              , { month  : '2-digit'
                                , day    : '2-digit'
                                , hour   : '2-digit'
                                , minute : '2-digit'
                                , hour12 : false
-                               }).format(new Date(x[2]))
+                               }).format(new Date(x[1]))
                                  .replace(',', '')
+                           , x[2]
                            , x[3]
                            ]);
     var tbl = arrayToTable(arr, false, true)
