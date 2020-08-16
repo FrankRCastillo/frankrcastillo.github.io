@@ -228,7 +228,7 @@ async function readFile(url) {
 
         if (!homeurls.includes(readhost.hostname) 
          && ![corsarr[1], corsarr[3]].includes(corsurl)) {
-            hdr['headers']['Access-Control-Request-Headers'] = '*';
+            hdr['headers']['Access-Control-Request-Headers'] = 'origin';
             hdr['headers']['Access-Control-Allow-Origin']    = '*';
         }
         
