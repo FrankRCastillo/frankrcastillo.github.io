@@ -31,7 +31,7 @@ export async function getNewsFeed() {
     var xml = await Promise.all(dwn);
     var tmp = [].concat.apply([], xml);
 
-    tmp.sort((a,b,) => Date.parse(b[2]) - Date.parse(a[2]));
+    tmp.sort((a,b,) => Date.parse(b[1]) - Date.parse(a[1]));
 
     var arr = tmp.map(x => [ x[0]
                            , new Intl.DateTimeFormat( 'en-US'
