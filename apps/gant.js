@@ -156,7 +156,7 @@ function newGanttPage(year, scale) {
 
                     ctryFlag.setAttribute('class', 'ctryFlag');
                     ctryFlag.setAttribute('src', window.ctryData[i][6]);
-                    ctryName.textContent = window.ctryData[i][4];
+                    ctryName.textContent = window.ctryData[i][1];
 
                     ctryTd.style.textIndent = '30px';
                     ctryTd.appendChild(ctryFlag);
