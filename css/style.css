@@ -304,8 +304,8 @@ input
 ; padding          : 5px 0
 ; position         : absolute
 ; z-index          : 100001
-; top              : -5px
-; right            : 110%
+; top              : 10px
+; left             : 10px
 ; border           : 1px solid #ffa500
 }
 
