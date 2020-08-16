@@ -210,40 +210,51 @@ function getRandomInt(min, max) {
 
 async function readFile(url) {
     try{
-        var hdr = { headers : {} };
-        var currhost = new URL(window.location.href);
-        var readhost = new URL(url, currhost);
-        var homeurls = [ currhost.hostname
-                       , 'api.github.com'
-                       , 'freegeoip.app'
-                       ]
-        var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
-                       , 'https://api.allorigins.win/raw?url='
-                       ];
-        var randidx  = getRandomInt(0, corsarr.length - 1);
-        var corsurl  = (corsarr[randidx] === undefined ? '' : corsarr[randidx]);
-        var procurl  = (!homeurls.includes(readhost.hostname) && isURL(url) ? corsurl + url : url); 
-
-        if (!homeurls.includes(readhost.hostname) && corsarr[1] != corsurl) { 
-            hdr['headers']['Access-Control-Request-Headers'] = 'origin';
-            hdr['headers']['Access-Control-Allow-Origin']    = '*';
-        }
+        let corsarr = corsProxy(url);
+        var procurl = corsarr[0];
+        var header  = corsarr[1];
         
         switch (url.slice(-3)) {
             case 'pdf':
-                hdr['headers']['Content-Type'] = 'application/pdf;base64';
-                return await fetch(procurl, hdr)
+                header['headers']['Content-Type'] = 'application/pdf;base64';
+                return await fetch(procurl, header)
                              .then(response => response.blob())
                              .then(response => blobToBase64(response))
                              .catch(() => console.log('Error getting ' + procurl));
 
             default:
-                return await fetch(procurl, hdr)
+                return await fetch(procurl, header)
                              .then(response => response.text())
                              .catch(() => console.log('Error getting ' + procurl));
         }
     } catch(err) {
         console.log(err.message);
+    }
+}
+
+function corsProxy(url) {
+    let   header   = { headers : {} };
+    const currhost = new URL(window.location.href);
+    const readhost = new URL(url, currhost);
+    const homeurls = [ currhost.hostname
+                     , 'api.github.com'
+                     , 'freegeoip.app'
+                     ];
+    
+    if (homeurls.includes(readhost.hostname) && isURL(url)){
+        return [ url, header ];
+    } else{
+        const corsarr  = [ [ 'https://cors-anywhere.herokuapp.com/' , true  ]
+                         , [ 'https://api.allorigins.win/raw?url='  , false ]
+                         ];
+        const randidx  = getRandomInt(0, corsarr.length - 1);
+
+        if(corsarr[randidx][1]) {
+            header['headers']['Access-Control-Request-Headers'] = 'origin';
+            header['headers']['Access-Control-Allow-Origin']    = '*';
+        }
+
+        return [ corsarr[randidx][0] + url, header ];
     }
 }
 
