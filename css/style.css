@@ -148,7 +148,8 @@ input
 { background-color : #060617
 ; height           : 100%
 ; display          : block
-; overflow         : hidden
+; overflow-x       : hidden
+; overflow-y       : hidden
 }
 
 #cmdSelect

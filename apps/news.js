@@ -10,15 +10,15 @@ export function news() {
             case 'none':
                 clear();
                 home();
-                out.style.display  = 'block';
-                div.style.height   = '90px';
-                pnl.style.overflow = 'hidden';
+                out.style.display   = 'block';
+                div.style.height    = '90px';
+                pnl.style.overflowY = 'hidden';
                 break;
 
             default:
-                out.style.display  = 'none';
-                div.style.height   = 'calc(100% - 20px)';
-                pnl.style.overflow = 'auto';
+                out.style.display   = 'none';
+                div.style.height    = 'calc(100% - 20px)';
+                pnl.style.overflowY = 'auto';
                 break;
         }
     }
