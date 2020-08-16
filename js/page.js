@@ -428,7 +428,7 @@ function scaleResize(id) {
     var elem = document.getElementById(id);
     var csty = getComputedStyle(elem);
     var ewdt = csty.width.replace('px','');
-    var wwdt = window.innerHeight;
+    var wwdt = window.innerWidth;
 
     elem.style.transform = 'scale(calc(' + wwdt + ' / ' + ewdt + '))';
 }
