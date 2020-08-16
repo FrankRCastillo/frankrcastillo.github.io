@@ -100,12 +100,9 @@ async function fileList(filter) {
 }
 
 function rssParser(xml) {
+    var arr    = [];
     var parser = new DOMParser();
     var xmldoc = parser.parseFromString(xml, 'text/xml');
-    var arr    = [];
-    
-    var wwdt   = window.innerWidth;
-    var awdt   = Math.floor(wwdt / 10) - 32;          // half of screen goes to article title
     var obj    = document.createElement('a');
     obj.href   = xmldoc.getElementsByTagName('link')[0].textContent;
     var src    = obj.host
@@ -114,8 +111,8 @@ function rssParser(xml) {
     var itm = xmldoc.getElementsByTagName('item');
     var arr = Array.from(itm).map(function(x){
         return [ src
-               , trunc(decodeHtml(x.getElementsByTagName('title')[0].textContent), awdt)
                , dateISO(x.getElementsByTagName('pubDate')[0].textContent)
+               , decodeHtml(x.getElementsByTagName('title')[0].textContent)
                , x.getElementsByTagName('link')[0].textContent
                ];
     });
