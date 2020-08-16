@@ -432,7 +432,7 @@ function scaleResize(id) {
     var csty = getComputedStyle(elem);
     var fact = 1.7;
 
-    if (window.innerWidth > window.innerHeight) {
+    if (window.innerWidth < window.innerHeight) {
         elem.style.transform = 'scale(calc('
                              + window.innerWidth
                              + ' / '
