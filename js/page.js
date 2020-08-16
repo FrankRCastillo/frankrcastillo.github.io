@@ -241,8 +241,8 @@ function corsProxy(url) {
                      , 'freegeoip.app'
                      ];
     
-    if (homeurls.includes(readhost.hostname) && isURL(url)){
-        return [ url, header ];
+    if (homeurls.includes(readhost.hostname)){
+        return [ readhost.href, header ];
     } else{
         const corsarr  = [ [ 'https://cors-anywhere.herokuapp.com/' , true  ]
                          , [ 'https://api.allorigins.win/raw?url='  , false ]
