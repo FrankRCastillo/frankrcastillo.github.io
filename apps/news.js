@@ -11,7 +11,7 @@ export function news() {
                 clear();
                 home();
                 out.style.display   = 'block';
-                div.style.height    = '90px';
+                div.style.height    = '110px';
                 pnl.style.overflowY = 'hidden';
                 break;
 
