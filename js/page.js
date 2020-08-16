@@ -427,10 +427,10 @@ function tableToArray(txt, delim) {
 function scaleResize(id) {
     var elem = document.getElementById(id);
     var csty = getComputedStyle(elem);
-    var ehgt = csty.height.replace('px','');
-    var whgt = window.innerHeight;
+    var ewdt = csty.width.replace('px','');
+    var wwdt = window.innerHeight;
 
-    elem.style.transform = 'scale(calc((' + whgt + ' - 30) / ' + ehgt + '))';
+    elem.style.transform = 'scale(calc(' + wwdt + ' / ' + ewdt + '))';
 }
 
 async function main() {
