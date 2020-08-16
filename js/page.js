@@ -1,6 +1,6 @@
 async function setConsole() {
     var news = await import('/apps/news.js');
-    var menu = await newCmdLine();
+    var menu = await newSelector();
     var main = document.createElement('div');
     var otxt = document.createElement('div');
     var npnl = document.createElement('div');
@@ -367,7 +367,10 @@ function print(text) {
     }
 }
 
-async function newCmdLine() {
+function newCmdLine() {
+}
+
+async function newSelector() {
     var cmdSelect = document.createElement('select');
     var cmmndInfo = await getCmdInfo();
 
