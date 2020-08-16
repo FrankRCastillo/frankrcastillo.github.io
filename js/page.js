@@ -429,6 +429,15 @@ async function main() {
 
     body.appendChild(await setConsole());
     home();
+
+    document.getElementById('console')
+            .addEventListener('resize', {
+        this.style.transform = 'scale(('
+                             + window.innerHeight
+                             + ' - 30) / '
+                             + this.style.height
+                             + ')';
+    });
 }
 
 main()
