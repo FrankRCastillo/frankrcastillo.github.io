@@ -120,14 +120,14 @@ input
 { border     : 0px
 ; overflow   : auto
 ; width      : 100%
-; height     : calc(100vh - 202px)
+; height     : calc(100vh - 145px)
 ; position   : relative
 ; box-sizing : border-box
 ; display    : block
 }
 
 #newsdiv
-{ height   : 120px
+{ height   : 90px
 ; position : fixed
 ; width    : calc(100% - 20px)
 ; display  : block
