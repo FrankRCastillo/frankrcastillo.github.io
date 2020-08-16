@@ -116,14 +116,15 @@ input
 }
 
 #GanttEndYear
-{ border   : 1px solid #ffa500
-; width    : 60px
+{ border : 1px solid #ffa500
+; width  : 40px
+; height : 20px
 }
 
 #GanttToolbar
 { position         : fixed
 ; background-color : #000000
-; width            : calc(100% - 20px)
+; width            : 785px
 ; z-index          : 100001
 }
 
