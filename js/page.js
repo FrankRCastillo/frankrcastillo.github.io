@@ -431,12 +431,12 @@ async function main() {
     home();
 
     document.getElementById('console')
-            .addEventListener('resize', {
-        this.style.transform = 'scale(('
-                             + window.innerHeight
-                             + ' - 30) / '
-                             + this.style.height
-                             + ')';
+            .addEventListener('resize', event => {
+        event.style.transform = 'scale(('
+                              + window.innerHeight
+                              + ' - 30) / '
+                              + this.style.height
+                              + ')';
     });
 }
 
