@@ -427,7 +427,7 @@ function tableToArray(txt, delim) {
 function scaleResize(id) {
     var elem = document.getElementById(id);
     var csty = getComputedStyle(elem);
-    var ehgt = csty.style.height;
+    var ehgt = csty.height.replace('px','');
     var whgt = window.innerHeight;
 
     elem.style.transform = 'scale(calc((' + whgt + ' - 30) / ' + ehgt + '))';
