@@ -93,6 +93,11 @@ input
 ; background  : #000000
 }
 
+#console
+{ height : 600px
+; width  : 800px
+}
+
 #NewsTable
 { white-space : nowrap
 ; width       : calc(100% - 20px)
@@ -120,7 +125,7 @@ input
 { border     : 0px
 ; overflow   : auto
 ; width      : 100%
-; height     : calc(100vh - 145px)
+; height     : calc(100% - 145px)
 ; position   : relative
 ; box-sizing : border-box
 ; display    : block
@@ -128,8 +133,7 @@ input
 
 #newsdiv
 { height   : 90px
-; position : fixed
-; width    : calc(100% - 20px)
+; position : relative
 ; display  : block
 }
 
