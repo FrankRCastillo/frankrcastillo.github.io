@@ -436,13 +436,13 @@ function scaleResize(id) {
         elem.style.transform = 'scale(calc('
                              + window.innerWidth
                              + ' / '
-                             + csty.width.replace('px', '')
+                             + csty.width.replace('px', '') * fact
                              + '))';
     } else {
         elem.style.transform = 'scale(calc('
                              + window.innerHeight
                              + ' / '
-                             + csty.height.replace('px', '')
+                             + csty.height.replace('px', '') * fact
                              + '))';
     }
 
