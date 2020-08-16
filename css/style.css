@@ -95,11 +95,11 @@ input
 
 #console
 { border   : 1px solid #ffffff
-; height   : 600px
-; width    : 800px
+; height   : 768px
+; width    : 1024px
 ; top      : 50%
 ; left     : 50%
-; margin   : -300px -400px
+; margin   : -384px -512px
 ; position : fixed
 ; padding  : 5px 5px 5px 5px
 }
@@ -124,7 +124,7 @@ input
 #GanttToolbar
 { position         : fixed
 ; background-color : #000000
-; width            : 785px
+; width            : 1009px
 ; z-index          : 100001
 }
 
