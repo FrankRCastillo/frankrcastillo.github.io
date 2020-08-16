@@ -11,13 +11,13 @@ export function news() {
                 clear();
                 home();
                 out.style.display  = 'block';
-                div.style.height   = '120px';
+                div.style.height   = '90px';
                 pnl.style.overflow = 'hidden';
                 break;
 
             default:
                 out.style.display  = 'none';
-                div.style.height   = 'calc(100% - 55px)';
+                div.style.height   = 'calc(100% - 20px)';
                 pnl.style.overflow = 'auto';
                 break;
         }
