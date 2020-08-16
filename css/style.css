@@ -138,7 +138,7 @@ input
 }
 
 #newsdiv
-{ height   : 90px
+{ height   : 110px
 ; position : relative
 ; display  : block
 }
@@ -370,7 +370,7 @@ input
 #vstr
 { white-space : nowrap
 ; font-family : monospace
-; font-size   : 16px
+; font-size   : 12px
 }
 
 #xmark
