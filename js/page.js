@@ -429,7 +429,7 @@ function scaleResize(id) {
     var ehgt = elem.style.height;
     var whgt = window.innerHeight;
 
-    elem.style.transform = 'scale((' + whgt + ' - 30) / ' + ehgt + ')';
+    elem.style.transform = 'scale(calc((' + whgt + ' - 30) / ' + ehgt + '))';
 }
 
 async function main() {
