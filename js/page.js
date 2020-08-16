@@ -218,7 +218,6 @@ async function readFile(url) {
                        , 'freegeoip.app'
                        ]
         var corsarr  = [ 'https://cors-anywhere.herokuapp.com/'
-                       , 'https://alloworigin.com/get?url='
                        , 'https://api.allorigins.win/raw?url='
                        ];
         var randidx  = 1; //getRandomInt(0, corsarr.length - 1);
