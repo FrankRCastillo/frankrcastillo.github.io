@@ -430,6 +430,7 @@ function tableToArray(txt, delim) {
 function scaleResize(id) {
     var elem = document.getElementById(id);
     var csty = getComputedStyle(elem);
+    var fact = 1.6;
 
     if (window.innerWidth > window.innerHeight) {
         elem.style.transform = 'scale(calc('
@@ -441,7 +442,7 @@ function scaleResize(id) {
         elem.style.transform = 'scale(calc('
                              + window.innerHeight
                              + ' / '
-                             + csty.width.replace('px', '')
+                             + csty.height.replace('px', '')
                              + '))';
     }
 
