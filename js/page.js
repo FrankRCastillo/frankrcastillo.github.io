@@ -386,7 +386,7 @@ function newWindow(content) {
             document.onmousemove = null;
         }
 
-        this.onmousemove = (d) => {
+        document.onmousemove = (d) => {
             let newx = oldx - d.clientX;
             let newy = oldy - d.clientY;
 
