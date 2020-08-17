@@ -387,8 +387,8 @@ function newWindow(content) {
         }
 
         document.onmousemove = (d) => {
-            let newx = oldx - d.clientX;
-            let newy = oldy - d.clientY;
+            let newx = d.clientX - oldx;
+            let newy = d.clientY - oldy;
 
             winDiv.style.top  = (winDiv.offsetTop  - newx) + 'px';
             winDiv.style.left = (winDiv.offsetLeft - newy) + 'px';
