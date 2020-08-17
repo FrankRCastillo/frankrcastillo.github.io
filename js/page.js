@@ -385,9 +385,9 @@ function newWindow(content) {
     winHdr.setAttribute('class', 'windowHeader');
     winBdy.setAttribute('class', 'windowBody');
     rszBtn.setAttribute('class', 'windowResize');
-    minBtn.setAttribute('class', 'windowMinimize');
-    maxBtn.setAttribute('class', 'windowMaximize');
-    clsBtn.setAttribute('class', 'windowClose');
+    minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
+    maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
+    clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
 
     winHdr.textContent = 'Label';
     rszBtn.textContent = '\u21F2';
