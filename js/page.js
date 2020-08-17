@@ -379,8 +379,8 @@ function newWindow(content) {
     winDiv.onmousedown = (e) => {
         e = e || window.event;
         e.preventDefault();
-        let oldx = winDiv.style.top;
-        let oldy = winDiv.style.left;
+        let oldx = winDiv.style.top.replace('px');
+        let oldy = winDiv.style.left.replace('px');
 
         document.onmouseup = () => {
             document.onmouseup   = null;
