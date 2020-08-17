@@ -394,6 +394,7 @@ function newWindow(content) {
             let newy = d.clientY - oldy;
             winDiv.style.left = newx + 'px';
             winDiv.style.top  = newy + 'px';
+            console.log(newx + '/' + newy);
         };
 
     };
