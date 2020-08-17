@@ -367,12 +367,6 @@ function print(text) {
 }
 
 function newWindow(content) {
-    // 0x27D0    move
-    // 0x21F2    resize
-    // 0x229F    minimize
-    // 0x229E    maximize/restore
-    // 0x2612    close
-
     let winDiv = document.createElement('div');
     let winHdr = document.createElement('div');
     let winBdy = document.createElement('div');
@@ -393,7 +387,7 @@ function newWindow(content) {
     rszBtn.textContent = '\u21F2';
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
-    clsBtn.textContent = '\u2327';
+    clsBtn.textContent = '\u22A0';
 
     winHdr.appendChild(minBtn);
     winHdr.appendChild(maxBtn);
