@@ -379,7 +379,12 @@ function newWindow(content) {
     winDiv.onmousedown = (e) => {
         let oldx = e.clientX;
         let oldy = e.clientY;
-        console.log(oldx + '/' + oldy);
+        document.onmousemove = (d) => {
+            let newx = oldx - d.clientX;
+            let newy = oldy - d.clientY;
+
+            console.log(newx + '/' + newy);
+        }
     }
 
     return winDiv;
