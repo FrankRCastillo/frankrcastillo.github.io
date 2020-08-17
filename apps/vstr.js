@@ -1,17 +1,17 @@
 // |apps|vstr|Visitor demographics and other information
 
 export async function vstr() {
-    var outtext = document.getElementById("outtext");
-    var worldmap = new Array(3);
+    let outtext = document.getElementById("outtext");
+    let worldmap = new Array(3);
 
-    for (var i = 0; i < 19; i++) {
+    for (let i = 0; i < 19; i++) {
         worldmap[i] = new Array(3);
-        for (var j = 0; j < 81; j++) {
+        for (let j = 0; j < 81; j++) {
             worldmap[i][j] = "&nbsp";
         }
     }
 
-    var maparea = [[ 2,18],[ 2,19],[ 2,20],[ 2,21],[ 2,22],[ 2,23],[ 2,24],[ 2,25],[ 2,28],[ 3,29]
+    let maparea = [[ 2,18],[ 2,19],[ 2,20],[ 2,21],[ 2,22],[ 2,23],[ 2,24],[ 2,25],[ 2,28],[ 3,29]
                   ,[ 2,30],[ 2,31],[ 2,32],[ 2,33],[ 2,34],[ 3,12],[ 3,13],[ 3,14],[ 3,15],[ 3,16]
                   ,[ 3,17],[ 3,18],[ 3,19],[ 3,20],[ 3,21],[ 3,22],[ 3,23],[ 3,27],[ 3,28],[ 3,29]
                   ,[ 3,30],[ 3,31],[ 3,32],[ 3,33],[ 3,41],[ 3,42],[ 3,43],[ 3,44],[ 3,49],[ 3,50]
@@ -50,21 +50,21 @@ export async function vstr() {
                   ,[14,65],[14,68],[14,69],[14,70],[14,71],[15,23],[15,24],[16,22],[16,23],[17,23]
                   ];
 
-    for (var i = 0; i < 370; i++) {
+    for (let i = 0; i < 370; i++) {
         worldmap[maparea[i][0]][maparea[i][1]] = ".";
     }
-    var ipdata   = await readFile("https://freegeoip.app/json/");
-    var data     = JSON.parse(ipdata);
-    var visitMsg = "<div id='vstr'>";
-    var coordx   = parseInt((-0.1 * data.latitude) + 11);
-    var coordy   = parseInt((0.222 * data.longitude) + 39);
+    let ipdata   = await readFile("https://freegeoip.app/json/");
+    let data     = JSON.parse(ipdata);
+    let visitMsg = "<div id='vstr'>";
+    let coordx   = parseInt((-0.1 * data.latitude) + 11);
+    let coordy   = parseInt((0.222 * data.longitude) + 39);
 
     worldmap[coordx][coordy] = "<b id='xmark'>X</b>";
 
-    for (var i = 0; i < worldmap.length; i++) {
-        var ipInfo = "";
+    for (let i = 0; i < worldmap.length; i++) {
+        let ipInfo = "";
 
-        for (var j = 0; j < worldmap[i].length; j++) {
+        for (let j = 0; j < worldmap[i].length; j++) {
             visitMsg += worldmap[i][j];
         } 
 
@@ -85,7 +85,7 @@ export async function vstr() {
 
     visitMsg += "</div>";
 
-    var visitDiv = document.createElement("div");
+    let visitDiv = document.createElement("div");
     visitDiv.innerHTML = visitMsg;
 
     outtext.appendChild(visitDiv);

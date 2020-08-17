@@ -1,9 +1,9 @@
-// |apps|news|RSS feed from various news sources
+// |apps|news|RSS feed from letious news sources
 
 export function news() {
-    var out = document.getElementById('outtext');
-    var div = document.getElementById('newsdiv');
-    var pnl = document.getElementById('newspnl');
+    let out = document.getElementById('outtext');
+    let div = document.getElementById('newsdiv');
+    let pnl = document.getElementById('newspnl');
 
     if (out != null) {
         switch (out.style.display) {
@@ -25,15 +25,15 @@ export function news() {
 }
 
 export async function getNewsFeed() {
-    var src = await readFile('/apps/news/news.txt');
-    var url = src.split('\n').filter(x => x != '');
-    var dwn = url.map(async x => await readFile(x).then(k => rssParser(k)));
-    var xml = await Promise.all(dwn);
-    var tmp = [].concat.apply([], xml);
+    let src = await readFile('/apps/news/news.txt');
+    let url = src.split('\n').filter(x => x != '');
+    let dwn = url.map(async x => await readFile(x).then(k => rssParser(k)));
+    let xml = await Promise.all(dwn);
+    let tmp = [].concat.apply([], xml);
 
     tmp.sort((a,b,) => Date.parse(b[1]) - Date.parse(a[1]));
 
-    var arr = tmp.map(x => [ x[0]
+    let arr = tmp.map(x => [ x[0]
                            , new Intl.DateTimeFormat( 'en-US'
                              , { month  : '2-digit'
                                , day    : '2-digit'
@@ -45,7 +45,7 @@ export async function getNewsFeed() {
                            , x[2]
                            , x[3]
                            ]);
-    var tbl = arrayToTable(arr, false, true)
+    let tbl = arrayToTable(arr, false, true)
 
     tbl.setAttribute('id', 'NewsTable');
 

@@ -100,7 +100,6 @@ async function fileList(filter) {
 }
 
 function rssParser(xml) {
-    let arr    = [];
     let parser = new DOMParser();
     let xmldoc = parser.parseFromString(xml, 'text/xml');
     let obj    = document.createElement('a');
