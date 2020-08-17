@@ -95,6 +95,8 @@ input
 
 .windowTemplate
 { border : 1px solid #ffffff
+; height : 400px
+; width  : 500px
 }
 
 #console
