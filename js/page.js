@@ -375,7 +375,7 @@ function newWindow(content) {
 
     let winDiv = document.createElement('div');
 
-    winDiv.setAttribute('id', 'windowTemplate');
+    winDiv.setAttribute('class', 'windowTemplate');
     winDiv.onmousedown = (e) => {
         let oldx = e.clientX;
         let oldy = e.clientY;

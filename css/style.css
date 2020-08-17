@@ -93,6 +93,10 @@ input
 ; background  : #000000
 }
 
+.windowTemplate
+{ border : 1px solid #ffffff
+}
+
 #console
 { border   : 1px solid #ffffff
 ; height   : 768px
