@@ -379,8 +379,10 @@ function newWindow(content) {
     winDiv.onmousedown = (e) => {
         e = e || window.event;
         e.preventDefault();
-        let oldx = winDiv.style.top.replace(/\D/g, '');
-        let oldy = winDiv.style.left.replace(/\D/g, '');
+        let oldx = e.clientX;
+        let oldy = e.clientY;
+        let newx = 0;
+        let newy = 0;
 
         document.onmouseup = () => {
             document.onmouseup   = null;
@@ -390,10 +392,12 @@ function newWindow(content) {
         document.onmousemove = (d) => {
             d = d || window.event;
             d.preventDefault();
-            let newx = d.clientX - oldx;
-            let newy = d.clientY - oldy;
-            winDiv.style.left = newx + 'px';
-            winDiv.style.top  = newy + 'px';
+            newx = oldx - d.clientX;
+            newy = oldy - d.clientY;
+            oldx = d.clientX;
+            oldy = d.clientY;
+            winDiv.style.top  = (winDiv.offsetTop  - newy) + 'px';
+            winDiv.style.left = (winDiv.offsetLeft - newx) + 'px';
             console.log(newx + '/' + newy);
         };
 
