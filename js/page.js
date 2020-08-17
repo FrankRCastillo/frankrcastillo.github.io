@@ -383,7 +383,8 @@ function newWindow(content) {
             let newx = oldx - d.clientX;
             let newy = oldy - d.clientY;
 
-            console.log(newx + '/' + newy);
+            this.style.top  = this.offsetTop  - ( newx + 'px');
+            this.style.left = this.offsetLeft - ( newy + 'px');
         };
 
         this.onmouseup = (f) => {
