@@ -390,8 +390,8 @@ function newWindow(content) {
             let newx = oldx - d.clientX;
             let newy = oldy - d.clientY;
 
-            winDiv.style.top  = winDiv.offsetTop  - ( newx + 'px');
-            winDiv.style.left = winDiv.offsetLeft - ( newy + 'px');
+            winDiv.style.top  = (winDiv.offsetTop  - newx) + 'px';
+            winDiv.style.left = (winDiv.offsetLeft - newy) + 'px';
             console.log(newx + '/' + newy);
         };
 
