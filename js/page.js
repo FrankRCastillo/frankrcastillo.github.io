@@ -380,13 +380,13 @@ function newWindow(content) {
         let oldx = e.clientX;
         let oldy = e.clientY;
 
-        this.onmouseup = () => {
+        document.onmouseup = () => {
             this.onmousedown     = null;
             document.onmouseup   = null;
             document.onmousemove = null;
         }
 
-        e.onmousemove = (d) => {
+        this.onmousemove = (d) => {
             let newx = oldx - d.clientX;
             let newy = oldy - d.clientY;
 
