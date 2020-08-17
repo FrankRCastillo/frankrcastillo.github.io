@@ -101,6 +101,12 @@ input
 ; z-index  : 100001;
 }
 
+.windowResize
+{ position : absolute
+; bottom   : 0
+; right    : 0
+}
+
 #console
 { border   : 1px solid #ffffff
 ; height   : 768px

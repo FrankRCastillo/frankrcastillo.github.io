@@ -368,14 +368,40 @@ function print(text) {
 
 function newWindow(content) {
     // 0x27D0    move
-    // 0x21F2    drag
+    // 0x21F2    resize
     // 0x229F    minimize
     // 0x229E    maximize/restore
     // 0x2612    close
 
     let winDiv = document.createElement('div');
+    let winHdr = document.createElement('div');
+    let winBdy = document.createElement('div');
+    let rszBtn = document.createElement('div');
+    let minBtn = document.createElement('div');
+    let maxBtn = document.createElement('div');
+    let clsBtn = document.createElement('div');
 
     winDiv.setAttribute('class', 'windowTemplate');
+    winHdr.setAttribute('class', 'windowHeader');
+    winBdy.setAttribute('class', 'windowBody');
+    rszBtn.setAttribute('class', 'windowResize');
+    minBtn.setAttribute('class', 'windowMinimize');
+    maxBtn.setAttribute('class', 'windowMaximize');
+    clsBtn.setAttribute('class', 'windowClose');
+
+    winHdr.textContent = 'Label';
+    rszBtn.textContent = '\u21F2';
+    minBtn.textContent = '\u229F';
+    maxBtn.textContent = '\u229E';
+    clsBtn.textContent = '\u2612';
+
+    winHdr.appendChild(minBtn);
+    winHdr.appendChild(maxBtn);
+    winHdr.appendChild(clsBtn);
+    winBdy.appendChild(rszBtn);
+    winDiv.appendChild(winHdr);
+    winDiv.appendChild(winBdy);
+
     winDiv.onmousedown = (e) => {
         e = e || window.event;
         e.preventDefault();
@@ -400,8 +426,13 @@ function newWindow(content) {
             winDiv.style.left = (winDiv.offsetLeft - newx) + 'px';
             console.log(newx + '/' + newy);
         };
-
     };
+
+    winHdr.appendChild(rszBtn);
+    winHdr.appendChild(minBtn);
+    winHdr.appendChild(maxBtn);
+    winHdr.appendChild(clsBtn);
+    
 
     return winDiv;
 }
