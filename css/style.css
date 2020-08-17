@@ -94,9 +94,11 @@ input
 }
 
 .windowTemplate
-{ border : 1px solid #ffffff
-; height : 400px
-; width  : 500px
+{ border   : 1px solid #ffffff
+; height   : 400px
+; width    : 500px
+; position : absolute
+; z-index  : 100001;
 }
 
 #console
