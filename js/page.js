@@ -384,7 +384,7 @@ function newWindow(content) {
     clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
 
     winHdr.textContent = 'Label';
-    rszBtn.textContent = '\u21F2';
+    rszBtn.textContent = '\u25E2';
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
     clsBtn.textContent = '\u22A0';
