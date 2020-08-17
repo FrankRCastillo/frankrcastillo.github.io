@@ -120,6 +120,7 @@ input
 
 .windowHdrBtn
 { display : inline-block
+; cursor  : pointer
 }
 
 #console
