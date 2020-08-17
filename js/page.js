@@ -423,25 +423,26 @@ function getJsDesc(str) {
 }
 
 function tableToArray(txt, delim) {
-    return txt.split('\n').map(x => x.split(delim));
+    return txt.split('\n')
+              .map(x => x.split(delim));
 }
 
 function scaleResize(id) {
     let elem = document.getElementById(id);
     let csty = getComputedStyle(elem);
-    let fact = 1;
+    let ofst = 10;
 
     if (window.innerWidth < window.innerHeight) {
         elem.style.transform = 'scale(calc('
-                             + window.innerWidth
+                             + ( window.innerWidth - ofst )
                              + ' / '
-                             + csty.width.replace('px', '') * fact
+                             + csty.width.replace('px', '')
                              + '))';
     } else {
         elem.style.transform = 'scale(calc('
-                             + window.innerHeight
+                             + ( window.innerHeight - ofst )
                              + ' / '
-                             + csty.height.replace('px', '') * fact
+                             + csty.height.replace('px', '')
                              + '))';
     }
 
