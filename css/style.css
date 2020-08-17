@@ -108,8 +108,9 @@ input
 }
 
 .windowHdrGrp
-{ display : inline-block
-; right   : 0
+{ display  : inline-block
+; right    : 3px
+; position : absolute
 }
 
 .windowHdrBtn
