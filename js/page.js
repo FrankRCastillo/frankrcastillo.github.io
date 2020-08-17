@@ -379,7 +379,7 @@ function newWindow(content) {
     winDiv.onmousedown = (e) => {
         let oldx = e.clientX;
         let oldy = e.clientY;
-        document.onmousemove = (d) => {
+        e.onmousemove = (d) => {
             let newx = oldx - d.clientX;
             let newy = oldy - d.clientY;
 
