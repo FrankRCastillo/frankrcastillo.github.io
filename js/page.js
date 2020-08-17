@@ -1,19 +1,19 @@
 async function setConsole() {
-    var news = await import('/apps/news.js');
-    var menu = await newSelector();
-    var main = document.createElement('div');
-    var otxt = document.createElement('div');
-    var npnl = document.createElement('div');
-    var nhdr = document.createElement('div');
-    var ndiv = document.createElement('div');
-    var nlnk = document.createElement('a');
+    let news = await import('/apps/news.js');
+    let menu = await newSelector();
+    let main = document.createElement('div');
+    let otxt = document.createElement('div');
+    let npnl = document.createElement('div');
+    let nhdr = document.createElement('div');
+    let ndiv = document.createElement('div');
+    let nlnk = document.createElement('a');
 
     main.setAttribute('id', 'console');
     otxt.setAttribute('id', 'outtext');
 
     nlnk.textContent = 'Toggle';
     nlnk.addEventListener('click', async function () {
-        var news = await import('/apps/news.js');
+        let news = await import('/apps/news.js');
         news.news();
     });
 
@@ -32,8 +32,8 @@ async function setConsole() {
     main.appendChild(ndiv);
 
     window.newsinterval = await setInterval(async function () {
-        var npnl = document.getElementById('newspnl');
-        var nget = await news.getNewsFeed();
+        let npnl = document.getElementById('newspnl');
+        let nget = await news.getNewsFeed();
         npnl.innerHTML = ''
         npnl.appendChild(nget);
     }, 120000);
@@ -42,24 +42,24 @@ async function setConsole() {
 }
 
 function newTabLayout(elems) {
-    var encls = document.createElement('div');
-    var tbfrm = document.createElement('div');
-    var bdfrm = document.createElement('div');
+    let encls = document.createElement('div');
+    let tbfrm = document.createElement('div');
+    let bdfrm = document.createElement('div');
 
     encls.setAttribute('class', 'tabencl');
     tbfrm.setAttribute('class', 'tabfrme');
     bdfrm.setAttribute('class', 'bdyfrme');
 
-    for (var i = 0; i < elems.length; i++) {
-        var tabbtn = document.createElement('button');
-        var tabbdy = document.createElement('div');
+    for (let i = 0; i < elems.length; i++) {
+        let tabbtn = document.createElement('button');
+        let tabbdy = document.createElement('div');
  
         tabbtn.addEventListener('click', function() {
-            var partabs = this.parentElement.parentElement;
-            var bdyelem = partabs.getElementsByClassName('tabbody');
-            var tgtelem = document.getElementById(this.textContent);
+            let partabs = this.parentElement.parentElement;
+            let bdyelem = partabs.getElementsByClassName('tabbody');
+            let tgtelem = document.getElementById(this.textContent);
 
-            for (var j = 0; j < bdyelem.length; j++) {
+            for (let j = 0; j < bdyelem.length; j++) {
                 bdyelem[j].style.display = 'none';
             }
 
@@ -88,11 +88,11 @@ function newTabLayout(elems) {
 }
 
 async function fileList(filter) {
-    var gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
-    var text = await readFile(gapi);
-    var json = JSON.parse(text);
-    var tree = json.tree;
-    var list = Array.from(tree)
+    let gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
+    let text = await readFile(gapi);
+    let json = JSON.parse(text);
+    let tree = json.tree;
+    let list = Array.from(tree)
                     .map(x => x.path)
                     .filter(x => x.match(filter));
 
@@ -100,16 +100,16 @@ async function fileList(filter) {
 }
 
 function rssParser(xml) {
-    var arr    = [];
-    var parser = new DOMParser();
-    var xmldoc = parser.parseFromString(xml, 'text/xml');
-    var obj    = document.createElement('a');
+    let arr    = [];
+    let parser = new DOMParser();
+    let xmldoc = parser.parseFromString(xml, 'text/xml');
+    let obj    = document.createElement('a');
     obj.href   = xmldoc.getElementsByTagName('link')[0].textContent;
-    var src    = obj.host
+    let src    = obj.host
                   .replace('www.', '')
                   .replace('.com', '');
-    var itm = xmldoc.getElementsByTagName('item');
-    var arr = Array.from(itm).map(function(x){
+    let itm = xmldoc.getElementsByTagName('item');
+    let arr = Array.from(itm).map(function(x){
         return [ src
                , dateISO(x.getElementsByTagName('pubDate')[0].textContent)
                , decodeHtml(x.getElementsByTagName('title')[0].textContent)
@@ -121,7 +121,7 @@ function rssParser(xml) {
 }
 
 function decodeHtml(html) {
-    var txt = document.createElement("textarea");
+    let txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
 }
@@ -135,15 +135,15 @@ function trunc(str, len) {
 }
 
 function dateISO(str) {
-    var reldtg = Date.parse(str);
-    var isodtg = new Date(reldtg).toISOString();
+    let reldtg = Date.parse(str);
+    let isodtg = new Date(reldtg).toISOString();
 
     return isodtg.split('.')[0] + 'Z';
 }
 
 function dateUTC(str) {
-    var reldtg = Date.parse(str);
-    var utcdtg = new Date(reldtg);
+    let reldtg = Date.parse(str);
+    let utcdtg = new Date(reldtg);
 
     return utcdtg.toUTCString();
 }
@@ -151,27 +151,27 @@ function dateUTC(str) {
 // if hdrrow is true, function will treat first row in array as table header
 // if haslink is true, will treat last element in row as link
 function arrayToTable(arr, hdrrow, haslink) {
-    var table = document.createElement('table');
-    var golnk = 0;
+    let table = document.createElement('table');
+    let golnk = 0;
 
     if (haslink) { golnk = 1; }
 
-    for (var i = 0; i < arr.length; i++) {
-        var tr = document.createElement('tr');
+    for (let i = 0; i < arr.length; i++) {
+        let tr = document.createElement('tr');
 
-        for (var j = 0; j < arr[i].length - golnk; j++) {
-            var elem = '';
+        for (let j = 0; j < arr[i].length - golnk; j++) {
+            let elem = '';
             if (i == 0 && hdrrow) {
                 elem = 'th';
             } else {
                 elem = 'td';
             }
 
-            var cell = document.createElement(elem);
+            let cell = document.createElement(elem);
 
             if (haslink) {
-                var link = document.createElement('a');
-                var node = document.createTextNode(arr[i][j]);
+                let link = document.createElement('a');
+                let node = document.createTextNode(arr[i][j]);
                 link.href = arr[i][arr[i].length - 1];
                 link.target = '_blank';
                 link.appendChild(node);
@@ -187,10 +187,10 @@ function arrayToTable(arr, hdrrow, haslink) {
 }
 
 function isURL(url) {
-    var results = false;
+    let results = false;
 
     try {
-        var urlchk = new URL(url);
+        let urlchk = new URL(url);
         results = urlchk.protocol === 'http:' || urlchk.protocol === 'https:';
     } catch (err) {
         console.log(err.message + '. Returning false.')
@@ -208,8 +208,8 @@ function getRandomInt(min, max) {
 async function readFile(url) {
     try{
         let corsarr = corsProxy(url);
-        var procurl = corsarr[0];
-        var header  = corsarr[1];
+        let procurl = corsarr[0];
+        let header  = corsarr[1];
         
         switch (url.slice(-3)) {
             case 'pdf':
@@ -256,10 +256,10 @@ function corsProxy(url) {
 }
 
 async function readPdf(binary) {
-    var bin = convertDataURIToBinary(binary);
-    var wht = { normalizeWhitespace : true };
-    var doc = await pdfjsLib.getDocument(bin).promise;
-    var txt = Array.from({length : doc.numPages}, async (x, i) => {
+    let bin = convertDataURIToBinary(binary);
+    let wht = { normalizeWhitespace : true };
+    let doc = await pdfjsLib.getDocument(bin).promise;
+    let txt = Array.from({length : doc.numPages}, async (x, i) => {
         return (await (await doc.getPage(i + 1))
                                 .getTextContent())
                                 .items
@@ -281,12 +281,12 @@ function blobToBase64(blob) {
 
 // https://gist.github.com/borismus/1032746
 function convertDataURIToBinary(dataURI) {
-    var BASE64_MARKER = ';base64,';
-    var base64Index   = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
-    var base64        = dataURI.substring(base64Index);
-    var raw           = window.atob(base64);
-    var rawLength     = raw.length;
-    var array         = new Uint8Array(new ArrayBuffer(rawLength));
+    let BASE64_MARKER = ';base64,';
+    let base64Index   = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    let base64        = dataURI.substring(base64Index);
+    let raw           = window.atob(base64);
+    let rawLength     = raw.length;
+    let array         = new Uint8Array(new ArrayBuffer(rawLength));
     
     return array.map((x, i) => raw.charCodeAt(i));
 }
@@ -296,7 +296,7 @@ async function cmdMgr(input) {
         clearInterval(window.appinterval);
         clear();
 
-        var cmd = input.toLowerCase();
+        let cmd = input.toLowerCase();
 
         switch (cmd) {
             case 'home' : home(); break;
@@ -319,40 +319,40 @@ function home() {
 }
 
 async function help() {
-    var lst = await getCmdInfo();
-    var hdr = ['Category', 'Command', 'Information'];
+    let lst = await getCmdInfo();
+    let hdr = ['Category', 'Command', 'Information'];
     lst.unshift(hdr);
-    var tbl = arrayToTable(lst, true, false); 
+    let tbl = arrayToTable(lst, true, false); 
     document.getElementById('outtext').appendChild(tbl);
 }
 
 async function read(path) {
-    var txt = await readFile(path)
+    let txt = await readFile(path)
     print('\n');
     print(txt);
 }
 
 function clear() {
-    var out = document.getElementById('outtext');
+    let out = document.getElementById('outtext');
     if (out != null) { out.innerHTML = ''; }
 }
 
 function print(text) {
     if (Array.isArray(text)) {
-        for (var i = 0; i < text.length; i++) {
+        for (let i = 0; i < text.length; i++) {
             print(text[i]);
         }
     } else {
-        var outtxt = document.getElementById("outtext");
-        var newtxt = document.createElement("div");
-        var rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-        var rgxdom = new RegExp(rgxexp);
-        var rgxget = text.match(rgxdom);
+        let outtxt = document.getElementById("outtext");
+        let newtxt = document.createElement("div");
+        let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+        let rgxdom = new RegExp(rgxexp);
+        let rgxget = text.match(rgxdom);
         
         if (rgxget != null) {
-            for (var i = 0; i < rgxget.length; i++) {
-                var oldurl = rgxget[i];
-                var newurl = '<a href="'
+            for (let i = 0; i < rgxget.length; i++) {
+                let oldurl = rgxget[i];
+                let newurl = '<a href="'
                            + rgxget[i]
                            + '" target="_blank">'
                            + rgxget[i]
@@ -371,13 +371,13 @@ function newCmdLine() {
 }
 
 async function newSelector() {
-    var cmdSelect = document.createElement('select');
-    var cmmndInfo = await getCmdInfo();
+    let cmdSelect = document.createElement('select');
+    let cmmndInfo = await getCmdInfo();
 
     cmdSelect.setAttribute('id', 'cmdSelect')
 
-    for (var i = -1; i < cmmndInfo.length; i++) {
-        var cmdOption = document.createElement('option');
+    for (let i = -1; i < cmmndInfo.length; i++) {
+        let cmdOption = document.createElement('option');
 
         if (i == -1) {
             cmdOption.textContent = '';
@@ -385,7 +385,7 @@ async function newSelector() {
             cmdOption.setAttribute(  'hidden', true);
             cmdOption.setAttribute('selected', true);
         } else {
-            var cmdGroup  = cmdSelect.querySelector('#' + cmmndInfo[i][0]);
+            let cmdGroup  = cmdSelect.querySelector('#' + cmmndInfo[i][0]);
 
             if (cmdGroup == null) {
                 cmdGroup = document.createElement('optgroup');
@@ -408,8 +408,8 @@ async function newSelector() {
 }
 
 async function getCmdInfo() {
-    var list = await fileList(/apps\/.*\.js$/);
-    var lout = await Promise.all(list.map(async x => getJsDesc(await readFile(x))));
+    let list = await fileList(/apps\/.*\.js$/);
+    let lout = await Promise.all(list.map(async x => getJsDesc(await readFile(x))));
 
     lout.sort();
     lout.unshift(['core', 'home', 'Show the home screen']);
@@ -428,9 +428,9 @@ function tableToArray(txt, delim) {
 }
 
 function scaleResize(id) {
-    var elem = document.getElementById(id);
-    var csty = getComputedStyle(elem);
-    var fact = 1.05;
+    let elem = document.getElementById(id);
+    let csty = getComputedStyle(elem);
+    let fact = 1;
 
     if (window.innerWidth < window.innerHeight) {
         elem.style.transform = 'scale(calc('
@@ -449,7 +449,7 @@ function scaleResize(id) {
 }
 
 async function main() {
-    var body = document.body;
+    let body = document.body;
 
     body.appendChild(await setConsole());
     home();
