@@ -112,6 +112,10 @@ input
 ; right   : 0
 }
 
+.windowHdrBtn
+{ display : inline-block
+}
+
 #console
 { border   : 1px solid #ffffff
 ; height   : 768px
