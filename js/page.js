@@ -383,7 +383,6 @@ function newWindow(content) {
         let oldy = e.clientY;
 
         document.onmouseup = () => {
-            this.onmousedown     = null;
             document.onmouseup   = null;
             document.onmousemove = null;
         }
