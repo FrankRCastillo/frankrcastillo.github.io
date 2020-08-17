@@ -384,8 +384,15 @@ function newWindow(content) {
             let newy = oldy - d.clientY;
 
             console.log(newx + '/' + newy);
-        }
-    }
+        };
+    };
+
+    document.onmouseup = (e) => {
+        let win = document.getElementsByClassName('windowTemplate');
+        Array.from(win).map(x => x.onmousedown = null);
+        document.onmouseup   = null;
+        document.onmousemove = null;
+    };
 
     return winDiv;
 }
