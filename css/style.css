@@ -107,8 +107,9 @@ input
 ; right    : 0
 }
 
-.windowHdrBtn
+.windowHdrGrp
 { display : inline-block
+; right   : 0
 }
 
 #console

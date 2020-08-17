@@ -369,6 +369,7 @@ function print(text) {
 function newWindow(content) {
     let winDiv = document.createElement('div');
     let winHdr = document.createElement('div');
+    let hdrGrp = document.createElement('div');
     let winBdy = document.createElement('div');
     let rszBtn = document.createElement('div');
     let minBtn = document.createElement('div');
@@ -379,9 +380,10 @@ function newWindow(content) {
     winHdr.setAttribute('class', 'windowHeader');
     winBdy.setAttribute('class', 'windowBody');
     rszBtn.setAttribute('class', 'windowResize');
-    minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
-    maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
-    clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
+    hdrGrp.setAttribute('class', 'windowHdrGrp');
+    minBtn.setAttribute('class', 'windowMinimize');
+    maxBtn.setAttribute('class', 'windowMaximize');
+    clsBtn.setAttribute('class', 'windowClose');
 
     winHdr.textContent = 'Label';
     rszBtn.textContent = '\u25E2';
@@ -389,9 +391,10 @@ function newWindow(content) {
     maxBtn.textContent = '\u229E';
     clsBtn.textContent = '\u22A0';
 
-    winHdr.appendChild(minBtn);
-    winHdr.appendChild(maxBtn);
-    winHdr.appendChild(clsBtn);
+    hdrGrp.appendChild(minBtn);
+    hdrGrp.appendChild(maxBtn);
+    hdrGrp.appendChild(clsBtn);
+    winHdr.appendChild(hdrGrp);
     winBdy.appendChild(rszBtn);
     winDiv.appendChild(winHdr);
     winDiv.appendChild(winBdy);
