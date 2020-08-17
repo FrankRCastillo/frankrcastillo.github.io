@@ -3,13 +3,13 @@
 window.rulers = [];
 
 export async function lead() {
-    var url = 'http://rulers.org/';
-    var arr = Array.from(await getPageElem(url, 'a'))
+    let url = 'http://rulers.org/';
+    let arr = Array.from(await getPageElem(url, 'a'))
                    .map(x => x.href.replace(x.baseURI, url))
                    .filter(x => x.match(url + 'rul.*\.html'));
 
     arr.forEach(async x => {
-        var get = await getPageElem(x, 'body').then(k => {
+        let get = await getPageElem(x, 'body').then(k => {
             k[0].outerHTML = k[0].outerHTML
                                  .replace( /<a name=\"\w+\"><hr><h2>\w+<\/h2>/g
                                          , '\[delimit\]$&'
@@ -24,7 +24,7 @@ export async function lead() {
 }
 
 function saveRulers(html) {
-    var dom = new DOMParser().parseFromString(html, 'text/html');
+    let dom = new DOMParser().parseFromString(html, 'text/html');
 
     console.log('pause');
 }
