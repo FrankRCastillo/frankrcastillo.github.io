@@ -366,6 +366,31 @@ function print(text) {
     }
 }
 
+function newWindow(content) {
+    // 0x27D0    move
+    // 0x21F2    drag
+    // 0x229F    minimize
+    // 0x229E    maximize/restore
+    // 0x2612    close
+
+    let winDiv = document.createElement('div');
+
+    winDiv.setAttribute('id', 'windowTemplate');
+    winDiv.onmousedown = (e) => {
+        let oldx = e.clientX;
+        let oldy = e.clientY;
+        e.onmousemove = (e) => {
+            let newx = oldx - e.clientX;
+            let newy = oldy = e.clientY;
+
+            this.style.top  = (this.offsetTop  - newx) + 'px';
+            this.style.left = (this.offsetLeft - newy) + 'px';
+        }
+    }
+
+    return winDiv;
+}
+
 function newCmdLine() {
 }
 
@@ -452,6 +477,8 @@ async function main() {
     let body = document.body;
 
     body.appendChild(await setConsole());
+    body.appendChild(newWindow());
+
     home();
     scaleResize('console');
     window.addEventListener('resize', function() {
