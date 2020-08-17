@@ -377,6 +377,8 @@ function newWindow(content) {
 
     winDiv.setAttribute('class', 'windowTemplate');
     winDiv.onmousedown = (e) => {
+        e = e || window.event;
+        e.preventDefault();
         let oldx = e.clientX;
         let oldy = e.clientY;
 
@@ -387,6 +389,8 @@ function newWindow(content) {
         }
 
         document.onmousemove = (d) => {
+            d = d || window.event;
+            d.preventDefault();
             let newx = d.clientX - oldx;
             let newy = d.clientY - oldy;
             winDiv.style.left = newx + 'px';
