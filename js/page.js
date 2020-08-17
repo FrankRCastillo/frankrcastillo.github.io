@@ -393,7 +393,7 @@ function newWindow(content) {
     rszBtn.textContent = '\u21F2';
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
-    clsBtn.textContent = '\u2612';
+    clsBtn.textContent = '\u2327';
 
     winHdr.appendChild(minBtn);
     winHdr.appendChild(maxBtn);
