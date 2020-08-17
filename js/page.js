@@ -389,9 +389,8 @@ function newWindow(content) {
         document.onmousemove = (d) => {
             let newx = d.clientX - oldx;
             let newy = d.clientY - oldy;
-            let ntop = (winDiv.offsetTop  - oldx) + 'px';
-            let nlft = (winDiv.offsetLeft - oldy) + 'px';
-            console.log(ntop + '/' + nlft);
+            winDiv.style.left = newx + 'px';
+            winDiv.style.top  = newy + 'px';
         };
 
     };
