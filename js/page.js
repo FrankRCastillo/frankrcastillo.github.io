@@ -422,12 +422,6 @@ function newWindow(content) {
         };
     };
 
-    winHdr.appendChild(rszBtn);
-    winHdr.appendChild(minBtn);
-    winHdr.appendChild(maxBtn);
-    winHdr.appendChild(clsBtn);
-    
-
     return winDiv;
 }
 
