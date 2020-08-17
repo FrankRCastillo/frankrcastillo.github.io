@@ -421,7 +421,6 @@ function newWindow(content) {
             oldy = d.clientY;
             winDiv.style.top  = (winDiv.offsetTop  - newy) + 'px';
             winDiv.style.left = (winDiv.offsetLeft - newx) + 'px';
-            console.log(newx + '/' + newy);
         };
     };
 
