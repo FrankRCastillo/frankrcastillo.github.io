@@ -416,7 +416,7 @@ function newWindow(content) {
         };
     };
 
-    hdrGrp.onmousedown = (e) => {
+    winHdr.onmousedown = (e) => {
         e = e || window.event;
         e.preventDefault();
         let oldx = e.clientX;
