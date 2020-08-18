@@ -27,7 +27,7 @@ async function newConsole(consoleName) {
     });
 
     nhdr.appendChild(nlnk);
-    npnl.appendChild(await news.getNewsFeed());
+    npnl.appendChild(await news.getNewsFeed(consoleName));
     ndiv.appendChild(nhdr);
     ndiv.appendChild(npnl);
     main.appendChild(menu);
@@ -35,8 +35,8 @@ async function newConsole(consoleName) {
     main.appendChild(ndiv);
 
     window.newsinterval = await setInterval(async function () {
-        let npnl = document.getElementById('newspnl_');
-        let nget = await news.getNewsFeed();
+        let npnl = document.getElementById('newspnl_' + consoleName);
+        let nget = await news.getNewsFeed(consoleName);
         npnl.innerHTML = ''
         npnl.appendChild(nget);
     }, 120000);

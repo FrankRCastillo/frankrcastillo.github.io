@@ -1,9 +1,9 @@
 // |apps|news|RSS feed from letious news sources
 
-export function news() {
-    let out = document.getElementById('outtext');
-    let div = document.getElementById('newsdiv');
-    let pnl = document.getElementById('newspnl');
+export function news(consoleName) {
+    let out = document.getElementById('outtext_' + consoleName);
+    let div = document.getElementById('newsdiv_' + consoleName);
+    let pnl = document.getElementById('newspnl_' + consoleName);
 
     if (out != null) {
         switch (out.style.display) {
@@ -24,7 +24,7 @@ export function news() {
     }
 }
 
-export async function getNewsFeed() {
+export async function getNewsFeed(consoleName) {
     let src = await readFile('/apps/news/news.txt');
     let url = src.split('\n').filter(x => x != '');
     let dwn = url.map(async x => await readFile(x).then(k => rssParser(k)));
@@ -47,7 +47,7 @@ export async function getNewsFeed() {
                            ]);
     let tbl = arrayToTable(arr, false, true)
 
-    tbl.setAttribute('id', 'NewsTable');
+    tbl.setAttribute('id', 'NewsTable_' + consoleName);
 
     return tbl;
 }
