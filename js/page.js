@@ -411,12 +411,12 @@ function newWindow(content) {
             newy = oldy - d.clientY;
             oldx = d.clientX;
             oldy = d.clientY;
-            winDiv.style.height = (winDiv.offsetTop  - newy) + 'px';
-            winDiv.style.width  = (winDiv.offsetLeft - newx) + 'px';
+            d.path[2].style.height = (d.path[2].offsetTop  - newy) + 'px';
+            d.path[2].style.width  = (d.path[2].offsetLeft - newx) + 'px';
         };
     };
 
-    winDiv.onmousedown = (e) => {
+    hdrGrp.onmousedown = (e) => {
         e = e || window.event;
         e.preventDefault();
         let oldx = e.clientX;
@@ -436,8 +436,8 @@ function newWindow(content) {
             newy = oldy - d.clientY;
             oldx = d.clientX;
             oldy = d.clientY;
-            winDiv.style.top  = (winDiv.offsetTop  - newy) + 'px';
-            winDiv.style.left = (winDiv.offsetLeft - newx) + 'px';
+            d.path[1].style.top  = (d.path[1].offsetTop  - newy) + 'px';
+            d.path[1].style.left = (d.path[1].offsetLeft - newx) + 'px';
         };
     };
     
