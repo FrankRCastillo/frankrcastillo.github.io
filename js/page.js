@@ -474,9 +474,9 @@ async function newSelector(consoleName) {
         }
     }
 
-    cmdSelect.addEventListener(
-        'click', (e => cmdMgr(e.path[0][e.path[0].selectedIndex].value), consoleName)
-    );
+    cmdSelect.onclick = (e) =>  {
+        cmdMgr(e.path[0][e.path[0].selectedIndex].value, consoleName);
+    };
 
     return cmdSelect;
 }
