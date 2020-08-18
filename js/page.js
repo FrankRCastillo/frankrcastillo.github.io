@@ -21,7 +21,7 @@ async function newConsole(consoleName) {
     ndiv.setattribute('class', 'newsdiv');
 
     nlnk.textContent = 'Toggle';
-    nlnk.addEventListener('click', async function () {
+    nlnk.addEventListener('click', () => {
         let news = await import('/apps/news.js');
         news.news();
     });
