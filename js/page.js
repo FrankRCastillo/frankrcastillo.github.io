@@ -411,8 +411,8 @@ function newWindow(content) {
             newy = oldy - d.clientY;
             oldx = d.clientX;
             oldy = d.clientY;
-            d.path[2].style.height = (d.path[2].bottom - newy) + 'px';
-            d.path[2].style.width  = (d.path[2].right  - newx) + 'px';
+            winDiv.style.height = (winDiv.bottom - newy) + 'px';
+            winDiv.style.width  = (winDiv.right  - newx) + 'px';
         };
     };
 
