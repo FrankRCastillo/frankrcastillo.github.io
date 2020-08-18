@@ -541,6 +541,7 @@ async function main() {
 
     body.appendChild(await setConsole());
     body.appendChild(newWindow());
+    body.appendChild(newWindow());
 
     home();
     scaleResize('console');
