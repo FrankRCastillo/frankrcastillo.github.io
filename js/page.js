@@ -342,7 +342,7 @@ function clear(consoleName) {
 function print(text, consoleName) {
     if (Array.isArray(text)) {
         for (let i = 0; i < text.length; i++) {
-            print(text[i]);
+            print(text[i], consoleName);
         }
     } else {
         let outtxt = document.getElementById("outtext_" + consoleName);
