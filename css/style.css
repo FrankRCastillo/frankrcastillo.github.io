@@ -95,8 +95,8 @@ input
 
 .windowTemplate
 { border   : 1px solid #ffffff
-; height   : 400px
-; width    : 500px
+; height   : 1084px
+; width    : 768px
 ; position : absolute
 ; z-index  : 100001;
 }
@@ -132,13 +132,8 @@ input
 }
 
 #console
-{ border   : 1px solid #ffffff
-; height   : 768px
-; width    : 1024px
-; top      : 50%
-; left     : 50%
-; margin   : -384px -512px
-; position : fixed
+{ height   : 100%
+; width    : 100%
 ; padding  : 5px 5px 5px 5px
 }
 

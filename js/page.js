@@ -392,6 +392,7 @@ function newWindow(header, content) {
     hdrGrp.appendChild(maxBtn);
     hdrGrp.appendChild(clsBtn);
     winHdr.appendChild(hdrGrp);
+    winBdy.appendChild(content);
     winBdy.appendChild(rszBtn);
     winDiv.appendChild(winHdr);
     winDiv.appendChild(winBdy);
