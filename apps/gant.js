@@ -1,6 +1,6 @@
 // |wrld|gant|Gantt chart of countries' history (source: CIA WFB)
 
-export async function gant() {
+export async function gant(consoleName) {
     let year = new Date().getFullYear();
     let cia  = await import('/js/cia.js');
 
@@ -9,15 +9,16 @@ export async function gant() {
         window.ctryData.sort((a, b) => a[3].localeCompare(b[3]));
     }
 
-    let out = document.getElementById('outtext')
+    let out = document.getElementById('outtext_' + consoleName)
     let gnt = document.createElement('div');
-    gnt.setAttribute('id', 'GanttChart');
+    gnt.setAttribute('id', 'GanttChart_' + consoleName);
+    gnt.setAttribute('class', 'GanttChart');
     out.appendChild(gnt);
-    gnt.appendChild(newGanttToolbar());
+    gnt.appendChild(newGanttToolbar(consoleName));
     gnt.appendChild(newGanttPage(year, 1));
 }
 
-function newGanttToolbar() {
+function newGanttToolbar(consoleName) {
     let dte = new Date().getFullYear();             // present year
     let bar = document.createElement('div');        // toolbar div
     let yin = document.createElement('input');      // ending year input
@@ -42,19 +43,19 @@ function newGanttToolbar() {
     }
 
     yin.setAttribute('readonly', true);
-    yin.setAttribute('id', 'GanttEndYear');
-
-    sel.setAttribute('id', 'GanttInterval');
+    yin.setAttribute('id', 'GanttEndYear_' + consoleName);
+    sel.setAttribute('id', 'GanttInterval_' + consoleName);
+    yin.setAttribute('class', 'GanttEndYear');
+    sel.setAttribute('class', 'GanttInterval');
     sel.addEventListener('change', function() {
-        let eyr = document.getElementById('GanttEndYear');
-        let sel = document.getElementById('GanttInterval');
+        let eyr = document.getElementById('GanttEndYear_' + consoleName);
+        let sel = document.getElementById('GanttInterval_' + consoleName);
+        let gnt = document.getElementById('GanttChart_' + consoleName);
+        let tbl = document.getElementById('GanttTable_' + consoleName);
         let nsl = sel.options[sel.selectedIndex];
         let ysl = parseInt(nsl.value);
-        let gnt = document.getElementById('GanttChart');
-        let tbl = document.getElementById('GanttTable');
 
         nsl.setAttribute('selected', true);
-
         tbl.remove();
         gnt.appendChild(newGanttPage(parseInt(eyr.value), ysl));
     });
@@ -84,10 +85,10 @@ function newGanttToolbar() {
     return bar;
 }
 
-function ganttTimeShift(dir) {
+function ganttTimeShift(dir, consoleName) {
     let year   = new Date().getFullYear();
-    let sel    = document.getElementById('GanttInterval');
-    let eyr    = document.getElementById('GanttEndYear');
+    let sel    = document.getElementById('GanttInterval_' + consoleName);
+    let eyr    = document.getElementById('GanttEndYear_' + consoleName);
     let scale  = parseInt(sel.options[sel.selectedIndex].value);
     let nscale = (20 * dir * scale);
     let oendyr = parseInt(eyr.value);
