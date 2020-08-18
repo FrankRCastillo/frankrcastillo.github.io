@@ -404,7 +404,7 @@ function newWindow(content) {
             document.onmousemove = null;
         }
         
-        e.onmousemove = (d) => {
+        document.onmousemove = (d) => {
             d = d || window.event;
             d.preventDefault();
             newx = oldx - d.clientX;
@@ -429,7 +429,7 @@ function newWindow(content) {
             document.onmousemove = null;
         }
 
-        e.onmousemove = (d) => {
+        document.onmousemove = (d) => {
             d = d || window.event;
             d.preventDefault();
             newx = oldx - d.clientX;
