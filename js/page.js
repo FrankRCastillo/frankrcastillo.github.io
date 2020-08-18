@@ -516,14 +516,9 @@ function scaleRelativeTo(elem, parent) {
 
 async function main() {
     let body = document.body;
-    var cons = await newConsole();
-    var wind = newWindow('console', cons);
-    scaleRelativeTo(cons, wind);
-    cons.addEventListener('resize', () => {
-        scaleRelativeTo(this, this.path[1]);
-    });
 
-    body.appendChild(wind);
+    body.appendChild(newWindow('console 1', await newConsole()));
+    body.appendChild(newWindow('console 1', await newConsole()));
 
     home();
 }
