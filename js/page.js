@@ -447,7 +447,7 @@ async function newSelector(consoleName) {
     let cmdSelect = document.createElement('select');
     let cmmndInfo = await getCmdInfo();
 
-    cmdSelect.setAttribute('id', 'cmdSelect_' + consoleName);
+    cmdSelect.setAttribute(   'id', 'cmdSelect_' + consoleName);
     cmdSelect.setAttribute('class', 'cmdSelect');
 
     for (let i = -1; i < cmmndInfo.length; i++) {
