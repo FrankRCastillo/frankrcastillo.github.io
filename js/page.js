@@ -391,13 +391,30 @@ function newWindow(content) {
     maxBtn.textContent = '\u229E';
     clsBtn.textContent = '\u22A0';
 
-    hdrGrp.appendChild(minBtn);
-    hdrGrp.appendChild(maxBtn);
-    hdrGrp.appendChild(clsBtn);
-    winHdr.appendChild(hdrGrp);
-    winBdy.appendChild(rszBtn);
-    winDiv.appendChild(winHdr);
-    winDiv.appendChild(winBdy);
+    rszBtn.onmousedown = (e) => {
+        e = e || window.event;
+        e.preventDefault();
+        let oldx = e.clientX;
+        let oldy = e.clientY;
+        let newx = 0;
+        let newy = 0;
+
+        document.onmouseup = () => {
+            document.onmouseup   = null;
+            document.onmousemove = null;
+        }
+        
+        document.onmousemove = (d) => {
+            d = d || window.event;
+            d.preventDefault();
+            newx = oldx - d.clientX;
+            newy = oldy - d.clientY;
+            oldx = d.clientX;
+            oldy = d.clientY;
+            winDiv.style.height = (winDiv.offsetTop  - newy) + 'px';
+            winDiv.style.width  = (winDiv.offsetLeft - newx) + 'px';
+        };
+    };
 
     winDiv.onmousedown = (e) => {
         e = e || window.event;
@@ -423,6 +440,14 @@ function newWindow(content) {
             winDiv.style.left = (winDiv.offsetLeft - newx) + 'px';
         };
     };
+    
+    hdrGrp.appendChild(minBtn);
+    hdrGrp.appendChild(maxBtn);
+    hdrGrp.appendChild(clsBtn);
+    winHdr.appendChild(hdrGrp);
+    winBdy.appendChild(rszBtn);
+    winDiv.appendChild(winHdr);
+    winDiv.appendChild(winBdy);
 
     return winDiv;
 }
