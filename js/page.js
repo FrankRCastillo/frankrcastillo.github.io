@@ -525,7 +525,7 @@ async function main() {
     body.appendChild(newWindow('console', await newConsole()));
 
     home();
-    scaleResize('console');
+//    scaleResize('console');
     window.addEventListener('resize', function() {
         scaleResize('console')
     }, true);
