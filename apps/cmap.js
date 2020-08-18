@@ -1,6 +1,6 @@
 // |wrld|cmap|World map with countries' history (source: CIA WFB)
 
-export async function cmap() {
+export async function cmap(consoleName) {
     let year = new Date().getFullYear();
     let cia = await import('/js/cia.js');
 
@@ -10,9 +10,9 @@ export async function cmap() {
         window.ctryData.sort((a, b) => a[3].localeCompare(b[3]));
     }
 
-    let out = document.getElementById('outtext')
+    let out = document.getElementById('outtext_' + consoleName)
     let wmp = document.createElement('WorldMap')
-    wmp.appendChild(newCtryPage());
+    wmp.appendChild(newCtryPage(consoleName));
     out.appendChild(wmp);
     createMap();
 }
@@ -48,7 +48,7 @@ function createMap() {
     });
 }
 
-function newCtryPage() {
+function newCtryPage(consoleName) {
     let out = document.createElement('div');
     let frm = document.createElement('div');
     let lst = document.createElement('div');
