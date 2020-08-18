@@ -132,8 +132,8 @@ input
 }
 
 #console
-{ object-fit : fill
-; padding    : 5px 5px 5px 5px
+{ width   : 1024px
+; padding : 5px 5px 5px 5px
 }
 
 #NewsTable
