@@ -524,7 +524,7 @@ async function main() {
     body.appendChild(newWindow('Console 2', await newConsole('cons2')));
 
     home('cons1');
-    home('cons1');
+    home('cons2');
 }
 
 main()
