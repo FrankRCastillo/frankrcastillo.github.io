@@ -8,11 +8,11 @@ async function newConsole(consoleName) {
     let ndiv = document.createElement('div');
     let nlnk = document.createElement('a');
 
-    main.setattribute('id', 'console_' + consolename);
-    otxt.setattribute('id', 'outtext_' + consolename);
-    nhdr.setattribute('id', 'newshdr_' + consolename);
-    npnl.setattribute('id', 'newspnl_' + consolename);
-    ndiv.setattribute('id', 'newsdiv_' + consolename);
+    main.setattribute('id', 'console_' + consoleName);
+    otxt.setattribute('id', 'outtext_' + consoleName);
+    nhdr.setattribute('id', 'newshdr_' + consoleName);
+    npnl.setattribute('id', 'newspnl_' + consoleName);
+    ndiv.setattribute('id', 'newsdiv_' + consoleName);
 
     main.setattribute('class', 'console');
     otxt.setattribute('class', 'outtext');
