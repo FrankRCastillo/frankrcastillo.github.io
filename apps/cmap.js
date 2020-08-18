@@ -14,10 +14,10 @@ export async function cmap(consoleName) {
     let wmp = document.createElement('WorldMap')
     wmp.appendChild(newCtryPage(consoleName));
     out.appendChild(wmp);
-    createMap();
+    createMap(consoleName);
 }
 
-function createMap() {
+function createMap(consoleName) {
     let map       = L.map('mapframe');
     let osmUrl    ='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     let osmAttrib ='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -33,13 +33,16 @@ function createMap() {
                          , e.latlng.lng
                          , function (err, code) {
                              try {
-                                 let ncode = window.ctryData[window.ctryData.map(x => x[2]).indexOf(code.toUpperCase())][0]
+                                 let ncode = window.ctryData[ window.ctryData
+                                                                    .map(x => x[2])
+                                                                    .indexOf(code.toUpperCase())
+                                                            ][0]
 
-                                 document.getElementById('mapselect')
+                                 document.getElementById('mapselect_' + consoleName)
                                          .querySelector('option[value=' + ncode + ']')
                                          .selected = true;
 
-                                 document.getElementById('mapdata')
+                                 document.getElementById('mapdata_' + consoleName)
                                          .innerHTML = countryInfo(ncode);
                              } catch (err) {
                                  console.log(err.message);
@@ -56,10 +59,15 @@ function newCtryPage(consoleName) {
     let dta = document.createElement('div');
     let sel = document.createElement('select');
 
-    frm.setAttribute('id', 'mapframe' );
-    lst.setAttribute('id', 'maptools' );
-    dta.setAttribute('id', 'mapdata'  );
-    sel.setAttribute('id', 'mapselect');
+    frm.setAttribute('id', 'mapframe_'  + consoleName);
+    lst.setAttribute('id', 'maptools_'  + consoleName);
+    dta.setAttribute('id', 'mapdata_'   + consoleName);
+    sel.setAttribute('id', 'mapselect_' + consoleName);
+    
+    frm.setAttribute('class', 'mapframe' );
+    lst.setAttribute('class', 'maptools' );
+    dta.setAttribute('class', 'mapdata'  );
+    sel.setAttribute('class', 'mapselect');
     
     sel.addEventListener('change', function() {
         let iso = this.options[this.selectedIndex].value;
@@ -82,7 +90,7 @@ function newCtryPage(consoleName) {
             if (grp == null) {
                 grp = document.createElement('optgroup');
                 grp.setAttribute('label', window.ctryData[i][3]);
-                grp.setAttribute('id'   , window.ctryData[i][3]);
+                grp.setAttribute('id', window.ctryData[i][3] + '_' + consoleName);
             }
 
             opt.setAttribute('value', window.ctryData[i][0]);

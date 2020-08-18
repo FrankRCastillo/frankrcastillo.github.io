@@ -131,36 +131,36 @@ input
 ; cursor  : pointer
 }
 
-#console
+.console
 { width   : calc(100% - 10px)
 ; height  : calc(100% - 10px);
 ; padding : 5px 5px 5px 5px
 }
 
-#NewsTable
+.NewsTable
 { white-space : nowrap
 ; width       : calc(100% - 20px)
 ; font-family : courier
 ; font-size   : 16px
 }
 
-#GanttChart
+.GanttChart
 { position : relative
 }
 
-#GanttEndYear
+.GanttEndYear
 { border : 1px solid #ffa500
 ; width  : 40px
 ; height : 20px
 }
 
-#GanttToolbar
+.GanttToolbar
 { position         : fixed
 ; background-color : #000000
 ; z-index          : 100001
 }
 
-#outtext
+.outtext
 { border     : 0px
 ; overflow   : auto
 ; width      : 100%
@@ -170,20 +170,20 @@ input
 ; display    : block
 }
 
-#newsdiv
+.newsdiv
 { height   : 110px
 ; position : relative
 ; display  : block
 }
 
-#newshdr
+.newshdr
 { background-color : #101530
 ; position         : relative
 ; text-align       : right
 ; cursor           : pointer
 }
 
-#newspnl
+.newspnl
 { background-color : #060617
 ; height           : calc(100% - 20px)
 ; display          : block
@@ -191,7 +191,7 @@ input
 ; overflow-y       : hidden
 }
 
-#cmdSelect
+.cmdSelect
 { width  : 100%
 }
 
