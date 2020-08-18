@@ -18,7 +18,7 @@ export async function cmap(consoleName) {
 }
 
 function createMap(consoleName) {
-    let map       = L.map('mapframe');
+    let map       = L.map('mapframe_' + consoleName);
     let osmUrl    ='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     let osmAttrib ='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
     let osm       = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 17, attribution: osmAttrib});		
