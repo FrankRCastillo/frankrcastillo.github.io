@@ -384,65 +384,13 @@ function newWindow(content) {
     minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
     maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
     clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
-
     winHdr.textContent = 'Label';
     rszBtn.textContent = '\u25E2';
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
     clsBtn.textContent = '\u22A0';
-
-    rszBtn.onmousedown = (e) => {
-        e = e || window.event;
-        e.preventDefault();
-        let oldx = e.clientX;
-        let oldy = e.clientY;
-        let newx = 0;
-        let newy = 0;
-
-        document.onmouseup = () => {
-            document.onmouseup   = null;
-            document.onmousemove = null;
-        }
-        
-        document.onmousemove = (d) => {
-            d = d || window.event;
-            d.preventDefault();
-            newx = oldx - d.clientX;
-            newy = oldy - d.clientY;
-            oldx = d.clientX;
-            oldy = d.clientY;
-            winw = getComputedStyle(winDiv).height.replace(/\D/g, '');
-            winh = getComputedStyle(winDiv).width.replace(/\D/g, '');
-            winDiv.style.height = (winw - newy) + 'px';
-            winDiv.style.width  = (winh - newx) + 'px';
-        };
-    };
-
-    winHdr.onmousedown = (e) => {
-        e = e || window.event;
-        e.preventDefault();
-        let oldx = e.clientX;
-        let oldy = e.clientY;
-        let newx = 0;
-        let newy = 0;
-
-        document.onmouseup = () => {
-            document.onmouseup   = null;
-            document.onmousemove = null;
-        }
-
-        document.onmousemove = (d) => {
-            d = d || window.event;
-            d.preventDefault();
-            newx = oldx - d.clientX;
-            newy = oldy - d.clientY;
-            oldx = d.clientX;
-            oldy = d.clientY;
-            winDiv.style.top  = (winDiv.offsetTop  - newy) + 'px';
-            winDiv.style.left = (winDiv.offsetLeft - newx) + 'px';
-        };
-    };
-    
+    rszBtn.onmousedown = (e) => { enableWindowMode(e, winDiv, 'resize'); };
+    winHdr.onmousedown = (e) => { enableWindowMode(e, winDiv, 'move'); };
     hdrGrp.appendChild(minBtn);
     hdrGrp.appendChild(maxBtn);
     hdrGrp.appendChild(clsBtn);
@@ -452,6 +400,43 @@ function newWindow(content) {
     winDiv.appendChild(winBdy);
 
     return winDiv;
+}
+
+function enableWindowMode(e, winDiv, method) {
+    e = e || window.event;
+    e.preventDefault();
+    let oldx = e.clientX;
+    let oldy = e.clientY;
+    let newx = 0;
+    let newy = 0;
+
+    document.onmouseup = () => {
+        document.onmouseup   = null;
+        document.onmousemove = null;
+    }
+
+    document.onmousemove = (d) => {
+        d = d || window.event;
+        d.preventDefault();
+        newx = oldx - d.clientX;
+        newy = oldy - d.clientY;
+        oldx = d.clientX;
+        oldy = d.clientY;
+
+        switch(method) {
+            case 'move':
+                winDiv.style.top  = (winDiv.offsetTop  - newy) + 'px';
+                winDiv.style.left = (winDiv.offsetLeft - newx) + 'px';
+                break;
+
+            case 'resize':
+                winw = getComputedStyle(winDiv).height.replace(/\D/g, '');
+                winh = getComputedStyle(winDiv).width.replace(/\D/g, '');
+                winDiv.style.height = (winw - newy) + 'px';
+                winDiv.style.width  = (winh - newx) + 'px';
+                break;
+        }
+    };
 }
 
 function newCmdLine() {
