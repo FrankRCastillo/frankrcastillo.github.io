@@ -413,8 +413,8 @@ function newWindow(content) {
             oldy = d.clientY;
             winw = getComputedStyle(winDiv).height.replace(/\D/g, '');
             winh = getComputedStyle(winDiv).width.replace(/\D/g, '');
-            winDiv.style.height = (winw + newy) + 'px';
-            winDiv.style.width  = (winh + newx) + 'px';
+            winDiv.style.height = (winw - newy) + 'px';
+            winDiv.style.width  = (winh - newx) + 'px';
         };
     };
 
