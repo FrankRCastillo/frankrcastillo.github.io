@@ -8,17 +8,17 @@ async function newConsole(consoleName) {
     let ndiv = document.createElement('div');
     let nlnk = document.createElement('a');
 
-    main.setattribute('id', 'console_' + consoleName);
-    otxt.setattribute('id', 'outtext_' + consoleName);
-    nhdr.setattribute('id', 'newshdr_' + consoleName);
-    npnl.setattribute('id', 'newspnl_' + consoleName);
-    ndiv.setattribute('id', 'newsdiv_' + consoleName);
+    main.setAttribute('id', 'console_' + consoleName);
+    otxt.setAttribute('id', 'outtext_' + consoleName);
+    nhdr.setAttribute('id', 'newshdr_' + consoleName);
+    npnl.setAttribute('id', 'newspnl_' + consoleName);
+    ndiv.setAttribute('id', 'newsdiv_' + consoleName);
 
-    main.setattribute('class', 'console');
-    otxt.setattribute('class', 'outtext');
-    nhdr.setattribute('class', 'newshdr');
-    npnl.setattribute('class', 'newspnl');
-    ndiv.setattribute('class', 'newsdiv');
+    main.setAttribute('class', 'console');
+    otxt.setAttribute('class', 'outtext');
+    nhdr.setAttribute('class', 'newshdr');
+    npnl.setAttribute('class', 'newspnl');
+    ndiv.setAttribute('class', 'newsdiv');
 
     nlnk.textContent = 'Toggle';
     nlnk.addEventListener('click', async () => {
