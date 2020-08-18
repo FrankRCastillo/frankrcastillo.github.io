@@ -1,4 +1,4 @@
-async function setConsole() {
+async function newConsole() {
     let news = await import('/apps/news.js');
     let menu = await newSelector();
     let main = document.createElement('div');
@@ -10,6 +10,9 @@ async function setConsole() {
 
     main.setAttribute('id', 'console');
     otxt.setAttribute('id', 'outtext');
+    nhdr.setAttribute('id', 'newshdr');
+    npnl.setAttribute('id', 'newspnl');
+    ndiv.setAttribute('id', 'newsdiv');
 
     nlnk.textContent = 'Toggle';
     nlnk.addEventListener('click', async function () {
@@ -17,16 +20,10 @@ async function setConsole() {
         news.news();
     });
 
-    nhdr.setAttribute('id', 'newshdr');
     nhdr.appendChild(nlnk);
-
-    npnl.setAttribute('id', 'newspnl');
     npnl.appendChild(await news.getNewsFeed());
-
-    ndiv.setAttribute('id', 'newsdiv');
     ndiv.appendChild(nhdr);
     ndiv.appendChild(npnl);
-
     main.appendChild(menu);
     main.appendChild(otxt);
     main.appendChild(ndiv);
@@ -366,7 +363,7 @@ function print(text) {
     }
 }
 
-function newWindow(content) {
+function newWindow(header, content) {
     let winDiv = document.createElement('div');
     let winHdr = document.createElement('div');
     let hdrGrp = document.createElement('div');
@@ -384,7 +381,7 @@ function newWindow(content) {
     minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
     maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
     clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
-    winHdr.textContent = 'Label';
+    winHdr.textContent = header;
     rszBtn.textContent = '\u25E2';
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
@@ -524,9 +521,7 @@ function scaleResize(id) {
 async function main() {
     let body = document.body;
 
-    body.appendChild(await setConsole());
-    body.appendChild(newWindow());
-    body.appendChild(newWindow());
+    body.appendChild(newWindow('console', await newConsole()));
 
     home();
     scaleResize('console');

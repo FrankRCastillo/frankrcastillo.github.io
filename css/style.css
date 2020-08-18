@@ -106,6 +106,12 @@ input
 ; color      : #000000
 }
 
+.windowBody
+{ height : calc(100% - 18px)
+; width  : 100%
+; overflow-wrap : break-word
+}
+
 .windowResize
 { position : absolute
 ; bottom   : -3px
