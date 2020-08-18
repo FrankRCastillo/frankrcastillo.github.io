@@ -105,14 +105,15 @@ function ganttTimeShift(dir, consoleName) {
     }
 }
 
-function newGanttPage(year, scale) {
+function newGanttPage(year, scale, consoleName) {
     let tble = document.createElement('table');
-    let tbar = document.getElementById('GanttEndYear');
+    let tbar = document.getElementById('GanttEndYear_' + consoleName);
     let cont = '';
 
     tbar.value = year;
 
-    tble.setAttribute('id', 'GanttTable');
+    tble.setAttribute('id', 'GanttTable_' + consoleName);
+    tble.setAttribute('class', 'GanttTable');
 
     for (let i = 0; i < window.ctryData.length; i++) {
         let tr = document.createElement('tr');
@@ -172,11 +173,11 @@ function newGanttPage(year, scale) {
                     let ico = document.createElement('div');
 
                     ico.innerText = '\u26AB';
-                    ico.setAttribute(     'id',       'ctryEvent');
-                    ico.setAttribute(  'class',         'tooltip');
-                    ico.setAttribute('ctryidx',                 i);
-                    ico.setAttribute('yearidx', histrng.join(','));
-                    ico.setAttribute(  'scale',             scale);
+                    ico.setAttribute(     'id', 'ctryEvent_' + consoleName);
+                    ico.setAttribute(  'class',                  'tooltip');
+                    ico.setAttribute('ctryidx',                          i);
+                    ico.setAttribute('yearidx',          histrng.join(','));
+                    ico.setAttribute(  'scale',                      scale);
                     ico.addEventListener('mouseover', function() {
                         let ctryidx = parseInt(this.getAttribute('ctryidx'));
                         let yearidx = this.getAttribute('yearidx').split(',').map(x => parseInt(x));
