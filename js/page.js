@@ -498,37 +498,34 @@ function tableToArray(txt, delim) {
               .map(x => x.split(delim));
 }
 
-function scaleResize(id) {
-    let elem = document.getElementById(id);
+function scaleRelativeTo(elem, parent) {
     let csty = getComputedStyle(elem);
+    let parw = parent.style.width;
+    let parh = parent.style.height;
     let ofst = 50;
 
-    if (window.innerWidth < window.innerHeight) {
-        elem.style.transform = 'scale(calc('
-                             + ( window.innerWidth - ofst )
-                             + ' / '
-                             + csty.width.replace('px', '')
-                             + '))';
+    if (parw < parh) {
+        elem.style.transform = 'scale(calc(' + ( parw - ofst ) + ' / '
+                             + csty.width.replace('px', '') + '))';
     } else {
-        elem.style.transform = 'scale(calc('
-                             + ( window.innerHeight - ofst )
-                             + ' / '
-                             + csty.height.replace('px', '')
-                             + '))';
+        elem.style.transform = 'scale(calc(' + ( parh - ofst ) + ' / '
+                             + csty.height.replace('px', '') + '))';
     }
 
 }
 
 async function main() {
     let body = document.body;
+    var cons = await newConsole();
+    var wind = newWindow('console', cons);
+    scaleRelativeTo(cons, wind);
+    cons.addEventListener('resize', () => {
+        scaleRelativeTo(this, this.path[1]);
+    });
 
-    body.appendChild(newWindow('console', await newConsole()));
+    body.appendChild(wind);
 
     home();
-//    scaleResize('console');
-    window.addEventListener('resize', function() {
-        scaleResize('console')
-    }, true);
 }
 
 main()
