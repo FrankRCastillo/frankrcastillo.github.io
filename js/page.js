@@ -1,6 +1,6 @@
-async function newConsole() {
+async function newConsole(consoleName) {
     let news = await import('/apps/news.js');
-    let menu = await newSelector();
+    let menu = await newSelector(consoleName);
     let main = document.createElement('div');
     let otxt = document.createElement('div');
     let npnl = document.createElement('div');
@@ -8,11 +8,11 @@ async function newConsole() {
     let ndiv = document.createElement('div');
     let nlnk = document.createElement('a');
 
-    main.setAttribute('id', 'console');
-    otxt.setAttribute('id', 'outtext');
-    nhdr.setAttribute('id', 'newshdr');
-    npnl.setAttribute('id', 'newspnl');
-    ndiv.setAttribute('id', 'newsdiv');
+    main.setAttribute('id', 'console_' + consoleName);
+    otxt.setAttribute('id', 'outtext_' + consoleName);
+    nhdr.setAttribute('id', 'newshdr_' + consoleName);
+    npnl.setAttribute('id', 'newspnl_' + consoleName);
+    ndiv.setAttribute('id', 'newsdiv_' + consoleName);
 
     nlnk.textContent = 'Toggle';
     nlnk.addEventListener('click', async function () {
@@ -29,7 +29,7 @@ async function newConsole() {
     main.appendChild(ndiv);
 
     window.newsinterval = await setInterval(async function () {
-        let npnl = document.getElementById('newspnl');
+        let npnl = document.getElementById('newspnl_');
         let nget = await news.getNewsFeed();
         npnl.innerHTML = ''
         npnl.appendChild(nget);
@@ -287,7 +287,7 @@ function convertDataURIToBinary(dataURI) {
     return array.map((x, i) => raw.charCodeAt(i));
 }
 
-async function cmdMgr(input) {
+async function cmdMgr(input, consoleName) {
     if (input != '') {
         clearInterval(window.appinterval);
         clear();
@@ -295,13 +295,13 @@ async function cmdMgr(input) {
         let cmd = input.toLowerCase();
 
         switch (cmd) {
-            case 'home' : home(); break;
-            case 'help' : help(); break;
+            case 'home' : home(consoleName); break;
+            case 'help' : help(consoleName); break;
             default:
 
 //                try {
                     let app = await import('/apps/' + cmd + '.js');
-                    eval('app.' + cmd + '()');
+                    eval('app.' + cmd + '("' + consoleName + '")');
 //                } catch(err) {
 //                    print(cmd + ': command not available');
 //                    console.log(err.message);
@@ -310,36 +310,36 @@ async function cmdMgr(input) {
     }
 }
 
-function home() {
-    read('/apps/home/home.txt');
+function home(consoleName) {
+    read('/apps/home/home.txt', consoleName);
 }
 
-async function help() {
+async function help(consoleName) {
     let lst = await getCmdInfo();
     let hdr = ['Category', 'Command', 'Information'];
     lst.unshift(hdr);
     let tbl = arrayToTable(lst, true, false); 
-    document.getElementById('outtext').appendChild(tbl);
+    document.getElementById('outtext_' + consoleName).appendChild(tbl);
 }
 
-async function read(path) {
+async function read(path, consoleName) {
     let txt = await readFile(path)
-    print('\n');
-    print(txt);
+    print('\n', consoleName);
+    print(txt, consoleName);
 }
 
-function clear() {
-    let out = document.getElementById('outtext');
+function clear(consoleName) {
+    let out = document.getElementById('outtext_' + consoleName);
     if (out != null) { out.innerHTML = ''; }
 }
 
-function print(text) {
+function print(text, consoleName) {
     if (Array.isArray(text)) {
         for (let i = 0; i < text.length; i++) {
             print(text[i]);
         }
     } else {
-        let outtxt = document.getElementById("outtext");
+        let outtxt = document.getElementById("outtext_" + consoleName);
         let newtxt = document.createElement("div");
         let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
         let rgxdom = new RegExp(rgxexp);
@@ -437,14 +437,11 @@ function enableWindowMode(e, winDiv, method) {
     };
 }
 
-function newCmdLine() {
-}
-
-async function newSelector() {
+async function newSelector(consoleName) {
     let cmdSelect = document.createElement('select');
     let cmmndInfo = await getCmdInfo();
 
-    cmdSelect.setAttribute('id', 'cmdSelect')
+    cmdSelect.setAttribute('id', 'cmdSelect_' + consoleName)
 
     for (let i = -1; i < cmmndInfo.length; i++) {
         let cmdOption = document.createElement('option');
@@ -517,10 +514,11 @@ function scaleRelativeTo(elem, parent) {
 async function main() {
     let body = document.body;
 
-    body.appendChild(newWindow('console 1', await newConsole()));
-    body.appendChild(newWindow('console 1', await newConsole()));
+    body.appendChild(newWindow('Console 1', await newConsole('cons1')));
+    body.appendChild(newWindow('Console 2', await newConsole('cons2')));
 
-    home();
+    home('cons1');
+    home('cons1');
 }
 
 main()
