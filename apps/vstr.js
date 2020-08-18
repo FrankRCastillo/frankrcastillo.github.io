@@ -1,7 +1,7 @@
 // |apps|vstr|Visitor demographics and other information
 
-export async function vstr() {
-    let outtext = document.getElementById("outtext");
+export async function vstr(consoleName) {
+    let outtext = document.getElementById("outtext_" + consoleName);
     let worldmap = new Array(3);
 
     for (let i = 0; i < 19; i++) {
