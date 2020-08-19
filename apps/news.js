@@ -8,8 +8,8 @@ export function news(consoleName) {
     if (out != null) {
         switch (out.style.display) {
             case 'none':
-                clear();
-                home();
+                clear(consoleName);
+                home(consoleName);
                 out.style.display   = 'block';
                 div.style.height    = '110px';
                 pnl.style.overflowY = 'hidden';
