@@ -93,7 +93,7 @@ input
 ; background  : #000000
 }
 
-.windowTemplate
+.windowFrame
 { border   : 1px solid #ffffff
 ; height   : 768px
 ; width    : 1024px
