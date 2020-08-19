@@ -131,6 +131,22 @@ input
 ; cursor  : pointer
 }
 
+.deskToolbar
+{ border     : 1px solid #ffa500
+; background : #000000
+; font-color : #ffa500
+; width      : 100%
+; z-index    : 10000
+}
+
+.deskButton
+{ border     : 1px solid #ffa500
+; background : #000000
+; font-color : #ffa500
+; width      : fit-content
+; height     : 20px
+}
+
 .console
 { width      : calc(100% - 10px)
 ; height     : calc(100% - 10px)

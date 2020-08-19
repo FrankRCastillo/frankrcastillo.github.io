@@ -408,6 +408,43 @@ function newWindow(sessName, content) {
     return winDiv;
 }
 
+function newDeskToolbar() {
+    var allwin = document.getElementsByClassName('windowFrame');
+    var barDiv = document.createElement('div');
+    
+    barDiv.setAttribute('class', 'deskToolbar');
+
+    for (var i = 0; i < allwin.length; i++) {
+        var barBtn = document.createElement('div');
+        barBtn.textContent  = allwin[i].id;
+        barBtn.setAttribute('class', 'deskButton');
+        barBtn.onclick = () => {
+            var allwin = document.getElementsByClassName('windowFrame');
+            for (var i = 0; i < allwin.length; i++) {
+                if (this.textContent == allwin[i].id) {
+                    allwin[i].style.zIndex = 10000;
+                } else {
+                    allwin[i].style.zIndex = 0;
+                }
+            }
+        };
+        barDiv.appendChild(barBtn);
+    }
+
+    return barDiv;
+}
+
+function tileWindows() {
+    var allwin = document.getElementsByClassName('windowFrame');
+
+
+}
+
+function cascadeWindows() {
+    var allwin = document.getElementsByClassName('windowFrame');
+
+}
+
 function bringWindowToFront(elem) {
     var allwin = document.getElementsByClassName('windowFrame');
 
@@ -522,6 +559,7 @@ async function newSession(sessName) {
 async function main() {
     let body = document.body;
 
+    body.appendChild(newDeskToolbar());
     body.appendChild(await newSession('console1'));
     body.appendChild(await newSession('console2'));
     body.appendChild(await newSession('console3'));
