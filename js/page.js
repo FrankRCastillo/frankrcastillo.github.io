@@ -429,7 +429,10 @@ async function newDeskToolbar() {
     tleBtn.onclick = () => { tileWindows(); }
     casBtn.onclick = () => { cascadeWindows(); }
 
-    [newBtn, tleBtn, casBtn].forEach(x => {barDiv.appendChild(x)});
+    [newBtn, tleBtn, casBtn].forEach(x => {
+        x.setAttribute('class', 'deskButton');
+        barDiv.appendChild(x)
+    });
 
     Array.prototype.forEach.call(allwin, (x) => {
         let barBtn = document.createElement('div');
