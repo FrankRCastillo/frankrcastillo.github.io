@@ -269,7 +269,7 @@ input
 ; font-size   : 16px
 }
 
-#GanttTable
+.GanttTable
 { font-family    : courier
 ; font-size      : 12px
 ; text-align     : left
@@ -278,17 +278,17 @@ input
 ; top            : 15px
 }
 
-#GanttTable td
+.GanttTable td
 { height : 25px
 ; width  : 25px
 ; border : 1px dotted #ffa500
 }
 
-#GanttTable tr:nth-child(even)
+.GanttTable tr:nth-child(even)
 { background-color : #0f0f0f
 }
 
-#GanttTable th
+.GanttTable th
 { vertical-align : bottom
 }
 

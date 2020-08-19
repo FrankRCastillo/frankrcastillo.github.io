@@ -95,8 +95,8 @@ function ganttTimeShift(dir, consoleName) {
     let nendyr = (dir == 0 ? year : oendyr + (dir * scale));
     
     if (year >= nendyr && nendyr + nscale > 0) {
-        let gnt = document.getElementById('GanttChart');
-        let tbl = document.getElementById('GanttTable');
+        let gnt = document.getElementById('GanttChart_' + consoleName);
+        let tbl = document.getElementById('GanttTable_' + consoleName);
 
         eyr.value = nendyr + nscale;
 
