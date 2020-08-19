@@ -20,8 +20,9 @@ async function newConsole(consoleName) {
     npnl.setAttribute('class', 'newspnl');
     ndiv.setAttribute('class', 'newsdiv');
 
-    nlnk.textContent = 'Toggle';
+    nlnk.textContent = 'Expand';
     nlnk.addEventListener('click', async () => {
+        nlnk.textContent = ( nlk.textContent == 'Expand' ? 'Restore' : 'Expand' );
         let news = await import('/apps/news.js');
         news.news(consoleName);
     });
@@ -388,7 +389,7 @@ function newWindow(sessName, content) {
     minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
     maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
     clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
-    winHdr.textContent = sessName;
+    winHdr.textContent = 'window ' + sessName;
     rszBtn.textContent = '\u25E2';
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
