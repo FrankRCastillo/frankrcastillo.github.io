@@ -424,12 +424,12 @@ function newDeskToolbar() {
         barBtn.setAttribute('class', 'deskButton');
         barBtn.onclick = (e) => {
             var allBtn = document.getElementsByClassName('deskButton');
-            bringWindowToFront(e.id);
+            bringWindowToFront(e.toElement.textContent);
             Array.prototype.forEach.call(allBtn, (x) => {
                 x.style.color = '#ffa500';
             });
 
-            e.style.color = '#ffffff';
+            e.toElement.style.color = '#ffffff';
         };
         barDiv.appendChild(barBtn);
     }
