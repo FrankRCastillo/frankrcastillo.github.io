@@ -579,7 +579,7 @@ async function main() {
 
     await newSession();
 
-    body.appendChild(newDeskToolbar());
+    body.appendChild(await newDeskToolbar());
 
     cascadeWindows();
 }
