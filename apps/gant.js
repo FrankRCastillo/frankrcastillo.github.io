@@ -15,7 +15,7 @@ export async function gant(consoleName) {
     gnt.setAttribute('class', 'GanttChart');
     out.appendChild(gnt);
     gnt.appendChild(newGanttToolbar(consoleName));
-    gnt.appendChild(newGanttPage(year, 1));
+    gnt.appendChild(newGanttPage(year, 1, consoleName));
 }
 
 function newGanttToolbar(consoleName) {
@@ -101,7 +101,7 @@ function ganttTimeShift(dir, consoleName) {
         eyr.value = nendyr + nscale;
 
         tbl.remove();
-        gnt.appendChild(newGanttPage(eyr.value, scale));
+        gnt.appendChild(newGanttPage(eyr.value, scale, consoleName));
     }
 }
 
