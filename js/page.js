@@ -563,10 +563,13 @@ async function newSession(sessName) {
 }
 
 async function main() {
+    var body = document.body;
+
     await newSession('console1');
     await newSession('console2');
     await newSession('console3');
     await newSession('console4');
+
     body.appendChild(newDeskToolbar());
 }
 
