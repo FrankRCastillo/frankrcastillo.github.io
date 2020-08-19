@@ -296,7 +296,7 @@ function convertDataURIToBinary(dataURI) {
 async function cmdMgr(input, consoleName) {
     if (input != '') {
         clearInterval(window.appinterval);
-        clear();
+        clear(consoleName);
 
         let cmd = input.toLowerCase();
 
