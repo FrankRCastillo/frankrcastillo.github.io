@@ -145,6 +145,7 @@ input
 ; height     : 20px
 ; z-index    : 30000
 ; display    : inline-block
+; cursor     : pointer
 }
 
 .console
