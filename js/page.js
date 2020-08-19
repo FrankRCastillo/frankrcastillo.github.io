@@ -419,16 +419,13 @@ function newDeskToolbar() {
         barBtn.textContent  = allwin[i].id;
         barBtn.setAttribute('class', 'deskButton');
         barBtn.onclick = () => {
-            var allwin = document.getElementsByClassName('windowFrame');
-            for (var i = 0; i < allwin.length; i++) {
-                if (this.textContent == allwin[i].id) {
-                    allwin[i].style.zIndex = 10000;
-                    this.style.color = '#ffffff';
-                } else {
-                    allwin[i].style.zIndex = 0;
-                    this.style.color = '#ffa500';
-                }
-            }
+            var allBtn = document.getElementsByClassName('deskButton');
+            bringWindowToFront(this);
+            Array.prototype.forEach.call(allBtn, (x) => {
+                x.style.color = '#ffa500';
+            });
+
+            this.style.color = '#ffffff';
         };
         barDiv.appendChild(barBtn);
     }
