@@ -22,7 +22,7 @@ async function newConsole(consoleName) {
 
     nlnk.textContent = 'Expand';
     nlnk.addEventListener('click', async () => {
-        nlnk.textContent = ( nlk.textContent == 'Expand' ? 'Restore' : 'Expand' );
+        nlnk.textContent = ( nlnk.textContent == 'Expand' ? 'Restore' : 'Expand' );
         let news = await import('/apps/news.js');
         news.news(consoleName);
     });
