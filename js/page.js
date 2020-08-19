@@ -210,13 +210,9 @@ function getRandomInt(min, max) {
 
 async function readFile(url) {
     try{
-//        let corsarr = corsProxy(url);
-        let procurl = url; //corsarr[0];
-//        let header  = corsarr[1];
-        let header  = { headers : {} }; 
-
-        header['headers']['Access-Control-Request-Headers'] = 'origin';
-        header['headers']['Access-Control-Allow-Origin']    = '*';
+        let corsarr = corsProxy(url, false);
+        let procurl = corsarr[0];
+        let header  = corsarr[1];
         
         switch (url.slice(-3)) {
             case 'pdf':
@@ -236,7 +232,7 @@ async function readFile(url) {
     }
 }
 
-function corsProxy(url) {
+function corsProxy(url, useProxy) {
     let   header   = { headers : {} };
     const currhost = new URL(window.location.href);
     const readhost = new URL(url, currhost);
@@ -247,13 +243,19 @@ function corsProxy(url) {
     
     if (homeurls.includes(readhost.hostname)){
         return [ readhost.href, header ];
-    } else{
-        const corsarr  = [ [ 'https://cors-anywhere.herokuapp.com/' , true  ]
-                         , [ 'https://api.allorigins.win/raw?url='  , false ]
-                         ];
-        const randidx  = getRandomInt(0, corsarr.length - 1);
 
-        if(corsarr[randidx][1]) {
+    } else{
+        if (useProxy) {
+            const corsarr  = [ [ 'https://cors-anywhere.herokuapp.com/' , true  ]
+                             , [ 'https://api.allorigins.win/raw?url='  , false ]
+                             ];
+            const randidx  = getRandomInt(0, corsarr.length - 1);
+
+            if(corsarr[randidx][1]) {
+                header['headers']['Access-Control-Request-Headers'] = 'origin';
+                header['headers']['Access-Control-Allow-Origin']    = '*';
+            }
+        } else {
             header['headers']['Access-Control-Request-Headers'] = 'origin';
             header['headers']['Access-Control-Allow-Origin']    = '*';
         }
