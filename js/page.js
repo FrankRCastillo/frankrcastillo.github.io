@@ -525,9 +525,13 @@ async function main() {
 
     body.appendChild(await newSession('console1'));
     body.appendChild(await newSession('console2'));
+    body.appendChild(await newSession('console3'));
+    body.appendChild(await newSession('console4'));
 
     home('console1');
     home('console2');
+    home('console3');
+    home('console4');
 }
 
 main()
