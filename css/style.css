@@ -94,16 +94,15 @@ input
 }
 
 .windowFrame
-{ border   : 1px solid #ffffff
+{ border   : 1px solid #ffa500
 ; height   : 768px
 ; width    : 1024px
 ; position : absolute
-; z-index  : 100001;
 }
 
 .windowHeader
-{ background : #ffffff
-; color      : #000000
+{ background : #101530
+; color      : #ffffff
 }
 
 .windowBody
