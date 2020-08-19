@@ -131,7 +131,8 @@ input
 }
 
 .deskToolbar
-{ background : #101530
+{ border     : 1px solid #ffa500
+; background : #101530
 ; color      : #ffa500
 ; width      : calc(100% - 2px)
 ; z-index    : 20000
