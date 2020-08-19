@@ -411,7 +411,11 @@ function newWindow(sessName, content) {
 function newDeskToolbar() {
     var allwin = document.getElementsByClassName('windowFrame');
     var barDiv = document.createElement('div');
-    
+    // 0x271A heavy cross               : add
+    // 0x2265 greater than              : new console
+    // 0x25EB square with vertical line : tile 
+    // 0x29C9 overlapping squares       : cascade
+
     barDiv.setAttribute('class', 'deskToolbar');
 
     for (var i = 0; i < allwin.length; i++) {
