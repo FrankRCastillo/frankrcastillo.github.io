@@ -158,7 +158,6 @@ input
 .GanttToolbar
 { position         : fixed
 ; background-color : #000000
-; z-index          : 100001
 }
 
 .outtext
@@ -235,7 +234,6 @@ input
 ; height           : 25px
 ; width            : calc(100% - 20px)
 ; position         : fixed
-; z-index          : 100001
 ; background-color : #000000
 }
 
@@ -337,7 +335,6 @@ input
 ; border-radius    : 2px
 ; padding          : 5px 0
 ; position         : absolute
-; z-index          : 100001
 ; top              : 10px
 ; left             : 10px
 ; border           : 1px solid #ffa500
