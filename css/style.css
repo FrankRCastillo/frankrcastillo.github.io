@@ -101,9 +101,8 @@ input
 }
 
 .windowHeader
-{ background : #000000
+{ background : #101530
 ; color      : #ffa500
-; border     : 1px solid #ffa500
 }
 
 .windowBody
@@ -132,19 +131,19 @@ input
 }
 
 .deskToolbar
-{ border     : 1px solid #ffa500
-; background : #000000
-; font-color : #ffa500
-; width      : 100%
-; z-index    : 10000
+{ background : #101530
+; color      : #ffa500
+; width      : calc(100% - 2px)
+; z-index    : 20000
+; position   : fixed
 }
 
 .deskButton
 { border     : 1px solid #ffa500
 ; background : #000000
-; font-color : #ffa500
-; width      : fit-content
+; color      : #ffa500
 ; height     : 20px
+; z-index    : 30000
 }
 
 .console
