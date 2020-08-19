@@ -369,7 +369,7 @@ function print(text, consoleName) {
     }
 }
 
-function newWindow(header, content) {
+function newWindow(sessName, content) {
     let winDiv = document.createElement('div');
     let winHdr = document.createElement('div');
     let hdrGrp = document.createElement('div');
@@ -379,7 +379,8 @@ function newWindow(header, content) {
     let maxBtn = document.createElement('div');
     let clsBtn = document.createElement('div');
 
-    winDiv.setAttribute('class', 'windowTemplate');
+    winDiv.setAttribute('class', 'windowFrame');
+    winDiv.setAttribute('id', 'windowFrame_' + sessName);
     winHdr.setAttribute('class', 'windowHeader');
     winBdy.setAttribute('class', 'windowBody');
     rszBtn.setAttribute('class', 'windowResize');
@@ -501,30 +502,18 @@ function tableToArray(txt, delim) {
               .map(x => x.split(delim));
 }
 
-function scaleRelativeTo(elem, parent) {
-    let csty = getComputedStyle(elem);
-    let parw = parent.style.width;
-    let parh = parent.style.height;
-    let ofst = 50;
-
-    if (parw < parh) {
-        elem.style.transform = 'scale(calc(' + ( parw - ofst ) + ' / '
-                             + csty.width.replace('px', '') + '))';
-    } else {
-        elem.style.transform = 'scale(calc(' + ( parh - ofst ) + ' / '
-                             + csty.height.replace('px', '') + '))';
-    }
-
+async function newSession(sessName) {
+    return newWindow(sessName, await newConsole(sessName));
 }
 
 async function main() {
     let body = document.body;
 
-    body.appendChild(newWindow('Console 1', await newConsole('cons1')));
-    body.appendChild(newWindow('Console 2', await newConsole('cons2')));
+    body.appendChild(await newSession('console1'));
+    body.appendChild(await newSession('console2'));
 
-    home('cons1');
-    home('cons2');
+    home('console1');
+    home('console2');
 }
 
 main()
