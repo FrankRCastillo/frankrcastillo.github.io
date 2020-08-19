@@ -423,8 +423,10 @@ function newDeskToolbar() {
             for (var i = 0; i < allwin.length; i++) {
                 if (this.textContent == allwin[i].id) {
                     allwin[i].style.zIndex = 10000;
+                    this.style.color = '#ffffff';
                 } else {
                     allwin[i].style.zIndex = 0;
+                    this.style.color = '#ffa500';
                 }
             }
         };

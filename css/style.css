@@ -101,9 +101,9 @@ input
 }
 
 .windowHeader
-{ background : #ffa500
-; color      : #000000
-; border     : 1px solid #000000
+{ background : #000000
+; color      : #ffa500
+; border     : 1px solid #ffa500
 }
 
 .windowBody
