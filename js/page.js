@@ -424,7 +424,7 @@ function newDeskToolbar() {
         barBtn.setAttribute('class', 'deskButton');
         barBtn.onclick = (e) => {
             var allBtn = document.getElementsByClassName('deskButton');
-            bringWindowToFront(e.toElement.textContent);
+            bringWindowToFront('windowFrame_' + e.toElement.textContent);
             Array.prototype.forEach.call(allBtn, (x) => {
                 x.style.color = '#ffa500';
             });
