@@ -562,11 +562,11 @@ async function newSession(sessName) {
 async function main() {
     let body = document.body;
 
-    body.appendChild(newDeskToolbar());
     body.appendChild(await newSession('console1'));
     body.appendChild(await newSession('console2'));
     body.appendChild(await newSession('console3'));
     body.appendChild(await newSession('console4'));
+    body.appendChild(newDeskToolbar());
 
     home('console1');
     home('console2');
