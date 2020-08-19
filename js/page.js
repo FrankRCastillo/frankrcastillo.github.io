@@ -425,9 +425,11 @@ async function newDeskToolbar() {
     tleBtn.textContent = '\u25EB';
     casBtn.textContent = '\u29C9';
 
-    newBtn.onclick = async () => { await newSession(sessName); }
+    newBtn.onclick = async () => { await newSession(); }
     tleBtn.onclick = () => { tileWindows(); }
     casBtn.onclick = () => { cascadeWindows(); }
+
+    [newBtn, tleBtn, casBtn].forEach(x => {barDiv.appendChild(x)});
 
     Array.prototype.forEach.call(allwin, (x) => {
         let barBtn = document.createElement('div');
@@ -435,7 +437,7 @@ async function newDeskToolbar() {
         barBtn.setAttribute('class', 'deskButton');
         barBtn.onclick = (e) => {
             let allBtn = document.getElementsByClassName('deskButton');
-            bringWindowToForm('windowFrame_' + e.toElement.textContent);
+            bringWindowToFront('windowFrame_' + e.toElement.textContent);
             Array.prototype.forEach.call(allBtn, (m) => {
                 m.style.color = '#ffa500';
             });
