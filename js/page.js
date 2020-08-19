@@ -414,9 +414,9 @@ function bringWindowToFront(e) {
 
     for (var i = 0; i < allwin.length; i++) {
         if (parent.id == allwin[i].id) {
-            allwin[i].zIndex = 10000;
+            allwin[i].style.zIndex = 10000;
         } else {
-            allwin[i].zIndex = 0;
+            allwin[i].style.zIndex = 0;
         }
     }
 }
