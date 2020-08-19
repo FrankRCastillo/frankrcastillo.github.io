@@ -556,22 +556,18 @@ function tableToArray(txt, delim) {
 }
 
 async function newSession(sessName) {
-    return newWindow(sessName, await newConsole(sessName));
+    var body = document.body;
+
+    body.appendChild(newWindow(sessName, await newConsole(sessName)));
+    home(sessName);
 }
 
 async function main() {
-    let body = document.body;
-
-    body.appendChild(await newSession('console1'));
-    body.appendChild(await newSession('console2'));
-    body.appendChild(await newSession('console3'));
-    body.appendChild(await newSession('console4'));
+    await newSession('console1');
+    await newSession('console2');
+    await newSession('console3');
+    await newSession('console4');
     body.appendChild(newDeskToolbar());
-
-    home('console1');
-    home('console2');
-    home('console3');
-    home('console4');
 }
 
 main()
