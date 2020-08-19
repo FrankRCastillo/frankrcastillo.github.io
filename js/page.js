@@ -210,9 +210,13 @@ function getRandomInt(min, max) {
 
 async function readFile(url) {
     try{
-        let corsarr = corsProxy(url);
+//        let corsarr = corsProxy(url);
         let procurl = url; //corsarr[0];
-        let header  = corsarr[1];
+//        let header  = corsarr[1];
+        let header  = { headers : {} }; 
+
+        header['headers']['Access-Control-Request-Headers'] = 'origin';
+        header['headers']['Access-Control-Allow-Origin']    = '*';
         
         switch (url.slice(-3)) {
             case 'pdf':
@@ -232,7 +236,7 @@ async function readFile(url) {
     }
 }
 
-function corsProxy(url, getHdrs) {
+function corsProxy(url) {
     let   header   = { headers : {} };
     const currhost = new URL(window.location.href);
     const readhost = new URL(url, currhost);
@@ -249,7 +253,7 @@ function corsProxy(url, getHdrs) {
                          ];
         const randidx  = getRandomInt(0, corsarr.length - 1);
 
-        if(corsarr[randidx][1] || getHdrs) {
+        if(corsarr[randidx][1]) {
             header['headers']['Access-Control-Request-Headers'] = 'origin';
             header['headers']['Access-Control-Allow-Origin']    = '*';
         }
