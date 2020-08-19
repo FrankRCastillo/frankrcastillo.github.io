@@ -421,7 +421,7 @@ async function newDeskToolbar() {
     casBtn.textContent = '\u29C9';
 
     newBtn.onclick = async () => {
-        let winDiv = document.getElementsByClassName('windowsFrame');
+        let winDiv = document.getElementsByClassName('windowFrame');
         let barDiv = document.getElementById('deskToolbar');
         let newBtn = document.createElement('div');
         newBtn.setAttribute('class', 'deskButton');
