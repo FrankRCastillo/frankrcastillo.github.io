@@ -196,7 +196,7 @@ input
 { width  : 100%
 }
 
-#mapdata
+.mapdata
 { border     : 0px
 ; margin     : 0px 0px 0px 0px
 ; padding    : 0px 0px 0px 0px
@@ -209,7 +209,7 @@ input
 ; background : #0a0a19
 }
 
-#mapframe
+.mapframe
 { border           : 0px
 ; margin           : 0px 0px 0px 0px
 ; padding          : 0px 0px 0px 0px
@@ -219,6 +219,28 @@ input
 ; float            : left
 ; background-color : #aad3df
 ; left             : 250px
+}
+
+.mapselect
+{ height   : 26px
+; width    : 250px
+; float    : left
+}
+
+.mapbtn
+{ height : 26px
+; width  : 60px
+; float  : left
+; cursor : pointer
+}
+
+.maptools
+{ height     : 26px
+; width      : 100%
+; border     : 0px
+; margin     : 0px 0px 0px 0px
+; padding    : 0px 0px 0px 0px
+; box-sizing : border-box
 }
 
 .tabencl
@@ -356,28 +378,6 @@ input
 ; z-index    : 1
 }
 
-#mapselect
-{ height   : 26px
-; width    : 250px
-; float    : left
-}
-
-.mapbtn
-{ height : 26px
-; width  : 60px
-; float  : left
-; cursor : pointer
-}
-
-#maptools
-{ height     : 26px
-; width      : 100%
-; border     : 0px
-; margin     : 0px 0px 0px 0px
-; padding    : 0px 0px 0px 0px
-; box-sizing : border-box
-}
-
 .menubtn
 { border     : 0px
 ; padding    : 0px 0px 0px 0px
@@ -400,13 +400,13 @@ input
 ; float        : left
 }
 
-#vstr
+.vstr
 { white-space : nowrap
 ; font-family : monospace
 ; font-size   : 12px
 }
 
-#xmark
+.xmark
 { animation  : blink 1s infinite
 ; color      : #ffa500
 }

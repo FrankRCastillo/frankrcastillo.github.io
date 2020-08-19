@@ -55,11 +55,11 @@ export async function vstr(consoleName) {
     }
     let ipdata   = await readFile("https://freegeoip.app/json/");
     let data     = JSON.parse(ipdata);
-    let visitMsg = "<div id='vstr'>";
+    let visitMsg = "<div class='vstr'>";
     let coordx   = parseInt((-0.1 * data.latitude) + 11);
     let coordy   = parseInt((0.222 * data.longitude) + 39);
 
-    worldmap[coordx][coordy] = "<b id='xmark'>X</b>";
+    worldmap[coordx][coordy] = "<b class='xmark'>X</b>";
 
     for (let i = 0; i < worldmap.length; i++) {
         let ipInfo = "";
