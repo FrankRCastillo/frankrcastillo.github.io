@@ -425,10 +425,10 @@ async function newDeskToolbar() {
         let winDiv = document.getElementsByClassName('windowFrame');
         let barDiv = document.getElementById('deskToolbar');
         let newBtn = document.createElement('div');
-        newBtn.setAttribute('class', 'deskButton');
-        newBtn.onclick = (e) => { enableDeskButton(e) }
-        await newSession();
         newBtn.textContent = winDiv.length;
+        newBtn.onclick = (e) => { enableDeskButton(e) }
+        newBtn.setAttribute('class', 'deskButton');
+        await newSession();
         barDiv.appendChild(newBtn);
         cascadeWindows();
     }
