@@ -408,8 +408,8 @@ function newWindow(sessName, content) {
 }
 
 function bringWindowToFront(e) {
-    e = e || window.event;
-    e.preventDefault();
+    var allwin = document.getElementsByClassName('windowFrame');
+    var wincnt = allwin.length;
 }
 
 function enableWindowMode(e, winDiv, method) {
