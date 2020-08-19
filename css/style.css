@@ -130,7 +130,7 @@ input
 ; cursor  : pointer
 }
 
-.deskToolbar
+#deskToolbar
 { border     : 1px solid #ffa500
 ; background : #101530
 ; color      : #ffa500

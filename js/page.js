@@ -415,18 +415,24 @@ async function newDeskToolbar() {
     let tleBtn = document.createElement('div');
     let casBtn = document.createElement('div');
 
-    // 0x271A heavy cross               : new console
-    // 0x2265 greater than              : command line
-    // 0x25EB square with vertical line : tile 
-    // 0x29C9 overlapping squares       : cascade
-
-    barDiv.setAttribute('class', 'deskToolbar');
+    barDiv.setAttribute('id', 'deskToolbar');
     newBtn.textContent = '\u271A';
     tleBtn.textContent = '\u25EB';
     casBtn.textContent = '\u29C9';
 
-    newBtn.onclick = async () => { await newSession(); }
+    newBtn.onclick = async () => {
+        let winDiv = document.getElementsByClassName('windowsFrame');
+        let barDiv = document.getElementById('deskToolbar');
+        let newBtn = document.createElement('div');
+        newBtn.textContent = winDiv.length;
+        newBtn.setAttribute('class', 'deskButton');
+        newBtn.onclick = (e) => { enableDeskButton(e) }
+        await newSession();
+        barDiv.appendChild(newBtn);
+    }
+
     tleBtn.onclick = () => { tileWindows(); }
+
     casBtn.onclick = () => { cascadeWindows(); }
 
     [newBtn, tleBtn, casBtn].forEach(x => {
@@ -438,19 +444,21 @@ async function newDeskToolbar() {
         let barBtn = document.createElement('div');
         barBtn.textContent = x.id.split('_')[1];
         barBtn.setAttribute('class', 'deskButton');
-        barBtn.onclick = (e) => {
-            let allBtn = document.getElementsByClassName('deskButton');
-            bringWindowToFront('windowFrame_' + e.toElement.textContent);
-            Array.prototype.forEach.call(allBtn, (m) => {
-                m.style.color = '#ffa500';
-            });
-
-            e.toElement.style.color = '#ffffff';
-        }
+        barBtn.onclick = (e) => { enableDeskButton(e); }
         barDiv.appendChild(barBtn);
     });
 
     return barDiv;
+}
+
+function enableDeskButton(e) {
+    let allBtn = document.getElementsByClassName('deskButton');
+    bringWindowToFront('windowFrame_' + e.toElement.textContent);
+    Array.prototype.forEach.call(allBtn, (m) => {
+        m.style.color = '#ffa500';
+    });
+
+    e.toElement.style.color = '#ffffff';
 }
 
 function cascadeWindows() {
@@ -458,8 +466,10 @@ function cascadeWindows() {
 
     Array.prototype.forEach.call(allwin, (x, i) => {
         let pxl = ((i + 1) * 20) + 'px';
-        x.style.top  = pxl;
-        x.style.left = pxl;
+        x.style.top    = pxl;
+        x.style.left   = pxl;
+        x.style.width  = '1024px';
+        x.style.height = '768px';
     });
 }
 
