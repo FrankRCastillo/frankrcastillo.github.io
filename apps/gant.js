@@ -75,7 +75,8 @@ function newGanttToolbar(consoleName) {
         ganttTimeShift(-1)
     });
 
-    bar.setAttribute('id', 'GanttToolbar');
+    bar.setAttribute('id', 'GanttToolbar_' + consoleName);
+    bar.setAttribute('class', 'GanttToolbar');
     bar.appendChild(prs);
     bar.appendChild(nxt);
     bar.appendChild(prv);
