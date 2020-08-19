@@ -210,8 +210,8 @@ function getRandomInt(min, max) {
 
 async function readFile(url) {
     try{
-        let corsarr = //corsProxy(url);
-        let procurl = corsarr[0];
+        let corsarr = corsProxy(url);
+        let procurl = url; //corsarr[0];
         let header  = corsarr[1];
         
         switch (url.slice(-3)) {
