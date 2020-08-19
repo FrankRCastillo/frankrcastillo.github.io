@@ -338,6 +338,7 @@ input
 ; top           : 10px
 ; left          : 10px
 ; border        : 1px solid #ffa500
+; z-index       : 0
 }
 
 .tooltip .tooltiptext::after
@@ -352,8 +353,7 @@ input
 
 .tooltip:hover .tooltiptext
 { visibility : visible
-; background : #000000
-; color      : #ffa500
+; z-index    : 1
 }
 
 #mapselect
