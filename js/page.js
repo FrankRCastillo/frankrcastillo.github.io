@@ -393,7 +393,7 @@ function newWindow(sessName, content) {
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
     clsBtn.textContent = '\u22A0';
-    winDiv.onmousedown = () => { bringWindowToFront(winDiv); };
+    winDiv.onmousedown = () => { bringWindowToFront(winDiv.id); };
     rszBtn.onmousedown = (e) => { enableWindowMode(e, winDiv, 'resize'); };
     winHdr.onmousedown = (e) => { enableWindowMode(e, winDiv, 'move'); };
     hdrGrp.appendChild(minBtn);
@@ -420,7 +420,7 @@ function newDeskToolbar() {
         barBtn.setAttribute('class', 'deskButton');
         barBtn.onclick = () => {
             var allBtn = document.getElementsByClassName('deskButton');
-            bringWindowToFront(this);
+            bringWindowToFront(this.id);
             Array.prototype.forEach.call(allBtn, (x) => {
                 x.style.color = '#ffa500';
             });
@@ -444,11 +444,11 @@ function cascadeWindows() {
 
 }
 
-function bringWindowToFront(elem) {
+function bringWindowToFront(id) {
     var allwin = document.getElementsByClassName('windowFrame');
 
     for (var i = 0; i < allwin.length; i++) {
-        if (elem.id == allwin[i].id) {
+        if (id == allwin[i].id) {
             allwin[i].style.zIndex = 10000;
         } else {
             allwin[i].style.zIndex = 0;
