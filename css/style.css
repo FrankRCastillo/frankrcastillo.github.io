@@ -325,19 +325,19 @@ input
 }
 
 .tooltip .tooltiptext
-{ visibility       : hidden
-; width            : 225px
-; font-family      : courier
-; font-size        : 12px
-; background-color : #000000
-; color            : #ffa500
-; text-align       : left
-; border-radius    : 2px
-; padding          : 5px 0
-; position         : absolute
-; top              : 10px
-; left             : 10px
-; border           : 1px solid #ffa500
+{ visibility    : hidden
+; width         : 225px
+; font-family   : courier
+; font-size     : 12px
+; background    : #000000
+; color         : #ffa500
+; text-align    : left
+; border-radius : 2px
+; padding       : 5px 0
+; position      : absolute
+; top           : 10px
+; left          : 10px
+; border        : 1px solid #ffa500
 }
 
 .tooltip .tooltiptext::after
@@ -347,12 +347,13 @@ input
 ; margin-top       : -5px
 ; font-family      : courier
 ; font-size        : 12px
-; background-color : #ffa500
 ; color            : #000000
 }
 
 .tooltip:hover .tooltiptext
 { visibility : visible
+; background : #000000
+; color      : #ffa500
 }
 
 #mapselect
