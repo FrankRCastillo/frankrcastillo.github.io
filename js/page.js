@@ -388,7 +388,7 @@ function newWindow(sessName, content) {
     minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
     maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
     clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
-    winHdr.textContent = header;
+    winHdr.textContent = sessName;
     rszBtn.textContent = '\u25E2';
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
