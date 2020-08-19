@@ -420,7 +420,7 @@ function newDeskToolbar() {
 
     for (var i = 0; i < allwin.length; i++) {
         var barBtn = document.createElement('div');
-        barBtn.textContent  = allwin[i].id;
+        barBtn.textContent  = allwin[i].id.split('_')[1];
         barBtn.setAttribute('class', 'deskButton');
         barBtn.onclick = () => {
             var allBtn = document.getElementsByClassName('deskButton');
