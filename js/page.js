@@ -408,56 +408,67 @@ function newWindow(sessName, content) {
     return winDiv;
 }
 
-function newDeskToolbar() {
-    var allwin = document.getElementsByClassName('windowFrame');
-    var barDiv = document.createElement('div');
-    // 0x271A heavy cross               : add
-    // 0x2265 greater than              : new console
+async function newDeskToolbar() {
+    let allwin = document.getElementsByClassName('windowFrame');
+    let barDiv = document.createElement('div');
+    let newBtn = document.createElement('div');
+    let tleBtn = document.createElement('div');
+    let casBtn = document.createElement('div');
+
+    // 0x271A heavy cross               : new console
+    // 0x2265 greater than              : command line
     // 0x25EB square with vertical line : tile 
     // 0x29C9 overlapping squares       : cascade
 
     barDiv.setAttribute('class', 'deskToolbar');
+    newBtn.textContent = '\u271A';
+    tleBtn.textContent = '\u25EB';
+    casBtn.textContent = '\u29C9';
 
-    for (var i = 0; i < allwin.length; i++) {
-        var barBtn = document.createElement('div');
-        barBtn.textContent  = allwin[i].id.split('_')[1];
+    newBtn.onclick = async () => { await newSession(sessName); }
+    tleBtn.onclick = () => { tileWindows(); }
+    casBtn.onclick = () => { cascadeWindows(); }
+
+    Array.prototype.forEach.call(allwin, (x) => {
+        let barBtn = document.createElement('div');
+        barBtn.textContent = x.id.split('_')[1];
         barBtn.setAttribute('class', 'deskButton');
         barBtn.onclick = (e) => {
-            var allBtn = document.getElementsByClassName('deskButton');
-            bringWindowToFront('windowFrame_' + e.toElement.textContent);
-            Array.prototype.forEach.call(allBtn, (x) => {
-                x.style.color = '#ffa500';
+            let allBtn = document.getElementsByClassName('deskButton');
+            bringWindowToForm('windowFrame_' + e.toElement.textContent);
+            Array.prototype.forEach.call(allBtn, (m) => {
+                m.style.color = '#ffa500';
             });
 
             e.toElement.style.color = '#ffffff';
-        };
+        }
         barDiv.appendChild(barBtn);
-    }
+    });
 
     return barDiv;
 }
 
-function tileWindows() {
-    var allwin = document.getElementsByClassName('windowFrame');
+function cascadeWindows() {
+    let allwin = document.getElementsByClassName('windowFrame');
 
-
+    Array.prototype.forEach.call(allwin, (x, i) => {
+        let pxl = ((i + 1) * 20) + 'px';
+        x.style.top  = pxl;
+        x.style.left = pxl;
+    });
 }
 
-function cascadeWindows() {
-    var allwin = document.getElementsByClassName('windowFrame');
+function tileWindows() {
+    let allwin = document.getElementsByClassName('windowFrame');
 
 }
 
 function bringWindowToFront(id) {
-    var allwin = document.getElementsByClassName('windowFrame');
+    let allwin = document.getElementsByClassName('windowFrame');
 
-    for (var i = 0; i < allwin.length; i++) {
-        if (id == allwin[i].id) {
-            allwin[i].style.zIndex = 10000;
-        } else {
-            allwin[i].style.zIndex = 0;
-        }
-    }
+    Array.prototype.forEach.call(allwin, (x) => {
+        x.style.zIndex = (id == x.id ? 10000 : 0);
+    });
 }
 
 function enableWindowMode(e, winDiv, method) {
@@ -555,22 +566,22 @@ function tableToArray(txt, delim) {
               .map(x => x.split(delim));
 }
 
-async function newSession(sessName) {
-    var body = document.body;
+async function newSession() {
+    let body = document.body;
+    var sess = document.getElementsByClassName('windowFrame').length;
 
-    body.appendChild(newWindow(sessName, await newConsole(sessName)));
-    home(sessName);
+    body.appendChild(newWindow(sess, await newConsole(sess)));
+    home(sess);
 }
 
 async function main() {
-    var body = document.body;
+    let body = document.body;
 
-    await newSession('console1');
-    await newSession('console2');
-    await newSession('console3');
-    await newSession('console4');
+    await newSession();
 
     body.appendChild(newDeskToolbar());
+
+    cascadeWindows();
 }
 
 main()
