@@ -90,7 +90,7 @@ function newCtryPage(consoleName) {
             if (grp == null) {
                 grp = document.createElement('optgroup');
                 grp.setAttribute('label', window.ctryData[i][3]);
-                grp.setAttribute('id', window.ctryData[i][3] + '_' + consoleName);
+                grp.setAttribute('id', window.ctryData[i][3]);
             }
 
             opt.setAttribute('value', window.ctryData[i][0]);
