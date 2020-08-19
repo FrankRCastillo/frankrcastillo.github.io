@@ -23,7 +23,7 @@ async function newConsole(consoleName) {
     nlnk.textContent = 'Toggle';
     nlnk.addEventListener('click', async () => {
         let news = await import('/apps/news.js');
-        news.news();
+        news.news(consoleName);
     });
 
     nhdr.appendChild(nlnk);
@@ -475,8 +475,7 @@ async function newSelector(consoleName) {
     }
 
     cmdSelect.onclick = (e) =>  {
-        cmdMgr(e.path[0][e.path[0].selectedIndex].value, consoleName);
-    };
+        cmdMgr(e.path[0][e.path[0].selectedIndex].value, consoleName); };
 
     return cmdSelect;
 }
