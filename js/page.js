@@ -424,11 +424,12 @@ async function newDeskToolbar() {
         let winDiv = document.getElementsByClassName('windowsFrame');
         let barDiv = document.getElementById('deskToolbar');
         let newBtn = document.createElement('div');
-        newBtn.textContent = winDiv.length;
         newBtn.setAttribute('class', 'deskButton');
         newBtn.onclick = (e) => { enableDeskButton(e) }
         await newSession();
+        newBtn.textContent = winDiv.length;
         barDiv.appendChild(newBtn);
+        cascadeWindows();
     }
 
     tleBtn.onclick = () => { tileWindows(); }
