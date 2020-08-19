@@ -393,7 +393,7 @@ function newWindow(sessName, content) {
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
     clsBtn.textContent = '\u22A0';
-    winDiv.onmousedown = (e) => { bringWindowToFront(e, winDiv); };
+    winDiv.onmousedown = (e) => { bringWindowToFront(e); };
     rszBtn.onmousedown = (e) => { enableWindowMode(e, winDiv, 'resize'); };
     winHdr.onmousedown = (e) => { enableWindowMode(e, winDiv, 'move'); };
     hdrGrp.appendChild(minBtn);
@@ -408,12 +408,13 @@ function newWindow(sessName, content) {
     return winDiv;
 }
 
-function bringWindowToFront(e, winDiv) {
+function bringWindowToFront(e) {
     var allwin = document.getElementsByClassName('windowFrame');
-    
+    var parent = e.path[1];
+
     for (var i = 0; i < allwin.length; i++) {
-        if (winDiv.id == allwin[i].id) {
-            winDiv.zIndex = 1;
+        if (parent.id == allwin[i].id) {
+            parent.zIndex = 1;
         } else {
             allwin[i].zIndex = 0;
         }
