@@ -407,6 +407,11 @@ function newWindow(sessName, content) {
     return winDiv;
 }
 
+function bringWindowToFront(e) {
+    e = e || window.event;
+    e.preventDefault();
+}
+
 function enableWindowMode(e, winDiv, method) {
     e = e || window.event;
     e.preventDefault();
