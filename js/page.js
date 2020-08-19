@@ -414,7 +414,7 @@ function bringWindowToFront(e) {
 
     for (var i = 0; i < allwin.length; i++) {
         if (parent.id == allwin[i].id) {
-            parent.zIndex = 100000;
+            parent.zIndex = '10000';
         } else {
             allwin[i].zIndex = 0;
         }
