@@ -444,7 +444,7 @@ async function newDeskToolbar() {
         let barDiv = document.getElementById('deskToolbar');
         let newBtn = document.createElement('div');
         newBtn.textContent = winDiv.length;
-        newBtn.onclick = (e) => { enableDeskButton(e) }
+        newBtn.onclick = (e) => { enableDeskButton(e.toElement.textContent) }
         newBtn.setAttribute('class', 'deskButton');
         await newSession();
         barDiv.appendChild(newBtn);
@@ -464,21 +464,19 @@ async function newDeskToolbar() {
         let barBtn = document.createElement('div');
         barBtn.textContent = x.id.split('_')[1];
         barBtn.setAttribute('class', 'deskButton');
-        barBtn.onclick = (e) => { enableDeskButton(e); }
+        barBtn.onclick = (e) => { enableDeskButton(e.toElement.textContent); }
         barDiv.appendChild(barBtn);
     });
 
     return barDiv;
 }
 
-function enableDeskButton(e) {
+function enableDeskButton(id) {
     let allBtn = document.getElementsByClassName('deskButton');
-    bringWindowToFront('windowFrame_' + e.toElement.textContent);
+    bringWindowToFront('windowFrame_' + id);
     Array.prototype.forEach.call(allBtn, (m) => {
-        m.style.color = '#ffa500';
+        m.style.color = ( m.toElement.textContent == id ? '#ffffff' : '#ffa500' );
     });
-
-    e.toElement.style.color = '#ffffff';
 }
 
 function cascadeWindows() {
@@ -503,6 +501,7 @@ function bringWindowToFront(id) {
 
     Array.prototype.forEach.call(allwin, (x) => {
         x.style.zIndex = (id == x.id ? 10000 : 0);
+        enableDeskButton(x.id.split('_')[1]);
     });
 }
 
