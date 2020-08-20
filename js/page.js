@@ -444,7 +444,7 @@ async function newDeskToolbar() {
         let barDiv = document.getElementById('deskToolbar');
         let newBtn = document.createElement('div');
         newBtn.textContent = winDiv.length;
-        newBtn.onclick = (e) => { enableDeskButton(e.toElement.textContent) }
+        newBtn.onclick = (e) => { enableDeskButton(e.toElement.textContent, false) }
         newBtn.setAttribute('class', 'deskButton');
         await newSession();
         barDiv.appendChild(newBtn);
@@ -464,7 +464,7 @@ async function newDeskToolbar() {
         let barBtn = document.createElement('div');
         barBtn.textContent = x.id.split('_')[1];
         barBtn.setAttribute('class', 'deskButton');
-        barBtn.onclick = (e) => { enableDeskButton(e.toElement.textContent); }
+        barBtn.onclick = (e) => { enableDeskButton(e.toElement.textContent, false); }
         barDiv.appendChild(barBtn);
     });
 
