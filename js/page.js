@@ -507,7 +507,7 @@ function closeWindow(id) {
     if (allwin.length > 0) {
         Array.from(allwin)
              .filter(x => x.id == 'windowFrame_' + id)
-             .then(x => x.remove());
+             .forEach(x => x.remove());
     }
 }
 
