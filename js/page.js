@@ -490,25 +490,28 @@ function tileWindows() {
 
 function bringWindowToFront(id) {
     let allwin = document.getElementsByClassName('windowFrame');
-    let allBtn = document.getElementsByClassName('deskButton');
+    let allbtn = document.getElementsByClassName('deskButton');
 
     Array.prototype.forEach.call(allwin, (x) => {
         x.style.zIndex = (id == x.id ? 10000 : 0);
     });
 
-    Array.prototype.forEach.call(allBtn, (x) => {
+    Array.prototype.forEach.call(allbtn, (x) => {
         x.style.color = (x.textContent == id.split('_')[1] ? '#ffffff' : '#ffa500');
     });
 }
 
 function closeWindow(id) {
     let allwin = document.getElementsByClassName('windowFrame');
+    let allbtn = document.getElementsByClassName('deskButton');
 
-    if (allwin.length > 0) {
-        Array.from(allwin)
-             .filter(x => x.id == 'windowFrame_' + id)
-             .forEach(x => x.remove());
-    }
+    Array.from(allwin)
+         .filter(x => x.id == 'windowFrame_' + id)
+         .forEach(x => x.remove());
+
+    Array.from(allbtn)
+         .filter(x => x.textContent == id)
+         .forEach(x => x.remove());
 }
 
 function enableWindowMode(e, winDiv, method) {
