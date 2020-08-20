@@ -209,22 +209,30 @@ function getRandomInt(min, max) {
 }
 
 async function readFile(url) {
-    let corsarr = corsProxy(url, false);
-    let procurl = corsarr[0];
-    let header  = corsarr[1];
-    
-    switch (url.slice(-3)) {
-        case 'pdf':
-            header['headers']['Content-Type'] = 'application/pdf;base64';
-            return await fetch(procurl, header)
-                         .then(response => response.blob())
-                         .then(response => blobToBase64(response))
-                         .catch(() => console.log('Error getting ' + procurl));
+    let success = false;
 
-        default:
-            return await fetch(procurl, header)
-                         .then(response => response.text())
-                         .catch(() => console.log('Error getting ' + procurl));
+    while (!success) {
+        try {
+            let corsarr = corsProxy(url, true);
+            let procurl = corsarr[0];
+            let header  = corsarr[1];
+            
+            switch (url.slice(-3)) {
+                case 'pdf':
+                    header['headers']['Content-Type'] = 'application/pdf;base64';
+                    return await fetch(procurl, header)
+                                 .then(response => response.blob())
+                                 .then(response => blobToBase64(response))
+                                 .catch(() => console.log('Error getting ' + procurl));
+
+                default:
+                    return await fetch(procurl, header)
+                                 .then(response => response.text())
+                                 .catch(() => console.log('Error getting ' + procurl));
+            }
+        } catch(err) {
+            console.log(err.message + '\nthere was an error reading a URL. Retrying...');
+        }
     }
 }
 
