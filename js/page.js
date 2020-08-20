@@ -415,6 +415,7 @@ function newWindow(sessName, content) {
     winDiv.onmousedown = () => { bringWindowToFront(winDiv.id); };
     rszBtn.onmousedown = (e) => { enableWindowMode(e, winDiv, 'resize'); };
     winHdr.onmousedown = (e) => { enableWindowMode(e, winDiv, 'move'); };
+    clsBtn.onclick     = () => { closeWindow(winDiv.id); }
     hdrGrp.appendChild(minBtn);
     hdrGrp.appendChild(maxBtn);
     hdrGrp.appendChild(clsBtn);
@@ -498,6 +499,16 @@ function bringWindowToFront(id) {
     Array.prototype.forEach.call(allBtn, (x) => {
         x.style.color = (x.textContent == id.split('_')[1] ? '#ffffff' : '#ffa500');
     });
+}
+
+function closeWindow(id) {
+    let allwin = document.getElementsByClassName('windowFrame');
+
+    if (allwin.length > 0) {
+        Array.from(allwin)
+             .filter(x => x.id == 'windowFrame_' + id)
+             .then(x => x.remove());
+    }
 }
 
 function enableWindowMode(e, winDiv, method) {
