@@ -471,9 +471,9 @@ async function newDeskToolbar() {
     return barDiv;
 }
 
-function enableDeskButton(id) {
+function enableDeskButton(id, nofront) {
     let allBtn = document.getElementsByClassName('deskButton');
-    bringWindowToFront('windowFrame_' + id);
+    if (!nofront) { bringWindowToFront('windowFrame_' + id); };
     Array.prototype.forEach.call(allBtn, (m) => {
         m.style.color = ( m.toElement.textContent == id ? '#ffffff' : '#ffa500' );
     });
@@ -501,7 +501,7 @@ function bringWindowToFront(id) {
 
     Array.prototype.forEach.call(allwin, (x) => {
         x.style.zIndex = (id == x.id ? 10000 : 0);
-        enableDeskButton(x.id.split('_')[1]);
+        enableDeskButton(x.id.split('_')[1], true);
     });
 }
 
