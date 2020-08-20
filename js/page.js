@@ -448,7 +448,6 @@ async function newDeskToolbar() {
         newBtn.setAttribute('class', 'deskButton');
         await newSession();
         barDiv.appendChild(newBtn);
-        cascadeWindows();
     }
 
     tleBtn.onclick = () => { tileWindows(); }
