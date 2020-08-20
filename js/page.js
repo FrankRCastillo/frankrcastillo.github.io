@@ -432,12 +432,13 @@ async function newDeskToolbar() {
     let allwin = document.getElementsByClassName('windowFrame');
     let barDiv = document.createElement('div');
     let newBtn = document.createElement('div');
-    let tleBtn = document.createElement('div');
+    let Btn = document.createElement('div');
     let casBtn = document.createElement('div');
 
     barDiv.setAttribute('id', 'deskToolbar');
     newBtn.textContent = '\u271A';
-    tleBtn.textContent = '\u25EB';
+    vtlBtn.textContent = '\u25E7';
+    htlBtn.textContent = '\u2B13';
     casBtn.textContent = '\u29C9';
 
     newBtn.onclick = async () => {
