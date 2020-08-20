@@ -444,7 +444,7 @@ async function newDeskToolbar() {
         let barDiv = document.getElementById('deskToolbar');
         let newBtn = document.createElement('div');
         newBtn.textContent = winDiv.length;
-        newBtn.onclick = (e) => { enableDeskButton(e.toElement.textContent, true) }
+        newBtn.onclick = (e) => { bringWindowToFront(e.toElement.textContent); };
         newBtn.setAttribute('class', 'deskButton');
         await newSession();
         barDiv.appendChild(newBtn);
@@ -464,19 +464,11 @@ async function newDeskToolbar() {
         let barBtn = document.createElement('div');
         barBtn.textContent = x.id.split('_')[1];
         barBtn.setAttribute('class', 'deskButton');
-        barBtn.onclick = (e) => { enableDeskButton(e.toElement.textContent, true); }
+        barBtn.onclick = (e) => { bringWindowToFront(e.toElement.textContent); };
         barDiv.appendChild(barBtn);
     });
 
     return barDiv;
-}
-
-function enableDeskButton(id, bringFront) {
-    let allBtn = document.getElementsByClassName('deskButton');
-    if (bringFront) { bringWindowToFront('windowFrame_' + id); };
-    Array.prototype.forEach.call(allBtn, (m) => {
-        m.style.color = ( m.textContent == id ? '#ffffff' : '#ffa500' );
-    });
 }
 
 function cascadeWindows() {
@@ -498,11 +490,14 @@ function tileWindows() {
 
 function bringWindowToFront(id) {
     let allwin = document.getElementsByClassName('windowFrame');
+    let allBtn = document.getElementsByClassName('deskButton');
 
     Array.prototype.forEach.call(allwin, (x) => {
         x.style.zIndex = (id == x.id ? 10000 : 0);
-        // bringFront set to false since this function performs that operation
-        enableDeskButton(x.id.split('_')[1], false);
+    });
+
+    Array.prototype.forEach.call(allBtn, (x) => {
+        x.style.color = (x.textContent == id ? '#ffffff' : '#ffa500');
     });
 }
 
