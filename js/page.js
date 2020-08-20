@@ -497,7 +497,7 @@ function bringWindowToFront(id) {
     });
 
     Array.prototype.forEach.call(allBtn, (x) => {
-        x.style.color = (x.textContent == id ? '#ffffff' : '#ffa500');
+        x.style.color = (x.textContent == id.split('_')[1] ? '#ffffff' : '#ffa500');
     });
 }
 
