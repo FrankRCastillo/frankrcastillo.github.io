@@ -475,7 +475,7 @@ function enableDeskButton(id, nofront) {
     let allBtn = document.getElementsByClassName('deskButton');
     if (!nofront) { bringWindowToFront('windowFrame_' + id); };
     Array.prototype.forEach.call(allBtn, (m) => {
-        m.style.color = ( m.toElement.textContent == id ? '#ffffff' : '#ffa500' );
+        m.style.color = ( m.textContent == id ? '#ffffff' : '#ffa500' );
     });
 }
 
