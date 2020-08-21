@@ -454,7 +454,7 @@ async function newDeskToolbar() {
         let barDiv = document.getElementById('deskToolbar');
         let newBtn = document.createElement('div');
         newBtn.textContent = winDiv.length;
-        newBtn.onclick = (e) => { bringWindowToFront(e.toElement.textContent); };
+        newBtn.onclick = (e) => { bringWindowToFront('windowFrame_' + e.toElement.textContent); };
         newBtn.setAttribute('class', 'deskButton');
         await newSession();
         barDiv.appendChild(newBtn);
