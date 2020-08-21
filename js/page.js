@@ -508,7 +508,8 @@ function bringWindowToFront(id) {
     let allbtn = document.getElementsByClassName('deskButton');
 
     Array.prototype.forEach.call(allwin, (x) => {
-        x.style.zIndex = (id == x.id ? 10000 : 0);
+        x.style.zIndex  = (id == x.id ? 10000 : 0);
+        x.style.display = (x.style.display == 'hidden' ? 'block' : 'hidden');
         x.getElementsByClassName('windowHeader')[0].style.color = (id == x.id ? '#ffa500' : '#ffffff');
     });
 
