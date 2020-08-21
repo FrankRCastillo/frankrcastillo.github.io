@@ -509,11 +509,11 @@ function bringWindowToFront(id) {
 
     Array.prototype.forEach.call(allwin, (x) => {
         x.style.zIndex = (id == x.id ? 10000 : 0);
-        x.getElementsByClassName('windowHeader')[0].style.color = (id == x.id ? '#ffa500' : '#ffffff');
+        x.getElementsByClassName('windowHeader')[0].style.color = (id == x.id ? '#ffffff' : '#ffa500');
     });
 
     Array.prototype.forEach.call(allbtn, (x) => {
-        x.style.color = (x.textContent == id.split('_')[1] ? '#ffa500' : '#ffffff');
+        x.style.color = (x.textContent == id.split('_')[1] ? '#ffffff' : '#ffa500');
     });
 }
 
