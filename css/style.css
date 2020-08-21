@@ -23,6 +23,7 @@ body
 ; vertical-align   : middle
 ; align-content    : center
 ; margin           : 0px 0px 0px 0px
+; overflow         : hidden
 }
 
 ::placeholder

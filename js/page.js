@@ -533,7 +533,7 @@ function changeWindowDisplay(id, mode) {
                         x.style.top    = '25px';
                         x.style.left   = '0px';
                         x.style.height = 'calc(100% - 27px)';
-                        x.style.width  = '100%';
+                        x.style.width  = 'calc(100% - 2px)';
                     } else {
                         x.setAttribute('windowMode', 'normal');
                         x.style.top    = '25px';
