@@ -95,14 +95,14 @@ input
 }
 
 .windowFrame
-{ border   : 1px solid #ffa500
+{ border   : 1px solid #4f4f4f
 ; height   : 768px
 ; width    : 1024px
 ; position : absolute
 }
 
 .windowHeader
-{ background : #101530
+{ background : #2f2f2f
 ; color      : #ffa500
 }
 
@@ -133,18 +133,17 @@ input
 }
 
 #deskToolbar
-{ border     : 1px solid #ffa500
-; background : #101530
-; color      : #ffa500
+{ border     : 1px solid #4f4f4f
+; background : #2f2f2f
 ; width      : calc(100% - 2px)
 ; z-index    : 20000
 ; position   : fixed
 }
 
 .deskButton
-{ border         : 1px solid #ffa500
-; background     : #000000
-; color          : #ffa500
+{ border         : 1px solid #2f2f2f
+; background     : #2f2f2f
+; color          : #ffffff
 ; height         : 20px
 ; width          : 20px
 ; position       : relative
