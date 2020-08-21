@@ -484,9 +484,8 @@ function cascadeWindows() {
     let allwin = document.getElementsByClassName('windowFrame');
 
     Array.prototype.forEach.call(allwin, (x, i) => {
-        let pxl = ((i + 1) * 25) + 'px';
-        x.style.top    = pxl;
-        x.style.left   = pxl;
+        x.style.top    = ((i + 1) * 25) + 'px';
+        x.style.left   = (i * 25) + 'px';
         x.style.width  = '1024px';
         x.style.height = '768px';
     });
