@@ -514,7 +514,7 @@ function closeWindow(id) {
     let allbtn = document.getElementsByClassName('deskButton');
 
     Array.from(allwin)
-         .filter(x => x.id == 'windowFrame_' + id)
+         .filter(x => x.id == id)
          .forEach(x => x.remove());
 
     Array.from(allbtn)
