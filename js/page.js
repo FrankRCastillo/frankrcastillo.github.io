@@ -473,7 +473,7 @@ async function newDeskToolbar() {
         let barBtn = document.createElement('div');
         barBtn.textContent = x.id.split('_')[1];
         barBtn.setAttribute('class', 'deskButton');
-        barBtn.onclick = (e) => { bringWindowToFront(e.toElement.textContent); };
+        barBtn.onclick = (e) => { bringWindowToFront('windowFrame_' + e.toElement.textContent); };
         barDiv.appendChild(barBtn);
     });
 
