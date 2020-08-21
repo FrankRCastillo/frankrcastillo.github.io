@@ -554,7 +554,7 @@ function closeWindow(id) {
          .forEach(x => x.remove());
 
     Array.from(allbtn)
-         .filter(x => x.textContent == id)
+         .filter(x => x.textContent == id.split('_')[1])
          .forEach(x => x.remove());
 }
 
