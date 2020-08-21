@@ -670,7 +670,9 @@ async function main() {
 
     body.appendChild(await newDeskToolbar());
 
-    cascadeWindows();
+    var nwin = document.getElementsByClassName('windowFrame')[0];
+
+    changeWindowDisplay(nwin.id, 'max');
 }
 
 main()
