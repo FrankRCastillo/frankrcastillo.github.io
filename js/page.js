@@ -509,7 +509,7 @@ function bringWindowToFront(id) {
 
     Array.prototype.forEach.call(allwin, (x) => {
         x.style.zIndex  = (id == x.id ? 10000 : 0);
-        if (x.style.display == 'none') { x.style.display = 'block'; };
+        if (x.id == id && x.style.display == 'none') { x.style.display = 'block'; };
         x.getElementsByClassName('windowHeader')[0].style.color = (id == x.id ? '#ffa500' : '#ffffff');
     });
 
