@@ -406,16 +406,19 @@ function newWindow(sessName, content) {
     hdrGrp.setAttribute('class', 'windowHdrGrp');
     minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
     maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
+    maxBtn.setAttribute('windowMode', 'normal');
     clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
     winHdr.textContent = 'window ' + sessName;
     rszBtn.textContent = '\u25E2';
     minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
     clsBtn.textContent = '\u22A0';
-    winDiv.onmousedown = () => { bringWindowToFront(winDiv.id); };
-    rszBtn.onmousedown = (e) => { enableWindowMode(e, winDiv, 'resize'); };
+    winDiv.onmousedown = ()  => { bringWindowToFront(winDiv.id); };
     winHdr.onmousedown = (e) => { enableWindowMode(e, winDiv, 'move'); };
-    clsBtn.onclick     = () => { closeWindow(winDiv.id); }
+    rszBtn.onmousedown = (e) => { enableWindowMode(e, winDiv, 'resize'); };
+    minBtn.onclick     = ()  => { changeWindowDisplay(winDiv.id, 'min'); };
+    maxBtn.onclick     = ()  => { changeWindowDisplay(winDiv.id, 'max'); };
+    clsBtn.onclick     = ()  => { closeWindow(winDiv.id); }
     hdrGrp.appendChild(minBtn);
     hdrGrp.appendChild(maxBtn);
     hdrGrp.appendChild(clsBtn);
@@ -507,6 +510,35 @@ function bringWindowToFront(id) {
     Array.prototype.forEach.call(allbtn, (x) => {
         x.style.color = (x.textContent == id.split('_')[1] ? '#ffffff' : '#ffa500');
     });
+}
+
+function changeWindowDisplay(id, mode) {
+    let allwin = document.getElementByClassName('windowFrame');
+
+    Apply.from(allwin)
+         .filter(x => x.id = id)
+         .forEach(x => {
+            switch (mode) {
+                case 'min':
+                    x.style.display = ( x.style.display == 'none' ? 'block' : 'none' );
+                    break;
+
+                case 'max':
+                    if (x.getAttribute('windowMode') == 'normal') {
+                        x.setAttribute('windowMode', 'max');
+                        x.style.top    = '25px';
+                        x.style.left   = '0px';
+                        x.style.height = 'calc(100% - 27px)';
+                        x.style.width  = '100%';
+                    } else {
+                        x.setAttribute('windowMode', 'normal');
+                        x.style.top    = '25px';
+                        x.style.left   = '0px';
+                        x.style.height = '768px';
+                        x.style.width  = '1024px';
+                    }
+            }
+         });
 }
 
 function closeWindow(id) {
