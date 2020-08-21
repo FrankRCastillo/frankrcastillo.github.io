@@ -404,13 +404,13 @@ function newWindow(sessName, content) {
 
     winDiv.setAttribute('class', 'windowFrame');
     winDiv.setAttribute('id', 'windowFrame_' + sessName);
+    winDiv.setAttribute('windowMode', 'normal');
     winHdr.setAttribute('class', 'windowHeader');
     winBdy.setAttribute('class', 'windowBody');
     rszBtn.setAttribute('class', 'windowResize');
     hdrGrp.setAttribute('class', 'windowHdrGrp');
     minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
     maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
-    maxBtn.setAttribute('windowMode', 'normal');
     clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
     winHdr.textContent = 'window ' + sessName;
     rszBtn.textContent = '\u25E2';
