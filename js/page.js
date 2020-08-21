@@ -432,7 +432,8 @@ async function newDeskToolbar() {
     let allwin = document.getElementsByClassName('windowFrame');
     let barDiv = document.createElement('div');
     let newBtn = document.createElement('div');
-    let Btn = document.createElement('div');
+    let vtlBtn = document.createElement('div');
+    let htlBtn = document.createElement('div');
     let casBtn = document.createElement('div');
 
     barDiv.setAttribute('id', 'deskToolbar');
@@ -452,11 +453,11 @@ async function newDeskToolbar() {
         barDiv.appendChild(newBtn);
     }
 
-    tleBtn.onclick = () => { tileWindows(); }
-
+    vtlBtn.onclick = () => { tileWindows('v'); };
+    htlBtn.onclick = () => { tileWindows('h'); };
     casBtn.onclick = () => { cascadeWindows(); }
 
-    [newBtn, tleBtn, casBtn].forEach(x => {
+    [newBtn, vtlBtn, htlBtn, casBtn].forEach(x => {
         x.setAttribute('class', 'deskButton');
         barDiv.appendChild(x)
     });
@@ -484,9 +485,15 @@ function cascadeWindows() {
     });
 }
 
-function tileWindows() {
+function tileWindows(direction) {
     let allwin = document.getElementsByClassName('windowFrame');
 
+    switch (direction) {
+        case 'v':
+
+
+        case 'h':
+    }
 }
 
 function bringWindowToFront(id) {
