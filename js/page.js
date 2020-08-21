@@ -517,7 +517,7 @@ function bringWindowToFront(id) {
 }
 
 function changeWindowDisplay(id, mode) {
-    let allwin = document.getElementByClassName('windowFrame');
+    let allwin = document.getElementsByClassName('windowFrame');
 
     Apply.from(allwin)
          .filter(x => x.id = id)
