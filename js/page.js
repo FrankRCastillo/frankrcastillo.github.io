@@ -389,6 +389,7 @@ function print(text, consoleName) {
 }
 
 function newWindow(sessName, content) {
+    let allWin = document.getElementsByClassName('windowFrame');
     let winDiv = document.createElement('div');
     let winHdr = document.createElement('div');
     let hdrGrp = document.createElement('div');
@@ -397,6 +398,9 @@ function newWindow(sessName, content) {
     let minBtn = document.createElement('div');
     let maxBtn = document.createElement('div');
     let clsBtn = document.createElement('div');
+
+    winDiv.style.top  = (allWin.length * 25) + 'px';
+    winDiv.style.left = (allWin.length * 25) + 'px';
 
     winDiv.setAttribute('class', 'windowFrame');
     winDiv.setAttribute('id', 'windowFrame_' + sessName);
