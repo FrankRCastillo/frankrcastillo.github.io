@@ -138,6 +138,7 @@ input
 ; width      : calc(100% - 2px)
 ; z-index    : 20000
 ; position   : fixed
+; left       : 1px
 }
 
 .deskButton
