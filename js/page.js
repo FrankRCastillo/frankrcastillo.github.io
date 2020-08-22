@@ -502,8 +502,8 @@ function tileWindows() {
         let subwdt = width  / square;
 
         Array.prototype.forEach.call(allwin, (x, i) => {
-            x.style.top    = (square % i == 0 ? (i + 1) *  top : (i + 1) * subhgt) + 'px'; 
-            x.style.left   = (square % i == 0 ? (i + 1) * left : (i + 1) * subwdt) + 'px';
+            x.style.top    = (i * subhgt) + 'px'; 
+            x.style.left   = (i * subwdt) + 'px';
             x.style.height = (height / square) + 'px';
             x.style.width  = (width  / square) + 'px';
         });
