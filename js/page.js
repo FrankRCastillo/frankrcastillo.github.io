@@ -439,14 +439,12 @@ async function newDeskToolbar() {
     let allwin = document.getElementsByClassName('windowFrame');
     let barDiv = document.createElement('div');
     let newBtn = document.createElement('div');
-    let vtlBtn = document.createElement('div');
-    let htlBtn = document.createElement('div');
+    let tleBtn = document.createElement('div');
     let casBtn = document.createElement('div');
 
     barDiv.setAttribute('id', 'deskToolbar');
     newBtn.textContent = '\u271A';
-    vtlBtn.textContent = '\u25E7';
-    htlBtn.textContent = '\u2B13';
+    tleBtn.textContent = '\u2B13';
     casBtn.textContent = '\u29C9';
 
     newBtn.onclick = async () => {
@@ -460,11 +458,10 @@ async function newDeskToolbar() {
         barDiv.appendChild(newBtn);
     }
 
-    vtlBtn.onclick = () => { tileWindows('v'); };
-    htlBtn.onclick = () => { tileWindows('h'); };
+    tleBtn.onclick = () => { tileWindows(); };
     casBtn.onclick = () => { cascadeWindows(); }
 
-    [newBtn, vtlBtn, htlBtn, casBtn].forEach(x => {
+    [newBtn, tleBtn, casBtn].forEach(x => {
         x.setAttribute('class', 'deskButton');
         barDiv.appendChild(x)
     });
@@ -491,14 +488,26 @@ function cascadeWindows() {
     });
 }
 
-function tileWindows(direction) {
+function tileWindows() {
+    let top    = 25;
+    let left   = 0;
+    let height = window.innerHeight - 27;
+    let width  = window.innerWidth  -  2;
     let allwin = document.getElementsByClassName('windowFrame');
+    let wcount = allwin.length;
 
-    switch (direction) {
-        case 'v':
+    if (Math.sqrt(wcount) % 1 === 0) {
+        let square = Math.sqrt(wcount);
+        let subhgt = height / square;
+        let subwdt = width  / square;
 
-
-        case 'h':
+        Array.prototype.forEach.call(allwin, (x, i) => {
+            x.style.top    = (square % i == 0 ?  top : i * subhgt); 
+            x.style.left   = (square % i == 0 ? left : i * subwdt);
+            x.style.height = height / square;
+            x.style.width  = width  / square;
+        });
+    } else {
     }
 }
 
