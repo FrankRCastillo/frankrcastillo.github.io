@@ -500,8 +500,8 @@ function tileWindows() {
         let shgt = height / sqrt;
         let swdt = width  / sqrt;
 
-        x.style.top    = (Math.floor(x / sqrt) * subhgt) + 'px';
-        x.style.left   = ((x % sqrt) * subwdt) + 'px';
+        x.style.top    = (Math.floor(i / sqrt) * shgt) + 'px';
+        x.style.left   = ((i % sqrt) * swdt) + 'px';
         x.style.height = shgt + 'px';
         x.style.width  = swdt + 'px';
     })
