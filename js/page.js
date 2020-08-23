@@ -494,34 +494,30 @@ function tileWindows() {
     let height = window.innerHeight - 27;
     let width  = window.innerWidth  -  2;
     let allwin = document.getElementsByClassName('windowFrame');
-    let wcount = allwin.length;
 
-    if (Math.sqrt(wcount) % 1 === 0) {
-        let square = Math.sqrt(wcount);
-        let subhgt = height / square;
-        let subwdt = width  / square;
+    [...allwin].forEach((x, i, arr) => {
+        let sqrt = Math.sqrt(arr.length);
+        let shgt = height / sqrt;
+        let swdt = width  / sqrt;
 
-        Array.prototype.forEach.call(allwin, (x, i) => {
-            x.style.top    = (i * subhgt) + 'px'; 
-            x.style.left   = (i * subwdt) + 'px';
-            x.style.height = (height / square) + 'px';
-            x.style.width  = (width  / square) + 'px';
-        });
-    } else {
-    }
+        x.style.top    = (Math.floor(x / sqrt) * subhgt) + 'px';
+        x.style.left   = ((x % sqrt) * subwdt) + 'px';
+        x.style.height = shgt + 'px';
+        x.style.width  = swdt + 'px';
+    })
 }
 
 function bringWindowToFront(id) {
     let allwin = document.getElementsByClassName('windowFrame');
     let allbtn = document.getElementsByClassName('deskButton');
 
-    Array.prototype.forEach.call(allwin, (x) => {
+    [...allwin].forEach(x => {
         x.style.zIndex  = (id == x.id ? 10000 : 0);
         if (x.id == id && x.style.display == 'none') { x.style.display = 'block'; };
         x.getElementsByClassName('windowHeader')[0].style.color = (id == x.id ? '#ffa500' : '#ffffff');
     });
 
-    Array.prototype.forEach.call(allbtn, (x) => {
+    [...allbtn].forEach(x => {
         x.style.color = (x.textContent == id.split('_')[1] ? '#ffa500' : '#ffffff');
     });
 }
