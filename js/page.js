@@ -505,36 +505,33 @@ function tileWindows() {
     let height = window.innerHeight - 27;                       
     let width  = window.innerWidth  -  2;                       
     let allwin = document.getElementsByClassName('windowFrame');
-                                                                
-    [...allwin].forEach((x, i, arr) => {
-        let sqrt = Math.sqrt(arr.length);
+    let dimens = { 0: [ [0, 0] ]
+                 , 1: [ [0, 0]
+                      , [0, 1] ]
+                 , 2: [ [0, 0]
+                      , [0, 1]
+                      , [0, 2] ]
+                 , 3: [ [0, 0]
+                      , [0, 1]
+                      , [1, 0] 
+                      , [1, 1] ]
+                 }
 
-        if (Number.isInteger(sqrt)) {
-            let shgt = height / sqrt;
-            let swdt = width  / sqrt;
-
-            x.style.top    = ((Math.floor(i / sqrt) * shgt) + top) + 'px';
-            x.style.left   = (((i % sqrt) * swdt) + left) + 'px';
-            x.style.height = shgt + 'px';
-            x.style.width  = swdt + 'px';
-        } else {
-            
-        }
-    })
+    [...allwin].map((x, i, arr) => {
+        let dimen      = dimens[arr.length];
+        x.style.top    = dimen[i][0] * top;
+        x.style.left   = dimen[i][1] * left;
+        x.style.height = height / dimen.length;
+        x.style.width  =  width / dimen.length;
+    });
 }
 
 function bringWindowToFront(id) {
     let allwin = document.getElementsByClassName('windowFrame');
-    let allbtn = document.getElementsByClassName('deskButton');
 
     [...allwin].forEach(x => {
         x.style.zIndex  = (id == x.id ? 10000 : 0);
         if (x.id == id && x.style.display == 'none') { x.style.display = 'block'; };
-        x.getElementsByClassName('windowHeader')[0].style.color = (id == x.id ? '#ffa500' : '#ffffff');
-    });
-
-    [...allbtn].forEach(x => {
-        x.style.color = (x.textContent == id.split('_')[1] ? '#ffa500' : '#ffffff');
     });
 }
 
