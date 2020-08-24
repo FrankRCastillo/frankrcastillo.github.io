@@ -449,13 +449,24 @@ async function newDeskToolbar() {
 
     newBtn.onclick = async () => {
         let winDiv = document.getElementsByClassName('windowFrame');
-        let barDiv = document.getElementById('deskToolbar');
-        let newBtn = document.createElement('div');
-        newBtn.textContent = winDiv.length;
-        newBtn.onclick = (e) => { bringWindowToFront('windowFrame_' + e.toElement.textContent); };
-        newBtn.setAttribute('class', 'deskButton');
-        await newSession();
-        barDiv.appendChild(newBtn);
+        if (winDiv.length < 4) {
+            this.onmousedown = null;
+            this.onmouseup   = null;
+
+            let barDiv = document.getElementById('deskToolbar');
+            let newBtn = document.createElement('div');
+
+            newBtn.textContent = winDiv.length;
+            newBtn.onclick = (e) => { bringWindowToFront('windowFrame_' + e.toElement.textContent); };
+            newBtn.setAttribute('class', 'deskButton');
+
+            await newSession();
+
+            barDiv.appendChild(newBtn);
+        } else {
+            this.onmousedown = (e) => { e.style.color = '#ff0000'; };
+            this.onmouseup   = (e) => { e.style.color = '#ffffff'; };
+        }
     }
 
     tleBtn.onclick = () => { tileWindows(); };
@@ -488,22 +499,27 @@ function cascadeWindows() {
     });
 }
 
-function tileWindows() {
-    let top    = 25;
-    let left   = 0;
-    let height = window.innerHeight - 27;
-    let width  = window.innerWidth  -  2;
+function tileWindows() {                                        
+    let top    = 25;                                            
+    let left   = 0;                                             
+    let height = window.innerHeight - 27;                       
+    let width  = window.innerWidth  -  2;                       
     let allwin = document.getElementsByClassName('windowFrame');
-
+                                                                
     [...allwin].forEach((x, i, arr) => {
         let sqrt = Math.sqrt(arr.length);
-        let shgt = height / sqrt;
-        let swdt = width  / sqrt;
 
-        x.style.top    = (Math.floor(i / sqrt) * shgt) + 'px';
-        x.style.left   = ((i % sqrt) * swdt) + 'px';
-        x.style.height = shgt + 'px';
-        x.style.width  = swdt + 'px';
+        if (Number.isInteger(sqrt)) {
+            let shgt = height / sqrt;
+            let swdt = width  / sqrt;
+
+            x.style.top    = ((Math.floor(i / sqrt) * shgt) + top) + 'px';
+            x.style.left   = (((i % sqrt) * swdt) + left) + 'px';
+            x.style.height = shgt + 'px';
+            x.style.width  = swdt + 'px';
+        } else {
+            
+        }
     })
 }
 
