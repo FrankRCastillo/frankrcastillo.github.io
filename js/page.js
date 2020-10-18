@@ -409,23 +409,16 @@ function newWindow(sessName, content) {
     winBdy.setAttribute('class', 'windowBody');
     rszBtn.setAttribute('class', 'windowResize');
     hdrGrp.setAttribute('class', 'windowHdrGrp');
-    minBtn.setAttribute('class', 'windowHdrBtn windowMinimize');
     maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
-    clsBtn.setAttribute('class', 'windowHdrBtn windowClose');
     winHdr.textContent = 'window ' + sessName;
     rszBtn.textContent = '\u25E2';
-    minBtn.textContent = '\u229F';
     maxBtn.textContent = '\u229E';
     clsBtn.textContent = '\u22A0';
     winDiv.onmousedown = ()  => { bringWindowToFront(winDiv.id); };
     winHdr.onmousedown = (e) => { enableWindowMode(e, winDiv, 'move'); };
     rszBtn.onmousedown = (e) => { enableWindowMode(e, winDiv, 'resize'); };
-    minBtn.onclick     = ()  => { changeWindowDisplay(winDiv.id, 'min'); };
     maxBtn.onclick     = ()  => { changeWindowDisplay(winDiv.id, 'max'); };
-    clsBtn.onclick     = ()  => { closeWindow(winDiv.id); }
-    hdrGrp.appendChild(minBtn);
     hdrGrp.appendChild(maxBtn);
-    hdrGrp.appendChild(clsBtn);
     winHdr.appendChild(hdrGrp);
     winBdy.appendChild(content);
     winBdy.appendChild(rszBtn);
@@ -451,24 +444,12 @@ function changeWindowDisplay(id, mode) {
          .filter(x => x.id = id)
          .forEach(x => {
             switch (mode) {
-                case 'min':
-                    x.style.display = ( x.style.display == 'none' ? 'block' : 'none' );
-                    break;
-
                 case 'max':
-                    if (x.getAttribute('windowMode') == 'normal') {
-                        x.setAttribute('windowMode', 'max');
-                        x.style.top    = '25px';
-                        x.style.left   = '0px';
-                        x.style.height = 'calc(100% - 27px)';
-                        x.style.width  = 'calc(100% - 2px)';
-                    } else {
-                        x.setAttribute('windowMode', 'normal');
-                        x.style.top    = '25px';
-                        x.style.left   = '0px';
-                        x.style.height = '768px';
-                        x.style.width  = '1024px';
-                    }
+                    x.setAttribute('windowMode', 'max');
+                    x.style.top    = '0px';
+                    x.style.left   = '0px';
+                    x.style.height = 'calc(100% - 2px)';
+                    x.style.width  = 'calc(100% - 2px)';
             }
          });
 }
