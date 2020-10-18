@@ -62,17 +62,17 @@ function newGanttToolbar(consoleName) {
 
     prs.textContent = 'Pres';
     prs.addEventListener('click', function() {
-        ganttTimeShift(0);
+        ganttTimeShift(0, consoleName);
     });
 
     nxt.textContent = 'Next';
     nxt.addEventListener('click', function() {
-        ganttTimeShift(1);
+        ganttTimeShift(1, consoleName);
     });
 
     prv.textContent = 'Prev';
     prv.addEventListener('click', function() {
-        ganttTimeShift(-1)
+        ganttTimeShift(-1, consoleName)
     });
 
     bar.setAttribute('id', 'GanttToolbar_' + consoleName);
