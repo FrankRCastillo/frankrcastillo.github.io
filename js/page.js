@@ -435,56 +435,6 @@ function newWindow(sessName, content) {
     return winDiv;
 }
 
-async function newDeskToolbar() {
-    let allwin = document.getElementsByClassName('windowFrame');
-    let barDiv = document.createElement('div');
-    let newBtn = document.createElement('div');
-    let tleBtn = document.createElement('div');
-    let casBtn = document.createElement('div');
-
-    barDiv.setAttribute('id', 'deskToolbar');
-    newBtn.textContent = '\u271A';
-    tleBtn.textContent = '\u2B13';
-    casBtn.textContent = '\u29C9';
-
-    newBtn.onclick = async () => {
-        let winDiv = document.getElementsByClassName('windowFrame');
-        if (winDiv.length < 4) {
-            this.onmousedown = null;
-            this.onmouseup   = null;
-
-            let barDiv = document.getElementById('deskToolbar');
-            let newBtn = document.createElement('div');
-
-            newBtn.textContent = winDiv.length;
-            newBtn.onclick = (e) => { bringWindowToFront('windowFrame_' + e.toElement.textContent); };
-            newBtn.setAttribute('class', 'deskButton');
-
-            await newSession();
-
-            barDiv.appendChild(newBtn);
-        } else {
-            this.onmousedown = (e) => { e.style.color = '#ff0000'; };
-            this.onmouseup   = (e) => { e.style.color = '#ffffff'; };
-        }
-    }
-
-    [newBtn, tleBtn, casBtn].forEach(x => {
-        x.setAttribute('class', 'deskButton');
-        barDiv.appendChild(x)
-    });
-
-    Array.prototype.forEach.call(allwin, (x) => {
-        let barBtn = document.createElement('div');
-        barBtn.textContent = x.id.split('_')[1];
-        barBtn.setAttribute('class', 'deskButton');
-        barBtn.onclick = (e) => { bringWindowToFront('windowFrame_' + e.toElement.textContent); };
-        barDiv.appendChild(barBtn);
-    });
-
-    return barDiv;
-}
-
 function bringWindowToFront(id) {
     let allwin = document.getElementsByClassName('windowFrame');
 
@@ -532,7 +482,7 @@ function closeWindow(id) {
          .forEach(x => x.remove());
 
     Array.from(allbtn)
-         .filter(x => x.textContent == id.split('_')[1])
+         (x => x.textContent == id.split('_')[1])
          .forEach(x => x.remove());
 }
 
