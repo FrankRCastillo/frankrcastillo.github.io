@@ -594,8 +594,6 @@ async function main() {
 
     await newSession();
 
-    body.appendChild(await newDeskToolbar());
-
     var nwin = document.getElementsByClassName('windowFrame')[0];
 
     changeWindowDisplay(nwin.id, 'max');
