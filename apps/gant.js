@@ -57,7 +57,7 @@ function newGanttToolbar(consoleName) {
 
         nsl.setAttribute('selected', true);
         tbl.remove();
-        gnt.appendChild(newGanttPage(parseInt(eyr.value), ysl));
+        gnt.appendChild(newGanttPage(parseInt(eyr.value), ysl, consoleName));
     });
 
     prs.textContent = 'Pres';
