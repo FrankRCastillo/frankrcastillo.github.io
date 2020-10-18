@@ -469,9 +469,6 @@ async function newDeskToolbar() {
         }
     }
 
-    tleBtn.onclick = () => { tileWindows(); };
-    casBtn.onclick = () => { cascadeWindows(); }
-
     [newBtn, tleBtn, casBtn].forEach(x => {
         x.setAttribute('class', 'deskButton');
         barDiv.appendChild(x)
@@ -486,44 +483,6 @@ async function newDeskToolbar() {
     });
 
     return barDiv;
-}
-
-function cascadeWindows() {
-    let allwin = document.getElementsByClassName('windowFrame');
-
-    Array.prototype.forEach.call(allwin, (x, i) => {
-        x.style.top    = ((i + 1) * 25) + 'px';
-        x.style.left   = (i * 25) + 'px';
-        x.style.width  = '1024px';
-        x.style.height = '768px';
-    });
-}
-
-function tileWindows() {                                        
-    let top    = 25;                                            
-    let left   = 0;                                             
-    let height = window.innerHeight - 27;                       
-    let width  = window.innerWidth  -  2;                       
-    let allwin = document.getElementsByClassName('windowFrame');
-    let dimens = { 0: [ [0, 0] ]
-                 , 1: [ [0, 0]
-                      , [0, 1] ]
-                 , 2: [ [0, 0]
-                      , [0, 1]
-                      , [0, 2] ]
-                 , 3: [ [0, 0]
-                      , [0, 1]
-                      , [1, 0] 
-                      , [1, 1] ]
-                 }
-
-    [...allwin].map((x, i, arr) => {
-        let dimen      = dimens[arr.length];
-        x.style.top    = dimen[i][0] * top;
-        x.style.left   = dimen[i][1] * left;
-        x.style.height = height / dimen.length;
-        x.style.width  =  width / dimen.length;
-    });
 }
 
 function bringWindowToFront(id) {
