@@ -227,15 +227,9 @@ function getRandomInt(min, max) {
 }
 
 async function readFile(url) {
-    try {
-        return await fetch(url, { headers : {} })
-                     .then(response => response.text())
-                     .catch(() => console.log('Error getting ' + url));
-
-    } catch(err) {
-        console.log(err.message + '\nthere was an error reading a URL. Retrying...');
-        return await "";
-    }
+    return await fetch(url, { headers : {} })
+                 .then(response => response.text())
+                 .catch(response => ""; console.log("error getting " + url);
 }
 
 function blobToBase64(blob) {
