@@ -22,22 +22,12 @@ async function newConsole(consoleName) {
     let otxt = document.createElement('div');
     let npnl = document.createElement('div');
     let nhdr = document.createElement('div');
-    let ndiv = document.createElement('div');
-    let nlnk = document.createElement('a');
 
     main.setAttribute('id', 'console_' + consoleName);
     otxt.setAttribute('id', 'outtext_' + consoleName);
     main.setAttribute('class', 'console');
     otxt.setAttribute('class', 'outtext');
 
-    nlnk.textContent = 'Expand';
-    nlnk.addEventListener('click', async () => {
-        nlnk.textContent = ( nlnk.textContent == 'Expand' ? 'Restore' : 'Expand' );
-    });
-
-    nhdr.appendChild(nlnk);
-    ndiv.appendChild(nhdr);
-    ndiv.appendChild(npnl);
     main.appendChild(menu);
     main.appendChild(otxt);
     main.appendChild(ndiv);
