@@ -30,7 +30,6 @@ async function newConsole(consoleName) {
 
     main.appendChild(menu);
     main.appendChild(otxt);
-    main.appendChild(ndiv);
 
     return main;
 }
