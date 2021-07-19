@@ -231,23 +231,9 @@ async function readFile(url) {
 
     while (!success) {
         try {
-            let corsarr = corsProxy(url, true);
-            let procurl = corsarr[0];
-            let header  = corsarr[1];
-            
-            switch (url.slice(-3)) {
-                case 'pdf':
-                    header['headers']['Content-Type'] = 'application/pdf;base64';
-                    return await fetch(procurl, header)
-                                 .then(response => response.blob())
-                                 .then(response => blobToBase64(response))
-                                 .catch(() => console.log('Error getting ' + procurl));
-
-                default:
-                    return await fetch(procurl, header)
-                                 .then(response => response.text())
-                                 .catch(() => console.log('Error getting ' + procurl));
-            }
+            return await fetch(url, { headers : {} })
+                         .then(response => response.text())
+                         .catch(() => console.log('Error getting ' + url));
             // even though a successful function call will terminate at either return
             // setting the success variable to true for the sake of consistency.
             success = true;
@@ -258,39 +244,6 @@ async function readFile(url) {
             success = false;
         }
     }
-}
-
-function corsProxy(url, useProxy) {
-    let   header   = { headers : {} };
-    const currhost = new URL(window.location.href);
-    const readhost = new URL(url, currhost);
-    const homeurls = [ currhost.hostname
-                     , 'api.github.com'
-                     , 'freegeoip.app'
-                     ];
-    
-    if (homeurls.includes(readhost.hostname)){
-        return [ readhost.href, header ];
-
-    } else{
-        header['headers']['Access-Control-Request-Headers'] = 'origin';
-        header['headers']['Access-Control-Allow-Origin']    = '*';
-        return [ url, header ];
-    }
-}
-
-async function readPdf(binary) {
-    let bin = convertDataURIToBinary(binary);
-    let wht = { normalizeWhitespace : true };
-    let doc = await pdfjsLib.getDocument(bin).promise;
-    let txt = Array.from({length : doc.numPages}, async (x, i) => {
-        return (await (await doc.getPage(i + 1))
-                                .getTextContent())
-                                .items
-                                .map(token =>  token.str)
-    });
-
-    return (await Promise.all(txt));
 }
 
 function blobToBase64(blob) {
@@ -327,13 +280,8 @@ async function cmdMgr(input, consoleName) {
             case 'help' : help(consoleName); break;
             default:
 
-//                try {
-                    let app = await import('/apps/' + cmd + '.js');
-                    eval('app.' + cmd + '("' + consoleName + '")');
-//                } catch(err) {
-//                    print(cmd + ': command not available');
-//                    console.log(err.message);
-//                }
+            let app = await import('/apps/' + cmd + '.js');
+            eval('app.' + cmd + '("' + consoleName + '")');
         }
     }
 }
