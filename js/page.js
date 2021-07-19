@@ -17,7 +17,6 @@ async function newSession() {
 }
 
 async function newConsole(consoleName) {
-    let news = await import('/apps/news.js');
     let menu = await newSelector(consoleName);
     let main = document.createElement('div');
     let otxt = document.createElement('div');
@@ -28,37 +27,20 @@ async function newConsole(consoleName) {
 
     main.setAttribute('id', 'console_' + consoleName);
     otxt.setAttribute('id', 'outtext_' + consoleName);
-    nhdr.setAttribute('id', 'newshdr_' + consoleName);
-    npnl.setAttribute('id', 'newspnl_' + consoleName);
-    ndiv.setAttribute('id', 'newsdiv_' + consoleName);
-
     main.setAttribute('class', 'console');
     otxt.setAttribute('class', 'outtext');
-    nhdr.setAttribute('class', 'newshdr');
-    npnl.setAttribute('class', 'newspnl');
-    ndiv.setAttribute('class', 'newsdiv');
 
     nlnk.textContent = 'Expand';
     nlnk.addEventListener('click', async () => {
         nlnk.textContent = ( nlnk.textContent == 'Expand' ? 'Restore' : 'Expand' );
-        let news = await import('/apps/news.js');
-        news.news(consoleName);
     });
 
     nhdr.appendChild(nlnk);
-    npnl.appendChild(await news.getNewsFeed(consoleName));
     ndiv.appendChild(nhdr);
     ndiv.appendChild(npnl);
     main.appendChild(menu);
     main.appendChild(otxt);
     main.appendChild(ndiv);
-
-    window.newsinterval = await setInterval(async function () {
-        let npnl = document.getElementById('newspnl_' + consoleName);
-        let nget = await news.getNewsFeed(consoleName);
-        npnl.innerHTML = ''
-        npnl.appendChild(nget);
-    }, 120000);
 
     return main;
 }
