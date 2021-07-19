@@ -1,3 +1,21 @@
+async function main() {
+    let body = document.body;
+
+    await newSession();
+
+    var nwin = document.getElementsByClassName('windowFrame')[0];
+
+    changeWindowDisplay(nwin.id, 'max');
+}
+
+async function newSession() {
+    let body = document.body;
+    var sess = document.getElementsByClassName('windowFrame').length;
+
+    body.appendChild(newWindow(sess, await newConsole(sess)));
+    home(sess);
+}
+
 async function newConsole(consoleName) {
     let news = await import('/apps/news.js');
     let menu = await newSelector(consoleName);
@@ -560,24 +578,6 @@ function getJsDesc(str) {
 function tableToArray(txt, delim) {
     return txt.split('\n')
               .map(x => x.split(delim));
-}
-
-async function newSession() {
-    let body = document.body;
-    var sess = document.getElementsByClassName('windowFrame').length;
-
-    body.appendChild(newWindow(sess, await newConsole(sess)));
-    home(sess);
-}
-
-async function main() {
-    let body = document.body;
-
-    await newSession();
-
-    var nwin = document.getElementsByClassName('windowFrame')[0];
-
-    changeWindowDisplay(nwin.id, 'max');
 }
 
 main()
