@@ -273,24 +273,9 @@ function corsProxy(url, useProxy) {
         return [ readhost.href, header ];
 
     } else{
-        if (useProxy) {
-            const corsarr  = [ [ 'https://cors-anywhere.herokuapp.com/' , true  ]
-                             , [ 'https://api.allorigins.win/raw?url='  , false ]
-                             ];
-            const randidx  = getRandomInt(0, corsarr.length - 1);
-
-            if(corsarr[randidx][1]) {
-                header['headers']['Access-Control-Request-Headers'] = 'origin';
-                header['headers']['Access-Control-Allow-Origin']    = '*';
-            }
-
-            return [ corsarr[randidx][0] + url, header ];
-        } else {
-            header['headers']['Access-Control-Request-Headers'] = 'origin';
-            header['headers']['Access-Control-Allow-Origin']    = '*';
-            return [ url, header ];
-        }
-
+        header['headers']['Access-Control-Request-Headers'] = 'origin';
+        header['headers']['Access-Control-Allow-Origin']    = '*';
+        return [ url, header ];
     }
 }
 
