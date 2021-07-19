@@ -227,22 +227,14 @@ function getRandomInt(min, max) {
 }
 
 async function readFile(url) {
-    let success = false;
+    try {
+        return await fetch(url, { headers : {} })
+                     .then(response => response.text())
+                     .catch(() => console.log('Error getting ' + url));
 
-    while (!success) {
-        try {
-            return await fetch(url, { headers : {} })
-                         .then(response => response.text())
-                         .catch(() => console.log('Error getting ' + url));
-            // even though a successful function call will terminate at either return
-            // setting the success variable to true for the sake of consistency.
-            success = true;
-
-        } catch(err) {
-            console.log(err.message + '\nthere was an error reading a URL. Retrying...');
-            // likewise, for the sake of consistency, setting the success variable to false
-            success = false;
-        }
+    } catch(err) {
+        console.log(err.message + '\nthere was an error reading a URL. Retrying...');
+        return await "";
     }
 }
 
