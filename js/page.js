@@ -1,10 +1,10 @@
 async function main() {
-    home();
+    await home();
 }
 
-function home() {
+async function home() {
     let str = read('/apps/home/home.txt');
-    print(str);
+    await print(str);
 }
 
 async function help() {
@@ -13,7 +13,7 @@ async function help() {
     lst.unshift(hdr);
     let tbl = arrayToTable(lst, true, false); 
     
-    print(tbl);
+    await print(tbl);
 }
 
 function clear() {
@@ -21,12 +21,12 @@ function clear() {
     if (body != null) { body.innerHTML = ''; }
 }
 
-function print(text) {
+async function print(text) {
     let body = document.body;
 
     if (Array.isArray(text)) {
         for (let i = 0; i < text.length; i++) {
-            print(text[i]);
+            await print(text[i]);
         }
     } else {
         let newtxt = document.createElement("div");
