@@ -1,16 +1,54 @@
 async function main() {
-    let body = document.body;
-
-    body.appendChild(await newConsole(sess));
+    home();
 }
 
-async function newConsole(consoleName) {
-    let main = document.createElement('div');
-    let otxt = document.createElement('div');
+function home() {
+    let str = read('/apps/home/home.txt');
+    print(str);
+}
 
-    main.appendChild(otxt);
+async function help() {
+    let lst = await getCmdInfo();
+    let hdr = ['Category', 'Command', 'Information'];
+    lst.unshift(hdr);
+    let tbl = arrayToTable(lst, true, false); 
+    
+    print(tbl);
+}
 
-    return main;
+function clear() {
+    let body = document.body;
+    if (body != null) { body.innerHTML = ''; }
+}
+
+function print(text) {
+    let body = document.body;
+
+    if (Array.isArray(text)) {
+        for (let i = 0; i < text.length; i++) {
+            print(text[i]);
+        }
+    } else {
+        let newtxt = document.createElement("div");
+        let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+        let rgxdom = new RegExp(rgxexp);
+        let rgxget = text.match(rgxdom);
+        
+        if (rgxget != null) {
+            for (let i = 0; i < rgxget.length; i++) {
+                let oldurl = rgxget[i];
+                let newurl = '<a href="'
+                           + rgxget[i]
+                           + '" target="_blank">'
+                           + rgxget[i]
+                           + '</a>';
+                text = text.replace(new RegExp(oldurl, 'gi'), newurl);
+            }
+        }
+        
+        newtxt.innerHTML = text.replace(/\n/g, '<br/>');
+        body.appendChild(newtxt);
+    }
 }
 
 function newTabLayout(elems) {
@@ -61,7 +99,7 @@ function newTabLayout(elems) {
 
 async function fileList(filter) {
     let gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
-    let text = await readFile(gapi);
+    let text = await read(gapi);
     let json = JSON.parse(text);
     let tree = json.tree;
     let list = Array.from(tree)
@@ -69,26 +107,6 @@ async function fileList(filter) {
                     .filter(x => x.match(filter));
 
     return list;
-}
-
-function rssParser(xml) {
-    let parser = new DOMParser();
-    let xmldoc = parser.parseFromString(xml, 'text/xml');
-    let obj    = document.createElement('a');
-    obj.href   = xmldoc.getElementsByTagName('link')[0].textContent;
-    let src    = obj.host
-                  .replace('www.', '')
-                  .replace('.com', '');
-    let itm = xmldoc.getElementsByTagName('item');
-    let arr = Array.from(itm).map(function(x){
-        return [ src
-               , dateISO(x.getElementsByTagName('pubDate')[0].textContent)
-               , decodeHtml(x.getElementsByTagName('title')[0].textContent)
-               , x.getElementsByTagName('link')[0].textContent
-               ];
-    });
-    
-    return arr;
 }
 
 function decodeHtml(html) {
@@ -170,267 +188,33 @@ function isURL(url) {
     return results;
 }
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-async function readFile(url) {
+async function read(url) {
     return await fetch(url, { headers : {} })
                  .then(response => response.text())
                  .catch(response => "");
 }
 
-function blobToBase64(blob) {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-    return new Promise(resolve => {
-        reader.onloadend = () => {
-            resolve(reader.result);
-        };
-    });
-};
-
-// https://gist.github.com/borismus/1032746
-function convertDataURIToBinary(dataURI) {
-    let BASE64_MARKER = ';base64,';
-    let base64Index   = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
-    let base64        = dataURI.substring(base64Index);
-    let raw           = window.atob(base64);
-    let rawLength     = raw.length;
-    let array         = new Uint8Array(new ArrayBuffer(rawLength));
-    
-    return array.map((x, i) => raw.charCodeAt(i));
-}
-
-async function cmdMgr(input, consoleName) {
+async function cmdMgr(input) {
     if (input != '') {
         clearInterval(window.appinterval);
-        clear(consoleName);
+        clear();
 
         let cmd = input.toLowerCase();
 
         switch (cmd) {
-            case 'home' : home(consoleName); break;
-            case 'help' : help(consoleName); break;
+            case 'home' : home(); break;
+            case 'help' : help(); break;
             default:
 
             let app = await import('/apps/' + cmd + '.js');
-            eval('app.' + cmd + '("' + consoleName + '")');
+            eval('app.' + cmd + '")');
         }
     }
-}
-
-function home(consoleName) {
-    read('/apps/home/home.txt', consoleName);
-}
-
-async function help(consoleName) {
-    let lst = await getCmdInfo();
-    let hdr = ['Category', 'Command', 'Information'];
-    lst.unshift(hdr);
-    let tbl = arrayToTable(lst, true, false); 
-    document.getElementById('outtext_' + consoleName).appendChild(tbl);
-}
-
-async function read(path, consoleName) {
-    let txt = await readFile(path)
-    print('\n', consoleName);
-    print(txt, consoleName);
-}
-
-function clear(consoleName) {
-    let out = document.getElementById('outtext_' + consoleName);
-    if (out != null) { out.innerHTML = ''; }
-}
-
-function print(text, consoleName) {
-    if (Array.isArray(text)) {
-        for (let i = 0; i < text.length; i++) {
-            print(text[i], consoleName);
-        }
-    } else {
-        let outtxt = document.getElementById("outtext_" + consoleName);
-        let newtxt = document.createElement("div");
-        let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-        let rgxdom = new RegExp(rgxexp);
-        let rgxget = text.match(rgxdom);
-        
-        if (rgxget != null) {
-            for (let i = 0; i < rgxget.length; i++) {
-                let oldurl = rgxget[i];
-                let newurl = '<a href="'
-                           + rgxget[i]
-                           + '" target="_blank">'
-                           + rgxget[i]
-                           + '</a>';
-                text = text.replace(new RegExp(oldurl, 'gi'), newurl);
-            }
-        }
-        
-        text = text.replace(/\n/g, '<br/>');
-        newtxt.innerHTML = text;
-        outtxt.appendChild(newtxt);
-    }
-}
-
-function newWindow(sessName, content) {
-    let allWin = document.getElementsByClassName('windowFrame');
-    let winDiv = document.createElement('div');
-    let winHdr = document.createElement('div');
-    let hdrGrp = document.createElement('div');
-    let winBdy = document.createElement('div');
-    let rszBtn = document.createElement('div');
-    let minBtn = document.createElement('div');
-    let maxBtn = document.createElement('div');
-    let clsBtn = document.createElement('div');
-
-    winDiv.style.top  = ((allWin.length + 1) * 25) + 'px';
-    winDiv.style.left = ((allWin.length + 1) * 25) + 'px';
-
-    winDiv.setAttribute('class', 'windowFrame');
-    winDiv.setAttribute('id', 'windowFrame_' + sessName);
-    winDiv.setAttribute('windowMode', 'normal');
-    winHdr.setAttribute('class', 'windowHeader');
-    winBdy.setAttribute('class', 'windowBody');
-    rszBtn.setAttribute('class', 'windowResize');
-    hdrGrp.setAttribute('class', 'windowHdrGrp');
-    maxBtn.setAttribute('class', 'windowHdrBtn windowMaximize');
-    winHdr.textContent = 'window ' + sessName;
-    rszBtn.textContent = '\u25E2';
-    maxBtn.textContent = '\u229E';
-    clsBtn.textContent = '\u22A0';
-    winDiv.onmousedown = ()  => { bringWindowToFront(winDiv.id); };
-    winHdr.onmousedown = (e) => { enableWindowMode(e, winDiv, 'move'); };
-    rszBtn.onmousedown = (e) => { enableWindowMode(e, winDiv, 'resize'); };
-    maxBtn.onclick     = ()  => { changeWindowDisplay(winDiv.id, 'max'); };
-    hdrGrp.appendChild(maxBtn);
-    winHdr.appendChild(hdrGrp);
-    winBdy.appendChild(content);
-    winBdy.appendChild(rszBtn);
-    winDiv.appendChild(winHdr);
-    winDiv.appendChild(winBdy);
-
-    return winDiv;
-}
-
-function bringWindowToFront(id) {
-    let allwin = document.getElementsByClassName('windowFrame');
-
-    [...allwin].forEach(x => {
-        x.style.zIndex  = (id == x.id ? 10000 : 0);
-        if (x.id == id && x.style.display == 'none') { x.style.display = 'block'; };
-    });
-}
-
-function changeWindowDisplay(id, mode) {
-    let allwin = document.getElementsByClassName('windowFrame');
-
-    Array.from(allwin)
-         .filter(x => x.id = id)
-         .forEach(x => {
-            switch (mode) {
-                case 'max':
-                    x.setAttribute('windowMode', 'max');
-                    x.style.top    = '0px';
-                    x.style.left   = '0px';
-                    x.style.height = 'calc(100% - 2px)';
-                    x.style.width  = 'calc(100% - 2px)';
-            }
-         });
-}
-
-function closeWindow(id) {
-    let allwin = document.getElementsByClassName('windowFrame');
-    let allbtn = document.getElementsByClassName('deskButton');
-
-    Array.from(allwin)
-         .filter(x => x.id == id)
-         .forEach(x => x.remove());
-
-    Array.from(allbtn)
-         (x => x.textContent == id.split('_')[1])
-         .forEach(x => x.remove());
-}
-
-function enableWindowMode(e, winDiv, method) {
-    e = e || window.event;
-    e.preventDefault();
-    let oldx = e.clientX;
-    let oldy = e.clientY;
-    let newx = 0;
-    let newy = 0;
-
-    document.onmouseup = () => {
-        document.onmouseup   = null;
-        document.onmousemove = null;
-    }
-
-    document.onmousemove = (d) => {
-        d = d || window.event;
-        d.preventDefault();
-        newx = oldx - d.clientX;
-        newy = oldy - d.clientY;
-        oldx = d.clientX;
-        oldy = d.clientY;
-
-        switch(method) {
-            case 'move':
-                winDiv.style.top  = (winDiv.offsetTop  - newy) + 'px';
-                winDiv.style.left = (winDiv.offsetLeft - newx) + 'px';
-                break;
-
-            case 'resize':
-                winw = getComputedStyle(winDiv).height.replace(/\D/g, '');
-                winh = getComputedStyle(winDiv).width.replace(/\D/g, '');
-                winDiv.style.height = (winw - newy) + 'px';
-                winDiv.style.width  = (winh - newx) + 'px';
-                break;
-        }
-    };
-}
-
-async function newSelector(consoleName) {
-    let cmdSelect = document.createElement('select');
-    let cmmndInfo = await getCmdInfo();
-
-    cmdSelect.setAttribute(   'id', 'cmdSelect_' + consoleName);
-    cmdSelect.setAttribute('class', 'cmdSelect');
-
-    for (let i = -1; i < cmmndInfo.length; i++) {
-        let cmdOption = document.createElement('option');
-
-        if (i == -1) {
-            cmdOption.textContent = '';
-            cmdOption.setAttribute(   'value',   '');
-            cmdOption.setAttribute(  'hidden', true);
-            cmdOption.setAttribute('selected', true);
-        } else {
-            let cmdGroup  = cmdSelect.querySelector('#' + cmmndInfo[i][0]);
-
-            if (cmdGroup == null) {
-                cmdGroup = document.createElement('optgroup');
-                cmdGroup.setAttribute('label', cmmndInfo[i][0]);
-                cmdGroup.setAttribute(   'id', cmmndInfo[i][0]);
-            }
-
-            cmdOption.setAttribute('value', cmmndInfo[i][1]);
-            cmdOption.textContent = cmmndInfo[i][1] + ' : ' + cmmndInfo[i][2];
-            cmdGroup.appendChild(cmdOption);
-            cmdSelect.appendChild(cmdGroup);
-        }
-    }
-
-    cmdSelect.onclick = (e) =>  {
-        cmdMgr(e.path[0][e.path[0].selectedIndex].value, consoleName); };
-
-    return cmdSelect;
 }
 
 async function getCmdInfo() {
     let list = await fileList(/apps\/.*\.js$/);
-    let lout = await Promise.all(list.map(async x => getJsDesc(await readFile(x))));
+    let lout = await Promise.all(list.map(async x => getJsDesc(await read(x))));
 
     lout.sort();
     lout.unshift(['core', 'home', 'Show the home screen']);
