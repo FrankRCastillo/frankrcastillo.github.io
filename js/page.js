@@ -12,23 +12,14 @@ async function newSession() {
     let body = document.body;
     var sess = document.getElementsByClassName('windowFrame').length;
 
-    body.appendChild(newWindow(sess, await newConsole(sess)));
+    body.appendChild(await newConsole(sess));
     home(sess);
 }
 
 async function newConsole(consoleName) {
-    let menu = await newSelector(consoleName);
     let main = document.createElement('div');
     let otxt = document.createElement('div');
-    let npnl = document.createElement('div');
-    let nhdr = document.createElement('div');
 
-    main.setAttribute('id', 'console_' + consoleName);
-    otxt.setAttribute('id', 'outtext_' + consoleName);
-    main.setAttribute('class', 'console');
-    otxt.setAttribute('class', 'outtext');
-
-    main.appendChild(menu);
     main.appendChild(otxt);
 
     return main;
