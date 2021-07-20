@@ -1,19 +1,7 @@
 async function main() {
     let body = document.body;
 
-    await newSession();
-
-    var nwin = document.getElementsByClassName('windowFrame')[0];
-
-    changeWindowDisplay(nwin.id, 'max');
-}
-
-async function newSession() {
-    let body = document.body;
-    var sess = document.getElementsByClassName('windowFrame').length;
-
     body.appendChild(await newConsole(sess));
-    home(sess);
 }
 
 async function newConsole(consoleName) {
