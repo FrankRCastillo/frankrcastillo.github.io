@@ -14,7 +14,7 @@
 
 html
 { font-family : consolas
-; font-size   : 16px
+; font-size   : 12px
 }
 
 body
@@ -54,18 +54,6 @@ ul
 ; margin-bottom : 0
 }
 
-select
-{ border      : 1px solid #ffa500
-; margin      : 0px 0px 0px 0px
-; padding     : 0px 0px 0px 0px
-; background  : #000000
-; color       : #ffa500
-; font-family : consolas
-; font-size   : 16px
-; outline     : none
-; width       : 200px
-}
-
 button
 { border      : 1px solid #000000
 ; margin      : 0px 0px 0px 0px
@@ -73,7 +61,7 @@ button
 ; background  : #ffa500
 ; color       : #000000
 ; font-family : consolas
-; font-size   : 16px
+; font-size   : 12px
 ; outline     : none
 }
 
