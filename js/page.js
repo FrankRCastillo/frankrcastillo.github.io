@@ -3,7 +3,7 @@ async function main() {
 }
 
 async function home() {
-    let str = read('/apps/home/home.txt');
+    let str = await read('/apps/home/home.txt');
     await print(str);
 }
 
