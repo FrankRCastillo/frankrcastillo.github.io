@@ -16,10 +16,10 @@ async function home() {
 
 function params() {
     let url = location.href;
-    let par = url.split('?')[1];
+    let par = url.split('?');
 
     if (par.length > 1) {
-        return par.split('&').map(x => x.split('='));
+        return par[1].split('&').map(x => x.split('='));
     } else {
         return null;
     }
