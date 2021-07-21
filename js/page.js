@@ -11,8 +11,10 @@ async function home() {
 }
 
 async function params() {
-    let par = url.split('?')[1].split('&');
-    await print(par);
+    let url = location.href;
+    let par = url.split('?')[1];
+    let arr = par.split('&').map(x => x.split('='));
+    await print(arr);
 }
 
 async function help() {
