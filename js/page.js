@@ -17,9 +17,12 @@ async function home() {
 function params() {
     let url = location.href;
     let par = url.split('?')[1];
-    let arr = par.split('&').map(x => x.split('='));
 
-    return arr;
+    if (par.length > 1) {
+        return par.split('&').map(x => x.split('='));
+    } else {
+        return null;
+    }
 }
 
 async function help() {
