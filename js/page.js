@@ -1,8 +1,12 @@
 async function main() {
     let body = document.body;
+    let pars = params();
 
-    await home();
-    await params();
+    if (pars.length > 0) {
+        pars.map(x => print(x[0], x[1]));
+    } else {
+        await home();
+    }
 }
 
 async function home() {
@@ -10,11 +14,12 @@ async function home() {
     await print(str);
 }
 
-async function params() {
+function params() {
     let url = location.href;
     let par = url.split('?')[1];
     let arr = par.split('&').map(x => x.split('='));
-    await print(arr);
+
+    return arr;
 }
 
 async function help() {
