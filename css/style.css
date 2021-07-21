@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css?family=VT323&display=swap'); */
-
 ::-webkit-scrollbar
 { width : 15px
 }
@@ -24,14 +22,6 @@ body
 ; align-content    : center
 ; margin           : 50px 50px 50px 50px
 ; overflow         : hidden
-}
-
-::placeholder
-{ color : #ffffff
-}
-
-tr:hover a
-{ text-decoration: underline
 }
 
 a
