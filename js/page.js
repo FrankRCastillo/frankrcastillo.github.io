@@ -2,7 +2,7 @@ async function main() {
     let body = document.body;
     let pars = params();
 
-    if (pars.length > 0) {
+    if (pars != null && pars.length > 0) {
         pars.map(x => print(x[0] + "\t" + x[1]));
     } else {
         await home();
