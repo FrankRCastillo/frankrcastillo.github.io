@@ -1,10 +1,18 @@
 async function main() {
+    let body = document.body;
+
     await home();
+    await params();
 }
 
 async function home() {
     let str = await read('/apps/home/home.txt');
     await print(str);
+}
+
+async function params() {
+    let par = url.split('?')[1].split('&');
+    await print(par);
 }
 
 async function help() {
