@@ -10,7 +10,7 @@ async function main() {
 
 async function home() {
     let str = await read('/apps/home/home.txt');
-    print(str);
+    await print(str);
 }
 
 function params() {
@@ -30,7 +30,7 @@ async function help() {
     lst.unshift(hdr);
     let tbl = arrayToTable(lst, true, false); 
 
-    print(tbl);
+    await print(tbl);
 }
 
 function clear() {
@@ -44,18 +44,18 @@ async function read(url) {
                  .catch(response => "");
 }
 
-function print(text) {
+async function print(text) {
     let body = document.body;
 
     if (Array.isArray(text)) {
         for (let i = 0; i < text.length; i++) {
-            print(text[i]);
+            await print(text[i]);
         }
     } else {
         let newtxt = document.createElement("div");
         let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
         let rgxdom = new RegExp(rgxexp);
-        let rgxget = text.match(rgxdom);
+        let rgxget = await text.match(rgxdom);
         
         if (rgxget != null) {
             for (let i = 0; i < rgxget.length; i++) {
