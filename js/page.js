@@ -1,7 +1,7 @@
 async function main() {
     let body = document.body;
     let pars = params();
-    let list = await fileList();
+    let list = await fileList("apps/home.*");
 
     await home();
     
