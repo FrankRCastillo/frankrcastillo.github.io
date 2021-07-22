@@ -10,7 +10,7 @@ async function main() {
 
 async function home() {
     let str = await read('/apps/home/home.txt');
-    await print(str);
+    print(str);
 }
 
 function params() {
@@ -30,12 +30,18 @@ async function help() {
     lst.unshift(hdr);
     let tbl = arrayToTable(lst, true, false); 
     
-    await print(tbl);
+    print(tbl);
 }
 
 function clear() {
     let body = document.body;
     if (body != null) { body.innerHTML = ''; }
+}
+
+async function read(url) {
+    return await fetch(url, { headers : {} })
+                 .then(response => response.text())
+                 .catch(response => "");
 }
 
 function print(text) {
