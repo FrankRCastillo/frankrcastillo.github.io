@@ -1,12 +1,11 @@
 async function main() {
     let body = document.body;
     let pars = params();
+    let list = fileList();
 
-    if (pars != null && pars.length > 0) {
-        pars.map(x => print(x[0] + "\t" + x[1]));
-    } else {
-        await home();
-    }
+    await home();
+    
+    print(list);
 }
 
 async function home() {
@@ -39,12 +38,12 @@ function clear() {
     if (body != null) { body.innerHTML = ''; }
 }
 
-async function print(text) {
+function print(text) {
     let body = document.body;
 
     if (Array.isArray(text)) {
         for (let i = 0; i < text.length; i++) {
-            await print(text[i]);
+            print(text[i]);
         }
     } else {
         let newtxt = document.createElement("div");
@@ -127,32 +126,12 @@ async function fileList(filter) {
     return list;
 }
 
-function decodeHtml(html) {
-    let txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-}
-
 function trunc(str, len) {
     if (str.length <= len) {
         return str;
     } else {
         return str.slice(0, len) + '...';
     }
-}
-
-function dateISO(str) {
-    let reldtg = Date.parse(str);
-    let isodtg = new Date(reldtg).toISOString();
-
-    return isodtg.split('.')[0] + 'Z';
-}
-
-function dateUTC(str) {
-    let reldtg = Date.parse(str);
-    let utcdtg = new Date(reldtg);
-
-    return utcdtg.toUTCString();
 }
 
 // if hdrrow is true, function will treat first row in array as table header
@@ -193,26 +172,7 @@ function arrayToTable(arr, hdrrow, haslink) {
     return table;
 }
 
-function isURL(url) {
-    let results = false;
-
-    try {
-        let urlchk = new URL(url);
-        results = urlchk.protocol === 'http:' || urlchk.protocol === 'https:';
-    } catch (err) {
-        console.log(err.message + '. Returning false.')
-    }
-
-    return results;
-}
-
-async function read(url) {
-    return await fetch(url, { headers : {} })
-                 .then(response => response.text())
-                 .catch(response => "");
-}
-
-async function cmdMgr(input) {
+async function cmdManager(input) {
     if (input != '') {
         clearInterval(window.appinterval);
         clear();
@@ -221,9 +181,11 @@ async function cmdMgr(input) {
 
         switch (cmd) {
             case 'home' : home(); break;
+                B
             case 'help' : help(); break;
             default:
 
+                B
             let app = await import('/apps/' + cmd + '.js');
             eval('app.' + cmd + '")');
         }
@@ -236,7 +198,8 @@ async function getCmdInfo() {
 
     lout.sort();
     lout.unshift(['core', 'home', 'Show the home screen']);
-    return lout;    
+
+    return lout;
 }
 
 function getJsDesc(str) {
@@ -244,11 +207,6 @@ function getJsDesc(str) {
               .filter(x => x.match('^// |.*'))[0]
               .replace('// |', '')
               .split('|');
-}
-
-function tableToArray(txt, delim) {
-    return txt.split('\n')
-              .map(x => x.split(delim));
 }
 
 main()
