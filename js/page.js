@@ -29,7 +29,7 @@ async function help() {
     let hdr = ['Category', 'Command', 'Information'];
     lst.unshift(hdr);
     let tbl = arrayToTable(lst, true, false); 
-    
+
     print(tbl);
 }
 
