@@ -226,7 +226,7 @@ function arrayToTable(arr, hdr) {
     arr.forEach((row) => {
         let tr   = null;
         let cell = null;
-        
+
         if (hdr != null && hdrin == false) {
             let tr = newTableRow(hdr, 'th');
             table.appendChild(tr);

@@ -54,7 +54,7 @@ export async function vstr() {
     }
 
     let data     = window.ipdata;
-    let visitMsg = "<div class='vstr'>";
+    let visitDiv = document.createElement('div'); 
     let coordx   = parseInt((-0.1 * data.latitude) + 11);
     let coordy   = parseInt((0.222 * data.longitude) + 39);
 
@@ -64,7 +64,7 @@ export async function vstr() {
         let ipInfo = "";
 
         for (let j = 0; j < worldmap[i].length; j++) {
-            visitMsg += worldmap[i][j];
+            visitDiv.innerHTML += worldmap[i][j];
         }
 
         switch (true) {
@@ -79,10 +79,8 @@ export async function vstr() {
             case i == 9: ipInfo = "Platform: "     + navigator.platform                                ; break;
         }
 
-        visitMsg += ipInfo + "<br/>";
+        visitDiv.innerHTML += ipInfo + "<br/>";
     }
 
-    visitMsg += "</div>";
-
-    print(visitMsg);
+    print(visitDiv);
 }
