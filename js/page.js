@@ -107,7 +107,7 @@ async function read(url) {
                  .catch(response => "");
 }
 
-async function print(text) {
+async function print(text, isCmd) {
     let bffr = document.getElementById('consoleBuffer');
 
     if (Array.isArray(text)) {
@@ -116,6 +116,11 @@ async function print(text) {
         }
     } else {
         let newtxt = document.createElement("div");
+
+        if (isCmd) {
+            newtxt.setAttribute('class', 'consoleCommand');
+        }
+
         let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
         let rgxdom = new RegExp(rgxexp);
         let rgxget = await text.match(rgxdom);

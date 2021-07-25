@@ -75,6 +75,10 @@ input::placeholder
 { color : #ffa500
 }
 
+.consoleCommand
+{ color : #ffa500
+}
+
 #console
 { width  : 100%
 ; height : 100%
