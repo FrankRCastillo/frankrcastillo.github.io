@@ -26,11 +26,11 @@ async function cmdManager(input) {
             case 'help'  : await help(); break;
             case 'clear' : clear()     ; break;
             default:
-                let cmdaddr = window.filelist.filter((x) => x.match('apps\/' +  cmd + '.js'));
-                let app = await import('/' + cmdaddr[0]);
                 try {
+                    let cmdaddr = window.filelist.filter((x) => x.match('apps\/' +  cmd + '.js'));
+                    let app = await import('/' + cmdaddr[0]);
+
                     eval('app.' + cmd + '()');
-                    
                 } catch {
                     print(cmd + ': command not found...');
                 }
