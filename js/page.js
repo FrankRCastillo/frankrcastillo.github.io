@@ -130,24 +130,30 @@ async function print(text, isCmd) {
             newtxt.setAttribute('class', 'consoleCommand');
         }
 
-        let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-        let rgxdom = new RegExp(rgxexp);
-        let rgxget = await text.match(rgxdom);
+        try {
+            let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+            let rgxdom = new RegExp(rgxexp);
+            let rgxget = await text.match(rgxdom);
 
-        if (rgxget != null) {
-            for (let i = 0; i < rgxget.length; i++) {
-                let oldurl = rgxget[i];
-                let newurl = '<a href="'
-                           + rgxget[i]
-                           + '" target="_blank">'
-                           + rgxget[i]
-                           + '</a>';
-                text = text.replace(new RegExp(oldurl, 'gi'), newurl);
+            if (rgxget != null) {
+                for (let i = 0; i < rgxget.length; i++) {
+                    let oldurl = rgxget[i];
+                    let newurl = '<a href="'
+                               + rgxget[i]
+                               + '" target="_blank">'
+                               + rgxget[i]
+                               + '</a>';
+                    text = text.replace(new RegExp(oldurl, 'gi'), newurl);
+                }
             }
+        } finally {
+            if (text.hasOwnProperty(innerHTML)) {
+                newtxt.innerHTML = text.innerHTML;
+            } else {
+                newtxt.innerHTML = text.replace(/\n/g, '<br/>');
+            }
+            bffr.appendChild(newtxt);
         }
-
-        newtxt.innerHTML = text.replace(/\n/g, '<br/>');
-        bffr.appendChild(newtxt);
     }
 }
 
