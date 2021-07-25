@@ -8,12 +8,12 @@ async function main() {
 
     body.appendChild(newConsole());
 
-    cmdManager('home');
+    await cmdManager('home');
 }
 
 async function cmdManager(input) {
     if (input != '') {
-        print(input);
+        await print(input);
 
         let cmd = input.toLowerCase();
 
@@ -61,6 +61,7 @@ function consolePrompt() {
 
 async function home() {
     let str = await read('/apps/home/home.txt');
+
     await print(str);
 }
 
