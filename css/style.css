@@ -65,7 +65,10 @@ input
 ; padding          : 0px 0px 0px 0px
 ; margin           : 0px 0px 0px 0px
 ; border           : 1px solid #ffa500
+; color            : #ffa500
 ; background-color : #000000
+; font-family      : consolas
+; font-size        : 14px
 }
 
 #console
