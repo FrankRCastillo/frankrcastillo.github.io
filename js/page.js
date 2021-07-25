@@ -8,6 +8,13 @@ async function main() {
     print(list);
 }
 
+function ipdata() {
+    let ipread = await read("https://freegeoip.app/json/");
+    let ipdata = JSON.parse(ipread);
+
+    return ipdata;
+}
+
 async function home() {
     let str = await read('/apps/home/home.txt');
     await print(str);
