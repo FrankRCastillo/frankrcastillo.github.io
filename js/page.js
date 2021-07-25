@@ -147,7 +147,7 @@ async function print(text, isCmd) {
                 }
             }
         } finally {
-            if (text.hasOwnProperty('innerHTML')) {
+            if (text.innerHTML) {
                 newtxt.innerHTML = text.innerHTML;
             } else {
                 newtxt.innerHTML = text.replace(/\n/g, '<br/>');
