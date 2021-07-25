@@ -82,5 +82,5 @@ export async function vstr() {
         visitDiv.innerHTML += ipInfo + "<br/>";
     }
 
-    print(visitDiv);
+    await print(visitDiv);
 }
