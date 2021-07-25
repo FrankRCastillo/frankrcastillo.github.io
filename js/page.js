@@ -41,6 +41,10 @@ function newConsole() {
     return cnsl;
 }
 
+function consoleMessage() {
+    return '\u25B6visitor@' + ipdata.ip + ', type commands here...';
+}
+
 function consoleBuffer() {
     let bffr = document.createElement('div');
 
@@ -51,7 +55,7 @@ function consoleBuffer() {
 
 function consolePrompt() {
     let inpt = document.createElement('input');
-    let mesg = '\u25B6visitor@' + ipdata.ip + ', type commands here...';
+    let mesg = consoleMessage();
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
