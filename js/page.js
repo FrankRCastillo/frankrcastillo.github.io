@@ -61,7 +61,8 @@ function consolePrompt() {
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
     inpt.addEventListener('keydown', (e) => {
-        if (e.Code === 'Enter') {
+        e = e || window.event;
+        if (e.keyCode == 13) {
             cmdManager(e.target.value);
         }
     });
