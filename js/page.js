@@ -1,4 +1,4 @@
-var ipdata = ipdata();
+var ipdata = await ipdata();
 
 async function main() {
     let body = document.body;
