@@ -4,7 +4,7 @@ async function main() {
     let list = await fileList("apps/home.*");
 
     await home();
-    
+
     print(list);
 }
 
@@ -28,7 +28,7 @@ async function help() {
     let lst = await getCmdInfo();
     let hdr = ['Category', 'Command', 'Information'];
     lst.unshift(hdr);
-    let tbl = arrayToTable(lst, true, false); 
+    let tbl = arrayToTable(lst, true, false);
 
     await print(tbl);
 }
@@ -56,7 +56,7 @@ async function print(text) {
         let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
         let rgxdom = new RegExp(rgxexp);
         let rgxget = await text.match(rgxdom);
-        
+
         if (rgxget != null) {
             for (let i = 0; i < rgxget.length; i++) {
                 let oldurl = rgxget[i];
@@ -68,7 +68,7 @@ async function print(text) {
                 text = text.replace(new RegExp(oldurl, 'gi'), newurl);
             }
         }
-        
+
         newtxt.innerHTML = text.replace(/\n/g, '<br/>');
         body.appendChild(newtxt);
     }
@@ -86,7 +86,7 @@ function newTabLayout(elems) {
     for (let i = 0; i < elems.length; i++) {
         let tabbtn = document.createElement('button');
         let tabbdy = document.createElement('div');
- 
+
         tabbtn.addEventListener('click', function() {
             let partabs = this.parentElement.parentElement;
             let bdyelem = partabs.getElementsByClassName('tabbody');
@@ -103,7 +103,7 @@ function newTabLayout(elems) {
         tabbdy.setAttribute('class', 'tabbody');
         tabbdy.setAttribute(   'id',  elems[i]);
         tabbtn.textContent = elems[i];
-        
+
         if (i == 0) {
             tabbdy.style.display = 'block';
         } else {
