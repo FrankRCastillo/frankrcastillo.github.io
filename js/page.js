@@ -150,8 +150,8 @@ async function print(text, isCmd) {
             }
         }
 
-        if (text.innerHTML) {
-            newtxt.innerHTML = text.innerHTML;
+        if (text.outerHTML) {
+            newtxt.innerHTML = text.outerHTML;
         } else {
             newtxt.innerHTML = text.replace(/\n/g, '<br/>');
         }
