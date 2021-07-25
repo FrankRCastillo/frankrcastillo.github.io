@@ -27,7 +27,7 @@ async function cmdManager(input) {
             case 'clear' : clear()     ; break;
             default:
 
-            let app = await import('/apps/' + cmd + '.js');
+            let app = import('/apps/' + cmd + '.js');
 
             eval('app.' + cmd);
         }
