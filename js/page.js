@@ -60,9 +60,9 @@ function consolePrompt() {
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
-    inpt.addEventListener("keydown", function(e) {
-        if (e.Code === "Enter") {
-            cmdManager(inpt.value);
+    inpt.addEventListener('keydown', (e) => {
+        if (e.Code === 'Enter') {
+            cmdManager(e.target.value);
         }
     });
 
