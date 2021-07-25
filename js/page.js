@@ -8,13 +8,12 @@ async function main() {
 
     body.appendChild(newConsole());
 
-    await home();
+    cmdManager('home');
 }
 
 async function cmdManager(input) {
     if (input != '') {
-        clearInterval(window.appinterval);
-        clear();
+        print(input);
 
         let cmd = input.toLowerCase();
 
