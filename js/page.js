@@ -19,8 +19,9 @@ async function cmdManager(input) {
         let cmd = input.toLowerCase();
 
         switch (cmd) {
-            case 'home' : await home(); break;
-            case 'help' : await help(); break;
+            case 'home'  : await home(); break;
+            case 'help'  : await help(); break;
+            case 'clear' : clear()     ; break;
             default:
 
             let app = await import('/apps/' + cmd + '.js');
