@@ -1,3 +1,5 @@
+var ipdata = ipdata();
+
 async function main() {
     let body = document.body;
     let pars = params();
@@ -6,13 +8,6 @@ async function main() {
     await home();
 
     print(list);
-}
-
-function ipdata() {
-    let ipread = await read("https://freegeoip.app/json/");
-    let ipdata = JSON.parse(ipread);
-
-    return ipdata;
 }
 
 async function home() {
@@ -29,6 +24,13 @@ function params() {
     } else {
         return null;
     }
+}
+
+function ipdata() {
+    let ipread = await read("https://freegeoip.app/json/");
+    let ipdata = JSON.parse(ipread);
+
+    return ipdata;
 }
 
 async function help() {
