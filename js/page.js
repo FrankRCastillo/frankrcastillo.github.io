@@ -52,7 +52,7 @@ function consoleBuffer() {
 
 function consolePrompt() {
     let inpt = document.createElement('input');
-    let mesg = '\u25B6visitor@' + ipdata.ip + ':~$';
+    let mesg = '\u25B6visitor@' + ipdata.ip + ', type commands here...';
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
