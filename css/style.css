@@ -95,7 +95,7 @@ input::placeholder
 
 .xmark
 { color     : #ffa500
-; animation : blinker 1s linear infinite
+; animation : blink 1s linear infinite
 }
 
 @keyframes blink
