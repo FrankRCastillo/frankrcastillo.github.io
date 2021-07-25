@@ -64,12 +64,15 @@ input
 { width            : 100%
 ; padding          : 0px 0px 0px 0px
 ; margin           : 0px 0px 0px 0px
-; border           : 1px solid #ffa500
 ; color            : #ffa500
 ; background-color : #000000
 ; font-family      : consolas
 ; font-size        : 14px
 ; outline          : none
+}
+
+input::placeholder
+{ color : #ffa500
 }
 
 #console
@@ -82,7 +85,9 @@ input
 }
 
 #consolePrompt
-{}
+{ border : 1px solid #ffa500
+
+}
 
 @keyframes blink
 {  0% { opacity: 0.0 }
