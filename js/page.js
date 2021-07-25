@@ -13,7 +13,8 @@ async function main() {
 
 async function cmdManager(input) {
     if (input != '') {
-        await print(input);
+        let promptmsg = consoleMessage() + ':~$ '
+        await print(promptmsg + input);
 
         let cmd = input.toLowerCase();
 
@@ -42,7 +43,7 @@ function newConsole() {
 }
 
 function consoleMessage() {
-    return '\u25B6visitor@' + ipdata.ip + ', type commands here...';
+    return '\u25B6visitor@' + ipdata.ip;
 }
 
 function consoleBuffer() {
@@ -55,7 +56,7 @@ function consoleBuffer() {
 
 function consolePrompt() {
     let inpt = document.createElement('input');
-    let mesg = consoleMessage();
+    let mesg = consoleMessage() + ', type command here...';
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
