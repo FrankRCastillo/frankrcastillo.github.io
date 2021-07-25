@@ -1,10 +1,10 @@
-var ipdata = null;
+var window.ipdata = null;
 
 async function main() {
     let body = document.body;
     let pars = params();
 
-    ipdata = await ipdata();
+    window.ipdata = await ipdata();
 
     body.appendChild(newConsole());
 

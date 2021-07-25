@@ -54,7 +54,7 @@ export async function vstr(consoleName) {
         worldmap[maparea[i][0]][maparea[i][1]] = ".";
     }
     
-    let data     = ipdata;
+    let data     = window.ipdata;
     let visitMsg = "<div class='vstr'>";
     let coordx   = parseInt((-0.1 * data.latitude) + 11);
     let coordy   = parseInt((0.222 * data.longitude) + 39);
