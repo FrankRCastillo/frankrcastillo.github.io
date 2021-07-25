@@ -263,7 +263,7 @@ function newTableRow(arr, tag){
 }
 
 async function getCmdInfo() {
-    let list = window.fileList.filter(/apps\/.*\.js$/);
+    let list = window.fileList.filter((x) => x.match('/apps\/.*\.js$/'));
     let lout = await Promise.all(list.map(async x => getJsDesc(await read(x))));
 
     lout.sort();
