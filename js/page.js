@@ -26,7 +26,7 @@ async function cmdManager(input) {
 
             let app = await import('/apps/' + cmd + '.js');
 
-            eval('app.' + cmd + '")');
+            eval('app.' + cmd + ')');
         }
     }
 }
