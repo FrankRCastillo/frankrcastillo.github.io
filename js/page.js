@@ -21,7 +21,6 @@ function consoleBuffer() {
 }
 
 
-
 async function home() {
     let str = await read('/apps/home/home.txt');
     await print(str);
@@ -38,7 +37,7 @@ function params() {
     }
 }
 
-function ipdata() {
+async function ipdata() {
     let ipread = await read("https://freegeoip.app/json/");
     let ipdata = JSON.parse(ipread);
 
