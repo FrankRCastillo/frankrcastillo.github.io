@@ -60,6 +60,26 @@ button:hover
 ; color      : #ffa500
 }
 
+input
+{ width            : 100%
+; padding          : 0px 0px 0px 0px
+; margin           : 0px 0px 0px 0px
+; border           : 1px solid #ffa500
+; background-color : #000000
+}
+
+#console
+{ width  : 100%
+; height : 100%
+}
+
+#consoleBuffer
+{
+}
+
+#consolePrompt
+{}
+
 @keyframes blink
 {  0% { opacity: 0.0 }
  100% { opacity: 1.0 }

@@ -7,7 +7,6 @@ async function main() {
     body.appendChild(newConsole());
 
     await home();
-
 }
 
 function newConsole() {
