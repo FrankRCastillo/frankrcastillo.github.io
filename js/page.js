@@ -9,6 +9,25 @@ async function main() {
     await home();
 }
 
+async function cmdManager(input) {
+    if (input != '') {
+        clearInterval(window.appinterval);
+        clear();
+
+        let cmd = input.toLowerCase();
+
+        switch (cmd) {
+            case 'home' : home(); break;
+            case 'help' : help(); break;
+            default:
+
+            let app = await import('/apps/' + cmd + '.js');
+
+            eval('app.' + cmd + '")');
+        }
+    }
+}
+
 function newConsole() {
     let cnsl = document.createElement('div');
     let bffr = consoleBuffer();
@@ -31,8 +50,10 @@ function consoleBuffer() {
 
 function consolePrompt() {
     let inpt = document.createElement('input');
+    let mesg = '\u25B6visitor@' + ipdata.ip + '#';
 
     inpt.setAttribute('id', 'consolePrompt');
+    inpt.setAttribute('placeholder', mesg);
 
     return inpt;
 }
@@ -212,26 +233,6 @@ function arrayToTable(arr, hdrrow, haslink) {
         table.appendChild(tr);
     }
     return table;
-}
-
-async function cmdManager(input) {
-    if (input != '') {
-        clearInterval(window.appinterval);
-        clear();
-
-        let cmd = input.toLowerCase();
-
-        switch (cmd) {
-            case 'home' : home(); break;
-                B
-            case 'help' : help(); break;
-            default:
-
-                B
-            let app = await import('/apps/' + cmd + '.js');
-            eval('app.' + cmd + '")');
-        }
-    }
 }
 
 async function getCmdInfo() {
