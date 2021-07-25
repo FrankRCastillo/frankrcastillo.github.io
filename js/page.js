@@ -1,4 +1,4 @@
-var window.ipdata = null;
+window.ipdata = null;
 
 async function main() {
     let body = document.body;
