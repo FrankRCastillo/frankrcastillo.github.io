@@ -1,6 +1,6 @@
 // |apps|vstr|Visitor information
 
-export async function vstr() {
+export function vstr() {
     let worldmap = new Array(3);
 
     for (let i = 0; i < 19; i++) {
@@ -82,5 +82,5 @@ export async function vstr() {
         visitDiv.innerHTML += ipInfo + "<br/>";
     }
 
-    await print(visitDiv);
+    print(visitDiv);
 }

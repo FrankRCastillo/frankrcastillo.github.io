@@ -17,7 +17,7 @@ async function cmdManager(input) {
     if (input != '') {
         let promptmsg = consoleMessage() + ':~$ '
 
-        await print(promptmsg + input, true);
+        print(promptmsg + input, true);
 
         let cmd = input.toLowerCase();
 
@@ -37,7 +37,7 @@ async function cmdManager(input) {
 async function home() {
     let str = await read('/apps/home/home.txt');
 
-    await print(str);
+    print(str);
 }
 
 async function help() {
@@ -45,7 +45,7 @@ async function help() {
     let hdr = ['Category', 'Command', 'Information'];
     let tbl = arrayToTable(lst, hdr);
 
-    await print(tbl);
+    print(tbl);
 }
 
 function clear() {
@@ -118,12 +118,12 @@ async function read(url) {
                  .catch(response => "");
 }
 
-async function print(text, isCmd) {
+function print(text, isCmd) {
     let bffr = document.getElementById('consoleBuffer');
 
     if (Array.isArray(text)) {
         for (let i = 0; i < text.length; i++) {
-            await print(text[i]);
+            print(text[i]);
         }
     } else {
         let newtxt = document.createElement("div");
@@ -137,7 +137,7 @@ async function print(text, isCmd) {
         let rgxget = null;
 
         if (text.hasOwnProperty('match')) {
-            rgxget = await text.match(rgxdom);
+            rgxget = text.match(rgxdom);
         }
 
         if (rgxget != null) {
