@@ -76,9 +76,8 @@ function params() {
 
 async function ipdata() {
     let ipread = await read("https://freegeoip.app/json/");
-    let ipdata = JSON.parse(ipread);
 
-    return ipdata;
+    return JSON.parse(ipread);
 }
 
 async function help() {
