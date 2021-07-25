@@ -1,6 +1,6 @@
 // |wrld|cmap|World map with countries' history (source: CIA WFB)
 
-export async function cmap(consoleName) {
+export async function cmap() {
     let year = new Date().getFullYear();
     let cia = await import('/js/cia.js');
 
@@ -10,15 +10,15 @@ export async function cmap(consoleName) {
         window.ctryData.sort((a, b) => a[3].localeCompare(b[3]));
     }
 
-    let out = document.getElementById('outtext_' + consoleName)
+    let out = document.getElementById('outtext_' + )
     let wmp = document.createElement('WorldMap')
-    wmp.appendChild(newCtryPage(consoleName));
+    wmp.appendChild(newCtryPage());
     out.appendChild(wmp);
-    createMap(consoleName);
+    createMap();
 }
 
-function createMap(consoleName) {
-    let map       = L.map('mapframe_' + consoleName);
+function createMap() {
+    let map       = L.map('mapframe_' + );
     let osmUrl    ='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     let osmAttrib ='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
     let osm       = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 17, attribution: osmAttrib});		
@@ -38,11 +38,11 @@ function createMap(consoleName) {
                                                                     .indexOf(code.toUpperCase())
                                                             ][0]
 
-                                 document.getElementById('mapselect_' + consoleName)
+                                 document.getElementById('mapselect_' + )
                                          .querySelector('option[value=' + ncode + ']')
                                          .selected = true;
 
-                                 document.getElementById('mapdata_' + consoleName)
+                                 document.getElementById('mapdata_' + )
                                          .innerHTML = countryInfo(ncode);
                              } catch (err) {
                                  console.log(err.message);
@@ -51,7 +51,7 @@ function createMap(consoleName) {
     });
 }
 
-function newCtryPage(consoleName) {
+function newCtryPage() {
     let out = document.createElement('div');
     let frm = document.createElement('div');
     let lst = document.createElement('div');
@@ -59,10 +59,10 @@ function newCtryPage(consoleName) {
     let dta = document.createElement('div');
     let sel = document.createElement('select');
 
-    frm.setAttribute('id', 'mapframe_'  + consoleName);
-    lst.setAttribute('id', 'maptools_'  + consoleName);
-    dta.setAttribute('id', 'mapdata_'   + consoleName);
-    sel.setAttribute('id', 'mapselect_' + consoleName);
+    frm.setAttribute('id', 'mapframe_'  + );
+    lst.setAttribute('id', 'maptools_'  + );
+    dta.setAttribute('id', 'mapdata_'   + );
+    sel.setAttribute('id', 'mapselect_' + );
     
     frm.setAttribute('class', 'mapframe' );
     lst.setAttribute('class', 'maptools' );

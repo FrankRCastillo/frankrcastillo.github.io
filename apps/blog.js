@@ -1,9 +1,7 @@
 // |apps|blog|Personal blog of Frank R. Castillo
 
-export async function blog(consoleName) {
-    let url  = 'https://frankrcastillo.github.io/';
+export async function blog() {
     let list = await fileList(/apps\/blog\/.*/);
 
-    clear(consoleName);
-    print('blog in progres...', consoleName);
+    print(list);
 }
