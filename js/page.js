@@ -29,7 +29,7 @@ async function cmdManager(input) {
 
             let app = await import('/apps/' + cmd + '.js');
 
-                eval('async () => { await app.' + cmd + '}');
+            eval('app.' + cmd);
         }
     }
 }
