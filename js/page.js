@@ -2,14 +2,24 @@ var ipdata = ipdata();
 
 async function main() {
     let body = document.body;
-    let bffr = consoleBuffer()
     let pars = params();
 
-    body.appendChild(bffr);
+    body.appendChild(newConsole());
 
     await home();
 
-    print(list);
+}
+
+function newConsole() {
+    let cnsl = document.createElement('div');
+    let bffr = consoleBuffer();
+    let inpt = consolePrompt();
+
+    cnsl.setAttribute('id', 'console');
+    cnsl.appendChild(bffr);
+    cnsl.appendChild(inpt);
+
+    return cnsl;
 }
 
 function consoleBuffer() {
@@ -20,6 +30,13 @@ function consoleBuffer() {
     return bffr;
 }
 
+function consolePrompt() {
+    let inpt = document.createElement('input');
+
+    inpt.setAttribute('id', 'consolePrompt');
+
+    return inpt;
+}
 
 async function home() {
     let str = await read('/apps/home/home.txt');
