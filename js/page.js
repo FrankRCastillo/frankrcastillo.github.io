@@ -4,7 +4,7 @@ async function main() {
     let body = document.body;
     let pars = params();
 
-    window.ipdata = await ipdata();
+    window.ipdata = await getip();
 
     body.appendChild(newConsole());
 
@@ -76,7 +76,7 @@ function params() {
     }
 }
 
-async function ipdata() {
+async function getip() {
     let ipread = await read("https://freegeoip.app/json/");
 
     return JSON.parse(ipread);
