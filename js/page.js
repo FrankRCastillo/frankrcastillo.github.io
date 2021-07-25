@@ -1,10 +1,12 @@
 window.ipdata = null;
+window.filelist = null;
 
 async function main() {
     let body = document.body;
     let pars = params();
 
-    window.ipdata = await getip();
+    window.ipdata   = await getip();
+    window.filelist = await fileList();
 
     body.appendChild(newConsole());
 
@@ -206,14 +208,13 @@ function newTabLayout(elems) {
     return encls;
 }
 
-async function fileList(filter) {
+async function fileList() {
     let gapi = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/git/trees/master?recursive=1';
     let text = await read(gapi);
     let json = JSON.parse(text);
     let tree = json.tree;
     let list = Array.from(tree)
                     .map(x => x.path)
-                    .filter(x => x.match(filter));
 
     return list;
 }
@@ -263,7 +264,7 @@ function newTableRow(arr, tag){
 }
 
 async function getCmdInfo() {
-    let list = await fileList(/apps\/.*\.js$/);
+    let list = window.fileList.filter(/apps\/.*\.js$/);
     let lout = await Promise.all(list.map(async x => getJsDesc(await read(x))));
 
     lout.sort();
