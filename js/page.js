@@ -221,28 +221,36 @@ function trunc(str, len) {
 // if haslink is true, will treat last element in row as link
 function arrayToTable(arr, hdr) {
     let table = document.createElement('table');
+    let hdrin = false;
 
-    arr.forEach(row => ())
-
-    for (let i = 0; i < arr.length; i++) {
-        let tr = document.createElement('tr');
-
-        for (let j = 0; j < arr[i].length - golnk; j++) {
-            let elem = '';
-            if (i == 0 && hdrrow) {
-                elem = 'th';
-            } else {
-                elem = 'td';
-            }
-
-            let cell = document.createElement(elem);
-
-            cell.innerText = arr[i][j]
-            tr.appendChild(cell);
+    arr.forEach((row) => {
+        let tr   = null;
+        let cell = null;
+        
+        if (hdr != null && hdrin == false) {
+            let tr = newTableRow(hdr, 'th');
+            table.appendChild(tr);
+            tr    = null;
+            hdrin = true;
         }
+
+        tr = newTableRow(row, 'td');
         table.appendChild(tr);
-    }
+    });
+
     return table;
+}
+
+function newTableRow(arr, tag){
+    let tr = document.createElement('tr');
+
+    arr.forEach((val) => {
+        let cell = document.createElement(tag);
+        cell.innerText = val;
+        tr.appendChild(cell);
+    });
+
+    return tr;
 }
 
 async function getCmdInfo() {
