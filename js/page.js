@@ -2,13 +2,25 @@ var ipdata = ipdata();
 
 async function main() {
     let body = document.body;
+    let bffr = consoleBuffer()
     let pars = params();
-    let list = await fileList("apps/home.*");
+
+    body.appendChild(bffr);
 
     await home();
 
     print(list);
 }
+
+function consoleBuffer() {
+    let bffr = document.createElement('div');
+
+    bffr.setAttribute('id', 'consoleBuffer');
+
+    return bffr;
+}
+
+
 
 async function home() {
     let str = await read('/apps/home/home.txt');
@@ -54,7 +66,7 @@ async function read(url) {
 }
 
 async function print(text) {
-    let body = document.body;
+    let bffr = document.getElementById('consoleBuffer');
 
     if (Array.isArray(text)) {
         for (let i = 0; i < text.length; i++) {
@@ -79,7 +91,7 @@ async function print(text) {
         }
 
         newtxt.innerHTML = text.replace(/\n/g, '<br/>');
-        body.appendChild(newtxt);
+        bffr.appendChild(newtxt);
     }
 }
 
