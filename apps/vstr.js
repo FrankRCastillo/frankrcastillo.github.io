@@ -1,7 +1,6 @@
 // |apps|vstr|Visitor demographics and other information
 
-export async function vstr(consoleName) {
-    let outtext = document.getElementById("outtext_" + consoleName);
+export async function vstr() {
     let worldmap = new Array(3);
 
     for (let i = 0; i < 19; i++) {
@@ -85,8 +84,5 @@ export async function vstr(consoleName) {
 
     visitMsg += "</div>";
 
-    let visitDiv = document.createElement("div");
-    visitDiv.innerHTML = visitMsg;
-
-    outtext.appendChild(visitDiv);
+    print(visitMsg);
 }

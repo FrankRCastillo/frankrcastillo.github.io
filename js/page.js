@@ -14,6 +14,7 @@ async function main() {
 async function cmdManager(input) {
     if (input != '') {
         let promptmsg = consoleMessage() + ':~$ '
+
         await print(promptmsg + input, true);
 
         let cmd = input.toLowerCase();
@@ -29,6 +30,25 @@ async function cmdManager(input) {
             eval('app.' + cmd);
         }
     }
+}
+
+async function home() {
+    let str = await read('/apps/home/home.txt');
+
+    await print(str);
+}
+
+async function help() {
+    let lst = await getCmdInfo();
+    let hdr = ['Category', 'Command', 'Information'];
+    let tbl = arrayToTable(lst, hdr);
+
+    await print(tbl);
+}
+
+function clear() {
+    let body = document.getElementById('consoleBuffer');
+    if (body != null) { body.innerHTML = ''; }
 }
 
 function newConsole() {
@@ -72,11 +92,6 @@ function consolePrompt() {
     return inpt;
 }
 
-async function home() {
-    let str = await read('/apps/home/home.txt');
-
-    await print(str);
-}
 
 function params() {
     let url = location.href;
@@ -93,20 +108,6 @@ async function getip() {
     let ipread = await read("https://freegeoip.app/json/");
 
     return JSON.parse(ipread);
-}
-
-async function help() {
-    let lst = await getCmdInfo();
-    let hdr = ['Category', 'Command', 'Information'];
-    lst.unshift(hdr);
-    let tbl = arrayToTable(lst, true, false);
-
-    await print(tbl);
-}
-
-function clear() {
-    let body = document.getElementById('consoleBuffer');
-    if (body != null) { body.innerHTML = ''; }
 }
 
 async function read(url) {
@@ -218,11 +219,10 @@ function trunc(str, len) {
 
 // if hdrrow is true, function will treat first row in array as table header
 // if haslink is true, will treat last element in row as link
-function arrayToTable(arr, hdrrow, haslink) {
+function arrayToTable(arr, hdr) {
     let table = document.createElement('table');
-    let golnk = 0;
 
-    if (haslink) { golnk = 1; }
+    arr.forEach(row => ())
 
     for (let i = 0; i < arr.length; i++) {
         let tr = document.createElement('tr');
@@ -237,16 +237,7 @@ function arrayToTable(arr, hdrrow, haslink) {
 
             let cell = document.createElement(elem);
 
-            if (haslink) {
-                let link = document.createElement('a');
-                let node = document.createTextNode(arr[i][j]);
-                link.href = arr[i][arr[i].length - 1];
-                link.target = '_blank';
-                link.appendChild(node);
-                cell.appendChild(link);
-            } else {
-                cell.innerText = arr[i][j]
-            }
+            cell.innerText = arr[i][j]
             tr.appendChild(cell);
         }
         table.appendChild(tr);
