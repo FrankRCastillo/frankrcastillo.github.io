@@ -19,8 +19,8 @@ async function cmdManager(input) {
         let cmd = input.toLowerCase();
 
         switch (cmd) {
-            case 'home' : home(); break;
-            case 'help' : help(); break;
+            case 'home' : await home(); break;
+            case 'help' : await help(); break;
             default:
 
             let app = await import('/apps/' + cmd + '.js');
@@ -92,7 +92,7 @@ async function help() {
 }
 
 function clear() {
-    let body = document.body;
+    let body = document.getElementById('consoleBuffer');
     if (body != null) { body.innerHTML = ''; }
 }
 
