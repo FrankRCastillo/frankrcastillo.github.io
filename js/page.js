@@ -26,10 +26,9 @@ async function cmdManager(input) {
             case 'help'  : await help(); break;
             case 'clear' : clear()     ; break;
             default:
-                let cmdaddr = window.filelist.filter('.*/apps/' + cmd + '.js');
-                let app = await import(cmdarr);
+                let cmdaddr = window.filelist.filter((x) => x.match('apps\/' +  cmd + '.js'));
+                let app = await import(cmdarr[0]);
                 eval('app.' + cmd)
-
         }
     }
 }
