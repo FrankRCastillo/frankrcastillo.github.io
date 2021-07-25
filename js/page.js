@@ -1,5 +1,16 @@
 var ipdata = null;
 
+async function main() {
+    let body = document.body;
+    let pars = params();
+
+    ipdata = await ipdata();
+
+    body.appendChild(newConsole());
+
+    await home();
+}
+
 async function cmdManager(input) {
     if (input != '') {
         clearInterval(window.appinterval);
@@ -240,17 +251,6 @@ function getJsDesc(str) {
               .filter(x => x.match('^// |.*'))[0]
               .replace('// |', '')
               .split('|');
-}
-
-async function main() {
-    let body = document.body;
-    let pars = params();
-
-    ipdata = await ipdata();
-
-    body.appendChild(newConsole());
-
-    await home();
 }
 
 main()
