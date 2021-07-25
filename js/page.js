@@ -14,7 +14,7 @@ async function main() {
 async function cmdManager(input) {
     if (input != '') {
         let promptmsg = consoleMessage() + ':~$ '
-        await print(promptmsg + input);
+        await print(promptmsg + input, true);
 
         let cmd = input.toLowerCase();
 
