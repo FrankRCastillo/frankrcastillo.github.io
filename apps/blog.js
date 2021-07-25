@@ -1,4 +1,4 @@
-// |apps|blog|Personal blog of Frank R. Castillo
+// |apps|blog|Personal blog
 
 export async function blog() {
     let list = await fileList(/apps\/blog\/.*/);

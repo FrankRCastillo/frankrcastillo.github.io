@@ -1,4 +1,4 @@
-// |apps|vstr|Visitor demographics and other information
+// |apps|vstr|Visitor information
 
 export async function vstr() {
     let worldmap = new Array(3);

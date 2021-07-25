@@ -1,4 +1,4 @@
-// |apps|news|RSS feed from letious news sources
+// |apps|news|RSS news feed
 
 export function news() {
     let out = document.getElementById('outtext_' + );
