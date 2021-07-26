@@ -11,7 +11,7 @@
 }
 
 html
-{ font-family : consolas
+{ font-family : monospace
 ; font-size   : 14px
 }
 
@@ -50,7 +50,7 @@ button
 ; padding     : 0px 0px 0px 0px
 ; background  : #ffa500
 ; color       : #000000
-; font-family : consolas
+; font-family : monospace
 ; font-size   : 14px
 ; outline     : none
 }
@@ -66,7 +66,7 @@ input
 ; margin           : 0px 0px 0px 0px
 ; color            : #ffa500
 ; background-color : #000000
-; font-family      : consolas
+; font-family      : monospace
 ; font-size        : 14px
 ; outline          : none
 }
