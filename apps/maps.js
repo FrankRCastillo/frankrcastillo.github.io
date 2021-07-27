@@ -15,7 +15,7 @@ async function bmpToAscii() {
 
     img.src  = path;
 
-    cntx.drawImage(img);
+    cntx.drawImage(img, 0, 0);
 
     let data = cntx.getImageData(0, 0, 1357, 628);
 
