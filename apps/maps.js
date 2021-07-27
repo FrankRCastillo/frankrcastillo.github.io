@@ -10,7 +10,7 @@ async function bmpToAscii() {
     let rtn = '';
     let url = '/apps/maps/map.bmp';
     let ftc = await fetch(url);
-    let fle = new File([ftc], 'map.bmp', { type: 'image/bmp' });
+    let fle = new File([ftc.blob()], 'map.bmp', { type: 'image/bmp' });
     let ctx = document.createElement('canvas').getContext('2d');
     let img = new Image();
     
