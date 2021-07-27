@@ -159,7 +159,7 @@ function print(text, isCmd) {
         if (text.outerHTML) {
             newtxt.innerHTML = text.outerHTML;
         } else {
-            newtxt.innerHTML = text.replace(/\n/g, '<br/>');
+            newtxt.innerHTML = await text.replace(/\n/g, '<br/>');
         }
 
         bffr.appendChild(newtxt);
