@@ -10,7 +10,7 @@ async function bmpToAscii() {
     let path = '/apps/maps/map.bmp';
     let resp = await fetch(path);
     let blob = await resp.blob()
-    let file = new File([blob], 'map.png', { type: 'image/png' });
+    let file = new File([blob], 'map.bmp', { type: 'image/bmp' });
     let cnvs = document.createElement('canvas');
     let cntx = cnvs.getContext('2d');
     let img  = cntx.getImageData(0, 0, 1357, 628);
