@@ -9,7 +9,7 @@ export async function maps() {
 async function bmpToAscii() {
     let rtn = '';
     let url = '/apps/maps/map.bmp';
-    let ctx = document.createElement('canvas').getContent('2d');
+    let ctx = document.createElement('canvas').getContext('2d');
     let img = new Image();
     
     img.addEventListener('load', () => {
