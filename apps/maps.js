@@ -15,10 +15,10 @@ async function bmpToAscii() {
     canvas.height = image.height;
     canvas.width  = image.width;
 
-    let context = cnvs.getContext('2d');
+    let context = canvas.getContext('2d');
 
     image.src  = path;
-    cntx.drawImage(img, 0, 0);
+    canvas.drawImage(image, 0, 0);
 
     let imagedata = context.getImageData(0, 0, canvas.width, canvas.height);
     let data = imagedata.data;
