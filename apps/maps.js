@@ -9,7 +9,9 @@ export async function maps() {
 async function bmpToAscii() {
     let rtn = '';
     let bmp = '/apps/maps/map.bmp';
-    let url = window.URL.createObjectURL(bmp);
+    let fch = await fetch(bmp);
+    let blb = await fch.blob();
+    let url = window.URL.createObjectURL(blb);
     let img = new Image();
 
     img.src = url;
