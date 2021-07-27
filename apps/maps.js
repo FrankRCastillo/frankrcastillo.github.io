@@ -8,7 +8,7 @@ export async function maps() {
 
 async function bmpToAscii() {
     let rtn    = '';
-    let path   = '/apps/maps/map.bmp';
+    let path   = 'https://frankrcastillo.github.io/apps/maps/map.bmp';
     let image  = new Image();
     let canvas = document.createElement('canvas');
 
