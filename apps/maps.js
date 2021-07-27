@@ -1,7 +1,7 @@
 // |apps|maps|Map utility
 
 export async function maps() {
-    let txt = bmpToAscii();
+    let txt = await bmpToAscii();
 
     print(txt);
 }
