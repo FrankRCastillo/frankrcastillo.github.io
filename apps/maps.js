@@ -9,15 +9,21 @@ export async function maps() {
 async function bmpToAscii() {
     let path = '/apps/maps/map.bmp';
     let img  = new Image();
-    let cnvs = document.createElement('canvas');
-    let cntx = cnvs.getContext('2d');
-    let rtn  = '';
 
     img.src  = path;
 
+    let cnvs = document.createElement('canvas');
+
+    cnvs.width  = img.width;
+    cnvs.height = img.height;
+
+    let cntx = cnvs.getContext('2d');
+    let rtn  = '';
+
+
     cntx.drawImage(img, 0, 0);
 
-    let imgd = cntx.getImageData(0, 0, 1357, 628);
+    let imgd = cntx.getImageData(0, 0, cnvs.width, cnvs.height);
     let data = imgd.data;
 
     for (let i = 0; i < data.length; i++) {
