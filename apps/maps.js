@@ -9,17 +9,15 @@ export async function maps() {
 async function bmpToAscii() {
     let path = '/apps/maps/map.bmp';
     let img  = new Image();
-
-    img.src  = path;
-
     let cnvs = document.createElement('canvas');
 
-    cnvs.width  = img.width;
-    cnvs.height = img.height;
+    img.src  = path;
+    img.addEventListener('load', )
+    cnvs.width  = 1357;
+    cnvs.height = 628;
 
     let cntx = cnvs.getContext('2d');
     let rtn  = '';
-
 
     cntx.drawImage(img, 0, 0);
 
