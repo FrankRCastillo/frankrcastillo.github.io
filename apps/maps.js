@@ -7,29 +7,15 @@ export async function maps() {
 }
 
 async function bmpToAscii() {
-    let rtn    = '';
-    let path   = 'https://frankrcastillo.github.io/apps/maps/map.bmp';
-    let image  = new Image();
-    let canvas = document.createElement('canvas');
-
-    image.src  = path;
-    canvas.height = image.height;
-    canvas.width  = image.width;
-
-    let context = canvas.getContext('2d');
-
-    context.drawImage(image, 0, 0);
-
-    let imagedata = context.getImageData(0, 0, canvas.width, canvas.height);
-    let data = imagedata.data;
-
-    for (let i = 0; i < data.length; i++) {
-        rtn += data[i];
-
-        if (i + 1 % 1357 == 0) {
-            rtn += '\n';
-        }
-    }
+    let rtn = '';
+    let url = '/apps/maps/map.bmp';
+    let ctx = document.createElement('canvas').getContent('2d');
+    let img = new Image();
+    
+    img.addEventListener('load', () => {
+       ctx.drawImage(img, 0, 0); 
+    }, false);
+    img.src = url;
 
     return rtn;
 }
