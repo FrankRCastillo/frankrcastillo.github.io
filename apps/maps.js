@@ -11,12 +11,15 @@ async function bmpToAscii() {
     let resp = await fetch(path);
     let blob = await resp.blob()
     let file = new File([blob], 'map.bmp', { type: 'image/bmp' });
+    let img  = new Image();
     let cnvs = document.createElement('canvas');
     let cntx = cnvs.getContext('2d');
     let img  = cntx.getImageData(0, 0, 1357, 628);
     let rtn  = '';
 
     img.src  = await file.text();
+
+    cntx.drawImage(img);
 
     for (let i = 0; i < img.data.length; i++) {
         rtn += img.data[i];
