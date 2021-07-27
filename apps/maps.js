@@ -12,12 +12,12 @@ async function bmpToAscii() {
     let image  = new Image();
     let canvas = document.createElement('canvas');
 
+    image.src  = path;
     canvas.height = image.height;
     canvas.width  = image.width;
 
     let context = canvas.getContext('2d');
 
-    image.src  = path;
     context.drawImage(image, 0, 0);
 
     let imagedata = context.getImageData(0, 0, canvas.width, canvas.height);
