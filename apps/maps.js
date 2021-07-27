@@ -6,7 +6,7 @@ export async function maps() {
     print(txt);
 }
 
-async function bmpToascii() {
+async function bmpToAscii() {
     let path = '/apps/maps/map.bmp';
     let resp = await fetch(path);
     let blob = await resp.blob()
