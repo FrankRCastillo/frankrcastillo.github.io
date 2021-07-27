@@ -7,22 +7,21 @@ export async function maps() {
 }
 
 async function bmpToAscii() {
-    let path = '/apps/maps/map.bmp';
-    let img  = new Image();
-    let cnvs = document.createElement('canvas');
+    let rtn    = '';
+    let path   = '/apps/maps/map.bmp';
+    let image  = new Image();
+    let canvas = document.createElement('canvas');
 
-    img.src  = path;
-    img.addEventListener('load', )
-    cnvs.width  = 1357;
-    cnvs.height = 628;
+    canvas.height = image.height;
+    canvas.width  = image.width;
 
-    let cntx = cnvs.getContext('2d');
-    let rtn  = '';
+    let context = cnvs.getContext('2d');
 
+    image.src  = path;
     cntx.drawImage(img, 0, 0);
 
-    let imgd = cntx.getImageData(0, 0, cnvs.width, cnvs.height);
-    let data = imgd.data;
+    let imagedata = context.getImageData(0, 0, canvas.width, canvas.height);
+    let data = imagedata.data;
 
     for (let i = 0; i < data.length; i++) {
         rtn += data[i];
