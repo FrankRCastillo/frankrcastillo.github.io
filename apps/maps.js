@@ -7,12 +7,13 @@ export async function maps() {
     let path = 'apps/maps/10m_cultural/ne_10m_admin_0_countries.shp';
     let resp = await fetch(path);
     let blob = await resp.blob();
-    let shpe = getShape(blob);
+    let text = await blob.text();
+    let shpe = getShape(text);
 
     //print(txt);
 }
 
-async function getShape(blob) {
+async function getShape(text) {
     let rtn = '';
 
 
