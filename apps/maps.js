@@ -5,13 +5,25 @@ export async function maps() {
     //let txt = await bmpToAscii(col);
     
     let path = 'apps/maps/10m_cultural/ne_10m_admin_0_countries.shp';
+    let iarr = getIntArr(path); 
+    let shpe = getShape(iarr);
+
+    //print(txt);
+}
+
+async function getIntArr(url) {
     let resp = await fetch(path);
     let blob = await resp.blob();
     let buff = await new Response(blob).arrayBuffer();
     let dtvw = new DataView(buff);
-    let shpe = getShape(dtvw);
+    let lght = buff.length;
+    let arr  = [];
 
-    //print(txt);
+    for (let i = 0; i < lght; i++) {
+        arr.push(buff.getInt32(i));
+    }
+
+    return arr;
 }
 
 async function getShape(arr) {
