@@ -17,8 +17,23 @@ async function bmpToAscii() {
 
     ctx.drawImage(bmp, 0, 0);
 
-    var dat = ctx.getImageData(0, 0, bmp.width, bmp.height);
+    let idt = ctx.getImageData(0, 0, bmp.width, bmp.height);
+    let dat = idt.data;
+    let arr = [];
+
+    for (let i = 0; i < dat.length; i += 4) {
+        let avg = avgRGBA( dat[i]
+                         , dat[i + 1]
+                         , dat[i + 2]
+                         , dat[i + 3]
+                         );
+        arr.push(avg);
+    }
 
     return rtn;
+}
+
+function avgRGBA(r,g,b,a) {
+    return (r + g + b + a) / 4;
 
 }
