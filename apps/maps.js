@@ -11,11 +11,12 @@ async function bmpToAscii() {
     let bmp = '/apps/maps/map.bmp';
     let fch = await fetch(bmp);
     let blb = await fch.blob();
+    let fle = new File([blb], 'map.bmp', { type : 'image/bmp' });
     let img = new Image();
     let cnv = document.createElement('canvas');
     let ctx = cnv.getContext('2d');
 
-    img.src = blb;
+    img.src = fle;
     ctx.drawImage(img, 0, 0);
     cnv.width = 1357;
     cnv.height = 628;
