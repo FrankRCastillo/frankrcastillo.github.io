@@ -27,7 +27,9 @@ async function bmpToAscii() {
                          , dat[i + 2]
                          , dat[i + 3]
                          );
-        arr.push(avg);
+        let val = Math.round(avg);
+
+        arr.push(decToUcd(val));
 
         if ((arr.length - 1) % bmp.width == 0) {
             arr.push('\n');
@@ -35,6 +37,10 @@ async function bmpToAscii() {
     }
 
     return rtn;
+}
+
+function decToUcd(n) {
+    return String.fromCharCode(10495)
 }
 
 function avgRGBA(r,g,b,a) {
