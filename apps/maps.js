@@ -1,7 +1,7 @@
 // |apps|maps|Map utility
 
 export async function maps() {
-    let col = (screen.width - 120) / 12;
+    let col = Math.round((screen.width - 120) / 12);
     let txt = await bmpToAscii(col);
 
 
