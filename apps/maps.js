@@ -7,7 +7,6 @@ export async function maps() {
 }
 
 async function bmpToAscii() {
-    let rtn = '';
     let url = '/apps/maps/map.bmp';
     let rsp = await fetch(url);
     let fbl = await rsp.blob();
@@ -36,7 +35,7 @@ async function bmpToAscii() {
         }
     }
 
-    return rtn;
+    return arr.join('');
 }
 
 function decToUcd(n) {
