@@ -40,7 +40,7 @@ async function bmpToAscii() {
 }
 
 function decToUcd(n) {
-    if (n == 0) {
+    if (n == 255) {
         return " ";
     } else {
         return String.fromCharCode(10495 - n);
