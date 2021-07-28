@@ -12,7 +12,7 @@ export async function maps() {
 }
 
 async function getIntArr(url) {
-    let resp = await fetch(path);
+    let resp = await fetch(url);
     let blob = await resp.blob();
     let buff = await new Response(blob).arrayBuffer();
     let dtvw = new DataView(buff);
