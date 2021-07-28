@@ -13,9 +13,9 @@ async function bmpToAscii(col) {
     let url = '/apps/maps/map0.bmp';
     let rsp = await fetch(url);
     let fbl = await rsp.blob();
-    let w   = 1357;
-    let h   = 628;
-    let nh  = Math.round((col * h) / 1357);
+    let w   = 800;
+    let h   = 370;
+    let nh  = Math.round((col * h) / w);
 
     let bmp = await createImageBitmap(fbl, { resizeWidth : col, resizeHeight : nh });
 
