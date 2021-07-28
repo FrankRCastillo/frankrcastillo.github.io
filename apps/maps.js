@@ -21,7 +21,7 @@ async function bmpToAscii() {
     cnv.width = 1357;
     cnv.height = 628;
 
-    let imd = ctx.getImageData(0, 0, cnv.height, cnv. width);
+    let imd = ctx.getImageData(0, 0, cnv.height, cnv.width);
 
     return rtn;
 }
