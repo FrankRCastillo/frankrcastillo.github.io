@@ -31,7 +31,7 @@ async function bmpToAscii() {
 
         arr.push(decToUcd(val));
 
-        if (arr.length % bmp.width == 0) {
+        if (arr.length + 3 % bmp.width == 0) {
             arr.push('\n');
         }
     }
