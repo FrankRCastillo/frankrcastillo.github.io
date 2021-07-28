@@ -10,7 +10,7 @@ export async function maps() {
 }
 
 async function bmpToAscii(col) {
-    let url = '/apps/maps/map.bmp';
+    let url = '/apps/maps/map0.bmp';
     let rsp = await fetch(url);
     let fbl = await rsp.blob();
     let w   = 1357;
