@@ -9,19 +9,16 @@ export async function maps() {
 async function bmpToAscii() {
     let rtn = '';
     let bmp = '/apps/maps/map.bmp';
-    let fch = await fetch(bmp);
-    let blb = await fch.blob();
-    let fle = new File([blb], 'map.bmp', { type : 'image/bmp' });
     let img = new Image();
-    let cnv = document.createElement('canvas');
-    let ctx = cnv.getContext('2d');
 
-    img.src = fle;
-    ctx.drawImage(img, 0, 0);
-    cnv.width = 1357;
-    cnv.height = 628;
+    img.onload = function() {
+        let cnv = document.createElement('canvas');
+        let ctx = cnv.getContext('2d');
 
-    let imd = ctx.getImageData(0, 0, cnv.height, cnv.width);
+        ctx.drawImage(img, 0, 0);
+    };
+
+    img.src = bmp;
 
     return rtn;
 }
