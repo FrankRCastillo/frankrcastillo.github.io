@@ -51,7 +51,7 @@ function valShade(val) {
     let w = s.length;
     let x = Math.round((w * val) / 255);
 
-    return Math.round(x);
+    return x;
 }
 
 function avgRGBA(r,g,b,a) {
