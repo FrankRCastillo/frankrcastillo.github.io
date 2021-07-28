@@ -40,7 +40,7 @@ async function bmpToAscii() {
 }
 
 function decToUcd(n) {
-    return String.fromCharCode(10495)
+    return String.fromCharCode(10495 - n);
 }
 
 function avgRGBA(r,g,b,a) {
