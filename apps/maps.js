@@ -47,7 +47,7 @@ async function bmpToAscii(col) {
 }
 
 function valShade(val) {
-    if (n == 255) {
+    if (val == 255) {
         return "&nbsp;";
     } else {
         return String.fromCharCode(10495 - val);
