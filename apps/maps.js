@@ -8,7 +8,8 @@ export async function maps() {
     let resp = await fetch(path);
     let blob = await resp.blob();
     let buff = await new Response(blob).arrayBuffer();
-    let shpe = getShape(buff);
+    let dtvw = new DataView(buff);
+    let shpe = getShape(dtvw);
 
     //print(txt);
 }
