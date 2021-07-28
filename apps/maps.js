@@ -16,10 +16,9 @@ async function getIntArr(url) {
     let blob = await resp.blob();
     let buff = await new Response(blob).arrayBuffer();
     let dtvw = new DataView(buff);
-    let lght = buff.length;
     let arr  = [];
 
-    for (let i = 0; i < lght; i++) {
+    for (let i = 0; i < dtvw.byteLength; i++) {
         arr.push(dtvw.getInt32(i));
     }
 
