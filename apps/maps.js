@@ -15,7 +15,7 @@ async function bmpToAscii(col) {
     let fbl = await rsp.blob();
     let w   = 1357;
     let h   = 628;
-    let nh  = (col * h) / 1357;
+    let nh  = Math.round((col * h) / 1357);
 
     let bmp = await createImageBitmap(fbl, { resizeWidth : col, resizeHeight : nh });
 
