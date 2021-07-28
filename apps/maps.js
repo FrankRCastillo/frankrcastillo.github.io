@@ -47,14 +47,10 @@ async function bmpToAscii(col) {
 }
 
 function valShade(val) {
-    let s = ['$','@','B','%','8','&','W','M','#','*','o','a','h','k','b','d','p','q','w','m','Z','O','0','Q','L','C','J','U','Y','X','z','c','v','u','n','x','r','j','f','t','/','\\','|','(',')','1','{','}','[',']','?','-','_','+','~','<','>','i','!','l','I',';',':','\,','\"','^','`','\'','.',' '];
-    let w = s.length;
-    let x = Math.round((w * val) / 255) - 1;
-
-    if (s[x] == ' ') {
-        return '&nbsp;';
+    if (n == 255) {
+        return "&nbsp;";
     } else {
-        return s[x];
+        return String.fromCharCode(10495 - val);
     }
 }
 
