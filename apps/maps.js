@@ -36,7 +36,7 @@ async function bmpToAscii(col) {
                          );
         let val = Math.round(avg);
 
-        arr.push(decToUcd(val));
+        arr.push(valShade(val));
 
         if (arr.length % (bmp.width + 1) == 0) {
             arr.push('\n');
@@ -46,12 +46,12 @@ async function bmpToAscii(col) {
     return arr.join('');
 }
 
-function decToUcd(n) {
-    if (n == 255) {
-        return "&nbsp;";
-    } else {
-        return String.fromCharCode(10495 - n);
-    }
+function valShade(val) {
+    let s = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
+    let w = s.length;
+    let x = Math.round((w * val) / 255);
+
+    return Math.round(x);
 }
 
 function avgRGBA(r,g,b,a) {
