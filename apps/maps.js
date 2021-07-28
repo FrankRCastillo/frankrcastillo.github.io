@@ -1,12 +1,22 @@
 // |apps|maps|Map utility
 
 export async function maps() {
-    let col = Math.round((screen.width - 120) / 16);
-    let txt = await bmpToAscii(col);
+    //let col = Math.round((screen.width - 120) / 24);
+    //let txt = await bmpToAscii(col);
+    
+    let path = 'apps/maps/10m_cultural/ne_10m_admin_0_countries.shp';
+    let resp = await fetch(path);
+    let blob = await resp.blob();
+    let shpe = getShape(blob);
+
+    //print(txt);
+}
+
+async function getShape(blob) {
+    let rtn = '';
 
 
-
-    print(txt);
+    return rtn;
 }
 
 async function bmpToAscii(col) {
