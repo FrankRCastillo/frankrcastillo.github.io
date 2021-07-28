@@ -29,7 +29,7 @@ async function bmpToAscii() {
                          );
         arr.push(avg);
 
-        if ((arr.length + 1) % bmp.width == 0) {
+        if ((arr.length - 1) % bmp.width == 0) {
             arr.push('\n');
         }
     }
