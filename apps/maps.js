@@ -19,5 +19,8 @@ async function bmpToAscii() {
 
     img.src = bmp;
 
+    let idt = ctx.getImageData(0, 0, cnv.width, cnv.height);
+    let dat = idt.data;
+
     return rtn;
 }
