@@ -5,7 +5,7 @@ export async function maps() {
     //let txt = await bmpToAscii(col);
     
     let path = 'apps/maps/10m_cultural/ne_10m_admin_0_countries.shp';
-    let iarr = getIntArr(path); 
+    let iarr = await getIntArr(path); 
     let shpe = getShape(iarr);
 
     //print(txt);
