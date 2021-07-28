@@ -13,7 +13,7 @@ async function bmpToAscii() {
     let fbl = await rsp.blob();
     let bmp = await createImageBitmap(fbl);
     let cnv = new OffscreenCanvas(bmp.width, bmp.height);
-    let ctx = canvas.getContext('2d');
+    let ctx = cnv.getContext('2d');
 
     ctx.drawImage(bmp, 0, 0);
 
