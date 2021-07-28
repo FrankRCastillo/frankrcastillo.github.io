@@ -1,7 +1,7 @@
 // |apps|maps|Map utility
 
 export async function maps() {
-    let col = Math.round((screen.width - 120) / 12);
+    let col = Math.round((screen.width - 120) / 16);
     let txt = await bmpToAscii(col);
 
 
@@ -18,7 +18,6 @@ async function bmpToAscii(col) {
     let nh  = Math.round((col * h) / w);
 
     let bmp = await createImageBitmap(fbl, { resizeWidth : col, resizeHeight : nh });
-
     let cnv = new OffscreenCanvas(bmp.width, bmp.height);
     let ctx = cnv.getContext('2d');
 
