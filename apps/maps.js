@@ -1,16 +1,24 @@
 // |apps|maps|Map utility
 
 export async function maps() {
-    let txt = await bmpToAscii();
+    let col = (screen.width - 120) / 14;
+    let txt = await bmpToAscii(col);
+
+
 
     print(txt);
 }
 
-async function bmpToAscii() {
+async function bmpToAscii(col) {
     let url = '/apps/maps/map.bmp';
     let rsp = await fetch(url);
     let fbl = await rsp.blob();
-    let bmp = await createImageBitmap(fbl);
+    let w   = 1357;
+    let h   = 628;
+    let nh  = (col * h) / 1357;
+
+    let bmp = await createImageBitmap(fbl, { resizeWidth : col, resizeHeight : nh });
+
     let cnv = new OffscreenCanvas(bmp.width, bmp.height);
     let ctx = cnv.getContext('2d');
 
