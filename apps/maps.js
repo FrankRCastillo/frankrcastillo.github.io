@@ -47,11 +47,15 @@ async function bmpToAscii(col) {
 }
 
 function valShade(val) {
-    let s = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'.&nbsp;";
+    let s = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
     let w = s.length;
     let x = Math.round((w * val) / 255);
 
-    return s[x];
+    if (s[x] == ' ') {
+        return '&nbsp;';
+    } else {
+        return s[x];
+    }
 }
 
 function avgRGBA(r,g,b,a) {
