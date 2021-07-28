@@ -47,7 +47,7 @@ async function bmpToAscii(col) {
 }
 
 function valShade(val) {
-    let s = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
+    let s = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'.&nbsp;";
     let w = s.length;
     let x = Math.round((w * val) / 255);
 
