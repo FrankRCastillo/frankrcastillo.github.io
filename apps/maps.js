@@ -28,6 +28,10 @@ async function bmpToAscii() {
                          , dat[i + 3]
                          );
         arr.push(avg);
+
+        if (arr.length % bmp.width == 0) {
+            arr.push('\n');
+        }
     }
 
     return rtn;
