@@ -18,8 +18,8 @@ async function getIntArr(url) {
     let dtvw = new DataView(buff);
     let arr  = [];
 
-    for (let i = 0; i < dtvw.byteLength - 4; i++) {
-        arr.push(dtvw.getInt16(i));
+    for (let i = 0; i < dtvw.byteLength; i += 4) {
+        arr.push(dtvw.getInt32(i));
     }
 
     return arr;
