@@ -19,7 +19,7 @@ async function getIntArr(url) {
     let arr  = [];
 
     for (let i = 0; i < dtvw.byteLength - 4; i++) {
-        arr.push(dtvw.getInt32(i));
+        arr.push(dtvw.getInt16(i));
     }
 
     return arr;
