@@ -71,14 +71,14 @@ async function readShp(shp, xar) {
                     rcrd = { shpType : dv.getInt32(idx, true)                                                   // Byte     0     Shape Type      0                   Integer    1    Little
                            }
 
-                break;
+                    break
 
                 case 1 :                                                                                        // Point Record Contents:
                     rcrd = { shpType : dv.getInt32(  idx      , true)                                           // Byte     0      Shape Type     1                   Integer    1    Little
                            , xValue  : dv.getFloat64( idx +  4, true)                                           // Byte     4      X              X                   Double     1    Little
                            , yValue  : dv.getFloat64( idx + 12, true)                                           // Byte     12     Y              Y                   Double     1    Little
 
-                break;
+                    break
 
                 case 3 :                                                                                        // PolyLine Record Contents:
                     rcrd = { shpType   : dv.getInt32(   idx     , true)                                         // Byte     0      Shape Type     3                   Integer    1           Little
@@ -89,72 +89,74 @@ async function readShp(shp, xar) {
                            , points    : new Int32Array(dv.getInt32(idx+44+(4*dv.getInt32(idx+36)), true))      // Byte     X      Points         Points              Point      NumPoints   Little
                            }                                                                                    // X = 44 + 4 * NumParts
 
-                break;
+                    break
 
-                case 5 : // Polygon Record Contents:
+                case 5 :                                                                                        // Polygon Record Contents:
+                    let x = 44 + (4 * dv.getInt32(idx+36,true));                                                // X = 44 + 4 * NumParts
                     rcrd = { shpType   : dv.getInt32(   idx     , true)                                         // Byte     0      Shape Type   5           Integer     1           Little
                            , box       : dv.getFloat64( idx +  4, true)                                         // Byte     4      Box          Box         Double      4           Little
                            , numParts  : dv.getInt32(   idx + 36, true)                                         // Byte     36     NumParts     NumParts    Integer     1           Little
                            , numPoints : dv.getInt32(   idx + 40, true)                                         // Byte     40     NumPoints    NumPoints   Integer     1           Little
                            , parts     : dv.getInt32(   idx + 44, true)                                         // Byte     44     Parts        Parts       Integer     NumParts    Little
-                           , points    : new Int32Array(dv.getInt32(idx+44+(4*dv.getInt32(idx+36,true)), true)) // Byte     X      Points       Points      Point       NumPoints   Little
-                           }                                                                                    // X = 44 + 4 * NumParts
-                break;
+                           , points    : new Int32Array(dv.getInt32(idx + x , true))                            // Byte     X      Points       Points      Point       NumPoints   Little
+                           }
+                    break
 
-                case 8 : // MultiPoint Record Contents:
-                // Byte     0      Shape Type   8           Integer     1           Little
-                // Byte     4      Box          Box         Double      4           Little
-                // Byte     36     NumPoints    NumPoints   Integer     1           Little
-                // Byte     40     Points       Points      Point       NumPoints   Little
+                case 8 :                                                                                        // MultiPoint Record Contents:
+                    rcrd = { shpType   : dv.getInt32(   idx     , true)                                         // Byte     0      Shape Type   8           Integer     1           Little
+                           , box       : dv.getFloat64( idx +  4, true)                                         // Byte     4      Box          Box         Double      4           Little
+                           , numPoints : dv.getInt32(   idx + 36, true)                                         // Byte     36     NumPoints    NumPoints   Integer     1           Little
+                           , points    : new Int32Array(dv.getInt32(idx + 40, true))                            // Byte     40     Points       Points      Point       NumPoints   Little
+                           }
+                    break
 
-                break;
+                case 11 :                                                                                       // PointZ Record Contents:
+                    rcrd = { shpType : dv.getInt32(   idx     , true)                                           // Byte     0      Shape Type   11          Integer     1           Little
+                           , xValue  : dv.getFloat64( idx +  4, true)                                           // Byte     4      X            X           Double      1           Little
+                           , yValue  : dv.getFloat64( idx + 12, true)                                           // Byte     12     Y            Y           Double      1           Little
+                           , zValue  : dv.getFloat64( idx + 20, true)                                           // Byte     20     Z            Z           Double      1           Little
+                           , mValue  : dv.getFloat64( idx + 28, true)                                           // Byte     28     Measure      M           Double      1           Little
+                           }
+                    break
 
-                case 11 : // PointZ Record Contents:
-                // Byte     0      Shape Type   11    Integer    1     Little
-                // Byte     4      X            X     Double     1     Little
-                // Byte     12     Y            Y     Double     1     Little
-                // Byte     20     Z            Z     Double     1     Little
-                // Byte     28     Measure      M     Double     1     Little
+                case 13 :                                                                                       // PolyLineZ Record Contents:
+                    let x = 44 + (4 * dv.getInt32(idx + 36, true));                                             // X = 44 + (4 * NumParts)
+                    let y = x + (16 * dv.getInt32(idx + 40, true));                                             // Y = X + (16 * NumPoints)
+                    let z = y + 16 + (8 * dv.getInt32(idx + 40, true));                                         // Z = Y + 16 + (8 * NumPoints)
+                    rcrd = { shpType   : dv.getInt32(   idx     , true)                                         // Byte     0      Shape Type   13          Integer     1           Little
+                           , box       : dv.getFloat64( idx +  4, true)                                         // Byte     4      Box          Box         Double      4           Little
+                           , numParts  : dv.getInt32(   idx + 36, true)                                         // Byte     36     NumParts     NumParts    Integer     1           Little
+                           , numPoints : dv.getInt32(   idx + 40, true)                                         // Byte     40     NumPoints    NumPoints   Integer     1           Little
+                           , parts     : dv.getInt32(   idx + 44, true)                                         // Byte     44     Parts        Parts       Integer     NumParts    Little
+                           , points    : new Int32Array(dv.getInt32(idx + x, true))                             // Byte     X      Points       Points      Point       NumPoints   Little
+                           , zMin      : dv.getFloat64( idx + y     , true)                                     // Byte     Y      Zmin         Zmin        Double      1           Little
+                           , zMax      : dv.getFloat64( idx + y +  8, true)                                     // Byte     Y + 8  Zmax         Zmax        Double      1           Little
+                           , zArray    : dv.getFloat64( idx + y + 16, true)                                     // Byte     Y + 16 Zarray       Zarray      Double      NumPoints   Little
+                           , mMin      : dv.getFloat64( idx + z     , true)                                     // Byte     Z*     Mmin         Mmin        Double      1           Little
+                           , mMax      : dv.getFloat64( idx + z +  8, true)                                     // Byte     Z+8*   Mmax         Mmax        Double      1           Little
+                           , mArray    : dv.getFloat64( idx + z + 16, true)                                     // Byte     Z+16*  Marray       Marray      Double      NumPoints   Little
+                           }
 
-                break;
+                    break
 
-                case 13 : // PolyLineZ Record Contents:
-                // Byte     0      Shape Type   13          Integer     1           Little
-                // Byte     4      Box          Box         Double      4           Little
-                // Byte     36     NumParts     NumParts    Integer     1           Little
-                // Byte     40     NumPoints    NumPoints   Integer     1           Little
-                // Byte     44     Parts        Parts       Integer     NumParts    Little
-                // Byte     X      Points       Points      Point       NumPoints   Little
-                // Byte     Y      Zmin         Zmin        Double      1           Little
-                // Byte     Y + 8  Zmax         Zmax        Double      1           Little
-                // Byte     Y + 16 Zarray       Zarray      Double      NumPoints   Little
-                // Byte     Z*     Mmin         Mmin        Double      1           Little
-                // Byte     Z+8*   Mmax         Mmax        Double      1           Little
-                // Byte     Z+16*  Marray       Marray      Double      NumPoints   Little
-                // X = 44 + (4 * NumParts)
-                // Y = X + (16 * NumPoints)
-                // Z = Y + 16 + (8 * NumPoints)
-
-                break;
-
-                case 15 : // PolygonZ Record Contents:
-                // Byte     0     Shape Type    15          Integer 1 Little
-                // Byte     4     Box           Box         Double  4 Little
-                // Byte     36    NumParts      NumParts    Integer 1 Little
-                // Byte     40    NumPoints     NumPoints   Integer 1 Little
-                // Byte     44    Parts         Parts       Integer NumParts Little
-                // Byte     X     Points        Points      Point NumPoints Little
-                // Byte     Y     Zmin          Zmin        Double 1 Little
-                // Byte     Y+8   Zmax          Zmax        Double 1 Little
-                // Byte     Y+16  Zarray        Zarray      Double NumPoints Little
-                // Byte     Z*    Mmin          Mmin        Double 1 Little
-                // Byte     Z+8*  Mmax          Mmax        Double 1 Little
-                // Byte     Z+16* Marray        Marray      Double NumPoints Little
-                // X = 44 + (4 * NumParts)
-                // Y = X + (16 * NumPoints)
-                // Z = Y + 16 + (8 * NumPoints)
-
-                break;
+                case 15 :                                                                                      // PolygonZ Record Contents:
+                    let x = 44 + (4 * numParts);                                                               // X = 44 + (4 * NumParts)
+                    let y = x + (16 * numPoints);                                                              // Y = X + (16 * NumPoints)
+                    let z = y + 16 + (8 * numPoints);                                                          // Z = Y + 16 + (8 * NumPoints)
+                    rcrd = { shpType   : dv.getInt32(   idx     , true)                                        // Byte      0      Shape Type   15          Integer     1           Little
+                           , box       : dv.getFloat64( idx +  4, true)                                        // Byte      4      Box          Box         Double      4           Little
+                           , numParts  : dv.getInt32(   idx + 36, true)                                        // Byte      36     NumParts     NumParts    Integer     1           Little
+                           , numPoints : dv.getInt32(   idx + 40, true)                                        // Byte      40     NumPoints    NumPoints   Integer     1           Little
+                           , parts     : dv.getInt32(   idx + 44, true)                                        // Byte      44     Parts        Parts       Integer     NumParts    Little
+                           , points    : new Int32Arr(dv.getInt32(idx + x, true))                              // Byte      X      Points       Points      Point       NumPoints   Little
+                           , zMin      : dv.getFloat64( idx + y     , true)                                    // Byte      Y      Zmin         Zmin        Double      1           Little
+                           , zMax      : dv.getFloat64( idx + y +  8, true)                                    // Byte      Y+8    Zmax         Zmax        Double      1           Little
+                           , zArray    : dv.getFloat64( idx + y + 16, true)                                    // Byte      Y+16   Zarray       Zarray      Double      NumPoints   Little
+                           , mMin      : dv.getFloat64( idx + z     , true)                                    // Byte      Z*     Mmin         Mmin        Double      1           Little
+                           , mMax      : dv.getFloat64( idx + z +  8, true)                                    // Byte      Z+8*   Mmax         Mmax        Double      1           Little
+                           , mArray    : dv.GetFloat64( idx + z + 16, true)                                    // Byte      Z+16*  Marray       Marray      Double      NumPoints   Little
+                           }
+                    break
 
                 case 18: // MultiPointZ Record Contents:
                 // Byte     0        Shape Type     18          Integer     1           Little
@@ -170,7 +172,7 @@ async function readShp(shp, xar) {
                 // X = 40 + (16 * NumPoints)
                 // Y = X + 16 + (8 * NumPoints)
 
-                break;
+                    break
 
                 case 21 : // PointM Record Contents:
                 // Byte     0      Shape Type    21    Integer    1     Little
@@ -178,7 +180,7 @@ async function readShp(shp, xar) {
                 // Byte     12     Y             Y     Double     1     Little
                 // Byte     20     M             M     Double     1     Little
 
-                break;
+                    break
 
                 case 23 : // PolyLineM Record Contents:
                 // Byte     0          Shape Type       23          Integer     1           Little
@@ -193,7 +195,7 @@ async function readShp(shp, xar) {
                 // X = 44 + (4 * NumParts)
                 // Y = X + (16 * NumPoints)
 
-                break;
+                    break
 
                 case 25 : // PolygonM Record Contents:
                 // Byte     0          Shape Type   25          Integer     1             Little
@@ -208,7 +210,7 @@ async function readShp(shp, xar) {
                 // X = 44 + (4 * NumParts)
                 // Y = X + (16 * NumPoints)
 
-                break;
+                    break
 
                 case 28 : // MultiPointM Record Contents:
                 // Byte     0      Shape Type   28          Integer     1             Little
@@ -219,7 +221,7 @@ async function readShp(shp, xar) {
                 // Byte     X+8*   Mmax         Mmax        Double      1             Little
                 // Byte     X+16*  Marray       Marray      Double      NumPoints     Little
 
-                break;
+                    break
 
                 // Value Part Type
                 // 0     Triangle Strip
@@ -247,7 +249,7 @@ async function readShp(shp, xar) {
                 // Y = X + (16 * NumPoints)
                 // Z = Y + 16 + (8 * NumPoints)
 
-                break;
+                    break
 
                 default :
 
