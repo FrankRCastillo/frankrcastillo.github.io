@@ -71,8 +71,6 @@ async function readShp(shp, xar) {
                , boxMmin : dv.getFloat64(84,  true)                                      // Byte 84*     Bounding Box   Mmin           Double     Little
                , boxMmax : dv.getFloat64(92,  true)                                      // Byte 92*     Bounding Box   Mmax           Double     Little
                }
-    
-
 
     for (let i = 0; i < xar.length; i++) {
         let idx = xar[i][0] * 2;
@@ -82,7 +80,7 @@ async function readShp(shp, xar) {
                    , contLen : dv.getInt32(idx  + 4, false)                              // Byte 4     Content Length  Content Length Integer                Big
                    }
         } else {
-            switch (main.shpType){
+            switch (main.shpType) {
                 case 0 :                                                                 // Null Shape Record Contents:
                     rcrd = { shpType : dv.getInt32(idx, true)                            // Byte 0     Shape Type     0          Integer    1           Little
                            }
@@ -92,6 +90,7 @@ async function readShp(shp, xar) {
                     rcrd = { shpType : dv.getInt32(  idx      , true)                    // Byte 0      Shape Type    1          Integer    1           Little
                            , xValue  : dv.getFloat64( idx +  4, true)                    // Byte 4      X             X          Double     1           Little
                            , yValue  : dv.getFloat64( idx + 12, true)                    // Byte 12     Y             Y          Double     1           Little
+                           }  
                     break;
 
                 case 3 :                                                                 // PolyLine Record Contents:
