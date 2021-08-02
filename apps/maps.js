@@ -34,8 +34,8 @@ async function readShx(url) {
 }
 
 function point(dv, idx) {
-    return { xValue = dv.getFloat64(idx +  4, true)
-           , yValue = dv.getFloat64(idx + 12, true)
+    return { xValue : dv.getFloat64(idx +  4, true)
+           , yValue : dv.getFloat64(idx + 12, true)
            }
 }
 
@@ -49,8 +49,7 @@ function box(dv, idx) {
 
 async function readShp(shp, xar) {
     let dv  = await getDataView(shp);
-    let rcrd = {};
-    let arr = [];
+    let rcrd = null;
 
     // Main File Header:
     let main = { fileCde : dv.getInt32(   0, false)                                      // Byte 0       File Code      9994           Integer    Big
@@ -100,7 +99,7 @@ async function readShp(shp, xar) {
                            , numParts  : dv.getInt32(idx + 36, true)                     // Byte 36     NumParts      NumParts   Integer    1           Little
                            , numPoints : dv.getInt32(idx + 40, true)                     // Byte 40     NumPoints     NumPoints  Integer    1           Little
                            , parts     : dv.getInt32(idx + 44, true)                     // Byte 44     Parts         Parts      Integer    NumParts    Little
-                           , points    : new Int32Array(dv.getInt32(idx + x , true))     // Byte X      Points        Points     Point      NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + x , true)*2) // Byte X      Points        Points     Point      NumPoints   Little
                            }
                     break;
 
@@ -111,7 +110,7 @@ async function readShp(shp, xar) {
                            , numParts  : dv.getInt32(idx + 36, true)                     // Byte 36     NumParts      NumParts   Integer     1           Little
                            , numPoints : dv.getInt32(idx + 40, true)                     // Byte 40     NumPoints     NumPoints  Integer     1           Little
                            , parts     : dv.getInt32(idx + 44, true)                     // Byte 44     Parts         Parts      Integer     NumParts    Little
-                           , points    : new Int32Array(dv.getInt32(idx + x , true))     // Byte X      Points        Points     Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + x , true)*2) // Byte X      Points        Points     Point       NumPoints   Little
                            }
                     break;
 
@@ -119,7 +118,7 @@ async function readShp(shp, xar) {
                     rcrd = { shpType   : dv.getInt32(idx     , true)                     // Byte 0      Shape Type    8          Integer     1           Little
                            , box       : box(dv, idx)                                    // Byte 4      Box           Box        Double      4           Little
                            , numPoints : dv.getInt32(idx + 36, true)                     // Byte 36     NumPoints     NumPoints  Integer     1           Little
-                           , points    : new Int32Array(dv.getInt32(idx + 40, true))     // Byte 40     Points        Points     Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + 40, true)*2) // Byte 40     Points        Points     Point       NumPoints   Little
                            }
                     break;
 
@@ -141,7 +140,7 @@ async function readShp(shp, xar) {
                            , numParts  : dv.getInt32(idx + 36, true)                     // Byte 36     NumParts      NumParts   Integer     1           Little
                            , numPoints : dv.getInt32(idx + 40, true)                     // Byte 40     NumPoints     NumPoints  Integer     1           Little
                            , parts     : dv.getInt32(idx + 44, true)                     // Byte 44     Parts         Parts      Integer     NumParts    Little
-                           , points    : new Int32Array(dv.getInt32(idx + x , true))     // Byte X      Points        Points     Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + x, true)*2)  // Byte X      Points        Points     Point       NumPoints   Little
                            , zMin      : dv.getFloat64( idx + y     , true)              // Byte Y      Zmin          Zmin       Double      1           Little
                            , zMax      : dv.getFloat64( idx + y +  8, true)              // Byte Y + 8  Zmax          Zmax       Double      1           Little
                            , zArray    : dv.getFloat64( idx + y + 16, true)              // Byte Y + 16 Zarray        Zarray     Double      NumPoints   Little
@@ -160,7 +159,7 @@ async function readShp(shp, xar) {
                            , numParts  : dv.getInt32(idx + 36, true)                     // Byte 36     NumParts      NumParts   Integer     1           Little
                            , numPoints : dv.getInt32(idx + 40, true)                     // Byte 40     NumPoints     NumPoints  Integer     1           Little
                            , parts     : dv.getInt32(idx + 44, true)                     // Byte 44     Parts         Parts      Integer     NumParts    Little
-                           , points    : new Int32Arr(dv.getInt32(idx + x, true))        // Byte X      Points        Points     Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + x, true)*2)  // Byte X      Points        Points     Point       NumPoints   Little
                            , zMin      : dv.getFloat64( idx + y     , true)              // Byte Y      Zmin          Zmin       Double      1           Little
                            , zMax      : dv.getFloat64( idx + y +  8, true)              // Byte Y+8    Zmax          Zmax       Double      1           Little
                            , zArray    : dv.getFloat64( idx + y + 16, true)              // Byte Y+16   Zarray        Zarray     Double      NumPoints   Little
@@ -176,7 +175,7 @@ async function readShp(shp, xar) {
                     rcrd = { shpType   : dv.getInt32(   idx         , true)              // Byte 0      Shape Type    18         Integer     1           Little
                            , box       : box(dv, idx)                                    // Byte 4      Box           Box        Double      4           Little
                            , numPoints : dv.getInt32(   idx + 36    , true)              // Byte 36     NumPoints     NumPoints  Integer     1           Little
-                           , points    : new Int32Array(dv.getInt32(idx + 40, true))     // Byte 40     Points        Points     Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + 40, true)*2) // Byte 40     Points        Points     Point       NumPoints   Little
                            , zMin      : dv.getFloat64( idx + x     , true)              // Byte X      Zmin          Zmin       Double      1           Little
                            , zMax      : dv.getFloat64( idx + x +  8, true)              // Byte X+8    Zmax          Zmax       Double      1           Little
                            , zArray    : dv.getFloat64( idx + x + 16, true)              // Byte X+16   Zarray        Zarray     Double      NumPoints   Little
@@ -202,7 +201,7 @@ async function readShp(shp, xar) {
                            , numParts  : dv.getInt32(   idx + 36, true)                  // Byte 36     NumParts      NumParts   Integer     1           Little
                            , numPoints : dv.getInt32(   idx + 40, true)                  // Byte 40     NumPoints     NumPoints  Integer     1           Little
                            , parts     : dv.getInt32(idx+44, true)                       // Byte 44     Parts         Parts      Integer     NumParts    Little
-                           , points    : new Int32Array(dv.getInt32(idx+x , true))       // Byte X      Points        Points     Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx+x , true)*2)   // Byte X      Points        Points     Point       NumPoints   Little
                            , mMin      : dv.getFloat64( idx + y     , true)              // Byte Y*     Mmin          Mmin       Double      1           Little
                            , mMax      : dv.getFloat64( idx + y +  8, true)              // Byte Y+8*   Mmax          Mmax       Double      1           Little
                            , mArray    : dv.getFloat64( idx + y + 16, true)              // Byte Y+16*  Marray        Marray     Double      NumPoints   Little
@@ -217,7 +216,7 @@ async function readShp(shp, xar) {
                            , numParts  : dv.getInt32(  idx + 36, true)                   // Byte 36     NumParts      NumParts   Integer     1           Little
                            , numPoints : dv.getInt32(  idx + 40, true)                   // Byte 40     NumPoints     NumPoints  Integer     1           Little
                            , parts     : dv.getInt32(  idx + 44, true)                   // Byte 44     Parts         Parts      Integer     NumParts    Little
-                           , points    : new Int32Array(dv.getInt32(idx + x, true))      // Byte X      Points        Points     Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + x, true)*2)  // Byte X      Points        Points     Point       NumPoints   Little
                            , mMin      : dv.getFloat64(idx + y     , true)               // Byte Y*     Mmin          Mmin       Double      1           Little
                            , mMax      : dv.getFloat64(idx + y +  8, true)               // Byte Y+8*   Mmax          Mmax       Double      1           Little
                            , mArray    : dv.getFloat64(idx + y + 16, true)               // Byte Y+16*  Marray        Marray     Double      NumPoints   Little
@@ -229,7 +228,7 @@ async function readShp(shp, xar) {
                     rcrd = { shpType   : dv.getInt32(  idx     , true)                   // Byte 0      Shape Type   28          Integer     1           Little
                            , box       : box(dv, idx)                                    // Byte 4      Box          Box         Double      4           Little
                            , numPoints : dv.getInt32(  idx + 36, true)                   // Byte 36     NumPoints    NumPoints   Integer     1           Little
-                           , points    : new Int32Array(dv.getInt32(idx+40))             // Byte 40     Points       Points      Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + 40, true)*2) // Byte 40     Points       Points      Point       NumPoints   Little
                            , mMin      : dv.getFloat64(idx +  x     , true)              // Byte X*     Mmin         Mmin        Double      1           Little
                            , mMax      : dv.getFloat64(idx +  x +  8, true)              // Byte X+8*   Mmax         Mmax        Double      1           Little
                            , mArray    : dv.getFloat64(idx +  x + 16, true)              // Byte X+16*  Marray       Marray      Double      NumPoints   Little
@@ -254,7 +253,7 @@ async function readShp(shp, xar) {
                            , numPoints : dv.getInt32(  idx + 40, true)                   // Byte 40     NumPoints    NumPoints   Integer     1           Little
                            , parts     : dv.getInt32(  idx + 44, true)                   // Byte 44     Parts        Parts       Integer     NumParts    Little
                            , partTypes : dv.getInt32(  idx + w , true)                   // Byte W      PartTypes    PartTypes   Integer     NumParts    Little
-                           , points    : new Int32Array(dv.getInt32(idx+x, true))        // Byte X      Points       Points      Point       NumPoints   Little
+                           , points    : new Float64Array(dv.getInt32(idx + x, true))    // Byte X      Points       Points      Point       NumPoints   Little
                            , zMin      : dv.getFloat64(idx + y     , true)               // Byte Y      Zmin         Zmin        Double      1           Little
                            , zMax      : dv.getFloat64(idx + y +  8, true)               // Byte Y+8    Zmax         Zmax        Double      1           Little
                            , zArray    : dv.getFloat64(idx + y + 16, true)               // Byte Y+16   Zarray       Zarray      Double      NumPoints   Little
@@ -270,5 +269,5 @@ async function readShp(shp, xar) {
         }
     }
 
-    return arr;
+    return rcrd;
 }
