@@ -31,8 +31,9 @@ async function cmdManager(input) {
                     let app = await import('/' + cmdaddr[0]);
 
                     eval('app.' + cmd + '()');
-                } catch {
+                } catch(e) {
                     print(cmd + ': command not found...');
+                    console.log(e)
                 }
         }
     }
