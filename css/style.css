@@ -20,8 +20,21 @@ body
 ; color            : #ffffff
 ; vertical-align   : middle
 ; align-content    : center
-; margin           : 2.5% 25% 2.5% 25%
 ; line-height      : 1.5
+; margin           : 2.5% 25% 2.5% 25%
+; overflow-wrap    : break-word
+; word-wrap        : break-word
+; word-break       : break-word
+; -ms-hyphens      : auto
+; -moz-hyphens     : auto
+; -webkit-hyphens  : auto
+; hyphens: auto
+}
+
+@media all and (min-width : 320px) {
+  body {
+  ; margin : 5% 5% 5% 5%
+  }
 }
 
 a
