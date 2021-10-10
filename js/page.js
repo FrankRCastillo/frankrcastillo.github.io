@@ -41,11 +41,6 @@ async function help() {
     print(tbl);
 }
 
-function clear() {
-    let body = document.getElementById('consoleBuffer');
-    if (body != null) { body.innerHTML = ''; }
-}
-
 function newConsole() {
     let cnsl = document.createElement('div');
     let bffr = consoleBuffer();
