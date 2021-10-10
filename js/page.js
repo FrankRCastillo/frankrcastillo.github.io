@@ -118,9 +118,7 @@ function print(text, isCmd) {
         try {
             if (text.hasOwnProperty('match')){
                 rgxget = text.match(rgxdom);
-            }
-
-            if (rgxget != null) {
+                
                 for (let i = 0; i < rgxget.length; i++) {
                     let oldurl = rgxget[i];
                     let newurl = '<a href="'
@@ -131,6 +129,7 @@ function print(text, isCmd) {
                     text = text.replace(new RegExp(oldurl, 'gi'), newurl);
                 }
             }
+
         } finally {
             if (text.outerHTML) {
                 newtxt.innerHTML = text.outerHTML;
