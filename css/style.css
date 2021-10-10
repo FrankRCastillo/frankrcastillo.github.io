@@ -21,7 +21,6 @@ body
 ; vertical-align   : middle
 ; align-content    : center
 ; line-height      : 1.5
-; margin           : 2.5% 25% 2.5% 25%
 ; overflow-wrap    : break-word
 ; word-wrap        : break-word
 ; word-break       : break-word
@@ -31,9 +30,15 @@ body
 ; hyphens: auto
 }
 
-@media all and (min-width : 320px) {
+@media(max-width : 400px) {
   body {
-  ; margin : 5% 5% 5% 5%
+  ; margin : 14px 5% 5% 5%
+  }
+}
+
+@media(min-width : 401px) {
+  body {
+  ; margin : 14px 20% 5% 20%
   }
 }
 
