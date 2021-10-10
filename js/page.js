@@ -74,7 +74,6 @@ function consolePrompt() {
     return inpt;
 }
 
-
 function params() {
     let url = location.href;
     let par = url.split('?');
@@ -207,8 +206,6 @@ function trunc(str, len) {
     }
 }
 
-// if hdrrow is true, function will treat first row in array as table header
-// if haslink is true, will treat last element in row as link
 function arrayToTable(arr, hdr) {
     let table = document.createElement('table');
     let hdrin = false;
