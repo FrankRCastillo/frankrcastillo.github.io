@@ -118,15 +118,17 @@ function print(text, isCmd) {
         try {
             if (typeof(text) === 'string'){
                 rgxget = text.match(rgxdom);
-                
-                for (let i = 0; i < rgxget.length; i++) {
-                    let oldurl = rgxget[i];
-                    let newurl = '<a href="'
-                               + rgxget[i]
-                               + '" target="_blank">'
-                               + rgxget[i]
-                               + '</a>';
-                    text = text.replace(new RegExp(oldurl, 'gi'), newurl);
+
+                if (rgxget != null) {
+                    for (let i = 0; i < rgxget.length; i++) {
+                        let oldurl = rgxget[i];
+                        let newurl = '<a href="'
+                                   + rgxget[i]
+                                   + '" target="_blank">'
+                                   + rgxget[i]
+                                   + '</a>';
+                        text = text.replace(new RegExp(oldurl, 'gi'), newurl);
+                    }
                 }
             }
 
