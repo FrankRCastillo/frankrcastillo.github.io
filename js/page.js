@@ -39,12 +39,6 @@ async function cmdManager(input) {
     }
 }
 
-async function home() {
-    let str = await read('/apps/home/home.txt');
-
-    print(str);
-}
-
 async function help() {
     let lst = await getCmdInfo();
     let hdr = ['Category', 'Command', 'Information'];
@@ -273,7 +267,6 @@ async function getCmdInfo() {
     let lout = await Promise.all(list.map(async x => getJsDesc(await read(x))));
 
     lout.sort();
-    lout.unshift(['core', 'home', 'Show the home screen']);
 
     return lout;
 }
