@@ -116,7 +116,7 @@ function print(text, isCmd) {
         let rgxget = null;
         
         try {
-            if (text.hasOwnProperty('match')){
+            if (typeof(text) === 'string'){
                 rgxget = text.match(rgxdom);
                 
                 for (let i = 0; i < rgxget.length; i++) {
