@@ -9,7 +9,7 @@ export function blog() {
         lnk.setAttribute('href', url);
         lnk.text = x;
 
-        return lnk.getAttribute('outerHTML');
+        return lnk.getAttribute('outerText');
     });
 
     print(urls);
