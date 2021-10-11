@@ -46,7 +46,7 @@ function newConsole() {
 }
 
 function consoleMessage() {
-    return '\u25B6visitor@' + ipdata.ip;
+    return 'visitor@' + ipdata.ip;
 }
 
 function consoleBuffer() {
@@ -59,7 +59,7 @@ function consoleBuffer() {
 
 function consolePrompt() {
     let inpt = document.createElement('input');
-    let mesg = 'type command here...';
+    let mesg = '\u25B6type command here...';
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
