@@ -1,4 +1,4 @@
-// |apps|clear|Clear the screen
+// Clear the screen
 
 export function clear() {
     let body = document.getElementById('consoleBuffer');

@@ -1,4 +1,4 @@
-// |apps|home|Show the home screen
+// Show the home screen
 
 export async function home(){
     let str = await read('/apps/home/home.txt');

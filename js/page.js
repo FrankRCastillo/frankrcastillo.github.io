@@ -114,7 +114,7 @@ function print(text, isCmd) {
         let rgxexp = /(http.?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
         let rgxdom = new RegExp(rgxexp);
         let rgxget = null;
-        
+
         try {
             if (typeof(text) === 'string'){
                 rgxget = text.match(rgxdom);
@@ -209,22 +209,11 @@ function trunc(str, len) {
     }
 }
 
-function arrayToTable(arr, hdr) {
+function arrayToTable(arr) {
     let table = document.createElement('table');
-    let hdrin = false;
 
     arr.forEach((row) => {
-        let tr   = null;
-        let cell = null;
-
-        if (hdr != null && hdrin == false) {
-            let tr = newTableRow(hdr, 'th');
-            table.appendChild(tr);
-            tr    = null;
-            hdrin = true;
-        }
-
-        tr = newTableRow(row, 'td');
+        let tr = newTableRow(row, 'td');
         table.appendChild(tr);
     });
 
@@ -255,8 +244,7 @@ async function getCmdInfo() {
 function getJsDesc(str) {
     return str.split('\n')
               .filter(x => x.match('^// |.*'))[0]
-              .replace('// |', '')
-              .split('|');
+              .replace('// ', '');
 }
 
 main()

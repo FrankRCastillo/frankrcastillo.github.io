@@ -1,4 +1,4 @@
-// |apps|vstr|Visitor information
+// Visitor information
 
 export function vstr() {
     let worldmap = new Array(3);
