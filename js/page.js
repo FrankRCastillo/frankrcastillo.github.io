@@ -230,7 +230,7 @@ async function getCmdInfo() {
     let dir  = '';
     let app  = '';
     let lout = await Promise.all(list.map(async x => {
-        let info = x.split('/').replace('.js');
+        let info = x.replace('.js').split('/');
         getJsDesc( info[0]
                  , info[1]
                  , await read(x)
