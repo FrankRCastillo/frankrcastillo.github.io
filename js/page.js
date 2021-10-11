@@ -217,8 +217,8 @@ function arrayToTable(arr) {
         row.forEach((cell) => {
             let td = document.createElement('td');
             td.innerText = cell;
+            tr.appendChild(td);
         });
-        tr.appendChild(td);
         table.appendChild(tr);
     });
 
