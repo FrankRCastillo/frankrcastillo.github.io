@@ -213,24 +213,16 @@ function arrayToTable(arr) {
     let table = document.createElement('table');
 
     arr.forEach((row) => {
-        let tr = newTableRow(row, 'td');
+        let tr = document.createElement('tr');
+        let td = document.createElement('td');
+        td.innerText = row;
+        tr.appendChild(td);
         table.appendChild(tr);
     });
 
     return table;
 }
 
-function newTableRow(arr, tag){
-    let tr = document.createElement('tr');
-
-    arr.forEach((val) => {
-        let cell = document.createElement(tag);
-        cell.innerText = val;
-        tr.appendChild(cell);
-    });
-
-    return tr;
-}
 
 async function getCmdInfo() {
     let list = window.filelist.filter((x) => x.match('apps/.*.js'));
