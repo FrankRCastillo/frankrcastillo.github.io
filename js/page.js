@@ -229,9 +229,13 @@ async function getCmdInfo() {
     let list = window.filelist.filter((x) => x.match('apps/.*.js'));
     let dir  = '';
     let app  = '';
-    let lout = await Promise.all(list.map(async x => getJsDesc( dir
-                                                              , app
-                                                              , await read(x))));
+    let lout = await Promise.all(list.map(async x => {
+        let info = x.split('/').replace('.js');
+        getJsDesc( info[0]
+                 , info[1]
+                 , await read(x)
+                 );
+    }));
 
     lout.sort();
 
