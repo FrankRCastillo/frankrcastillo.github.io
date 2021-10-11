@@ -6,7 +6,14 @@ export function blog() {
     let urls = list.map((x) => {
         let lnk = document.createElement('a');
 
-        lnk.setAttribute('onclick', 'print(await read(' + x + '))');
+        lnk.addEventListener('click',
+            (e) => {
+                let url = e.currentTarget.text;
+                let txt = await read(url);
+                print(txt);
+            }
+        , false);
+
         lnk.text = x.replace(path, '');
 
         return lnk;
