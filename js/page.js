@@ -225,7 +225,6 @@ function arrayToTable(arr) {
     return table;
 }
 
-
 async function getCmdInfo() {
     let list = window.filelist.filter((x) => x.match('apps/.*.js'));
     let lout = await Promise.all(list.map(async x => getJsDesc(await read(x))));
@@ -235,10 +234,12 @@ async function getCmdInfo() {
     return lout;
 }
 
-function getJsDesc(str) {
-    return str.split('\n')
-              .filter(x => x.match('^// |.*'))[0]
-              .replace('// ', '');
+function getJsDesc(dir, app, str) {
+    let tmp = str.split('\n')
+                 .filter(x => x.match('^// |.*'))[0]
+                 .replace('// ', '');
+
+    return [dir, app, tmp];
 }
 
 main()
