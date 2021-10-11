@@ -214,8 +214,10 @@ function arrayToTable(arr) {
 
     arr.forEach((row) => {
         let tr = document.createElement('tr');
-        let td = document.createElement('td');
-        td.innerText = row;
+        row.forEach((cell) => {
+            let td = document.createElement('td');
+            td.innerText = cell;
+        });
         tr.appendChild(td);
         table.appendChild(tr);
     });
