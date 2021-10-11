@@ -6,7 +6,6 @@ export function blog() {
     let urls = list.map((x) => {
         let lnk = document.createElement('a');
 
-
         lnk.addEventListener('click',
             (e) => {
                 let url = e.text;
