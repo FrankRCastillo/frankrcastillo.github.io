@@ -7,12 +7,11 @@ export function blog() {
         let lnk = document.createElement('a');
 
         lnk.addEventListener('click',
-            (e) => {
+            function(e) {
                 let url = e.currentTarget.text;
                 let txt = await read(url);
                 print(txt);
-            }
-        , false);
+        });
 
         lnk.text = x.replace(path, '');
 
