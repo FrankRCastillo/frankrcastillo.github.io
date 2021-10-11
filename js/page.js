@@ -59,7 +59,7 @@ function consoleBuffer() {
 
 function consolePrompt() {
     let inpt = document.createElement('input');
-    let mesg = consoleMessage() + ', type command here...';
+    let mesg = 'type command here...';
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
