@@ -227,7 +227,9 @@ function arrayToTable(arr) {
 
 async function getCmdInfo() {
     let list = window.filelist.filter((x) => x.match('apps/.*.js'));
-    let lout = await Promise.all(list.map(async x => getJsDesc(await read(x))));
+    let lout = await Promise.all(list.map(async x => getJsDesc( dir
+                                                              , app
+                                                              , await read(x))));
 
     lout.sort();
 
