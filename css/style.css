@@ -113,6 +113,7 @@ input::placeholder
 ; color            : #FFA500
 ; border           : none
 ; outline          : none
+; resize           : none
 }
 
 .xmark
