@@ -58,8 +58,8 @@ function consoleBuffer() {
 }
 
 function consolePrompt() {
-    let inpt = document.createElement('input');
-    let mesg = '\u25B6type command here...';
+    let inpt = document.createElement('textarea');
+    let mesg = '\u25B6';
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);

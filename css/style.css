@@ -107,8 +107,9 @@ input::placeholder
 }
 
 #consolePrompt
-{ border : 1px solid #FFFFFF
+{ border           : 0px solid #000000
 ; background-color : #000000
+; wrap             : soft
 }
 
 .xmark
