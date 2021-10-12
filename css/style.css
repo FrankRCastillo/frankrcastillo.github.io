@@ -110,6 +110,7 @@ input::placeholder
 { border           : 0px solid #000000
 ; background-color : #000000
 ; wrap             : soft
+; width            : 100%
 }
 
 .xmark
