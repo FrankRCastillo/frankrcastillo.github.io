@@ -58,7 +58,7 @@ function consoleBuffer() {
 }
 
 function consolePrompt() {
-    let inpt = document.createElement('textarea');
+    let inpt = document.createElement('input');
     let mesg = '\u25B6';
 
     inpt.setAttribute('id', 'consolePrompt');
@@ -68,7 +68,7 @@ function consolePrompt() {
         if (e.keyCode == 13) {
             if (e.target.value != '') {
                 cmdManager(e.target.value);
-                e.target.value = null;
+                e.target.value = '';
             }
         }
     });
