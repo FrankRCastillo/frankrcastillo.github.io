@@ -12,9 +12,9 @@ export function blog() {
             e = e || window.event;
 
             console.log(e.target.text);
-           // let url = e.text;
-           // let txt = await read(url);
-           // print(txt);
+            // let url = e.text;
+            // let txt = await read(url);
+            // print(txt);
         });
 
 
