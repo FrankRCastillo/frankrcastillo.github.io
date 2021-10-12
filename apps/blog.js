@@ -8,7 +8,7 @@ export function blog() {
 
         lnk.addEventListener('click',
             (e) => {
-                console.log(e);
+                console.log(e.text);
         //         let url = e.text;
         //         let txt = await read(url);
         //         print(txt);
