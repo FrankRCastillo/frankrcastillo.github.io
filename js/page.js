@@ -66,9 +66,10 @@ function consolePrompt() {
     inpt.addEventListener('keydown', (e) => {
         e = e || window.event;
         if (e.keyCode == 13) {
-            cmdManager(e.target.value);
-            e.target.value = '';
-        }
+            if (e.target.value != '') {
+                cmdManager(e.target.value);
+                e.target.value = '';
+            }
     });
 
     return inpt;
