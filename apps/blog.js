@@ -7,7 +7,7 @@ export function blog() {
         let lnk = document.createElement('a');
 
         lnk.text = x.replace(path, '');
-        lnk.setAttribute('href', '');
+        lnk.setAttribute('href', 'javascript:void(0)');
         lnk.addEventListener('click',
             (e) => {
                 console.log(e.target.text);
