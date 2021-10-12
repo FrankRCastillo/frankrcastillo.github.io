@@ -70,6 +70,7 @@ function consolePrompt() {
                 cmdManager(e.target.value);
                 e.target.value = '';
             }
+        }
     });
 
     return inpt;
