@@ -10,6 +10,8 @@ export function blog() {
         lnk.setAttribute('href', 'javascript:void(0)');
         lnk.addEventListener('click',
             (e) => {
+                e = e || window.event;
+
                 console.log(e.target.text);
         //         let url = e.text;
         //         let txt = await read(url);
