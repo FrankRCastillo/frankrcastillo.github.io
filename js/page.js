@@ -68,7 +68,7 @@ function consolePrompt() {
         if (e.keyCode == 13) {
             if (e.target.value != '') {
                 cmdManager(e.target.value);
-                e.target.value = '';
+                e.target.value = null;
             }
         }
     });
