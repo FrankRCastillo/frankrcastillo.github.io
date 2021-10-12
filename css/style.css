@@ -112,6 +112,8 @@ input::placeholder
 ; wrap             : soft
 ; width            : 100%
 ; color            : #FFA500
+; border           : none
+; outline          : none
 }
 
 .xmark
