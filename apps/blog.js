@@ -6,16 +6,17 @@ export function blog() {
     let urls = list.map((x) => {
         let lnk = document.createElement('a');
 
+        lnk.text = x.replace(path, '');
+        lnk.setAttribute('href', '');
         lnk.addEventListener('click',
             (e) => {
-                console.log(e.text);
+                console.log(e.target.text);
         //         let url = e.text;
         //         let txt = await read(url);
         //         print(txt);
             }
         );
 
-        lnk.text = x.replace(path, '');
 
         return lnk;
     });
