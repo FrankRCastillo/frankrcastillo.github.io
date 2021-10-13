@@ -88,13 +88,11 @@ function consolePrompt() {
         pnl.width = wdt;
         pnl.value = val + ' ' + wdt + ' ' + top + ' ' + lft;
 
-        document.appendChild(pnl);
+        document.body.appendChild(pnl);
     });
 
     inpt.addEventListener('mouseout', (e) => {
-        let panel = document.getElementById('helpPanel');
-
-        panel.parentNode.removeChild(panel);
+        document.getElementById('helpPanel').remove();
     });
 
     return inpt;
