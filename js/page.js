@@ -242,10 +242,10 @@ function trunc(str, len) {
 
 function arrayToTable(hdr, arr) {
     let table = document.createElement('table');
-    let th    = document.createElement('th');
+    let th    = document.createElement('tr');
 
     hdr.forEach((cell) => {
-        let td = document.createElement('td');
+        let td = document.createElement('th');
         td.innerText = cell;
         th.appendChild(td);
     });
