@@ -57,9 +57,11 @@ function consoleBuffer() {
     return bffr;
 }
 
-function consolePrompt() {
+async function consolePrompt() {
     let inpt = document.createElement('input');
     let mesg = '\u25B6';
+    let help = await getCmdInfo();
+    let tble = arrayToTable(help);
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
@@ -74,25 +76,18 @@ function consolePrompt() {
     });
 
     inpt.addEventListener('mouseover', (e) => {
-        e = e || window.event;
-        let val = e.target.value;
-        let obj = document.getElementById('consolePrompt');
-        let crd = obj.getBoundingClientRect();
-        let wdt = crd.width;
-        let top = crd.y + crd.height;
-        let lft = crd.x;
-        let pnl = document.createElement('div');
-
-        pnl.setAttribute('id', 'helpPanel');
-        pnl.top = top;
-        pnl.style.visibility = 'visible';
-        
-        document.body.appendChild(pnl);
+        document.getElementById('helpPanel').style.visibility = 'visible';
     });
 
     inpt.addEventListener('mouseout', (e) => {
-        document.getElementById('helpPanel').style.visibility = 'hiddren';
+        document.getElementById('helpPanel').style.visibility = 'hidden';
     });
+
+    let pnl = document.createElement('div');
+
+    pnl.setAttribute('id', 'helpPanel');
+    pnl.style.visibility = 'hidden';
+    pnl.appendChild(tble);
 
     return inpt;
 }
