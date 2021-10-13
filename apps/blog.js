@@ -1,6 +1,6 @@
 // Personal blog
 
-async export function blog() {
+export function blog() {
     let path = 'apps/blog/';
     let list = window.filelist.filter((x) => x.match(path));
     let urls = list.map((x) => {
@@ -8,7 +8,7 @@ async export function blog() {
         let file = x.replace(path, '');
         lnk.text = file;
         lnk.setAttribute('href', 'javascript:void(0)');
-        lnk.addEventListener('click', async (e) => {
+        lnk.addEventListener('click', (e) => {
             let txt = await read(x);
             print(txt);
         });
