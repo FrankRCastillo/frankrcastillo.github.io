@@ -249,6 +249,8 @@ function arrayToTable(hdr, arr) {
         td.innerText = cell;
         th.appendChild(td);
     });
+    
+    table.appendChild(th);
 
     table = arrToRows(arr, table, 'td');
 
