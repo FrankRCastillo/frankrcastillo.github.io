@@ -22,10 +22,11 @@ async function cmdManager(input) {
 
         let cmd = input.toLowerCase();
 
+        document.getElementById('helpPanel').style.visibility = 'hidden';
+
         try {
             let cmdaddr = window.filelist.filter((x) => x.match('apps\/' +  cmd + '.js'));
             let app = await import('/' + cmdaddr[0]);
-
             eval('app.' + cmd + '()');
         } catch(e) {
             print(cmd + ': command not found...');
