@@ -30,6 +30,11 @@ body
 ; hyphens: auto
 }
 
+table
+{ border         : 0px
+; border-spacing : 0px
+}
+
 @media(max-width : 400px) {
   body {
   ; margin : 14px 5% 5% 5%
