@@ -126,6 +126,10 @@ input::placeholder
 ; width            : 100%
 }
 
+#helpPanel table
+{ width : 100%
+}
+
 #helpPanel tr:hover
 { background-color : #000050
 }
