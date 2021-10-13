@@ -94,7 +94,7 @@ function consolePrompt() {
     inpt.addEventListener('mouseout', (e) => {
         let panel = document.getElementById('helpPanel');
 
-        panel.remove();
+        panel.parentNode.removeChild(panel);
     });
 
     return inpt;
