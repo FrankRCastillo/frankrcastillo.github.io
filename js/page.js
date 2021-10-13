@@ -4,11 +4,12 @@ window.filelist = null;
 async function main() {
     let body = document.body;
     let pars = params();
+    let cnsl = await newConsole();
 
     window.ipdata   = await getip();
     window.filelist = await fileList();
 
-    body.appendChild(newConsole());
+    body.appendChild(cnsl);
 
     await cmdManager('home');
 }
@@ -33,16 +34,40 @@ async function cmdManager(input) {
     }
 }
 
-function newConsole() {
+async function newConsole() {
     let cnsl = document.createElement('div');
     let bffr = consoleBuffer();
     let inpt = consolePrompt();
+    let pane = await helpPanel();
 
     cnsl.setAttribute('id', 'console');
+
     cnsl.appendChild(bffr);
     cnsl.appendChild(inpt);
+    cnsl.appendChild(pane);
 
     return cnsl;
+}
+
+async function helpPanel() {
+    let help = await getCmdInfo();
+    let tble = arrayToTable(help);
+    let pane = document.createElement('div');
+
+    pane.setAttribute('id', 'helpPanel');
+    panel.appendChild(tble);
+
+    pane.style.visibility = 'hidden';
+
+    pane.addEventListener('mouseover', (e) => {
+        this.style.visibility = 'visible';
+    });
+
+    pane.addEventListener('mouseout', (e) => {
+        this.style.visibility = 'hidden';
+    });
+
+    return pane;
 }
 
 function consoleMessage() {
@@ -57,11 +82,9 @@ function consoleBuffer() {
     return bffr;
 }
 
-async function consolePrompt() {
+function consolePrompt() {
     let inpt = document.createElement('input');
     let mesg = '\u25B6';
-    let help = await getCmdInfo();
-    let tble = arrayToTable(help);
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
@@ -80,12 +103,6 @@ async function consolePrompt() {
     inpt.addEventListener('mouseout', (e) => {
         document.getElementById('helpPanel').style.visibility = 'hidden';
     });
-
-    let pnl = document.createElement('div');
-
-    pnl.setAttribute('id', 'helpPanel');
-    pnl.style.visibility = 'hidden';
-    pnl.appendChild(tble);
 
     return inpt;
 }
