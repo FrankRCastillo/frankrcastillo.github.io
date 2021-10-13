@@ -27,7 +27,7 @@ async function cmdManager(input) {
         try {
             let cmdaddr = window.filelist.filter((x) => x.match('apps\/' +  cmd + '.js'));
             let app = await import('/' + cmdaddr[0]);
-            eval('app.' + cmd + '()');
+            eval('app.' + cmd + '(' + input + ')');
         } catch(e) {
             print(cmd + ': command not found...');
             console.log(e)
