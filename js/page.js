@@ -265,6 +265,7 @@ function arrToRows(arr, table, rowType){
 async function getCmdInfo() {
     let list  = window.filelist.filter((x) => x.match('apps/.*.js'));
     let hdr   = ['commands', 'description'];
+
     list.sort()
 
     let arr = await Promise.all(list.map(async x => {
