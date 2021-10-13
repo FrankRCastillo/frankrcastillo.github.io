@@ -8,7 +8,7 @@ export function blog() {
         let file = x.replace(path, '');
         lnk.text = file;
         lnk.setAttribute('href', 'javascript:void(0)');
-        lnk.addEventListener('click', (e) => {
+        lnk.addEventListener('click', async (e) => {
             let txt = await read(x);
             print(txt);
         });
