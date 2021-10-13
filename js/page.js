@@ -252,7 +252,7 @@ function arrayToTable(hdr, arr) {
     
     table.appendChild(th);
 
-    table = arrToRows(arr, table, 'td');
+    table = arrToRows(arr, table, 'tr');
 
     return table;
 }
