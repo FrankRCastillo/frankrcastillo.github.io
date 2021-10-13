@@ -249,15 +249,15 @@ function arrayToTable(hdr, arr) {
 }
 
 function arrToRows(arr, table, rowType){
-    let row = document.createElement(rowType);
-
-    arr.forEach((cell) => {
-        let td = document.createElement('td');
-        td.innerText = cell;
-        row.appendChild(td);
+    arr.forEach((row) => {
+        let tr = document.createElement(rowType);
+        row.forEach((cell) => {
+            let td = document.createElement('td');
+            td.innerText = cell;
+            tr.appendChild(td);
+        });
+        table.appendChild(tr);
     });
-
-    table.appendChild(row);
 
     return table;
 }
