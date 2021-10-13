@@ -51,8 +51,7 @@ async function newConsole() {
 }
 
 async function helpPanel() {
-    let help = await getCmdInfo();
-    let tble = arrayToTable(help);
+    let tble = await getCmdInfo();
     let pane = document.createElement('div');
 
     pane.setAttribute('id', 'helpPanel');
@@ -241,38 +240,40 @@ function trunc(str, len) {
     }
 }
 
-function arrayToTable(arr) {
+function arrayToTable(hdr, arr) {
     let table = document.createElement('table');
+    table = arrToRows(hdr, table, 'th');
+    table = arrToRows(arr, table, 'td');
 
-    arr.forEach((row) => {
-        tr = document.createElement('tr');
+    return table;
+}
 
-        row.forEach((cell) => {
-            let td = document.createElement('td');
-            td.innerText = cell;
-            tr.appendChild(td);
-        });
+function arrToRows(arr, table, rowType){
+    let row = document.createElement(rowType);
 
-        table.appendChild(tr);
+    return arr.forEach((cell) => {
+        let td = document.createElement('td');
+        td.innerText = cell;
+        row.appendChild(td);
     });
+
+    table.appendChild(row);
 
     return table;
 }
 
 async function getCmdInfo() {
-    let list = window.filelist.filter((x) => x.match('apps/.*.js'));
-
+    let list  = window.filelist.filter((x) => x.match('apps/.*.js'));
+    let hdr   = ['commands', 'description'];
     list.sort()
 
-    let lout = await Promise.all(list.map(async x => {
+    let arr = await Promise.all(list.map(async x => {
         let info = x.replace('.js', '').split('/');
 
         return [info[1], getJsDesc(await read(x))];
     }));
 
-    lout.unshift(['commands', 'description']);
-
-    return lout;
+    return arrayToTable(hdr, arr);
 }
 
 function getJsDesc(str) {
