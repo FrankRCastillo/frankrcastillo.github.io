@@ -86,13 +86,14 @@ function consolePrompt() {
         pnl.setAttribute('id', 'helpPanel');
         pnl.top   = top;
         pnl.width = wdt;
-        pnl.value = val + ' ' + wdt + ' ' + top + ' ' + lft;
+        console.log(val + ' ' + wdt + ' ' + top + ' ' + lft);
 
         document.body.appendChild(pnl);
     });
 
     inpt.addEventListener('mouseout', (e) => {
         document.getElementById('helpPanel');
+        console.log('out');
     });
 
     return inpt;
