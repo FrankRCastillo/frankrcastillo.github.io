@@ -39,10 +39,6 @@ th
 { text-decoration : underline
 }
 
-tr:hover
-{ background-color : #
-}
-
 @media(max-width : 400px) {
   body {
   ; margin : 14px 5% 5% 5%
@@ -115,10 +111,6 @@ input::placeholder
 ; height : 100%
 }
 
-#consoleBuffer
-{
-}
-
 #consolePrompt
 { border           : 0px solid #000000
 ; background-color : #000000
@@ -130,8 +122,12 @@ input::placeholder
 }
 
 #helpPanel
-{ background-color : #000050
+{ background-color : #000020
 ; width            : 100%
+}
+
+#helpPanel tr:hover
+{ background-color : #000050
 }
 
 .xmark
