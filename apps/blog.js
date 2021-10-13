@@ -1,6 +1,6 @@
 // Personal blog
 
-export function blog() {
+export async function blog() {
     let path = 'apps/blog/';
     let list = window.filelist.filter((x) => x.match(path));
     let urls = list.map((x) => {
