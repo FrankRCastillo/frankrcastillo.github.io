@@ -85,14 +85,13 @@ function consolePrompt() {
 
         pnl.setAttribute('id', 'helpPanel');
         pnl.top = top;
-        console.log(val + ' ' + wdt + ' ' + top + ' ' + lft);
-
+        pnl.style.visibility = 'visible';
+        
         document.body.appendChild(pnl);
     });
 
     inpt.addEventListener('mouseout', (e) => {
-        document.getElementById('helpPanel');
-        console.log('out');
+        document.getElementById('helpPanel').style.visibility = 'hiddren';
     });
 
     return inpt;
@@ -235,6 +234,7 @@ function trunc(str, len) {
 
 function arrayToTable(arr) {
     let table = document.createElement('table');
+    table.width = '100%';
 
     arr.forEach((row) => {
         let tr = document.createElement('tr');
