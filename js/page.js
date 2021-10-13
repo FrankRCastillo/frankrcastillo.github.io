@@ -260,11 +260,17 @@ function arrayToTable(hdr, arr) {
 function arrToRows(arr, table, rowType){
     arr.forEach((row) => {
         let tr = document.createElement(rowType);
+
+        tr.addEventListener('click', (e) => {
+            cmdManager(row[0]);
+        });
+
         row.forEach((cell) => {
             let td = document.createElement('td');
             td.innerText = cell;
             tr.appendChild(td);
         });
+
         table.appendChild(tr);
     });
 

@@ -39,6 +39,10 @@ th
 { text-decoration : underline
 }
 
+tr:hover
+{ background-color : #
+}
+
 @media(max-width : 400px) {
   body {
   ; margin : 14px 5% 5% 5%
