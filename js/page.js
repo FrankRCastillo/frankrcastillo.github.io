@@ -84,7 +84,7 @@ function consolePrompt() {
         let pnl = document.createElement('div');
 
         pnl.setAttribute('id', 'helpPanel');
-        pnl.top   = top;
+        pnl.top = top;
         console.log(val + ' ' + wdt + ' ' + top + ' ' + lft);
 
         document.body.appendChild(pnl);
