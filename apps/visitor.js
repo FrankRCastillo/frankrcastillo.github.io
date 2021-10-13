@@ -1,6 +1,6 @@
 // Visitor information
 
-export function vstr() {
+export function visitor() {
     let worldmap = new Array(3);
 
     for (let i = 0; i < 19; i++) {
