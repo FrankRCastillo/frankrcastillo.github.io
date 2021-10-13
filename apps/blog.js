@@ -6,9 +6,12 @@ export async function blog() {
     let urls = list.map((x) => {
         let lnk  = document.createElement('a');
         let file = x.replace(path, '');
+
         lnk.text = file;
+
         lnk.addEventListener('click', async (e) => {
             let txt = await read(x);
+
             print(txt);
         });
 
