@@ -86,7 +86,9 @@ function consolePrompt() {
         pnl.setAttribute('id', 'helpPanel');
         pnl.top   = top;
         pnl.width = wdt;
-        pnl.value = e + ' ' + w + ' ' + t;
+        pnl.value = val + ' ' + wdt + ' ' + top + ' ' + lft;
+
+        document.appendChild(pnl);
     });
 
     inpt.addEventListener('mouseout', (e) => {
