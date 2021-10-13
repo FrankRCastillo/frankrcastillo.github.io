@@ -63,10 +63,6 @@ async function helpPanel() {
         document.getElementById('helpPanel').style.visibility = 'visible';
     });
 
-    pane.addEventListener('mouseout', (e) => {
-        document.getElementById('helpPanel').style.visibility = 'hidden';
-    });
-
     return pane;
 }
 
@@ -97,9 +93,13 @@ function consolePrompt() {
     });
 
     inpt.addEventListener('click', (e) => {
-        document.getElementById('helpPanel').style.visibility = 'visible';
+        let vis = document.getElementById('helpPanel');
 
-
+        if (vis.style.visibility == 'visible'){
+            vis.style.visibility = 'hidden';
+        } else {
+            vis.style.visibility = 'visible';
+        }
     });
 
     return inpt;
