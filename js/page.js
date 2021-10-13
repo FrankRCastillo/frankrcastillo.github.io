@@ -68,10 +68,8 @@ async function consolePrompt() {
     inpt.addEventListener('keydown', (e) => {
         e = e || window.event;
         if (e.keyCode == 13) {
-            if (e.target.value != '') {
-                cmdManager(e.target.value);
-                e.target.value = '';
-            }
+            cmdManager(e.target.value);
+            e.target.value = '';
         }
     });
 
