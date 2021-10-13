@@ -73,6 +73,11 @@ function consolePrompt() {
         }
     });
 
+    inpt.addEventListener('mouseover', (e) => {
+        e = e || window.event;
+        console.log(e.target.value);
+    });
+
     return inpt;
 }
 
