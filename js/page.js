@@ -92,7 +92,7 @@ function consolePrompt() {
     });
 
     inpt.addEventListener('mouseout', (e) => {
-        document.getElementById('helpPanel').remove();
+        document.getElementById('helpPanel');
     });
 
     return inpt;

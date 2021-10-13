@@ -116,6 +116,10 @@ input::placeholder
 ; resize           : none
 }
 
+#helpPanel
+{ background-color : #000050
+}
+
 .xmark
 { color     : #ffa500
 ; animation : blink 1s linear infinite
