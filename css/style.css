@@ -35,6 +35,10 @@ table
 ; border-spacing : 0px
 }
 
+th
+{ text-decoration : underline
+}
+
 @media(max-width : 400px) {
   body {
   ; margin : 14px 5% 5% 5%
