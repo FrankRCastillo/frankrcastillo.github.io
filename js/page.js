@@ -2,12 +2,12 @@ window.ipdata = null;
 window.filelist = null;
 
 async function main() {
+    window.ipdata   = await getip();
+    window.filelist = await fileList();
+
     let body = document.body;
     let pars = params();
     let cnsl = await newConsole();
-
-    window.ipdata   = await getip();
-    window.filelist = await fileList();
 
     body.appendChild(cnsl);
 
