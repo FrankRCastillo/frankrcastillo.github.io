@@ -268,7 +268,6 @@ async function getCmdInfo() {
         return [info[1], getJsDesc(await read(x))];
     }));
 
-    lout.unshift(['========', '===========']);
     lout.unshift(['commands', 'description']);
 
     return lout;
