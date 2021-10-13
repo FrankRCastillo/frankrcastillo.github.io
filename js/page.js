@@ -77,10 +77,22 @@ function consolePrompt() {
         e = e || window.event;
         let val = e.target.value;
         let obj = document.getElementById('consolePrompt');
-        let x   = obj.getBoundingClientRect();
+        let crd = obj.getBoundingClientRect();
+        let wdt = crd.width;
+        let top = crd.y + crd.height;
+        let lft = crd.x;
+        let pnl = document.createElement('div');
 
-        console.log("pause");
+        pnl.setAttribute('id', 'helpPanel');
+        pnl.top   = top;
+        pnl.width = wdt;
+        pnl.value = e + ' ' + w + ' ' + t;
+    });
 
+    inpt.addEventListener('mouseout', (e) => {
+        let panel = document.getElementById('helpPanel');
+
+        panel.remove();
     });
 
     return inpt;
