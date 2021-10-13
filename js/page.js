@@ -243,9 +243,18 @@ function trunc(str, len) {
 
 function arrayToTable(arr) {
     let table = document.createElement('table');
+    let hdrIn = false;
 
     arr.forEach((row) => {
-        let tr = document.createElement('tr');
+        let tr = null;
+
+        if (hdrIn) {
+            tr = document.createElement('tr');
+        } else {
+            tr = document.createElement('th');
+            hdrIn = true;
+        }
+
         row.forEach((cell) => {
             let td = document.createElement('td');
             td.innerText = cell;
