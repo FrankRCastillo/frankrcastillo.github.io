@@ -55,7 +55,7 @@ async function helpPanel() {
     let pane = document.createElement('div');
 
     pane.setAttribute('id', 'helpPanel');
-    panel.appendChild(tble);
+    pane.appendChild(tble);
 
     pane.style.visibility = 'hidden';
 
