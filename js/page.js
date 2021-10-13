@@ -60,11 +60,11 @@ async function helpPanel() {
     pane.style.visibility = 'hidden';
 
     pane.addEventListener('mouseover', (e) => {
-        this.style.visibility = 'visible';
+        document.getElementById('helpPanel').style.visibility = 'visible';
     });
 
     pane.addEventListener('mouseout', (e) => {
-        this.style.visibility = 'hidden';
+        document.getElementById('helpPanel').style.visibility = 'hidden';
     });
 
     return pane;
