@@ -273,7 +273,7 @@ function arrToRows(arr, table, rowType){
 
 async function getCmdInfo() {
     let list  = window.filelist.filter((x) => x.match('apps/.*.js'));
-    let hdr   = ['commands', 'description'];
+    let hdr   = ['Commands', 'Description'];
 
     list.sort()
 
