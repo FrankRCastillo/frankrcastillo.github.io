@@ -243,23 +243,16 @@ function trunc(str, len) {
 
 function arrayToTable(arr) {
     let table = document.createElement('table');
-    let hdrIn = false;
 
     arr.forEach((row) => {
-        let tr = null;
-
-        if (hdrIn) {
-            tr = document.createElement('tr');
-        } else {
-            tr = document.createElement('th');
-            hdrIn = true;
-        }
+        tr = document.createElement('tr');
 
         row.forEach((cell) => {
             let td = document.createElement('td');
             td.innerText = cell;
             tr.appendChild(td);
         });
+
         table.appendChild(tr);
     });
 
