@@ -96,12 +96,16 @@ function consolePrompt() {
         }
     });
 
-    inpt.addEventListener('mouseover', (e) => {
+    inpt.addEventListener('click', (e) => {
         document.getElementById('helpPanel').style.visibility = 'visible';
     });
 
-    inpt.addEventListener('mouseout', (e) => {
-        document.getElementById('helpPanel').style.visibility = 'hidden';
+    document.addEventListener('click', (e) => {
+        let panel = document.getElementById('helpPanel');
+
+        if (panel.style.visibility == 'visible') {
+            panel.style.visibility = 'hidden';
+        }
     });
 
     return inpt;
