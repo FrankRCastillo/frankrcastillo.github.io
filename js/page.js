@@ -75,7 +75,12 @@ function consolePrompt() {
 
     inpt.addEventListener('mouseover', (e) => {
         e = e || window.event;
-        console.log(e.target.value);
+        let val = e.target.value;
+        let obj = document.getElementById('consolePrompt');
+        let x   = obj.getBoundingClientRect();
+
+        console.log("pause");
+
     });
 
     return inpt;
