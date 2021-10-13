@@ -242,7 +242,6 @@ function trunc(str, len) {
 
 function arrayToTable(arr) {
     let table = document.createElement('table');
-    table.width = '100%';
 
     arr.forEach((row) => {
         let tr = document.createElement('tr');
