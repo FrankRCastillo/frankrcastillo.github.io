@@ -118,6 +118,7 @@ input::placeholder
 
 #helpPanel
 { background-color : #000050
+; width            : 100%
 }
 
 .xmark

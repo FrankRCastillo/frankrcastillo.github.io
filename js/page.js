@@ -85,7 +85,6 @@ function consolePrompt() {
 
         pnl.setAttribute('id', 'helpPanel');
         pnl.top   = top;
-        pnl.width = wdt;
         console.log(val + ' ' + wdt + ' ' + top + ' ' + lft);
 
         document.body.appendChild(pnl);
