@@ -98,14 +98,8 @@ function consolePrompt() {
 
     inpt.addEventListener('click', (e) => {
         document.getElementById('helpPanel').style.visibility = 'visible';
-    });
 
-    document.addEventListener('click', (e) => {
-        let panel = document.getElementById('helpPanel');
 
-        if (panel.style.visibility == 'visible') {
-            panel.style.visibility = 'hidden';
-        }
     });
 
     return inpt;
