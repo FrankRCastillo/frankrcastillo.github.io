@@ -251,7 +251,7 @@ function arrayToTable(hdr, arr) {
 function arrToRows(arr, table, rowType){
     let row = document.createElement(rowType);
 
-    return arr.forEach((cell) => {
+    arr.forEach((cell) => {
         let td = document.createElement('td');
         td.innerText = cell;
         row.appendChild(td);
@@ -262,7 +262,7 @@ function arrToRows(arr, table, rowType){
     return table;
 }
 
-async function getCmdInfo() {
+function getCmdInfo() {
     let list  = window.filelist.filter((x) => x.match('apps/.*.js'));
     let hdr   = ['commands', 'description'];
 
