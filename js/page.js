@@ -7,7 +7,7 @@ async function main() {
     window.filelist = await fileList();
 
     window.filelist
-          .filter((x) => x.match('apps\/' +  cmd + '.js'))
+          .filter((x) => x.match('$apps/.*.js'))
           .forEach(async (x) => {
               let app = await import(x);
               window.apps.push(app);
