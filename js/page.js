@@ -1,5 +1,6 @@
 window.ipdata   = null;
 window.filelist = null;
+window.apps     = {};
 
 async function main() {
     window.ipdata   = await getip();
@@ -8,7 +9,7 @@ async function main() {
     window.filelist
           .filter((x) => x.match(/apps.*.js/g))
           .forEach(async (app) => {
-              (await import('/' + app)).default;
+              window.apps[app] = await import('/' + app);
           });
 
     let body = document.body;
@@ -30,7 +31,7 @@ async function cmdManager(input) {
         print(promptmsg + input, true);
 
         try {
-            eval(cmd + '()');
+            eval('window.apps[\"/apps/' + + '.js\"]' + cmd + '()');
         } catch(e) {
             print(cmd + ': command not found...');
         }
