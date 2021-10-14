@@ -24,15 +24,16 @@ async function main() {
 async function cmdManager(input) {
     if (input != '') {
         let promptmsg = consoleMessage() + ':~$ '
-        let cmd = input.toLowerCase();
 
         document.getElementById('helpPanel').style.visibility = 'hidden';
 
         print(promptmsg + input, true);
 
         try {
+            let cmd = input.toLowerCase();
             let app = 'apps/' + cmd + '.js';
-            eval('window.apps[' + app +']' + cmd + '()');
+            let evl = 'window.apps[' + app + ']' + cmd + '()';
+            eval(evl);
         } catch(e) {
             print(cmd + ': command not found...');
         }
