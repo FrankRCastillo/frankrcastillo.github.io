@@ -10,6 +10,8 @@ export async function blog() {
         lnk.addEventListener('click', async (e) => {
             let txt = await read(e.currentTarget.url);
 
+            console.log(txt);
+
             print(txt);
         });
 
