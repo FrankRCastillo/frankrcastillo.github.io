@@ -8,7 +8,7 @@ async function main() {
     window.filelist
           .filter((x) => x.match(/apps.*.js/g))
           .forEach(async (app) => {
-              (await import('/' + app)).default();
+              (await import('/' + app)).default;
           });
 
     let body = document.body;
@@ -24,8 +24,9 @@ async function cmdManager(input) {
     if (input != '') {
         let promptmsg = consoleMessage() + ':~$ '
         let cmd = input.toLowerCase();
-        
+
         document.getElementById('helpPanel').style.visibility = 'hidden';
+
         print(promptmsg + input, true);
 
         try {
