@@ -31,7 +31,8 @@ async function cmdManager(input) {
         print(promptmsg + input, true);
 
         try {
-            eval('window.apps[\"apps/' + cmd + '.js\"]' + cmd + '()');
+            let app = 'apps/' + cmd + '.js';
+            eval('window.apps[' + app +']' + cmd + '()');
         } catch(e) {
             print(cmd + ': command not found...');
         }
