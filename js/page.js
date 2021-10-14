@@ -1,6 +1,5 @@
 window.ipdata   = null;
 window.filelist = null;
-window.apps     = [];
 
 async function main() {
     window.ipdata   = await getip();
@@ -9,8 +8,7 @@ async function main() {
     window.filelist
           .filter((x) => x.match('$apps/.*.js'))
           .forEach(async (x) => {
-              let app = await import(x);
-              window.apps.push(app);
+              await (await import(x)).default();
           });
 
     let body = document.body;
