@@ -4,6 +4,10 @@ window.filelist = null;
 async function main() {
     window.ipdata   = await getip();
     window.filelist = await fileList();
+    
+    let cmds = window.filelist.filter((x) => x.match('apps\/' +  cmd + '.js'));
+
+    cmds.forEach((x) => { import x; });
 
     let body = document.body;
     let pars = params();
@@ -17,20 +21,15 @@ async function main() {
 async function cmdManager(input) {
     if (input != '') {
         let promptmsg = consoleMessage() + ':~$ '
-
+        let cmd = input.toLowerCase();
+        
+        document.getElementById('helpPanel').style.visibility = 'hidden';
         print(promptmsg + input, true);
 
-        let cmd = input.toLowerCase();
-
-        document.getElementById('helpPanel').style.visibility = 'hidden';
-
         try {
-            let cmdaddr = window.filelist.filter((x) => x.match('apps\/' +  cmd + '.js'));
-            let app = await import('/' + cmdaddr[0]);
-            eval('app.' + cmd + '(' + input + ')');
+            eval(cmd + '()');
         } catch(e) {
             print(cmd + ': command not found...');
-            console.log(e)
         }
     }
 }
