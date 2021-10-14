@@ -7,8 +7,8 @@ async function main() {
 
     window.filelist
           .filter((x) => x.match(/apps.*.js/g))
-          .forEach(async (x) => {
-              await (await import(x)).default();
+          .forEach(async (app) => {
+              await (await import('/' + app)).default();
           });
 
     let body = document.body;
