@@ -32,7 +32,7 @@ async function cmdManager(input) {
         try {
             let cmd = input.toLowerCase();
             let app = 'apps/' + cmd + '.js';
-            let evl = 'window.apps[' + app + ']' + cmd + '()';
+            let evl = 'window.apps[\"' + app + '\"]' + cmd + '()';
             eval(evl);
         } catch(e) {
             print(cmd + ': command not found...');
