@@ -5,10 +5,13 @@ window.apps     = [];
 async function main() {
     window.ipdata   = await getip();
     window.filelist = await fileList();
-    
-    let cmds = window.filelist.filter((x) => x.match('apps\/' +  cmd + '.js'));
 
-    cmds.forEach((x) => { window.apps.push(await import(x)); });
+    window.filelist
+          .filter((x) => x.match('apps\/' +  cmd + '.js'))
+          .forEach((x) => {
+              let app = await import(x);
+              window.apps.push(app);
+          });
 
     let body = document.body;
     let pars = params();
