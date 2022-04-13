@@ -1,6 +1,6 @@
-Hello and welcome,
+Hello,
 
-In this website, I hope to explore and develop my interests in financial and regulatory technologies, as well as current affairs, economics, and politics. Professionally, I work in the field of Anti-Money Laundering (AML). Academically, I'm a first-year PhD student of Modeling and Simulation at the University of Central Florida. My hope is to combine my professional and academic interests to help advance the field of AML towards a more secure financial system.
+In this website, I hope to explore and develop my interests in financial and regulatory technologies, as well as current affairs, economics, and politics. Professionally, I work in the field of Anti-Money Laundering (AML). Academically, I'm a PhD student of Modeling and Simulation at the University of Central Florida. My hope is to combine my professional and academic interests to help advance the field of AML towards a more secure financial system.
 
 Lastly, I'm a veteran of the US Marine Corps, where I served from 2004 to 2013.
 
