@@ -3,7 +3,7 @@ window.filelist = null;
 window.apps     = {};
 
 async function main() {
-    window.ipdata   = await getip();
+//    window.ipdata   = await getip();
     window.filelist = await fileList();
 
     window.filelist
@@ -23,7 +23,7 @@ async function main() {
 
 async function cmdManager(input) {
     if (input != '') {
-        let promptmsg = consoleMessage() + ':~$ '
+        let promptmsg = '~$ '
 
         document.getElementById('helpPanel').style.visibility = 'hidden';
 
