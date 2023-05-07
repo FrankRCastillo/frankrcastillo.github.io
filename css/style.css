@@ -109,12 +109,12 @@ input::placeholder
 #console
 { width            : 100%
 ; height           : 100%
-; background-color : #0000F0
+; background-color : #000010
 }
 
 #consolePrompt
 { border           : 0px solid #000000
-; background-color : #000000
+; background-color : #000020
 ; width            : 100%
 ; color            : #FFA500
 ; border           : none
