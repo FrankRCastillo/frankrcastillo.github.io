@@ -41,13 +41,13 @@ th
 
 @media(max-width : 400px) {
   body {
-  ; margin : 14px 5% 5% 5%
+  ; margin : 0% 5% 5% 5%
   }
 }
 
 @media(min-width : 401px) {
   body {
-  ; margin : 14px 20% 5% 20%
+  ; margin : 0% 20% 0% 20%
   }
 }
 
