@@ -85,7 +85,7 @@ function consoleBuffer() {
 
 function consolePrompt() {
     let inpt = document.createElement('input');
-    let mesg = '\u25B6';
+    let mesg = '$';
 
     inpt.setAttribute('id', 'consolePrompt');
     inpt.setAttribute('placeholder', mesg);
