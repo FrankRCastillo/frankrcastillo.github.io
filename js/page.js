@@ -23,7 +23,7 @@ async function main() {
 
 async function cmdManager(input) {
     if (input != '') {
-        let promptmsg = '\u25B6 '
+        let promptmsg = '$ '
 
         document.getElementById('helpPanel').style.visibility = 'hidden';
 
