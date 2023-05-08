@@ -124,7 +124,8 @@ input::placeholder
 
 #helpPanel
 { background-color : #000020
-; width            : 100%
+; width            : auto
+; position         : absolute
 }
 
 #helpPanel table
