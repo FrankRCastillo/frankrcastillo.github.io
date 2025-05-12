@@ -4,7 +4,7 @@ import feedparser, os, csv, json
 with open('pages/feeds.csv') as f:
     feeds = list(csv.reader(f))
 
-os.makedirs('pages/feeds/generated', exist_ok = True)
+os.makedirs('pages/feeds', exist_ok = True)
 
 for name, url in feeds:
     name   = name.strip('"')
@@ -19,7 +19,7 @@ for name, url in feeds:
             'published' : entry.get('published', '')
         })
 
-    with open(f'pages/feeds/generated/{name}.json', 'w') as out:
+    with open(f'pages/feeds/{name}.json', 'w') as out:
         json.dump( { 'name' : name
                    , 'items': items
                    }
