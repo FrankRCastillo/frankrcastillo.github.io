@@ -36,11 +36,9 @@ async function load_projects() {
         atag.textContent = name;
         atag.href = link;
 
-
-
         strong.appendChild(atag);
         li.appendChild(strong);
-        li.appendChild(desc);
+        li.textContent += desc;
         ul.appendchild(li);
     });
 
