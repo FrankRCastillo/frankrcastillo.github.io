@@ -21,7 +21,7 @@ jobs:
         run: pip install feedparser
 
       - name: Run update script
-        run: python scripts/update_feeds.py
+        run: python scripts/feeds.py
 
       - name: Commit and push
         run: |
