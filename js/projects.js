@@ -20,7 +20,7 @@ async function load_projects() {
     }
 
     const files = await res.text();
-    const rows  = praseCSV(files);
+    const rows  = parseCSV(files);
 
     ul = document.createElement('ul')
 
