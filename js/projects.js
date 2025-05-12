@@ -19,6 +19,8 @@ async function load_projects() {
         return;
     }
 
+    projList.innerHTML = '';
+
     const files = await res.text();
     const rows  = parseCSV(files);
 
