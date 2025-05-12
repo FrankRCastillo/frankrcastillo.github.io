@@ -11,7 +11,7 @@ function parseCSV(text) {
 
 async function load_projects() {
     const projList = document.getElementById('projectsList');
-    const projList = "/pages/projects.csv";
+    const projFile = "/pages/projects.csv";
     const res      = await fetch(api);
 
     if (!res.ok) {
