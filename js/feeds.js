@@ -11,32 +11,50 @@ async function load_feeds() {
     const files = await res.json();
     const jsonFiles = files.filter(f => f.name.endsWith('.json'));
 
-    list.innerHTML = '';
+    list.innerHTML = '<p>Loading feeds...</p>';
+
+    const fragment = document.createDocumentFragment();
+    const sections = [];
 
     for (const file of jsonFiles) {
-        const res = await fetch(file.download_url);
-        if (!res.ok) continue;
+        try {
+            const res = await fetch(file.download_url);
+            if (!res.ok) throw new Error(`Fetch failed for ${file.name}`);
 
-        const data = await res.json();
+            const data = await res.json();
 
-        const section = document.createElement('section');
-        const header = document.createElement('h3');
-        header.textContent = data.name;
-        section.appendChild(header);
+            const section = document.createElement('section');
+            const header = document.createElement('h3');
+            header.textContent = data.name;
+            section.appendChild(header);
 
-        const ul = document.createElement('ul');
-        for (const item of data.items) {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = item.link;
-            a.target = '_blank';
-            a.textContent = item.title;
-            li.appendChild(a);
-            ul.appendChild(li);
+            const ul = document.createElement('ul');
+            for (const item of data.items) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = item.link;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.textContent = item.title;
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+
+            section.appendChild(ul);
+            sections.push({ name: data.name.toLowerCase(), section });
+
+        } catch (err) {
+            console.error(`Failed to load feed ${file.name}:`, err);
+            const errMsg = document.createElement('p');
+            errMsg.textContent = `⚠️ Failed to load feed: ${file.name}`;
+            sections.push({ name: file.name.toLowerCase(), section: errMsg });
         }
-
-        section.appendChild(ul);
-        list.appendChild(section);
     }
+
+    sections.sort((a, b) => a.name.localeCompare(b.name));
+    sections.forEach(({ section }) => fragment.appendChild(section));
+
+    list.innerHTML = '';
+    list.appendChild(fragment);
 }
 
