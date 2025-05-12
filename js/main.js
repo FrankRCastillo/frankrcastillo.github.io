@@ -74,5 +74,11 @@ async function init() {
     files.filter(f => f.name.endsWith('.html')).forEach(createNavItem);
 
     const params = new URLSearchParams(window.location.search);
-    const
+    const page = params.get('page') || 'home';
+    const match = files.find(f => f.name === `${page}.html`);
+    if (match) loadPage(match.download_url);
+    else content.innerHTML = '<p>Page not found.</p>';
+}
 
+window.addEventListener('popstate', init);
+init();
