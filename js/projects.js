@@ -25,20 +25,21 @@ async function load_projects() {
     ul = document.createElement('ul')
 
     rows.forEach(row => {
-        name = row[0];
-        link = row[1];
-        desc = row[2];
+        const name   = row[0];
+        const link   = row[1];
+        const desc   = row[2];
+        const li     = document.createElement('li');
+        const strong = document.createElement('strong');
+        const atag   = document.createElement('a');
+        const text   = document.createTextNode(' - ' + desc);
 
-        li     = document.createElement('li');
-        strong = document.createElement('strong');
-        atag   = document.createElement('a');
 
         atag.textContent = name;
         atag.href = link;
 
         strong.appendChild(atag);
         li.appendChild(strong);
-        li.textContent += desc;
+        li.appendChild(text);
         ul.appendChild(li);
     });
 
