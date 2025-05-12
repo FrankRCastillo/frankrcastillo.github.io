@@ -1,51 +1,63 @@
-const REPO = 'FrankRCastillo/frankrcastillo.github.io';
-const BRANCH = 'master';
+const REPO    = 'FrankRCastillo/frankrcastillo.github.io';
+const BRANCH  = 'master';
 const content = document.getElementById('content');
-const nav = document.getElementById('nav');
+const nav     = document.getElementById('nav');
 
 async function fetchPages() {
     const api = `https://api.github.com/repos/${REPO}/contents/pages?ref=${BRANCH}`;
     const res = await fetch(api);
+
     return res.ok ? await res.json() : [];
 }
 
 function importScript(name) {
     return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = `js/${name}.js`;
-        script.onload = resolve;
+        const script   = document.createElement('script');
+        script.src     = `js/${name}.js`;
+        script.onload  = resolve;
         script.onerror = reject;
+
         document.head.appendChild(script);
     });
 }
 
 async function loadPage(url, pageName) {
     const res = await fetch(url);
+
     if (!res.ok) {
         content.innerHTML = '<p>Error loading page.</p>';
         return;
     }
+
     const html = await res.text();
+
     content.innerHTML = html;
 
     try {
         await importScript(pageName);
+
     } catch (_) {
         return; // it's okay if there's no script for this page
+
     }
 
     const hook = window[`load_${pageName}`];
+
     if (typeof hook === 'function') hook();
 }
 
 function createNavItem(file) {
     const name = file.name.replace('.html', '');
+
     const btn = document.createElement('button');
+
     btn.textContent = name;
+
     btn.onclick = () => {
         history.pushState(null, '', `?page=${name}`);
         loadPage(file.download_url, name);
     };
+
     nav.appendChild(btn);
 }
 
@@ -56,13 +68,15 @@ async function init() {
     pages.forEach(createNavItem);
 
     const params = new URLSearchParams(window.location.search);
-    const page = params.get('page') || 'home';
-    const match = pages.find(f => f.name === `${page}.html`);
+    const page   = params.get('page') || 'home';
+    const match  = pages.find(f => f.name === `${page}.html`);
 
     if (match) {
         loadPage(match.download_url, page);
+
     } else {
         content.innerHTML = '<p>Page not found.</p>';
+
     }
 }
 
