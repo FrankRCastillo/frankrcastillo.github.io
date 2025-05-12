@@ -2,6 +2,7 @@ async function load_feeds() {
     const list = document.getElementById('feedList');
     const api = `https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/contents/pages/feeds?ref=master`;
     const res = await fetch(api);
+
     if (!res.ok) {
         list.innerHTML = '<p>Error loading feed sources.</p>';
         return;
