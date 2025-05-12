@@ -1,0 +1,25 @@
+{
+  "name": "COP 1044: Introduction to Data Science using Python",
+  "items": [
+    {
+      "title": "Chapter 1: Introduction to Python for Data Analysis",
+      "link": "https://www.youtube.com/watch?v=f1ziCY2p5vk",
+      "published": "2025-04-26T05:44:52+00:00"
+    },
+    {
+      "title": "Chapter 2: The Pandas Essentials for Data Analysis",
+      "link": "https://www.youtube.com/watch?v=e1cAKF3jIoU",
+      "published": "2025-04-26T05:44:33+00:00"
+    },
+    {
+      "title": "Chapter 3: The Pandas Essentials for Data Visualization",
+      "link": "https://www.youtube.com/watch?v=4y53pPOvt0k",
+      "published": "2025-04-26T05:44:06+00:00"
+    },
+    {
+      "title": "Chapter 4: The Seaborn Essentials for Data Visualization",
+      "link": "https://www.youtube.com/watch?v=4qayVkjghJ8",
+      "published": "2025-04-26T05:39:56+00:00"
+    }
+  ]
+}

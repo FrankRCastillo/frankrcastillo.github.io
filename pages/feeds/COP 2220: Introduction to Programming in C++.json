@@ -1,0 +1,35 @@
+{
+  "name": "COP 2220: Introduction to Programming in C++",
+  "items": [
+    {
+      "title": "Chapter 1: Introduction to Computers and Programming",
+      "link": "https://www.youtube.com/watch?v=5kK_20SaWmM",
+      "published": "2025-04-26T05:39:37+00:00"
+    },
+    {
+      "title": "Chapter 2: Introduction to C++",
+      "link": "https://www.youtube.com/watch?v=7b--1FovXKI",
+      "published": "2025-04-26T05:39:28+00:00"
+    },
+    {
+      "title": "Chapter 3: Expressions and Interactivity",
+      "link": "https://www.youtube.com/watch?v=CBcugGZRiSw",
+      "published": "2025-04-26T05:39:17+00:00"
+    },
+    {
+      "title": "Chapter 4: Making Decisions",
+      "link": "https://www.youtube.com/watch?v=DRfYNJ4B--E",
+      "published": "2025-04-26T05:39:07+00:00"
+    },
+    {
+      "title": "Chapter 5: Loops and Files",
+      "link": "https://www.youtube.com/watch?v=cL1uNA3wgRY",
+      "published": "2025-04-26T05:38:59+00:00"
+    },
+    {
+      "title": "Chapter 6: Functions",
+      "link": "https://www.youtube.com/watch?v=1q5lKnz8tq0",
+      "published": "2025-04-26T05:38:48+00:00"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "COP 1000: Introduction to Programming in Python",
+  "items": [
+    {
+      "title": "Chapter 2: Input, Processing, and Output",
+      "link": "https://www.youtube.com/watch?v=wvBcee3Ed3c",
+      "published": "2025-04-26T05:45:59+00:00"
+    },
+    {
+      "title": "Chapter 3: Decision Structures and Boolean Logic",
+      "link": "https://www.youtube.com/watch?v=z7aNBYXsV1U",
+      "published": "2025-04-26T05:45:49+00:00"
+    },
+    {
+      "title": "Chapter 4: Repetition Structures",
+      "link": "https://www.youtube.com/watch?v=bQVnO49lN8E",
+      "published": "2025-04-26T05:45:25+00:00"
+    },
+    {
+      "title": "Chapter 5: Functions",
+      "link": "https://www.youtube.com/watch?v=FxxWLKda_M0",
+      "published": "2025-04-26T05:45:16+00:00"
+    },
+    {
+      "title": "Chapter 6: Files and Exceptions",
+      "link": "https://www.youtube.com/watch?v=pkJdWmOe4D8",
+      "published": "2025-04-26T05:45:05+00:00"
+    }
+  ]
+}
