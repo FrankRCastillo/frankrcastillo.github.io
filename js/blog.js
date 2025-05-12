@@ -4,12 +4,11 @@ async function load_blog() {
     const res      = await fetch(api);
 
     if (!res.ok) {
-        blogList.innerHTML = '<p>Error loading posts.</p>';
+        blogList.innerHTML = '<p>No posts found.</p>';
         return;
     }
 
     const files = await res.json();
-    blogList.innerHTML = '';
 
     files.filter(f => f.name.endsWith('.txt')).forEach(file => {
         const link = document.createElement('a');
