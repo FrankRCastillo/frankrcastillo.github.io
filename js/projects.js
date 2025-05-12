@@ -39,7 +39,7 @@ async function load_projects() {
         strong.appendChild(atag);
         li.appendChild(strong);
         li.textContent += desc;
-        ul.appendchild(li);
+        ul.appendChild(li);
     });
 
     projList.appendChild(ul);
