@@ -15,7 +15,7 @@ async function load_projects() {
     const res      = await fetch(api);
 
     if (!res.ok) {
-        blogList.innerHTML = '<p>Error loading projects.</p>';
+        projList.innerHTML = '<p>Error loading projects.</p>';
         return;
     }
 
