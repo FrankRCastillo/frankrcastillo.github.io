@@ -12,7 +12,7 @@ for name, url in feeds:
     parsed = feedparser.parse(url)
 
     items = []
-    for entry in parsed.entries[:10]:
+    for entry in parsed.entries:
         items.append({
             'title'     : entry.get('title', ''),
             'link'      : entry.get('link', ''),
