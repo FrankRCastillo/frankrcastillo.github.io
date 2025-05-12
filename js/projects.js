@@ -11,7 +11,7 @@ function parseCSV(text) {
 
 async function load_projects() {
     const projList = document.getElementById('projectsList');
-    const api      = `https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/contents/pages/projects.csv?ref=master`;
+    const projList = "/pages/projects.csv";
     const res      = await fetch(api);
 
     if (!res.ok) {
