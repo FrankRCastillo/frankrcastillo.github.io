@@ -1,8 +1,40 @@
-<div id="terminal" style="background: #000000; color: #ffa500; padding: 1em; font-family: monospace;">
+<h2>Command Line</h2>
+
+<div id="terminal" style="background: #000; color: #fff; padding: 1em; font-family: consolas;">
   <div id="terminal-output"></div>
   <div>
-    <span style="color: #ffa500;">$</span>
-    <input id="terminal-input" type="text" autofocus style="background: #000000; color: #ffa500; border: none; outline: none; width: 90%;" />
+    <span style="color: #0f0;">$</span>
+    <input id="terminal-input" type="text" autofocus
+           style="background: #000; color: #fff; border: none; outline: none; width: 90%;" />
   </div>
 </div>
+
+<script type="module">
+  import { runCommand } from '../js/cmd.js';
+
+  const input = document.getElementById('terminal-input');
+  const output = document.getElementById('terminal-output');
+
+  function print(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    output.appendChild(div);
+    output.scrollTop = output.scrollHeight;
+  }
+
+  input.addEventListener('keydown', async (e) => {
+    if (e.key === 'Enter') {
+      const command = input.value.trim();
+      if (!command) return;
+      print(`$ ${command}`);
+      input.value = '';
+      try {
+        const result = await runCommand(command);
+        if (result) print(result);
+      } catch (err) {
+        print(`Error: ${err.message}`);
+      }
+    }
+  });
+</script>
 
