@@ -49,6 +49,8 @@ export function setupTerminal() {
             input.value      = '';
             prompt.innerText = `${curdir}$`;
 
+            prompt.style.visibility = 'hidden';
+
             print(`${curdir}$ ${command}`);
 
             try {
@@ -61,6 +63,8 @@ export function setupTerminal() {
             }
 
             requestAnimationFrame(() => input.focus());
+
+            prompt.style.visibility = 'visible';
         }
     });
 }
