@@ -46,6 +46,8 @@ export function setupTerminal() {
     }
 
     input.addEventListener('keydown', async (e) => {
+        const input  = document.getElementById('terminal-input');
+
         if (e.key === 'Enter') {
             const command = input.value.trim();
 
@@ -111,6 +113,9 @@ export function setupTerminal() {
 
             e.preventDefault();
         }
+
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
     });
 
     updatePrompt();
