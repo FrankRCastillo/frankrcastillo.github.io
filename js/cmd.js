@@ -26,17 +26,19 @@ export async function runCommand(input) {
     return await cmd(args, REPO_API_BASE);
 }
 
-// this is called by main.js after cmd.html is loaded
 export function setupTerminal() {
-    const input  = document.getElementById('terminal-input');
+    const input = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
-    const curdir = pwd();    
 
-    prompt.innerText = `${curdir}$`;
+    window.cmdHistory = [];
+    window.cmdIndex = -1;
+
+    function updatePrompt() {
+        prompt.innerText = `${pwd()}$`;
+    }
 
     function print(text) {
-        const input = document.getElementById('terminal-input');
         const pre = document.createElement('pre');
         pre.textContent = text;
         output.appendChild(pre);
@@ -45,28 +47,52 @@ export function setupTerminal() {
 
     input.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
-            const prompt  = document.getElementById('terminal-prompt');
             const command = input.value.trim();
-            input.value   = '';
+            if (command) {
+                window.cmdHistory.push(command);
+                window.cmdIndex = window.cmdHistory.length;
+            }
 
+            input.value = '';
             prompt.style.visibility = 'hidden';
-
             print(`${pwd()}$ ${command}`);
 
             try {
                 const result = await runCommand(command);
-
                 if (result) print(result);
-
             } catch (err) {
                 print(`Error: ${err.message}`);
             }
 
-            requestAnimationFrame(() => input.focus());
+            requestAnimationFrame(() => {
+                input.focus();
+                updatePrompt();
+                prompt.style.visibility = 'visible';
+            });
+        }
 
-            prompt.innerText = `${pwd()}$`;
-            prompt.style.visibility = 'visible';
+        if (e.key === 'ArrowUp') {
+            if (window.cmdIndex > 0) {
+                window.cmdIndex--;
+                input.value = window.cmdHistory[window.cmdIndex];
+                requestAnimationFrame(() => input.setSelectionRange(input.value.length, input.value.length));
+            }
+            e.preventDefault();
+        }
+
+        if (e.key === 'ArrowDown') {
+            if (window.cmdIndex < window.cmdHistory.length - 1) {
+                window.cmdIndex++;
+                input.value = window.cmdHistory[window.cmdIndex];
+            } else {
+                window.cmdIndex = window.cmdHistory.length;
+                input.value = '';
+            }
+            requestAnimationFrame(() => input.setSelectionRange(input.value.length, input.value.length));
+            e.preventDefault();
         }
     });
+
+    updatePrompt();
 }
 
