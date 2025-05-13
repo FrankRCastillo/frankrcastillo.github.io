@@ -18,7 +18,6 @@ export async function runCommand(input) {
     if (!input.trim()) return '';
     const [name, ...args] = input.trim().split(/\s+/);
     const cmd = await loadCommand(name.toLowerCase());
-    const result = await cmd(args, REPO_API_BASE);
-    return result;
+    return await cmd(args, REPO_API_BASE);
 }
 
