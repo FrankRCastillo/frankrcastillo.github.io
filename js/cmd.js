@@ -43,12 +43,9 @@ export function setupTerminal() {
             try {
                 const result = await runCommand(command);
 
-                if (result) {
-                    print(result);
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => input.focus());
-                    });
-                }
+                if (result) print(result);
+
+                setTimeout(() => input.focus(), 0);
 
             } catch (err) {
                 print(`Error: ${err.message}`);
