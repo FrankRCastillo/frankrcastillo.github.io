@@ -40,6 +40,7 @@ nav button:hover {
 }
 
 main {
+    padding: 3em;
     max-width: 90%;
     max-height: 90%
     margin: auto;
