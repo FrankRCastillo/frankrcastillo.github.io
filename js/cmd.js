@@ -48,7 +48,7 @@ export function setupTerminal() {
 
             prompt.style.visibility = 'hidden';
 
-            print(`/${pwd()}$ ${command}`);
+            print(`${pwd()}$ ${command}`);
 
             try {
                 const result = await runCommand(command);
@@ -61,7 +61,7 @@ export function setupTerminal() {
 
             requestAnimationFrame(() => input.focus());
 
-            prompt.innerText = `/${pwd()}$`;
+            prompt.innerText = `${pwd()}$`;
             prompt.style.visibility = 'visible';
         }
     });
