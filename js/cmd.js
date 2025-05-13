@@ -28,7 +28,7 @@ export function setupTerminal() {
 
     function print(text) {
         const div = document.createElement('div');
-        div.textContent = text;
+        div.innerHTML = `<pre>${text}</pre>`;
         output.appendChild(div);
         output.scrollTop = output.scrollHeight;
     }
