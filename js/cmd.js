@@ -43,7 +43,6 @@ export function setupTerminal() {
     input.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
             const prompt  = document.getElementById('terminal-prompt');
-            const curdir  = pwd();    
             const command = input.value.trim();
 
             input.value      = '';
@@ -63,7 +62,8 @@ export function setupTerminal() {
 
             requestAnimationFrame(() => input.focus());
 
-            prompt.innerText = `${curdir}$`;
+            const curdir  = pwd();    
+            prompt.innerText = `/${curdir}$`;
             prompt.style.visibility = 'visible';
         }
     });
