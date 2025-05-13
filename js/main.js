@@ -44,7 +44,11 @@ async function loadPage(url, pageName) {
     // If this is the terminal page, load and run the module
     if (pageName === 'cmd') {
         const module = await import(`./js/cmd.js`);
+
+        console.log("cmd.js loaded");
+
         module.setupTerminal();
+
     }
 }
 
