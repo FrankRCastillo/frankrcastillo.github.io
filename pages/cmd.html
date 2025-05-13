@@ -1,28 +1,15 @@
-<script type="module">
-  import { runCommand } from '../js/cmd.js';
-
-  const input = document.getElementById('terminal-input');
-  const output = document.getElementById('terminal-output');
-
-  function print(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    output.appendChild(div);
-    output.scrollTop = output.scrollHeight;
-  }
-
-  input.addEventListener('keydown', async (e) => {
-    if (e.key === 'Enter') {
-      const command = input.value.trim();
-      input.value = '';
-      print(`$ ${command}`);
-      try {
-        const result = await runCommand(command);
-        if (result) print(result);
-      } catch (err) {
-        print(`Error: ${err.message}`);
-      }
-    }
-  });
-</script>
+<div id="terminal" style="background: #000000; color: #ffa500; padding: 1em; font-family: monospace;">
+  <div id="terminal-output" style="min-height: 200px;"></div>
+  <div>
+    <span style="color: #0f0;">$</span>
+    <input
+      id="terminal-input"
+      type="text"
+      autofocus
+      autocomplete="off"
+      spellcheck="false"
+      style="background: #000000; color: #ffa500; border: none; outline: none; width: 90%; font-family: monospace;"
+    />
+  </div>
+</div>
 
