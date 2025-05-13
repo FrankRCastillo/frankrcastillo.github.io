@@ -27,15 +27,21 @@ function resolvePath(path) {
     if (!window.pathStack) window.pathStack = [];
 
     if (path === '..') {
-        const newPath = [...window.pathStack];
-        newPath.pop();
-        return newPath.join('/');
+        window.pathStack.pop();
+        return window.pathStack.join('/');
+    }
+
+    if (path === '/') {
+        window.pathStack = [];
+        return '';
     }
 
     if (path.startsWith('/')) {
-        return path.replace(/^\/+/, '');
+        window.pathStack = path.replace(/^\/+/, '').split('/').filter(Boolean);
+        return window.pathStack.join('/');
     }
 
-    return [...window.pathStack, path].join('/');
+    window.pathStack.push(path);
+    return window.pathStack.join('/');
 }
 
