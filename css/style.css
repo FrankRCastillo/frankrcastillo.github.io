@@ -42,7 +42,7 @@ nav button:hover {
 main {
     padding: 3em;
     max-width: 90%;
-    max-height: 90%
+    max-height: 90%;
     margin: auto;
 }
 
@@ -68,5 +68,11 @@ pre {
     padding: 0;
     white-space: pre-wrap;
     word-wrap: break-word;
+}
+
+#terminal-output {
+    margin: 0;
+    padding: 0;
+    height: 0px;
 }
 
