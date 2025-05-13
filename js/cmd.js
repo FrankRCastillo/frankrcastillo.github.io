@@ -27,10 +27,12 @@ export function setupTerminal() {
     const output = document.getElementById('terminal-output');
 
     function print(text) {
+        const input = document.getElementById('terminal-input');
         const pre = document.createElement('pre');
         pre.textContent = text;
         output.appendChild(pre);
         output.scrollTop = output.scrollHeight;
+        input.focus();
     }
 
     input.addEventListener('keydown', async (e) => {
@@ -44,8 +46,6 @@ export function setupTerminal() {
                 const result = await runCommand(command);
 
                 if (result) print(result);
-
-                setTimeout(() => input.focus(), 0);
 
             } catch (err) {
                 print(`Error: ${err.message}`);
