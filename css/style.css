@@ -75,6 +75,7 @@ pre {
     color: #ffa500;
     padding: 1em;
     font-family: monospace;
+    display: flex;
     width: 100%;
 }
 
@@ -95,6 +96,7 @@ pre {
 
 #terminal-prompt {
     color: #ffa500;
+    white-space: nowrap;
 }
 
 
