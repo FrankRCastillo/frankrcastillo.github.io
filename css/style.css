@@ -80,6 +80,10 @@ pre {
     box-sizing: border-box;
 }
 
+#terminal-prompt-group {
+    width: 100%;
+}
+
 #terminal-input {
     background: #000000;
     color: #ffa500;
