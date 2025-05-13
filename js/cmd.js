@@ -44,6 +44,8 @@ export function setupTerminal() {
             } catch (err) {
                 print(`Error: ${err.message}`);
             }
+
+            input.focus();
         }
     });
 }
