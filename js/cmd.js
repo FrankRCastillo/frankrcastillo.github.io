@@ -40,7 +40,7 @@ export function setupTerminal() {
             const command = input.value.trim();
             input.value = '';
 
-            print(` ${windows.cwd} $ ${command}`);
+            print(` ${window.cwd} $ ${command}`);
 
             try {
                 const result = await runCommand(command);
