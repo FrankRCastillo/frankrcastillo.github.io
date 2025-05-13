@@ -26,8 +26,9 @@ export function setupTerminal() {
     const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
+    const curdir = pwd();    
 
-    prompt.innerText = `${pwd()} $`;
+    prompt.innerText = `${curdir}$`;
 
     function print(text) {
         const input = document.getElementById('terminal-input');
@@ -40,10 +41,13 @@ export function setupTerminal() {
 
     input.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
+            const curdir  = pwd();
             const command = input.value.trim();
             input.value = '';
 
-            print(`${pwd()} $ ${command}`);
+
+
+            print(`${curdir}$ ${command}`);
 
             try {
                 const result = await runCommand(command);
