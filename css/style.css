@@ -73,6 +73,6 @@ pre {
 #terminal-output {
     margin: 0;
     padding: 0;
-    height: 0px;
+    min-height: 0px;
 }
 
