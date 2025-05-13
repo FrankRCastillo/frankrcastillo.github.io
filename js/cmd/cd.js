@@ -16,15 +16,22 @@ export default async function cd(args, base) {
         newStack.push(path);
     }
 
+    window.pathStack = newStack;
+
     const resolved = newStack.join('/');
     const url = `${base}/${resolved}`;
     const res = await fetch(url);
-    if (!res.ok) return `cd: no such directory: ${path}`;
+
+    if (!res.ok) {
+        window.pathStack = [...window.pathStack];
+
+        return `cd: no such directory: ${path}`;
+    }
 
     const meta = await res.json();
+
     if (!Array.isArray(meta)) return `cd: not a directory: ${path}`;
 
-    window.pathStack = newStack;
     return '';
 }
 

@@ -14,7 +14,16 @@ export default async function ls(args, base) {
 }
 
 function resolvePath(path) {
-    if (!window.cwd || path.startsWith('/')) return path.replace(/^\/+/, '');
-    return `${window.cwd.replace(/\/$/, '')}/${path}`;
+    if (!window.pathStack) window.pathStack = [];
+
+    if (!path || path === '.') {
+        return window.pathStack.join('/');
+    }
+
+    if (path.startsWith('/')) {
+        return path.replace(/^\/+/, '');
+    }
+
+    return [...window.pathStack, path].join('/');
 }
 
