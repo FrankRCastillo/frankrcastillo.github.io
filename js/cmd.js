@@ -27,9 +27,9 @@ export function setupTerminal() {
     const output = document.getElementById('terminal-output');
 
     function print(text) {
-        const div = document.createElement('div');
-        div.innerHTML = `<pre>${text}</pre>`;
-        output.appendChild(div);
+        const pre = document.createElement('pre');
+        pre.textContent = text;
+        output.appendChild(pre);
         output.scrollTop = output.scrollHeight;
     }
 
@@ -37,10 +37,13 @@ export function setupTerminal() {
         if (e.key === 'Enter') {
             const command = input.value.trim();
             input.value = '';
+
             print(`$ ${command}`);
+
             try {
                 const result = await runCommand(command);
                 if (result) print(result);
+
             } catch (err) {
                 print(`Error: ${err.message}`);
             }
