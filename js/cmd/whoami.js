@@ -15,7 +15,7 @@ export default async function whoami() {
                , `Org: ${data.org}`
                , `ASN: ${data.asn}`
                , `Timezone: ${data.timezone}`
-               ].join(' n');
+               ].join('\n');
     } catch (err) {
         return `whoami: failed to retrieve IP info`;
     }
