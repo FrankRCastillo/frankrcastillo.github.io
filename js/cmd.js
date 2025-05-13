@@ -62,7 +62,7 @@ export function setupTerminal() {
 
             requestAnimationFrame(() => input.focus());
 
-            const curdir = pwd();    
+            curdir = pwd();    
             prompt.innerText = `/${curdir}$`;
             prompt.style.visibility = 'visible';
         }
