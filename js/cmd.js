@@ -44,12 +44,11 @@ export function setupTerminal() {
         if (e.key === 'Enter') {
             const prompt  = document.getElementById('terminal-prompt');
             const command = input.value.trim();
-            const curdir  = pwd();    
             input.value   = '';
 
             prompt.style.visibility = 'hidden';
 
-            print(`/${curdir}$ ${command}`);
+            print(`/${pwd()}$ ${command}`);
 
             try {
                 const result = await runCommand(command);
@@ -62,8 +61,7 @@ export function setupTerminal() {
 
             requestAnimationFrame(() => input.focus());
 
-            curdir = pwd();    
-            prompt.innerText = `/${curdir}$`;
+            prompt.innerText = `/${pwd()}$`;
             prompt.style.visibility = 'visible';
         }
     });
