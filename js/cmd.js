@@ -32,7 +32,7 @@ export function setupTerminal() {
         pre.textContent = text;
         output.appendChild(pre);
         output.scrollTop = output.scrollHeight;
-        input.focus();
+        setTimeout(() => input.focus(), 0);
     }
 
     input.addEventListener('keydown', async (e) => {
