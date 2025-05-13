@@ -27,12 +27,12 @@ export async function runCommand(input) {
 }
 
 export function setupTerminal() {
-    const input = document.getElementById('terminal-input');
+    const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
 
     window.cmdHistory = [];
-    window.cmdIndex = -1;
+    window.cmdIndex   = -1;
 
     function updatePrompt() {
         prompt.innerText = `${pwd()}$`;
@@ -48,25 +48,35 @@ export function setupTerminal() {
     input.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
             const command = input.value.trim();
+
             if (command) {
                 window.cmdHistory.push(command);
+
                 window.cmdIndex = window.cmdHistory.length;
+
             }
 
             input.value = '';
+
             prompt.style.visibility = 'hidden';
+
             print(`${pwd()}$ ${command}`);
 
             try {
                 const result = await runCommand(command);
+
                 if (result) print(result);
+
             } catch (err) {
                 print(`Error: ${err.message}`);
+
             }
 
             requestAnimationFrame(() => {
                 input.focus();
+
                 updatePrompt();
+
                 prompt.style.visibility = 'visible';
             });
         }
@@ -74,25 +84,34 @@ export function setupTerminal() {
         if (e.key === 'ArrowUp') {
             if (window.cmdIndex > 0) {
                 window.cmdIndex--;
+
                 input.value = window.cmdHistory[window.cmdIndex];
+
                 requestAnimationFrame(() => input.setSelectionRange(input.value.length, input.value.length));
+
             }
+
             e.preventDefault();
         }
 
         if (e.key === 'ArrowDown') {
             if (window.cmdIndex < window.cmdHistory.length - 1) {
                 window.cmdIndex++;
+
                 input.value = window.cmdHistory[window.cmdIndex];
+
             } else {
                 window.cmdIndex = window.cmdHistory.length;
+
                 input.value = '';
+
             }
+
             requestAnimationFrame(() => input.setSelectionRange(input.value.length, input.value.length));
+
             e.preventDefault();
         }
     });
 
     updatePrompt();
 }
-

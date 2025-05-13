@@ -2,7 +2,21 @@ export default async function cd(args, base) {
     const path = args[0];
     if (!path) return 'cd: missing directory';
 
-    const resolved = resolvePath(path);
+    if (!window.pathStack) window.pathStack = [];
+
+    let newStack = [...window.pathStack];
+
+    if (path === '..') {
+        newStack.pop();
+    } else if (path === '/') {
+        newStack = [];
+    } else if (path.startsWith('/')) {
+        newStack = path.replace(/^\/+/, '').split('/');
+    } else {
+        newStack.push(path);
+    }
+
+    const resolved = newStack.join('/');
     const url = `${base}/${resolved}`;
     const res = await fetch(url);
     if (!res.ok) return `cd: no such directory: ${path}`;
@@ -10,16 +24,7 @@ export default async function cd(args, base) {
     const meta = await res.json();
     if (!Array.isArray(meta)) return `cd: not a directory: ${path}`;
 
-    if (!window.pathStack) window.pathStack = [];
-
-    if (path === '..') {
-        window.pathStack.pop();
-    } else if (path !== '.') {
-        window.pathStack.push(path);
-    }
-
-    window.cwd = '/' + window.pathStack.join('/');
-
+    window.pathStack = newStack;
     return '';
 }
 
