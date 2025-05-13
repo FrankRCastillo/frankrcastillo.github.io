@@ -45,7 +45,9 @@ export function setupTerminal() {
 
                 if (result) {
                     print(result);
-                    requestAnimationFrame(() => input.focus());
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => input.focus());
+                    });
                 }
 
             } catch (err) {
