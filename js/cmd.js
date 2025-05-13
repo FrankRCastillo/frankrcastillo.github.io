@@ -1,5 +1,7 @@
 export const REPO_API_BASE = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/contents';
 
+import pwd from './cmd/pwd.js';
+
 const commands = {};
 
 async function loadCommand(name) {
@@ -36,7 +38,6 @@ export function setupTerminal() {
         pre.textContent = text;
         output.appendChild(pre);
         output.scrollTop = output.scrollHeight;
-        requestAnimationFrame(() => input.focus());
     }
 
     input.addEventListener('keydown', async (e) => {
@@ -44,8 +45,6 @@ export function setupTerminal() {
             const curdir  = pwd();
             const command = input.value.trim();
             input.value = '';
-
-
 
             print(`${curdir}$ ${command}`);
 
@@ -57,6 +56,8 @@ export function setupTerminal() {
             } catch (err) {
                 print(`Error: ${err.message}`);
             }
+
+            requestAnimationFrame(() => input.focus());
         }
     });
 }
