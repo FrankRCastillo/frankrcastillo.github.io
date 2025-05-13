@@ -19,12 +19,40 @@ async function loadCommand(name) {
 export async function runCommand(input) {
     if (!input.trim()) return '';
 
-    const [name, ...args] = input.trim().split(/\s+/);
+    const matchArgs = input.trim().match(/(?:[^\s"]+|"[^"]*")+/g) || [];
+
+    const [name, ...args] = matchArgs.map(arg => arg.replace(/^"|"$/g, ''));
 
     const cmd = await loadCommand(name.toLowerCase());
 
     return await cmd(args, REPO_API_BASE);
 }
+
+function resolvePath(path) {
+    if (!window.pathStack) window.pathStack = [];
+
+    if (!path || path === '.') {
+        return window.pathStack.join('/');
+    }
+
+    if (path === '..') {
+        const tmp = [...window.pathStack];
+        tmp.pop();
+        return tmp.join('/');
+    }
+
+    if (path === '/') {
+        return '';
+    }
+
+    if (path.startsWith('/')) {
+        return path.replace(/^\/+/, '');
+    }
+
+    return [...window.pathStack, path].join('/');
+}
+
+window.resolvePath = resolvePath;
 
 export function setupTerminal() {
     const input  = document.getElementById('terminal-input');

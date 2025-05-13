@@ -10,9 +10,3 @@ export default async function cat(args, base) {
     const decoded = atob(file.content.replace(/\n/g, ''));
     return decoded;
 }
-
-function resolvePath(path) {
-    if (!window.cwd || path.startsWith('/')) return path.replace(/^\/+/, '');
-    return `${window.cwd.replace(/\/$/, '')}/${path}`;
-}
-

@@ -12,18 +12,3 @@ export default async function ls(args, base) {
         .map(f => f.name + (f.type === 'dir' ? '/' : ''))
         .join('\n');
 }
-
-function resolvePath(path) {
-    if (!window.pathStack) window.pathStack = [];
-
-    if (!path || path === '.') {
-        return window.pathStack.join('/');
-    }
-
-    if (path.startsWith('/')) {
-        return path.replace(/^\/+/, '');
-    }
-
-    return [...window.pathStack, path].join('/');
-}
-

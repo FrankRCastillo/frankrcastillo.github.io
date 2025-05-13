@@ -34,26 +34,3 @@ export default async function cd(args, base) {
 
     return '';
 }
-
-function resolvePath(path) {
-    if (!window.pathStack) window.pathStack = [];
-
-    if (path === '..') {
-        window.pathStack.pop();
-        return window.pathStack.join('/');
-    }
-
-    if (path === '/') {
-        window.pathStack = [];
-        return '';
-    }
-
-    if (path.startsWith('/')) {
-        window.pathStack = path.replace(/^\/+/, '').split('/').filter(Boolean);
-        return window.pathStack.join('/');
-    }
-
-    window.pathStack.push(path);
-    return window.pathStack.join('/');
-}
-

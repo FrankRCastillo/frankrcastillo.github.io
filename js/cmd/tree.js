@@ -29,9 +29,3 @@ export default async function tree(args, base, indent = '', path = '') {
 
     return output;
 }
-
-function resolvePath(path) {
-    if (!window.cwd || path.startsWith('/')) return path.replace(/^\/+/, '');
-    return `${window.cwd.replace(/\/$/, '')}/${path}`;
-}
-
