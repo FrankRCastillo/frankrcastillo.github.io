@@ -47,7 +47,6 @@ export function setupTerminal() {
             const command = input.value.trim();
 
             input.value      = '';
-            prompt.innerText = `${curdir}$`;
 
             prompt.style.visibility = 'hidden';
 
@@ -64,6 +63,7 @@ export function setupTerminal() {
 
             requestAnimationFrame(() => input.focus());
 
+            prompt.innerText = `${curdir}$`;
             prompt.style.visibility = 'visible';
         }
     });
