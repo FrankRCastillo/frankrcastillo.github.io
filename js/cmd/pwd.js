@@ -1,4 +1,6 @@
 export default function pwd() {
-    return window.cwd || '/';
+    if (!window.pathStack) return '/';
+    return '/' + window.pathStack.join('/');
 }
+
 
