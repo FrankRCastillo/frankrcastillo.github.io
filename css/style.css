@@ -89,8 +89,8 @@ pre {
     color: #ffa500;
     border: none;
     outline: none;
-    flex: 2;
     font-family: monospace;
+    width: 100%;
 }
 
 #terminal-output {
