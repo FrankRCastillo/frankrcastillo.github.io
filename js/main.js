@@ -30,20 +30,22 @@ async function loadPage(url, pageName) {
     }
 
     const html = await res.text();
-
     content.innerHTML = html;
 
     try {
         await importScript(pageName);
-
     } catch (_) {
-        return; // it's okay if there's no script for this page
-
+        // it's okay if there's no associated script
     }
 
     const hook = window[`load_${pageName}`];
-
     if (typeof hook === 'function') hook();
+
+    // If this is the terminal page, load and run the module
+    if (pageName === 'cmd') {
+        const module = await import(`./cmd.js`);
+        module.setupTerminal();
+    }
 }
 
 function createNavItem(file) {

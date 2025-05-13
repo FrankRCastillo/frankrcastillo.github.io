@@ -21,3 +21,30 @@ export async function runCommand(input) {
     return await cmd(args, REPO_API_BASE);
 }
 
+// this is called by main.js after cmd.html is loaded
+export function setupTerminal() {
+    const input = document.getElementById('terminal-input');
+    const output = document.getElementById('terminal-output');
+
+    function print(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        output.appendChild(div);
+        output.scrollTop = output.scrollHeight;
+    }
+
+    input.addEventListener('keydown', async (e) => {
+        if (e.key === 'Enter') {
+            const command = input.value.trim();
+            input.value = '';
+            print(`$ ${command}`);
+            try {
+                const result = await runCommand(command);
+                if (result) print(result);
+            } catch (err) {
+                print(`Error: ${err.message}`);
+            }
+        }
+    });
+}
+
