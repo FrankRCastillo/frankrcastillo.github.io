@@ -23,8 +23,11 @@ export async function runCommand(input) {
 
 // this is called by main.js after cmd.html is loaded
 export function setupTerminal() {
-    const input = document.getElementById('terminal-input');
+    const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
+    const prompt = document.getElementById('terminal-prompt');
+
+    prompt.innerText = `${pwd()} $`;
 
     function print(text) {
         const input = document.getElementById('terminal-input');
@@ -40,7 +43,7 @@ export function setupTerminal() {
             const command = input.value.trim();
             input.value = '';
 
-            print(` ${window.cwd} $ ${command}`);
+            print(`${pwd()} $ ${command}`);
 
             try {
                 const result = await runCommand(command);
