@@ -42,13 +42,15 @@ export function setupTerminal() {
 
             try {
                 const result = await runCommand(command);
-                if (result) print(result);
+
+                if (result) {
+                    print(result);
+                    requestAnimationFrame(() => input.focus());
+                }
 
             } catch (err) {
                 print(`Error: ${err.message}`);
             }
-
-            input.focus();
         }
     });
 }
