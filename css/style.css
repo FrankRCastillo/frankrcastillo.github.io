@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: monospace;
+    font-family: consolas;
     font-size: 14px;
     background-color: #000;
     color: #fff;
@@ -40,8 +40,8 @@ nav button:hover {
 }
 
 main {
-    padding: 2em;
-    max-width: 800px;
+    max-width: 90%;
+    max-height: 90%
     margin: auto;
 }
 
