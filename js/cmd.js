@@ -42,9 +42,12 @@ export function setupTerminal() {
 
     input.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
-            const curdir  = pwd();
+            const prompt  = document.getElementById('terminal-prompt');
+            const curdir  = pwd();    
             const command = input.value.trim();
-            input.value = '';
+
+            input.value      = '';
+            prompt.innerText = `${curdir}$`;
 
             print(`${curdir}$ ${command}`);
 
