@@ -70,9 +70,32 @@ pre {
     word-wrap: break-word;
 }
 
+#terminal {
+    background: #000000;
+    color: #ffa500;
+    padding: 1em;
+    font-family: monospace;
+    width: 100%;
+}
+
+#terminal-input {
+    background: #000000;
+    color: #ffa500;
+    border: none;
+    outline: none;
+    flex: 1;
+    font-family: monospace;
+}
+
 #terminal-output {
     margin: 0;
     padding: 0;
     min-height: 0px;
 }
+
+#terminal-prompt {
+    color: #ffa500;
+}
+
+
 
