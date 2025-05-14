@@ -60,6 +60,7 @@ pre {
     box-sizing: border-box;
 }
 
+#terminal,
 #terminal-prompt-table,
 #terminal-prompt-table td,
 #terminal-prompt-table tr {
@@ -78,4 +79,3 @@ pre {
     border: none;
     outline: none;
 }
-
