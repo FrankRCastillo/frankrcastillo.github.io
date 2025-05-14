@@ -7,11 +7,18 @@ export default async function sort(args, base, stdin = '') {
     if (path) {
         const url = `${base}/${resolvePath(path)}`;
         const res = await fetch(url);
-        if (!res.ok) return `sort: cannot read file: ${path}`;
+
+        if (!res.ok) {
+            return `sort: cannot read file: ${path}`;
+        }
+
         const file = await res.json();
+
         text = atob(file.content.replace(/\n/g, ''));
+
     } else {
         text = stdin;
+
     }
 
     return text

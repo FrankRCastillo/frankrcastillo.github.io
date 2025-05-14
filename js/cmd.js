@@ -1,4 +1,6 @@
-export const REPO_API_BASE = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/contents';
+window.repoName = "FrankRCastillo/frankrcastillo.github.io"
+
+export const REPO_API_BASE = `https://api.github.com/repos/${window.repoName}/contents`;
 
 window.repoBase = REPO_API_BASE;
 
@@ -46,7 +48,6 @@ export async function runCommand(input) {
     return stdin;
 }
 
-
 function resolvePath(path) {
     if (!window.pathStack) window.pathStack = [];
 
@@ -82,7 +83,7 @@ export function setupTerminal() {
     window.cmdIndex   = -1;
 
     function updatePrompt() {
-        prompt.innerText = `${pwd()}$\u00A0`;
+        prompt.innerText = `${window.repoName}${pwd()}$\u00A0`;
 
         input.focus();
         input.setSelectionRange(input.value.length, input.value.length);
@@ -138,7 +139,7 @@ export function setupTerminal() {
 
             input_row.style.visibility = 'hidden';
 
-            print(`${pwd()}$ ${command}`);
+            print(`${window.repoName}${pwd()}$ ${command}`);
 
             try {
                 const result = await runCommand(command);

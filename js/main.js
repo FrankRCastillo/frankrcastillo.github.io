@@ -1,10 +1,9 @@
-const REPO    = 'FrankRCastillo/frankrcastillo.github.io';
 const BRANCH  = 'master';
 const content = document.getElementById('content');
 const nav     = document.getElementById('nav');
 
 async function fetchPages() {
-    const api = `https://api.github.com/repos/${REPO}/contents/pages?ref=${BRANCH}`;
+    const api = `${window.repoBase}/pages?ref=${BRANCH}`;
     const res = await fetch(api);
 
     return res.ok ? await res.json() : [];
