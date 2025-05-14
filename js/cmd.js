@@ -80,6 +80,26 @@ export function setupTerminal() {
         if (e.key === 'Enter') {
             const command = input.value.trim();
 
+            if (/^!\d+$/.test(command)) {
+                const index = parseInt(command.slice(1), 10) - 1;
+
+                const recalled = window.cmdHistory[index];
+
+                if (recalled) {
+                    input.value = recalled;
+
+                    requestAnimationFrame(() => {
+                        input.setSelectionRange(recalled.length, recalled.length);
+                    });
+
+                } else {
+                    print(`history: event not found: ${command}`);
+
+                }
+
+                return; // Don't run the command yet
+            }
+
             if (command) {
                 window.cmdHistory.push(command);
 
