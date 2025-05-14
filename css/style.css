@@ -84,6 +84,17 @@ pre {
     width: 100%;
 }
 
+#terminal-prompt-table,
+#terminal-prompt-table td,
+#terminal-prompt-table tr {
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+
 #terminal-input-cell {
     width: 100%;
 }
