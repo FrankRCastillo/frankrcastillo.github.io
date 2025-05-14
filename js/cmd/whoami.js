@@ -4,23 +4,25 @@ export default async function whoami() {
     const key = 'whoami-cache';
 
     const cached = sessionStorage.getItem(key);
-    if (cached) return cached;
+
+    if (cached) {
+       return cached;
+    }
 
     try {
         const res  = await fetch('https://ipinfo.io/json');
         const data = await res.json();
 
-        const output = [
-            `IP: ${data.ip}`,
-            `Hostname: ${data.hostname}`,
-            `City: ${data.city}`,
-            `Postal: ${data.postal}`,
-            `Region: ${data.region}`,
-            `Country: ${data.country}`,
-            `Location: ${data.loc}`,
-            `Org: ${data.org}`,
-            `Timezone: ${data.timezone}`
-        ].join('\n');
+        const output = [ `IP       : ${data.ip}`
+                       , `Hostname : ${data.hostname}`
+                       , `City     : ${data.city}`
+                       , `Postal   : ${data.postal}`
+                       , `Region   : ${data.region}`
+                       , `Country  : ${data.country}`
+                       , `Location : ${data.loc}`
+                       , `Org      : ${data.org}`
+                       , `Timezone : ${data.timezone}`
+                       ].join('\n');
 
         sessionStorage.setItem(key, output);
 
