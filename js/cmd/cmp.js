@@ -1,2 +1,32 @@
-export const description = "Allows you to check if two files are identical.";
-export default async function cmp(args, base, stdin = '') { return "In progress."; }
+export const description = "Check if two files are identical.";
+
+export default async function cmp(args, base, stdin = '') {
+    if (args.length < 2) return 'cmp: missing file operands';
+
+    const [file1, file2] = args;
+
+    const fetchFile = async (path) => {
+        const url = `${base}/${resolvePath(path)}`;
+        const res = await fetch(url);
+        if (!res.ok) return null;
+        const file = await res.json();
+        return atob(file.content.replace(/\n/g, ''));
+    };
+
+    const text1 = await fetchFile(file1);
+    const text2 = await fetchFile(file2);
+
+    if (text1 == null) return `cmp: cannot read file: ${file1}`;
+    if (text2 == null) return `cmp: cannot read file: ${file2}`;
+
+    const len = Math.max(text1.length, text2.length);
+
+    for (let i = 0; i < len; i++) {
+        if (text1[i] !== text2[i]) {
+            return `cmp: ${file1} ${file2}: differ: byte ${i + 1}`;
+        }
+    }
+
+    return '';
+}
+
