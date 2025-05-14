@@ -63,7 +63,11 @@ export function setupTerminal() {
     window.cmdIndex   = -1;
 
     function updatePrompt() {
+        const input  = document.getElementById('terminal-input');
+
         prompt.innerText = `${pwd()}$\u00A0`;
+
+        input.focus();
     }
 
     function print(text) {
@@ -100,7 +104,7 @@ export function setupTerminal() {
 
                 }
 
-                return; // Don't run the command yet
+                return;
             }
 
             if (command) {
@@ -127,8 +131,6 @@ export function setupTerminal() {
             }
 
             requestAnimationFrame(() => {
-                input.focus();
-
                 updatePrompt();
 
                 input_row.style.visibility = 'visible';
@@ -138,12 +140,12 @@ export function setupTerminal() {
         // Move cursor after prompt on Home
         if (e.key === 'Home') {
             e.preventDefault();
+
             input.setSelectionRange(promptLength, promptLength);
         }
 
         // Prevent deleting before prompt
-        if ((e.key === 'Backspace' || e.key === 'Delete') &&
-            input.selectionStart <= promptLength) {
+        if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart <= promptLength) {
             e.preventDefault();
         }
 
