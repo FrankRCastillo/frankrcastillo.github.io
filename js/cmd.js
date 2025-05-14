@@ -1,8 +1,4 @@
 
-export const REPO_API_BASE = `https://api.github.com/repos/${window.repoName}/contents`;
-
-window.repoBase = REPO_API_BASE;
-
 import pwd from './cmd/pwd.js';
 
 const commands = {};

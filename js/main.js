@@ -1,5 +1,9 @@
 window.repoName = "FrankRCastillo/frankrcastillo.github.io"
 
+export const REPO_API_BASE = `https://api.github.com/repos/${window.repoName}/contents`;
+
+window.repoBase = REPO_API_BASE;
+
 const BRANCH  = 'master';
 const content = document.getElementById('content');
 const nav     = document.getElementById('nav');
