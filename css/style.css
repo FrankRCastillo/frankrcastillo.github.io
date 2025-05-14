@@ -84,6 +84,7 @@ pre {
     width: 100%;
 }
 
+#terminal,
 #terminal-prompt-table,
 #terminal-prompt-table td,
 #terminal-prompt-table tr {
