@@ -1,3 +1,5 @@
+export const description = "lists contents of the directory.";
+
 export default async function ls(args, base) {
     const path = args[0] || '';
     const url = `${base}/${resolvePath(path)}`;

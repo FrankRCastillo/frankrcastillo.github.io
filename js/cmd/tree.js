@@ -1,3 +1,5 @@
+export const description = "shows directory structure recursively.";
+
 export default async function tree(args, base, indent = '', path = '') {
     const fullPath = resolvePath(path);
     const url = `${base}/${fullPath}`;

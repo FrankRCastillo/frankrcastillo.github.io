@@ -1,3 +1,5 @@
+export const description = "Shows your IP and geolocation info.";
+
 export default async function whoami() {
     try {
         const res = await fetch('https://api.ipify.org?format=json');
