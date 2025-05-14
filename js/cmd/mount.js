@@ -13,6 +13,7 @@ export default async function mount(args) {
 
         if (!res.ok) return `mount: failed to access repo: ${repo}`;
 
+        window.repoName = repo;
         window.repoBase = url;
 
         return `mounted ${repo}`;
