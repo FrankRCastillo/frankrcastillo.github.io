@@ -2,7 +2,7 @@ export const description = "shows directory structure recursively.";
 
 export default async function tree(args, base, indent = '', path = '') {
     const fullPath = resolvePath(path);
-    const url = `${base}/${fullPath}`;
+    const url = `${base}/${encodeURIComponent(fullPath)}`;
     const res = await fetch(url);
 
     if (!res.ok) {
@@ -10,7 +10,10 @@ export default async function tree(args, base, indent = '', path = '') {
     }
 
     const items = await res.json();
-    if (!Array.isArray(items)) return `tree: ${path || '.'} is not a directory`;
+
+    if (!Array.isArray(items)) {
+        return `tree: ${path || '.'} is not a directory`;
+    }
 
     // Sort directories first
     items.sort((a, b) => {
