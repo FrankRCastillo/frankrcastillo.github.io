@@ -1,5 +1,7 @@
 export const REPO_API_BASE = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/contents';
 
+window.repoBase = REPO_API_BASE;
+
 import pwd from './cmd/pwd.js';
 
 const commands = {};
@@ -34,7 +36,7 @@ export async function runCommand(input) {
         }
 
         try {
-            stdin = await cmd(args, REPO_API_BASE, stdin);
+            stdin = await cmd(args, window.repoBase, stdin);
         } catch (err) {
             stdin = `Error running ${name}: ${err.message}`;
             break;

@@ -1,2 +1,7 @@
-export const description = "(in progress) Unmount mounted github repo, returning to default.";
-export default async function umount(args, base, stdin = '') { return "In progress."; }
+export const description = "Unmount current repo and return to default.";
+
+export default function umount() {
+    window.repoBase = 'https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/contents';
+  
+    return 'unmounted repo, returned to default';
+}
