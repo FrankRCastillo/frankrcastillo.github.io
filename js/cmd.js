@@ -63,7 +63,7 @@ export function setupTerminal() {
     window.cmdIndex   = -1;
 
     function updatePrompt() {
-        prompt.innerText = `${pwd()}$ `;
+        prompt.innerText = `${pwd()}$\u00A0`;
     }
 
     function print(text) {
