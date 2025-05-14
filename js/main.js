@@ -70,10 +70,12 @@ async function init() {
     const files = await fetchPages();
     const pages = files.filter(f => f.name.endsWith('.html'));
 
-    // puts home at the beginning
+    // puts home at the beginning and cmd at end
     pages.sort((a, b) => {
         if (a.name === 'home.html') return -1;
         if (b.name === 'home.html') return 1;
+        if (a.name === 'cmd.html') return 1;
+        if (b.name === 'cmd.html') return -1;
         return a.name.localeCompare(b.name);
     }).forEach(createNavItem);
 
