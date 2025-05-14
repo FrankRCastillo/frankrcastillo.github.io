@@ -1,25 +1,22 @@
 export const description = "Displays usage info for a command.";
 
-export default async function help() {
-    const res = await fetch('js/cmd/');
-    const text = await res.text();
+export default async function help(_, base) {
+    const api = `${base}/js/cmd?ref=master`;
 
-    // Extract JS filenames using a regex
-    const matches = Array.from(text.matchAll(/href="([^"]+\.js)"/g)).map(m => m[1]);
+    try {
+        const res = await fetch(api);
+        if (!res.ok) return 'help: failed to fetch command list';
 
-    const entries = await Promise.all(matches.map(async filename => {
-        const name = filename.replace('.js', '');
-        try {
-            const module = await import(`./${name}.js`);
-            const desc = module.description || '';
-            return `${name}\t${desc}`;
-        } catch {
-            return `${name}`;
-        }
-    }));
+        const files = await res.json();
+        const cmds = files
+            .filter(f => f.name.endsWith('.js'))
+            .map(f => f.name.replace('.js', ''));
 
-    entries.sort((a, b) => a.localeCompare(b));
+        cmds.sort();
 
-    return ['Available commands:', ...entries].join('\n');
+        return 'Available commands:\n' + cmds.join('\n');
+    } catch (err) {
+        return 'help: error fetching command list';
+    }
 }
 
