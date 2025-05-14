@@ -19,9 +19,9 @@ export default async function help(_, base) {
             cmds.map(async (cmd) => {
                 try {
                     const module = await import(`./${cmd}.js`);
-                    return `${cmd.padEnd(10)} - ${module.description || 'No description.'}`;
+                    return `${cmd}: ${module.description || 'No description.'}`;
                 } catch {
-                    return `${cmd.padEnd(10)} - (error loading)`;
+                    return `${cmd}: (error loading)`;
                 }
             })
         );
