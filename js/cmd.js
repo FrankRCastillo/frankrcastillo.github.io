@@ -74,7 +74,8 @@ export function setupTerminal() {
     }
 
     input.addEventListener('keydown', async (e) => {
-        const input  = document.getElementById('terminal-input');
+        const input     = document.getElementById('terminal-input');
+        const input_row = document.getElementById('terminal-prompt-row');
 
         if (e.key === 'Enter') {
             const command = input.value.trim();
@@ -88,7 +89,7 @@ export function setupTerminal() {
 
             input.value = '';
 
-            prompt.style.visibility = 'hidden';
+            input_row.style.visibility = 'hidden';
 
             print(`${pwd()}$ ${command}`);
 
@@ -107,7 +108,7 @@ export function setupTerminal() {
 
                 updatePrompt();
 
-                prompt.style.visibility = 'visible';
+                input_row.style.visibility = 'visible';
             });
         }
 
