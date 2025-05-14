@@ -1,4 +1,3 @@
-window.repoName = "FrankRCastillo/frankrcastillo.github.io"
 
 export const REPO_API_BASE = `https://api.github.com/repos/${window.repoName}/contents`;
 

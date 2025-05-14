@@ -1,3 +1,5 @@
+window.repoName = "FrankRCastillo/frankrcastillo.github.io"
+
 const BRANCH  = 'master';
 const content = document.getElementById('content');
 const nav     = document.getElementById('nav');
