@@ -132,10 +132,12 @@ export function setupTerminal() {
             }
 
             requestAnimationFrame(() => {
-                updatePrompt();
-
                 input_row.style.visibility = 'visible';
+                setTimeout(() => {
+                    updatePrompt();
+                }, 0);
             });
+
         }
 
         // Move cursor after prompt on Home
