@@ -19,14 +19,31 @@ async function loadCommand(name) {
 export async function runCommand(input) {
     if (!input.trim()) return '';
 
-    const matchArgs = input.trim().match(/(?:[^\s"]+|"[^"]*")+/g) || [];
+    const segments = input.split('|').map(s => s.trim());
+    let stdin = '';
 
-    const [name, ...args] = matchArgs.map(arg => arg.replace(/^"|"$/g, ''));
+    for (const segment of segments) {
+        const matchArgs = segment.match(/(?:[^\s"]+|"[^"]*")+/g) || [];
+        const [name, ...args] = matchArgs.map(arg => arg.replace(/^"|"$/g, ''));
 
-    const cmd = await loadCommand(name.toLowerCase());
+        const cmd = await loadCommand(name.toLowerCase());
 
-    return await cmd(args, REPO_API_BASE);
+        if (!cmd || typeof cmd !== 'function') {
+            stdin = `Command not found: ${name}`;
+            break;
+        }
+
+        try {
+            stdin = await cmd(args, REPO_API_BASE, stdin);
+        } catch (err) {
+            stdin = `Error running ${name}: ${err.message}`;
+            break;
+        }
+    }
+
+    return stdin;
 }
+
 
 function resolvePath(path) {
     if (!window.pathStack) window.pathStack = [];
