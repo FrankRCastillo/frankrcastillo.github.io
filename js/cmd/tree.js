@@ -5,7 +5,9 @@ export default async function tree(args, base, indent = '', path = '') {
     const url = `${base}/${fullPath}`;
     const res = await fetch(url);
 
-    if (!res.ok) return `tree: cannot access ${path || '.'}`;
+    if (!res.ok) {
+        return `tree: cannot access ${path || '.'}`;
+    }
 
     const items = await res.json();
     if (!Array.isArray(items)) return `tree: ${path || '.'} is not a directory`;
@@ -17,10 +19,12 @@ export default async function tree(args, base, indent = '', path = '') {
     });
 
     let output = '';
+
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
         const isLast = i === items.length - 1;
         const prefix = isLast ? '└── ' : '├── ';
+
         output += `${indent}${prefix}${item.name}\n`;
 
         if (item.type === 'dir') {

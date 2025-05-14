@@ -4,7 +4,7 @@ export default async function cd(args, base) {
     const path = args[0];
     if (!path) return 'cd: missing directory';
 
-    if (!window.pathStack) window.pathStack = [];
+if (!window.pathStack) window.pathStack = [];
 
     let newStack = [...window.pathStack];
 
@@ -32,7 +32,9 @@ export default async function cd(args, base) {
 
     const meta = await res.json();
 
-    if (!Array.isArray(meta)) return `cd: not a directory: ${path}`;
+    if (!Array.isArray(meta)) {
+        return `cd: not a directory: ${path}`;
+    }
 
     return '';
 }
