@@ -179,7 +179,6 @@ export function setupTerminal() {
         }
 
         input.focus();
-        input.setSelectionRange(input.value.length, input.value.length);
     });
 
     updatePrompt();
