@@ -80,7 +80,11 @@ pre {
     box-sizing: border-box;
 }
 
-#terminal-prompt-group {
+#terminal-prompt-table {
+    width: 100%;
+}
+
+#terminal-input-cell {
     width: 100%;
 }
 
