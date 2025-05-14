@@ -74,11 +74,15 @@ export function setupTerminal() {
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
 
+    let promptLength = 0;
+
     window.cmdHistory = [];
     window.cmdIndex   = -1;
 
     function updatePrompt() {
-        prompt.innerText = `${window.repoName}${pwd()}$\u00A0`;
+        const promptText = `${window.repoName}${pwd()}$ `;
+        prompt.innerText = promptText;
+        promptLength = promptText.length;
 
         input.focus();
         input.setSelectionRange(input.value.length, input.value.length);
