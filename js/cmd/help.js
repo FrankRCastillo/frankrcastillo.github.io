@@ -15,13 +15,15 @@ export default async function help(_, base) {
 
         cmds.sort();
 
+        const pad_len = Math.max(...cmds.map(cmd => cmd.length)) + 2;
+
         const results = await Promise.all(
             cmds.map(async (cmd) => {
                 try {
                     const module = await import(`./${cmd}.js`);
-                    return `${cmd}: ${module.description || 'No description.'}`;
+                    return `${cmd.padEnd(pad_len)} ${module.description || 'No description.'}`;
                 } catch {
-                    return `${cmd}: (error loading)`;
+                    return `${cmd.padEnd(pad_len)} (error loading)`;
                 }
             })
         );
