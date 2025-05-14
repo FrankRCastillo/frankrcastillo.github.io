@@ -63,11 +63,10 @@ export function setupTerminal() {
     window.cmdIndex   = -1;
 
     function updatePrompt() {
-        const input  = document.getElementById('terminal-input');
-
         prompt.innerText = `${pwd()}$\u00A0`;
 
         input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
     }
 
     function print(text) {
@@ -78,6 +77,8 @@ export function setupTerminal() {
         output.appendChild(pre);
 
         output.scrollTop = output.scrollHeight;
+
+        input.focus();
     }
 
     input.addEventListener('keydown', async (e) => {
