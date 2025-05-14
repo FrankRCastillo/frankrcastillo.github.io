@@ -1,6 +1,6 @@
 export const description = "Displays usage info for all commands.";
 
-export default async function help(_, base) {
+export default async function help(_, base, stdin = '') {
     const api = `${base}/js/cmd?ref=master`;
 
     try {

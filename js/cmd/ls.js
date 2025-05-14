@@ -1,6 +1,6 @@
 export const description = "Lists contents of the directory.";
 
-export default async function ls(args, base) {
+export default async function ls(args, base, stdin = '') {
     const path = args[0] || '';
     const url  = `${base}/${resolvePath(path)}`;
     const res  = await fetch(url);

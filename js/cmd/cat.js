@@ -1,6 +1,6 @@
 export const description = "Displays contents of the file.";
 
-export default async function cat(args, base) {
+export default async function cat(args, base, stdin = '') {
     const path = args[0];
 
     if (!path) {
