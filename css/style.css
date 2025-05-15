@@ -113,6 +113,7 @@ pre {
     margin: 0;
     padding: 0;
     min-height: 0px;
+    line-height: 1.1;
 }
 
 #terminal-prompt {
