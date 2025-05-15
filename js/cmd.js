@@ -104,10 +104,12 @@ window.setupTerminal = async function setupTerminal() {
         input.focus();
     }
 
+    // Terminal input interaction
     input.addEventListener('keydown', async (e) => {
         const input     = document.getElementById('terminal-input');
         const input_row = document.getElementById('terminal-prompt-row');
 
+        // Enter
         if (e.key === 'Enter') {
             const command = input.value.trim();
 
@@ -163,6 +165,7 @@ window.setupTerminal = async function setupTerminal() {
 
         }
 
+        // Arrow Up
         if (e.key === 'ArrowUp') {
             if (window.cmdIndex > 0) {
                 window.cmdIndex--;
@@ -176,6 +179,7 @@ window.setupTerminal = async function setupTerminal() {
             e.preventDefault();
         }
 
+        // Arrow Down
         if (e.key === 'ArrowDown') {
             if (window.cmdIndex < window.cmdHistory.length - 1) {
                 window.cmdIndex++;
@@ -194,6 +198,7 @@ window.setupTerminal = async function setupTerminal() {
             e.preventDefault();
         }
 
+        // Tab
         if (e.key === 'Tab') {
             e.preventDefault();
 
@@ -261,9 +266,40 @@ window.setupTerminal = async function setupTerminal() {
 
         }
 
+        // Disable tab autocomplete if not pressing tab or shift+tab
         if (!['Tab', 'Shift'].includes(e.key)) {
             tabComplete.active = false;
         }
+
+        let isSelecting = false;
+
+        // Detect start of a selection
+        output.addEventListener('mousedown', () => {
+            isSelecting = true;
+        });
+
+        // Detect end of selection or simple click
+        output.addEventListener('mouseup', () => {
+            const sel = window.getSelection();
+
+            if (!sel || sel.isCollapsed) {
+                input.focus();
+            }
+
+            isSelecting = false;
+        });
+
+        // Refocus input when selection is cleared some other way
+        output.addEventListener('selectionchange', () => {
+            if (!document.activeElement || document.activeElement !== input) {
+                const sel = window.getSelection();
+
+                if (output.contains(sel.anchorNode) && sel.isCollapsed) {
+                    input.focus();
+                }
+            }
+        });
+
 
         input.focus();
     });
