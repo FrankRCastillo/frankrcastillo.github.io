@@ -19,8 +19,6 @@ export default async function cd(args, base, stdin = '') {
         newStack.push(path);
     }
 
-    window.pathStack = newStack;
-
     const resolved = newStack.join('/');
     const url = `${base}/${resolved}`;
     const res = await ghfetch(url);
@@ -36,6 +34,8 @@ export default async function cd(args, base, stdin = '') {
     if (!Array.isArray(meta)) {
         return `cd: not a directory: ${path}`;
     }
+
+    window.pathStack = newSta;
 
     return '';
 }
