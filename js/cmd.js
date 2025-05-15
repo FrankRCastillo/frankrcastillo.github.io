@@ -194,14 +194,13 @@ window.setupTerminal = async function setupTerminal() {
 
             if (!tabCompletion.active) {
                 const beforeCursor = input.value.slice(0, cursor);
-                const match = beforeCursor.match(/(?:[^\s"]+|"[^"]*")$/);
-                const partial = match ? match[0].replace(/^"/, '') : '';
-                const matchStart = match ? match.index : 0;
-
-                const dir = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
-                const base = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
-                const resolved = window.resolvePath(dir);
-                const url = `${window.repoBase}/${resolved}`;
+                const match        = beforeCursor.match(/(?:[^\s"]+|"[^"]*")$/);
+                const partial      = match ? match[0].replace(/^"/, '') : '';
+                const matchStart   = match ? match.index : 0;
+                const dir          = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
+                const base         = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
+                const resolved     = window.resolvePath(dir);
+                const url          = `${window.repoBase}/${resolved}`;
 
                 try {
                     const res = await fetch(url);
