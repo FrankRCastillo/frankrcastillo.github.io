@@ -75,13 +75,13 @@ window.setupTerminal = async function setupTerminal() {
     window.cmdHistory = [];
     window.cmdIndex   = -1;
 
-    let tabComplete = { active: false
-                        , baseText: ''
-                        , matchStart: 0
-                        , matchEnd: 0
-                        , matches: []
-                        , index: 0
-                        };
+    let tabComplete = {
+        active: false,
+        baseText: '',
+        matchStart: 0,
+        matchEnd: 0,
+        matches: new Map()
+    };
 
     function updatePrompt() {
         const promptText = `${window.repoName}${pwd()}$ `;
@@ -229,21 +229,40 @@ window.setupTerminal = async function setupTerminal() {
                     return;
 
                 }
-            } else {
-                tabComplete.index = (tabComplete.index + 1) % tabComplete.matches.length;
 
+                tabComplete = {
+                    active: true,
+                    baseText: input.value,
+                    matchStart,
+                    matchEnd: cursor,
+                    matches: new Map(matches.map((item, i) => [item, i === 0]))
+                };                
+            } else {
+                const keys         = [...tabComplete.matches.keys()];
+                const currentIndex = keys.findIndex(k => tabComplete.matches.get(k));
+                const nextIndex    = (currentIndex + 1) % keys.length;
+
+                for (const key of keys) {
+                    tabComplete.matches.set(key, false);
+                }
+
+                tabComplete.matches.set(keys[nextIndex], true);
             }
 
-            const matchText = tabComplete.matches[tabComplete.index];
-            const newInput  = tabComplete.baseText.slice(0, tabComplete.matchStart)
-                            + matchText 
-                            + tabComplete.baseText.slice(tabComplete.matchEnd);
+            const [focusedMatch] = [...tabComplete.matches.entries()].find(([, focused]) => focused);
+
+            const newInput = tabComplete.baseText.slice(0, tabComplete.matchStart)
+                           + focusedMatch
+                           + tabComplete.baseText.slice(tabComplete.matchEnd);
 
             input.value = newInput;
-
-            const newCursor = tabComplete.matchStart + matchText.length;
-
+            const newCursor = tabComplete.matchStart + focusedMatch.length;
             input.setSelectionRange(newCursor, newCursor);
+
+        }
+
+        if (!['Tab', 'Shift'].includes(e.key)) {
+            tabComplete.active = false;
         }
 
         input.focus();
