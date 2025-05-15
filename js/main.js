@@ -52,8 +52,6 @@ async function loadPage(url, pageName) {
         const module = await import(`./cmd.js`);
 
         console.log("cmd.js loaded");
-    
-        await module.setupTerminal();
 
         requestAnimationFrame(async () => {
             await module.setupTerminal();
