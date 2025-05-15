@@ -85,7 +85,9 @@ pre {
         padding: 0.4em 0.6em;
     }
 
-    #terminal-input {
+    #terminal-input,
+    #terminal-output {
+        front-family: monospace;
         font-size: 12px;
     }
 }
