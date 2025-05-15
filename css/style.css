@@ -70,6 +70,22 @@ pre {
     word-wrap: break-word;
 }
 
+/* Adjust font for better legibility on small screens */
+@media (max-width: 600px) {
+    body {
+        font-size: 12px;
+    }
+
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    nav button {
+        font-size: 0.9em;
+        padding: 0.4em 0.6em;
+    }
+}
+
 #terminal {
     background: #000000;
     color: #ffa500;
