@@ -84,6 +84,10 @@ pre {
         font-size: 0.9em;
         padding: 0.4em 0.6em;
     }
+
+    #terminal-input {
+        font-size: 12px;
+    }
 }
 
 #terminal {
