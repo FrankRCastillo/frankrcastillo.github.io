@@ -212,7 +212,7 @@ window.setupTerminal = async function setupTerminal() {
                 const url        = `${window.repoBase}/${resolved}`;
 
                 try {
-                    const res = await fetch(url);
+                    const res = await ghfetch(url);
 
                     if (!res.ok) { return; }
 

@@ -1,7 +1,7 @@
 async function load_blog() {
     const blogList = document.getElementById('blogList');
     const api      = `${window.defaultRepoBase}/blog?ref=master`;
-    const res      = await fetch(api);
+    const res      = await ghfetch(api);
 
     if (!res.ok) {
         blogList.innerHTML = '<p>No posts found.</p>';
@@ -19,7 +19,7 @@ async function load_blog() {
 
         link.onclick = async (e) => {
             e.preventDefault();
-            const res = await fetch(file.download_url);
+            const res = await ghfetch(file.download_url);
 
             if (!res.ok) {
                 blogList.innerHTML = '<p>Error loading post.</p>';

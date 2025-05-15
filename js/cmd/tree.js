@@ -3,7 +3,7 @@ export const description = "shows directory structure recursively.";
 export default async function tree(args, base, indent = '', path = '') {
     const fullPath = resolvePath(path);
     const url      = encodeURI(`${base}/${fullPath}`);
-    const res      = await fetch(url);
+    const res      = await ghfetch(url);
 
     if (!res.ok) {
         const label = fullPath.split('/').pop() || '.';

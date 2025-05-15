@@ -8,7 +8,7 @@ export default async function find(args, base, stdin = '') {
 
     async function walk(path = '') {
         const url = `${base}/${path}`;
-        const res = await fetch(url);
+        const res = await ghfetch(url);
 
         if (!res.ok) { return; }
 

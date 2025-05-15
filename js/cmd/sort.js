@@ -6,7 +6,7 @@ export default async function sort(args, base, stdin = '') {
 
     if (path) {
         const url = `${base}/${resolvePath(path)}`;
-        const res = await fetch(url);
+        const res = await ghfetch(url);
 
         if (!res.ok) {
             return `sort: cannot read file: ${path}`;

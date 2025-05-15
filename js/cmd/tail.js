@@ -20,7 +20,7 @@ export default async function tail(args, base, stdin = '') {
 
     if (path) {
         const url = `${base}/${resolvePath(path)}`;
-        const res = await fetch(url);
+        const res = await ghfetch(url);
 
         if (!res.ok) { return `tail: cannot read file: ${path}`; }
 

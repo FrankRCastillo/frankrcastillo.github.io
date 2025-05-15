@@ -6,7 +6,7 @@ export default async function less(args, base, stdin = '') {
 
     if (path) {
         const url = `${base}/${resolvePath(path)}`;
-        const res = await fetch(url);
+        const res = await ghfetch(url);
         
         if (!res.ok) { return `less: cannot read file: ${path}`; }
 

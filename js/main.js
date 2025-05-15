@@ -7,9 +7,18 @@ const BRANCH  = 'master';
 const content = document.getElementById('content');
 const nav     = document.getElementById('nav');
 
+window.ghfetch = async function(url, options = {}) {
+    return fetch( url
+                , { method: 'GET'
+                  , credentials: 'omit'
+                  , cache: 'no-cache'
+                  }
+                );
+};
+
 async function fetchPages() {
     const api = `${window.repoBase}/pages?ref=${BRANCH}`;
-    const res = await fetch(api);
+    const res = await ghfetch(api);
 
     return res.ok ? await res.json() : [];
 }
@@ -26,7 +35,7 @@ function importScript(name) {
 }
 
 async function loadPage(url, pageName) {
-    const res = await fetch(url);
+    const res = await ghfetch(url);
 
     if (!res.ok) {
         content.innerHTML = '<p>Error loading page.</p>';
@@ -75,7 +84,7 @@ function createNavItem(file) {
 }
 
 async function init() {
-    const files = await fetchPages();
+    const files = await ghfetchPages();
     const pages = files.filter(f => f.name.endsWith('.html'));
 
     // puts home at the beginning and cmd at end

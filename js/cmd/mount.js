@@ -9,7 +9,7 @@ export default async function mount(args) {
     const url = `https://api.github.com/repos/${repo}/contents`;
 
     try {
-        const res = await fetch(url);
+        const res = await ghfetch(url);
 
         if (!res.ok) { return `mount: failed to access repo: ${repo}`; }
 

@@ -8,7 +8,7 @@ export default async function cat(args, base, stdin = '') {
     }
 
     const url = `${base}/${resolvePath(path)}`;
-    const res = await fetch(url);
+    const res = await ghfetch(url);
 
     if (!res.ok) {
         return `cat: cannot open ${path}`;

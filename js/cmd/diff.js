@@ -7,7 +7,7 @@ export default async function diff(args, base, stdin = '') {
 
     const fetchLines = async (path) => {
         const url = `${base}/${resolvePath(path)}`;
-        const res = await fetch(url);
+        const res = await ghfetch(url);
         if (!res.ok) return null;
         const file = await res.json();
         return atob(file.content.replace(/\n/g, '')).split('\n');

@@ -4,7 +4,7 @@ export default async function help(_, base, stdin = '') {
     const api = `${base}/js/cmd?ref=master`;
 
     try {
-        const res = await fetch(api);
+        const res = await ghfetch(api);
 
         if (!res.ok) { return 'help: failed to fetch command list'; }
 

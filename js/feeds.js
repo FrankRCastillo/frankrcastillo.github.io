@@ -2,7 +2,7 @@ async function load_feeds() {
     const list = document.getElementById('feedList');
     const api = `${window.defaultRepoBase}/pages/feeds?ref=master`;
 
-    const res = await fetch(api);
+    const res = await ghfetch(api);
     if (!res.ok) {
         list.innerHTML = '<p>Error loading feed data.</p>';
         return;
@@ -18,7 +18,7 @@ async function load_feeds() {
 
     for (const file of jsonFiles) {
         try {
-            const res = await fetch(file.download_url);
+            const res = await ghfetch(file.download_url);
             if (!res.ok) throw new Error(`Fetch failed for ${file.name}`);
 
             const data = await res.json();

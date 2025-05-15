@@ -19,7 +19,7 @@ export default async function head(args, base, stdin = '') {
     if (path) {
         const url = `${base}/${resolvePath(path)}`;
         
-        const res = await fetch(url);
+        const res = await ghfetch(url);
 
         if (!res.ok) { return `head: cannot read file: ${path}`; }
 

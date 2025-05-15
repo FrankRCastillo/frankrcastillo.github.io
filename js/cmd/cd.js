@@ -23,7 +23,7 @@ export default async function cd(args, base, stdin = '') {
 
     const resolved = newStack.join('/');
     const url = `${base}/${resolved}`;
-    const res = await fetch(url);
+    const res = await ghfetch(url);
 
     if (!res.ok) {
         window.pathStack = [...window.pathStack];
