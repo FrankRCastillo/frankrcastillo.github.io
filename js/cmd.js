@@ -75,6 +75,14 @@ window.setupTerminal = async function setupTerminal() {
     window.cmdHistory = [];
     window.cmdIndex   = -1;
 
+    tabCompletion = { active: false
+                    , baseText: input.value
+                    , matchStart
+                    , matchEnd: cursor
+                    , matches
+                    , index: 0
+                    };
+
     function updatePrompt() {
         const promptText = `${window.repoName}${pwd()}$ `;
         prompt.innerText = promptText;
@@ -189,7 +197,6 @@ window.setupTerminal = async function setupTerminal() {
         if (e.key === 'Tab') {
             e.preventDefault();
 
-            const input = document.getElementById('terminal-input');
             const cursor = input.selectionStart;
 
             if (!tabCompletion.active) {
@@ -213,13 +220,6 @@ window.setupTerminal = async function setupTerminal() {
 
                     if (!matches.length) { return; }
 
-                    tabCompletion = { active: true
-                                    , baseText: input.value
-                                    , matchStart
-                                    , matchEnd: cursor
-                                    , matches
-                                    , index: 0
-                                    };
 
                 } catch (err) {
                     console.error('Tab completion error:', err);
