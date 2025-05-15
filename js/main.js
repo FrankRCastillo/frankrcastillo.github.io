@@ -84,7 +84,7 @@ function createNavItem(file) {
 }
 
 async function init() {
-    const files = await ghfetchPages();
+    const files = await fetchPages();
     const pages = files.filter(f => f.name.endsWith('.html'));
 
     // puts home at the beginning and cmd at end
