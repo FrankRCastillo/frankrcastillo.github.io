@@ -12,9 +12,12 @@ export default async function ls(args, base, stdin = '') {
     const files = await res.json();
 
     if (!Array.isArray(files)) {
+        if (files.type === 'file' || files.type === 'symlink') {
+            return files.name;
+        }
         return `ls: ${path || '.'} is not a directory`;
     }
-
+        
     return files
         .map(f => f.name + (f.type === 'dir' ? '/' : ''))
         .join('\n');
