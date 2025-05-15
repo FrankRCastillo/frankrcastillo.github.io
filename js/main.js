@@ -40,7 +40,7 @@ async function loadPage(url, pageName) {
     try {
         await importScript(pageName);
     } catch (_) {
-        continue;
+        // continue;
     }
 
     const hook = window[`load_${pageName}`];
