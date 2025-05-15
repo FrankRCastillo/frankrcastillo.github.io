@@ -189,46 +189,57 @@ window.setupTerminal = async function setupTerminal() {
         if (e.key === 'Tab') {
             e.preventDefault();
 
-            const text         = input.value;
-            const cursor       = input.selectionStart;
-            const beforeCursor = text.slice(0, cursor);
-            const match        = beforeCursor.match(/(?:[^\s"]+|"[^"]*")$/);
-            const partial      = match ? match[0].replace(/^"/, '') : '';
-            const dir          = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
-            const base         = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
-            const resolved     = window.resolvePath(dir);
-            const url          = `${window.repoBase}/${resolved}`;
+            const input = document.getElementById('terminal-input');
+            const cursor = input.selectionStart;
 
-            try {
-                const res = await fetch(url);
+            if (!tabCompletion.active) {
+                const beforeCursor = input.value.slice(0, cursor);
+                const match = beforeCursor.match(/(?:[^\s"]+|"[^"]*")$/);
+                const partial = match ? match[0].replace(/^"/, '') : '';
+                const matchStart = match ? match.index : 0;
 
-                if (!res.ok) { return; }
+                const dir = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
+                const base = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
+                const resolved = window.resolvePath(dir);
+                const url = `${window.repoBase}/${resolved}`;
 
-                const items   = await res.json();
-                const matches = items
-                    .filter(item => item.name.startsWith(base))
-                    .map(item => item.name + (item.type === 'dir' ? '/' : ''));
+                try {
+                    const res = await fetch(url);
+                    if (!res.ok) return;
 
-                if (matches.length === 1) {
-                    const completed = matches[0];
-                    const newPath   = dir ? `${dir}/${completed}` : completed;
-                    const newValue  = text.slice(0, match.index) + newPath + text.slice(cursor);
+                    const items = await res.json();
+                    const matches = items
+                        .filter(item => item.name.startsWith(base))
+                        .map(item => item.name + (item.type === 'dir' ? '/' : ''));
 
-                    input.value = newValue;
-                    input.setSelectionRange(newValue.length, newValue.length);
+                    if (!matches.length) { return; }
 
-                } else if (matches.length > 1) {
-                    const output = document.getElementById('terminal-output');
-                    const pre    = document.createElement('pre');
+                    tabCompletion = { active: true
+                                    , baseText: input.value
+                                    , matchStart
+                                    , matchEnd: cursor
+                                    , matches
+                                    , index: 0
+                                    };
 
-                    pre.textContent = matches.join('\t');
-                    output.appendChild(pre);
-                    output.scrollTop = output.scrollHeight;
+                } catch (err) {
+                    console.error('Tab completion error:', err);
+                    return;
+
                 }
+            } else {
+                tabCompletion.index = (tabCompletion.index + 1) % tabCompletion.matches.length;
 
-            } catch (err) {
-                console.error('Tab completion error:', err);
             }
+
+            const matchText = tabCompletion.matches[tabCompletion.index];
+            const newInput  = tabCompletion.baseText.slice(0, tabCompletion.matchStart)
+                            + matchText 
+                            + tabCompletion.baseText.slice(tabCompletion.matchEnd);
+
+            input.value = newInput;
+            const newCursor = tabCompletion.matchStart + matchText.length;
+            input.setSelectionRange(newCursor, newCursor);
         }
 
         input.focus();
