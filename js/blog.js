@@ -1,6 +1,6 @@
 async function load_blog() {
     const blogList = document.getElementById('blogList');
-    const api      = `https://api.github.com/repos/FrankRCastillo/frankrcastillo.github.io/contents/blog?ref=master`;
+    const api      = `${window.defaultRepoBase}/blog?ref=master`;
     const res      = await fetch(api);
 
     if (!res.ok) {
