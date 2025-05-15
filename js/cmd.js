@@ -70,6 +70,7 @@ export function setupTerminal() {
     const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
+    const pwd    = (await loadCommand('pwd'));
 
     let promptLength = 0;
 
