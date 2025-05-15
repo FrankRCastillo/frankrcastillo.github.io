@@ -155,18 +155,6 @@ window.setupTerminal = async function setupTerminal() {
 
         }
 
-        // Move cursor after prompt on Home
-        if (e.key === 'Home') {
-            e.preventDefault();
-
-            input.setSelectionRange(promptLength, promptLength);
-        }
-
-        // Prevent deleting before prompt
-        if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart <= promptLength) {
-            e.preventDefault();
-        }
-
         if (e.key === 'ArrowUp') {
             if (window.cmdIndex > 0) {
                 window.cmdIndex--;
