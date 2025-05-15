@@ -66,7 +66,7 @@ function resolvePath(path) {
 
 window.resolvePath = resolvePath;
 
-export function setupTerminal() {
+export async function setupTerminal() {
     const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
