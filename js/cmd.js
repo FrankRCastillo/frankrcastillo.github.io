@@ -75,7 +75,7 @@ window.setupTerminal = async function setupTerminal() {
     window.cmdHistory = [];
     window.cmdIndex   = -1;
 
-    let tabCompletion = { active: false
+    let tabComplete = { active: false
                         , baseText: ''
                         , matchStart: 0
                         , matchEnd: 0
@@ -195,23 +195,26 @@ window.setupTerminal = async function setupTerminal() {
         }
 
         if (e.key === 'Tab') {
+            if (input.value.trim() === '') { return; }
+
             e.preventDefault();
 
             const cursor = input.selectionStart;
 
-            if (!tabCompletion.active) {
-                const beforeCursor = input.value.slice(0, cursor);
-                const match        = beforeCursor.match(/(?:[^\s"]+|"[^"]*")$/);
-                const partial      = match ? match[0].replace(/^"/, '') : '';
-                const matchStart   = match ? match.index : 0;
-                const dir          = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
-                const base         = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
-                const resolved     = window.resolvePath(dir);
-                const url          = `${window.repoBase}/${resolved}`;
+            if (!tabComplete.active) {
+                const preCursor  = input.value.slice(0, cursor);
+                const match      = preCursor.match(/(?:[^\s"]+|"[^"]*")$/);
+                const partial    = match ? match[0].replace(/^"/, '') : '';
+                const matchStart = match ? match.index : 0;
+                const dir        = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
+                const base       = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
+                const resolved   = window.resolvePath(dir);
+                const url        = `${window.repoBase}/${resolved}`;
 
                 try {
                     const res = await fetch(url);
-                    if (!res.ok) return;
+
+                    if (!res.ok) { return; }
 
                     const items = await res.json();
                     const matches = items
@@ -227,17 +230,19 @@ window.setupTerminal = async function setupTerminal() {
 
                 }
             } else {
-                tabCompletion.index = (tabCompletion.index + 1) % tabCompletion.matches.length;
+                tabComplete.index = (tabComplete.index + 1) % tabComplete.matches.length;
 
             }
 
-            const matchText = tabCompletion.matches[tabCompletion.index];
-            const newInput  = tabCompletion.baseText.slice(0, tabCompletion.matchStart)
+            const matchText = tabComplete.matches[tabComplete.index];
+            const newInput  = tabComplete.baseText.slice(0, tabComplete.matchStart)
                             + matchText 
-                            + tabCompletion.baseText.slice(tabCompletion.matchEnd);
+                            + tabComplete.baseText.slice(tabComplete.matchEnd);
 
             input.value = newInput;
-            const newCursor = tabCompletion.matchStart + matchText.length;
+
+            const newCursor = tabComplete.matchStart + matchText.length;
+
             input.setSelectionRange(newCursor, newCursor);
         }
 
