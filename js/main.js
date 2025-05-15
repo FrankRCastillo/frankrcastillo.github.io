@@ -54,7 +54,7 @@ async function loadPage(url, pageName) {
         console.log("cmd.js loaded");
 
         requestAnimationFrame(async () => {
-            await module.setupTerminal();
+            await window.setupTerminal();
         });
     }
 }

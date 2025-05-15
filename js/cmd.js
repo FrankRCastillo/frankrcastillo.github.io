@@ -12,7 +12,7 @@ async function loadCommand(name) {
     return commands[name];
 }
 
-export async function runCommand(input) {
+window.runCommand = async function runCommand(input) {
     if (!input.trim()) return '';
 
     const segments = input.split('|').map(s => s.trim());
@@ -40,7 +40,7 @@ export async function runCommand(input) {
     return stdin;
 }
 
-function resolvePath(path) {
+window.resolvePath = function resolvePath(path) {
     if (!window.pathStack) window.pathStack = [];
 
     if (!path || path === '.') {
@@ -64,9 +64,7 @@ function resolvePath(path) {
     return [...window.pathStack, path].join('/');
 }
 
-window.resolvePath = resolvePath;
-
-export async function setupTerminal() {
+window.setupTerminal = async function setupTerminal() {
     const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
