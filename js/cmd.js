@@ -84,7 +84,7 @@ window.setupTerminal = async function setupTerminal() {
     };
 
     function updatePrompt() {
-        const promptText = `${window.repoName}${pwd()}$ `;
+        const promptText = `${pwd()}$ `;
         prompt.innerText = promptText;
         promptLength = promptText.length;
 
@@ -142,7 +142,7 @@ window.setupTerminal = async function setupTerminal() {
 
             input_row.style.visibility = 'hidden';
 
-            print(`${window.repoName}${pwd()}$ ${command}`);
+            print(`${pwd()}$ ${command}`);
 
             try {
                 const result = await runCommand(command);
