@@ -300,7 +300,6 @@ window.setupTerminal = async function setupTerminal() {
             }
         });
 
-
         input.focus();
     });
 
