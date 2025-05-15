@@ -16,7 +16,7 @@ export default async function ls(args, base, stdin = '') {
     const paths = [];
 
     for (const arg of args) {
-        if (arg.startsWith('-') {
+        if (arg.startsWith('-')) {
             long  ||= arg.includes('l');
             human ||= arg.includes('h');
         } else {
