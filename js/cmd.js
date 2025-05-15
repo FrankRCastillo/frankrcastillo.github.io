@@ -65,15 +65,15 @@ window.resolvePath = function resolvePath(path) {
 }
 
 window.setupTerminal = async function setupTerminal() {
+    window.cmdHistory = [];
+    window.cmdIndex   = -1;
+
     const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
     const pwd    = (await loadCommand('pwd'));
 
     let promptLength = 0;
-
-    window.cmdHistory = [];
-    window.cmdIndex   = -1;
 
     let tabComplete = {
         active: false,
