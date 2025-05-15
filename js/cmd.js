@@ -1,6 +1,3 @@
-
-import pwd from './cmd/pwd.js';
-
 const commands = {};
 
 async function loadCommand(name) {
