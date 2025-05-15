@@ -195,9 +195,9 @@ window.setupTerminal = async function setupTerminal() {
         }
 
         if (e.key === 'Tab') {
-            if (input.value.trim() === '') { return; }
-
             e.preventDefault();
+
+            if (input.value.trim() === '') { return; }
 
             const cursor = input.selectionStart;
 
