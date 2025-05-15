@@ -223,6 +223,13 @@ window.setupTerminal = async function setupTerminal() {
 
                     if (!matches.length) { return; }
 
+                    tabComplete = {
+                        active: true,
+                        baseText: input.value,
+                        matchStart,
+                        matchEnd: cursor,
+                        matches: new Map(matches.map((item, i) => [item, i === 0]))
+                    };                
 
                 } catch (err) {
                     console.error('Tab completion error:', err);
@@ -230,13 +237,6 @@ window.setupTerminal = async function setupTerminal() {
 
                 }
 
-                tabComplete = {
-                    active: true,
-                    baseText: input.value,
-                    matchStart,
-                    matchEnd: cursor,
-                    matches: new Map(matches.map((item, i) => [item, i === 0]))
-                };                
             } else {
                 const keys         = [...tabComplete.matches.keys()];
                 const currentIndex = keys.findIndex(k => tabComplete.matches.get(k));
