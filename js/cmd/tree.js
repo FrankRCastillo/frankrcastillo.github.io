@@ -25,8 +25,8 @@ export default async function tree(args, base, indent = '', path = '') {
         const isLast = i === items.length - 1;
         const prefix = isLast ? '└── ' : '├── ';
         const nextIndent = indent + (isLast ? '    ' : '│   ');
-        const safeName = item.name.replace(/ /g, '\\ ');
-        const line = `${indent}${prefix}${safeName}\n`;
+        // const safeName = item.name.replace(/ /g, '\\ ');
+        const line = `${indent}${prefix}${item.name}\n`;
 
         output += line;
 
