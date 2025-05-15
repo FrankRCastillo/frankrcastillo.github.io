@@ -75,13 +75,13 @@ window.setupTerminal = async function setupTerminal() {
     window.cmdHistory = [];
     window.cmdIndex   = -1;
 
-    tabCompletion = { active: false
-                    , baseText: input.value
-                    , matchStart
-                    , matchEnd: cursor
-                    , matches
-                    , index: 0
-                    };
+    let tabCompletion = { active: false
+                        , baseText: ''
+                        , matchStart: 0
+                        , matchEnd: 0
+                        , matches: []
+                        , index: 0
+                        };
 
     function updatePrompt() {
         const promptText = `${window.repoName}${pwd()}$ `;
