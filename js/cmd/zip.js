@@ -1,3 +1,3 @@
-export const description = "(in progress) Zip files in Linux.";
+export const description = "* IN PROGRESS * Zip files then download";
 
 export default async function zip(args, base, stdin = '') { return "In progress."; }
