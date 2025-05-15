@@ -34,16 +34,18 @@ async function loadPage(url, pageName) {
     }
 
     const html = await res.text();
+
     content.innerHTML = html;
 
     try {
         await importScript(pageName);
     } catch (_) {
-        // it's okay if there's no associated script
+        continue;
     }
 
     const hook = window[`load_${pageName}`];
-    if (typeof hook === 'function') hook();
+
+    if (typeof hook === 'function') { hook(); }
 
     // If this is the terminal page, load and run the module
     if (pageName === 'cmd') {
@@ -51,7 +53,7 @@ async function loadPage(url, pageName) {
 
         console.log("cmd.js loaded");
     
-        requestAnimationFrame(() => await module.setupTerminal());
+        await module.setupTerminal();
     }
 }
 
@@ -76,10 +78,11 @@ async function init() {
 
     // puts home at the beginning and cmd at end
     pages.sort((a, b) => {
-        if (a.name === 'home.html') return -1;
-        if (b.name === 'home.html') return 1;
-        if (a.name === 'cmd.html') return 1;
-        if (b.name === 'cmd.html') return -1;
+        if (a.name === 'home.html') { return -1; }
+        if (b.name === 'home.html') { return  1; }  
+        if (a.name === 'cmd.html')  { return  1; } 
+        if (b.name === 'cmd.html')  { return -1; }
+
         return a.name.localeCompare(b.name);
     }).forEach(createNavItem);
 
