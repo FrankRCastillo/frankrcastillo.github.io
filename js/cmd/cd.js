@@ -35,7 +35,7 @@ export default async function cd(args, base, stdin = '') {
         return `cd: not a directory: ${path}`;
     }
 
-    window.pathStack = newSta;
+    window.pathStack = newStack;
 
     return '';
 }
