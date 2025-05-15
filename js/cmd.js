@@ -203,9 +203,9 @@ window.setupTerminal = async function setupTerminal() {
 
             if (!tabComplete.active) {
                 const preCursor  = input.value.slice(0, cursor);
-                const match      = preCursor.match(/(?:[^\s"]+|"[^"]*")$/);
-                const partial    = match ? match[0].replace(/^"/, '') : '';
-                const matchStart = match ? match.index : 0;
+                const tokens     = preCursor.split(/\s+/);
+                const partial    = tokens[tokens.length - 1] || '';
+                const matchStart = preCursor.endsWith(' ') ? cursor : preCursor.lastIndexOf(partial);
                 const dir        = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
                 const base       = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
                 const resolved   = window.resolvePath(dir);
