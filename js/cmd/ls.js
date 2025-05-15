@@ -11,26 +11,26 @@ function humanSize(bytes) {
 }
 
 export default async function ls(args, base, stdin = '') {
-    let long = false;
-    let human = false;
+    let long    = false;
+    let human   = false;
     const paths = [];
 
     for (const arg of args) {
-        if (arg === '-l') long = true;
-        else if (arg === '-h') human = true;
-        else if (arg === '-lh' || arg === '-hl') {
-            long = true;
-            human = true;
+        if (arg.startsWith('-') {
+            long  ||= arg.includes('l');
+            human ||= arg.includes('h');
         } else {
             paths.push(arg);
         }
     }
 
     const path = paths[0] || '';
-    const url = `${base}/${resolvePath(path)}`;
-    const res = await fetch(url);
+    const url  = `${base}/${resolvePath(path)}`;
+    const res  = await ghfetch(url);
 
-    if (!res.ok) return `ls: cannot access ${path || '.'}`;
+    if (!res.ok) {
+        return `ls: cannot access ${path || '.'}`;
+    }
 
     const username = window.repoName.split('/')[0];
     const reponame = window.repoName.split('/')[1];
@@ -45,6 +45,7 @@ export default async function ls(args, base, stdin = '') {
 
     if (!Array.isArray(await res.clone().json())) {
         const file = await res.json();
+
         return formatLine(file);
     }
 
