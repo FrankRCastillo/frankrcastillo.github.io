@@ -70,28 +70,6 @@ pre {
     word-wrap: break-word;
 }
 
-/* Adjust font for better legibility on small screens */
-@media (max-width: 600px) {
-    body {
-        font-size: 12px;
-    }
-
-    header h1 {
-        font-size: 1.2em;
-    }
-
-    nav button {
-        font-size: 0.9em;
-        padding: 0.4em 0.6em;
-    }
-
-    #terminal-input,
-    #terminal-output {
-        front-family: monospace;
-        font-size: 12px;
-    }
-}
-
 #terminal {
     background: #000000;
     color: #ffa500;
@@ -129,6 +107,8 @@ pre {
     font-family: monospace;
     width: 100%;
     font-size: 14px;
+    autocapitalize: off;
+    text-transform: none;
 }
 
 #terminal-output {
@@ -142,3 +122,26 @@ pre {
     color: #ffa500;
     white-space: nowrap;
 }
+
+/* Adjust font for better legibility on small screens */
+@media (max-width: 600px) {
+    body {
+        font-size: 12px;
+    }
+
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    nav button {
+        font-size: 0.9em;
+        padding: 0.4em 0.6em;
+    }
+
+    #terminal-input,
+    #terminal-output {
+        front-family: monospace;
+        font-size: 12px;
+    }
+}
+
