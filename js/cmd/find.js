@@ -13,6 +13,7 @@ export default async function find(args, base, stdin = '') {
         if (!res.ok) { return; }
 
         const items = await res.json();
+        
         if (!Array.isArray(items)) return;
 
         for (const item of items) {

@@ -15,6 +15,7 @@ export default async function ls(args, base, stdin = '') {
         if (files.type === 'file' || files.type === 'symlink') {
             return files.name;
         }
+        
         return `ls: ${path || '.'} is not a directory`;
     }
         

@@ -5,7 +5,8 @@ export default async function help(_, base, stdin = '') {
 
     try {
         const res = await fetch(api);
-        if (!res.ok) return 'help: failed to fetch command list';
+
+        if (!res.ok) { return 'help: failed to fetch command list'; }
 
         const files = await res.json();
 
@@ -21,16 +22,21 @@ export default async function help(_, base, stdin = '') {
             cmds.map(async (cmd) => {
                 try {
                     const module = await import(`./${cmd}.js`);
+
                     return `${cmd.padEnd(pad_len)} ${module.description || 'No description.'}`;
+
                 } catch {
                     return `${cmd.padEnd(pad_len)} (error loading)`;
+
                 }
             })
         );
 
         return 'Available commands:\n' + results.join('\n');
+
     } catch {
         return 'help: error fetching command list';
+
     }
 }
 

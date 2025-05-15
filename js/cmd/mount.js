@@ -11,7 +11,7 @@ export default async function mount(args) {
     try {
         const res = await fetch(url);
 
-        if (!res.ok) return `mount: failed to access repo: ${repo}`;
+        if (!res.ok) { return `mount: failed to access repo: ${repo}`; }
 
         window.repoName = repo;
         window.repoBase = url;

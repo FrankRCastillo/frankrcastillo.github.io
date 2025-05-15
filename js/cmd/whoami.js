@@ -30,5 +30,6 @@ export default async function whoami() {
 
     } catch (err) {
         return `whoami: failed to retrieve IP info`;
+        
     }
 }
