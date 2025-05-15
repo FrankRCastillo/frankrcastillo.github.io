@@ -186,6 +186,51 @@ window.setupTerminal = async function setupTerminal() {
             e.preventDefault();
         }
 
+        if (e.key === 'Tab') {
+            e.preventDefault();
+
+            const text         = input.value;
+            const cursor       = input.selectionStart;
+            const beforeCursor = text.slice(0, cursor);
+            const match        = beforeCursor.match(/(?:[^\s"]+|"[^"]*")$/);
+            const partial      = match ? match[0].replace(/^"/, '') : '';
+            const dir          = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
+            const base         = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
+            const resolved     = window.resolvePath(dir);
+            const url          = `${window.repoBase}/${resolved}`;
+
+            try {
+                const res = await fetch(url);
+
+                if (!res.ok) { return; }
+
+                const items   = await res.json();
+                const matches = items
+                    .filter(item => item.name.startsWith(base))
+                    .map(item => item.name + (item.type === 'dir' ? '/' : ''));
+
+                if (matches.length === 1) {
+                    const completed = matches[0];
+                    const newPath   = dir ? `${dir}/${completed}` : completed;
+                    const newValue  = text.slice(0, match.index) + newPath + text.slice(cursor);
+
+                    input.value = newValue;
+                    input.setSelectionRange(newValue.length, newValue.length);
+
+                } else if (matches.length > 1) {
+                    const output = document.getElementById('terminal-output');
+                    const pre    = document.createElement('pre');
+
+                    pre.textContent = matches.join('\t');
+                    output.appendChild(pre);
+                    output.scrollTop = output.scrollHeight;
+                }
+
+            } catch (err) {
+                console.error('Tab completion error:', err);
+            }
+        }
+
         input.focus();
     });
 
