@@ -9,26 +9,26 @@ export default async function tree(args, base, indent = '', path = '') {
         return `${indent}└── ${label} [not a directory]\n`;
     }
 
-    const items = Object.values(dir.children).sort((a, b) => {
+    const entries = Object.entries(dir.children).sort(([aName, a], [bName, b]) => {
         if (a.type === b.type) {
-            return a.name.localeCompare(b.name);
+            return aName.localeCompare(bName);
         }
         return a.type === 'dir' ? -1 : 1;
     });
 
     let output = '';
 
-    for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const isLast = i === items.length - 1;
+    for (let i = 0; i < entries.length; i++) {
+        const [name, item] = entries[i];
+        const isLast = i === entries.length - 1;
         const prefix = isLast ? '└── ' : '├── ';
         const nextIndent = indent + (isLast ? '    ' : '│   ');
-        const line = `${indent}${prefix}${item.name}\n`;
+        const line = `${indent}${prefix}${name}\n`;
 
         output += line;
 
         if (item.type === 'dir') {
-            const subTree = await tree([], base, nextIndent, `${path}/${item.name}`);
+            const subTree = await tree([], base, nextIndent, `${path}/${name}`);
             output += subTree;
         }
     }
