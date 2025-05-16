@@ -4,10 +4,7 @@ window.repoName = window.defaultRepoName;
 window.repoBase = window.defaultRepoBase;
 
 await importScript('fsutil');
-
-if (!window.githubfs) {
-    await window.populateGithubFS(window.repoName);
-}
+await window.populateGithubFS(window.repoName);
 
 const BRANCH  = 'master';
 const content = document.getElementById('content');
