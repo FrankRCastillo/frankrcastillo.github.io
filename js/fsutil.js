@@ -1,8 +1,8 @@
 window.populateGithubFS = async function(repoName) {
     const [user, repo] = repoName.split('/');
     const api = `https://api.github.com/repos/${user}/${repo}/git/trees/HEAD?recursive=1`;
+    const res = await window.ghfetch(api);
 
-    const res = await ghfetch(api);
     if (!res.ok) {
         console.error(`Failed to fetch tree for ${repoName}`);
         return;
