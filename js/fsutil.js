@@ -71,8 +71,9 @@ window.populateGithubFS = async function(repoName) {
             if (!current.children[part]) {
                 current.children[part] = {
                     type: i === parts.length - 1
-                        ? (item.type === 'tree' ? 'dir' : item.type)
+                        ? ( item.type === 'tree' ? 'dir' : item.type === 'blob' ? 'file' : item.type)
                         : 'dir',
+                    
                     ...(i === parts.length - 1 ? item : {}),
                 };
 
