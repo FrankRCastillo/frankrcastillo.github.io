@@ -2,7 +2,9 @@ export const description = "Mount a public GitHub repo into the shell.";
 
 export default async function mount(args) {
     if (args.length === 0) {
-        const status = (window.repoName === window.defaultRepoName && window.repoBase === window.defaultRepoBase) ? 'default' : 'mounted'
+        const status = ( window.repoName === window.defaultRepoName
+                      && window.repoBase === window.defaultRepoBase
+                       ) ? 'default' : 'mounted';
 
         return [ `repo   : ${window.repoName}`
                , `base   : ${window.repoBase}`
@@ -14,12 +16,16 @@ export default async function mount(args) {
     const url = `https://api.github.com/repos/${repo}/contents`;
 
     try {
-        const res = await ghfetch(url);
+        const res = await window.ghfetch(url);
 
         if (!res.ok) { return `mount: failed to mount repo: ${repo}`; }
 
         window.repoName = repo;
         window.repoBase = url;
+
+        if (!window.githubfs?.[repo.split('/')[0]]?.[repo.split('/')[1]]) {
+            await window.populateGithubFS(repo);
+        }
 
         return `repo set to ${repo}`;
 

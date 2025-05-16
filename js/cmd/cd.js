@@ -3,9 +3,13 @@ export const description = "Changes the working directory.";
 export default async function cd(args, base, stdin = '') {
     const path = args[0];
 
-    if (!path) { return 'cd: missing directory'; }
+    if (!path) {
+        return 'cd: missing directory';
+    }
 
-    if (!window.pathStack) { window.pathStack = []; }
+    if (!window.pathStack) {
+        window.pathStack = [];
+    }
 
     let newStack = [...window.pathStack];
 
@@ -14,24 +18,15 @@ export default async function cd(args, base, stdin = '') {
     } else if (path === '/') {
         newStack = [];
     } else if (path.startsWith('/')) {
-        newStack = path.replace(/^\/+/, '').split('/');
+        newStack = path.replace(/^\/+/g, '').split('/');
     } else {
         newStack.push(path);
     }
 
     const resolved = newStack.join('/');
-    const url = `${base}/${resolved}`;
-    const res = await ghfetch(url);
+    const dirNode = window.getDirFromFS(resolved);
 
-    if (!res.ok) {
-        window.pathStack = [...window.pathStack];
-
-        return `cd: no such directory: ${path}`;
-    }
-
-    const meta = await res.json();
-
-    if (!Array.isArray(meta)) {
+    if (!dirNode || dirNode.type !== 'dir') {
         return `cd: not a directory: ${path}`;
     }
 
@@ -39,3 +34,4 @@ export default async function cd(args, base, stdin = '') {
 
     return '';
 }
+
