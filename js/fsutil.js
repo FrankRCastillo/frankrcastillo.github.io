@@ -60,3 +60,10 @@ window.getGithubFSNode = function(path) {
     return node;
 };
 
+window.getDirFromFS = function(path) {
+    const node = window.getGithubFSNode(path);
+    if (node && node.type === 'dir') {
+        return node;
+    }
+    return null;
+};
