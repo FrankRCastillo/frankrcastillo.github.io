@@ -1,3 +1,12 @@
+window.ghfetch = async function(url, options = {}) {
+    return fetch(url, {
+        method: 'GET',
+        credentials: 'omit',
+        cache: 'no-cache',
+        ...options
+    });
+};
+
 window.populateGithubFS = async function(repoName) {
     const [user, repo] = repoName.split('/');
     const api = `https://api.github.com/repos/${user}/${repo}/git/trees/HEAD?recursive=1`;

@@ -15,15 +15,6 @@ const nav     = document.getElementById('nav');
 
 window.githubfs = window.githubfs || {};
 
-window.ghfetch = async function(url, options = {}) {
-    return fetch(url, {
-        method: 'GET',
-        credentials: 'omit',
-        cache: 'no-cache',
-        ...options
-    });
-};
-
 async function populateGitHubFS(repo) {
     const [user, name] = repo.split('/');
     if (window.githubfs[user]?.[name]) return;
