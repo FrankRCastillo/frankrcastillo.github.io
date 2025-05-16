@@ -27,15 +27,18 @@ export default async function ls(args, base, stdin = '') {
     const path = resolvePath(paths[0] || '');
     const node = window.getGithubFSNode(path);
 
-    if (!node) return `ls: cannot access ${path || '.'}`;
+    if (!node) {
+        return `ls: cannot access ${path || '.'}`;
+    }
 
     const username = window.repoName.split('/')[0];
     const reponame = window.repoName.split('/')[1];
 
     const formatLine = (name, item) => {
-        const type = item.type === 'tree' || item.type === 'dir' ? 'd' : 'f';
-        const size = item.size != null ? (human ? humanSize(item.size).padStart(5) : `${item.size}B`.padStart(5)) : '     ';
+        const type    = item.type === 'tree' || item.type === 'dir' ? 'd' : 'f';
+        const size    = item.size != null ? (human ? humanSize(item.size).padStart(5) : `${item.size}B`.padStart(5)) : '     ';
         const display = name + (type === 'd' ? '/' : '');
+
         return `${type}  ${username}  ${reponame}  ${size}  ${display}`;
     };
 

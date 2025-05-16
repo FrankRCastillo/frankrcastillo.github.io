@@ -1,10 +1,11 @@
 window.ghfetch = async function(url, options = {}) {
-    return fetch(url, {
-        method: 'GET',
-        credentials: 'omit',
-        cache: 'no-cache',
-        ...options
-    });
+    return fetch( url
+                , { method      : 'GET'
+                  , credentials : 'omit'
+                  , cache       : 'no-cache'
+                  ,...options
+                  }
+                );
 };
 
 window.getFSNode = function(path) {
@@ -16,6 +17,7 @@ window.getFSNode = function(path) {
     const parts = path.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
 
     let node = window.githubfs[user]?.[repo];
+
     for (const part of parts) {
         if (!node?.children?.[part]) {
             return null;
@@ -37,21 +39,34 @@ window.populateGithubFS = async function(repoName) {
     }
 
     const data = await res.json();
-    if (!data.tree) return;
 
-    if (!window.githubfs) window.githubfs = {};
-    if (!window.githubfs[user]) window.githubfs[user] = {};
+    if (!data.tree) {
+        return;
+    }
+
+    if (!window.githubfs) {
+        window.githubfs = {};
+    }
+
+    if (!window.githubfs[user]) {
+        window.githubfs[user] = {};
+    }
+
     const root = {};
+
     window.githubfs[user][repo] = root;
 
     for (const item of data.tree) {
         const parts = item.path.split('/');
+
         let current = root;
 
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i];
 
-            if (!current.children) current.children = {};
+            if (!current.children) {
+                current.children = {};
+            }
 
             if (!current.children[part]) {
                 current.children[part] = {
@@ -66,23 +81,31 @@ window.populateGithubFS = async function(repoName) {
 };
 
 window.getGithubFSNode = function(path) {
-    if (!window.githubfs || !window.repoName) return null;
+    if (!window.githubfs || !window.repoName) {
+        return null;
+    }
 
     const [user, repo] = window.repoName.split('/');
     const parts = path.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+    let node    = window.githubfs?.[user]?.[repo];
 
-    let node = window.githubfs?.[user]?.[repo];
     for (const part of parts) {
-        if (!node?.children?.[part]) return null;
+        if (!node?.children?.[part]) {
+            return null;
+        }
+
         node = node.children[part];
     }
+
     return node;
 };
 
 window.getDirFromFS = function(path) {
     const node = window.getGithubFSNode(path);
+    
     if (node && node.type === 'dir') {
         return node;
     }
+
     return null;
 };

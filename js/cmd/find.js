@@ -5,9 +5,9 @@ export default async function find(args, base, stdin = '') {
         return 'find: missing search term';
     }
 
-    const query = args[0].toLowerCase();
+    const query    = args[0].toLowerCase();
     const basePath = args[1] ? window.resolvePath(args[1]) : window.resolvePath('.');
-    const root = window.getFSNode(basePath);
+    const root     = window.getFSNode(basePath);
 
     if (!root || root.type !== 'dir' || !root.children) {
         return `find: failed to load filesystem for ${basePath}`;

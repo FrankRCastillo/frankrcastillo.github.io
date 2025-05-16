@@ -12,7 +12,7 @@ async function loadCommand(name) {
     return commands[name];
 }
 
-window.runCommand = async function runCommand(input) {
+window.runCommand = async function(input) {
     if (!input.trim()) {
         return '';
     }
@@ -42,7 +42,7 @@ window.runCommand = async function runCommand(input) {
     return stdin;
 };
 
-window.resolvePath = function resolvePath(path) {
+window.resolvePath = function(path) {
     if (!window.pathStack) {
         window.pathStack = [];
     }
@@ -68,24 +68,23 @@ window.resolvePath = function resolvePath(path) {
     return [...window.pathStack, path].join('/');
 };
 
-window.setupTerminal = async function setupTerminal() {
+window.setupTerminal = async function() {
     window.cmdHistory = [];
     window.cmdIndex = -1;
 
-    const input = document.getElementById('terminal-input');
+    const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
-    const pwd = (await loadCommand('pwd'));
+    const pwd    = (await loadCommand('pwd'));
 
     let promptLength = 0;
 
-    let tabComplete = {
-        active: false,
-        baseText: '',
-        matchStart: 0,
-        matchEnd: 0,
-        matches: new Map()
-    };
+    let tabComplete = { active     : false
+                      , baseText   : ''
+                      , matchStart : 0
+                      , matchEnd   : 0
+                      , matches    : new Map()
+                      };
 
     function updatePrompt() {
         const promptText = `${pwd()}$ `;
