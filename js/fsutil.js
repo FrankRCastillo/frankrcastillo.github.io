@@ -70,9 +70,12 @@ window.populateGithubFS = async function(repoName) {
 
             if (!current.children[part]) {
                 current.children[part] = {
-                    type: item.type === 'tree' ? 'dir' : item.type,
+                    type: i === parts.length - 1
+                        ? (item.type === 'tree' ? 'dir' : item.type)
+                        : 'dir',
                     ...(i === parts.length - 1 ? item : {}),
-                };                
+                };
+
             }
 
             current = current.children[part];
@@ -98,6 +101,11 @@ window.getGithubFSNode = function(path) {
     }
 
     return node;
+};
+
+window.getFileFromFS = function(path) {
+    const node = window.getGithubFSNode(path);
+    return node && node.type === 'file' ? node : null;
 };
 
 window.getDirFromFS = function(path) {
