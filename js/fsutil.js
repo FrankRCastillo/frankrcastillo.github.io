@@ -7,6 +7,25 @@ window.ghfetch = async function(url, options = {}) {
     });
 };
 
+window.getFSNode = function(path) {
+    if (!window.repoName || !window.githubfs) {
+        return null;
+    }
+
+    const [user, repo] = window.repoName.split('/');
+    const parts = path.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+
+    let node = window.githubfs[user]?.[repo];
+    for (const part of parts) {
+        if (!node?.children?.[part]) {
+            return null;
+        }
+        node = node.children[part];
+    }
+
+    return node;
+};
+
 window.populateGithubFS = async function(repoName) {
     const [user, repo] = repoName.split('/');
     const api = `https://api.github.com/repos/${user}/${repo}/git/trees/HEAD?recursive=1`;
