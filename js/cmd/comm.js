@@ -1,7 +1,5 @@
 export const description = "Compare two sorted files line by line.";
 
-import { getFileFromFS } from '../fsutil.js';
-
 export default async function comm(args, base, stdin = '') {
     if (args.length < 2) {
         return 'comm: missing file operands';
@@ -10,7 +8,7 @@ export default async function comm(args, base, stdin = '') {
     const [file1, file2] = args;
 
     const fetchLines = async (path) => {
-        const file = getFileFromFS(path);
+        const file = window.getFileFromFS(path);
 
         if (!file || file.type !== 'file') {
             return null;

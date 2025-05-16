@@ -18,14 +18,14 @@ export default async function tail(args, base, stdin = '') {
     let text = '';
 
     if (path) {
-        const file = getFileFromFS(path);
+        const file = window.getFileFromFS(path);
 
         if (!file || file.type !== 'file') {
             return `tail: cannot read file: ${path}`;
         }
 
         try {
-            const res = await fetch(file.download_url);
+            const res = await window.ghfetch(file.download_url);
 
             if (!res.ok) {
                 return `tail: cannot read file: ${path}`;

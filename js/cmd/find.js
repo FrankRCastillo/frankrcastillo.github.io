@@ -1,7 +1,5 @@
 export const description = "Search for files or directories matching a name.";
 
-import { getFSNode } from '../fsutil.js';
-
 export default async function find(args, base, stdin = '') {
     if (!args.length) {
         return 'find: missing search term';
@@ -25,7 +23,7 @@ export default async function find(args, base, stdin = '') {
     }
 
     const [username, reponame] = window.repoName.split('/');
-    const root = getFSNode(username, reponame);
+    const root = window.getFSNode(username, reponame);
 
     if (!root || !root.children) {
         return `find: failed to load filesystem for ${window.repoName}`;

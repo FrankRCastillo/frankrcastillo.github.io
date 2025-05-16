@@ -1,9 +1,7 @@
 export const description = "shows directory structure recursively.";
 
-import { getDirFromFS } from '../fsutil.js';
-
 export default async function tree(args, base, indent = '', path = '') {
-    const dir = getDirFromFS(path);
+    const dir = window.getDirFromFS(path);
 
     const label = path.split('/').pop() || '.';
 

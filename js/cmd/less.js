@@ -1,20 +1,18 @@
 export const description = "Page through output one screen at a time.";
 
-import { getFileFromFS } from '../fsutil.js';
-
 export default async function less(args, base, stdin = '') {
     const path = args[0];
     let text = '';
 
     if (path) {
-        const file = getFileFromFS(path);
+        const file = window.getFileFromFS(path);
 
         if (!file || file.type !== 'file') {
             return `less: cannot read file: ${path}`;
         }
 
         try {
-            const res = await fetch(file.download_url);
+            const res = await window.ghfetch(file.download_url);
 
             if (!res.ok) {
                 return `less: cannot read file: ${path}`;

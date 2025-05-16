@@ -1,7 +1,5 @@
 export const description = "Show the first few lines of a file.";
 
-import { getFileFromFS } from '../fsutil.js';
-
 export default async function head(args, base, stdin = '') {
     let numLines = 10;
     let path = null;
@@ -18,7 +16,7 @@ export default async function head(args, base, stdin = '') {
     let text = '';
 
     if (path) {
-        const file = getFileFromFS(path);
+        const file = window.getFileFromFS(path);
 
         if (!file || file.type !== 'file') {
             return `head: cannot read file: ${path}`;

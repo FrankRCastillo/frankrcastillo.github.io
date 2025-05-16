@@ -1,7 +1,5 @@
 export const description = 'Search for a string in input or file.';
 
-import { getFileFromFS } from '../fsutil.js';
-
 export default async function grep(args, base, stdin = '') {
     const pattern = args[0];
     const path = args[1];
@@ -13,7 +11,7 @@ export default async function grep(args, base, stdin = '') {
     let text = '';
 
     if (path) {
-        const file = getFileFromFS(path);
+        const file = window.getFileFromFS(path);
 
         if (!file || file.type !== 'file') {
             return `grep: cannot read file: ${path}`;

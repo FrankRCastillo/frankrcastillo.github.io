@@ -1,7 +1,5 @@
 export const description = "Check if two files are identical.";
 
-import { getFileFromFS } from '../fsutil.js';
-
 export default async function cmp(args, base, stdin = '') {
     if (args.length < 2) {
         return 'cmp: missing file operands';
@@ -10,7 +8,7 @@ export default async function cmp(args, base, stdin = '') {
     const [file1, file2] = args;
 
     const fetchFile = async (path) => {
-        const file = getFileFromFS(path);
+        const file = window.getFileFromFS(path);
 
         if (!file || file.type !== 'file') {
             return null;

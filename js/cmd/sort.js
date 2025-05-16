@@ -7,14 +7,14 @@ export default async function sort(args, base, stdin = '') {
     let text = '';
 
     if (path) {
-        const file = getFileFromFS(path);
+        const file = window.getFileFromFS(path);
 
         if (!file || file.type !== 'file') {
             return `sort: cannot read file: ${path}`;
         }
 
         try {
-            const res = await fetch(file.download_url);
+            const res = await window.ghfetch(file.download_url);
 
             if (!res.ok) {
                 return `sort: cannot read file: ${path}`;

@@ -1,7 +1,5 @@
 export const description = "Displays contents of the file.";
 
-import { getFileFromFS } from '../fsutil.js';
-
 export default async function cat(args, base, stdin = '') {
     const path = args[0];
 
@@ -9,7 +7,7 @@ export default async function cat(args, base, stdin = '') {
         return 'cat: missing file name';
     }
 
-    const file = getFileFromFS(path);
+    const file = window.getFileFromFS(path);
 
     if (!file || file.type !== 'file') {
         return `cat: cannot open ${path}`;

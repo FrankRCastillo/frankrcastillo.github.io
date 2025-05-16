@@ -1,6 +1,6 @@
 export const description = "Find the difference between two files.";
 
-import { getFileFromFS } from '../fsutil.js';
+import { getFileFromFS } from '/js/fsutil.js';
 
 export default async function diff(args, base, stdin = '') {
     if (args.length < 2) {
@@ -9,8 +9,8 @@ export default async function diff(args, base, stdin = '') {
 
     const [file1Path, file2Path] = args;
 
-    const file1 = getFileFromFS(file1Path);
-    const file2 = getFileFromFS(file2Path);
+    const file1 = window.getFileFromFS(file1Path);
+    const file2 = window.getFileFromFS(file2Path);
 
     if (!file1 || file1.type !== 'file') {
         return `diff: cannot read file: ${file1Path}`;
