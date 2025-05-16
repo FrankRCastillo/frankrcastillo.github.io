@@ -40,43 +40,32 @@ window.populateGithubFS = async function(repoName) {
 
     const data = await res.json();
 
-    if (!data.tree) {
-        return;
-    }
+    if (!data.tree) return;
 
-    if (!window.githubfs) {
-        window.githubfs = {};
-    }
-
-    if (!window.githubfs[user]) {
-        window.githubfs[user] = {};
-    }
-
+    window.githubfs = window.githubfs || {};
+    window.githubfs[user] = window.githubfs[user] || {};
     const root = {};
-
     window.githubfs[user][repo] = root;
 
     for (const item of data.tree) {
         const parts = item.path.split('/');
-
         let current = root;
 
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i];
+            if (!current.children) current.children = {};
 
-            if (!current.children) {
-                current.children = {};
-            }
+            const isLast = i === parts.length - 1;
 
             if (!current.children[part]) {
                 current.children[part] = {
-                    type: i === parts.length - 1
-                        ? ( item.type === 'tree' ? 'dir' : item.type === 'blob' ? 'file' : item.type)
+                    type: isLast
+                        ? item.type === 'tree' ? 'dir'
+                        : item.type === 'blob' ? 'file'
+                        : item.type
                         : 'dir',
-                    
-                    ...(i === parts.length - 1 ? item : {}),
+                    ...(isLast ? item : {})
                 };
-
             }
 
             current = current.children[part];
