@@ -1,7 +1,5 @@
 export const description = "Show the last few lines of a file.";
 
-import { getFileFromFS } from '../fsutil.js';
-
 export default async function tail(args, base, stdin = '') {
     let numLines = 10;
     let path = null;

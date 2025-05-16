@@ -1,7 +1,5 @@
 export const description = "Sort lines in a file or input.";
 
-import { getFileFromFS } from '../fsutil.js';
-
 export default async function sort(args, base, stdin = '') {
     const path = args[0];
     let text = '';
