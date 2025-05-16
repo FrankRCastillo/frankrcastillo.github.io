@@ -1,19 +1,35 @@
 export const description = "Page through output one screen at a time.";
 
+import { getFileFromFS } from '../fsutil.js';
+
 export default async function less(args, base, stdin = '') {
     const path = args[0];
     let text = '';
 
     if (path) {
-        const url = `${base}/${resolvePath(path)}`;
-        const res = await ghfetch(url);
-        
-        if (!res.ok) { return `less: cannot read file: ${path}`; }
+        const file = getFileFromFS(path);
 
-        const file = await res.json();
+        if (!file || file.type !== 'file') {
+            return `less: cannot read file: ${path}`;
+        }
 
-        text = atob(file.content.replace(/\n/g, ''));
+        try {
+            const res = await fetch(file.download_url);
 
+            if (!res.ok) {
+                return `less: cannot read file: ${path}`;
+            }
+
+            const content = await res.text();
+
+            if (file.encoding === 'base64') {
+                text = atob(content.replace(/\n/g, ''));
+            } else {
+                text = content;
+            }
+        } catch (err) {
+            return `less: error reading ${path}`;
+        }
     } else {
         text = stdin;
     }
@@ -28,9 +44,12 @@ export default async function less(args, base, stdin = '') {
         if (i + pageSize < lines.length) {
             const cont = prompt('--More-- (press OK to continue, Cancel to stop)');
 
-            if (cont === null) { break; }
+            if (cont === null) {
+                break;
+            }
         }
     }
 
     return output;
 }
+

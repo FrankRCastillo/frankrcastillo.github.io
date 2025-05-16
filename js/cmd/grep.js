@@ -1,23 +1,41 @@
 export const description = 'Search for a string in input or file.';
 
+import { getFileFromFS } from '../fsutil.js';
+
 export default async function grep(args, base, stdin = '') {
     const pattern = args[0];
     const path = args[1];
 
-    if (!pattern) return 'grep: missing search pattern';
+    if (!pattern) {
+        return 'grep: missing search pattern';
+    }
 
     let text = '';
 
     if (path) {
-        const url = `${base}/${resolvePath(path)}`;
-        const res = await ghfetch(url);
+        const file = getFileFromFS(path);
 
-        if (!res.ok) { return `grep: cannot read file: ${path}`; }
+        if (!file || file.type !== 'file') {
+            return `grep: cannot read file: ${path}`;
+        }
 
-        const file = await res.json();
-        
-        text = atob(file.content.replace(/\n/g, ''));
+        try {
+            const res = await fetch(file.download_url);
 
+            if (!res.ok) {
+                return `grep: cannot read file: ${path}`;
+            }
+
+            const content = await res.text();
+
+            if (file.encoding === 'base64') {
+                text = atob(content.replace(/\n/g, ''));
+            } else {
+                text = content;
+            }
+        } catch (err) {
+            return `grep: error reading ${path}`;
+        }
     } else {
         text = stdin;
     }
@@ -27,3 +45,4 @@ export default async function grep(args, base, stdin = '') {
         .filter(line => line.includes(pattern))
         .join('\n');
 }
+

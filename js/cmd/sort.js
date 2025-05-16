@@ -1,24 +1,37 @@
 export const description = "Sort lines in a file or input.";
 
+import { getFileFromFS } from '../fsutil.js';
+
 export default async function sort(args, base, stdin = '') {
     const path = args[0];
     let text = '';
 
     if (path) {
-        const url = `${base}/${resolvePath(path)}`;
-        const res = await ghfetch(url);
+        const file = getFileFromFS(path);
 
-        if (!res.ok) {
+        if (!file || file.type !== 'file') {
             return `sort: cannot read file: ${path}`;
         }
 
-        const file = await res.json();
+        try {
+            const res = await fetch(file.download_url);
 
-        text = atob(file.content.replace(/\n/g, ''));
+            if (!res.ok) {
+                return `sort: cannot read file: ${path}`;
+            }
 
+            const content = await res.text();
+
+            if (file.encoding === 'base64') {
+                text = atob(content.replace(/\n/g, ''));
+            } else {
+                text = content;
+            }
+        } catch (err) {
+            return `sort: error reading ${path}`;
+        }
     } else {
         text = stdin;
-
     }
 
     return text
@@ -27,3 +40,4 @@ export default async function sort(args, base, stdin = '') {
         .sort((a, b) => a.localeCompare(b))
         .join('\n');
 }
+

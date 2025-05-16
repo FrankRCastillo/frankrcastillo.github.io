@@ -3,18 +3,60 @@ window.defaultRepoBase = `https://api.github.com/repos/${window.defaultRepoName}
 window.repoName = window.defaultRepoName;
 window.repoBase = window.defaultRepoBase;
 
+await importScript('fsutil');
+
+if (!window.githubfs) {
+    await window.populateGithubFS(window.repoName);
+}
+
 const BRANCH  = 'master';
 const content = document.getElementById('content');
 const nav     = document.getElementById('nav');
 
+window.githubfs = window.githubfs || {};
+
 window.ghfetch = async function(url, options = {}) {
-    return fetch( url
-                , { method: 'GET'
-                  , credentials: 'omit'
-                  , cache: 'no-cache'
-                  }
-                );
+    return fetch(url, {
+        method: 'GET',
+        credentials: 'omit',
+        cache: 'no-cache',
+        ...options
+    });
 };
+
+async function populateGitHubFS(repo) {
+    const [user, name] = repo.split('/');
+    if (window.githubfs[user]?.[name]) return;
+
+    const url = `https://api.github.com/repos/${repo}/git/trees/HEAD?recursive=1`;
+    const res = await ghfetch(url);
+    if (!res.ok) return;
+
+    const data = await res.json();
+    const tree = data.tree || [];
+
+    const fs = {};
+    for (const item of tree) {
+        const parts = item.path.split('/');
+        let current = fs;
+        for (let i = 0; i < parts.length; i++) {
+            const part = parts[i];
+            if (i === parts.length - 1) {
+                current[part] = {
+                    type: item.type,
+                    path: item.path,
+                    url: item.url
+                };
+            } else {
+                current[part] = current[part] || {};
+                current = current[part];
+            }
+        }
+    }
+
+    if (!window.githubfs[user]) window.githubfs[user] = {};
+    window.githubfs[user][name] = fs;
+}
 
 async function fetchPages() {
     const api = `${window.repoBase}/pages?ref=${BRANCH}`;
@@ -25,43 +67,36 @@ async function fetchPages() {
 
 function importScript(name) {
     return new Promise((resolve, reject) => {
-        const script   = document.createElement('script');
-        script.src     = `js/${name}.js`;
-        script.onload  = resolve;
+        const script = document.createElement('script');
+        script.src = `js/${name}.js`;
+        script.onload = resolve;
         script.onerror = reject;
-
         document.head.appendChild(script);
     });
 }
 
 async function loadPage(url, pageName) {
     const res = await ghfetch(url);
-
     if (!res.ok) {
         content.innerHTML = '<p>Error loading page.</p>';
         return;
     }
 
     const html = await res.text();
-
     content.innerHTML = html;
 
     try {
         await importScript(pageName);
     } catch (_) {
-        // continue;
+        // continue
     }
 
     const hook = window[`load_${pageName}`];
+    if (typeof hook === 'function') hook();
 
-    if (typeof hook === 'function') { hook(); }
-
-    // If this is the terminal page, load and run the module
     if (pageName === 'cmd') {
         const module = await import(`./cmd.js`);
-
         console.log("cmd.js loaded");
-
         requestAnimationFrame(async () => {
             await window.setupTerminal();
         });
@@ -70,30 +105,26 @@ async function loadPage(url, pageName) {
 
 function createNavItem(file) {
     const name = file.name.replace('.html', '');
-
-    const btn = document.createElement('button');
-
+    const btn  = document.createElement('button');
     btn.textContent = name;
-
     btn.onclick = () => {
         history.pushState(null, '', `?page=${name}`);
         loadPage(file.download_url, name);
     };
-
     nav.appendChild(btn);
 }
 
 async function init() {
     const files = await fetchPages();
     const pages = files.filter(f => f.name.endsWith('.html'));
+    const files = await fetchPages();
+    const pages = files.filter(f => f.name.endsWith('.html'));
 
-    // puts home at the beginning and cmd at end
     pages.sort((a, b) => {
-        if (a.name === 'home.html') { return -1; }
-        if (b.name === 'home.html') { return  1; }  
-        if (a.name === 'cmd.html')  { return  1; } 
-        if (b.name === 'cmd.html')  { return -1; }
-
+        if (a.name === 'home.html') return -1;
+        if (b.name === 'home.html') return 1;
+        if (a.name === 'cmd.html') return 1;
+        if (b.name === 'cmd.html') return -1;
         return a.name.localeCompare(b.name);
     }).forEach(createNavItem);
 
@@ -103,10 +134,8 @@ async function init() {
 
     if (match) {
         loadPage(match.download_url, page);
-
     } else {
         content.innerHTML = '<p>Page not found.</p>';
-
     }
 }
 

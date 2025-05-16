@@ -1,41 +1,36 @@
 export const description = "shows directory structure recursively.";
 
+import { getDirFromFS } from '../fsutil.js';
+
 export default async function tree(args, base, indent = '', path = '') {
-    const fullPath = resolvePath(path);
-    const url      = encodeURI(`${base}/${fullPath}`);
-    const res      = await ghfetch(url);
+    const dir = getDirFromFS(path);
 
-    if (!res.ok) {
-        const label = fullPath.split('/').pop() || '.';
+    const label = path.split('/').pop() || '.';
 
-        return `${indent}└── ${label} [${res.status} ${res.statusText}]` + '\n';
+    if (!dir || dir.type !== 'dir' || !dir.children) {
+        return `${indent}└── ${label} [not a directory]\n`;
     }
 
-    const items = await res.json();
-
-    if (!Array.isArray(items)) {
-        return `${indent}└── ${path || '.'} [not a directory]\n`;
-    }
-
-    items.sort((a, b) => {
-        if (a.type === b.type) { return a.name.localeCompare(b.name); }
-
+    const items = Object.values(dir.children).sort((a, b) => {
+        if (a.type === b.type) {
+            return a.name.localeCompare(b.name);
+        }
         return a.type === 'dir' ? -1 : 1;
     });
 
     let output = '';
 
     for (let i = 0; i < items.length; i++) {
-        const item       = items[i];
-        const isLast     = i === items.length - 1;
-        const prefix     = isLast ? '└── ' : '├── ';
+        const item = items[i];
+        const isLast = i === items.length - 1;
+        const prefix = isLast ? '└── ' : '├── ';
         const nextIndent = indent + (isLast ? '    ' : '│   ');
-        const line       = `${indent}${prefix}${item.name}\n`;
+        const line = `${indent}${prefix}${item.name}\n`;
 
         output += line;
 
         if (item.type === 'dir') {
-            const subTree = await tree([], base, nextIndent, `${fullPath}/${item.name}`);
+            const subTree = await tree([], base, nextIndent, `${path}/${item.name}`);
             output += subTree;
         }
     }

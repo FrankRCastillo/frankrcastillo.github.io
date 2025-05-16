@@ -11,46 +11,40 @@ function humanSize(bytes) {
 }
 
 export default async function ls(args, base, stdin = '') {
-    let long    = false;
-    let human   = false;
+    let long = false;
+    let human = false;
     const paths = [];
 
     for (const arg of args) {
         if (arg.startsWith('-')) {
-            long  ||= arg.includes('l');
+            long ||= arg.includes('l');
             human ||= arg.includes('h');
         } else {
             paths.push(arg);
         }
     }
 
-    const path = paths[0] || '';
-    const url  = `${base}/${resolvePath(path)}`;
-    const res  = await ghfetch(url);
+    const path = resolvePath(paths[0] || '');
+    const node = window.getGithubFSNode(path);
 
-    if (!res.ok) {
-        return `ls: cannot access ${path || '.'}`;
-    }
+    if (!node) return `ls: cannot access ${path || '.'}`;
 
     const username = window.repoName.split('/')[0];
     const reponame = window.repoName.split('/')[1];
 
-    const formatLine = (item) => {
-        const type = item.type === 'dir' ? 'd' : 'f';
-        const size = item.type === 'file' ? (human ? humanSize(item.size).padStart(5) : `${item.size}B`.padStart(5)) : '     ';
-        const name = item.name + (item.type === 'dir' ? '/' : '');
-
-        return `${type}  ${username}  ${reponame}  ${size}  ${name}`;
+    const formatLine = (name, item) => {
+        const type = item.type === 'tree' || item.type === 'dir' ? 'd' : 'f';
+        const size = item.size != null ? (human ? humanSize(item.size).padStart(5) : `${item.size}B`.padStart(5)) : '     ';
+        const display = name + (type === 'd' ? '/' : '');
+        return `${type}  ${username}  ${reponame}  ${size}  ${display}`;
     };
 
-    if (!Array.isArray(await res.clone().json())) {
-        const file = await res.json();
-
-        return formatLine(file);
+    if (!node.children) {
+        return formatLine(path.split('/').pop(), node);
     }
 
-    const files = await res.json();
-
-    return files.map(formatLine).join('\n');
+    return Object.entries(node.children)
+        .map(([name, item]) => formatLine(name, item))
+        .join('\n');
 }
 

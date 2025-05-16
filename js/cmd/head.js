@@ -1,14 +1,15 @@
 export const description = "Show the first few lines of a file.";
 
+import { getFileFromFS } from '../fsutil.js';
+
 export default async function head(args, base, stdin = '') {
     let numLines = 10;
     let path = null;
 
-    // Parse options
     for (let i = 0; i < args.length; i++) {
         if (args[i] === '-n' && i + 1 < args.length) {
             numLines = parseInt(args[i + 1], 10);
-            i++; // skip next arg
+            i++;
         } else {
             path = args[i];
         }
@@ -17,16 +18,24 @@ export default async function head(args, base, stdin = '') {
     let text = '';
 
     if (path) {
-        const url = `${base}/${resolvePath(path)}`;
-        
-        const res = await ghfetch(url);
+        const file = getFileFromFS(path);
 
-        if (!res.ok) { return `head: cannot read file: ${path}`; }
+        if (!file || file.type !== 'file') {
+            return `head: cannot read file: ${path}`;
+        }
 
-        const file = await res.json();
+        try {
+            const res = await fetch(file.download_url);
 
-        text = atob(file.content.replace(/\n/g, ''));
+            if (!res.ok) {
+                return `head: cannot read file: ${path}`;
+            }
 
+            const content = await res.text();
+            text = file.encoding === 'base64' ? atob(content.replace(/\n/g, '')) : content;
+        } catch (err) {
+            return `head: error reading ${path}`;
+        }
     } else {
         text = stdin;
     }

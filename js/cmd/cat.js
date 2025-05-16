@@ -1,5 +1,7 @@
 export const description = "Displays contents of the file.";
 
+import { getFileFromFS } from '../fsutil.js';
+
 export default async function cat(args, base, stdin = '') {
     const path = args[0];
 
@@ -7,15 +9,28 @@ export default async function cat(args, base, stdin = '') {
         return 'cat: missing file name';
     }
 
-    const url = `${base}/${resolvePath(path)}`;
-    const res = await ghfetch(url);
+    const file = getFileFromFS(path);
 
-    if (!res.ok) {
+    if (!file || file.type !== 'file') {
         return `cat: cannot open ${path}`;
     }
 
-    const file = await res.json();
-    const decoded = atob(file.content.replace(/\n/g, ''));
+    try {
+        const res = await fetch(file.download_url);
 
-    return decoded;
+        if (!res.ok) {
+            return `cat: cannot open ${path}`;
+        }
+
+        const content = await res.text();
+
+        if (file.encoding === 'base64') {
+            return atob(content.replace(/\n/g, ''));
+        } else {
+            return content;
+        }
+    } catch (err) {
+        return `cat: error reading ${path}`;
+    }
 }
+
