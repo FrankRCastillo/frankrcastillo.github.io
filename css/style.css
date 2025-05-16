@@ -30,7 +30,7 @@ nav button {
     border: 1px solid #ffa500;
     padding: 0.5em 1em;
     margin-right: 0.5em;
-    font-family: monospace;
+    font-family: consolas;
     cursor: pointer;
 }
 
@@ -74,7 +74,7 @@ pre {
     background: #000000;
     color: #ffa500;
     padding: 1em;
-    font-family: monospace;
+    font-family: consolas;
     display: flex;
     width: 100%;
     box-sizing: border-box;
@@ -104,7 +104,7 @@ pre {
     color: #ffa500;
     border: none;
     outline: none;
-    font-family: monospace;
+    font-family: consolas;
     width: 100%;
     font-size: 14px;
     autocapitalize: off;
@@ -140,7 +140,7 @@ pre {
 
     #terminal-input,
     #terminal-output {
-        front-family: monospace;
+        front-family: consolas;
         font-size: 12px;
     }
 }
