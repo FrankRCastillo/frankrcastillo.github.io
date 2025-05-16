@@ -15,40 +15,6 @@ const nav     = document.getElementById('nav');
 
 window.githubfs = window.githubfs || {};
 
-async function populateGitHubFS(repo) {
-    const [user, name] = repo.split('/');
-    if (window.githubfs[user]?.[name]) return;
-
-    const url = `https://api.github.com/repos/${repo}/git/trees/HEAD?recursive=1`;
-    const res = await ghfetch(url);
-    if (!res.ok) return;
-
-    const data = await res.json();
-    const tree = data.tree || [];
-
-    const fs = {};
-    for (const item of tree) {
-        const parts = item.path.split('/');
-        let current = fs;
-        for (let i = 0; i < parts.length; i++) {
-            const part = parts[i];
-            if (i === parts.length - 1) {
-                current[part] = {
-                    type: item.type,
-                    path: item.path,
-                    url: item.url
-                };
-            } else {
-                current[part] = current[part] || {};
-                current = current[part];
-            }
-        }
-    }
-
-    if (!window.githubfs[user]) window.githubfs[user] = {};
-    window.githubfs[user][name] = fs;
-}
-
 async function fetchPages() {
     const api = `${window.repoBase}/pages?ref=${BRANCH}`;
     const res = await ghfetch(api);
