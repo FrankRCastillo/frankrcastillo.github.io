@@ -117,8 +117,6 @@ function createNavItem(file) {
 async function init() {
     const files = await fetchPages();
     const pages = files.filter(f => f.name.endsWith('.html'));
-    const files = await fetchPages();
-    const pages = files.filter(f => f.name.endsWith('.html'));
 
     pages.sort((a, b) => {
         if (a.name === 'home.html') return -1;
