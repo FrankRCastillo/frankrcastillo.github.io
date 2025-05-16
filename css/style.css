@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: consolas;
+    font-family: monospace;
     font-size: 14px;
     background-color: #000;
     color: #fff;
@@ -30,7 +30,7 @@ nav button {
     border: 1px solid #ffa500;
     padding: 0.5em 1em;
     margin-right: 0.5em;
-    font-family: consolas;
+    font-family: monospace;
     cursor: pointer;
 }
 
@@ -74,7 +74,7 @@ pre {
     background: #000000;
     color: #ffa500;
     padding: 1em;
-    font-family: consolas;
+    font-family: monospace;
     display: flex;
     width: 100%;
     box-sizing: border-box;
@@ -104,7 +104,7 @@ pre {
     color: #ffa500;
     border: none;
     outline: none;
-    font-family: consolas;
+    font-family: monospace;
     width: 100%;
     font-size: 14px;
     autocapitalize: off;
@@ -140,7 +140,7 @@ pre {
 
     #terminal-input,
     #terminal-output {
-        front-family: consolas;
+        front-family: monospace;
         font-size: 12px;
     }
 }
