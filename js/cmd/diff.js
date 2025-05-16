@@ -1,7 +1,5 @@
 export const description = "Find the difference between two files.";
 
-import { getFileFromFS } from '/js/fsutil.js';
-
 export default async function diff(args, base, stdin = '') {
     if (args.length < 2) {
         return 'diff: missing file operands';
