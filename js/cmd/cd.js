@@ -28,7 +28,6 @@ export default async function cd(args, base, stdin = '') {
 
     if (!dirNode || dirNode.type !== 'dir') {
         return `cd: not a directory: ${path}`;
-        debugger;
     }
 
     window.pathStack = newStack;
