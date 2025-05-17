@@ -23,7 +23,7 @@ export default async function tail(args, base, stdin = '') {
         }
 
         try {
-            const res = await window.ghfetch(file.download_url);
+            const res = await window.ghfetch(file.url);
 
             if (!res.ok) {
                 return `tail: cannot read file: ${path}`;

@@ -15,7 +15,7 @@ export default async function cmp(args, base, stdin = '') {
         }
 
         try {
-            const res = await fetch(file.download_url);
+            const res = await fetch(file.url);
 
             if (!res.ok) {
                 return null;

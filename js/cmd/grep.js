@@ -18,7 +18,7 @@ export default async function grep(args, base, stdin = '') {
         }
 
         try {
-            const res = await fetch(file.download_url);
+            const res = await fetch(file.url);
 
             if (!res.ok) {
                 return `grep: cannot read file: ${path}`;
