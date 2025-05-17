@@ -26,7 +26,11 @@ export default async function cd(args, base, stdin = '') {
     const resolved = newStack.join('/');
     const dirNode = window.getDirFromFS(resolved);
 
-    if (!dirNode || dirNode.type !== 'dir') {
+    if (!dirNode ) {
+        return `cd: failed to change directory: ${path}`;
+    }
+
+    if (dirNode.type !== 'dir') {
         return `cd: not a directory: ${path}`;
     }
 
