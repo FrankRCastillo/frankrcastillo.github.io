@@ -96,6 +96,7 @@ async function init() {
     const match  = pages.find(f => f.name === `${page}.html`);
 
     if (match) {
+        console.log(match);
         loadPage(match.download_url, page);
     } else {
         content.innerHTML = '<p>Page not found.</p>';
