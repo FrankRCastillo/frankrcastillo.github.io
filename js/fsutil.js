@@ -84,6 +84,10 @@ window.getGithubFSNode = function(path) {
     const parts = path.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
     let node = window.githubfs?.[user]?.[repo];
 
+    if (parts.length === 0) {
+        return node;
+    }
+
     for (const part of parts) {
         if (!node?.children?.[part]) {
             return null;
