@@ -70,7 +70,7 @@ function createNavItem(file) {
 
     btn.onclick = () => {
         history.pushState(null, '', `?page=${name}`);
-        loadPage(file.download_url, name);
+        loadPage(file.url, name);
     };
 
     nav.appendChild(btn);
@@ -94,7 +94,7 @@ async function init() {
     const match  = pages.find(f => f.name === `${page}.html`);
 
     if (match) {
-        loadPage(match.download_url, page);
+        loadPage(match.url, page);
     } else {
         content.innerHTML = '<p>Page not found.</p>';
     }

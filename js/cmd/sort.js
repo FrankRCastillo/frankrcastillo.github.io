@@ -12,7 +12,7 @@ export default async function sort(args, base, stdin = '') {
         }
 
         try {
-            const res = await window.ghfetch(file.download_url);
+            const res = await window.ghfetch(file.url);
 
             if (!res.ok) {
                 return `sort: cannot read file: ${path}`;

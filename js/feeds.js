@@ -18,7 +18,7 @@ async function load_feeds() {
 
     for (const file of jsonFiles) {
         try {
-            const res = await ghfetch(file.download_url);
+            const res = await ghfetch(file.url);
             if (!res.ok) throw new Error(`Fetch failed for ${file.name}`);
 
             const data = await res.json();
