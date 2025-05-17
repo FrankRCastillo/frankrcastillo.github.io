@@ -4,14 +4,19 @@ window.defaultRepoName = "FrankRCastillo/frankrcastillo.github.io";
 window.defaultRepoBase = `https://api.github.com/repos/${window.defaultRepoName}/contents`;
 window.repoName        = window.defaultRepoName;
 window.repoBase        = window.defaultRepoBase;
+window.repoTree        = await window.getGithubTree();
 
-await window.populateGithubFS(window.repoName);
+const [user, repo] = window.repoName.split('/');
+
+window.githubfs = window.githubfs || {}
+window.githubfs[user] = window.githubfs[user] || {}
+window.githubfs[user][repo] = {}
+
+window.getGithubFS(window.repoTree, window.githubfs[user][repo]);
 
 const BRANCH  = 'master';
 const content = document.getElementById('content');
 const nav     = document.getElementById('nav');
-
-window.githubfs = window.githubfs || {};
 
 async function fetchPages() {
     const api = `${window.repoBase}/pages?ref=${BRANCH}`;

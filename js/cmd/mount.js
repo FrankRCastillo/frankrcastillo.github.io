@@ -12,19 +12,24 @@ export default async function mount(args) {
                ].join('\n');
     }
 
-    const repo = args[0];
-    const url = `https://api.github.com/repos/${repo}/contents`;
+    const repoName = args[0];
+    const url = `https://api.github.com/repos/${repoName}/contents`;
 
     try {
         const res = await window.ghfetch(url);
 
-        if (!res.ok) { return `mount: failed to mount repo: ${repo}`; }
+        if (!res.ok) { return `mount: failed to mount repo: ${repoName}`; }
 
-        window.repoName = repo;
+        window.repoName = repoName;
         window.repoBase = url;
+        window.repoTree = await window.getGithubTree();
 
-        if (!window.githubfs?.[repo.split('/')[0]]?.[repo.split('/')[1]]) {
-            await window.populateGithubFS(repo);
+        const [ user, repo ] = window.repoName.split('/');
+
+        if (!window.githubfs?.[user]?.[repo]) {
+            window.githubfs[user] = window.githubfs[user] || {};
+            window.githubfs[user][repo] = window.githubfs[user][repo] || {};
+            window.getGithubFS(window.repoTree, window.githubfs[user][repo]);
         }
 
         return `repo set to ${repo}`;

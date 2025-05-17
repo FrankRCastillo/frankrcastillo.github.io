@@ -28,8 +28,8 @@ window.getFSNode = function(path) {
     return node;
 };
 
-window.populateGithubFS = async function(repoName) {
-    const [user, repo] = repoName.split('/');
+window.getGithubTree = async function() {
+    const [user, repo] = window.repoName.split('/');
     const api = `https://api.github.com/repos/${user}/${repo}/git/trees/HEAD?recursive=1`;
     const res = await window.ghfetch(api);
 
@@ -40,38 +40,41 @@ window.populateGithubFS = async function(repoName) {
 
     const data = await res.json();
 
-    if (!data.tree) return;
+    if (!data.tree) { return; }
 
-    window.githubfs = window.githubfs || {};
-    window.githubfs[user] = window.githubfs[user] || {};
-    const root = {};
-    window.githubfs[user][repo] = root;
+    for (let node of data.tree) {
+        node.type = { 'tree' : 'dir'
+                    , 'blob' : 'file'
+                    }[node.type];
+    }
 
-    for (const item of data.tree) {
-        const parts = item.path.split('/');
-        let current = root;
+    return data.tree;
+}
+
+window.getGithubFS = function(tree, fs) {
+    for (const node of tree) {
+        const parts = node.path.split('/');
+        let current = fs;
 
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i];
-            if (!current.children) current.children = {};
 
-            const isLast = i === parts.length - 1;
+            if (!current.children) {
+                current.children = {};
+            }
 
             if (!current.children[part]) {
-                current.children[part] = {
-                    type: isLast
-                        ? item.type === 'tree' ? 'dir'
-                        : item.type === 'blob' ? 'file'
-                        : item.type
-                        : 'dir',
-                    ...(isLast ? item : {})
-                };
+                current.children[part] = { type: i === parts.length - 1 ? node.type : 'dir'
+                                         , ...(i === parts.length - 1 ? node : {})
+                                         , children: i === parts.length - 1 ? undefined : {}
+                                         };
             }
 
             current = current.children[part];
         }
     }
 };
+
 
 window.getGithubFSNode = function(path) {
     if (!window.githubfs || !window.repoName) {

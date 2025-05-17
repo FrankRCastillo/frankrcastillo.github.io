@@ -23,8 +23,7 @@ async function load_projects() {
 
     const files = await res.text();
     const rows  = parseCSV(files);
-
-    ul = document.createElement('ul')
+    const ul    = document.createElement('ul')
 
     rows.forEach(row => {
         const name   = row[0];
