@@ -1,14 +1,12 @@
 async function load_feeds() {
     const list = document.getElementById('feedList');
-    const api = `${window.defaultRepoBase}/pages/feeds?ref=master`;
-
-    const res = await ghfetch(api);
-    if (!res.ok) {
+    const dir = window.getDirFromFS('pages/feeds');
+    if (!dir || !dir.children) {
         list.innerHTML = '<p>Error loading feed data.</p>';
         return;
     }
 
-    const files = await res.json();
+    const files = Object.values(dir.children).filter(f => f.name.endsWith('.json'));
     const jsonFiles = files.filter(f => f.name.endsWith('.json'));
 
     list.innerHTML = '<p>Loading feeds...</p>';
@@ -18,7 +16,7 @@ async function load_feeds() {
 
     for (const file of jsonFiles) {
         try {
-            const res = await ghfetch(file.download_url);
+            const res = await ghfetch(`https://raw.githubusercontent.com/${window.repoName}/master/${file.path}`);
             if (!res.ok) throw new Error(`Fetch failed for ${file.name}`);
 
             const data = await res.json();

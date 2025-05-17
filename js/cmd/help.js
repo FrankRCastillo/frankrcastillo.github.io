@@ -1,42 +1,31 @@
 export const description = "Displays usage info for all commands.";
 
-export default async function help(_, base, stdin = '') {
-    const api = `${base}/js/cmd?ref=master`;
+export default async function help() {
+    const dir = window.getDirFromFS('js/cmd');
 
-    try {
-        const res = await window.ghfetch(api);
-
-        if (!res.ok) { return 'help: failed to fetch command list'; }
-
-        const files = await res.json();
-
-        const cmds = files
-            .filter(f => f.name.endsWith('.js'))
-            .map(f => f.name.replace('.js', ''));
-
-        cmds.sort();
-
-        const pad_len = Math.max(...cmds.map(cmd => cmd.length)) + 2;
-
-        const results = await Promise.all(
-            cmds.map(async (cmd) => {
-                try {
-                    const module = await import(`./${cmd}.js`);
-
-                    return `${cmd.padEnd(pad_len)} ${module.description || 'No description.'}`;
-
-                } catch {
-                    return `${cmd.padEnd(pad_len)} (error loading)`;
-
-                }
-            })
-        );
-
-        return 'Available commands:\n' + results.join('\n');
-
-    } catch {
-        return 'help: error fetching command list';
-
+    if (!dir || !dir.children) {
+        return 'help: command directory not found';
     }
+
+    const cmds = Object.entries(dir.children)
+        .filter(([name, node]) => name.endsWith('.js') && node.type === 'file')
+        .map(([name]) => name.replace('.js', ''));
+
+    cmds.sort();
+
+    const padLen = Math.max(...cmds.map(cmd => cmd.length)) + 2;
+
+    const results = await Promise.all(
+        cmds.map(async (cmd) => {
+            try {
+                const module = await import(`./${cmd}.js`);
+                return `${cmd.padEnd(padLen)} ${module.description || 'No description.'}`;
+            } catch {
+                return `${cmd.padEnd(padLen)} (error loading)`;
+            }
+        })
+    );
+
+    return 'Available commands:\n' + results.join('\n');
 }
 

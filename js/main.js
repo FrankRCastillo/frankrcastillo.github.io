@@ -11,12 +11,14 @@ const BRANCH  = 'master';
 const content = document.getElementById('content');
 const nav     = document.getElementById('nav');
 
-async function fetchPages() {
-    const api = `${window.repoBase}/pages?ref=${BRANCH}`;
-    const res = await window.ghfetch(api);
-
-    return res.ok ? await res.json() : [];
+function fetchPages() {
+    const dir = window.getDirFromFS('pages');
+    if (!dir || !dir.children) {
+        return [];
+    }
+    return Object.values(dir.children).filter(f => f.name.endsWith('.html'));
 }
+
 
 function importScript(name) {
     return new Promise((resolve, reject) => {
@@ -70,7 +72,7 @@ function createNavItem(file) {
 
     btn.onclick = () => {
         history.pushState(null, '', `?page=${name}`);
-        loadPage(file.download_url, name);
+        loadPage(`https://raw.githubusercontent.com/${window.repoName}/master/${file.path}`, name);
     };
 
     nav.appendChild(btn);
