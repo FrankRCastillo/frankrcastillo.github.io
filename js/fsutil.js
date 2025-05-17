@@ -110,3 +110,30 @@ window.getDirFromFS = function(path) {
 
     return null;
 };
+
+window.resolvePath = function(path) {
+    if (!window.pathStack) {
+        window.pathStack = [];
+    }
+
+    if (!path || path === '.') {
+        return window.pathStack.join('/');
+    }
+
+    if (path === '..') {
+        const tmp = [...window.pathStack];
+        tmp.pop();
+        return tmp.join('/');
+    }
+
+    if (path === '/') {
+        return '';
+    }
+
+    if (path.startsWith('/')) {
+        return path.replace(/^\/+/g, '');
+    }
+
+    return [...window.pathStack, path].join('/');
+};
+
