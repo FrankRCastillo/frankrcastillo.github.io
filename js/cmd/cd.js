@@ -13,6 +13,9 @@ export default async function cd(args, base, stdin = '') {
 
     const resolved = window.resolvePath(path);
     const parts    = resolved ? resolved.split('/').filter(Boolean) : [];
+
+    console.log(parts);
+
     const dirNode  = window.getDirFromFS(resolved);
 
     if (!dirNode) {

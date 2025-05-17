@@ -107,12 +107,8 @@ window.getFileFromFS = function(path) {
 
 window.getDirFromFS = function(path) {
     const node = window.getGithubFSNode(path);
-    
-    if (node && node.type === 'dir') {
-        return node;
-    }
 
-    return null;
+    return node && node.type === 'dir' ? node : null;
 };
 
 window.resolvePath = function(path) {
