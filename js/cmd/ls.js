@@ -11,34 +11,19 @@ function humanSize(bytes) {
 }
 
 export default async function ls(args, base, stdin = '') {
-    let long = false;
-    let human = false;
-    const paths = [];
-
-    for (const arg of args) {
-        if (arg.startsWith('-')) {
-            long ||= arg.includes('l');
-            human ||= arg.includes('h');
-        } else {
-            paths.push(arg);
-        }
-    }
-
-    const path = window.resolvePath(paths[0] || '');
+    const path = window.resolvePath(args[0] || '');
     const node = window.getGithubFSNode(path);
 
     if (!node) {
         return `ls: cannot access ${path || '.'}`;
     }
 
-    const username = window.repoName.split('/')[0];
-    const reponame = window.repoName.split('/')[1];
+    const [username, reponame] = window.repoName.split('/');
 
     const formatLine = (name, item) => {
-        const type    = item.type === 'tree' || item.type === 'dir' ? 'd' : 'f';
-        const size    = item.size != null ? (human ? humanSize(item.size).padStart(5) : `${item.size}B`.padStart(5)) : '     ';
+        const type = item.type === 'tree' || item.type === 'dir' ? 'd' : 'f';
+        const size = item.size != null ? humanSize(item.size).padStart(5) : '     ';
         const display = name + (type === 'd' ? '/' : '');
-
         return `${type}  ${username}  ${reponame}  ${size}  ${display}`;
     };
 
@@ -50,4 +35,3 @@ export default async function ls(args, base, stdin = '') {
         .map(([name, item]) => formatLine(name, item))
         .join('\n');
 }
-
