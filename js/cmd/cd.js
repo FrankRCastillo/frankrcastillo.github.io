@@ -12,12 +12,13 @@ export default async function cd(args, base, stdin = '') {
     }
 
     const resolved = window.resolvePath(path);
-    const parts = resolved ? resolved.split('/').filter(Boolean) : [];
-    const dirNode = window.getDirFromFS(resolved);
+    const parts    = resolved ? resolved.split('/').filter(Boolean) : [];
+    const dirNode  = window.getDirFromFS(resolved);
 
     if (!dirNode) {
         return `cd: failed to change directory: ${path}`;
     }
+
     if (dirNode.type !== 'dir') {
         return `cd: not a directory: ${path}`;
     }

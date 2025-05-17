@@ -14,7 +14,7 @@ export default async function cat(args, base, stdin = '') {
     }
 
     try {
-        const res = await fetch(file.download_url);
+        const res = await window.ghfetch(file.url);
 
         if (!res.ok) {
             return `cat: cannot open ${path}`;

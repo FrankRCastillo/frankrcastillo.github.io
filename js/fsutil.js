@@ -77,6 +77,8 @@ window.getGithubFS = function(tree, fs) {
 
 
 window.getGithubFSNode = function(path) {
+    path = `${window.pathStack.join('/')}/${path}`
+
     if (!window.githubfs || !window.repoName) {
         return null;
     }
@@ -98,6 +100,7 @@ window.getGithubFSNode = function(path) {
 
 window.getFileFromFS = function(path) {
     const node = window.getGithubFSNode(path);
+    
     return node && node.type === 'file' ? node : null;
 };
 
