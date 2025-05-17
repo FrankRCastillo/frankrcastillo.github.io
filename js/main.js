@@ -5,7 +5,7 @@ window.defaultRepoBase = `https://api.github.com/repos/${window.defaultRepoName}
 window.repoName        = window.defaultRepoName;
 window.repoBase        = window.defaultRepoBase;
 
-window.initGithubFS();
+await window.initGithubFS();
 
 const BRANCH  = 'master';
 const content = document.getElementById('content');

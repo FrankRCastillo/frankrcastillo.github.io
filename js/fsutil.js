@@ -1,4 +1,4 @@
-window.initGithubFS = function() {
+window.initGithubFS = async function() {
     const [user, repo] = window.repoName.split('/');
 
     window.repoTree = await window.getGithubTree();
