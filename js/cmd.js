@@ -157,14 +157,14 @@ window.setupTerminal = async function() {
             const cursor = input.selectionStart;
 
             if (!tabComplete.active) {
-                const preCursor = input.value.slice(0, cursor);
-                const tokens = preCursor.split(/\s+/);
-                const partial = tokens[tokens.length - 1] || '';
+                const preCursor  = input.value.slice(0, cursor);
+                const tokens     = preCursor.split(/\s+/);
+                const partial    = tokens[tokens.length - 1] || '';
                 const matchStart = preCursor.endsWith(' ') ? cursor : preCursor.lastIndexOf(partial);
-                const dir = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
-                const base = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
-                const resolved = window.resolvePath(dir);
-                const url = `${window.repoBase}/${resolved}`;
+                const dir        = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
+                const base       = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
+                const resolved   = window.resolvePath(dir);
+                const url        = `${window.repoBase}/${resolved}`;
 
                 try {
                     const res = await ghfetch(url);

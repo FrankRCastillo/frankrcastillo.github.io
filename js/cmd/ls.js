@@ -11,7 +11,7 @@ function humanSize(bytes) {
 }
 
 export default async function ls(args, base, stdin = '') {
-    const path = window.resolvePath(args[0] || '');
+    const path = args[0] || '';
     const node = window.getGithubFSNode(path);
 
     if (!node) {
