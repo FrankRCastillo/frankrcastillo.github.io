@@ -18,13 +18,13 @@ export default async function ls(args, base, stdin = '') {
         return `ls: cannot access ${path || '.'}`;
     }
 
-    const [username, reponame] = window.repoName.split('/');
+    const [user, repo] = window.repoName.split('/');
 
     const formatLine = (name, item) => {
         const type = item.type === 'tree' || item.type === 'dir' ? 'd' : 'f';
         const size = item.size != null ? humanSize(item.size).padStart(5) : '     ';
         const display = name + (type === 'd' ? '/' : '');
-        return `${type}  ${username}  ${reponame}  ${size}  ${display}`;
+        return `${type}  ${user}  ${repo}  ${size}  ${display}`;
     };
 
     if (!node.children) {
