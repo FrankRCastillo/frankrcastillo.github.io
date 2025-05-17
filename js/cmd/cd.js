@@ -11,30 +11,18 @@ export default async function cd(args, base, stdin = '') {
         window.pathStack = [];
     }
 
-    let newStack = [...window.pathStack];
-
-    if (path === '..') {
-        newStack.pop();
-    } else if (path === '/') {
-        newStack = [];
-    } else if (path.startsWith('/')) {
-        newStack = path.replace(/^\/+/g, '').split('/');
-    } else {
-        newStack.push(path);
-    }
-
-    const resolved = newStack.join('/');
+    const resolved = window.resolvePath(path);
+    const parts = resolved ? resolved.split('/').filter(Boolean) : [];
     const dirNode = window.getDirFromFS(resolved);
 
-    if (!dirNode ) {
+    if (!dirNode) {
         return `cd: failed to change directory: ${path}`;
     }
-
     if (dirNode.type !== 'dir') {
         return `cd: not a directory: ${path}`;
     }
 
-    window.pathStack = newStack;
+    window.pathStack = parts;
 
     return '';
 }
