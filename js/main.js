@@ -11,12 +11,12 @@ const BRANCH  = 'master';
 const content = document.getElementById('content');
 const nav     = document.getElementById('nav');
 
-function fetchPages() {
+async function fetchPages() {
     const dir = window.getDirFromFS('pages');
-    if (!dir || !dir.children) {
-        return [];
-    }
-    return Object.values(dir.children).filter(f => f.name.endsWith('.html'));
+    if (!dir || !dir.children) return [];
+    return Object.entries(dir.children)
+                .filter(([name, node]) => node.type === 'file')
+                .map(([name, node]) => ({ name, path: node.path }));
 }
 
 
