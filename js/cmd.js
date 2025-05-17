@@ -173,7 +173,7 @@ window.setupTerminal = async function() {
                     const matches = Object.keys(dirNode.children)
                         .filter(name => name.startsWith(base))
                         .map(name => {
-                            const suffix = dirNode.children[name].type = 'dir' ? '/' : '';
+                            const suffix = dirNode.children[name].type === 'dir' ? '/' : '';
                             const quoted = name.includes(' ') ? `"${name}"` : name;
                             return quoted + suffix;
                     });
