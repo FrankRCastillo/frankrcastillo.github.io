@@ -70,7 +70,7 @@ function createNavItem(file) {
 
     btn.onclick = () => {
         history.pushState(null, '', `?page=${name}`);
-        loadPage(file.url, name);
+        loadPage(file.download_url, name);
     };
 
     nav.appendChild(btn);

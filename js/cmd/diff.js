@@ -20,7 +20,7 @@ export default async function diff(args, base, stdin = '') {
 
     const fetchContent = async (file, path) => {
         try {
-            const res = await fetch(file.url);
+            const res = await fetch(file.download_url);
             if (!res.ok) {
                 return null;
             }

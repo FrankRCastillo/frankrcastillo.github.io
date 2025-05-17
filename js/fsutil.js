@@ -11,7 +11,7 @@ window.initGithubFS = async function() {
 }
 
 window.ghfetch = async function(url, options = {}) {
-    // If the URL is a Git blob API URL, convert it to the raw file URL
+    // If the URL is a Git blob API URL, convert it to the raw file.download_url
     const blobMatch = url.match(/^https:\/\/api\.github\.com\/repos\/([^/]+)\/([^/]+)\/git\/blobs\/([a-f0-9]+)$/);
     
     if (blobMatch) {
