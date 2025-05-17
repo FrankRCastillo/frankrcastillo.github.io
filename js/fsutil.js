@@ -10,20 +10,22 @@ window.initGithubFS = async function() {
     window.getGithubFS(window.repoTree, window.githubfs[user][repo]);
 }
 
-window.ghfetch = async function(url, options = {}) {
+window.ghfetch = async function(path, options = {}) {
     // If the URL is a Git blob API URL, convert it to the raw file.download_url
-    const blobMatch = url.match(/^https:\/\/api\.github\.com\/repos\/([^/]+)\/([^/]+)\/git\/blobs\/([a-f0-9]+)$/);
+    //const blobMatch = url.match(/^https:\/\/api\.github\.com\/repos\/([^/]+)\/([^/]+)\/git\/blobs\/([a-f0-9]+)$/);
+    //
+    //if (blobMatch) {
+    //    const [, user, repo, sha] = blobMatch;
+    //    const tree = window.repoTree.find(node => node.sha === sha);
+    //    
+    //    if (tree?.path) {
+    //        url = `https://raw.githubusercontent.com/${user}/${repo}/master/${tree.path}`;
+    //    }
+    //}
     
-    if (blobMatch) {
-        const [, user, repo, sha] = blobMatch;
-        const tree = window.repoTree.find(node => node.sha === sha);
-        
-        if (tree?.path) {
-            url = `https://raw.githubusercontent.com/${user}/${repo}/master/${tree.path}`;
-        }
-    }
+    const file = window.getFileFromFS(path);
 
-    return fetch( url
+    return fetch( file.download_url
                 , { method      : 'GET'
                   , credentials : 'omit'
                   , cache       : 'no-cache'
