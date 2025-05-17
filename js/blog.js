@@ -1,16 +1,15 @@
 async function load_blog() {
     const blogList = document.getElementById('blogList');
-    const dir = window.getDirFromFS('blog');
+    const dir      = window.getDirFromFS('blog');
 
     if (!dir || !dir.children) {
         blogList.innerHTML = '<p>No posts found.</p>';
         return;
     }
 
-    const files = Object.values(dir.children).filter(f => f.name.endsWith('.txt'));
+    const files = Object.values(dir.children).filter(f => f.name.endsWith('.txt'))
 
-
-    files.filter(f => f.name.endsWith('.txt')).forEach(file => {
+    files.forEach(file => {
         const link = document.createElement('a');
 
         link.href = '#';

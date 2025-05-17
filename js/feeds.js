@@ -8,14 +8,13 @@ async function load_feeds() {
     }
 
     const files     = Object.values(dir.children).filter(f => f.name.endsWith('.json'));
-    const jsonFiles = files.filter(f => f.name.endsWith('.json'));
 
     list.innerHTML = '<p>Loading feeds...</p>';
 
     const fragment = document.createDocumentFragment();
     const sections = [];
 
-    for (const file of jsonFiles) {
+    files.forEach(file => { 
         try {
             const res = await ghfetch(`https://raw.githubusercontent.com/${window.repoName}/master/${file.path}`);
 
