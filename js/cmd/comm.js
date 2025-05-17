@@ -15,7 +15,7 @@ export default async function comm(args, base, stdin = '') {
         }
 
         try {
-            const res = await fetch(file.url);
+            const res = await window.ghfetch(file.url);
 
             if (!res.ok) {
                 return null;
@@ -33,8 +33,8 @@ export default async function comm(args, base, stdin = '') {
         }
     };
 
-    const lines1 = await fetchLines(file1);
-    const lines2 = await fetchLines(file2);
+    const lines1 = await window.ghfetchLines(file1);
+    const lines2 = await window.ghfetchLines(file2);
 
     if (lines1 == null) {
         return `comm: cannot read file: ${file1}`;

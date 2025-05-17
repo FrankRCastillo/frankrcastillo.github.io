@@ -23,7 +23,7 @@ export default async function head(args, base, stdin = '') {
         }
 
         try {
-            const res = await fetch(file.url);
+            const res = await window.ghfetch(file.url);
 
             if (!res.ok) {
                 return `head: cannot read file: ${path}`;

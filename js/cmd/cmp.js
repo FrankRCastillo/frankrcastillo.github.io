@@ -15,7 +15,7 @@ export default async function cmp(args, base, stdin = '') {
         }
 
         try {
-            const res = await fetch(file.url);
+            const res = await window.ghfetch(file.url);
 
             if (!res.ok) {
                 return null;
