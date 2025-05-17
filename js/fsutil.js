@@ -11,6 +11,18 @@ window.initGithubFS = async function() {
 }
 
 window.ghfetch = async function(url, options = {}) {
+    // If the URL is a Git blob API URL, convert it to the raw file URL
+    const blobMatch = url.match(/^https:\/\/api\.github\.com\/repos\/([^/]+)\/([^/]+)\/git\/blobs\/([a-f0-9]+)$/);
+    
+    if (blobMatch) {
+        const [, user, repo, sha] = blobMatch;
+        const tree = window.repoTree.find(node => node.sha === sha);
+        
+        if (tree?.path) {
+            url = `https://raw.githubusercontent.com/${user}/${repo}/master/${tree.path}`;
+        }
+    }
+
     return fetch( url
                 , { method      : 'GET'
                   , credentials : 'omit'
