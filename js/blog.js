@@ -19,7 +19,7 @@ async function load_blog() {
         link.onclick = async (e) => {
             e.preventDefault();
 
-            const res = await ghfetch(`https://raw.githubusercontent.com/${window.repoName}/master/${file.path}`);
+            const res = await window.ghfetch(`https://raw.githubusercontent.com/${window.repoName}/master/${file.path}`);
 
             if (!res.ok) {
                 blogList.innerHTML = '<p>Error loading post.</p>';

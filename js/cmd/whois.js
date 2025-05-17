@@ -7,7 +7,8 @@ export default async function whois(args) {
     const url = `https://api.github.com/users/${username}`;
 
     try {
-        const res = await ghfetch(url);
+        const res = await window.ghfetch(url);
+
         if (!res.ok) { return `whois: user not found: ${username}`; }
 
         const data = await res.json();

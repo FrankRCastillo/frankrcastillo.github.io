@@ -10,7 +10,7 @@ export default async function whoami() {
     }
 
     try {
-        const res  = await ghfetch('https://ipinfo.io/json');
+        const res  = await window.ghfetch('https://ipinfo.io/json');
         const data = await res.json();
 
         const output = [ `IP       : ${data.ip}`

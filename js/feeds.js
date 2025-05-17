@@ -14,9 +14,9 @@ async function load_feeds() {
     const fragment = document.createDocumentFragment();
     const sections = [];
 
-    files.forEach(file => { 
+    for (const file of files) { 
         try {
-            const res = await ghfetch(`https://raw.githubusercontent.com/${window.repoName}/master/${file.path}`);
+            const res = await window.ghfetch(`https://raw.githubusercontent.com/${window.repoName}/master/${file.path}`);
 
             if (!res.ok) {
                 throw new Error(`Fetch failed for ${file.name}`);

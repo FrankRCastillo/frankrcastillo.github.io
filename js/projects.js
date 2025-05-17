@@ -12,7 +12,7 @@ function parseCSV(text) {
 async function load_projects() {
     const projList = document.getElementById('projectsList');
     const projFile = "/pages/projects.csv";
-    const res      = await ghfetch(projFile);
+    const res      = await window.ghfetch(projFile);
 
     if (!res.ok) {
         projList.innerHTML = '<p>Error loading projects.</p>';

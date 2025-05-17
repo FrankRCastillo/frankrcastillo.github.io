@@ -167,7 +167,7 @@ window.setupTerminal = async function() {
                 const url        = `${window.repoBase}/${resolved}`;
 
                 try {
-                    const res = await ghfetch(url);
+                    const res = await window.ghfetch(url);
                     if (!res.ok) {
                         return;
                     }
