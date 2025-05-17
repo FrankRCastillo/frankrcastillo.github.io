@@ -21,9 +21,9 @@ window.runCommand = async function(input) {
     let stdin = '';
 
     for (const segment of segments) {
-        const matchArgs = segment.match(/(?:[^\s"]+|"[^"]*")+/g) || [];
-        const [name, ...args] = matchArgs.map(arg => arg.replace(/^"|"$/g, ''));
 
+        const matchArgs = segment.match(/"([^"]+)"|[^\s]+/g) || [];
+        const [name, ...args] = matchArgs.map(arg => arg.replace(/^"|"$/g, ''));
         const cmd = await loadCommand(name.toLowerCase());
 
         if (!cmd || typeof cmd !== 'function') {
