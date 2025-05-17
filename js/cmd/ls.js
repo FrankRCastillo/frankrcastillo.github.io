@@ -24,7 +24,7 @@ export default async function ls(args, base, stdin = '') {
         }
     }
 
-    const path = resolvePath(paths[0] || '');
+    const path = window.resolvePath(paths[0] || '');
     const node = window.getGithubFSNode(path);
 
     if (!node) {
