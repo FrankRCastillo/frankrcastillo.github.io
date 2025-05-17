@@ -1,3 +1,15 @@
+export const description = "Lists contents of the directory.";
+
+function humanSize(bytes) {
+    const units = ['B', 'K', 'M', 'G'];
+    let i = 0;
+    while (bytes >= 1024 && i < units.length - 1) {
+        bytes /= 1024;
+        i++;
+    }
+    return `${bytes.toFixed(1)}${units[i]}`;
+}
+
 export default async function ls(args, base, stdin = '') {
     const path = window.resolvePath(args[0] || '');
     const node = window.getGithubFSNode(path);
