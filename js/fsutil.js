@@ -25,6 +25,8 @@ window.ghfetch = async function(path, options = {}) {
     
     const file = window.getFileFromFS(path);
 
+    console.log(file);
+
     return fetch( file.download_url
                 , { method      : 'GET'
                   , credentials : 'omit'
