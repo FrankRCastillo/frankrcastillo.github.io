@@ -22,7 +22,10 @@ window.ghfetch = async function(path, options = {}) {
     //        url = `https://raw.githubusercontent.com/${user}/${repo}/master/${tree.path}`;
     //    }
     //}
-    
+   
+
+    console.log(path);
+
     const file = window.getFileFromFS(path);
 
     console.log(file);
