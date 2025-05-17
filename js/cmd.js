@@ -164,18 +164,15 @@ window.setupTerminal = async function() {
                 const dir        = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
                 const base       = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
                 const resolved   = window.resolvePath(dir);
-                const url        = `${window.repoBase}/${resolved}`;
 
                 try {
-                    const res = await window.ghfetch(url);
-                    if (!res.ok) {
-                        return;
-                    }
+                    const dirNode = window.getDirFromFS(resolved);
 
-                    const items = await res.json();
-                    const matches = items
-                        .filter(item => item.name.startsWith(base))
-                        .map(item => item.name + (item.type === 'dir' ? '/' : ''));
+                    if (!dirNode || !dirNode.children) return;
+
+                    const matches = Object.keys(dirNode.children)
+                        .filter(name => name.startsWith(base))
+                        .map(name => name + (dirNode.children[name].type === 'dir' ? '/' : ''));
 
                     if (!matches.length) {
                         return;
