@@ -75,9 +75,10 @@ window.getGithubFS = function(tree, fs) {
     }
 };
 
-
 window.getGithubFSNode = function(path) {
-    path = `${window.pathStack.join('/')}/${path}`
+    if (!path.startsWith('/')) {
+        path = [...window.pathStack, path].join('/');
+    }
 
     if (!window.githubfs || !window.repoName) {
         return null;
@@ -85,13 +86,12 @@ window.getGithubFSNode = function(path) {
 
     const [user, repo] = window.repoName.split('/');
     const parts = path.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
-    let node    = window.githubfs?.[user]?.[repo];
+    let node = window.githubfs?.[user]?.[repo];
 
     for (const part of parts) {
         if (!node?.children?.[part]) {
             return null;
         }
-
         node = node.children[part];
     }
 
