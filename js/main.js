@@ -4,15 +4,8 @@ window.defaultRepoName = "FrankRCastillo/frankrcastillo.github.io";
 window.defaultRepoBase = `https://api.github.com/repos/${window.defaultRepoName}/contents`;
 window.repoName        = window.defaultRepoName;
 window.repoBase        = window.defaultRepoBase;
-window.repoTree        = await window.getGithubTree();
 
-const [user, repo] = window.repoName.split('/');
-
-window.githubfs = window.githubfs || {}
-window.githubfs[user] = window.githubfs[user] || {}
-window.githubfs[user][repo] = {}
-
-window.getGithubFS(window.repoTree, window.githubfs[user][repo]);
+window.initGithubFS();
 
 const BRANCH  = 'master';
 const content = document.getElementById('content');

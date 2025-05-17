@@ -1,3 +1,15 @@
+window.initGithubFS = function() {
+    const [user, repo] = window.repoName.split('/');
+
+    window.repoTree = await window.getGithubTree();
+    window.githubfs = window.githubfs || {}
+    window.githubfs[user] = window.githubfs[user] || {}
+    window.githubfs[user][repo] = {}
+    window.githubfs[user][repo].type = 'dir';
+
+    window.getGithubFS(window.repoTree, window.githubfs[user][repo]);
+}
+
 window.ghfetch = async function(url, options = {}) {
     return fetch( url
                 , { method      : 'GET'
@@ -121,9 +133,13 @@ window.resolvePath = function(path) {
 
     for (const part of parts) {
         if (part === '..') {
-            stack.pop();
+            if (stack.length > 0) {
+                stack.pop();
+            }
+
         } else if (part !== '.' && part !== '') {
             stack.push(part);
+
         }
     }
 
