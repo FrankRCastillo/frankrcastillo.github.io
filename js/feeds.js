@@ -57,4 +57,3 @@ async function load_feeds() {
     list.innerHTML = '';
     list.appendChild(fragment);
 }
-

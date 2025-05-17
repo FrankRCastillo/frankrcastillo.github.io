@@ -116,24 +116,17 @@ window.resolvePath = function(path) {
         window.pathStack = [];
     }
 
-    if (!path || path === '.') {
-        return window.pathStack.join('/');
+    const parts = path.split('/').filter(Boolean);
+    const stack = path.startsWith('/') ? [] : [...window.pathStack];
+
+    for (const part of parts) {
+        if (part === '..') {
+            stack.pop();
+        } else if (part !== '.' && part !== '') {
+            stack.push(part);
+        }
     }
 
-    if (path === '..') {
-        const tmp = [...window.pathStack];
-        tmp.pop();
-        return tmp.join('/');
-    }
-
-    if (path === '/') {
-        return '';
-    }
-
-    if (path.startsWith('/')) {
-        return path.replace(/^\/+/g, '');
-    }
-
-    return [...window.pathStack, path].join('/');
+    return stack.join('/');
 };
 
