@@ -208,9 +208,8 @@ window.setupTerminal = async function() {
                 tabComplete.matches.set(keys[nextIndex], true);
             }
 
-            const [focusedMatch] = [...tabComplete.matches.entries()].find(([, focused]) => focused);
-
             const entry = [...tabComplete.matches.entries()].find(([, focused]) => focused);
+
             if (!entry) { return; }
 
             const [focusedMatch] = entry;
