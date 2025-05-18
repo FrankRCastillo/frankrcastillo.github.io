@@ -48,12 +48,6 @@ window.setupTerminal = async function() {
     window.cmdHistory = [];
     window.cmdIndex   = -1;
 
-    const input  = document.getElementById('terminal-input');
-    const output = document.getElementById('terminal-output');
-    const prompt = document.getElementById('terminal-prompt');
-
-    let promptLength = 0;
-
     let tabComplete = { active     : false
                       , baseText   : ''
                       , matchStart : 0
@@ -63,8 +57,6 @@ window.setupTerminal = async function() {
 
 
     input.addEventListener('keydown', async (e) => {
-        const input  = document.getElementById('terminal-input');
-
         if (e.key === 'Enter') {
             e.preventDefault();
             await keydown_enter();
@@ -88,6 +80,8 @@ window.setupTerminal = async function() {
         if(!['Tab', 'Shift'].includes(e.key)) {
             tabComplete.active = false;
         }
+
+        const input  = document.getElementById('terminal-input');
 
         input.focus();
     });
@@ -121,7 +115,6 @@ function updatePrompt() {
     const promptText = `${window.pwdcmd()}$ `;
 
     prompt.innerText = promptText;
-    promptLength     = promptText.length;
 
     input.focus();
     input.setSelectionRange(input.value.length, input.value.length);
