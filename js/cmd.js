@@ -84,13 +84,15 @@ window.setupTerminal = async function() {
             keydown_tab();
         }
         
-        !['Tab', 'Shift'].includes(e.key) ?  tabComplete.active = false;
-
+        if(!['Tab', 'Shift'].includes(e.key)) {
+            tabComplete.active = false;
+        }
 
         input.focus();
     });
 
     output.addEventListener('mouseup', () => {
+        const input  = document.getElementById('terminal-input');
         const sel = window.getSelection();
 
         if (!sel || sel.isCollapsed) {
@@ -99,6 +101,8 @@ window.setupTerminal = async function() {
     });
 
     output.addEventListener('selectionchange', () => {
+        const input  = document.getElementById('terminal-input');
+
         if (!document.activeElement || document.activeElement !== input) {
             const sel = window.getSelection();
 
