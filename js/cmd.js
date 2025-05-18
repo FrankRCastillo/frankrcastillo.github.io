@@ -277,6 +277,18 @@ function keydown_tab() {
     const newCursor = tabComplete.matchStart + focusedMatch.length;
 
     input.setSelectionRange(newCursor, newCursor);
+
+    const isDir = focusedMatch.endsWith('/');
+
+    if (isDir) {
+        tabComplete.active = false;
+        const newCursor = tabComplete.matchStart + focusedMatch.length;
+
+        input.setSelectionRange(newCursor, newCursor);
+
+        return;
+    }
+
 }
 
 function keydown_uparrow() {
