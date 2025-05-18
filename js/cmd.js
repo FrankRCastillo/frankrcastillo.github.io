@@ -1,7 +1,5 @@
 const commands = {};
 
-window.pwdcmd = await loadCommand('pwd');
-
 async function loadCommand(name) {
     if (!commands[name]) {
         try {
@@ -13,6 +11,8 @@ async function loadCommand(name) {
     }
     return commands[name];
 }
+
+window.pwdcmd = await loadCommand('pwd');
 
 window.runCommand = async function(input) {
     if (!input.trim()) {
