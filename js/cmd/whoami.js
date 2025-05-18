@@ -1,12 +1,13 @@
 export const description = "Shows your IP and geolocation info.";
 
-export default async function whoami() {
+export default async function whoami(args = '') {
     const key = 'whoami-cache';
+    const refresh = args.includes('--refresh');
 
-    const cached = sessionStorage.getItem(key);
+    if (!refresh) {
+        const cached = sessionStorage.getItem(key);
 
-    if (cached) {
-       return cached;
+        if (cached) { return cached; }
     }
 
     try {
@@ -22,6 +23,7 @@ export default async function whoami() {
                        , `Location : ${data.loc}`
                        , `Org      : ${data.org}`
                        , `Timezone : ${data.timezone}`
+                       , "\nThis output is cached. To refresh the IP, run whoami --refresh"
                        ].join('\n');
 
         sessionStorage.setItem(key, output);
