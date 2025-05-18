@@ -12,7 +12,10 @@ async function loadCommand(name) {
     return commands[name];
 }
 
-(async () => { window.pwdcmd = await loadCommand('pwd'); })();
+(async () => {
+    window.pwdcmd = await loadCommand('pwd');
+    updatePrompt();
+})();
 
 window.runCommand = async function(input) {
     if (!input.trim()) {
@@ -87,6 +90,8 @@ window.setupTerminal = async function() {
         const input  = document.getElementById('terminal-input');
 
         input.focus();
+
+        updatePrompt();
     });
 
     output.addEventListener('mouseup', () => {
