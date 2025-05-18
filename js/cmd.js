@@ -1,5 +1,12 @@
 const commands = {};
 
+let tabComplete = { active     : false
+                    , baseText   : ''
+                    , matchStart : 0
+                    , matchEnd   : 0
+                    , matches    : new Map()
+                    };
+
 async function loadCommand(name) {
     if (!commands[name]) {
         try {
@@ -53,14 +60,6 @@ window.setupTerminal = async function() {
 
     const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
-
-    let tabComplete = { active     : false
-                      , baseText   : ''
-                      , matchStart : 0
-                      , matchEnd   : 0
-                      , matches    : new Map()
-                      };
-
 
     input.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
