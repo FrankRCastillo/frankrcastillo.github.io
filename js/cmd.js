@@ -114,6 +114,7 @@ window.setupTerminal = async function() {
 };
 
 function updatePrompt() {
+    const input      = document.getElementById('terminal-input');
     const output     = document.getElementById('terminal-output');
     const prompt     = document.getElementById('terminal-prompt');
     const promptText = `${pwd()}$ `;
