@@ -1,5 +1,7 @@
 const commands = {};
 
+window.pwdcmd = await loadCommand('pwd');
+
 async function loadCommand(name) {
     if (!commands[name]) {
         try {
@@ -49,7 +51,6 @@ window.setupTerminal = async function() {
     const input  = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     const prompt = document.getElementById('terminal-prompt');
-    const pwd    = (await loadCommand('pwd'));
 
     let promptLength = 0;
 
@@ -117,7 +118,7 @@ function updatePrompt() {
     const input      = document.getElementById('terminal-input');
     const output     = document.getElementById('terminal-output');
     const prompt     = document.getElementById('terminal-prompt');
-    const promptText = `${pwd()}$ `;
+    const promptText = `${window.pwdcmd()}$ `;
 
     prompt.innerText = promptText;
     promptLength     = promptText.length;
@@ -173,7 +174,7 @@ async function keydown_enter() {
     input.value = '';
     input_row.style.visibility = 'hidden';
 
-    print(`${pwd()}$ ${command}`);
+    print(`${window.pwdcmd()}$ ${command}`);
 
     try {
         const result = await runCommand(command);
