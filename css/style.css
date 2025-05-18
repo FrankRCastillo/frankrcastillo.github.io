@@ -84,6 +84,11 @@ pre {
     width: 100%;
 }
 
+#terminal-prompt-row {
+    height: 0px;
+    line-height: 0px;
+}
+
 #terminal,
 #terminal-prompt-table,
 #terminal-prompt-table td,
@@ -97,6 +102,8 @@ pre {
 
 #terminal-input-cell {
     width: 100%;
+    height: inherit;
+    line-height: inherit;
 }
 
 #terminal-input {
@@ -109,9 +116,12 @@ pre {
     font-size: 14px;
     autocapitalize: off;
     text-transform: none;
+    line-height: inherit;
+    height: 14px;
 }
 
 #terminal-output {
+    front-family: monospace;
     margin: 0;
     padding: 0;
     min-height: 0px;
@@ -121,6 +131,8 @@ pre {
 #terminal-prompt {
     color: #ffa500;
     white-space: nowrap;
+    height: 0px;
+    line-height: 0px;
 }
 
 /* Adjust font for better legibility on small screens */
@@ -140,7 +152,6 @@ pre {
 
     #terminal-input,
     #terminal-output {
-        front-family: monospace;
         font-size: 12px;
     }
 }
