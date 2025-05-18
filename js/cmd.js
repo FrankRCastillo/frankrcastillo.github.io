@@ -183,13 +183,12 @@ window.setupTerminal = async function() {
                         return;
                     }
 
-                    tabComplete = {
-                        active: true,
-                        baseText: input.value,
-                        matchStart,
-                        matchEnd: cursor,
-                        matches: new Map(matches.map((item, i) => [item, i === 0]))
-                    };
+                    tabComplete = { active     : true
+                                  , baseText   : input.value
+                                  , matchStart
+                                  , matchEnd   : cursor
+                                  , matches: new Map(matches.map((item, i) => [item, i === 0]))
+                                  };
 
                 } catch (err) {
                     console.error('Tab completion error:', err);
@@ -197,6 +196,10 @@ window.setupTerminal = async function() {
                 }
 
             } else {
+                input.value = tabComplete.baseText;
+
+                input.setSelectionRange(tabComplete.matchEnd, tabComplete.matchEnd);
+
                 const keys = [...tabComplete.matches.keys()];
                 const currentIndex = keys.findIndex(k => tabComplete.matches.get(k));
                 const nextIndex = (currentIndex + 1) % keys.length;
@@ -214,10 +217,9 @@ window.setupTerminal = async function() {
 
             const [focusedMatch] = entry;
 
-
             const newInput = tabComplete.baseText.slice(0, tabComplete.matchStart)
-                               + focusedMatch
-                               + tabComplete.baseText.slice(tabComplete.matchEnd);
+                           + focusedMatch
+                           + tabComplete.baseText.slice(tabComplete.matchEnd);
 
             input.value = newInput;
             const newCursor = tabComplete.matchStart + focusedMatch.length;
