@@ -214,26 +214,25 @@ function keydown_tab() {
         try {
             const dirNode = window.getDirFromFS(resolved);
 
-            if (!dirNode || !dirNode.children) return;
+            if (!dirNode || !dirNode.children) { return; }
 
             const matches = Object.keys(dirNode.children)
                 .filter(name => name.startsWith(base))
                 .map(name => {
                     const suffix = dirNode.children[name].type === 'dir' ? '/' : '';
                     const quoted = name.includes(' ') ? `"${name}"` : name;
+
                     return quoted + suffix;
             });
 
-            if (!matches.length) {
-                return;
-            }
+            if (!matches.length) { return; }
 
             tabComplete = { active     : true
-                            , baseText   : input.value
-                            , matchStart
-                            , matchEnd   : cursor
-                            , matches    : new Map(matches.map((item, i) => [item, i === 0]))
-                            };
+                          , baseText   : input.value
+                          , matchStart
+                          , matchEnd   : cursor
+                          , matches    : new Map(matches.map((item, i) => [item, i === 0]))
+                          };
 
         } catch (err) {
             console.error('Tab completion error:', err);
