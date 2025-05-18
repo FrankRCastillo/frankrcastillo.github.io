@@ -272,7 +272,7 @@ function keydown_tab() {
                    + focusedMatch
                    + tabComplete.baseText.slice(tabComplete.matchEnd);
 
-    input.value = newInput;
+    input.value += newInput;
 
     const newCursor = tabComplete.matchStart + focusedMatch.length;
 
