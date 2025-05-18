@@ -199,122 +199,71 @@ async function keydown_enter() {
 }
 
 function keydown_tab() {
-    const input     = document.getElementById('terminal-input');
-    const input_row = document.getElementById('terminal-prompt-row');
-
-    if (input.value.trim() === '') {
-        return;
-    }
-
+    const input = document.getElementById('terminal-input');
     const cursor = input.selectionStart;
+    const text = input.value;
 
     if (!tabComplete.active) {
-        const preCursor  = input.value.slice(0, cursor);
-        const matchArgs  = [...preCursor.matchAll(/"([^"]*)"|[^\s]+/g)];
-        const lastMatch  = matchArgs[matchArgs.length - 1];
-        const partial    = lastMatch?.[1] ?? lastMatch?.[0] ?? '';
-        const matchStart = lastMatch ? lastMatch.index : cursor;
-        const dir        = partial.includes('/') ? partial.slice(0, partial.lastIndexOf('/')) : '';
-        const base       = partial.includes('/') ? partial.slice(partial.lastIndexOf('/') + 1) : partial;
-        const resolved   = window.resolvePath(dir);
+        const tokens = [...text.matchAll(/"([^"]*)"|[^\s]+/g)];
+        if (tokens.length === 0) return;
 
-        if (partial.endsWith('/')) {
-            const resolved = window.resolvePath(partial);
-            const dirNode = window.getDirFromFS(resolved);
-
-            if (!dirNode || !dirNode.children) return;
-
-            const matches = Object.keys(dirNode.children)
-                .map(name => {
-                    const suffix = dirNode.children[name].type === 'dir' ? '/' : '';
-                    const quoted = name.includes(' ') ? `"${name}"` : name;
-                    return quoted + suffix;
-                });
-
-            if (!matches.length) return;
-
-            tabComplete = {
-                active: true,
-                baseText: input.value,
-                matchStart: cursor,
-                matchEnd: cursor,
-                matches: new Map(matches.map((item, i) => [item, i === 0]))
-            };
-
-            return;
+        let activeToken = null;
+        for (const match of tokens) {
+            const start = match.index;
+            const end = start + match[0].length;
+            if (cursor >= start && cursor <= end) {
+                activeToken = { text: match[1] ?? match[0], start, end };
+                break;
+            }
         }
 
-        // try {
-        //     const dirNode = window.getDirFromFS(resolved);
+        if (!activeToken || tokens[0].index === activeToken.start) return;
 
-        //     if (!dirNode || !dirNode.children) { return; }
+        const raw = activeToken.text;
+        const isQuoted = text[activeToken.start] === '"';
+        const pathPart = raw.includes('/') ? raw.slice(0, raw.lastIndexOf('/')) : '';
+        const basePart = raw.includes('/') ? raw.slice(raw.lastIndexOf('/') + 1) : raw;
+        const resolvedPath = window.resolvePath(pathPart);
+        const dirNode = window.getDirFromFS(resolvedPath);
 
-        //     const matches = Object.keys(dirNode.children)
-        //         .filter(name => name.startsWith(base))
-        //         .map(name => {
-        //             const suffix = dirNode.children[name].type === 'dir' ? '/' : '';
-        //             const quoted = name.includes(' ') ? `"${name}"` : name;
+        if (!dirNode || !dirNode.children) return;
 
-        //             return quoted + suffix;
-        //     });
+        const candidates = Object.keys(dirNode.children)
+            .filter(name => name.startsWith(basePart))
+            .map(name => {
+                const isDir = dirNode.children[name].type === 'dir';
+                const quoted = name.includes(' ') && !isQuoted ? `"${name}"` : name;
+                return quoted + (isDir ? '/' : '');
+            });
 
-        //     if (!matches.length) { return; }
+        if (!candidates.length) return;
 
-        //     tabComplete = { active     : true
-        //                   , baseText   : input.value
-        //                   , matchStart
-        //                   , matchEnd   : cursor
-        //                   , matches    : new Map(matches.map((item, i) => [item, i === 0]))
-        //                   };
-
-        // } catch (err) {
-        //     console.error('Tab completion error:', err);
-        //     return;
-        // }
+        tabComplete = {
+            active: true,
+            baseText: text,
+            matchStart: activeToken.start,
+            matchEnd: activeToken.end,
+            matches: candidates,
+            index: 0
+        };
 
     } else {
-        input.value = tabComplete.baseText;
-
-        input.setSelectionRange(tabComplete.matchEnd, tabComplete.matchEnd);
-
-        const keys = [...tabComplete.matches.keys()];
-        const currentIndex = keys.findIndex(k => tabComplete.matches.get(k));
-        const nextIndex = (currentIndex + 1) % keys.length;
-
-        for (const key of keys) {
-            tabComplete.matches.set(key, false);
-        }
-
-        tabComplete.matches.set(keys[nextIndex], true);
+        tabComplete.index = (tabComplete.index + 1) % tabComplete.matches.length;
     }
 
-    const entry = [...tabComplete.matches.entries()].find(([, focused]) => focused);
+    const replacement = tabComplete.matches[tabComplete.index];
+    const newText = tabComplete.baseText.slice(0, tabComplete.matchStart)
+                    + replacement
+                    + tabComplete.baseText.slice(tabComplete.matchEnd);
 
-    if (!entry) { return; }
-
-    const [focusedMatch] = entry;
-
-    const newInput = tabComplete.baseText.slice(0, tabComplete.matchStart)
-                   + focusedMatch
-                   + tabComplete.baseText.slice(tabComplete.matchEnd);
-
-    input.value = newInput;
-
-    const newCursor = tabComplete.matchStart + focusedMatch.length;
-
+    const newCursor = tabComplete.matchStart + replacement.length;
+    input.value = newText;
     input.setSelectionRange(newCursor, newCursor);
 
-    const isDir = focusedMatch.endsWith('/');
-
-    if (isDir) {
+    // If it's a dir and ends with "/", clear cycling so user can tab into contents
+    if (replacement.endsWith('/')) {
         tabComplete.active = false;
-        const newCursor = tabComplete.matchStart + focusedMatch.length;
-
-        input.setSelectionRange(newCursor, newCursor);
-
-        return;
     }
-
 }
 
 function keydown_uparrow() {
