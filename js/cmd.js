@@ -12,7 +12,7 @@ async function loadCommand(name) {
     return commands[name];
 }
 
-window.pwdcmd = await loadCommand('pwd');
+(async () => { window.pwdcmd = await loadCommand('pwd'); })();
 
 window.runCommand = async function(input) {
     if (!input.trim()) {
