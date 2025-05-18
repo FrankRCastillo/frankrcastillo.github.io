@@ -48,6 +48,9 @@ window.setupTerminal = async function() {
     window.cmdHistory = [];
     window.cmdIndex   = -1;
 
+    const input  = document.getElementById('terminal-input');
+    const output = document.getElementById('terminal-output');
+
     let tabComplete = { active     : false
                       , baseText   : ''
                       , matchStart : 0
