@@ -13,7 +13,9 @@ const nav     = document.getElementById('nav');
 
 async function fetchPages() {
     const dir = window.getDirFromFS('pages');
-    if (!dir || !dir.children) return [];
+
+    if (!dir || !dir.children) { return []; }
+
     return Object.entries(dir.children)
                 .filter(([name, node]) => node.type === 'file')
                 .map(([name, node]) => ({ name, path: node.path }));
@@ -44,11 +46,14 @@ async function loadPage(url, pageName) {
 
     try {
         await importScript(pageName);
+
     } catch (_) {
         console.log(`Failed to load ${pageName}`);
+
     }
 
     const hook = window[`load_${pageName}`];
+
     if (typeof hook === 'function') {
         hook();
     }
